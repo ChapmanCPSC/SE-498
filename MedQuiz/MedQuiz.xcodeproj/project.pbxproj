@@ -507,6 +507,7 @@
 				3D2495CE1F7E2EDD0058D85B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3D2495CF1F7E2EDD0058D85B /* Build configuration list for PBXNativeTarget "MedQuizTests" */ = {
 			isa = XCConfigurationList;
@@ -515,6 +516,7 @@
 				3D2495D11F7E2EDD0058D85B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3D2495D21F7E2EDD0058D85B /* Build configuration list for PBXNativeTarget "MedQuizUITests" */ = {
 			isa = XCConfigurationList;
@@ -523,6 +525,7 @@
 				3D2495D41F7E2EDD0058D85B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
