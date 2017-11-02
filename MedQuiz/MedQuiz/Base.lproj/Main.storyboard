@@ -23,46 +23,74 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="left" semanticContentAttribute="forceLeftToRight" fixedFrame="YES" axis="vertical" distribution="fillProportionally" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="3bh-xR-2lD">
-                                <rect key="frame" x="16" y="318" width="48" height="138"/>
+                                <rect key="frame" x="47" y="318" width="87" height="310"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hI2-Ch-Nii">
-                                        <rect key="frame" x="0.0" y="0.0" width="48" height="46"/>
-                                        <state key="normal" title="Home">
+                                        <rect key="frame" x="0.0" y="0.0" width="87" height="62"/>
+                                        <state key="normal" title="Leaderboard">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="kJ9-ao-fdb" kind="showDetail" action="showViewController:sender:" id="89M-D7-OTL"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pm0-u6-B32">
-                                        <rect key="frame" x="0.0" y="54" width="48" height="46"/>
+                                        <rect key="frame" x="0.0" y="70" width="87" height="62"/>
                                         <state key="normal" title="Search">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="QcG-Uv-NGf" kind="showDetail" action="showViewController:sender:" id="ami-EV-0Mc"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gQU-ld-nCr">
-                                        <rect key="frame" x="0.0" y="108" width="48" height="30"/>
+                                        <rect key="frame" x="0.0" y="140" width="87" height="62"/>
                                         <state key="normal" title="Quiz">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="j9H-ZV-chB" kind="showDetail" id="nnB-Ia-wOg"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bOj-a8-7S0">
+                                        <rect key="frame" x="0.0" y="210" width="87" height="62"/>
+                                        <state key="normal" title="Profile">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="Mjv-4c-gGS" kind="showDetail" id="VKC-5X-bMP"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a8H-kl-LSD">
+                                        <rect key="frame" x="0.0" y="280" width="87" height="30"/>
+                                        <state key="normal" title="About">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="o3P-1A-R2B" kind="showDetail" id="38a-s7-Ma2"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <rect key="contentStretch" x="0.0" y="0.0" width="0.94999999999999996" height="1"/>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="kJE-ee-ymj">
-                                <rect key="frame" x="16" y="111" width="102.5" height="70.5"/>
+                            <stackView opaque="NO" contentMode="left" fixedFrame="YES" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="kJE-ee-ymj">
+                                <rect key="frame" x="39" y="140" width="103" height="78.5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="profileDefault" translatesAutoresizingMaskIntoConstraints="NO" id="0dU-R8-fEu">
-                                        <rect key="frame" x="0.0" y="0.0" width="102.5" height="50"/>
+                                        <rect key="frame" x="26.5" y="0.0" width="50" height="50"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="User's Name " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e1E-Zj-Hox">
-                                        <rect key="frame" x="0.0" y="50" width="102.5" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="58" width="103" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -79,23 +107,95 @@
             </objects>
             <point key="canvasLocation" x="660" y="-29.23538230884558"/>
         </scene>
-        <!--LoginViewController-->
-        <scene sceneID="BKy-3U-7I7">
+        <!--ProfileViewController-->
+        <scene sceneID="5og-74-gz4">
             <objects>
-                <viewController title="LoginViewController" id="dc9-oR-fMW" sceneMemberID="viewController">
+                <viewController title="ProfileViewController" id="Mjv-4c-gGS" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="JJN-UM-PWi"/>
-                        <viewControllerLayoutGuide type="bottom" id="oOB-I3-imK"/>
+                        <viewControllerLayoutGuide type="top" id="v3Z-ZM-n55"/>
+                        <viewControllerLayoutGuide type="bottom" id="6FH-rr-qHy"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Z8o-Ml-6on">
+                    <view key="view" contentMode="scaleToFill" id="fud-3x-HW9">
                         <rect key="frame" x="0.0" y="0.0" width="1112" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="WeP-ar-xff" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BPz-ZL-3vX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1370" y="-29"/>
+            <point key="canvasLocation" x="660" y="835"/>
+        </scene>
+        <!--SearchViewController-->
+        <scene sceneID="1x0-SC-9OY">
+            <objects>
+                <viewController title="SearchViewController" id="QcG-Uv-NGf" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rmr-Pu-pL0"/>
+                        <viewControllerLayoutGuide type="bottom" id="7ia-uP-uBx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="RlI-xe-bqx">
+                        <rect key="frame" x="0.0" y="0.0" width="1112" height="834"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IyE-hF-Mbv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1629" y="-604"/>
+        </scene>
+        <!--QuizViewController-->
+        <scene sceneID="3q1-9c-lpR">
+            <objects>
+                <viewController title="QuizViewController" id="j9H-ZV-chB" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="D7B-hx-7Ie"/>
+                        <viewControllerLayoutGuide type="bottom" id="phw-AT-m5l"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xMb-5D-R9Q">
+                        <rect key="frame" x="0.0" y="0.0" width="1112" height="834"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UgU-G2-gbG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1629" y="122"/>
+        </scene>
+        <!--AboutViewController-->
+        <scene sceneID="gPo-2k-52U">
+            <objects>
+                <viewController title="AboutViewController" id="o3P-1A-R2B" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BtL-pB-bbt"/>
+                        <viewControllerLayoutGuide type="bottom" id="KBw-K1-FWD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZFe-L6-XAS">
+                        <rect key="frame" x="0.0" y="0.0" width="1112" height="834"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QvV-fE-2an" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1333" y="835"/>
+        </scene>
+        <!--LeaderViewController-->
+        <scene sceneID="H1j-Gw-qHh">
+            <objects>
+                <viewController title="LeaderViewController" id="kJ9-ao-fdb" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bgO-MY-z98"/>
+                        <viewControllerLayoutGuide type="bottom" id="xiK-E5-WmY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LXX-uE-Z03">
+                        <rect key="frame" x="0.0" y="0.0" width="1112" height="834"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DE2-Yn-jpr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2" y="835"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wZg-sn-vG4">
