@@ -14,6 +14,8 @@
 		3D2495B21F7E2EDD0058D85B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D2495B01F7E2EDD0058D85B /* LaunchScreen.storyboard */; };
 		3D2495BD1F7E2EDD0058D85B /* MedQuizTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2495BC1F7E2EDD0058D85B /* MedQuizTests.swift */; };
 		3D2495C81F7E2EDD0058D85B /* MedQuizUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2495C71F7E2EDD0058D85B /* MedQuizUITests.swift */; };
+		7FB8F6B61FB25BDF005C2426 /* NavTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB8F6B51FB25BDF005C2426 /* NavTableViewController.swift */; };
+		7FB8F6B81FB25C05005C2426 /* NavTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB8F6B71FB25C05005C2426 /* NavTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		3D2495C31F7E2EDD0058D85B /* MedQuizUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MedQuizUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D2495C71F7E2EDD0058D85B /* MedQuizUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedQuizUITests.swift; sourceTree = "<group>"; };
 		3D2495C91F7E2EDD0058D85B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7FB8F6B51FB25BDF005C2426 /* NavTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavTableViewController.swift; sourceTree = "<group>"; };
+		7FB8F6B71FB25C05005C2426 /* NavTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,8 @@
 				3D2495AE1F7E2EDD0058D85B /* Assets.xcassets */,
 				3D2495B01F7E2EDD0058D85B /* LaunchScreen.storyboard */,
 				3D2495B31F7E2EDD0058D85B /* Info.plist */,
+				7FB8F6B51FB25BDF005C2426 /* NavTableViewController.swift */,
+				7FB8F6B71FB25C05005C2426 /* NavTableViewCell.swift */,
 			);
 			path = MedQuiz;
 			sourceTree = "<group>";
@@ -261,7 +267,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D2495AA1F7E2EDD0058D85B /* ViewController.swift in Sources */,
+				7FB8F6B81FB25C05005C2426 /* NavTableViewCell.swift in Sources */,
 				3D2495A81F7E2EDD0058D85B /* AppDelegate.swift in Sources */,
+				7FB8F6B61FB25BDF005C2426 /* NavTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
