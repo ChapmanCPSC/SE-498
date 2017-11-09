@@ -19,7 +19,12 @@ class NavTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    @IBAction func touchUpButt(_ sender: Any) {
+        let QuizStoryboard = UIStoryboard(name: "QuizStoryboard", bundle: nil) //if bundle is nil the main bundle will be used
 
+        splitViewController?.showDetailViewController(QuizStoryboard.instantiateInitialViewController()!, sender: Any?.self)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
