@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NavTableViewCell: UITableViewCell {
+class SideBarCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()

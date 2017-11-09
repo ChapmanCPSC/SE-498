@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NavTableViewController: UITableViewController {
+class SideBar: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
