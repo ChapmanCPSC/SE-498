@@ -27,7 +27,7 @@
             </objects>
             <point key="canvasLocation" x="461" y="389"/>
         </scene>
-        <!--Nav Table View Controller-->
+        <!--Title-->
         <scene sceneID="pOV-Lb-qQc">
             <objects>
                 <tableViewController clearsSelectionOnViewWillAppear="NO" id="ytW-DQ-zAH" customClass="NavTableViewController" customModule="MedQuiz" sceneMemberID="viewController">
@@ -44,59 +44,17 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="6rB-in-hDg" customClass="NavTableViewCell" customModule="MedQuiz">
-                                <rect key="frame" x="0.0" y="72" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6rB-in-hDg" id="4yY-lv-hKs">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="sCR-Ms-4eY" customClass="NavTableViewCell" customModule="MedQuiz">
-                                <rect key="frame" x="0.0" y="116" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sCR-Ms-4eY" id="8MR-Ff-dYf">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="eCx-YK-iEg" customClass="NavTableViewCell" customModule="MedQuiz">
-                                <rect key="frame" x="0.0" y="160" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eCx-YK-iEg" id="hyU-yt-9a7">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="ytW-DQ-zAH" id="fdB-Mj-jbw"/>
                             <outlet property="delegate" destination="ytW-DQ-zAH" id="OSL-XU-LIR"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="5r7-GI-MyF">
-                        <nil key="title"/>
-                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5QR-Gv-DoR">
-                            <rect key="frame" x="137" y="7" width="46" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="Button"/>
-                            <connections>
-                                <action selector="touchUpButt:" destination="ytW-DQ-zAH" eventType="touchUpInside" id="oz6-bO-VjW"/>
-                            </connections>
-                        </button>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Title" id="pCM-DE-0tY"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QHw-eq-760" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1180" y="-264"/>
-        </scene>
-        <!--QuizStoryboard-->
-        <scene sceneID="qgm-ME-FXT">
-            <objects>
-                <viewControllerPlaceholder storyboardName="QuizStoryboard" id="UXF-7L-7GX" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pxF-gJ-Dio" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1613" y="-188"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="CN0-Yq-I41">
