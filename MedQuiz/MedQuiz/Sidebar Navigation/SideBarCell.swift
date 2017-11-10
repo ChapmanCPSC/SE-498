@@ -1,8 +1,8 @@
 //
-//  NavTableViewCell.swift
+//  SideBarCell.swift
 //  MedQuiz
 //
-//  Created by Maddy Transue on 11/7/17.
+//  Created by Omar Sherief on 11/9/17.
 //  Copyright © 2017 Omar Sherief. All rights reserved.
 //
 
@@ -10,6 +10,8 @@ import UIKit
 
 class SideBarCell: UITableViewCell {
 
+    @IBOutlet weak var navigateToPage: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -20,5 +22,5 @@ class SideBarCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
 }

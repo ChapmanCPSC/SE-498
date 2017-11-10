@@ -7,3 +7,14 @@
 //
 
 import Foundation
+import UIKit
+
+class AboutVC: UIViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
+    
+}
+

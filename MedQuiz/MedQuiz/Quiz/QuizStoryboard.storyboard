@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="iNk-fp-Fpw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="iNk-fp-Fpw">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--QuizVC-->
         <scene sceneID="Op3-vu-JDq">
             <objects>
-                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="iNk-fp-Fpw" sceneMemberID="viewController">
+                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="iNk-fp-Fpw" customClass="QuizVC" customModule="MedQuiz" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RMN-Yu-TAa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -24,32 +24,23 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXX-zk-l57">
-                                <rect key="frame" x="164" y="405" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <segue destination="kLc-xA-Qfj" kind="show" id="wsN-Uc-aUj"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="bXX-zk-l57" firstAttribute="top" secondItem="VG9-3X-zKT" secondAttribute="bottom" constant="61" id="97R-oV-ls1"/>
                             <constraint firstItem="VG9-3X-zKT" firstAttribute="centerY" secondItem="RMN-Yu-TAa" secondAttribute="centerY" id="WDg-ng-Lia"/>
                             <constraint firstItem="VG9-3X-zKT" firstAttribute="centerX" secondItem="RMN-Yu-TAa" secondAttribute="centerX" id="bMz-dH-Mrx"/>
-                            <constraint firstItem="bXX-zk-l57" firstAttribute="centerX" secondItem="VG9-3X-zKT" secondAttribute="centerX" id="oqD-mO-qEU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="SB6-76-Y1v"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2rM-5H-Bd2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="17" y="108"/>
+            <point key="canvasLocation" x="79" y="107"/>
         </scene>
-        <!--View Controller-->
+        <!--Quiz SearchVC-->
         <scene sceneID="e69-Kq-OHY">
             <objects>
-                <viewController id="kLc-xA-Qfj" sceneMemberID="viewController">
+                <viewController id="kLc-xA-Qfj" customClass="QuizSearchVC" customModule="MedQuiz" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hQF-Nj-JvJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -71,7 +62,34 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e8C-Oj-eSl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="797" y="75"/>
+            <point key="canvasLocation" x="812" y="107"/>
+        </scene>
+        <!--Quiz ActivityVC-->
+        <scene sceneID="uWT-8D-ojT">
+            <objects>
+                <viewController id="Jvp-t9-Pxf" customClass="QuizActivityVC" customModule="MedQuiz" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Mpd-4F-5DU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quiz Page 3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zGC-wG-j2Q">
+                                <rect key="frame" x="141" y="323" width="93" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="zGC-wG-j2Q" firstAttribute="centerY" secondItem="Mpd-4F-5DU" secondAttribute="centerY" id="AF5-kO-jjc"/>
+                            <constraint firstItem="zGC-wG-j2Q" firstAttribute="centerX" secondItem="Mpd-4F-5DU" secondAttribute="centerX" id="jdy-cz-gda"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="HYl-U1-YSN"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="F9e-l5-fyI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1590" y="107"/>
         </scene>
     </scenes>
 </document>

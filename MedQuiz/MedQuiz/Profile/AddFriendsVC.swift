@@ -7,3 +7,14 @@
 //
 
 import Foundation
+import UIKit
+
+class AddFriendsVC: UIViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
+    
+}
+

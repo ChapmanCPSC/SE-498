@@ -13,7 +13,6 @@
 		3D2495B21F7E2EDD0058D85B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D2495B01F7E2EDD0058D85B /* LaunchScreen.storyboard */; };
 		3D2495BD1F7E2EDD0058D85B /* MedQuizTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2495BC1F7E2EDD0058D85B /* MedQuizTests.swift */; };
 		3D2495C81F7E2EDD0058D85B /* MedQuizUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2495C71F7E2EDD0058D85B /* MedQuizUITests.swift */; };
-		3D77A13E1FB50811009178A1 /* SideBarTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D77A13D1FB50811009178A1 /* SideBarTable.swift */; };
 		3D77A1401FB50968009178A1 /* AboutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D77A13F1FB50968009178A1 /* AboutVC.swift */; };
 		3D77A1421FB50987009178A1 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D77A1411FB50987009178A1 /* ProfileVC.swift */; };
 		3D77A1441FB509A7009178A1 /* ChangeAvatarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D77A1431FB509A7009178A1 /* ChangeAvatarVC.swift */; };
@@ -22,8 +21,9 @@
 		3D77A14A1FB50AB0009178A1 /* QuizActivityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D77A1491FB50AB0009178A1 /* QuizActivityVC.swift */; };
 		3D77A14C1FB50AC0009178A1 /* QuizSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D77A14B1FB50AC0009178A1 /* QuizSearchVC.swift */; };
 		3D77A14E1FB50ADC009178A1 /* LeaderboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D77A14D1FB50ADC009178A1 /* LeaderboardVC.swift */; };
+		3D77A15D1FB57FF1009178A1 /* SideBarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D77A15B1FB57FF1009178A1 /* SideBarCell.swift */; };
+		3D77A15E1FB57FF1009178A1 /* SideBarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D77A15C1FB57FF1009178A1 /* SideBarCell.xib */; };
 		7FB8F6B61FB25BDF005C2426 /* SideBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB8F6B51FB25BDF005C2426 /* SideBar.swift */; };
-		7FB8F6B81FB25C05005C2426 /* SideBarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB8F6B71FB25C05005C2426 /* SideBarCell.swift */; };
 		DAED09811FB4F67D003575B0 /* QuizStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAED09801FB4F67D003575B0 /* QuizStoryboard.storyboard */; };
 		DAED09831FB4F68D003575B0 /* LeaderboardStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAED09821FB4F68D003575B0 /* LeaderboardStoryboard.storyboard */; };
 		DAED09851FB4F699003575B0 /* ProfileStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAED09841FB4F699003575B0 /* ProfileStoryboard.storyboard */; };
@@ -60,7 +60,6 @@
 		3D2495C31F7E2EDD0058D85B /* MedQuizUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MedQuizUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D2495C71F7E2EDD0058D85B /* MedQuizUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedQuizUITests.swift; sourceTree = "<group>"; };
 		3D2495C91F7E2EDD0058D85B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3D77A13D1FB50811009178A1 /* SideBarTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarTable.swift; sourceTree = "<group>"; };
 		3D77A13F1FB50968009178A1 /* AboutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutVC.swift; sourceTree = "<group>"; };
 		3D77A1411FB50987009178A1 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		3D77A1431FB509A7009178A1 /* ChangeAvatarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAvatarVC.swift; sourceTree = "<group>"; };
@@ -69,8 +68,9 @@
 		3D77A1491FB50AB0009178A1 /* QuizActivityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizActivityVC.swift; sourceTree = "<group>"; };
 		3D77A14B1FB50AC0009178A1 /* QuizSearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSearchVC.swift; sourceTree = "<group>"; };
 		3D77A14D1FB50ADC009178A1 /* LeaderboardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardVC.swift; sourceTree = "<group>"; };
+		3D77A15B1FB57FF1009178A1 /* SideBarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarCell.swift; sourceTree = "<group>"; };
+		3D77A15C1FB57FF1009178A1 /* SideBarCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideBarCell.xib; sourceTree = "<group>"; };
 		7FB8F6B51FB25BDF005C2426 /* SideBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBar.swift; sourceTree = "<group>"; };
-		7FB8F6B71FB25C05005C2426 /* SideBarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarCell.swift; sourceTree = "<group>"; };
 		DAED09801FB4F67D003575B0 /* QuizStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = QuizStoryboard.storyboard; sourceTree = "<group>"; };
 		DAED09821FB4F68D003575B0 /* LeaderboardStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LeaderboardStoryboard.storyboard; sourceTree = "<group>"; };
 		DAED09841FB4F699003575B0 /* ProfileStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileStoryboard.storyboard; sourceTree = "<group>"; };
@@ -132,8 +132,8 @@
 				3D77A1391FB50601009178A1 /* Profile */,
 				3D77A13A1FB50612009178A1 /* About */,
 				3D77A13C1FB50783009178A1 /* Sidebar Navigation */,
-				3D2495A71F7E2EDD0058D85B /* AppDelegate.swift */,
 				3D2495AE1F7E2EDD0058D85B /* Assets.xcassets */,
+				3D2495A71F7E2EDD0058D85B /* AppDelegate.swift */,
 				3D2495B31F7E2EDD0058D85B /* Info.plist */,
 			);
 			path = MedQuiz;
@@ -201,8 +201,8 @@
 			isa = PBXGroup;
 			children = (
 				7FB8F6B51FB25BDF005C2426 /* SideBar.swift */,
-				3D77A13D1FB50811009178A1 /* SideBarTable.swift */,
-				7FB8F6B71FB25C05005C2426 /* SideBarCell.swift */,
+				3D77A15B1FB57FF1009178A1 /* SideBarCell.swift */,
+				3D77A15C1FB57FF1009178A1 /* SideBarCell.xib */,
 			);
 			path = "Sidebar Navigation";
 			sourceTree = "<group>";
@@ -317,6 +317,7 @@
 			files = (
 				DAED09831FB4F68D003575B0 /* LeaderboardStoryboard.storyboard in Resources */,
 				3D2495B21F7E2EDD0058D85B /* LaunchScreen.storyboard in Resources */,
+				3D77A15E1FB57FF1009178A1 /* SideBarCell.xib in Resources */,
 				3D2495AF1F7E2EDD0058D85B /* Assets.xcassets in Resources */,
 				DAED09871FB4F6B1003575B0 /* AboutStoryboard.storyboard in Resources */,
 				DAED09851FB4F699003575B0 /* ProfileStoryboard.storyboard in Resources */,
@@ -349,7 +350,6 @@
 				3D77A14E1FB50ADC009178A1 /* LeaderboardVC.swift in Sources */,
 				3D77A14C1FB50AC0009178A1 /* QuizSearchVC.swift in Sources */,
 				3D77A1421FB50987009178A1 /* ProfileVC.swift in Sources */,
-				7FB8F6B81FB25C05005C2426 /* SideBarCell.swift in Sources */,
 				3D77A1461FB50A59009178A1 /* AddFriendsVC.swift in Sources */,
 				3D77A1401FB50968009178A1 /* AboutVC.swift in Sources */,
 				3D77A1481FB50AA1009178A1 /* QuizVC.swift in Sources */,
@@ -357,7 +357,7 @@
 				3D77A1441FB509A7009178A1 /* ChangeAvatarVC.swift in Sources */,
 				7FB8F6B61FB25BDF005C2426 /* SideBar.swift in Sources */,
 				3D77A14A1FB50AB0009178A1 /* QuizActivityVC.swift in Sources */,
-				3D77A13E1FB50811009178A1 /* SideBarTable.swift in Sources */,
+				3D77A15D1FB57FF1009178A1 /* SideBarCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

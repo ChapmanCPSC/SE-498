@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rC1-U6-kdK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7co-Ab-ToO">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Chnage AvatarVC-->
         <scene sceneID="StH-cO-Qlw">
             <objects>
-                <viewController id="rC1-U6-kdK" sceneMemberID="viewController">
+                <viewController id="rC1-U6-kdK" customClass="ChnageAvatarVC" customModule="MedQuiz" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7yY-Fd-xea">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -35,7 +35,61 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1El-pB-C7x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="25" y="103"/>
+            <point key="canvasLocation" x="1417" y="19"/>
+        </scene>
+        <!--Add FriendsVC-->
+        <scene sceneID="fMk-ig-3zS">
+            <objects>
+                <viewController id="sKt-xQ-lOJ" customClass="AddFriendsVC" customModule="MedQuiz" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DzA-wX-uEs">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile Page" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c2G-nY-eWY">
+                                <rect key="frame" x="141.5" y="323" width="91.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="c2G-nY-eWY" firstAttribute="centerY" secondItem="DzA-wX-uEs" secondAttribute="centerY" id="NhR-a9-pcR"/>
+                            <constraint firstItem="c2G-nY-eWY" firstAttribute="centerX" secondItem="DzA-wX-uEs" secondAttribute="centerX" id="rO0-N6-j5l"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="wua-tg-lph"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cq8-hR-VGp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="770" y="18"/>
+        </scene>
+        <!--ProfileVC-->
+        <scene sceneID="eSb-oV-Wnf">
+            <objects>
+                <viewController id="7co-Ab-ToO" customClass="ProfileVC" customModule="MedQuiz" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RJJ-zM-G1n">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile Page" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p0H-a8-rfW">
+                                <rect key="frame" x="141.5" y="323" width="91.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="p0H-a8-rfW" firstAttribute="centerY" secondItem="RJJ-zM-G1n" secondAttribute="centerY" id="1Ly-1X-gak"/>
+                            <constraint firstItem="p0H-a8-rfW" firstAttribute="centerX" secondItem="RJJ-zM-G1n" secondAttribute="centerX" id="aVk-uf-1zD"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="DpQ-gn-gLC"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wix-Ko-PRh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="41" y="18"/>
         </scene>
     </scenes>
 </document>

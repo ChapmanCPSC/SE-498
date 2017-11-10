@@ -9,20 +9,34 @@
 import UIKit
 
 class SideBar: UITableViewController {
-
+    
+    var QuizStoryboard:UIStoryboard? = nil
+    var LeaderboardStoryboard:UIStoryboard? = nil
+    var ProfileStoryboard:UIStoryboard? = nil
+    var AboutStoryboard:UIStoryboard? = nil
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.tableView.reloadData()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-    }
-    @IBAction func touchUpButt(_ sender: Any) {
-        let QuizStoryboard = UIStoryboard(name: "QuizStoryboard", bundle: nil) //if bundle is nil the main bundle will be used
-
-        splitViewController?.showDetailViewController(QuizStoryboard.instantiateInitialViewController()!, sender: Any?.self)
+        
+        //Registering the side bar nib to use in tableview
+        let sideNavNib = UINib(nibName: "SideBarCell", bundle: nil)
+        self.tableView.register(sideNavNib, forCellReuseIdentifier: "customSideCell")
+        
+        //Reference to the Quiz's storyboard
+        QuizStoryboard = UIStoryboard(name: "QuizStoryboard", bundle: nil)
+        
+        //Reference to the Leaderboard's storyboard
+        LeaderboardStoryboard = UIStoryboard(name: "LeaderboardStoryboard", bundle: nil)
+        
+        //Reference to the Profile's storyboard
+        ProfileStoryboard = UIStoryboard(name: "ProfileStoryboard", bundle: nil)
+        
+        //Reference to the About's storyboard
+        AboutStoryboard = UIStoryboard(name: "AboutStoryboard", bundle: nil)
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -30,27 +44,53 @@ class SideBar: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 4
     }
 
-    /*
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 77
+        
+    }
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+        let aSideBarCell:SideBarCell = tableView.dequeueReusableCell(withIdentifier: "customSideCell", for: indexPath) as! SideBarCell
+        if(indexPath.row == 0){
+            aSideBarCell.navigateToPage.text = "Quiz"
+        }
+        else if(indexPath.row == 1){
+            aSideBarCell.navigateToPage.text = "Leaderboard"
+        }
+        else if(indexPath.row == 2){
+            aSideBarCell.navigateToPage.text = "Profile"
+        }
+        else if(indexPath.row == 3){
+            aSideBarCell.navigateToPage.text = "About"
+        }
+        return aSideBarCell
     }
-    */
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if(indexPath.row == 0){
+            splitViewController?.showDetailViewController(QuizStoryboard!.instantiateInitialViewController()!, sender: Any?.self)
+        }
+        else if(indexPath.row == 1){
+            splitViewController?.showDetailViewController(LeaderboardStoryboard!.instantiateInitialViewController()!, sender: Any?.self)
+        }
+        else if(indexPath.row == 2){
+            splitViewController?.showDetailViewController(ProfileStoryboard!.instantiateInitialViewController()!, sender: Any?.self)
+        }
+        else if(indexPath.row == 3){
+            splitViewController?.showDetailViewController(AboutStoryboard!.instantiateInitialViewController()!, sender: Any?.self)
+        }
+    }
+
 
     /*
     // Override to support conditional editing of the table view.

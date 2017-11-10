@@ -7,3 +7,13 @@
 //
 
 import Foundation
+import UIKit
+
+class QuizSearchVC: UIViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
+    
+}

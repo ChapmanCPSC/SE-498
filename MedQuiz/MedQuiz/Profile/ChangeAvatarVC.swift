@@ -7,3 +7,14 @@
 //
 
 import Foundation
+import UIKit
+
+class ChnageAvatarVC: UIViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
+    
+}
+
