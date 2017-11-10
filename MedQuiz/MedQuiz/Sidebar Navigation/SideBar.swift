@@ -37,6 +37,10 @@ class SideBar: UITableViewController {
         //Reference to the About's storyboard
         AboutStoryboard = UIStoryboard(name: "AboutStoryboard", bundle: nil)
         
+        //Set the initial vc to the quiz's
+        splitViewController?.showDetailViewController(QuizStoryboard!.instantiateInitialViewController()!, sender: Any?.self)
+
+        
     }
     
     override func didReceiveMemoryWarning() {
