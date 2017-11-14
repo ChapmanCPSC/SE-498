@@ -23,6 +23,8 @@
 		3D77A14E1FB50ADC009178A1 /* LeaderboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D77A14D1FB50ADC009178A1 /* LeaderboardVC.swift */; };
 		3D77A15D1FB57FF1009178A1 /* SideBarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D77A15B1FB57FF1009178A1 /* SideBarCell.swift */; };
 		3D77A15E1FB57FF1009178A1 /* SideBarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D77A15C1FB57FF1009178A1 /* SideBarCell.xib */; };
+		3D8C84311FBA898200FA2AD0 /* LoginStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D8C84301FBA898200FA2AD0 /* LoginStoryboard.storyboard */; };
+		3D8C84331FBA8A2D00FA2AD0 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8C84321FBA8A2D00FA2AD0 /* LoginVC.swift */; };
 		7FB8F6B61FB25BDF005C2426 /* SideBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB8F6B51FB25BDF005C2426 /* SideBar.swift */; };
 		DAED09811FB4F67D003575B0 /* QuizStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAED09801FB4F67D003575B0 /* QuizStoryboard.storyboard */; };
 		DAED09831FB4F68D003575B0 /* LeaderboardStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAED09821FB4F68D003575B0 /* LeaderboardStoryboard.storyboard */; };
@@ -70,6 +72,8 @@
 		3D77A14D1FB50ADC009178A1 /* LeaderboardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardVC.swift; sourceTree = "<group>"; };
 		3D77A15B1FB57FF1009178A1 /* SideBarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarCell.swift; sourceTree = "<group>"; };
 		3D77A15C1FB57FF1009178A1 /* SideBarCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideBarCell.xib; sourceTree = "<group>"; };
+		3D8C84301FBA898200FA2AD0 /* LoginStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginStoryboard.storyboard; sourceTree = "<group>"; };
+		3D8C84321FBA8A2D00FA2AD0 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		7FB8F6B51FB25BDF005C2426 /* SideBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBar.swift; sourceTree = "<group>"; };
 		DAED09801FB4F67D003575B0 /* QuizStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = QuizStoryboard.storyboard; sourceTree = "<group>"; };
 		DAED09821FB4F68D003575B0 /* LeaderboardStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LeaderboardStoryboard.storyboard; sourceTree = "<group>"; };
@@ -127,6 +131,7 @@
 			children = (
 				3D2495B01F7E2EDD0058D85B /* LaunchScreen.storyboard */,
 				3D2495AB1F7E2EDD0058D85B /* Main.storyboard */,
+				3D8C842F1FBA896300FA2AD0 /* Login */,
 				3D77A1381FB505F2009178A1 /* Quiz */,
 				3D77A13B1FB5061B009178A1 /* Leaderboard */,
 				3D77A1391FB50601009178A1 /* Profile */,
@@ -205,6 +210,15 @@
 				3D77A15C1FB57FF1009178A1 /* SideBarCell.xib */,
 			);
 			path = "Sidebar Navigation";
+			sourceTree = "<group>";
+		};
+		3D8C842F1FBA896300FA2AD0 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				3D8C84301FBA898200FA2AD0 /* LoginStoryboard.storyboard */,
+				3D8C84321FBA8A2D00FA2AD0 /* LoginVC.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -315,6 +329,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D8C84311FBA898200FA2AD0 /* LoginStoryboard.storyboard in Resources */,
 				DAED09831FB4F68D003575B0 /* LeaderboardStoryboard.storyboard in Resources */,
 				3D2495B21F7E2EDD0058D85B /* LaunchScreen.storyboard in Resources */,
 				3D77A15E1FB57FF1009178A1 /* SideBarCell.xib in Resources */,
@@ -349,6 +364,7 @@
 			files = (
 				3D77A14E1FB50ADC009178A1 /* LeaderboardVC.swift in Sources */,
 				3D77A14C1FB50AC0009178A1 /* QuizSearchVC.swift in Sources */,
+				3D8C84331FBA8A2D00FA2AD0 /* LoginVC.swift in Sources */,
 				3D77A1421FB50987009178A1 /* ProfileVC.swift in Sources */,
 				3D77A1461FB50A59009178A1 /* AddFriendsVC.swift in Sources */,
 				3D77A1401FB50968009178A1 /* AboutVC.swift in Sources */,
