@@ -13,6 +13,16 @@
 		3D2495B21F7E2EDD0058D85B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D2495B01F7E2EDD0058D85B /* LaunchScreen.storyboard */; };
 		3D2495BD1F7E2EDD0058D85B /* MedQuizTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2495BC1F7E2EDD0058D85B /* MedQuizTests.swift */; };
 		3D2495C81F7E2EDD0058D85B /* MedQuizUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2495C71F7E2EDD0058D85B /* MedQuizUITests.swift */; };
+		3D3166B51FBB0564000D910F /* MBA_color_2line.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3D3166AC1FBB0564000D910F /* MBA_color_2line.jpg */; };
+		3D3166B61FBB0564000D910F /* ted-logo-fb.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3166AD1FBB0564000D910F /* ted-logo-fb.png */; };
+		3D3166B71FBB0564000D910F /* off-canvas-header-default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3166AE1FBB0564000D910F /* off-canvas-header-default.png */; };
+		3D3166B81FBB0564000D910F /* chapman-univeristy-300x156.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3166AF1FBB0564000D910F /* chapman-univeristy-300x156.png */; };
+		3D3166B91FBB0564000D910F /* ISMP-2c-150.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3D3166B01FBB0564000D910F /* ISMP-2c-150.jpg */; };
+		3D3166BA1FBB0564000D910F /* logoOption.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3166B11FBB0564000D910F /* logoOption.png */; };
+		3D3166BB1FBB0564000D910F /* Chapman-Univ_cropped_1486751083_300X300_c_c_0_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3166B21FBB0564000D910F /* Chapman-Univ_cropped_1486751083_300X300_c_c_0_0.png */; };
+		3D3166BC1FBB0564000D910F /* gentleman_icon-icons.com_55044.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3166B31FBB0564000D910F /* gentleman_icon-icons.com_55044.png */; };
+		3D3166BD1FBB0564000D910F /* boston-museum-of-fine-arts-94.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3D3166B41FBB0564000D910F /* boston-museum-of-fine-arts-94.gif */; };
+		3D3166BF1FBB0588000D910F /* ClearSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D3166BE1FBB056E000D910F /* ClearSans-Medium.ttf */; };
 		3D77A1401FB50968009178A1 /* AboutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D77A13F1FB50968009178A1 /* AboutVC.swift */; };
 		3D77A1421FB50987009178A1 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D77A1411FB50987009178A1 /* ProfileVC.swift */; };
 		3D77A1441FB509A7009178A1 /* ChangeAvatarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D77A1431FB509A7009178A1 /* ChangeAvatarVC.swift */; };
@@ -64,6 +74,16 @@
 		3D2495C31F7E2EDD0058D85B /* MedQuizUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MedQuizUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D2495C71F7E2EDD0058D85B /* MedQuizUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedQuizUITests.swift; sourceTree = "<group>"; };
 		3D2495C91F7E2EDD0058D85B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3D3166AC1FBB0564000D910F /* MBA_color_2line.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = MBA_color_2line.jpg; sourceTree = "<group>"; };
+		3D3166AD1FBB0564000D910F /* ted-logo-fb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ted-logo-fb.png"; sourceTree = "<group>"; };
+		3D3166AE1FBB0564000D910F /* off-canvas-header-default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "off-canvas-header-default.png"; sourceTree = "<group>"; };
+		3D3166AF1FBB0564000D910F /* chapman-univeristy-300x156.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chapman-univeristy-300x156.png"; sourceTree = "<group>"; };
+		3D3166B01FBB0564000D910F /* ISMP-2c-150.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "ISMP-2c-150.jpg"; sourceTree = "<group>"; };
+		3D3166B11FBB0564000D910F /* logoOption.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logoOption.png; sourceTree = "<group>"; };
+		3D3166B21FBB0564000D910F /* Chapman-Univ_cropped_1486751083_300X300_c_c_0_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Chapman-Univ_cropped_1486751083_300X300_c_c_0_0.png"; sourceTree = "<group>"; };
+		3D3166B31FBB0564000D910F /* gentleman_icon-icons.com_55044.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gentleman_icon-icons.com_55044.png"; sourceTree = "<group>"; };
+		3D3166B41FBB0564000D910F /* boston-museum-of-fine-arts-94.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "boston-museum-of-fine-arts-94.gif"; sourceTree = "<group>"; };
+		3D3166BE1FBB056E000D910F /* ClearSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ClearSans-Medium.ttf"; sourceTree = "<group>"; };
 		3D77A13F1FB50968009178A1 /* AboutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutVC.swift; sourceTree = "<group>"; };
 		3D77A1411FB50987009178A1 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		3D77A1431FB509A7009178A1 /* ChangeAvatarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAvatarVC.swift; sourceTree = "<group>"; };
@@ -114,6 +134,8 @@
 			isa = PBXGroup;
 			children = (
 				3D2495A61F7E2EDD0058D85B /* MedQuiz */,
+				3D3166AA1FBB050F000D910F /* Images */,
+				3D3166A91FBB04D7000D910F /* Fonts */,
 				3D2495BB1F7E2EDD0058D85B /* MedQuizTests */,
 				3D2495C61F7E2EDD0058D85B /* MedQuizUITests */,
 				3D2495A51F7E2EDD0058D85B /* Products */,
@@ -164,6 +186,30 @@
 				3D2495C91F7E2EDD0058D85B /* Info.plist */,
 			);
 			path = MedQuizUITests;
+			sourceTree = "<group>";
+		};
+		3D3166A91FBB04D7000D910F /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				3D3166BE1FBB056E000D910F /* ClearSans-Medium.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		3D3166AA1FBB050F000D910F /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				3D3166B41FBB0564000D910F /* boston-museum-of-fine-arts-94.gif */,
+				3D3166B21FBB0564000D910F /* Chapman-Univ_cropped_1486751083_300X300_c_c_0_0.png */,
+				3D3166AF1FBB0564000D910F /* chapman-univeristy-300x156.png */,
+				3D3166B31FBB0564000D910F /* gentleman_icon-icons.com_55044.png */,
+				3D3166B01FBB0564000D910F /* ISMP-2c-150.jpg */,
+				3D3166B11FBB0564000D910F /* logoOption.png */,
+				3D3166AC1FBB0564000D910F /* MBA_color_2line.jpg */,
+				3D3166AE1FBB0564000D910F /* off-canvas-header-default.png */,
+				3D3166AD1FBB0564000D910F /* ted-logo-fb.png */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 		3D77A1381FB505F2009178A1 /* Quiz */ = {
@@ -335,14 +381,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D3166BF1FBB0588000D910F /* ClearSans-Medium.ttf in Resources */,
 				3D8C84311FBA898200FA2AD0 /* Login.storyboard in Resources */,
+				3D3166B81FBB0564000D910F /* chapman-univeristy-300x156.png in Resources */,
+				3D3166BB1FBB0564000D910F /* Chapman-Univ_cropped_1486751083_300X300_c_c_0_0.png in Resources */,
+				3D3166B61FBB0564000D910F /* ted-logo-fb.png in Resources */,
 				DAED09831FB4F68D003575B0 /* Leaderboard.storyboard in Resources */,
 				3D2495B21F7E2EDD0058D85B /* LaunchScreen.storyboard in Resources */,
+				3D3166B71FBB0564000D910F /* off-canvas-header-default.png in Resources */,
+				3D3166BD1FBB0564000D910F /* boston-museum-of-fine-arts-94.gif in Resources */,
 				3D77A15E1FB57FF1009178A1 /* SideBarCell.xib in Resources */,
+				3D3166BC1FBB0564000D910F /* gentleman_icon-icons.com_55044.png in Resources */,
 				3D2495AF1F7E2EDD0058D85B /* Assets.xcassets in Resources */,
 				DAED09871FB4F6B1003575B0 /* About.storyboard in Resources */,
 				DAED09851FB4F699003575B0 /* Profile.storyboard in Resources */,
+				3D3166B91FBB0564000D910F /* ISMP-2c-150.jpg in Resources */,
+				3D3166B51FBB0564000D910F /* MBA_color_2line.jpg in Resources */,
 				DAED09811FB4F67D003575B0 /* Quiz.storyboard in Resources */,
+				3D3166BA1FBB0564000D910F /* logoOption.png in Resources */,
 				3D2495AD1F7E2EDD0058D85B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
