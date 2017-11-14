@@ -11,8 +11,11 @@ import UIKit
 
 class LeaderboardVC: UIViewController {
     
+    @IBOutlet weak var `switch`: UISwitch!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
     }
     
