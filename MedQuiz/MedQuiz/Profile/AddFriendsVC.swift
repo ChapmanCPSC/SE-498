@@ -16,5 +16,8 @@ class AddFriendsVC: UIViewController {
         
     }
     
+    @IBAction func backToFriends(_ sender: Any) {
+        dismiss(animated: false, completion: nil)
+    }
 }
 

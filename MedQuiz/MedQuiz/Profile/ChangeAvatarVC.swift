@@ -9,12 +9,15 @@
 import Foundation
 import UIKit
 
-class ChnageAvatarVC: UIViewController {
+class ChangeAvatarVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
     }
     
+    @IBAction func doneWithAvatar(_ sender: Any) {
+        self.dismiss(animated: false, completion: nil)
+    }
 }
 
