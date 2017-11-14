@@ -26,7 +26,6 @@ class LoginVC: UIViewController {
     }
     
     @IBAction func loginPressed(_ sender: Any) {
-        print("woo")
         present((MainStoryBoard?.instantiateInitialViewController())!, animated: false, completion: nil)
     }
     

@@ -26,16 +26,16 @@ class SideBar: UITableViewController {
         self.tableView.register(sideNavNib, forCellReuseIdentifier: "customSideCell")
         
         //Reference to the Quiz's storyboard
-        QuizStoryboard = UIStoryboard(name: "QuizStoryboard", bundle: nil)
+        QuizStoryboard = UIStoryboard(name: "Quiz", bundle: nil)
         
         //Reference to the Leaderboard's storyboard
-        LeaderboardStoryboard = UIStoryboard(name: "LeaderboardStoryboard", bundle: nil)
+        LeaderboardStoryboard = UIStoryboard(name: "Leaderboard", bundle: nil)
         
         //Reference to the Profile's storyboard
-        ProfileStoryboard = UIStoryboard(name: "ProfileStoryboard", bundle: nil)
+        ProfileStoryboard = UIStoryboard(name: "Profile", bundle: nil)
         
         //Reference to the About's storyboard
-        AboutStoryboard = UIStoryboard(name: "AboutStoryboard", bundle: nil)
+        AboutStoryboard = UIStoryboard(name: "About", bundle: nil)
         
         //Set the initial vc to the quiz's
         splitViewController?.showDetailViewController(QuizStoryboard!.instantiateInitialViewController()!, sender: Any?.self)
