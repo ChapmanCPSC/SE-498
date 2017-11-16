@@ -107,7 +107,7 @@ class SideBar: UITableViewController {
         if(indexPath.section == 0 && indexPath.row == 1){
             aSideBarCell.navigateToPage.text = "Quiz"
             aSideBarCell.navigateToPage.textColor = whiteColor
-            aSideBarCell.setSelected(true, animated: false)
+            aSideBarCell.backgroundColor = mainCellSelectedBlue
             return aSideBarCell
         }
         else if(indexPath.section == 0 && indexPath.row == 2){
