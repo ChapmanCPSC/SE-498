@@ -159,7 +159,6 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <connections>
-                        <outlet property="switch" destination="nDz-9W-n3q" id="fIH-XC-M0Q"/>
                         <outlet property="switchButton" destination="Ae6-vv-xDu" id="1tC-iA-Dtg"/>
                         <outlet property="switchView" destination="nDz-9W-n3q" id="qee-yo-FsA"/>
                     </connections>

@@ -86,7 +86,7 @@ class SideBar: UITableViewController {
         {
             let aProfBarCell:ProfileSideBarCell = tableView.dequeueReusableCell(withIdentifier: "profileCell", for: indexPath) as! ProfileSideBarCell
             
-            aProfBarCell.profileImage.center = aProfBarCell.center
+            //aProfBarCell.profileImage.center = aProfBarCell.center
             
             aProfBarCell.profileNameLabel.text = "Maddy Transue"
             aProfBarCell.profileNameLabel.textColor = whiteColor
