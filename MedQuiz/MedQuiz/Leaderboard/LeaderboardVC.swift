@@ -11,11 +11,14 @@ import UIKit
 
 class LeaderboardVC: UIViewController {
     
-    @IBOutlet weak var `switch`: UISwitch!
+    
+    @IBOutlet weak var switchButton: UIView!
+    @IBOutlet weak var switchView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        switchView.layer.cornerRadius = 5;
+        switchView.layer.masksToBounds = true;
         
     }
     
