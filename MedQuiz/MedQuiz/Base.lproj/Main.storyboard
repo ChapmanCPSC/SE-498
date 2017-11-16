@@ -35,6 +35,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="separatorColor" red="0.26449559567339315" green="0.47377340730345691" blue="0.54097283706463206" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <variation key="heightClass=compact-widthClass=compact">
+                            <color key="separatorColor" red="0.26449559567339315" green="0.47377340730345691" blue="0.54097283706463206" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </variation>
                         <connections>
                             <outlet property="dataSource" destination="ytW-DQ-zAH" id="fdB-Mj-jbw"/>
                             <outlet property="delegate" destination="ytW-DQ-zAH" id="OSL-XU-LIR"/>
