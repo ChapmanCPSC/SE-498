@@ -24,9 +24,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="395" height="169.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sed-7u-I4Y">
-                        <rect key="frame" x="333" y="26" width="42" height="23"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sed-7u-I4Y">
+                        <rect key="frame" x="333" y="30" width="42" height="23"/>
                         <fontDescription key="fontDescription" name="ClearSans-Medium" family="Clear Sans Medium" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -35,14 +34,19 @@
                         <rect key="frame" x="20" y="27" width="114" height="114"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yn1-BK-FH1">
-                        <rect key="frame" x="333" y="118" width="42" height="23"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yn1-BK-FH1">
+                        <rect key="frame" x="333" y="61" width="42" height="23"/>
                         <fontDescription key="fontDescription" name="ClearSans-Medium" family="Clear Sans Medium" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="yn1-BK-FH1" secondAttribute="bottom" constant="86" id="0ZT-tJ-wGR"/>
+                    <constraint firstItem="Sed-7u-I4Y" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="30" id="RZx-r6-hZx"/>
+                    <constraint firstAttribute="trailing" secondItem="Sed-7u-I4Y" secondAttribute="trailing" constant="20" id="RoY-2y-hny"/>
+                    <constraint firstAttribute="trailing" secondItem="yn1-BK-FH1" secondAttribute="trailing" constant="20" id="SFT-ty-C9M"/>
+                </constraints>
             </tableViewCellContentView>
             <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="1"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

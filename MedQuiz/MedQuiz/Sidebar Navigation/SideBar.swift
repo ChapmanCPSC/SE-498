@@ -95,6 +95,7 @@ class SideBar: UITableViewController {
             /*let currentName = aProfBarCell.profileNameLabel.text
             aProfBarCell.scoreLabel.text = getScore(name: currentName!)*/
             
+            
             aProfBarCell.scoreNumberLabel.text = "4,434,534"
             aProfBarCell.scoreNumberLabel.textColor = whiteColor
             aProfBarCell.scoreNumberLabel.sizeToFit()
