@@ -100,6 +100,7 @@ class SideBar: UITableViewController {
         if(indexPath.section == 0 && indexPath.row == 1){
             aSideBarCell.navigateToPage.text = "Quiz"
             aSideBarCell.navigateToPage.textColor = whiteColor
+            aSideBarCell.setSelected(true, animated: false)
             return aSideBarCell
         }
         else if(indexPath.section == 0 && indexPath.row == 2){
@@ -123,6 +124,8 @@ class SideBar: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //self.tableView.deselectRow(at: indexPath, animated: true)
+        
         let selectedCell:UITableViewCell = tableView.cellForRow(at: indexPath)!
         selectedCell.contentView.backgroundColor = mainCellSelectedBlue
         
