@@ -71,7 +71,7 @@ class SideBar: UITableViewController {
             return 180
         }
         else if(indexPath.row < 5){
-            return 130
+            return 100
         }
         else{
             return -1
@@ -85,17 +85,24 @@ class SideBar: UITableViewController {
         if(indexPath.row == 0)
         {
             let aProfBarCell:ProfileSideBarCell = tableView.dequeueReusableCell(withIdentifier: "profileCell", for: indexPath) as! ProfileSideBarCell
-            aProfBarCell.layer.cornerRadius = 10
             aProfBarCell.profileImage.center = aProfBarCell.center
             aProfBarCell.profileNameLabel.text = "Maddy Transue"
             aProfBarCell.profileNameLabel.textColor = whiteColor
             aProfBarCell.profileNameLabel.sizeToFit()
+            
             aProfBarCell.isUserInteractionEnabled = false
+            
             aProfBarCell.backgroundColor = blueProfCellColor
+            aProfBarCell.layer.cornerRadius = 10
+            aProfBarCell.layer.shadowRadius = 30
+            aProfBarCell.layer.shadowOpacity = 0.9
+            
             return aProfBarCell
         }
         let aSideBarCell:SideBarCell = tableView.dequeueReusableCell(withIdentifier: "customSideCell", for: indexPath) as! SideBarCell
         aSideBarCell.backgroundColor = mainCellBlue
+        
+        aSideBarCell.layer.cornerRadius = 10
         
         if(indexPath.section == 0 && indexPath.row == 1){
             aSideBarCell.navigateToPage.text = "Quiz"
@@ -125,6 +132,11 @@ class SideBar: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //self.tableView.deselectRow(at: indexPath, animated: true)
+        
+        for index in 1...5{
+            let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0))
+            cell?.contentView.backgroundColor = mainCellBlue
+        }
         
         let selectedCell:UITableViewCell = tableView.cellForRow(at: indexPath)!
         selectedCell.contentView.backgroundColor = mainCellSelectedBlue
