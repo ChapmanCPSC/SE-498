@@ -24,14 +24,15 @@
                 <rect key="frame" x="0.0" y="0.0" width="421" height="119.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4fc-ZY-1zI">
-                        <rect key="frame" x="190" y="48.5" width="42" height="23"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4fc-ZY-1zI">
+                        <rect key="frame" x="30" y="48" width="361" height="23"/>
                         <fontDescription key="fontDescription" name="ClearSans-Medium" family="Clear Sans Medium" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="4fc-ZY-1zI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="8M3-E2-wJJ"/>
                     <constraint firstItem="4fc-ZY-1zI" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="BvD-U4-fcV"/>
                     <constraint firstItem="4fc-ZY-1zI" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="HSh-yy-6uA"/>
                 </constraints>

@@ -44,7 +44,7 @@
                             <outlet property="delegate" destination="ytW-DQ-zAH" id="OSL-XU-LIR"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Title" id="pCM-DE-0tY"/>
+                    <navigationItem key="navigationItem" title="Title" largeTitleDisplayMode="never" id="pCM-DE-0tY"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QHw-eq-760" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
