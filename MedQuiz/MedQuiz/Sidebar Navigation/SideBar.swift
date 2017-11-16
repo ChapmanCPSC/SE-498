@@ -81,7 +81,7 @@ class SideBar: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         self.tableView.backgroundColor = mainCellBlue
-        //self.tableView.backgroundView.backgroundColor = yourColo
+
         if(indexPath.row == 0)
         {
             let aProfBarCell:ProfileSideBarCell = tableView.dequeueReusableCell(withIdentifier: "profileCell", for: indexPath) as! ProfileSideBarCell
@@ -123,6 +123,9 @@ class SideBar: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedCell:UITableViewCell = tableView.cellForRow(at: indexPath)!
+        selectedCell.contentView.backgroundColor = mainCellSelectedBlue
+        
         if(indexPath.section == 0 && indexPath.row == 1){
             splitViewController?.showDetailViewController(QuizStoryboard!.instantiateInitialViewController()!, sender: Any?.self)
         }
