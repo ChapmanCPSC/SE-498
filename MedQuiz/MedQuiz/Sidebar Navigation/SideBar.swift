@@ -25,6 +25,10 @@ class SideBar: UITableViewController {
         let sideNavNib = UINib(nibName: "SideBarCell", bundle: nil)
         self.tableView.register(sideNavNib, forCellReuseIdentifier: "customSideCell")
         
+        let profSideNib = UINib(nibName: "ProfileSideBarCell", bundle: nil)
+        self.tableView.register(profSideNib, forCellReuseIdentifier: "profileCell")
+        
+        
         //Reference to the Quiz's storyboard
         QuizStoryboard = UIStoryboard(name: "Quiz", bundle: nil)
         
@@ -42,7 +46,6 @@ class SideBar: UITableViewController {
 
         
     }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -55,42 +58,66 @@ class SideBar: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 4
+        return 5
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 77
+        if(indexPath.section == 0 && indexPath.row == 0){
+            return 180
+        }
+        else if(indexPath.row < 5){
+            return 130
+        }
+        else{
+            return -1
+        }
         
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if(indexPath.row == 0)
+        {
+            let aProfBarCell:ProfileSideBarCell = tableView.dequeueReusableCell(withIdentifier: "profileCell", for: indexPath) as! ProfileSideBarCell
+            aProfBarCell.profileImage.center = aProfBarCell.center
+            aProfBarCell.profileNameLabel.text = "Maddy Transue"
+            aProfBarCell.profileNameLabel.sizeToFit()
+            aProfBarCell.isUserInteractionEnabled = false
+            return aProfBarCell
+        }
         let aSideBarCell:SideBarCell = tableView.dequeueReusableCell(withIdentifier: "customSideCell", for: indexPath) as! SideBarCell
-        if(indexPath.row == 0){
+        
+        if(indexPath.section == 0 && indexPath.row == 1){
             aSideBarCell.navigateToPage.text = "Quiz"
+            return aSideBarCell
         }
-        else if(indexPath.row == 1){
+        else if(indexPath.section == 0 && indexPath.row == 2){
             aSideBarCell.navigateToPage.text = "Leaderboard"
+            return aSideBarCell
         }
-        else if(indexPath.row == 2){
+        else if(indexPath.section == 0 && indexPath.row == 3){
             aSideBarCell.navigateToPage.text = "Profile"
+            return aSideBarCell
         }
-        else if(indexPath.row == 3){
+        else if(indexPath.section == 0 && indexPath.row == 4){
             aSideBarCell.navigateToPage.text = "About"
+            return aSideBarCell
         }
-        return aSideBarCell
+        else{
+            return UITableViewCell()
+        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if(indexPath.row == 0){
+        if(indexPath.section == 0 && indexPath.row == 1){
             splitViewController?.showDetailViewController(QuizStoryboard!.instantiateInitialViewController()!, sender: Any?.self)
         }
-        else if(indexPath.row == 1){
+        else if(indexPath.section == 0 && indexPath.row == 2){
             splitViewController?.showDetailViewController(LeaderboardStoryboard!.instantiateInitialViewController()!, sender: Any?.self)
         }
-        else if(indexPath.row == 2){
+        else if(indexPath.section == 0 && indexPath.row == 3){
             splitViewController?.showDetailViewController(ProfileStoryboard!.instantiateInitialViewController()!, sender: Any?.self)
         }
-        else if(indexPath.row == 3){
+        else if(indexPath.section == 0 && indexPath.row == 4){
             splitViewController?.showDetailViewController(AboutStoryboard!.instantiateInitialViewController()!, sender: Any?.self)
         }
     }
