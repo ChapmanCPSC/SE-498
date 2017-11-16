@@ -15,6 +15,11 @@ class SideBar: UITableViewController {
     var ProfileStoryboard:UIStoryboard? = nil
     var AboutStoryboard:UIStoryboard? = nil
     
+    let blueProfCellColor = UIColor(red: (111/255.0), green: (229/255.0), blue: (203/255.0), alpha: 1.0)
+    let mainCellBlue = UIColor(red: (67/255.0), green: (158/255.0), blue: (196/255.0), alpha: 1.0)
+    let mainCellSelectedBlue = UIColor(red: (45/255.0), green: (113/255.0), blue: (142/255.0), alpha: 1.0)
+    let whiteColor = UIColor(red: (255/255.0), green: (255/255.0), blue: (255/255.0), alpha: 1.0)
+    
     override func viewWillAppear(_ animated: Bool) {
         self.tableView.reloadData()
     }
@@ -24,6 +29,10 @@ class SideBar: UITableViewController {
         //Registering the side bar nib to use in tableview
         let sideNavNib = UINib(nibName: "SideBarCell", bundle: nil)
         self.tableView.register(sideNavNib, forCellReuseIdentifier: "customSideCell")
+        
+        let profSideNib = UINib(nibName: "ProfileSideBarCell", bundle: nil)
+        self.tableView.register(profSideNib, forCellReuseIdentifier: "profileCell")
+        
         
         //Reference to the Quiz's storyboard
         QuizStoryboard = UIStoryboard(name: "Quiz", bundle: nil)
@@ -42,7 +51,6 @@ class SideBar: UITableViewController {
 
         
     }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -55,42 +63,82 @@ class SideBar: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 4
+        return 5
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 77
+        if(indexPath.section == 0 && indexPath.row == 0){
+            return 180
+        }
+        else if(indexPath.row < 5){
+            return 130
+        }
+        else{
+            return -1
+        }
         
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        self.tableView.backgroundColor = mainCellBlue
+
+        if(indexPath.row == 0)
+        {
+            let aProfBarCell:ProfileSideBarCell = tableView.dequeueReusableCell(withIdentifier: "profileCell", for: indexPath) as! ProfileSideBarCell
+            aProfBarCell.layer.cornerRadius = 10
+            aProfBarCell.profileImage.center = aProfBarCell.center
+            aProfBarCell.profileNameLabel.text = "Maddy Transue"
+            aProfBarCell.profileNameLabel.textColor = whiteColor
+            aProfBarCell.profileNameLabel.sizeToFit()
+            aProfBarCell.isUserInteractionEnabled = false
+            aProfBarCell.backgroundColor = blueProfCellColor
+            return aProfBarCell
+        }
         let aSideBarCell:SideBarCell = tableView.dequeueReusableCell(withIdentifier: "customSideCell", for: indexPath) as! SideBarCell
-        if(indexPath.row == 0){
+        aSideBarCell.backgroundColor = mainCellBlue
+        
+        if(indexPath.section == 0 && indexPath.row == 1){
             aSideBarCell.navigateToPage.text = "Quiz"
+            aSideBarCell.navigateToPage.textColor = whiteColor
+            aSideBarCell.setSelected(true, animated: false)
+            return aSideBarCell
         }
-        else if(indexPath.row == 1){
+        else if(indexPath.section == 0 && indexPath.row == 2){
             aSideBarCell.navigateToPage.text = "Leaderboard"
+            aSideBarCell.navigateToPage.textColor = whiteColor
+            return aSideBarCell
         }
-        else if(indexPath.row == 2){
+        else if(indexPath.section == 0 && indexPath.row == 3){
             aSideBarCell.navigateToPage.text = "Profile"
+            aSideBarCell.navigateToPage.textColor = whiteColor
+            return aSideBarCell
         }
-        else if(indexPath.row == 3){
+        else if(indexPath.section == 0 && indexPath.row == 4){
             aSideBarCell.navigateToPage.text = "About"
+            aSideBarCell.navigateToPage.textColor = whiteColor
+            return aSideBarCell
         }
-        return aSideBarCell
+        else{
+            return UITableViewCell()
+        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if(indexPath.row == 0){
+        //self.tableView.deselectRow(at: indexPath, animated: true)
+        
+        let selectedCell:UITableViewCell = tableView.cellForRow(at: indexPath)!
+        selectedCell.contentView.backgroundColor = mainCellSelectedBlue
+        
+        if(indexPath.section == 0 && indexPath.row == 1){
             splitViewController?.showDetailViewController(QuizStoryboard!.instantiateInitialViewController()!, sender: Any?.self)
         }
-        else if(indexPath.row == 1){
+        else if(indexPath.section == 0 && indexPath.row == 2){
             splitViewController?.showDetailViewController(LeaderboardStoryboard!.instantiateInitialViewController()!, sender: Any?.self)
         }
-        else if(indexPath.row == 2){
+        else if(indexPath.section == 0 && indexPath.row == 3){
             splitViewController?.showDetailViewController(ProfileStoryboard!.instantiateInitialViewController()!, sender: Any?.self)
         }
-        else if(indexPath.row == 3){
+        else if(indexPath.section == 0 && indexPath.row == 4){
             splitViewController?.showDetailViewController(AboutStoryboard!.instantiateInitialViewController()!, sender: Any?.self)
         }
     }

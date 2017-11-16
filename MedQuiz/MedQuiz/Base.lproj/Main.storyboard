@@ -12,7 +12,7 @@
         <!--View Controller-->
         <scene sceneID="UBy-f9-khd">
             <objects>
-                <viewController id="SCL-be-nYS" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="SCL-be-nYS" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iy5-rY-STu"/>
                         <viewControllerLayoutGuide type="bottom" id="38R-A1-LF3"/>
@@ -31,10 +31,14 @@
         <scene sceneID="pOV-Lb-qQc">
             <objects>
                 <tableViewController clearsSelectionOnViewWillAppear="NO" id="ytW-DQ-zAH" customClass="SideBar" customModule="MedQuiz" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="b31-pj-zqm">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="b31-pj-zqm">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="separatorColor" red="0.26449559567339315" green="0.47377340730345691" blue="0.54097283706463206" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <variation key="heightClass=compact-widthClass=compact">
+                            <color key="separatorColor" red="0.26449559567339315" green="0.47377340730345691" blue="0.54097283706463206" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </variation>
                         <connections>
                             <outlet property="dataSource" destination="ytW-DQ-zAH" id="fdB-Mj-jbw"/>
                             <outlet property="delegate" destination="ytW-DQ-zAH" id="OSL-XU-LIR"/>
