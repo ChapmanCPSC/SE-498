@@ -13,6 +13,9 @@ class ProfileSideBarCell: UITableViewCell {
     
     @IBOutlet weak var profileNameLabel: UILabel!
     
+    @IBOutlet weak var scoreNumberLabel: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

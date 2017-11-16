@@ -85,17 +85,26 @@ class SideBar: UITableViewController {
         if(indexPath.row == 0)
         {
             let aProfBarCell:ProfileSideBarCell = tableView.dequeueReusableCell(withIdentifier: "profileCell", for: indexPath) as! ProfileSideBarCell
+            
             aProfBarCell.profileImage.center = aProfBarCell.center
+            
             aProfBarCell.profileNameLabel.text = "Maddy Transue"
             aProfBarCell.profileNameLabel.textColor = whiteColor
             aProfBarCell.profileNameLabel.sizeToFit()
+            
+            /*let currentName = aProfBarCell.profileNameLabel.text
+            aProfBarCell.scoreLabel.text = getScore(name: currentName!)*/
+            
+            aProfBarCell.scoreNumberLabel.text = "4,434,534"
+            aProfBarCell.scoreNumberLabel.textColor = whiteColor
+            aProfBarCell.scoreNumberLabel.sizeToFit()
             
             aProfBarCell.isUserInteractionEnabled = false
             
             aProfBarCell.backgroundColor = blueProfCellColor
             aProfBarCell.layer.cornerRadius = 10
-            aProfBarCell.layer.shadowRadius = 30
-            aProfBarCell.layer.shadowOpacity = 0.9
+            aProfBarCell.layer.shadowRadius = 20
+            aProfBarCell.layer.shadowOpacity = 0.7
             
             return aProfBarCell
         }
@@ -153,6 +162,11 @@ class SideBar: UITableViewController {
         else if(indexPath.section == 0 && indexPath.row == 4){
             splitViewController?.showDetailViewController(AboutStoryboard!.instantiateInitialViewController()!, sender: Any?.self)
         }
+    }
+    
+    func getScore(name: String) -> String{
+        //get score from db
+        return "4,434,534"
     }
 
 
