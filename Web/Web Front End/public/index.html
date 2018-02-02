@@ -1,0 +1,210 @@
+<! DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+
+
+#title{
+	color: black;
+	position: fixed;
+	left: 655px;
+	top:160px;
+	
+	}
+
+#window{
+	position:fixed;
+	left:1230px;
+	top: 540px;
+
+
+}
+#border1{
+
+width:1333px;
+height:628px;
+background-color: none;
+border-style: solid;
+border-radius:12px;
+
+border-width: 30px;
+border-color:grey;
+position:fixed;
+left:-12px;
+top:-12px;
+}
+
+#pharm_logo{
+
+	position:fixed;
+	top:10px;
+	left:548px;
+
+}
+
+
+#slanted{
+
+background-color:red;
+height:400px;
+width:1342px;
+position:fixed;
+top:-230px;
+left:12px;
+transform: skewY(5deg);
+
+}
+#question_bank{
+position:fixed;
+left:625px;
+top:240px;
+
+}
+#toQuestionBank{
+position:fixed;
+left:650px;
+top:300px;
+width: 100px;
+	height: 40px;
+	border-radius: 14px;
+	border-color: red;
+	background-color: red;
+	font-family: "Lucida Console", Monaco, monospace;
+	font-weight: bold;
+
+}
+#toQuestionBank:hover{
+background-color: white;
+
+}
+#navbar{
+position:absolute;
+top:18px;
+left:17px;
+display: block;
+list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+}
+.nav {
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-width: 4px;
+    border-style: solid;
+    border-color: black;
+}
+
+.nav:hover {
+    background-color: #555;
+    color: white;
+}
+#current{
+	background-color: #555;
+	color:white;
+}
+#Quiz_bank{
+position:fixed;
+left:645px;
+top:340px;
+
+}
+#toQuizzes{
+position:fixed;
+left:650px;
+top:400px;
+width: 100px;
+	height: 40px;
+	border-radius: 14px;
+	border-color: red;
+	background-color: red;
+	font-family: "Lucida Console", Monaco, monospace;
+	font-weight: bold;
+
+}
+#toQuizzes:hover{
+background-color: white;
+
+}
+#content{
+position:fixed;
+left:659px;
+top:440px;
+
+}
+#toContent{
+position:fixed;
+left:650px;
+top:500px;
+width: 100px;
+	height: 40px;
+	border-radius: 14px;
+	border-color: red;
+	background-color: red;
+	font-family: "Lucida Console", Monaco, monospace;
+	font-weight: bold;
+
+}
+#toContent:hover{
+background-color: white;
+
+}
+
+</style>
+
+<title>Home Page</title>
+</head>
+<!-- update the version number as needed -->
+<script defer src="/__/firebase/4.6.1/firebase-app.js"></script>
+<!-- include only the Firebase features as you need -->
+<script defer src="/__/firebase/4.6.1/firebase-auth.js"></script>
+<script defer src="/__/firebase/4.6.1/firebase-database.js"></script>
+<script defer src="/__/firebase/4.6.1/firebase-messaging.js"></script>
+<script defer src="/__/firebase/4.6.1/firebase-storage.js"></script>
+<!-- initialize the SDK after all desired features are loaded -->
+<script defer src="/__/firebase/init.js"></script>
+
+<body>
+
+<div id="slanted"></div>
+<img id="window" src="../finestra_window.png">
+<div id="border1"></div>
+<h1 id= "Title">Home</h1>
+<img id="pharm_logo" src="../CU_pharm.png">
+<h2 id= "question_bank">Question Bank</h2>
+<button onclick="toQuizQuestions()" id="toQuestionBank">Go</button>
+<h2 id= "Quiz_bank">Quiz Bank</h2>
+<button onclick="toQuizBank()" id="toQuizzes">Go</button>
+<h2 id= "content">Content</h2>
+<button id="toContent">Go</button>
+<ul id="navbar">
+  <li><a class="nav" id="current" href="index.html">Home</a></li>
+  <li><a class="nav" href="QuizBank.html">Quiz Bank</a></li> 
+  <li><a class="nav" href="javascript:logout();">Logout</a></li>
+</ul>
+
+</body>
+
+<script type="text/javascript">
+  function toQuizQuestions(){
+
+  location.href="QuestionBank.html";
+
+  }
+  function toQuizBank(){
+
+  location.href="QuizBank.html";
+
+
+  }
+  function logout() {
+    if (confirm("Are you sure you want to logout?")) {
+        location.href="login.html";
+    }
+  }
+
+</script>
+</html>

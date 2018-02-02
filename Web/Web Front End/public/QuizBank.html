@@ -1,0 +1,409 @@
+<! DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+
+
+#title{
+	color: black;
+	position: fixed;
+	left: 605px;
+	top:160px;
+	
+	}
+
+#window{
+	position:fixed;
+	left:1230px;
+	top: 540px;
+
+
+}
+#border1{
+
+width:1333px;
+height:628px;
+background-color: none;
+border-style: solid;
+border-radius:12px;
+
+border-width: 30px;
+border-color:grey;
+position:fixed;
+left:-12px;
+top:-12px;
+
+
+
+}
+
+#pharm_logo{
+
+	position:fixed;
+	top:10px;
+	left:548px;
+
+}
+
+
+#slanted{
+
+background-color:red;
+height:400px;
+width:1342px;
+position:fixed;
+top:-230px;
+left:12px;
+transform: skewY(5deg); 
+
+
+}
+#question_bank{
+position:fixed;
+left:625px;
+top:240px;
+
+}
+#toQuestionBank{
+position:fixed;
+left:650px;
+top:300px;
+width: 100px;
+	height: 40px;
+	border-radius: 14px;
+	border-color: red;
+	background-color: red;
+	font-family: "Lucida Console", Monaco, monospace;
+	font-weight: bold;
+
+}
+#toQuestionBank:hover{
+background-color: white;
+
+}
+#navbar{
+position:absolute;
+top:18px;
+left:17px;
+display: block;
+list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+
+
+
+}
+.nav {
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-width: 4px;
+    border-style: solid;
+    border-color: black;
+     
+}
+
+
+.nav:hover {
+    background-color: #555;
+    color: white;
+}
+#current{
+	background-color: #555;
+	color:white;
+}
+#Quiz_bank{
+position:fixed;
+left:645px;
+top:340px;
+
+}
+#toQuizzes{
+position:fixed;
+left:650px;
+top:400px;
+width: 100px;
+	height: 40px;
+	border-radius: 14px;
+	border-color: red;
+	background-color: red;
+	font-family: "Lucida Console", Monaco, monospace;
+	font-weight: bold;
+
+}
+#toQuizzes:hover{
+background-color: white;
+
+}
+#content{
+position:fixed;
+left:659px;
+top:440px;
+
+}
+#toContent{
+position:fixed;
+left:650px;
+top:500px;
+width: 100px;
+	height: 40px;
+	border-radius: 14px;
+	border-color: red;
+	background-color: red;
+	font-family: "Lucida Console", Monaco, monospace;
+	font-weight: bold;
+
+}
+#toContent:hover{
+background-color: white;
+
+}
+#QuizList{
+
+	position:fixed;
+	left:550px;
+	top:240px;
+	width:270px;
+	height: 200px;
+	border-radius: 3px;
+	border-width:4px;
+
+
+}
+.quizNum{
+
+	font-size: 125%;
+	border-style: solid;
+	border-width:1px;
+}
+option{
+
+	font-size: 125%;
+	border-style: solid;
+	border-width:1px;
+
+}
+#submit{
+
+	position:fixed;
+	left:570px;
+	top:455px;
+	width: 104px;
+	height: 43px;
+	border-radius: 14px;
+	border-color: red;
+	background-color: red;
+	font-family: "Lucida Console", Monaco, monospace;
+	font-weight: bold;
+} 
+#submit:hover{
+background-color: white;
+
+}
+#edit{
+  position:fixed;
+  left:695px;
+  top:455px;
+  width: 104px;
+  height: 43px;
+  border-radius: 14px;
+  border-color: red;
+  background-color: red;
+  font-family: "Lucida Console", Monaco, monospace;
+  font-weight: bold;
+}
+#edit:hover{
+  background-color: white;
+}
+#AddQuiz{
+
+	position: absolute;
+	left:250px;
+	top:250px;
+}
+#inputQuiz{
+
+	position:absolute;
+	top:320px;
+	left:210px;
+	border-radius: 5px;
+	height: 35px;
+	width:225px;
+}
+#add{
+
+	position:fixed;
+	left:260px;
+	top:370px;
+	width: 104px;
+	height: 43px;
+	border-radius: 14px;
+	border-color: red;
+	background-color: red;
+	font-family: "Lucida Console", Monaco, monospace;
+	font-weight: bold;
+
+
+}
+#add:hover{
+background-color: white;
+
+}
+
+
+
+</style>
+
+
+
+<title>QuizBank Page</title>
+</head>
+
+
+
+<body>
+
+
+<div id="slanted"></div>
+<img id="window" src="../finestra_window.png">
+<div id="border1"></div>
+<h1 id= "Title">Quiz Bank</h1>
+
+<img id="pharm_logo" src="../CU_pharm.png">
+<select id="QuizList" size="9">
+  <option id="Quiz1" class="quizNum" >Quiz 1</option>
+  <option class="quizNum" >Quiz 2</option>
+  <option class="quizNum" >Quiz 3</option>
+  <option class="quizNum" >Quiz 4</option>
+  <option class="quizNum" >Quiz 5</option>
+</select>
+<button id="submit" onclick="selectQuiz()">Submit</button>
+<button id="edit" onclick="editQuiz()">Edit</button>
+
+
+
+
+
+
+
+
+<ul id="navbar">
+  <li><a class="nav"  href="index.html">Home</a></li>
+  <li><a class="nav" id="current"  href="QuizBank.html">Quiz Bank</a></li>
+  <li><a class="nav" href="javascript:logout();">Logout</a></li>
+
+</ul>
+<h2 id="AddQuiz">Add a Quiz</h2>
+<input id="inputQuiz" type="text" name="Quiz" placeholder="Quiz Name"></input>
+<button id="add" onclick="addQuiz()">Add</button>
+
+
+
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+
+
+function addQuiz(){
+	var x = document.getElementById("QuizList");
+	var name=document.getElementById("inputQuiz").value;
+	 var option = document.createElement("option");
+	 option.text = name;
+	 if(name!=""){
+
+	 		var quiz_name={
+
+	 	name: name
+
+	 };
+	 	x.appendChild(option);
+         var getInput= document.getElementById("inputQuiz").value;
+         localStorage.setItem("storageName",getInput);
+         location.href="QuestionBank.html";
+	 	console.log(quiz_name);
+	 }
+	 else{
+
+	 	alert("Must Enter the Quiz Name!");
+	 }
+
+	// var database= firebase.dataase();
+	//var ref=database.ref('Quiz_List');
+	//ref.push(quiz_name);
+
+}
+
+
+
+
+
+function toQuizQuestions(){
+
+location.href="QuestionBank.html";
+
+
+}
+function selectQuiz(){
+
+	if(document.getElementById("QuizList").selectedIndex==0)
+	{
+		location.href="login.html";
+	}
+	if(document.getElementById("QuizList").selectedIndex==1)
+	{
+		location.href="index.html";
+	}
+	if(document.getElementById("QuizList").selectedIndex==2)
+	{
+		location.href="index.html";
+	}
+	if(document.getElementById("QuizList").selectedIndex==3)
+	{
+		location.href="index.html";
+	}
+	if(document.getElementById("QuizList").selectedIndex==4)
+	{
+		location.href="index.html";
+	}
+	if(document.getElementById("QuizList").selectedIndex==5)
+	{
+		location.href="index.html";
+	}
+}
+
+function editQuiz() {
+    location.href="QuestionBank.html";
+}
+function logout() {
+  if (confirm("Are you sure you want to logout?")) {
+    location.href="login.html";
+  }
+}
+
+
+
+</script>
+
+
+</html>
+

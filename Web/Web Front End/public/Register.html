@@ -1,0 +1,214 @@
+<! DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+#title{
+	color: black;
+	position: fixed;
+	left: 645px;
+	top:166px;
+	
+	}
+#email{
+	position:fixed;
+	left:555px;
+	top:230px;
+	border-radius: 5px;
+	height: 35px;
+	width:285px;
+} 
+#username{
+	position:fixed;
+	left:555px;
+	top:280px;
+	border-radius: 5px;
+	height: 35px;
+	width:285px;
+} 
+#password{
+	position:fixed;
+	left:555px;
+	top:330px;
+	border-radius: 5px;
+	height: 35px;
+	width:285px;
+} 
+#submit{
+	position:fixed;
+	left:640px;
+	top:377px;
+	width: 104px;
+	height: 43px;
+	border-radius: 14px;
+	border-color: red;
+	background-color: red;
+	font-family: "Lucida Console", Monaco, monospace;
+	font-weight: bold;
+} 
+#submit:hover{
+background-color: white;
+}
+#window{
+	position:fixed;
+	left:1230px;
+	top: 540px;
+}
+#border1{
+width:1333px;
+height:628px;
+background-color: none;
+border-style: solid;
+border-radius:12px;
+border-width: 30px;
+border-color:grey;
+position:fixed;
+left:-12px;
+top:-12px;
+}
+#pharm_logo{
+	position:fixed;
+	top:10px;
+	left:548px;
+}
+#login{
+position:fixed;
+left:674px;
+top:432px;
+text-decoration: underline;
+}
+#slanted{
+background-color:red;
+height:400px;
+width:1342px;
+position:fixed;
+top:-230px;
+left:12px;
+transform: skewY(5deg); 
+}
+#navbar{
+position:absolute;
+top:18px;
+left:17px;
+display: block;
+list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+}
+.nav {
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-width: 4px;
+    border-style: solid;
+    border-color: black;
+}
+.nav:hover {
+    background-color: #555;
+    color: white;
+}
+#current{
+	background-color: #555;
+	color:white;
+}
+</style>
+
+
+
+<title>Registration Page</title>
+</head>
+
+
+
+<body>
+
+<div id="slanted"></div>
+<img id="window" src="../finestra_window.png">
+<div id="border1"></div>
+
+
+
+<h1 id= "Title">Register</h1>
+<button id="submit" onclick="submitUsername_Password()">Submit</button>
+<input id="email" type="text" name="email" placeholder="Email"></input>
+<input id="username" type="text" name="username" placeholder="Username"></input>
+<input id="password" type="password" name="password" placeholder="Password"></input>
+<img id="pharm_logo" src="../CU_pharm.png">
+
+<a href="login.html"><p id= "login">Login</p></a>
+<ul id="navbar">
+  
+  <li><a class="nav" href="login.html">Login</a></li>
+  <li><a class="nav" id="current" href="Register.html">Registration</a></li>
+  
+</ul>
+
+
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+function submitUsername_Password(){
+	// var database= firebase.dataase();
+	//var ref=database.ref('Registration_Info');
+	var email= document.getElementById("email").value
+	var user = document.getElementById("username").value;
+	var pass = document.getElementById("password").value;
+	var registration_data= {
+		Email : email,
+		Username: user,
+		Password: pass
+	};
+if(email!=""&&user!="" && pass!="")
+{
+  
+	if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))  
+  	{
+  		if (user=="" && pass=="")
+  		{
+  		alert("Need Username and Password");
+  		}
+  		else
+  		{
+  		console.log(registration_data);
+  		//ref.push(registration_data);
+
+  		}  
+       
+      
+  	}  
+  	else
+  	{
+    alert("You have entered an invalid email address!");  
+    
+  	} 
+		
+ 
+}
+else
+{
+	alert("All fields are required!");
+	return(false);
+}
+}
+</script>
+
+
+</html>

@@ -1,0 +1,320 @@
+<! DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+
+
+#title{
+	color: black;
+	position: fixed;
+	left: 605px;
+	top:160px;
+	
+	}
+
+#window{
+	position:fixed;
+	left:1230px;
+	top: 540px;
+
+
+}
+#border1{
+
+width:1333px;
+height:628px;
+background-color: none;
+border-style: solid;
+border-radius:12px;
+
+border-width: 30px;
+border-color:grey;
+position:fixed;
+left:-12px;
+top:-12px;
+
+
+
+}
+
+#pharm_logo{
+
+	position:fixed;
+	top:10px;
+	left:548px;
+
+}
+
+
+#slanted{
+
+background-color:red;
+height:400px;
+width:1342px;
+position:fixed;
+top:-230px;
+left:12px;
+transform: skewY(5deg); 
+
+
+}
+#question_bank{
+position:fixed;
+left:625px;
+top:240px;
+
+}
+#toQuestionBank{
+position:fixed;
+left:650px;
+top:300px;
+width: 100px;
+	height: 40px;
+	border-radius: 14px;
+	border-color: red;
+	background-color: red;
+	font-family: "Lucida Console", Monaco, monospace;
+	font-weight: bold;
+
+}
+#toQuestionBank:hover{
+background-color: white;
+
+}
+#navbar{
+position:absolute;
+top:18px;
+left:17px;
+display: block;
+list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+
+
+
+}
+.nav {
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-width: 4px;
+    border-style: solid;
+    border-color: black;
+     
+}
+.nav:hover {
+    background-color: #555;
+    color: white;
+}
+#current{
+	background-color: #555;
+	color:white;
+}
+#Quiz_bank{
+position:fixed;
+left:645px;
+top:340px;
+
+}
+#toQuizzes{
+position:fixed;
+left:650px;
+top:400px;
+width: 100px;
+	height: 40px;
+	border-radius: 14px;
+	border-color: red;
+	background-color: red;
+	font-family: "Lucida Console", Monaco, monospace;
+	font-weight: bold;
+
+}
+#toQuizzes:hover{
+  background-color: white;
+}
+#content{
+  position:fixed;
+  left:659px;
+  top:440px;
+}
+#toContent{
+  position:fixed;
+  left:650px;
+  top:500px;
+  width: 100px;
+  height: 40px;
+  border-radius: 14px;
+  border-color: red;
+  background-color: red;
+  font-family: "Lucida Console", Monaco, monospace;
+  font-weight: bold;
+}
+#toContent:hover{
+  background-color: white;
+
+}
+#QuestionList{
+	position:fixed;
+	left:465px;
+	top:280px;
+	width:450px;
+	height: 200px;
+	border-radius: 3px;
+	border-width:4px;
+}
+.quest{
+
+	font-size: 125%;
+	border-style: solid;
+	border-width:1px;
+}
+option{
+	font-size: 125%;
+	border-style: solid;
+	border-width:1px;
+
+}
+#existing_questions{
+position: fixed;
+top: 215px;
+left: 585px;
+}
+#Edit{
+	position:fixed;
+	left:640px;
+	top:505px;
+	width: 104px;
+	height: 43px;
+	border-radius: 14px;
+	border-color: red;
+	background-color: red;
+	font-family: "Lucida Console", Monaco, monospace;
+	font-weight: bold;
+} 
+#Edit:hover{
+background-color: white;
+}
+#Delete{
+	position:fixed;
+	left:760px;
+	top:505px;
+	width: 104px;
+	height: 43px;
+	border-radius: 14px;
+	border-color: red;
+	background-color: red;
+	font-family: "Lucida Console", Monaco, monospace;
+	font-weight: bold;
+}
+#Delete:hover{
+background-color: white;
+
+}
+#Add{
+
+	position:fixed;
+	left:520px;
+	top:505px;
+	width: 104px;
+	height: 43px;
+	border-radius: 14px;
+	border-color: red;
+	background-color: red;
+	font-family: "Lucida Console", Monaco, monospace;
+	font-weight: bold;
+} 
+#Add:hover{
+background-color: white;
+
+}
+
+</style>
+
+
+
+<title>QuestionBank Page</title>
+</head>
+
+
+
+<body onload="load()">
+
+<div id="slanted"></div>
+<img id="window" src="../finestra_window.png">
+<div id="border1"></div>
+<h1 id= "Title"></h1>
+<img id="pharm_logo" src="../CU_pharm.png">
+
+<h2 id="existing_questions">Existing Questions</h2>
+<h2 id="addAQuestion">Add a Question</h2>
+
+<button id="Edit" onclick="editQuestion()">Edit</button>
+<button id="Delete" onclick="deleteQuestion()">Delete</button>
+<button id="Add" onclick="addQuestion()">Add</button>
+
+<select id="QuestionList" size="9">
+  <option class="quest" >Question 1</option>
+  <option class="quest" >Question 2</option>
+  <option class="quest" >Question 3</option>
+  <option class="quest" >Question 4</option>
+  <option class="quest" >Question 5</option>
+</select>
+
+
+<input id="addQuest" type="text" name="Quiz" placeholder="Quiz Name"></input>
+
+
+<ul id="navbar">
+  <li><a class="nav"  href="index.html">Home</a></li>
+  <li><a class="nav" href="javascript:logout();">Logout</a></li>
+</ul>
+</body>
+
+<script type="text/javascript">
+    function load(){
+        var w=localStorage.getItem("storageName");
+        document.getElementById("Title").innerHTML="Quiz: "+ w;
+
+    }
+
+function deleteQuestion(){
+var r = confirm("Are you sure you want to delete this question?");
+    if (r == true) {
+        var x = document.getElementById("QuestionList");
+    x.remove(x.selectedIndex);
+    } else {
+        return false
+    }
+}
+
+function editQuestion() {
+    var list = document.getElementById("QuestionList");
+    if(list.selectedIndex != -1)
+    {
+        location.href="QuestionTemplate.html"
+    } else {
+        alert("Please select a question to edit");
+    }
+}
+
+function addQuestion(){
+  location.href="QuestionTemplate.html"
+}
+
+function toQuizQuestions(){
+  location.href="QuestionBank.html";
+}
+
+function logout() {
+  if (confirm("Are you sure you want to logout?")) {
+    location.href="login.html";
+  }
+}
+
+</script>
+
+
+</html>

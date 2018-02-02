@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Question</title>
+    <style>
+        #window{
+            position:fixed;
+            left:1230px;
+            top: 540px;
+        }
+        #border1{
+            width:1333px;
+            height:628px;
+            background-color: none;
+            border-style: solid;
+            border-radius:12px;
+
+            border-width: 30px;
+            border-color:grey;
+            position:fixed;
+            left:-12px;
+            top:-12px;
+        }
+        #pharm_logo{
+            position:fixed;
+            top:10px;
+            left:548px;
+
+        }
+        #slanted{
+            background-color:red;
+            height:400px;
+            width:1342px;
+            position:fixed;
+            top:-230px;
+            left:12px;
+            transform: skewY(5deg);
+        }
+        #navbar{
+            position:absolute;
+            top:18px;
+            left:17px;
+            display: block;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            width: 200px;
+            background-color: #f1f1f1;
+        }
+        .nav {
+            display: block;
+            color: #000;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-width: 4px;
+            border-style: solid;
+            border-color: black;
+
+        }
+        .nav:hover {
+            background-color: #555;
+            color: white;
+        }
+        #Question{
+            position:fixed;
+            left: 500px;
+            top:220px;
+            width: 400px;
+            height: 100px;
+            font-size: large;
+            border-color: red;
+        }
+        #Title{
+            position:fixed;
+            left:620px;
+            top:150px;
+        }
+        #Submit{
+            position:fixed;
+            left:655px;
+            top:580px;
+            width: 104px;
+            height: 43px;
+            border-radius: 14px;
+            border-color: red;
+            background-color: red;
+            font-family: "Lucida Console", Monaco, monospace;
+            font-weight: bold;
+        }
+        #Submit:hover{
+            background-color: white;
+        }
+        #A {
+            position:fixed;
+            left:315px;
+            top:375px;
+            width: 300px;
+            height: 30px;
+            font-size: Large;
+        }
+        #B {
+            position:fixed;
+            left:315px;
+            top:450px;
+            width: 300px;
+            height: 30px;
+            font-size: Large;
+        }
+        #C {
+            position:fixed;
+            left:775px;
+            top:375px;
+            width: 300px;
+            height: 30px;
+            font-size: Large;
+        }
+        #D {
+            position:fixed;
+            left:775px;
+            top:450px;
+            width: 300px;
+            height: 30px;
+            font-size: Large;
+        }
+        #la {
+            position: fixed;
+            left:275px;
+            top:376px;
+            width: 15px;
+            height: 30px;
+            color: red;
+            font-size: xx-large;
+        }
+        #lb {
+            position: fixed;
+            left:275px;
+            top:451px;
+            width: 15px;
+            height: 30px;
+            color: red;
+            font-size: xx-large;
+        }
+        #lc {
+            position: fixed;
+            left:735px;
+            top:376px;
+            width: 15px;
+            height: 30px;
+            color: red;
+            font-size: xx-large;
+        }
+        #ld {
+            position: fixed;
+            left:735px;
+            top:451px;
+            width: 15px;
+            height: 30px;
+            color: red;
+            font-size: xx-large;
+        }
+    </style>
+</head>
+<body>
+    <div id="slanted"></div>
+    <img id="window" src="../finestra_window.png">
+    <div id="border1"></div>
+    <h1 id= "Title">Question N</h1>
+    <img id="pharm_logo" src="../CU_pharm.png">
+
+    <textarea id="Question"></textarea>
+    A: <input id="A" type="text"><br>
+    B: <input id="B" type="text"><br>
+    C: <input id="C" type="text"><br>
+    D: <input id="D" type="text"><br>
+    <button id="Submit" onclick="submitQuestion()">Submit</button>
+
+    <label id="la">A</label>
+    <label id="lb">B</label>
+    <label id="lc">C</label>
+    <label id="ld">D</label>
+
+    <ul id="navbar">
+        <li><a class="nav"  href="javascript:window.history.back();">Questions</a></li>
+        <li><a class="nav" href="index.html">Home</a></li>
+    </ul>
+</body>
+</html>
+
+<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyAWJEhgK19vZkUH4jWRCmDnrmlrWycgPug",
+        authDomain: "cusp-quiz-app.firebaseapp.com",
+        databaseURL: "https://cusp-quiz-app.firebaseio.com",
+        projectId: "cusp-quiz-app",
+        storageBucket: "cusp-quiz-app.appspot.com",
+        messagingSenderId: "678976715567"
+    };
+    var app = firebase.initializeApp(config);
+    var db = app.database();
+</script>
+
+<script type="text/javascript">
+    function submitQuestion() {
+        var q = document.getElementById("Question").value;
+        var a = document.getElementById("A").value;
+        var b = document.getElementById("B").value;
+        var c = document.getElementById("C").value;
+        var d = document.getElementById("D").value;
+
+        if(q == "" || a == "" || b == "" || c == "" || d == "") {
+            alert("Please fill in the question and answer choices");
+        } else {
+            var ref = db.ref("Question");
+
+            ref.child("00003").set({
+                answers: {
+                    a: a,
+                    b: b,
+                    c: c,
+                    d: d,
+                },
+                answer: "A",
+                image: "null",
+                tags: "Pharm, Bio, Chem",
+                text: q
+            });
+
+            alert("Qustion stored");
+            location.href="QuestionBank.html"
+        }
+    }
+</script>
