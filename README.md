@@ -25,7 +25,7 @@
   * Shayne Zamora - **Full Stack Developer**
   * Melinda Sherrill - **Full Stack Developer / Tester**
   
-#### Tools/Frameworks/Languages Used 
+## Tools/Frameworks/Languages Used 
 * AngularJS
 * Swift
 * Firebase
