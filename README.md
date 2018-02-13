@@ -27,5 +27,6 @@
   
 ## Tools/Frameworks/Languages Used 
 * AngularJS
+* ReactJS
 * Swift
 * Firebase
