@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7co-Ab-ToO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7co-Ab-ToO">
     <device id="ipad9_7" orientation="landscape">
         <adaptation id="splitview2_3"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -135,7 +135,7 @@
                                                             <fragment content="Enter friend’s username">
                                                                 <attributes>
                                                                     <color key="NSColor" red="1" green="0.55293999999999999" blue="0.51765000000000005" alpha="0.45850999999999997" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                    <font key="NSFont" size="36" name="ClearSans-Medium"/>
+                                                                    <font key="NSFont" metaFont="system" size="36"/>
                                                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                                                 </attributes>
                                                             </fragment>
@@ -187,7 +187,7 @@
                                 <attributedString key="attributedText">
                                     <fragment content="Requests">
                                         <attributes>
-                                            <font key="NSFont" size="36" name="ClearSans-Medium"/>
+                                            <font key="NSFont" metaFont="system" size="36"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
@@ -278,15 +278,15 @@
                                 <rect key="frame" x="280" y="270" width="134" height="66"/>
                                 <state key="normal" title="Edit"/>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zrc-Jj-kwr">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zrc-Jj-kwr" userLabel="Last Quiz View">
                                 <rect key="frame" x="79" y="422" width="150" height="150"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Vx-o9-UeN">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Vx-o9-UeN" userLabel="Rank">
                                         <rect key="frame" x="25" y="29" width="100" height="92"/>
                                         <attributedString key="attributedText">
                                             <fragment content="4th">
                                                 <attributes>
-                                                    <font key="NSFont" size="36" name="ClearSans-Medium"/>
+                                                    <font key="NSFont" metaFont="system" size="36"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
                                             </fragment>
@@ -311,22 +311,22 @@
                                 <attributedString key="attributedText">
                                     <fragment content="Last Quiz">
                                         <attributes>
-                                            <font key="NSFont" size="24" name="ClearSans-Medium"/>
+                                            <font key="NSFont" metaFont="system" size="24"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XtK-mf-isw">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XtK-mf-isw" userLabel="Globally View">
                                 <rect key="frame" x="272" y="422" width="150" height="150"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jwP-dK-FHd">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jwP-dK-FHd" userLabel="Rank">
                                         <rect key="frame" x="25" y="29" width="100" height="92"/>
                                         <attributedString key="attributedText">
                                             <fragment content="20th">
                                                 <attributes>
-                                                    <font key="NSFont" size="36" name="ClearSans-Medium"/>
+                                                    <font key="NSFont" metaFont="system" size="36"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
                                             </fragment>
@@ -347,22 +347,22 @@
                                 <attributedString key="attributedText">
                                     <fragment content="Globally">
                                         <attributes>
-                                            <font key="NSFont" size="24" name="ClearSans-Medium"/>
+                                            <font key="NSFont" metaFont="system" size="24"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EMm-zm-NNA">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EMm-zm-NNA" userLabel="Friends View">
                                 <rect key="frame" x="466" y="422" width="150" height="150"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WGc-2y-SK4">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WGc-2y-SK4" userLabel="Rank">
                                         <rect key="frame" x="25" y="29" width="100" height="92"/>
                                         <attributedString key="attributedText">
                                             <fragment content="1st">
                                                 <attributes>
-                                                    <font key="NSFont" size="36" name="ClearSans-Medium"/>
+                                                    <font key="NSFont" metaFont="system" size="36"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
                                             </fragment>
@@ -383,14 +383,14 @@
                                 <attributedString key="attributedText">
                                     <fragment content="Friends">
                                         <attributes>
-                                            <font key="NSFont" size="24" name="ClearSans-Medium"/>
+                                            <font key="NSFont" metaFont="system" size="24"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="KetSwiftMoves" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IOK-UE-LPq">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="KetSwiftMoves" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IOK-UE-LPq" userLabel="Username">
                                 <rect key="frame" x="290" y="259" width="114" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -463,7 +463,11 @@
                         <viewLayoutGuide key="safeArea" id="DpQ-gn-gLC"/>
                     </view>
                     <connections>
+                        <outlet property="friendsRankLabel" destination="WGc-2y-SK4" id="ZYa-B2-Acg"/>
+                        <outlet property="globalRankLabel" destination="jwP-dK-FHd" id="xdj-5G-iAd"/>
+                        <outlet property="lastQuizRankLabel" destination="8Vx-o9-UeN" id="Duq-58-U0Y"/>
                         <outlet property="profileImage" destination="q8n-Bv-Qhg" id="lrJ-yq-t6a"/>
+                        <outlet property="usernameLabel" destination="IOK-UE-LPq" id="Ghq-fT-wBo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wix-Ko-PRh" userLabel="First Responder" sceneMemberID="firstResponder"/>

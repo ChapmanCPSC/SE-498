@@ -35,6 +35,9 @@
 		3D77A15E1FB57FF1009178A1 /* SideBarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D77A15C1FB57FF1009178A1 /* SideBarCell.xib */; };
 		3D8C84311FBA898200FA2AD0 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D8C84301FBA898200FA2AD0 /* Login.storyboard */; };
 		3D8C84331FBA8A2D00FA2AD0 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8C84321FBA8A2D00FA2AD0 /* LoginVC.swift */; };
+		3DE027592034DDE000ECAE7B /* ColorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE027582034DDE000ECAE7B /* ColorHelper.swift */; };
+		3DE0275C2034E1B100ECAE7B /* LeaderboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE0275A2034E1B100ECAE7B /* LeaderboardCell.swift */; };
+		3DE0275D2034E1B100ECAE7B /* LeaderboardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DE0275B2034E1B100ECAE7B /* LeaderboardCell.xib */; };
 		7FB8F6B61FB25BDF005C2426 /* SideBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB8F6B51FB25BDF005C2426 /* SideBar.swift */; };
 		7FFDBB631FBD39DA0001E1FC /* ProfileSideBarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FFDBB611FBD39D90001E1FC /* ProfileSideBarCell.swift */; };
 		7FFDBB641FBD39DA0001E1FC /* ProfileSideBarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FFDBB621FBD39DA0001E1FC /* ProfileSideBarCell.xib */; };
@@ -99,6 +102,9 @@
 		3D77A15C1FB57FF1009178A1 /* SideBarCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideBarCell.xib; sourceTree = "<group>"; };
 		3D8C84301FBA898200FA2AD0 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		3D8C84321FBA8A2D00FA2AD0 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		3DE027582034DDE000ECAE7B /* ColorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHelper.swift; sourceTree = "<group>"; };
+		3DE0275A2034E1B100ECAE7B /* LeaderboardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardCell.swift; sourceTree = "<group>"; };
+		3DE0275B2034E1B100ECAE7B /* LeaderboardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaderboardCell.xib; sourceTree = "<group>"; };
 		7FB8F6B51FB25BDF005C2426 /* SideBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBar.swift; sourceTree = "<group>"; };
 		7FFDBB611FBD39D90001E1FC /* ProfileSideBarCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSideBarCell.swift; sourceTree = "<group>"; };
 		7FFDBB621FBD39DA0001E1FC /* ProfileSideBarCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileSideBarCell.xib; sourceTree = "<group>"; };
@@ -169,6 +175,7 @@
 				3D77A1391FB50601009178A1 /* Profile */,
 				3D77A13A1FB50612009178A1 /* About */,
 				3D77A13C1FB50783009178A1 /* Sidebar Navigation */,
+				3DE027582034DDE000ECAE7B /* ColorHelper.swift */,
 				3D2495AE1F7E2EDD0058D85B /* Assets.xcassets */,
 				3D2495A71F7E2EDD0058D85B /* AppDelegate.swift */,
 				3D2495B31F7E2EDD0058D85B /* Info.plist */,
@@ -257,6 +264,8 @@
 			children = (
 				DAED09821FB4F68D003575B0 /* Leaderboard.storyboard */,
 				3D77A14D1FB50ADC009178A1 /* LeaderboardVC.swift */,
+				3DE0275A2034E1B100ECAE7B /* LeaderboardCell.swift */,
+				3DE0275B2034E1B100ECAE7B /* LeaderboardCell.xib */,
 			);
 			path = Leaderboard;
 			sourceTree = "<group>";
@@ -394,6 +403,7 @@
 				3D3166B81FBB0564000D910F /* chapman-univeristy-300x156.png in Resources */,
 				3D3166BB1FBB0564000D910F /* Chapman-Univ_cropped_1486751083_300X300_c_c_0_0.png in Resources */,
 				3D3166B61FBB0564000D910F /* ted-logo-fb.png in Resources */,
+				3DE0275D2034E1B100ECAE7B /* LeaderboardCell.xib in Resources */,
 				DAED09831FB4F68D003575B0 /* Leaderboard.storyboard in Resources */,
 				3D2495B21F7E2EDD0058D85B /* LaunchScreen.storyboard in Resources */,
 				3D3166B71FBB0564000D910F /* off-canvas-header-default.png in Resources */,
@@ -445,8 +455,10 @@
 				A5618C7E2034EAB2001AC764 /* Ext_UIColor.swift in Sources */,
 				DAB359351FBACA2100D5A959 /* QuizModel.swift in Sources */,
 				3D2495A81F7E2EDD0058D85B /* AppDelegate.swift in Sources */,
+				3DE027592034DDE000ECAE7B /* ColorHelper.swift in Sources */,
 				3D77A1441FB509A7009178A1 /* ChangeAvatarVC.swift in Sources */,
 				7FB8F6B61FB25BDF005C2426 /* SideBar.swift in Sources */,
+				3DE0275C2034E1B100ECAE7B /* LeaderboardCell.swift in Sources */,
 				3D77A14A1FB50AB0009178A1 /* QuizActivityVC.swift in Sources */,
 				3D77A15D1FB57FF1009178A1 /* SideBarCell.swift in Sources */,
 			);
