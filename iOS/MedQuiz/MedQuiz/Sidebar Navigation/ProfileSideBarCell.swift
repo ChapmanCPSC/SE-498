@@ -1,4 +1,3 @@
-//
 //  ProfileSideBarCell.swift
 //  MedQuiz
 //
@@ -15,10 +14,8 @@ class ProfileSideBarCell: UITableViewCell {
     
     @IBOutlet weak var scoreNumberLabel: UILabel!
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -20,6 +20,10 @@ class SideBar: UITableViewController {
     let mainCellSelectedBlue = UIColor(red: (45/255.0), green: (113/255.0), blue: (142/255.0), alpha: 1.0)
     let whiteColor = UIColor(red: (255/255.0), green: (255/255.0), blue: (255/255.0), alpha: 1.0)
     
+    var profileImage = UIImage(named: "gentleman_icon-icons.com_55044.png")
+    var profileName = "Maddy Transue"
+    var profileScore = 4434535
+    
     override func viewWillAppear(_ animated: Bool) {
         self.tableView.reloadData()
     }
@@ -88,15 +92,19 @@ class SideBar: UITableViewController {
             
             //aProfBarCell.profileImage.center = aProfBarCell.center
             
-            aProfBarCell.profileNameLabel.text = "Maddy Transue"
+            aProfBarCell.profileImage.image = profileImage
+            
+            aProfBarCell.profileNameLabel.text = profileName
             aProfBarCell.profileNameLabel.textColor = whiteColor
             aProfBarCell.profileNameLabel.sizeToFit()
             
             /*let currentName = aProfBarCell.profileNameLabel.text
             aProfBarCell.scoreLabel.text = getScore(name: currentName!)*/
             
+            let scoreFormatter = NumberFormatter()
+            scoreFormatter.numberStyle = NumberFormatter.Style.decimal
             
-            aProfBarCell.scoreNumberLabel.text = "4,434,534"
+            aProfBarCell.scoreNumberLabel.text = scoreFormatter.string(from: NSNumber(value: profileScore))
             aProfBarCell.scoreNumberLabel.textColor = whiteColor
             aProfBarCell.scoreNumberLabel.sizeToFit()
             
