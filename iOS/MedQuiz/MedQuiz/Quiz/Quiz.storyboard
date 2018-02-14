@@ -334,6 +334,7 @@
                     <connections>
                         <outlet property="iv_closeButton" destination="zpx-It-qSt" id="WC6-DQ-lf4"/>
                         <outlet property="tf_quizPin" destination="NFR-OY-cOA" id="geb-BJ-K3d"/>
+                        <segue destination="iNk-fp-Fpw" kind="show" identifier="QuizPinSegue" id="Fqe-Id-AzD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F9e-l5-fyI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -345,4 +346,7 @@
         <image name="Cancel Copy" width="56" height="56"/>
         <image name="magGlass" width="640" height="480"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Fqe-Id-AzD"/>
+    </inferredMetricsTieBreakers>
 </document>
