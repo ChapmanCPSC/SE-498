@@ -17,6 +17,8 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    @IBOutlet weak var loginErrorLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,7 +34,14 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func loginPressed(_ sender: Any) {
-        present((MainStoryBoard?.instantiateInitialViewController())!, animated: false, completion: nil)
+        if (usernameTextField.text == "username" && passwordTextField.text == "password"){
+            present((MainStoryBoard?.instantiateInitialViewController())!, animated: false, completion: nil)
+        }
+        else{
+            loginErrorLabel.text = "Incorrect username/password"
+            loginErrorLabel.isHidden = false
+        }
+        
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
