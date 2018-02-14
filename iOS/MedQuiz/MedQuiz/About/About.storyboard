@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vVz-Ap-F3n">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vVz-Ap-F3n">
     <device id="ipad9_7" orientation="landscape">
         <adaptation id="splitview2_3"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -36,11 +36,11 @@
                                     <constraint firstAttribute="width" constant="192" id="YBM-1O-qqv"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Sn5-b0-tGN">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoOption" translatesAutoresizingMaskIntoConstraints="NO" id="Sn5-b0-tGN">
                                 <rect key="frame" x="236" y="39" width="240" height="128"/>
                                 <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="EDB-cP-Sd9"/>
+                                    <constraint firstAttribute="height" constant="128" id="1ml-Y2-GKX"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chapman-univeristy-300x156.png" translatesAutoresizingMaskIntoConstraints="NO" id="VI3-ug-BQl">
@@ -52,28 +52,28 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="qMK-JC-Sec">
                                 <rect key="frame" x="10" y="175" width="674" height="437"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</mutableString>
+                                <string key="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</string>
                                 <fontDescription key="fontDescription" name="ClearSans-Medium" family="Clear Sans Medium" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="qMK-JC-Sec" firstAttribute="top" secondItem="Sn5-b0-tGN" secondAttribute="bottom" constant="8" symbolic="YES" id="AaF-C6-87F"/>
+                            <constraint firstItem="qMK-JC-Sec" firstAttribute="top" secondItem="Sn5-b0-tGN" secondAttribute="bottom" constant="8" symbolic="YES" id="1Hy-q4-hqr"/>
+                            <constraint firstItem="Sn5-b0-tGN" firstAttribute="leading" secondItem="dnk-QC-U9C" secondAttribute="leading" constant="236" id="2dZ-Am-kof"/>
+                            <constraint firstItem="Sn5-b0-tGN" firstAttribute="top" secondItem="dnk-QC-U9C" secondAttribute="top" constant="19" id="4Hg-QZ-4ha"/>
                             <constraint firstItem="VI3-ug-BQl" firstAttribute="top" secondItem="qMK-JC-Sec" secondAttribute="bottom" constant="8" symbolic="YES" id="UV3-XO-xKP"/>
                             <constraint firstItem="UOs-FB-bF1" firstAttribute="centerY" secondItem="8oR-Jt-FSV" secondAttribute="centerY" id="V06-Wk-RiM"/>
                             <constraint firstItem="qMK-JC-Sec" firstAttribute="leading" secondItem="dnk-QC-U9C" secondAttribute="leading" constant="10" id="Z0f-gw-7gA"/>
-                            <constraint firstItem="dnk-QC-U9C" firstAttribute="trailing" secondItem="Sn5-b0-tGN" secondAttribute="trailing" constant="218" id="aIH-K5-5Uo"/>
                             <constraint firstItem="D2T-ha-cMC" firstAttribute="leading" secondItem="dnk-QC-U9C" secondAttribute="leading" constant="145" id="eIV-la-vfO"/>
-                            <constraint firstItem="Sn5-b0-tGN" firstAttribute="top" secondItem="dnk-QC-U9C" secondAttribute="top" constant="19" id="gMj-jk-QKV"/>
                             <constraint firstItem="dnk-QC-U9C" firstAttribute="bottom" secondItem="VI3-ug-BQl" secondAttribute="bottom" constant="44" id="hcv-Oo-arh"/>
                             <constraint firstItem="D2T-ha-cMC" firstAttribute="bottom" secondItem="dnk-QC-U9C" secondAttribute="bottom" id="jXb-8l-pFz"/>
                             <constraint firstItem="D2T-ha-cMC" firstAttribute="centerY" secondItem="VI3-ug-BQl" secondAttribute="centerY" id="kRn-BM-LVe"/>
                             <constraint firstItem="UOs-FB-bF1" firstAttribute="leading" secondItem="dnk-QC-U9C" secondAttribute="leading" constant="468" id="ksV-Mc-P3h"/>
                             <constraint firstItem="dnk-QC-U9C" firstAttribute="trailing" secondItem="VI3-ug-BQl" secondAttribute="trailing" constant="103" id="l33-p4-LrY"/>
                             <constraint firstItem="qMK-JC-Sec" firstAttribute="centerX" secondItem="8oR-Jt-FSV" secondAttribute="centerX" id="l9T-Ly-xde"/>
+                            <constraint firstItem="dnk-QC-U9C" firstAttribute="trailing" secondItem="Sn5-b0-tGN" secondAttribute="trailing" constant="218" id="ljY-Nm-xCm"/>
                             <constraint firstItem="VI3-ug-BQl" firstAttribute="leading" secondItem="D2T-ha-cMC" secondAttribute="trailing" constant="54" id="p0m-2w-NKE"/>
-                            <constraint firstItem="Sn5-b0-tGN" firstAttribute="leading" secondItem="dnk-QC-U9C" secondAttribute="leading" constant="236" id="pU6-Ca-Je5"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dnk-QC-U9C"/>
                     </view>
@@ -85,6 +85,7 @@
     </scenes>
     <resources>
         <image name="Chapman-Univ_cropped_1486751083_300X300_c_c_0_0.png" width="300" height="300"/>
+        <image name="LogoOption" width="607" height="606"/>
         <image name="chapman-univeristy-300x156.png" width="300" height="156"/>
     </resources>
 </document>
