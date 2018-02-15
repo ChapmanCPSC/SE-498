@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="u5Q-Wh-a1c">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="u5Q-Wh-a1c">
     <device id="ipad9_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,7 +22,7 @@
                                 <rect key="frame" x="-38" y="0.0" width="1099" height="768"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PL6-kR-PjN">
-                                        <rect key="frame" x="464" y="627" width="172" height="40"/>
+                                        <rect key="frame" x="464" y="657" width="172" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                         <state key="normal" title="forgot password?">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -36,7 +36,7 @@
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h3d-PB-3DK">
-                                        <rect key="frame" x="510" y="566" width="79" height="44"/>
+                                        <rect key="frame" x="510" y="605" width="79" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="DZL-QV-mJE"/>
                                         </constraints>
@@ -123,60 +123,33 @@
                                             <constraint firstItem="VRt-wv-ffS" firstAttribute="leading" secondItem="MbW-17-ij6" secondAttribute="leading" id="ydI-Wn-jKH"/>
                                         </constraints>
                                     </view>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoOption" translatesAutoresizingMaskIntoConstraints="NO" id="hNT-H1-WSm" userLabel="Logo">
-                                        <rect key="frame" x="400" y="47" width="300" height="225"/>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Incorrect username/password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6S2-iG-he1" userLabel="Login Error">
+                                        <rect key="frame" x="358" y="546" width="385" height="43"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="300" id="KLb-Vk-H3c"/>
-                                            <constraint firstAttribute="height" constant="225" id="QQu-zN-yKA"/>
+                                            <constraint firstAttribute="width" constant="385" id="5pS-i0-mfs"/>
                                         </constraints>
-                                    </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h3d-PB-3DK">
-                                        <rect key="frame" x="510" y="604" width="79" height="44"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="DZL-QV-mJE"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
-                                        <state key="normal" title="Sign-in">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="loginPressed:" destination="u5Q-Wh-a1c" eventType="touchUpInside" id="Mba-ql-iWB"/>
-                                        </connections>
-                                    </button>
-                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ye-kp-OrG" userLabel="Login Error">
-                                        <rect key="frame" x="369" y="563" width="361" height="45"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="361" id="XTe-OR-xE3"/>
-                                            <constraint firstAttribute="height" constant="45" id="YQT-Vr-n1o"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                        <color key="textColor" red="1" green="0.013640924361476903" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <color key="textColor" red="1" green="0.040900527908784623" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PL6-kR-PjN">
-                                        <rect key="frame" x="464" y="656" width="172" height="40"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                        <state key="normal" title="forgot password?">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                    </button>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="h3d-PB-3DK" firstAttribute="top" secondItem="6S2-iG-he1" secondAttribute="bottom" constant="16" id="0La-Pr-eWJ"/>
                                     <constraint firstAttribute="trailing" secondItem="hNT-H1-WSm" secondAttribute="trailing" constant="399" id="3WR-Sl-VyR"/>
+                                    <constraint firstItem="6S2-iG-he1" firstAttribute="centerX" secondItem="PL6-kR-PjN" secondAttribute="centerX" id="7ai-TE-blC"/>
                                     <constraint firstItem="hNT-H1-WSm" firstAttribute="centerX" secondItem="IdG-7c-i6N" secondAttribute="centerX" id="A3W-Ky-8KB"/>
                                     <constraint firstItem="hNT-H1-WSm" firstAttribute="centerY" secondItem="IdG-7c-i6N" secondAttribute="centerY" constant="-208.5" id="Be5-hn-Bn7"/>
                                     <constraint firstItem="PL6-kR-PjN" firstAttribute="centerX" secondItem="IdG-7c-i6N" secondAttribute="centerX" id="Kwg-Cz-eBj"/>
-                                    <constraint firstItem="t4u-DR-JeD" firstAttribute="top" secondItem="hNT-H1-WSm" secondAttribute="bottom" constant="39" id="Lx5-C4-rO8"/>
-                                    <constraint firstItem="9Ye-kp-OrG" firstAttribute="top" secondItem="t4u-DR-JeD" secondAttribute="bottom" constant="14" id="T72-iL-zru"/>
-                                    <constraint firstItem="h3d-PB-3DK" firstAttribute="top" secondItem="t4u-DR-JeD" secondAttribute="bottom" constant="55" id="TQY-uT-rdg"/>
+                                    <constraint firstItem="t4u-DR-JeD" firstAttribute="top" secondItem="hNT-H1-WSm" secondAttribute="bottom" constant="44" id="Lx5-C4-rO8"/>
+                                    <constraint firstItem="h3d-PB-3DK" firstAttribute="top" secondItem="t4u-DR-JeD" secondAttribute="bottom" constant="78" id="TQY-uT-rdg"/>
                                     <constraint firstItem="hNT-H1-WSm" firstAttribute="leading" secondItem="IdG-7c-i6N" secondAttribute="leading" constant="400" id="ZX8-wo-ibc"/>
                                     <constraint firstItem="t4u-DR-JeD" firstAttribute="centerX" secondItem="h3d-PB-3DK" secondAttribute="centerX" id="jyB-6c-v88"/>
-                                    <constraint firstItem="h3d-PB-3DK" firstAttribute="centerY" secondItem="IdG-7c-i6N" secondAttribute="centerY" constant="242" id="nOf-nb-hBm"/>
-                                    <constraint firstAttribute="bottom" secondItem="PL6-kR-PjN" secondAttribute="bottom" constant="72" id="nXe-K5-SBJ"/>
-                                    <constraint firstItem="hNT-H1-WSm" firstAttribute="top" secondItem="IdG-7c-i6N" secondAttribute="top" constant="47" id="svH-ua-gu2"/>
-                                    <constraint firstItem="PL6-kR-PjN" firstAttribute="centerY" secondItem="IdG-7c-i6N" secondAttribute="centerY" constant="292" id="wCR-zS-E4u"/>
+                                    <constraint firstItem="6S2-iG-he1" firstAttribute="top" secondItem="t4u-DR-JeD" secondAttribute="bottom" constant="19" id="mF3-6e-ED9"/>
+                                    <constraint firstItem="h3d-PB-3DK" firstAttribute="centerY" secondItem="IdG-7c-i6N" secondAttribute="centerY" constant="243" id="nOf-nb-hBm"/>
+                                    <constraint firstAttribute="bottom" secondItem="PL6-kR-PjN" secondAttribute="bottom" constant="71" id="nXe-K5-SBJ"/>
+                                    <constraint firstItem="hNT-H1-WSm" firstAttribute="top" secondItem="IdG-7c-i6N" secondAttribute="top" constant="63" id="svH-ua-gu2"/>
+                                    <constraint firstItem="PL6-kR-PjN" firstAttribute="centerY" secondItem="IdG-7c-i6N" secondAttribute="centerY" constant="293" id="wCR-zS-E4u"/>
                                     <constraint firstItem="h3d-PB-3DK" firstAttribute="centerX" secondItem="IdG-7c-i6N" secondAttribute="centerX" id="wga-uF-MFi"/>
-                                    <constraint firstItem="9Ye-kp-OrG" firstAttribute="centerX" secondItem="h3d-PB-3DK" secondAttribute="centerX" id="xnj-2l-IIP"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -188,7 +161,7 @@
                         <viewLayoutGuide key="safeArea" id="Ddn-12-XaU"/>
                     </view>
                     <connections>
-                        <outlet property="loginErrorLabel" destination="9Ye-kp-OrG" id="N8J-cl-Qdy"/>
+                        <outlet property="loginErrorLabel" destination="6S2-iG-he1" id="zAd-w1-b3a"/>
                         <outlet property="passwordTextField" destination="JDP-T6-gfW" id="8jb-tV-qZK"/>
                         <outlet property="scrollView" destination="IdG-7c-i6N" id="VcK-fx-dy4"/>
                         <outlet property="usernameTextField" destination="VRt-wv-ffS" id="CcO-PJ-AiK"/>

@@ -36,15 +36,8 @@
                                     <constraint firstAttribute="width" constant="209" id="YBM-1O-qqv"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoOption" translatesAutoresizingMaskIntoConstraints="NO" id="Sn5-b0-tGN">
-                                <rect key="frame" x="236" y="39" width="240" height="128"/>
-                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="1ml-Y2-GKX"/>
-                                </constraints>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chapman-univeristy-300x156.png" translatesAutoresizingMaskIntoConstraints="NO" id="VI3-ug-BQl">
-                                <rect key="frame" x="391" y="620" width="200" height="104"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chapman-univeristy-300x156.png" translatesAutoresizingMaskIntoConstraints="NO" id="VI3-ug-BQl">
+                                <rect key="frame" x="391" y="615" width="210" height="109"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="109" id="ACp-zF-hBb"/>
                                 </constraints>
@@ -66,21 +59,21 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="qMK-JC-Sec" firstAttribute="top" secondItem="Sn5-b0-tGN" secondAttribute="bottom" constant="8" symbolic="YES" id="1Hy-q4-hqr"/>
-                            <constraint firstItem="Sn5-b0-tGN" firstAttribute="leading" secondItem="dnk-QC-U9C" secondAttribute="leading" constant="236" id="2dZ-Am-kof"/>
-                            <constraint firstItem="Sn5-b0-tGN" firstAttribute="top" secondItem="dnk-QC-U9C" secondAttribute="top" constant="19" id="4Hg-QZ-4ha"/>
-                            <constraint firstItem="VI3-ug-BQl" firstAttribute="top" secondItem="qMK-JC-Sec" secondAttribute="bottom" constant="8" symbolic="YES" id="UV3-XO-xKP"/>
+                            <constraint firstItem="qMK-JC-Sec" firstAttribute="top" secondItem="Sn5-b0-tGN" secondAttribute="bottom" constant="17" id="AaF-C6-87F"/>
+                            <constraint firstItem="VI3-ug-BQl" firstAttribute="top" secondItem="qMK-JC-Sec" secondAttribute="bottom" constant="-11" id="UV3-XO-xKP"/>
                             <constraint firstItem="UOs-FB-bF1" firstAttribute="centerY" secondItem="8oR-Jt-FSV" secondAttribute="centerY" id="V06-Wk-RiM"/>
-                            <constraint firstItem="qMK-JC-Sec" firstAttribute="leading" secondItem="dnk-QC-U9C" secondAttribute="leading" constant="10" id="Z0f-gw-7gA"/>
-                            <constraint firstItem="D2T-ha-cMC" firstAttribute="leading" secondItem="dnk-QC-U9C" secondAttribute="leading" constant="145" id="eIV-la-vfO"/>
+                            <constraint firstItem="qMK-JC-Sec" firstAttribute="leading" secondItem="dnk-QC-U9C" secondAttribute="leading" constant="45" id="Z0f-gw-7gA"/>
+                            <constraint firstItem="dnk-QC-U9C" firstAttribute="trailing" secondItem="Sn5-b0-tGN" secondAttribute="trailing" constant="178" id="aIH-K5-5Uo"/>
+                            <constraint firstItem="D2T-ha-cMC" firstAttribute="leading" secondItem="dnk-QC-U9C" secondAttribute="leading" constant="134" id="eIV-la-vfO"/>
+                            <constraint firstItem="Sn5-b0-tGN" firstAttribute="top" secondItem="dnk-QC-U9C" secondAttribute="top" constant="24" id="gMj-jk-QKV"/>
                             <constraint firstItem="dnk-QC-U9C" firstAttribute="bottom" secondItem="VI3-ug-BQl" secondAttribute="bottom" constant="44" id="hcv-Oo-arh"/>
                             <constraint firstItem="D2T-ha-cMC" firstAttribute="bottom" secondItem="dnk-QC-U9C" secondAttribute="bottom" constant="11" id="jXb-8l-pFz"/>
                             <constraint firstItem="D2T-ha-cMC" firstAttribute="centerY" secondItem="VI3-ug-BQl" secondAttribute="centerY" constant="5" id="kRn-BM-LVe"/>
                             <constraint firstItem="UOs-FB-bF1" firstAttribute="leading" secondItem="dnk-QC-U9C" secondAttribute="leading" constant="468" id="ksV-Mc-P3h"/>
-                            <constraint firstItem="dnk-QC-U9C" firstAttribute="trailing" secondItem="VI3-ug-BQl" secondAttribute="trailing" constant="103" id="l33-p4-LrY"/>
-                            <constraint firstItem="qMK-JC-Sec" firstAttribute="centerX" secondItem="8oR-Jt-FSV" secondAttribute="centerX" id="l9T-Ly-xde"/>
-                            <constraint firstItem="dnk-QC-U9C" firstAttribute="trailing" secondItem="Sn5-b0-tGN" secondAttribute="trailing" constant="218" id="ljY-Nm-xCm"/>
-                            <constraint firstItem="VI3-ug-BQl" firstAttribute="leading" secondItem="D2T-ha-cMC" secondAttribute="trailing" constant="54" id="p0m-2w-NKE"/>
+                            <constraint firstItem="dnk-QC-U9C" firstAttribute="trailing" secondItem="VI3-ug-BQl" secondAttribute="trailing" constant="93" id="l33-p4-LrY"/>
+                            <constraint firstItem="qMK-JC-Sec" firstAttribute="centerX" secondItem="8oR-Jt-FSV" secondAttribute="centerX" constant="4.5" id="l9T-Ly-xde"/>
+                            <constraint firstItem="VI3-ug-BQl" firstAttribute="leading" secondItem="D2T-ha-cMC" secondAttribute="trailing" constant="48" id="p0m-2w-NKE"/>
+                            <constraint firstItem="Sn5-b0-tGN" firstAttribute="leading" secondItem="dnk-QC-U9C" secondAttribute="leading" constant="178" id="pU6-Ca-Je5"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dnk-QC-U9C"/>
                     </view>
@@ -92,7 +85,6 @@
     </scenes>
     <resources>
         <image name="Chapman-Univ_cropped_1486751083_300X300_c_c_0_0.png" width="300" height="300"/>
-        <image name="LogoOption" width="607" height="606"/>
         <image name="chapman-univeristy-300x156.png" width="300" height="156"/>
     </resources>
 </document>
