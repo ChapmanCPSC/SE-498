@@ -162,6 +162,22 @@ class ExpandableTableViewController: UITableViewController {
         }
     }
 
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+
+        var height = CGFloat(0)
+        let node = currentlyShown[indexPath.row]
+        if node is CategoryDataNode {
+            height = 100
+        }
+        else if node is SubjectDataNode {
+            height = 75
+        }
+        else if node is QuizDataNode {
+            height = 65
+        }
+        return height
+    }
+
     func closeNodes(nodes:[CellDataNode], startPos:Int){
         var idx = startPos
         for node in nodes {

@@ -254,6 +254,7 @@
                     </view>
                     <connections>
                         <outlet property="bt_closeButton" destination="bVp-fM-ypV" id="NpW-aB-KtI"/>
+                        <segue destination="iNk-fp-Fpw" kind="show" id="T7M-Z9-vZb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e8C-Oj-eSl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -383,5 +384,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ZKg-i8-Rhf"/>
+        <segue reference="T7M-Z9-vZb"/>
     </inferredMetricsTieBreakers>
 </document>

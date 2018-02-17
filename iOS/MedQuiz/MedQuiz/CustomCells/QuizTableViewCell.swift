@@ -42,4 +42,7 @@ class QuizTableViewCell: CellType {
     override func updateViews() {
         lab_quizName.text = quizDataNode?.quizName
     }
+    @IBAction func bt_startPressed(_ sender: Any) {
+        
+    }
 }
