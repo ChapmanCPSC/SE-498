@@ -11,9 +11,20 @@ import UIKit
 
 class QuizSearchVC: UIViewController {
     
+    @IBOutlet weak var bt_closeButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupViews()
+    }
+    
+    func setupViews(){
+        setInsetsOnCloseButton()
+    }
+    
+    func setInsetsOnCloseButton(){
+        bt_closeButton.contentEdgeInsets.top = 5
+        bt_closeButton.contentEdgeInsets.bottom = 5
     }
     
 }
