@@ -1,13 +1,13 @@
 {
   "questionselection" : {
-    "00001" : {
+    "a4174d0e545e4cd3af79" : {
       "choice" : "A",
       "question" : "00001",
       "quiz" : "00001",
-      "student" : "Stu Dent"
+      "student" : "e9ba98c57654426e87a6"
     }
   },
-  "course" : {
+  "class" : {
     "93fa23ec3dcb43a9925a" : {
       "instructor" : "Drew Chapman",
       "coursecode": "PHRM 577",
@@ -17,64 +17,59 @@
   },
   "faculty" : {
     "d31b1d9547b0467aa443" : {
-      "email" : "london@chapman.edu",
       "name" : "Jack London",
-      "password" : "t38n92m394ba8"
     }
   },
   "question" : {
-    "00003" : {
-      "answer" : "A",
+    "5a2ec76bf4b843a79183" : {
+      "datecreated" : "02-16-2018",
+      "timecreated" : "18:05:28",
+      "lastused" : {
+        "date" : "02-18-2018",
+        "time" : "10:24:13",
+        "class" : "93fa23ec3dcb43a9925a"
+      },
+      "classes" : {
+        "93fa23ec3dcb43a9925a" : true
+      },
+      "imageforquestion" : false,
+      "imageforanswers" : false,
+      "text" : "If a physician prescribes 250mg qid for 10 days, how many mililiters of amoxicillin oral suspension containing 250mg/5mL should be dispensed?",
+      "correctanswer" : "a",
       "answers" : {
-        "a" : "testing",
-        "b" : "ninin",
-        "c" : "ninin",
-        "d" : "nnini"
+        "a" : "200mL",
+        "b" : "300mL",
+        "c" : "400mL",
+        "d" : "500mL"
       },
-      "image" : false,
+      "images" : {
+
+      },
       "tags" : {
-        "Bio" : true
-      },
-      "text" : "My Question"
+        "2473fd35c39a499fa9997c51ab3e2496": true
+      }
     },
-    "00005" : {
-      "answer" : "B",
-      "answers" : {
-        "a" : "Tacos",
-        "b" : "Burgers",
-        "c" : "Pizza",
-        "d" : "Pasta"
-      },
-      "image" : false,
-      "tags" : {
-        "Bio" : true,
-        "Chem" : true
-      },
-      "text" : "What is the professor's favorite food?"
-    }
-  },
-  "questionbanks" : {
-    "00001" : {
-      "Faculty" : "Fac Ulty"
-    }
   },
   "quiz" : {
     "96f8f44213334d4eb8ff" : {
-      "Course" : "101-01",
-      "Points" : 50,
-      "Rankings" : {
-        "00001" : {
-          "Ranking" : 1,
-          "Student" : "Stu Dent"
-        }
+      "datecreated" : "02-16-2018",
+      "timecreated" : "18:05:28",
+      "lastused" : {
+        "date" : "02-18-2018",
+        "time" : "10:24:13",
+        "course" : "93fa23ec3dcb43a9925a"
       },
+      "availableinpractice" : true,
+      "visible" : true,
+      "class" : "101-01",
+      "points" : 50,
       "Title" : "Quiz #1",
       "questions" : {
-        "00003" : true,
+        "5a2ec76bf4b843a79183" : true,
         "00005" : true
       },
       "tags" : {
-        "Chem" : true
+        "2473fd35c39a499fa9997c51ab3e2496" : true
       }
     }
   },
@@ -84,18 +79,42 @@
       "students" : {
         "e9ba98c57654426e87a6": true,
       },
-      "date" :
+      "datecreated" :"2018-15-2",
+      "timecreated" : "12:58:02",
+      "gamepin" : "8419"
     }
   },
   "student" : {
     "e9ba98c57654426e87a6" : {
-      "email" : "bond104@mail.chapman.edu",
-      "name" : "Lyle Bond",
-      "password" : "password",
-      "username" : "dent101",
-      "profilepic" : "gs://cusp-quiz-app.appspot.com/images/studentprofilepictures/CatStudentImage.jpg"
+      "username" : "lylenator2000",
+      "profilepic" : "gs://cusp-quiz-app.appspot.com/images/studentprofilepictures/CatStudentImage.jpg",
+      "friends" : {
+
+      },
+      "rankings"
     }
 
+  },
+  "ranking" : {
+
+  },
+  "tag" : {
+    "2473fd35c39a499fa9997c51ab3e2496" : {
+      "name" : "Biology",
+      "color" : "blue"
+    },
+    "713540d93752493cae90" : {
+      "name" : "Oncology",
+      "color" : "pink"
+    },
+    "c038a7dba6d74b8bbed0" : {
+      "name" : "Cardiology",
+      "color" : "green"
+    },
+    "5918026cc79843679d2b" : {
+      "name" : "Nephrology",
+      "color" : "yellow"
+    }
   }
 
 }
