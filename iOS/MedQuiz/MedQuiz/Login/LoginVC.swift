@@ -34,13 +34,19 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func loginPressed(_ sender: Any) {
-        if (usernameTextField.text == "username" && passwordTextField.text == "password"){
-            present((MainStoryBoard?.instantiateInitialViewController())!, animated: false, completion: nil)
-        }
-        else{
-            loginErrorLabel.text = "Incorrect username/password"
-            loginErrorLabel.isHidden = false
-        }
+        
+        //UNCOMMENT LATER - for when we need to check username/password with db
+        
+//        if (usernameTextField.text == "username" && passwordTextField.text == "password"){
+//            present((MainStoryBoard?.instantiateInitialViewController())!, animated: false, completion: nil)
+//        }
+//        else{
+//            loginErrorLabel.text = "Incorrect username/password"
+//            loginErrorLabel.isHidden = false
+//        }
+        
+        present((MainStoryBoard?.instantiateInitialViewController())!, animated: false, completion: nil)
+
         
     }
     

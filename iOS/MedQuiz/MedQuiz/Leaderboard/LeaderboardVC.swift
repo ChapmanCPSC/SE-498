@@ -19,10 +19,20 @@ class LeaderboardVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     @IBOutlet weak var switchView: UIView!
     @IBOutlet weak var leaderboardHeadline: UILabel!
     @IBOutlet weak var leaderboardTableview: UITableView!
+    @IBOutlet weak var globalSwitchLabel: UILabel!
+    @IBOutlet weak var friendSwitchLabel: UILabel!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let tappedGlobal = UITapGestureRecognizer(target: self, action: #selector(switchLeaderboardPressed))
+        let tappedFriends = UITapGestureRecognizer(target: self, action: #selector(switchLeaderboardPressed))
+        globalSwitchLabel.isUserInteractionEnabled = true
+        friendSwitchLabel.isUserInteractionEnabled = true
+        
+        friendSwitchLabel.addGestureRecognizer(tappedFriends)
+        globalSwitchLabel.addGestureRecognizer(tappedGlobal)
         
         leaderboardTableview.dataSource = self
         leaderboardTableview.delegate = self
@@ -37,6 +47,7 @@ class LeaderboardVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         switchButton.backgroundColor = leaderBoardSwitchFriends
         switchButton.layer.cornerRadius = 25;
     }
+
     
     
     
@@ -58,6 +69,7 @@ class LeaderboardVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     
     @IBAction func switchLeaderboardPressed(_ sender: Any) {
+        print("tapped")
         if(friendsOrGlobal == "friends"){
             UIView.animate(withDuration: 0.5, animations: {
                 self.switchButton.transform = CGAffineTransform(translationX: 200, y: 0)

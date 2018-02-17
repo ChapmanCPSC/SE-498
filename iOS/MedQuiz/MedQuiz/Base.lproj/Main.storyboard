@@ -30,6 +30,7 @@
         <!--Title-->
         <scene sceneID="pOV-Lb-qQc">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QHw-eq-760" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController clearsSelectionOnViewWillAppear="NO" id="ytW-DQ-zAH" customClass="SideBar" customModule="MedQuiz" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="b31-pj-zqm">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="768"/>
@@ -46,7 +47,6 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Title" largeTitleDisplayMode="never" id="pCM-DE-0tY"/>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="QHw-eq-760" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1180" y="-264"/>
         </scene>
