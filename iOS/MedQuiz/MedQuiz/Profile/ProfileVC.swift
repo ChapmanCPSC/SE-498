@@ -13,12 +13,18 @@ class ProfileVC: UIViewController {
     
     @IBOutlet weak var profileImage: UIImageView!
     
+    @IBOutlet weak var usernameLabel: UILabel!
+    
+    var username = "Maddy Transue"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let profileAvatarChange = UITapGestureRecognizer(target: self, action: Selector("profileAvatarPressed"))
         
         profileImage.addGestureRecognizer(profileAvatarChange)
+        
+        usernameLabel.text = username
         
     }
     

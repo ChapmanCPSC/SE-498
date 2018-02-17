@@ -270,12 +270,11 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="q8n-Bv-Qhg">
-                                <rect key="frame" x="256" y="45" width="182" height="183"/>
-                                <color key="backgroundColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gentleman_icon-icons.com_55044.png" translatesAutoresizingMaskIntoConstraints="NO" id="q8n-Bv-Qhg">
+                                <rect key="frame" x="256" y="45" width="182" height="204"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uHD-S2-tJ9">
-                                <rect key="frame" x="280" y="270" width="134" height="66"/>
+                                <rect key="frame" x="280" y="291" width="134" height="45"/>
                                 <state key="normal" title="Edit"/>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zrc-Jj-kwr">
@@ -391,7 +390,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="KetSwiftMoves" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IOK-UE-LPq">
-                                <rect key="frame" x="290" y="259" width="114" height="21"/>
+                                <rect key="frame" x="290" y="280" width="114" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -414,6 +413,13 @@
                                     <action selector="addFriendsPressed:" destination="7co-Ab-ToO" eventType="touchUpInside" id="j55-uL-5vk"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3b3-Xu-chO" userLabel="Username">
+                                <rect key="frame" x="172" y="257" width="350" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -464,6 +470,7 @@
                     </view>
                     <connections>
                         <outlet property="profileImage" destination="q8n-Bv-Qhg" id="lrJ-yq-t6a"/>
+                        <outlet property="usernameLabel" destination="3b3-Xu-chO" id="mJp-49-RdS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wix-Ko-PRh" userLabel="First Responder" sceneMemberID="firstResponder"/>
