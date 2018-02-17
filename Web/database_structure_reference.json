@@ -12,12 +12,18 @@
       "instructor" : "Drew Chapman",
       "coursecode": "PHRM 577",
       "title" : "Health Care Delivery I",
-      "yearrank": "P1"
+      "yearrank": "P1",
+      "students" : {
+        "e9ba98c57654426e87a6" : true
+      },
+      "quizzes" : {
+        "96f8f44213334d4eb8ff" : true
+      }
     }
   },
   "faculty" : {
     "d31b1d9547b0467aa443" : {
-      "name" : "Jack London",
+      "name" : "Jack London"
     }
   },
   "question" : {
@@ -29,9 +35,7 @@
         "time" : "10:24:13",
         "class" : "93fa23ec3dcb43a9925a"
       },
-      "classes" : {
-        "93fa23ec3dcb43a9925a" : true
-      },
+      "points" : 10,
       "imageforquestion" : false,
       "imageforanswers" : false,
       "text" : "If a physician prescribes 250mg qid for 10 days, how many mililiters of amoxicillin oral suspension containing 250mg/5mL should be dispensed?",
@@ -57,7 +61,7 @@
       "lastused" : {
         "date" : "02-18-2018",
         "time" : "10:24:13",
-        "course" : "93fa23ec3dcb43a9925a"
+        "class" : "93fa23ec3dcb43a9925a"
       },
       "availableinpractice" : true,
       "visible" : true,
@@ -67,6 +71,9 @@
       "questions" : {
         "5a2ec76bf4b843a79183" : true,
         "00005" : true
+      },
+      "classes" : {
+        "93fa23ec3dcb43a9925a" : true
       },
       "tags" : {
         "2473fd35c39a499fa9997c51ab3e2496" : true
@@ -91,7 +98,9 @@
       "friends" : {
 
       },
-      "rankings"
+      "classes" : {
+        "93fa23ec3dcb43a9925a" : true
+      }
     }
 
   },
