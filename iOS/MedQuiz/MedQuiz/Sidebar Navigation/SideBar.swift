@@ -30,6 +30,9 @@ class SideBar: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Hides top "title" bar
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        
         //Registering the side bar nib to use in tableview
         let sideNavNib = UINib(nibName: "SideBarCell", bundle: nil)
         self.tableView.register(sideNavNib, forCellReuseIdentifier: "customSideCell")
@@ -72,7 +75,7 @@ class SideBar: UITableViewController {
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if(indexPath.section == 0 && indexPath.row == 0){
-            return 180
+            return 130
         }
         else if(indexPath.row < 5){
             return 100
@@ -96,7 +99,6 @@ class SideBar: UITableViewController {
             
             aProfBarCell.profileNameLabel.text = profileName
             aProfBarCell.profileNameLabel.textColor = whiteColor
-            aProfBarCell.profileNameLabel.sizeToFit()
             
             /*let currentName = aProfBarCell.profileNameLabel.text
             aProfBarCell.scoreLabel.text = getScore(name: currentName!)*/
@@ -111,9 +113,10 @@ class SideBar: UITableViewController {
             aProfBarCell.isUserInteractionEnabled = false
             
             aProfBarCell.backgroundColor = blueProfCellColor
-            aProfBarCell.layer.cornerRadius = 10
-            aProfBarCell.layer.shadowRadius = 20
-            aProfBarCell.layer.shadowOpacity = 0.7
+            aProfBarCell.layer.shadowOffset = CGSize(width: 0, height: 20)
+            
+            aProfBarCell.layer.shadowRadius = 5
+            aProfBarCell.layer.shadowOpacity = 0.3
             
             return aProfBarCell
         }

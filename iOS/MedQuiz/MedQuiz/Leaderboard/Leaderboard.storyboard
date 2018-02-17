@@ -33,33 +33,46 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nDz-9W-n3q">
                                 <rect key="frame" x="145" y="675" width="413" height="64"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HFV-Lr-FKg" userLabel="switchButton">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HFV-Lr-FKg" userLabel="switchButton">
                                         <rect key="frame" x="7" y="6" width="208" height="52"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.43553328514099121" green="0.89709198474884033" blue="0.7958221435546875" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="208" id="uaA-Ec-mmi"/>
+                                        </constraints>
                                         <connections>
                                             <action selector="switchLeaderboardPressed:" destination="lyI-wM-2cl" eventType="touchUpInside" id="nYA-rR-fbG"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Friends" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gfe-bP-dMf">
-                                        <rect key="frame" x="72" y="21" width="87" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Global" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tcY-vd-Amb">
+                                        <rect key="frame" x="270" y="18" width="87" height="29"/>
                                         <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="26"/>
                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Global" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tcY-vd-Amb">
-                                        <rect key="frame" x="270" y="18" width="87" height="29"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Friends" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gfe-bP-dMf">
+                                        <rect key="frame" x="72" y="21" width="87" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="87" id="KJI-A5-2b2"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="26"/>
                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.26405513286590576" green="0.62156718969345093" blue="0.76774448156356812" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="HFV-Lr-FKg" firstAttribute="top" secondItem="nDz-9W-n3q" secondAttribute="top" constant="6" id="Cff-tw-z28"/>
+                                    <constraint firstItem="HFV-Lr-FKg" firstAttribute="centerY" secondItem="tcY-vd-Amb" secondAttribute="centerY" id="Fne-UF-WBO"/>
+                                    <constraint firstItem="HFV-Lr-FKg" firstAttribute="leading" secondItem="nDz-9W-n3q" secondAttribute="leading" constant="7" id="YmA-Od-7XO"/>
+                                    <constraint firstItem="gfe-bP-dMf" firstAttribute="top" secondItem="nDz-9W-n3q" secondAttribute="top" constant="21" id="aZ2-Qt-6gw"/>
+                                    <constraint firstItem="tcY-vd-Amb" firstAttribute="leading" secondItem="HFV-Lr-FKg" secondAttribute="trailing" constant="55" id="c0w-Mg-I29"/>
+                                    <constraint firstItem="gfe-bP-dMf" firstAttribute="leading" secondItem="nDz-9W-n3q" secondAttribute="leading" constant="72" id="eRC-WY-50w"/>
+                                    <constraint firstItem="HFV-Lr-FKg" firstAttribute="centerY" secondItem="nDz-9W-n3q" secondAttribute="centerY" id="fjY-Bl-7mo"/>
+                                    <constraint firstItem="HFV-Lr-FKg" firstAttribute="centerY" secondItem="gfe-bP-dMf" secondAttribute="centerY" id="vlu-Ez-jxu"/>
+                                </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Friends" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yw4-Db-siT">
-                                <rect key="frame" x="276.5" y="41" width="141" height="53"/>
+                                <rect key="frame" x="277" y="41" width="141" height="53"/>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="48"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -85,6 +98,8 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <connections>
+                        <outlet property="friendSwitchLabel" destination="gfe-bP-dMf" id="GC4-o7-l31"/>
+                        <outlet property="globalSwitchLabel" destination="tcY-vd-Amb" id="L0v-jt-yZ4"/>
                         <outlet property="leaderboardHeadline" destination="yw4-Db-siT" id="V4d-ud-fIb"/>
                         <outlet property="leaderboardTableview" destination="Tzf-fP-f0K" id="oAU-md-ztp"/>
                         <outlet property="switchButton" destination="HFV-Lr-FKg" id="Uld-aK-DQ5"/>
