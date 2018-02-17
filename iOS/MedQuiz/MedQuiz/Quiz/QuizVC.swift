@@ -12,6 +12,7 @@ import UIKit
 class QuizVC: UIViewController {
     @IBOutlet weak var tf_quizPin: UITextField!
     @IBOutlet weak var iv_closeButton: UIImageView!
+    @IBOutlet weak var sv_search: UIStackView!
     
     
     
@@ -26,6 +27,7 @@ class QuizVC: UIViewController {
         setPlaceholderColor()
         setTFDelegate()
         setIVCloseTapped()
+        setSearchTapped()
     }
     
     func setBorderColor(){
@@ -46,6 +48,14 @@ class QuizVC: UIViewController {
     func setIVCloseTapped(){
         iv_closeButton.isUserInteractionEnabled = true
         iv_closeButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(QuizVC.iv_pressed)))
+    }
+
+    func setSearchTapped(){
+        sv_search.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(QuizVC.sv_searchPressed)))
+    }
+
+    func sv_searchPressed(){
+        self.performSegue(withIdentifier: "QuizSearchSegue", sender: nil)
     }
     
     func showCloseButton(){

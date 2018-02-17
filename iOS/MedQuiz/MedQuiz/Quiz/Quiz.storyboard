@@ -272,36 +272,32 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="92h-CE-1Cs">
                                 <rect key="frame" x="0.0" y="384" width="1024" height="384"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="magGlass" translatesAutoresizingMaskIntoConstraints="NO" id="AzO-RL-zop">
-                                        <rect key="frame" x="452" y="132" width="120" height="120"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Kxj-gS-XVF">
+                                        <rect key="frame" x="452" y="108" width="120" height="168"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="magGlass" translatesAutoresizingMaskIntoConstraints="NO" id="AzO-RL-zop">
+                                                <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="120" id="Hlv-CN-pxV"/>
+                                                    <constraint firstAttribute="width" constant="120" id="apx-kF-Fjd"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yD8-nY-hgg">
+                                                <rect key="frame" x="0.0" y="120" width="120" height="48"/>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="40"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="120" id="Hlv-CN-pxV"/>
-                                            <constraint firstAttribute="width" constant="120" id="apx-kF-Fjd"/>
+                                            <constraint firstItem="yD8-nY-hgg" firstAttribute="width" secondItem="AzO-RL-zop" secondAttribute="width" id="njZ-lO-dy9"/>
                                         </constraints>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yD8-nY-hgg">
-                                        <rect key="frame" x="452.5" y="257" width="120" height="48"/>
-                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="40"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZaU-WQ-JM0">
-                                        <rect key="frame" x="798" y="177" width="136" height="30"/>
-                                        <state key="normal" title="Temp Search segue"/>
-                                        <connections>
-                                            <segue destination="kLc-xA-Qfj" kind="show" id="abY-gL-hKC"/>
-                                        </connections>
-                                    </button>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.60392156862745094" green="0.83529411764705885" blue="0.82352941176470584" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="yD8-nY-hgg" firstAttribute="top" secondItem="AzO-RL-zop" secondAttribute="bottom" constant="5" id="Fde-tq-eeJ"/>
-                                    <constraint firstAttribute="trailing" secondItem="ZaU-WQ-JM0" secondAttribute="trailing" constant="90" id="Pm1-9M-978"/>
-                                    <constraint firstItem="AzO-RL-zop" firstAttribute="centerY" secondItem="92h-CE-1Cs" secondAttribute="centerY" id="Rbt-Oi-mn3"/>
-                                    <constraint firstItem="AzO-RL-zop" firstAttribute="centerX" secondItem="92h-CE-1Cs" secondAttribute="centerX" id="aXN-ov-edX"/>
-                                    <constraint firstItem="yD8-nY-hgg" firstAttribute="width" secondItem="AzO-RL-zop" secondAttribute="width" id="dr5-Yk-4co"/>
-                                    <constraint firstItem="yD8-nY-hgg" firstAttribute="centerX" secondItem="92h-CE-1Cs" secondAttribute="centerX" id="tR1-ke-oct"/>
-                                    <constraint firstItem="ZaU-WQ-JM0" firstAttribute="centerY" secondItem="92h-CE-1Cs" secondAttribute="centerY" id="uWH-Qc-J64"/>
+                                    <constraint firstItem="Kxj-gS-XVF" firstAttribute="centerX" secondItem="92h-CE-1Cs" secondAttribute="centerX" id="STn-ny-VpC"/>
+                                    <constraint firstItem="Kxj-gS-XVF" firstAttribute="centerY" secondItem="92h-CE-1Cs" secondAttribute="centerY" id="iDd-N6-16H"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZcS-1G-0qW">
@@ -354,6 +350,7 @@
                     </view>
                     <connections>
                         <outlet property="iv_closeButton" destination="zpx-It-qSt" id="WC6-DQ-lf4"/>
+                        <outlet property="sv_search" destination="Kxj-gS-XVF" id="CkE-js-80J"/>
                         <outlet property="tf_quizPin" destination="NFR-OY-cOA" id="geb-BJ-K3d"/>
                         <segue destination="iNk-fp-Fpw" kind="show" identifier="QuizPinSegue" id="Fqe-Id-AzD"/>
                         <segue destination="kLc-xA-Qfj" kind="show" identifier="QuizSearchSegue" id="ZKg-i8-Rhf"/>
@@ -361,7 +358,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F9e-l5-fyI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-611" y="106"/>
+            <point key="canvasLocation" x="-611" y="87"/>
         </scene>
         <!--Expandable Table View Controller-->
         <scene sceneID="5m3-20-1q3">
@@ -383,7 +380,6 @@
         <image name="magGlass" width="640" height="480"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ZKg-i8-Rhf"/>
         <segue reference="T7M-Z9-vZb"/>
     </inferredMetricsTieBreakers>
 </document>
