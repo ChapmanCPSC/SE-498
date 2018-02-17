@@ -229,7 +229,7 @@
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bVp-fM-ypV">
                                 <rect key="frame" x="0.0" y="718" width="1024" height="50"/>
-                                <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.090196078431372548" green="0.23529411764705882" blue="0.46274509803921571" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Dh9-yc-qs4"/>
                                 </constraints>
@@ -292,7 +292,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.59999999999999998" green="0.83137254901960778" blue="0.81960784313725488" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.60392156862745094" green="0.83529411764705885" blue="0.82352941176470584" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="yD8-nY-hgg" firstAttribute="top" secondItem="AzO-RL-zop" secondAttribute="bottom" constant="5" id="Fde-tq-eeJ"/>
                                     <constraint firstAttribute="trailing" secondItem="ZaU-WQ-JM0" secondAttribute="trailing" constant="90" id="Pm1-9M-978"/>
@@ -328,7 +328,7 @@
                                         </constraints>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.52941176470588236" green="0.51372549019607838" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.53333333333333333" green="0.51764705882352935" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="zpx-It-qSt" firstAttribute="top" secondItem="ZcS-1G-0qW" secondAttribute="top" constant="30" id="KZn-XL-QNN"/>
                                     <constraint firstAttribute="trailing" secondItem="zpx-It-qSt" secondAttribute="trailing" constant="30" id="Lhq-44-P5r"/>

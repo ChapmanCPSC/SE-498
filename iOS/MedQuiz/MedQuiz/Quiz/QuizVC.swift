@@ -31,11 +31,11 @@ class QuizVC: UIViewController {
     func setBorderColor(){
         tf_quizPin.borderStyle = .line
         tf_quizPin.layer.borderWidth = 5.0
-        tf_quizPin.layer.borderColor = UIColor.orange.cgColor
+        tf_quizPin.layer.borderColor = UIColor.hexStringToUIColor(hex: "#F5A623").cgColor
         
     }
     func setPlaceholderColor(){
-        tf_quizPin.attributedPlaceholder = NSAttributedString(string: "Enter Quiz Pin", attributes: [NSForegroundColorAttributeName: UIColor.hexStringToUIColor(hex: "#ffd293")])
+        tf_quizPin.attributedPlaceholder = NSAttributedString(string: "Enter Quiz Pin", attributes: [NSForegroundColorAttributeName: UIColor.hexStringToUIColor(hex: "#f7c87b")])
         
     }
     
