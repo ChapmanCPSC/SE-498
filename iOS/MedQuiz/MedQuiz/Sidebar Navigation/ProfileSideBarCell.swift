@@ -16,6 +16,7 @@ class ProfileSideBarCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        contentView.backgroundColor = .clear
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

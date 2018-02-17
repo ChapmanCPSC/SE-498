@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,28 +25,38 @@
                 <rect key="frame" x="0.0" y="0.0" width="395" height="169.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gentleman_icon-icons.com_55044.png" translatesAutoresizingMaskIntoConstraints="NO" id="1wO-0o-1ct">
-                        <rect key="frame" x="20" y="27" width="114" height="114"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yn1-BK-FH1">
-                        <rect key="frame" x="333" y="89" width="42" height="20"/>
-                        <fontDescription key="fontDescription" name="ClearSans-Medium" family="Clear Sans Medium" pointSize="17"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yn1-BK-FH1">
+                        <rect key="frame" x="128" y="93" width="247" height="44"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="247" id="VI9-RJ-SaN"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="ClearSans-Medium" family="Clear Sans Medium" pointSize="21"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sed-7u-I4Y">
-                        <rect key="frame" x="333" y="61" width="42" height="23"/>
-                        <fontDescription key="fontDescription" name="ClearSans-Medium" family="Clear Sans Medium" pointSize="17"/>
-                        <nil key="textColor"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gentleman_icon-icons.com_55044.png" translatesAutoresizingMaskIntoConstraints="NO" id="1wO-0o-1ct">
+                        <rect key="frame" x="33" y="24" width="71" height="55"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="71" id="7Zb-hB-AZc"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sed-7u-I4Y">
+                        <rect key="frame" x="128" y="43" width="247" height="46"/>
+                        <fontDescription key="fontDescription" name="ClearSans-Medium" family="Clear Sans Medium" pointSize="21"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <color key="backgroundColor" red="0.28725790161596954" green="0.28725790161596954" blue="0.28725790161596954" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="yn1-BK-FH1" secondAttribute="bottom" constant="60" id="0ZT-tJ-wGR"/>
-                    <constraint firstItem="Sed-7u-I4Y" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="60" id="RZx-r6-hZx"/>
-                    <constraint firstAttribute="trailing" secondItem="Sed-7u-I4Y" secondAttribute="trailing" constant="20" id="RoY-2y-hny"/>
-                    <constraint firstAttribute="trailing" secondItem="yn1-BK-FH1" secondAttribute="trailing" constant="20" id="SFT-ty-C9M"/>
+                    <constraint firstAttribute="bottom" secondItem="yn1-BK-FH1" secondAttribute="bottom" constant="36.5" id="0ZT-tJ-wGR"/>
+                    <constraint firstItem="1wO-0o-1ct" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="13" id="5mk-0d-Dbq"/>
+                    <constraint firstItem="Sed-7u-I4Y" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="43" id="RZx-r6-hZx"/>
+                    <constraint firstItem="yn1-BK-FH1" firstAttribute="leading" secondItem="Sed-7u-I4Y" secondAttribute="leading" id="U3a-8P-S0j"/>
+                    <constraint firstItem="yn1-BK-FH1" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="UgJ-RQ-yL4"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="1wO-0o-1ct" secondAttribute="bottom" constant="80" id="p0M-Uo-OhB"/>
+                    <constraint firstItem="1wO-0o-1ct" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="13" id="t9F-5e-y70"/>
+                    <constraint firstItem="yn1-BK-FH1" firstAttribute="trailing" secondItem="Sed-7u-I4Y" secondAttribute="trailing" id="teQ-aY-vZ0"/>
                 </constraints>
             </tableViewCellContentView>
             <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="1"/>
