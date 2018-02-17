@@ -120,6 +120,7 @@ class ExpandableTableViewController: UITableViewController {
             var cell = tableView.dequeueReusableCell(withIdentifier: QuizTableViewCell.reuseIdentifier(), for: indexPath)
             if let castedCell = cell as? QuizTableViewCell {
                 castedCell.quizDataNode = castedNode
+                castedCell.delegate = self
                 castedCell.updateViews()
             }
             return cell
@@ -191,4 +192,12 @@ class ExpandableTableViewController: UITableViewController {
             }
         }
     }
+}
+
+extension ExpandableTableViewController:PerformsSegueDelegator {
+    func callSegue() {
+        self.performSegue(withIdentifier: "QuizStartSegue", sender: nil)
+    }
+    
+    
 }

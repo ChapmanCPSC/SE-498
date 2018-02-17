@@ -11,7 +11,9 @@ import UIKit
 class QuizTableViewCell: CellType {
 
     @IBOutlet weak var lab_quizName: UILabel!
-    
+
+
+    var delegate:PerformsSegueDelegator!
     var quizDataNode:QuizDataNode!
     override class func reuseIdentifier()->String {
         return "QuizCell"
@@ -43,6 +45,6 @@ class QuizTableViewCell: CellType {
         lab_quizName.text = quizDataNode?.quizName
     }
     @IBAction func bt_startPressed(_ sender: Any) {
-        
+        self.delegate.callSegue()
     }
 }
