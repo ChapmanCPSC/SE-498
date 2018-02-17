@@ -60,7 +60,7 @@ class ExpandableTableViewController: UITableViewController {
 
         let quizNib = UINib(nibName: "QuizTableViewCell", bundle: nil)
         self.tableView.register(quizNib, forCellReuseIdentifier: QuizTableViewCell.reuseIdentifier())
-
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -106,6 +106,7 @@ class ExpandableTableViewController: UITableViewController {
                 castedCell.categoryDataNode = castedNode
                 castedCell.updateViews()
             }
+            cell.selectionStyle = .none
             return cell
         }
         else if let castedNode = node as? SubjectDataNode {
@@ -114,6 +115,7 @@ class ExpandableTableViewController: UITableViewController {
                 castedCell.subjectDataNode = castedNode
                 castedCell.updateViews()
             }
+            cell.selectionStyle = .none
             return cell
         }
         else if let castedNode = node as? QuizDataNode {
@@ -123,10 +125,9 @@ class ExpandableTableViewController: UITableViewController {
                 castedCell.delegate = self
                 castedCell.updateViews()
             }
+            cell.selectionStyle = .none
             return cell
         }
-
-
 
 
         //TODO add else ifs as I add cells

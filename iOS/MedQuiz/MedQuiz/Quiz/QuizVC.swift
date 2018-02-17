@@ -12,7 +12,8 @@ import UIKit
 class QuizVC: UIViewController {
     @IBOutlet weak var tf_quizPin: UITextField!
     @IBOutlet weak var iv_closeButton: UIImageView!
-    @IBOutlet weak var sv_search: UIStackView!
+    @IBOutlet weak var sv_search: UIView!
+    
     
     
     
@@ -32,7 +33,7 @@ class QuizVC: UIViewController {
     
     func setBorderColor(){
         tf_quizPin.borderStyle = .line
-        tf_quizPin.layer.borderWidth = 5.0
+        tf_quizPin.layer.borderWidth = 8.0
         tf_quizPin.layer.borderColor = UIColor.hexStringToUIColor(hex: "#F5A623").cgColor
         
     }

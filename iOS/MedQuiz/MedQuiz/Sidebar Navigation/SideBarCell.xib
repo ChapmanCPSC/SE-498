@@ -10,8 +10,8 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="ClearSans-Medium.ttf">
-            <string>ClearSans-Medium</string>
+        <array key="MarkerFeltThin.ttf">
+            <string>MarkerFelt-Thin</string>
         </array>
     </customFonts>
     <objects>
@@ -25,8 +25,8 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4fc-ZY-1zI">
-                        <rect key="frame" x="30" y="48" width="361" height="23"/>
-                        <fontDescription key="fontDescription" name="ClearSans-Medium" family="Clear Sans Medium" pointSize="17"/>
+                        <rect key="frame" x="30" y="43.5" width="361" height="34"/>
+                        <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="31"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>

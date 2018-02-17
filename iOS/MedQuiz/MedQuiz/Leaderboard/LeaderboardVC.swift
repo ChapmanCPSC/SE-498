@@ -26,13 +26,13 @@ class LeaderboardVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let tappedGlobal = UITapGestureRecognizer(target: self, action: #selector(switchLeaderboardPressed))
-        let tappedFriends = UITapGestureRecognizer(target: self, action: #selector(switchLeaderboardPressed))
         globalSwitchLabel.isUserInteractionEnabled = true
         friendSwitchLabel.isUserInteractionEnabled = true
+        switchView.isUserInteractionEnabled = true
         
-        friendSwitchLabel.addGestureRecognizer(tappedFriends)
-        globalSwitchLabel.addGestureRecognizer(tappedGlobal)
+        switchView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(switchLeaderboardPressed)))
+        friendSwitchLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(switchLeaderboardPressed)))
+        globalSwitchLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(switchLeaderboardPressed)))
         
         leaderboardTableview.dataSource = self
         leaderboardTableview.delegate = self

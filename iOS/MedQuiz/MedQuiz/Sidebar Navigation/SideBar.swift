@@ -40,6 +40,7 @@ class SideBar: UITableViewController {
         let profSideNib = UINib(nibName: "ProfileSideBarCell", bundle: nil)
         self.tableView.register(profSideNib, forCellReuseIdentifier: "profileCell")
         
+        self.tableView.separatorStyle = .none
         
         //Reference to the Quiz's storyboard
         QuizStoryboard = UIStoryboard(name: "Quiz", bundle: nil)

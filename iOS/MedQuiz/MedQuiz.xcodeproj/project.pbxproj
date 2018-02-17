@@ -33,6 +33,9 @@
 		3D77A14E1FB50ADC009178A1 /* LeaderboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D77A14D1FB50ADC009178A1 /* LeaderboardVC.swift */; };
 		3D77A15D1FB57FF1009178A1 /* SideBarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D77A15B1FB57FF1009178A1 /* SideBarCell.swift */; };
 		3D77A15E1FB57FF1009178A1 /* SideBarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D77A15C1FB57FF1009178A1 /* SideBarCell.xib */; };
+		3D78F3722038274200C300DC /* Search.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D78F36F2038274100C300DC /* Search.png */; };
+		3D78F3732038274200C300DC /* Search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D78F3702038274100C300DC /* Search@2x.png */; };
+		3D78F3742038274200C300DC /* Search@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D78F3712038274100C300DC /* Search@3x.png */; };
 		3D8C84311FBA898200FA2AD0 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D8C84301FBA898200FA2AD0 /* Login.storyboard */; };
 		3D8C84331FBA8A2D00FA2AD0 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8C84321FBA8A2D00FA2AD0 /* LoginVC.swift */; };
 		3DE027592034DDE000ECAE7B /* ColorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE027582034DDE000ECAE7B /* ColorHelper.swift */; };
@@ -113,6 +116,9 @@
 		3D77A14D1FB50ADC009178A1 /* LeaderboardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardVC.swift; sourceTree = "<group>"; };
 		3D77A15B1FB57FF1009178A1 /* SideBarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarCell.swift; sourceTree = "<group>"; };
 		3D77A15C1FB57FF1009178A1 /* SideBarCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideBarCell.xib; sourceTree = "<group>"; };
+		3D78F36F2038274100C300DC /* Search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Search.png; sourceTree = "<group>"; };
+		3D78F3702038274100C300DC /* Search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Search@2x.png"; sourceTree = "<group>"; };
+		3D78F3712038274100C300DC /* Search@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Search@3x.png"; sourceTree = "<group>"; };
 		3D8C84301FBA898200FA2AD0 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		3D8C84321FBA8A2D00FA2AD0 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		3DE027582034DDE000ECAE7B /* ColorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHelper.swift; sourceTree = "<group>"; };
@@ -172,7 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				3D2495A61F7E2EDD0058D85B /* MedQuiz */,
-				3D3166AA1FBB050F000D910F /* Images */,
+				3D3166AA1FBB050F000D910F /* ImagesAndIcons */,
 				3D3166A91FBB04D7000D910F /* Fonts */,
 				3D2495BB1F7E2EDD0058D85B /* MedQuizTests */,
 				3D2495C61F7E2EDD0058D85B /* MedQuizUITests */,
@@ -208,7 +214,6 @@
 				3D2495A71F7E2EDD0058D85B /* AppDelegate.swift */,
 				3D2495B31F7E2EDD0058D85B /* Info.plist */,
 				A5618C7D2034EAB2001AC764 /* Ext_UIColor.swift */,
-				77A14D69142779011ED840FD /* ExpandableTableViewController.swift */,
 			);
 			path = MedQuiz;
 			sourceTree = "<group>";
@@ -239,9 +244,12 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		3D3166AA1FBB050F000D910F /* Images */ = {
+		3D3166AA1FBB050F000D910F /* ImagesAndIcons */ = {
 			isa = PBXGroup;
 			children = (
+				3D78F36F2038274100C300DC /* Search.png */,
+				3D78F3702038274100C300DC /* Search@2x.png */,
+				3D78F3712038274100C300DC /* Search@3x.png */,
 				3D3166B41FBB0564000D910F /* boston-museum-of-fine-arts-94.gif */,
 				3D3166B21FBB0564000D910F /* Chapman-Univ_cropped_1486751083_300X300_c_c_0_0.png */,
 				3D3166AF1FBB0564000D910F /* chapman-univeristy-300x156.png */,
@@ -252,7 +260,7 @@
 				3D3166AE1FBB0564000D910F /* off-canvas-header-default.png */,
 				3D3166AD1FBB0564000D910F /* ted-logo-fb.png */,
 			);
-			path = Images;
+			path = ImagesAndIcons;
 			sourceTree = "<group>";
 		};
 		3D77A1381FB505F2009178A1 /* Quiz */ = {
@@ -265,6 +273,7 @@
 				DAB359341FBACA2100D5A959 /* QuizModel.swift */,
 				DAB359361FBACA3600D5A959 /* QuestionModel.swift */,
 				A53E754D2037FC3E0081B1AD /* PerformsSegueDelegator.swift */,
+				77A14D69142779011ED840FD /* ExpandableTableViewController.swift */,
 			);
 			path = Quiz;
 			sourceTree = "<group>";
@@ -337,11 +346,11 @@
 			children = (
 				77A1420EF541FC59FA2D76A7 /* CategoryTableViewCell.xib */,
 				77A144D87334D8DF998C8EB2 /* CategoryTableViewCell.swift */,
-				77A14120B4932DD782340C85 /* QuizTableViewCell.xib */,
-				77A14BE572EE55E1323DAB89 /* SubjectTableViewCell.swift */,
-				77A1438A11BA06BF8A611BE3 /* CellType.swift */,
 				77A14FB9B11856E469522AC7 /* SubjectTableViewCell.xib */,
+				77A14BE572EE55E1323DAB89 /* SubjectTableViewCell.swift */,
+				77A14120B4932DD782340C85 /* QuizTableViewCell.xib */,
 				77A148AA35BF9FF3088782EF /* QuizTableViewCell.swift */,
+				77A1438A11BA06BF8A611BE3 /* CellType.swift */,
 			);
 			path = CustomCells;
 			sourceTree = "<group>";
@@ -461,6 +470,7 @@
 				3DE0275D2034E1B100ECAE7B /* LeaderboardCell.xib in Resources */,
 				DAED09831FB4F68D003575B0 /* Leaderboard.storyboard in Resources */,
 				3D2495B21F7E2EDD0058D85B /* LaunchScreen.storyboard in Resources */,
+				3D78F3732038274200C300DC /* Search@2x.png in Resources */,
 				3D3166B71FBB0564000D910F /* off-canvas-header-default.png in Resources */,
 				3D3166BD1FBB0564000D910F /* boston-museum-of-fine-arts-94.gif in Resources */,
 				3D77A15E1FB57FF1009178A1 /* SideBarCell.xib in Resources */,
@@ -471,9 +481,11 @@
 				7FFDBB641FBD39DA0001E1FC /* ProfileSideBarCell.xib in Resources */,
 				3D3166B91FBB0564000D910F /* ISMP-2c-150.jpg in Resources */,
 				3D3166B51FBB0564000D910F /* MBA_color_2line.jpg in Resources */,
+				3D78F3722038274200C300DC /* Search.png in Resources */,
 				DAED09811FB4F67D003575B0 /* Quiz.storyboard in Resources */,
 				3D3166BA1FBB0564000D910F /* logoOption.png in Resources */,
 				3D2495AD1F7E2EDD0058D85B /* Main.storyboard in Resources */,
+				3D78F3742038274200C300DC /* Search@3x.png in Resources */,
 				77A14E95C97D195826B64BA1 /* CategoryTableViewCell.xib in Resources */,
 				77A14587485D480A2422FB89 /* QuizTableViewCell.xib in Resources */,
 				77A14A8D1DF3DC5F6C881BA0 /* SubjectTableViewCell.xib in Resources */,
