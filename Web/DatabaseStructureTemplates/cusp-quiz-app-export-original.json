@@ -1,0 +1,87 @@
+{
+  "Choices" : {
+    "00001" : {
+      "Choice" : "A",
+      "Question" : "00001",
+      "Quiz" : "00001",
+      "Sudent" : "Stu Dent"
+    }
+  },
+  "Course" : {
+    "101-01" : {
+      "Faculty" : "Fac Ulty",
+      "Title" : "Biology"
+    }
+  },
+  "Faculty" : {
+    "Test Faculty" : {
+      "email" : "faculty@chapman.edu",
+      "name" : "Fac Ulty",
+      "password" : "password"
+    }
+  },
+  "Question" : {
+    "00003" : {
+      "answer" : "A",
+      "answers" : {
+        "a" : "testing",
+        "b" : "ninin",
+        "c" : "ninin",
+        "d" : "nnini"
+      },
+      "image" : false,
+      "tags" : {
+        "Bio" : true
+      },
+      "text" : "My Question"
+    },
+    "00005" : {
+      "answer" : "B",
+      "answers" : {
+        "a" : "Tacos",
+        "b" : "Burgers",
+        "c" : "Pizza",
+        "d" : "Pasta"
+      },
+      "image" : false,
+      "tags" : {
+        "Bio" : true,
+        "Chem" : true
+      },
+      "text" : "What is the professor's favorite food?"
+    }
+  },
+  "QuestionBanks" : {
+    "00001" : {
+      "Faculty" : "Fac Ulty"
+    }
+  },
+  "Quiz" : {
+    "00001" : {
+      "Course" : "101-01",
+      "Points" : 50,
+      "Rankings" : {
+        "00001" : {
+          "Ranking" : 1,
+          "Student" : "Stu Dent"
+        }
+      },
+      "Title" : "Quiz #1",
+      "questions" : {
+        "00003" : true,
+        "00005" : true
+      },
+      "tags" : {
+        "Chem" : true
+      }
+    }
+  },
+  "Student" : {
+    "Test Student" : {
+      "email" : "student@chapman.edu",
+      "name" : "Stu Dent",
+      "password" : "password",
+      "username" : "dent101"
+    }
+  }
+}

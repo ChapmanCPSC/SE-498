@@ -26,6 +26,11 @@
       "name" : "Jack London"
     }
   },
+  "teacherassistant" : {
+    "707c7b6a693448df8955" : {
+      "name" : "Louis Dart"
+    }
+  },
   "question" : {
     "5a2ec76bf4b843a79183" : {
       "datecreated" : "02-16-2018",
@@ -63,11 +68,11 @@
         "time" : "10:24:13",
         "class" : "93fa23ec3dcb43a9925a"
       },
-      "availableinpractice" : true,
+      "available" : true,
       "visible" : true,
       "class" : "101-01",
-      "points" : 50,
-      "Title" : "Quiz #1",
+      "points" : false,
+      "title" : "Quiz #1",
       "questions" : {
         "5a2ec76bf4b843a79183" : true,
         "00005" : true
@@ -102,9 +107,6 @@
         "93fa23ec3dcb43a9925a" : true
       }
     }
-
-  },
-  "ranking" : {
 
   },
   "tag" : {
