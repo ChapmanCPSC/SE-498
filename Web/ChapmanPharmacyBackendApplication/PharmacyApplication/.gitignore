@@ -10,12 +10,12 @@
 /build
 
 # WebStorm Specific
-/.idea/.iws
-/.idea/workspace.xml
-/.idea/workstation.xml
-/.idea/tasks.xml
-/.idea/vcs.xml
-/.idea/misc.xml
+.idea/.iws
+.idea/workspace.xml
+.idea/workstation.xml
+.idea/tasks.xml
+.idea/vcs.xml
+.idea/misc.xml
 
 # misc
 .DS_Store
