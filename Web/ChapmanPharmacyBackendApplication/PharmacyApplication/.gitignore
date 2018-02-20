@@ -9,6 +9,13 @@
 # production
 /build
 
+# WebStorm Specific
+/.idea/.iws
+/.idea/workspace.xml
+/.idea/tasks.xml
+/.idea/vcs.xml
+/.idea/misc.xml
+
 # misc
 .DS_Store
 .env.local
