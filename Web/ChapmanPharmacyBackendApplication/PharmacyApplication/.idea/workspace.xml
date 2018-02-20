@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="68b7d22b-fe21-4a41-9a36-2d7cc3ae5396" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -51,8 +49,8 @@
       <file leaf-file-name="Home.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/Home.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="302">
-              <caret line="34" column="18" lean-forward="true" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
+            <state relative-caret-position="428">
+              <caret line="41" column="9" lean-forward="true" selection-start-line="41" selection-start-column="9" selection-end-line="41" selection-end-column="9" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -214,12 +212,20 @@
       <workItem from="1518672181703" duration="14642000" />
       <workItem from="1519145880821" duration="166000" />
       <workItem from="1519146140388" duration="145000" />
-      <workItem from="1519146901789" duration="30000" />
+      <workItem from="1519146901789" duration="210000" />
     </task>
+    <task id="LOCAL-00001" summary="- Altered .gitignore for our WebStorm project&#10;- Cleaned up JSON for Database structure">
+      <created>1519147051311</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1519147051311</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54731000" />
+    <option name="totallyTimeSpent" value="54911000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1853" height="901" extended-state="6" />
@@ -250,6 +256,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="- Altered .gitignore for our WebStorm project&#10;- Cleaned up JSON for Database structure" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Altered .gitignore for our WebStorm project&#10;- Cleaned up JSON for Database structure" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -649,8 +659,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Home.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="34" column="18" lean-forward="true" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
+        <state relative-caret-position="428">
+          <caret line="41" column="9" lean-forward="true" selection-start-line="41" selection-start-column="9" selection-end-line="41" selection-end-column="9" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
