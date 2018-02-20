@@ -12,6 +12,7 @@
 # WebStorm Specific
 /.idea/.iws
 /.idea/workspace.xml
+/.idea/workstation.xml
 /.idea/tasks.xml
 /.idea/vcs.xml
 /.idea/misc.xml
