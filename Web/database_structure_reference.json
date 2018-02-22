@@ -57,7 +57,7 @@
       "tags" : {
         "2473fd35c39a499fa9997c51ab3e2496": true
       }
-    },
+    }
   },
   "quiz" : {
     "96f8f44213334d4eb8ff" : {
@@ -89,7 +89,7 @@
     "670cac07d84b4d4abe63" : {
       "quiz" : "96f8f44213334d4eb8ff",
       "students" : {
-        "e9ba98c57654426e87a6": true,
+        "e9ba98c57654426e87a6": true
       },
       "datecreated" :"2018-15-2",
       "timecreated" : "12:58:02",
@@ -127,5 +127,4 @@
       "color" : "yellow"
     }
   }
-
 }
