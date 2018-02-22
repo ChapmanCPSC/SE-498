@@ -6,13 +6,12 @@ import * as routes from '../constants/routes';
 
 const SignUpPage = ({ history }) =>
     <div>
-        <h1>Vendyr Sign Up Part 1</h1>
+        <h1>Sign Up</h1>
         <SignUpForm history={history} />
     </div>
 
 
 const INITIAL_STATE = {
-    business_name: '',
     email: '',
     passwordOne: '',
     passwordTwo: '',
@@ -32,7 +31,6 @@ class SignUpForm extends Component {
 
     onSubmit = (event) => {
         const {
-            business_name,
             email,
             passwordOne,
         } = this.state;
@@ -41,13 +39,13 @@ class SignUpForm extends Component {
             history,
         } = this.props;
 
-        auth.doCreateUserWithEmailAndPassword(email, passwordOne, business_name)
+        auth.doCreateUserWithEmailAndPassword(email, passwordOne)
             .then(authUser => {
                 this.setState(() => ({...INITIAL_STATE }));
                 history.push(routes.HOME);
 
                 // Create a user in your own accessible Firebase Database too
-                db.doCreateUser(authUser.uid, email, business_name)
+                db.doCreateUser(authUser.uid, email)
                     .then(() => {
                         this.setState(() => ({ ...INITIAL_STATE }));
                         history.push(routes.HOME);
@@ -65,7 +63,6 @@ class SignUpForm extends Component {
 
     render() {
         const {
-            business_name,
             email,
             passwordOne,
             passwordTwo,
@@ -73,18 +70,11 @@ class SignUpForm extends Component {
         } = this.state;
 
         const isInvalid =
-            business_name === '' ||
             passwordOne !== passwordTwo ||
             passwordOne === '' ||
             email === '';
         return (
             <form onSubmit={this.onSubmit}>
-                <input
-                    value={business_name}
-                    onChange={event => this.setState(byPropKey('business_name', event.target.value))}
-                    type="text"
-                    placeholder="Your Business Name"
-                />
                 <input
                     value={email}
                     onChange={event => this.setState(byPropKey('email', event.target.value))}
@@ -115,9 +105,9 @@ class SignUpForm extends Component {
 
 const SignUpLink = () =>
     <p>
-        Don't have an account?
+        Need to sign up?
         {' '}
-        <Link to={routes.VENDOR_SIGN_UP}>Vendor Sign Up</Link>
+        <Link to={routes.SIGN_UP}>Sign Up</Link>
     </p>
 
 export default withRouter(SignUpPage);

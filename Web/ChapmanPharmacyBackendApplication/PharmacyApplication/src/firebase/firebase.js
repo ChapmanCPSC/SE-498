@@ -3,12 +3,12 @@ import * as firebase from 'firebase';
 
 // Initialize Firebase
 const config = {
-    apiKey: "AIzaSyANryDOt1eaE6p46Rrc20QCtAP8DGun0ro",
-    authDomain: "vendyrtest.firebaseapp.com",
-    databaseURL: "https://vendyrtest.firebaseio.com",
-    projectId: "vendyrtest",
-    storageBucket: "vendyrtest.appspot.com",
-    messagingSenderId: "848346568011"
+    apiKey: "AIzaSyAWJEhgK19vZkUH4jWRCmDnrmlrWycgPug",
+    authDomain: "cusp-quiz-app.firebaseapp.com",
+    databaseURL: "https://cusp-quiz-app.firebaseio.com",
+    projectId: "cusp-quiz-app",
+    storageBucket: "cusp-quiz-app.appspot.com",
+    messagingSenderId: "678976715567"
 };
 firebase.initializeApp(config);
 

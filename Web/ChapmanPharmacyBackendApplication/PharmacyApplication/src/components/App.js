@@ -6,7 +6,7 @@ import {
 
 import Navigation from './Navigation';
 import LandingPage from './Landing';
-import VendorSignUp from './VendorSignUp';
+import SignUp from './SignUp';
 import SignInPage from './SignIn';
 import PasswordForgetPage from './PasswordForget';
 import HomePage from './Home';
@@ -23,7 +23,7 @@ const App = () =>
             <hr/>
 
             <Route exact path={routes.LANDING} component={() => <LandingPage />} />
-            <Route exact path={routes.VENDOR_SIGN_UP} component={() => <VendorSignUp />} />
+            <Route exact path={routes.SIGN_UP} component={() => <SignUp />} />
             <Route exact path={routes.SIGN_IN} component={() => <SignInPage />} />
             <Route exact path={routes.PASSWORD_FORGET} component={() => <PasswordForgetPage />} />
             <Route exact path={routes.HOME} component={() => <HomePage />} />
