@@ -21,7 +21,7 @@ class ProfileVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let profileAvatarChange = UITapGestureRecognizer(target: self, action: Selector("profileAvatarPressed"))
+        let profileAvatarChange = UITapGestureRecognizer(target: self, action: #selector(ProfileVC.profileAvatarPressed))
         
         profileImage.addGestureRecognizer(profileAvatarChange)
         
@@ -34,7 +34,7 @@ class ProfileVC: UIViewController {
         self.present(addFriendsVC, animated: false, completion: nil)
     }
     
-    func profileAvatarPressed(){
+    @objc func profileAvatarPressed(){
         print("woo")
         let changeAvatarVC = self.storyboard?.instantiateViewController(withIdentifier: "changeAvatar") as! ChangeAvatarVC
         self.present(changeAvatarVC, animated: false, completion: nil)

@@ -38,7 +38,7 @@ class QuizVC: UIViewController {
         
     }
     func setPlaceholderColor(){
-        tf_quizPin.attributedPlaceholder = NSAttributedString(string: "Enter Quiz Pin", attributes: [NSForegroundColorAttributeName: UIColor.hexStringToUIColor(hex: "#f7c87b")])
+        tf_quizPin.attributedPlaceholder = NSAttributedString(string: "Enter Quiz Pin", attributes: [NSAttributedStringKey.foregroundColor: UIColor.hexStringToUIColor(hex: "#f7c87b")])
         
     }
     
@@ -55,7 +55,7 @@ class QuizVC: UIViewController {
         sv_search.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(QuizVC.sv_searchPressed)))
     }
 
-    func sv_searchPressed(){
+    @objc func sv_searchPressed(){
         self.performSegue(withIdentifier: "QuizSearchSegue", sender: nil)
     }
     
