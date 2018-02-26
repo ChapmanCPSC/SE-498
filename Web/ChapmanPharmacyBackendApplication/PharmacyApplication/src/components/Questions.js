@@ -7,8 +7,7 @@ class QuestionsPage extends Component {
     constructor (props) {
         super(props);
         this.state = {
-            questions: [],
-            questionFirebaseRef : db.getQuestionReference()
+            questions: []
         }
     }
     render () {
@@ -22,10 +21,11 @@ class QuestionsPage extends Component {
                         {/* May need to put a <table> here if you do a <td> */}
                                 {this.state.questions.map((question) => {
                                     return (
-                                        <tr> {question.text} </tr>
+                                        <tr key={question.id}>
+                                            <td>{question.questionText}</td>
+                                        </tr>
                                     )
                                 })}
-
                         </tbody>
                     </table>
                 </div>
@@ -34,14 +34,13 @@ class QuestionsPage extends Component {
         )
     }
     componentDidMount () {
-        // Grab any questions in Firebase Database
         db.getQuestionReference().on('value', (snapshot) => {
             let questionsVal = snapshot.val();
             let stateToSet = [];
             for (let item in questionsVal) {
                 stateToSet.push({
                     id : item,
-                    text : item[item].text
+                    questionText : questionsVal[item].text
                 })
             }
             this.setState({
@@ -50,7 +49,7 @@ class QuestionsPage extends Component {
         });
     }
     componentWillUnmount() {
-        this.state.questionFirebaseRef.off();
+        db.getQuestionReference().off();
     }
 }
 
