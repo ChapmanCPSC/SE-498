@@ -3,12 +3,11 @@ import { db } from './firebase';
 // User API
 
 export const doCreateUser = (id, email) =>
-    db.ref(`Users/${id}`).set({
-        email,
-    });
+  db.ref(`users/${id}`).set({
+    email,
+  });
 
 export const onceGetUsers = () =>
-    db.ref('Users').once('value');
+  db.ref('users').once('value');
 
-
-// Other Entity APIs ...
+// Other db APIs ...
