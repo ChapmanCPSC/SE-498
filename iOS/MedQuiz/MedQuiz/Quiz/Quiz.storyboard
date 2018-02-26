@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -84,11 +85,45 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oSt-QX-rec">
-                                        <rect key="frame" x="970" y="0.0" width="46" height="30"/>
-                                        <state key="normal" title="Button"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oSt-QX-rec">
+                                        <rect key="frame" x="872" y="150" width="132" height="30"/>
+                                        <state key="normal" title="Temp invert hidden"/>
                                         <connections>
                                             <action selector="tempPressed:" destination="iNk-fp-Fpw" eventType="touchUpInside" id="eVg-bF-wwb"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="grM-oM-JIa">
+                                        <rect key="frame" x="931" y="38" width="75" height="75"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Globally Circle" translatesAutoresizingMaskIntoConstraints="NO" id="hFC-tv-YrJ">
+                                                <rect key="frame" x="2.5" y="2.5" width="70" height="70"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="70" id="4bB-cY-J5i"/>
+                                                    <constraint firstAttribute="height" constant="70" id="ixa-fK-HRX"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cfr-Wo-R2p">
+                                                <rect key="frame" x="24" y="23" width="26" height="29"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="Cfr-Wo-R2p" firstAttribute="centerY" secondItem="grM-oM-JIa" secondAttribute="centerY" id="0oQ-ZW-LTe"/>
+                                            <constraint firstAttribute="width" constant="75" id="8HM-sJ-7RV"/>
+                                            <constraint firstItem="hFC-tv-YrJ" firstAttribute="centerY" secondItem="grM-oM-JIa" secondAttribute="centerY" id="D3l-Vs-d2M"/>
+                                            <constraint firstAttribute="height" constant="75" id="cBc-ng-LWd"/>
+                                            <constraint firstItem="Cfr-Wo-R2p" firstAttribute="centerX" secondItem="grM-oM-JIa" secondAttribute="centerX" id="lK8-Gu-lod"/>
+                                            <constraint firstItem="hFC-tv-YrJ" firstAttribute="centerX" secondItem="grM-oM-JIa" secondAttribute="centerX" id="zXb-oF-aKR"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mr4-bb-3wP">
+                                        <rect key="frame" x="471.5" y="160" width="81" height="30"/>
+                                        <state key="normal" title="Temp Reset"/>
+                                        <connections>
+                                            <action selector="tempResetPressed:" destination="iNk-fp-Fpw" eventType="touchUpInside" id="71a-x4-u3l"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -96,11 +131,15 @@
                                 <constraints>
                                     <constraint firstItem="ElQ-IF-2fO" firstAttribute="centerX" secondItem="XpQ-Yg-CIp" secondAttribute="centerX" id="1Pr-i2-3cG"/>
                                     <constraint firstAttribute="height" constant="200" id="1hX-Yw-cLN"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="grM-oM-JIa" secondAttribute="trailing" constant="10" id="7Va-yo-mb2"/>
                                     <constraint firstItem="da4-nm-GCK" firstAttribute="centerX" secondItem="XpQ-Yg-CIp" secondAttribute="centerX" id="G4r-6S-E7C"/>
+                                    <constraint firstAttribute="bottom" secondItem="oSt-QX-rec" secondAttribute="bottom" constant="20" id="N9h-Up-8dQ"/>
+                                    <constraint firstItem="grM-oM-JIa" firstAttribute="top" secondItem="XpQ-Yg-CIp" secondAttribute="topMargin" constant="10" id="Rka-KR-4ok"/>
                                     <constraint firstItem="ElQ-IF-2fO" firstAttribute="top" secondItem="da4-nm-GCK" secondAttribute="bottom" constant="20" id="UDg-3w-8FK"/>
-                                    <constraint firstItem="oSt-QX-rec" firstAttribute="top" secondItem="XpQ-Yg-CIp" secondAttribute="top" constant="20" id="bp4-le-X57"/>
+                                    <constraint firstAttribute="trailing" secondItem="oSt-QX-rec" secondAttribute="trailing" constant="20" id="ZxG-LW-K0i"/>
                                     <constraint firstItem="ElQ-IF-2fO" firstAttribute="centerY" secondItem="XpQ-Yg-CIp" secondAttribute="centerY" id="cgm-5G-e32"/>
-                                    <constraint firstAttribute="trailing" secondItem="oSt-QX-rec" secondAttribute="trailing" constant="20" id="iqN-jr-cfo"/>
+                                    <constraint firstAttribute="bottom" secondItem="Mr4-bb-3wP" secondAttribute="bottom" constant="10" id="iPN-z1-lzn"/>
+                                    <constraint firstItem="Mr4-bb-3wP" firstAttribute="centerX" secondItem="XpQ-Yg-CIp" secondAttribute="centerX" id="p4h-Ks-LSi"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nLi-ob-UWF">
@@ -306,6 +345,7 @@
     </scenes>
     <resources>
         <image name="Cancel Copy" width="56" height="56"/>
+        <image name="Globally Circle" width="588" height="588"/>
         <image name="Search.png" width="93" height="94"/>
     </resources>
     <inferredMetricsTieBreakers>

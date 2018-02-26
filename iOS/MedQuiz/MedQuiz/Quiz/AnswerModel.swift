@@ -16,7 +16,7 @@ class AnswerModel {
     
     var hasImage:Bool {
         get{
-            return imageLink == ""
+            return imageLink != ""
         }
     }
     

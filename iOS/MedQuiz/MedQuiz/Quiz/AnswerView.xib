@@ -14,11 +14,13 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AnswerView" customModule="MedQuiz" customModuleProvider="target">
             <connections>
                 <outlet property="con_imgAnswerHeight" destination="M6s-0p-HOQ" id="Hnt-aW-8Sr"/>
+                <outlet property="con_textImg" destination="zkr-CD-J3L" id="QE7-7p-rPr"/>
                 <outlet property="iv_answer" destination="F6f-WT-I8o" id="Itl-vZ-ok0"/>
                 <outlet property="iv_correct" destination="IG3-2E-jp6" id="CsZ-X4-FvB"/>
                 <outlet property="iv_wrong" destination="vtK-T7-MRf" id="XV1-PN-csP"/>
                 <outlet property="lab_answerText" destination="WA8-zo-aPf" id="Dfg-iS-b9N"/>
                 <outlet property="lab_points" destination="6lc-CG-QHi" id="Lul-RO-xKY"/>
+                <outlet property="viewFade" destination="ji9-Nt-FvV" id="DA9-72-NGO"/>
                 <outlet property="viewMain" destination="iN0-l3-epB" id="M7W-o6-5Zh"/>
             </connections>
         </placeholder>
@@ -27,26 +29,30 @@
             <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6lc-CG-QHi">
+                <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ji9-Nt-FvV" userLabel="fade">
+                    <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6lc-CG-QHi">
                     <rect key="frame" x="497" y="40" width="30.5" height="21.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                    <nil key="textColor"/>
+                    <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is the text of an answer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WA8-zo-aPf">
                     <rect key="frame" x="369" y="586" width="286.5" height="29"/>
                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                    <nil key="textColor"/>
+                    <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vtK-T7-MRf" userLabel="imgWrong">
+                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vtK-T7-MRf" userLabel="imgWrong">
                     <rect key="frame" x="487" y="698" width="50" height="50"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="50" id="6lE-SM-Xmp"/>
                         <constraint firstAttribute="height" constant="50" id="nn6-E9-EUT"/>
                     </constraints>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IG3-2E-jp6" userLabel="imgCorrect">
+                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IG3-2E-jp6" userLabel="imgCorrect">
                     <rect key="frame" x="487" y="698" width="50" height="50"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="50" id="Peb-d9-hlk"/>
@@ -60,6 +66,8 @@
             <color key="backgroundColor" red="0.66422420739999999" green="0.66424006219999998" blue="0.66423153879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="IG3-2E-jp6" secondAttribute="bottom" constant="20" id="2Na-Mh-lEc"/>
+                <constraint firstItem="ji9-Nt-FvV" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="BvJ-5e-RYj"/>
+                <constraint firstItem="ji9-Nt-FvV" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="DII-gd-cGI"/>
                 <constraint firstItem="IG3-2E-jp6" firstAttribute="width" secondItem="vtK-T7-MRf" secondAttribute="width" id="HLH-Xg-HpE"/>
                 <constraint firstItem="F6f-WT-I8o" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.5" id="M6s-0p-HOQ"/>
                 <constraint firstItem="IG3-2E-jp6" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="b6c-G7-o13"/>
@@ -68,8 +76,10 @@
                 <constraint firstItem="vtK-T7-MRf" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="eUq-0E-R2t"/>
                 <constraint firstItem="IG3-2E-jp6" firstAttribute="height" secondItem="vtK-T7-MRf" secondAttribute="height" id="f0h-Pc-TT8"/>
                 <constraint firstItem="6lc-CG-QHi" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="20" id="gO6-VH-i5o"/>
+                <constraint firstItem="ji9-Nt-FvV" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="hLR-DX-dWV"/>
                 <constraint firstItem="F6f-WT-I8o" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="im6-Du-AGG"/>
                 <constraint firstItem="F6f-WT-I8o" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.7" id="umE-Ny-J2R"/>
+                <constraint firstItem="ji9-Nt-FvV" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="vhe-2W-ywj"/>
                 <constraint firstItem="6lc-CG-QHi" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="x7O-AE-8Vf"/>
                 <constraint firstItem="WA8-zo-aPf" firstAttribute="top" secondItem="F6f-WT-I8o" secondAttribute="bottom" constant="10" id="yN0-Qe-x7g"/>
                 <constraint firstItem="F6f-WT-I8o" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="zkr-CD-J3L"/>
