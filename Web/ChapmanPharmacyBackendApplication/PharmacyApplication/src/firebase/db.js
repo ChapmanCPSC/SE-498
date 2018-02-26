@@ -10,5 +10,10 @@ export const doCreateUser = (id, email) =>
 export const onceGetUsers = () =>
     db.ref('Users').once('value');
 
+export function getQuestionReference() {
+    return db.ref('question')
+}
+
+
 
 // Other Entity APIs ...
