@@ -16,10 +16,13 @@ class AnswerView: UIView {
     @IBOutlet weak var lab_answerText: UILabel!
     @IBOutlet weak var lab_points: UILabel!
     @IBOutlet var viewMain: UIView!
+    @IBOutlet weak var viewFade: UIView!
     
     @IBOutlet weak var con_imgAnswerHeight: NSLayoutConstraint!
+    @IBOutlet weak var con_textImg: NSLayoutConstraint!
     
-    var answer:AnswerModel!
+    var answer:AnswerModel = AnswerModel(answerText: "Some answer Text", points: 10, isAnswer: false, imageLink: "")
+    var parent:SelectsAnswer!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,8 +37,9 @@ class AnswerView: UIView {
     func setupView(){
         Bundle.main.loadNibNamed("AnswerView", owner: self, options: nil)
         addSubviews()
+        addListenerToMain()
     }
-    
+
     func addSubviews(){
         addSubview(viewMain)
         viewMain.frame = self.bounds
@@ -45,7 +49,16 @@ class AnswerView: UIView {
         viewMain.addSubview(iv_correct)
         viewMain.addSubview(lab_answerText)
         viewMain.addSubview(lab_points)
+        viewMain.addSubview(viewFade)
 
+    }
+
+    func addListenerToMain(){
+        viewMain.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(wasTapped)))
+    }
+
+    @objc func wasTapped(){
+        parent.answerSelected(answer: self)
     }
 
     func setAnswer(answer:AnswerModel) {
@@ -60,16 +73,29 @@ class AnswerView: UIView {
     func showWrong() {
         iv_wrong.isHidden = false
     }
+
+    func hideCorrect() {
+        iv_correct.isHidden = true
+    }
+
+    func hideWrong() {
+        iv_wrong.isHidden = true
+    }
     
     func resetViews() {
-        if (answer.hasImage){
-            showImage()
-            hideText()
-        }
-        else{
-            hideImage()
-            showText()
-        }
+        UIView.animate(withDuration: 0.25) { () -> Void in
+            if (self.answer.hasImage){
+                self.hideText()
+            }
+            else{
+                self.hideImage()
+            }
+            self.hidePoints()
+            self.hideWrong()
+            self.hideCorrect()
+            self.viewFade.alpha = 0
+         }
+
     }
     
     func hideImage() {
@@ -78,6 +104,7 @@ class AnswerView: UIView {
         con_imgAnswerHeight = newConstraint
         viewMain.addConstraint(con_imgAnswerHeight)
         viewMain.layoutIfNeeded()
+        con_textImg.constant = -10
 //        lab_answerText.layoutIfNeeded()
         showText()
     }
@@ -85,6 +112,7 @@ class AnswerView: UIView {
     func hideText() {
         lab_answerText.isHidden = true
 
+        con_textImg.constant = 10
 
 
         showImage()
@@ -112,6 +140,12 @@ class AnswerView: UIView {
 
     func setBackgroundColor(color:String) {
         viewMain.backgroundColor = UIColor.hexStringToUIColor(hex: color)
+    }
+
+    func fadeAnswer(){
+        UIView.animate(withDuration: 0.25) { () -> Void in
+            self.viewFade.alpha = 0.3
+         }
     }
 
 }

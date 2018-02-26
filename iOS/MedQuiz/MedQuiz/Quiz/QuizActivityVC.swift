@@ -20,7 +20,7 @@ class QuizActivityVC: UIViewController {
     var answerViews:[AnswerView]!
     var colors:[String] = ["#BB7AE1", "#DCA480", "#DA7E7E", "#88D3E5"]
 
-    var toggleTemp:Bool = false
+    var toggleTemp:Bool = true
     @IBOutlet weak var lab_questionText: UILabel!
     @IBOutlet weak var lab_questionNumber: UILabel!
     
@@ -28,6 +28,7 @@ class QuizActivityVC: UIViewController {
         super.viewDidLoad()
         answerViews = [answer1, answer2, answer3, answer4]
         answerViews.forEach { view in view.hideImage() }
+        answerViews.forEach { view in view.parent = self }
         setAnswerColors()
     }
     
@@ -80,6 +81,16 @@ class QuizActivityVC: UIViewController {
             answerViews.forEach { view in view.hideImage() }
         }
         toggleTemp = !toggleTemp
+    }
+    
+    @IBAction func tempResetPressed(_ sender: Any) {
+        answerViews.forEach { view in view.resetViews() }
+    }
+}
+
+extension QuizActivityVC:SelectsAnswer {
+    func answerSelected(answer: AnswerView) {
+        answer.fadeAnswer()
     }
 }
 
