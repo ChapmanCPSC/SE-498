@@ -43,6 +43,8 @@ class QuizActivityVC: UIViewController {
 
     func hideSidebar(){
         self.splitViewController?.preferredDisplayMode = .primaryHidden
+        // TODO Should be switched back to true after finishing quiz?
+        self.splitViewController?.presentsWithGesture = false
     }
 
     func setAnswerColors(){
