@@ -22,7 +22,7 @@ class AnswerView: UIView {
     @IBOutlet weak var con_textImg: NSLayoutConstraint!
     
     var answer:AnswerModel = AnswerModel(answerText: "Some answer Text", points: 10, isAnswer: false, imageLink: "")
-    //var parent:SelectsAnswer!
+    var parent:SelectsAnswer!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -37,7 +37,7 @@ class AnswerView: UIView {
     func setupView(){
         Bundle.main.loadNibNamed("AnswerView", owner: self, options: nil)
         addSubviews()
-        //addListenerToMain()
+        addListenerToMain()
     }
 
     func addSubviews(){
@@ -53,13 +53,13 @@ class AnswerView: UIView {
 
     }
 
-//    func addListenerToMain(){
-//        viewMain.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(wasTapped)))
-//    }
+    func addListenerToMain(){
+        viewMain.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(wasTapped)))
+    }
 
-//    @objc func wasTapped(){
-//        parent.answerSelected(answer: self)
-//    }
+    @objc func wasTapped(){
+        parent.answerSelected(answer: self)
+    }
 
     func setAnswer(answer:AnswerModel) {
         self.answer = answer
