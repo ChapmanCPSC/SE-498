@@ -59,6 +59,8 @@
 		A53E754E2037FC3E0081B1AD /* PerformsSegueDelegator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E754D2037FC3E0081B1AD /* PerformsSegueDelegator.swift */; };
 		A53E75502043A8980081B1AD /* AnswerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A53E754F2043A8980081B1AD /* AnswerView.xib */; };
 		A53E75522043AA300081B1AD /* AnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E75512043AA300081B1AD /* AnswerView.swift */; };
+		A53E75542043B9CF0081B1AD /* AnswerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E75532043B9CF0081B1AD /* AnswerModel.swift */; };
+		A53E75562043C5AE0081B1AD /* Ext_Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E75552043C5AE0081B1AD /* Ext_Constraint.swift */; };
 		A5618C7E2034EAB2001AC764 /* Ext_UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5618C7D2034EAB2001AC764 /* Ext_UIColor.swift */; };
 		DAB359351FBACA2100D5A959 /* QuizModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB359341FBACA2100D5A959 /* QuizModel.swift */; };
 		DAB359371FBACA3600D5A959 /* QuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB359361FBACA3600D5A959 /* QuestionModel.swift */; };
@@ -144,6 +146,8 @@
 		A53E754D2037FC3E0081B1AD /* PerformsSegueDelegator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformsSegueDelegator.swift; sourceTree = "<group>"; };
 		A53E754F2043A8980081B1AD /* AnswerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnswerView.xib; sourceTree = "<group>"; };
 		A53E75512043AA300081B1AD /* AnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerView.swift; sourceTree = "<group>"; };
+		A53E75532043B9CF0081B1AD /* AnswerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerModel.swift; sourceTree = "<group>"; };
+		A53E75552043C5AE0081B1AD /* Ext_Constraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ext_Constraint.swift; sourceTree = "<group>"; };
 		A5618C7D2034EAB2001AC764 /* Ext_UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ext_UIColor.swift; sourceTree = "<group>"; };
 		DAB359341FBACA2100D5A959 /* QuizModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizModel.swift; sourceTree = "<group>"; };
 		DAB359361FBACA3600D5A959 /* QuestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionModel.swift; sourceTree = "<group>"; };
@@ -218,6 +222,7 @@
 				3D2495A71F7E2EDD0058D85B /* AppDelegate.swift */,
 				3D2495B31F7E2EDD0058D85B /* Info.plist */,
 				A5618C7D2034EAB2001AC764 /* Ext_UIColor.swift */,
+				A53E75552043C5AE0081B1AD /* Ext_Constraint.swift */,
 			);
 			path = MedQuiz;
 			sourceTree = "<group>";
@@ -280,6 +285,7 @@
 				77A14D69142779011ED840FD /* ExpandableTableViewController.swift */,
 				A53E754F2043A8980081B1AD /* AnswerView.xib */,
 				A53E75512043AA300081B1AD /* AnswerView.swift */,
+				A53E75532043B9CF0081B1AD /* AnswerModel.swift */,
 			);
 			path = Quiz;
 			sourceTree = "<group>";
@@ -538,6 +544,7 @@
 				DAB359351FBACA2100D5A959 /* QuizModel.swift in Sources */,
 				3D2495A81F7E2EDD0058D85B /* AppDelegate.swift in Sources */,
 				3DE027592034DDE000ECAE7B /* ColorHelper.swift in Sources */,
+				A53E75542043B9CF0081B1AD /* AnswerModel.swift in Sources */,
 				3D77A1441FB509A7009178A1 /* ChangeAvatarVC.swift in Sources */,
 				7FB8F6B61FB25BDF005C2426 /* SideBar.swift in Sources */,
 				3DE0275C2034E1B100ECAE7B /* LeaderboardCell.swift in Sources */,
@@ -548,6 +555,7 @@
 				77A14C117D25D5908DC95195 /* CellType.swift in Sources */,
 				77A147E18BBD74BD32CD4CFE /* QuizTableViewCell.swift in Sources */,
 				77A142FE34E4EF8ADA82939C /* CellDataNode.swift in Sources */,
+				A53E75562043C5AE0081B1AD /* Ext_Constraint.swift in Sources */,
 				77A1404BBAD84427D45C7E6D /* SubjectDataNode.swift in Sources */,
 				77A14C52970D8B49A9E19116 /* CategoryDataNode.swift in Sources */,
 				77A14A35588FD470B025DE3F /* QuizDataNode.swift in Sources */,

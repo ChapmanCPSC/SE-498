@@ -13,6 +13,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AnswerView" customModule="MedQuiz" customModuleProvider="target">
             <connections>
+                <outlet property="con_imgAnswerHeight" destination="M6s-0p-HOQ" id="Hnt-aW-8Sr"/>
                 <outlet property="iv_answer" destination="F6f-WT-I8o" id="Itl-vZ-ok0"/>
                 <outlet property="iv_correct" destination="IG3-2E-jp6" id="CsZ-X4-FvB"/>
                 <outlet property="iv_wrong" destination="vtK-T7-MRf" id="XV1-PN-csP"/>
@@ -27,14 +28,14 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6lc-CG-QHi">
-                    <rect key="frame" x="492" y="40" width="40.5" height="29"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                    <rect key="frame" x="497" y="40" width="30.5" height="21.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is the text of an answer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WA8-zo-aPf">
-                    <rect key="frame" x="231" y="586" width="562" height="57.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="48"/>
+                    <rect key="frame" x="369" y="586" width="286.5" height="29"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -53,10 +54,10 @@
                     </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="F6f-WT-I8o" userLabel="imgAnswer">
-                    <rect key="frame" x="153.5" y="192" width="716.5" height="384"/>
+                    <rect key="frame" x="153.5" y="192" width="717" height="384"/>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.66422420739999999" green="0.66424006219999998" blue="0.66423153879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="IG3-2E-jp6" secondAttribute="bottom" constant="20" id="2Na-Mh-lEc"/>
                 <constraint firstItem="IG3-2E-jp6" firstAttribute="width" secondItem="vtK-T7-MRf" secondAttribute="width" id="HLH-Xg-HpE"/>
@@ -74,7 +75,7 @@
                 <constraint firstItem="F6f-WT-I8o" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="zkr-CD-J3L"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="-115" y="3"/>
+            <point key="canvasLocation" x="-498" y="-328.5"/>
         </view>
     </objects>
 </document>
