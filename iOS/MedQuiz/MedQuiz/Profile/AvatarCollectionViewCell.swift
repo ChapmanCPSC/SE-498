@@ -12,19 +12,19 @@ class AvatarCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
     
-    override var isSelected: Bool
-    {
-        didSet
-        {
-            if (self.isSelected)
-            {
-                self.transform = CGAffineTransform.init(scaleX: 1.2, y: 1.2)
-            }
-            else
-            {
-                self.transform = CGAffineTransform.identity
-            }
-        }
-    }
+//    override var isSelected: Bool
+//    {
+//        didSet
+//        {
+//            if (self.isSelected)
+//            {
+//                self.transform = CGAffineTransform.init(scaleX: 1.2, y: 1.2)
+//            }
+//            else
+//            {
+//                self.transform = CGAffineTransform.identity
+//            }
+//        }
+//    }
     
 }

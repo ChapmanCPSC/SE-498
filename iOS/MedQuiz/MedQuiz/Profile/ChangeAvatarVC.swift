@@ -24,6 +24,8 @@ class ChangeAvatarVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         layout.minimumLineSpacing = 200
         layout.itemSize = CGSize(width: 150, height: 150)
         collectionView.collectionViewLayout = layout
+
+        adjustVisibleCollectionCells()
     }
     
     @IBAction func doneWithAvatar(_ sender: Any) {
@@ -38,6 +40,26 @@ class ChangeAvatarVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! AvatarCollectionViewCell
         cell.imageView.image = UIImage(named: array[indexPath.row] + ".png")
         return cell
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        adjustVisibleCollectionCells()
+    }
+    
+    func adjustVisibleCollectionCells(){
+        let maxScale:CGFloat = 1.7
+        let minHeight:CGFloat = 70.0
+        let maxHeight:CGFloat = 100.0
+        
+        for cell in collectionView.visibleCells as! [AvatarCollectionViewCell]{
+            let multiplier = min((cell.frame.midX - collectionView.bounds.minX) / (collectionView.bounds.midX - collectionView.bounds.minX), -((cell.frame.midX - collectionView.bounds.maxX) / (collectionView.bounds.maxX - collectionView.bounds.midX)))
+            let scale = 1 + (maxScale - 1) * multiplier
+            
+            cell.transform = CGAffineTransform.init(scaleX: scale, y: scale)
+            var frame = cell.frame
+            frame.origin.y = minHeight + multiplier * (maxHeight - minHeight)
+            cell.frame = frame
+        }
     }
 }
 

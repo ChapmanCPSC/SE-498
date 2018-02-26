@@ -28,7 +28,7 @@ class QuizActivityVC: UIViewController {
         super.viewDidLoad()
         answerViews = [answer1, answer2, answer3, answer4]
         answerViews.forEach { view in view.hideImage() }
-        answerViews.forEach { view in view.parent = self }
+        //answerViews.forEach { view in view.parent = self }
         setAnswerColors()
         hideSidebar()
     }
@@ -95,9 +95,9 @@ class QuizActivityVC: UIViewController {
     }
 }
 
-extension QuizActivityVC:SelectsAnswer {
-    func answerSelected(answer: AnswerView) {
-        answer.fadeAnswer()
-    }
-}
+//extension QuizActivityVC:SelectsAnswer {
+//    func answerSelected(answer: AnswerView) {
+//        answer.fadeAnswer()
+//    }
+//}
 

@@ -117,8 +117,8 @@
                                             </collectionViewCell>
                                         </cells>
                                         <connections>
-                                            <outlet property="dataSource" destination="rC1-U6-kdK" id="o8w-K0-rwV"/>
-                                            <outlet property="delegate" destination="rC1-U6-kdK" id="r6C-0G-iAn"/>
+                                            <outlet property="dataSource" destination="rC1-U6-kdK" id="hT0-9c-khC"/>
+                                            <outlet property="delegate" destination="rC1-U6-kdK" id="nBP-hb-e9b"/>
                                         </connections>
                                     </collectionView>
                                 </subviews>
