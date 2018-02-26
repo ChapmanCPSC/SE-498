@@ -8,13 +8,24 @@ class QuestionsPage extends Component {
         super(props);
         this.state = {
             currentlySelectedQuestion : "defaultOption",
+            newQuestionText : "",
             questions: []
         };
         this.handleChange = this.handleChange.bind(this);
+        this.handleAddQuestionSubmit = this.handleAddQuestionSubmit.bind(this);
     }
 
     handleChange(event) {
         this.setState({[event.target.name]: event.target.value})
+    }
+    handleAddQuestionSubmit(event) {
+        event.preventDefault();
+        const ref = db.getQuestionReference();
+        let newAddition = ref.push();
+        newAddition.set({
+            text: this.state.newQuestionText
+        });
+        this.setState({currentlySelectedQuestion: newAddition.key})
     }
     render () {
         return (
@@ -38,6 +49,21 @@ class QuestionsPage extends Component {
                         })}
                     </select>
                 </div>
+
+                {/* Here is a box and button for adding a new question */}
+                <div className="addNewQuestion">
+                    <form onSubmit={this.handleAddQuestionSubmit}>
+                        <input type="text"
+                               name="newQuestionText"
+                               placeholder="Please enter your question"
+                               value={this.state.newQuestionText}
+                               onChange={this.handleChange}
+                        />
+                        <button>Add Question</button>
+                    </form>
+                </div>
+
+                {/* Here is the box for the editing and creation of questions */}
             </div>
         )
     }
