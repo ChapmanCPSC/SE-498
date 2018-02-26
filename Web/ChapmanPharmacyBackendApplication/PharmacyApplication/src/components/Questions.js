@@ -7,8 +7,14 @@ class QuestionsPage extends Component {
     constructor (props) {
         super(props);
         this.state = {
+            currentlySelectedQuestion : "defaultOption",
             questions: []
-        }
+        };
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange(event) {
+        this.setState({[event.target.name]: event.target.value})
     }
     render () {
         return (
@@ -16,20 +22,22 @@ class QuestionsPage extends Component {
                 <h1>Questions Page</h1> {/* Header for the Question Creation/Editing Page */}
 
                 <div className="questionSelection">
-                    <table>
-                        <tbody>
-                        {/* May need to put a <table> here if you do a <td> */}
-                                {this.state.questions.map((question) => {
-                                    return (
-                                        <tr key={question.id}>
-                                            <td>{question.questionText}</td>
-                                        </tr>
-                                    )
-                                })}
-                        </tbody>
-                    </table>
+                    {/* TODO: Must maintain concurrency: I.e. if a question is deleted by another admin, need to make sure
+                        the currently selected question changed back to default, or alerts the user
+                    */}
+                    <select name="currentlySelectedQuestion" value={this.state.currentlySelectedQuestion} onChange={this.handleChange}>
+                        <option name="currentlySelectedQuestion"
+                                value="defaultOption"
+                                key="defaultOption">---Please Select a Question---</option>
+                        {this.state.questions.map((question) => {
+                            return (
+                                <option name="currentlySelectedQuestion"
+                                        key={question.id}
+                                        value={question.id}>{question.questionText}</option>
+                            )
+                        })}
+                    </select>
                 </div>
-
             </div>
         )
     }
