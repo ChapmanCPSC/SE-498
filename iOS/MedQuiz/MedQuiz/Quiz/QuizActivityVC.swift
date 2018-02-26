@@ -30,6 +30,7 @@ class QuizActivityVC: UIViewController {
         answerViews.forEach { view in view.hideImage() }
         answerViews.forEach { view in view.parent = self }
         setAnswerColors()
+        hideSidebar()
     }
     
     func registerFirebaseListeners(){
@@ -38,6 +39,10 @@ class QuizActivityVC: UIViewController {
     
     func sendIsReady(){
         // tell firebase that this client is ready for next question
+    }
+
+    func hideSidebar(){
+        self.splitViewController?.preferredDisplayMode = .primaryHidden
     }
 
     func setAnswerColors(){
