@@ -24,13 +24,33 @@ class QuizActivityVC: UIViewController {
     @IBOutlet weak var lab_questionText: UILabel!
     @IBOutlet weak var lab_questionNumber: UILabel!
     
+    var seconds = 5
+    var timer = Timer()
+    var isTimerRunning = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+
         answerViews = [answer1, answer2, answer3, answer4]
         answerViews.forEach { view in view.hideImage() }
         answerViews.forEach { view in view.parent = self }
+        hideAnswerLabels()
         setAnswerColors()
         hideSidebar()
+        Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(showLabels), userInfo: nil, repeats: false)
+       // runTimer()
+    }
+    
+   /* func runTimer() {
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(QuizActivityVC.updateTimer)), userInfo: nil, repeats: true)
+    }*/
+    
+    @objc func showLabels(){
+        answerViews.forEach { view in view.displayAnswer() }
+    }
+    
+    func hideAnswerLabels(){
+        answerViews.forEach { view in view.resetViews()}
     }
     
     func registerFirebaseListeners(){

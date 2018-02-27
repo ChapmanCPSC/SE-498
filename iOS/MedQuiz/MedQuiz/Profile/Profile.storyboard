@@ -218,7 +218,7 @@
                                             <constraint firstAttribute="width" constant="56" id="BNu-HK-bcj"/>
                                             <constraint firstAttribute="height" constant="56" id="hI3-EM-s6h"/>
                                         </constraints>
-                                        <state key="normal" backgroundImage="Cancel Copy"/>
+                                        <state key="normal" backgroundImage="Cancel-Icon.png"/>
                                         <connections>
                                             <action selector="backToFriends:" destination="sKt-xQ-lOJ" eventType="touchUpInside" id="JTn-yt-yMg"/>
                                         </connections>
@@ -620,7 +620,7 @@
                                     <constraint firstAttribute="width" constant="56" id="4dn-rv-ZD4"/>
                                     <constraint firstAttribute="height" constant="56" id="gbY-2a-mpT"/>
                                 </constraints>
-                                <state key="normal" backgroundImage="Cancel Copy"/>
+                                <state key="normal" backgroundImage="Cancel-Icon.png"/>
                                 <connections>
                                     <action selector="backToProfile:" destination="vID-YB-ORr" eventType="touchUpInside" id="TJH-Gb-Xw8"/>
                                 </connections>
@@ -727,7 +727,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Cancel Copy" width="56" height="56"/>
+        <image name="Cancel-Icon.png" width="56" height="56"/>
+        <image name="StudentAvatarPlaceholder.png" width="183" height="183"/>
         <image name="gentleman_icon-icons.com_55044.png" width="512" height="512"/>
     </resources>
 </document>
