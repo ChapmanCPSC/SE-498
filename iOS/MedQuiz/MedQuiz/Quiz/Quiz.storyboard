@@ -149,23 +149,23 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="O2N-sB-7xn" userLabel="leaderboardContainer">
                                 <rect key="frame" x="0.0" y="653" width="1024" height="115"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZXR-uJ-qu7" customClass="UserView" customModule="MedQuiz" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZXR-uJ-qu7" userLabel="first" customClass="UserView" customModule="MedQuiz" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="205" height="115"/>
                                         <color key="backgroundColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cQG-Sq-kDs" customClass="UserView" customModule="MedQuiz" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cQG-Sq-kDs" userLabel="second" customClass="UserView" customModule="MedQuiz" customModuleProvider="target">
                                         <rect key="frame" x="205" y="0.0" width="204.5" height="115"/>
                                         <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wrh-lS-MNK" customClass="UserView" customModule="MedQuiz" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wrh-lS-MNK" userLabel="third" customClass="UserView" customModule="MedQuiz" customModuleProvider="target">
                                         <rect key="frame" x="409.5" y="0.0" width="205" height="115"/>
                                         <color key="backgroundColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AoZ-Ts-Vay" customClass="UserView" customModule="MedQuiz" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AoZ-Ts-Vay" userLabel="fourth" customClass="UserView" customModule="MedQuiz" customModuleProvider="target">
                                         <rect key="frame" x="614.5" y="0.0" width="204.5" height="115"/>
                                         <color key="backgroundColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="owc-VG-xVQ" customClass="UserView" customModule="MedQuiz" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="owc-VG-xVQ" userLabel="fifth" customClass="UserView" customModule="MedQuiz" customModuleProvider="target">
                                         <rect key="frame" x="819" y="0.0" width="205" height="115"/>
                                         <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
@@ -196,6 +196,11 @@
                         <outlet property="answer4" destination="PDX-BQ-Q9I" id="fZj-Mg-RB9"/>
                         <outlet property="lab_questionNumber" destination="da4-nm-GCK" id="I58-Sq-OBj"/>
                         <outlet property="lab_questionText" destination="ElQ-IF-2fO" id="KeZ-A7-8cY"/>
+                        <outlet property="uv_fifth" destination="owc-VG-xVQ" id="ksl-ZP-dzk"/>
+                        <outlet property="uv_first" destination="ZXR-uJ-qu7" id="G8K-PT-fxL"/>
+                        <outlet property="uv_fourth" destination="AoZ-Ts-Vay" id="sxd-84-whL"/>
+                        <outlet property="uv_second" destination="cQG-Sq-kDs" id="1O2-8b-Zfb"/>
+                        <outlet property="uv_third" destination="Wrh-lS-MNK" id="RMO-jw-Uhq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2rM-5H-Bd2" userLabel="First Responder" sceneMemberID="firstResponder"/>

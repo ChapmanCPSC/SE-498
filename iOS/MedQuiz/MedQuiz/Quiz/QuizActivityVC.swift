@@ -20,6 +20,14 @@ class QuizActivityVC: UIViewController {
     var answerViews:[AnswerView]!
     var colors:[String] = ["#BB7AE1", "#DCA480", "#DA7E7E", "#88D3E5"]
 
+    @IBOutlet weak var uv_first: UserView!
+    @IBOutlet weak var uv_second: UserView!
+    @IBOutlet weak var uv_third: UserView!
+    @IBOutlet weak var uv_fourth: UserView!
+    @IBOutlet weak var uv_fifth: UserView!
+    var userViews:[UserView]!
+    
+    
     var toggleTemp:Bool = true
     @IBOutlet weak var lab_questionText: UILabel!
     @IBOutlet weak var lab_questionNumber: UILabel!
@@ -32,7 +40,7 @@ class QuizActivityVC: UIViewController {
         super.viewDidLoad()
 
         answerViews = [answer1, answer2, answer3, answer4]
-        answerViews.forEach { view in view.hideImage() }
+        userViews = [uv_first, uv_second, uv_third, uv_fourth, uv_fifth]
         answerViews.forEach { view in view.parent = self }
         hideAnswerLabels()
         setAnswerColors()
