@@ -102,12 +102,20 @@ class QuizActivityVC: UIViewController {
     
     @IBAction func tempPressed(_ sender: Any) {
         if(toggleTemp){
-            answerViews.forEach { view in view.hideText() }
+            answerViews.forEach { view in
+                view.answer.imageLink="dfg"
+            }
         }
         else{
-            answerViews.forEach { view in view.hideImage() }
+            answerViews.forEach { view in
+                view.answer.imageLink = ""
+            }
         }
         toggleTemp = !toggleTemp
+        answerViews.forEach { (view) in
+            view.resetViews()
+            view.displayAnswer()
+        }
     }
     
     @IBAction func tempResetPressed(_ sender: Any) {
