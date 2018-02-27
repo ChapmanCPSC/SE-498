@@ -19,7 +19,8 @@ class QuizActivityVC: UIViewController {
     @IBOutlet weak var answer4: AnswerView!
     var answerViews:[AnswerView]!
     var colors:[String] = ["#BB7AE1", "#DCA480", "#DA7E7E", "#88D3E5"]
-
+    var userColors:[String] = ["#8884FF", "#9AD5D2", "#BB7AE1", "#F5A623","#8884FF"]
+    
     @IBOutlet weak var uv_first: UserView!
     @IBOutlet weak var uv_second: UserView!
     @IBOutlet weak var uv_third: UserView!
@@ -44,6 +45,7 @@ class QuizActivityVC: UIViewController {
         answerViews.forEach { view in view.parent = self }
         hideAnswerLabels()
         setAnswerColors()
+        setUserColors()
         hideSidebar()
         Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(showLabels), userInfo: nil, repeats: false)
        // runTimer()
@@ -79,6 +81,14 @@ class QuizActivityVC: UIViewController {
         var count = 0
         answerViews.forEach { view in
             view.setBackgroundColor(color: colors[count])
+            count += 1
+        }
+    }
+    
+    func setUserColors(){
+        var count = 0
+        userViews.forEach { (view) in
+            view.setBackgroundColor(color: userColors[count])
             count += 1
         }
     }

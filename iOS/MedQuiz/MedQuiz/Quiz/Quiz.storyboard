@@ -107,22 +107,22 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6f5-lQ-KQp" userLabel="answerContainer">
-                                <rect key="frame" x="0.0" y="153.5" width="1024" height="499.5"/>
+                                <rect key="frame" x="0.0" y="153.5" width="1024" height="537.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RVL-vH-t1X" customClass="AnswerView" customModule="MedQuiz" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="512" height="249.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="512" height="268.5"/>
                                         <color key="backgroundColor" red="0.73333333333333328" green="0.47450980392156861" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mhy-9W-V5P" customClass="AnswerView" customModule="MedQuiz" customModuleProvider="target">
-                                        <rect key="frame" x="512" y="0.0" width="512" height="249.5"/>
+                                        <rect key="frame" x="512" y="0.0" width="512" height="268.5"/>
                                         <color key="backgroundColor" red="0.86274509803921573" green="0.64313725490196072" blue="0.49803921568627452" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1HG-EA-B80" customClass="AnswerView" customModule="MedQuiz" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="249.5" width="512" height="250"/>
+                                        <rect key="frame" x="0.0" y="268.5" width="512" height="269"/>
                                         <color key="backgroundColor" red="0.85490196078431369" green="0.49019607843137253" blue="0.49019607843137253" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PDX-BQ-Q9I" customClass="AnswerView" customModule="MedQuiz" customModuleProvider="target">
-                                        <rect key="frame" x="512" y="249.5" width="512" height="250"/>
+                                        <rect key="frame" x="512" y="268.5" width="512" height="269"/>
                                         <color key="backgroundColor" red="0.53333333333333333" green="0.82745098039215681" blue="0.89411764705882346" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                 </subviews>
@@ -147,26 +147,26 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="O2N-sB-7xn" userLabel="leaderboardContainer">
-                                <rect key="frame" x="0.0" y="653" width="1024" height="115"/>
+                                <rect key="frame" x="0.0" y="691" width="1024" height="77"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZXR-uJ-qu7" userLabel="first" customClass="UserView" customModule="MedQuiz" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="205" height="115"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="205" height="77"/>
                                         <color key="backgroundColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cQG-Sq-kDs" userLabel="second" customClass="UserView" customModule="MedQuiz" customModuleProvider="target">
-                                        <rect key="frame" x="205" y="0.0" width="204.5" height="115"/>
+                                        <rect key="frame" x="205" y="0.0" width="204.5" height="77"/>
                                         <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wrh-lS-MNK" userLabel="third" customClass="UserView" customModule="MedQuiz" customModuleProvider="target">
-                                        <rect key="frame" x="409.5" y="0.0" width="205" height="115"/>
+                                        <rect key="frame" x="409.5" y="0.0" width="205" height="77"/>
                                         <color key="backgroundColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AoZ-Ts-Vay" userLabel="fourth" customClass="UserView" customModule="MedQuiz" customModuleProvider="target">
-                                        <rect key="frame" x="614.5" y="0.0" width="204.5" height="115"/>
+                                        <rect key="frame" x="614.5" y="0.0" width="204.5" height="77"/>
                                         <color key="backgroundColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="owc-VG-xVQ" userLabel="fifth" customClass="UserView" customModule="MedQuiz" customModuleProvider="target">
-                                        <rect key="frame" x="819" y="0.0" width="205" height="115"/>
+                                        <rect key="frame" x="819" y="0.0" width="205" height="77"/>
                                         <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                 </subviews>
@@ -177,7 +177,7 @@
                             <constraint firstItem="6f5-lQ-KQp" firstAttribute="top" secondItem="XpQ-Yg-CIp" secondAttribute="bottom" id="1kh-AV-CG2"/>
                             <constraint firstItem="6f5-lQ-KQp" firstAttribute="leading" secondItem="RMN-Yu-TAa" secondAttribute="leading" id="4wP-gS-QJr"/>
                             <constraint firstAttribute="trailing" secondItem="O2N-sB-7xn" secondAttribute="trailing" id="6y6-kj-OPM"/>
-                            <constraint firstItem="O2N-sB-7xn" firstAttribute="height" secondItem="RMN-Yu-TAa" secondAttribute="height" multiplier="0.15" id="77D-mR-eGW"/>
+                            <constraint firstItem="O2N-sB-7xn" firstAttribute="height" secondItem="RMN-Yu-TAa" secondAttribute="height" multiplier="0.1" id="77D-mR-eGW"/>
                             <constraint firstAttribute="trailing" secondItem="XpQ-Yg-CIp" secondAttribute="trailing" id="EVP-dw-9K3"/>
                             <constraint firstItem="O2N-sB-7xn" firstAttribute="top" secondItem="6f5-lQ-KQp" secondAttribute="bottom" id="FpW-RB-SRm"/>
                             <constraint firstItem="XpQ-Yg-CIp" firstAttribute="height" secondItem="RMN-Yu-TAa" secondAttribute="height" multiplier="0.2" id="SWh-qa-xtl"/>

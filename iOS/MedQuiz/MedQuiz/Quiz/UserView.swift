@@ -35,5 +35,13 @@ class UserView: UIView {
         viewMain.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }
     
+    func setBackgroundColor(color:String){
+        viewMain.backgroundColor = UIColor.hexStringToUIColor(hex: color)
+    }
+    
+    func setBackgroundColor(color:UIColor){
+        viewMain.backgroundColor = color
+    }
+    
 
 }
