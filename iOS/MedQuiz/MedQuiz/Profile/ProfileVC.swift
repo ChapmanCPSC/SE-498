@@ -12,7 +12,7 @@ import UIKit
 
 class ProfileVC: UIViewController {
     
-    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var profileImageView: UIImageView!
     
     @IBOutlet weak var usernameLabel: UILabel!
     
@@ -23,13 +23,13 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var changeImageView: UIImageView!
     
     var username = "Maddy Transue"
-    
+    var profileImage = #imageLiteral(resourceName: "StudentAvatarPlaceholder.png")
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let profileAvatarChange = UITapGestureRecognizer(target: self, action: #selector(ProfileVC.profileAvatarPressed))
         
-        profileImage.addGestureRecognizer(profileAvatarChange)
+        profileImageView.addGestureRecognizer(profileAvatarChange)
         
         usernameLabel.text = username
         
@@ -40,7 +40,7 @@ class ProfileVC: UIViewController {
         friendsImageView.layer.borderColor = UIColor.init(red:1.0, green:1.0, blue:0.0, alpha:1.0).cgColor
         
         let mask = UIImageView(image: #imageLiteral(resourceName: "StudentAvatarPlaceholder.png"))
-        mask.frame = profileImage.bounds
+        mask.frame = profileImageView.bounds
         changeImageView.mask = mask
         changeImageView.transform = CGAffineTransform(scaleX: 1, y: -1)
     }

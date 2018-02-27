@@ -557,7 +557,7 @@
                         <outlet property="friendsImageView" destination="0JE-cr-viv" id="ZJ0-sL-xs1"/>
                         <outlet property="globallyImageView" destination="JyA-Ie-gcN" id="dXq-SI-x0f"/>
                         <outlet property="lastQuizImageView" destination="mi9-jf-xVH" id="QEf-jI-hVe"/>
-                        <outlet property="profileImage" destination="q8n-Bv-Qhg" id="lrJ-yq-t6a"/>
+                        <outlet property="profileImageView" destination="q8n-Bv-Qhg" id="wBS-gM-TM3"/>
                         <outlet property="usernameLabel" destination="IOK-UE-LPq" id="Wa1-VE-H9c"/>
                     </connections>
                 </viewController>
@@ -592,8 +592,7 @@
                                                 </attributedString>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
-                                                    <action selector="changeUsernameEnd:" destination="vID-YB-ORr" eventType="editingDidEnd" id="6wF-yW-prT"/>
-                                                    <action selector="changeUsernameTextFieldPressed:" destination="vID-YB-ORr" eventType="editingDidBegin" id="hgK-MP-HLu"/>
+                                                    <outlet property="delegate" destination="vID-YB-ORr" id="iFW-kJ-joG"/>
                                                 </connections>
                                             </textField>
                                         </subviews>

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChangeUsernameVC: UIViewController {
+class ChangeUsernameVC: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var warningView: UIView!
     
@@ -33,24 +33,16 @@ class ChangeUsernameVC: UIViewController {
     }
     
     
-    @IBAction func changeUsernameTextFieldPressed(_ sender: Any) {
-        if (warned == false){
-            warningView.isHidden = false
-            view.endEditing(true)
-        }
-    }
-    
-    
     @IBAction func noPressed(_ sender: Any) {
         warningView.isHidden = true
-        view.endEditing(true)
+        changeUsernameTextField.endEditing(true)
     }
     
     
     @IBAction func yesPressed(_ sender: Any) {
         warningView.isHidden = true
         warned = true
-        changeUsernameTextField.becomeFirstResponder()
+        dismiss(animated: false, completion: nil)
     }
     
     
@@ -60,6 +52,16 @@ class ChangeUsernameVC: UIViewController {
         }
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool{
+        if (warned == false){
+            warningView.isHidden = false
+            changeUsernameTextField.endEditing(true)
+        }
+        else{
+            dismiss(animated: false, completion: nil)
+        }
+        return true
+    }
     
     /*
     // MARK: - Navigation
