@@ -15,7 +15,7 @@ class ChangeAvatarVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     
 //    let array:[String] = ["gentleman_icon-icons.com_55044.png", "gentleman_icon-icons.com_55044.png", "gentleman_icon-icons.com_55044.png", "gentleman_icon-icons.com_55044.png", "gentleman_icon-icons.com_55044.png", "gentleman_icon-icons.com_55044.png", "gentleman_icon-icons.com_55044.png", "gentleman_icon-icons.com_55044.png", "gentleman_icon-icons.com_55044.png", "gentleman_icon-icons.com_55044.png", "gentleman_icon-icons.com_55044.png", "gentleman_icon-icons.com_55044.png"]
     
-    let array:[UIImage] = [#imageLiteral(resourceName: "gentleman_icon-icons.com_55044.png"), #imageLiteral(resourceName: "gentleman_icon-icons.com_55044.png"), #imageLiteral(resourceName: "gentleman_icon-icons.com_55044.png"), #imageLiteral(resourceName: "gentleman_icon-icons.com_55044.png"), #imageLiteral(resourceName: "gentleman_icon-icons.com_55044.png")]
+    let array:[UIImage] = [#imageLiteral(resourceName: "StudentAvatarPlaceholder.png"), #imageLiteral(resourceName: "StudentAvatarPlaceholder.png"), #imageLiteral(resourceName: "StudentAvatarPlaceholder.png"), #imageLiteral(resourceName: "StudentAvatarPlaceholder.png"), #imageLiteral(resourceName: "StudentAvatarPlaceholder.png")]
     
     override func viewDidLoad() {
         super.viewDidLoad()

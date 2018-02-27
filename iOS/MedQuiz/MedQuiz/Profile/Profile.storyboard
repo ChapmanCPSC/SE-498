@@ -316,7 +316,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="694" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gentleman_icon-icons.com_55044.png" translatesAutoresizingMaskIntoConstraints="NO" id="q8n-Bv-Qhg" userLabel="Profile Image View">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="StudentAvatarPlaceholder.png" translatesAutoresizingMaskIntoConstraints="NO" id="q8n-Bv-Qhg">
                                 <rect key="frame" x="250" y="55" width="194" height="196"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="196" id="Dh2-S6-XlZ"/>
