@@ -13,7 +13,9 @@ class ChangeAvatarVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    let array:[String] = ["gentleman_icon-icons.com_55044.png", "gentleman_icon-icons.com_55044.png", "gentleman_icon-icons.com_55044.png", "gentleman_icon-icons.com_55044.png", "gentleman_icon-icons.com_55044.png", "gentleman_icon-icons.com_55044.png", "gentleman_icon-icons.com_55044.png", "gentleman_icon-icons.com_55044.png", "gentleman_icon-icons.com_55044.png", "gentleman_icon-icons.com_55044.png", "gentleman_icon-icons.com_55044.png", "gentleman_icon-icons.com_55044.png"]
+//    let array:[String] = ["gentleman_icon-icons.com_55044.png", "gentleman_icon-icons.com_55044.png", "gentleman_icon-icons.com_55044.png", "gentleman_icon-icons.com_55044.png", "gentleman_icon-icons.com_55044.png", "gentleman_icon-icons.com_55044.png", "gentleman_icon-icons.com_55044.png", "gentleman_icon-icons.com_55044.png", "gentleman_icon-icons.com_55044.png", "gentleman_icon-icons.com_55044.png", "gentleman_icon-icons.com_55044.png", "gentleman_icon-icons.com_55044.png"]
+    
+    let array:[UIImage] = [#imageLiteral(resourceName: "gentleman_icon-icons.com_55044.png"), #imageLiteral(resourceName: "gentleman_icon-icons.com_55044.png"), #imageLiteral(resourceName: "gentleman_icon-icons.com_55044.png"), #imageLiteral(resourceName: "gentleman_icon-icons.com_55044.png"), #imageLiteral(resourceName: "gentleman_icon-icons.com_55044.png")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +26,10 @@ class ChangeAvatarVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         layout.minimumLineSpacing = 200
         layout.itemSize = CGSize(width: 150, height: 150)
         collectionView.collectionViewLayout = layout
-
+        
+        collectionView.showsHorizontalScrollIndicator = false
+    }
+    override func viewDidAppear(_ animated: Bool) {
         adjustVisibleCollectionCells()
     }
     
@@ -38,7 +43,7 @@ class ChangeAvatarVC: UIViewController, UICollectionViewDelegate, UICollectionVi
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! AvatarCollectionViewCell
-        cell.imageView.image = UIImage(named: array[indexPath.row] + ".png")
+        cell.imageView.image = array[indexPath.row]
         return cell
     }
     

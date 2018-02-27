@@ -316,7 +316,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="694" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gentleman_icon-icons.com_55044.png" translatesAutoresizingMaskIntoConstraints="NO" id="q8n-Bv-Qhg">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gentleman_icon-icons.com_55044.png" translatesAutoresizingMaskIntoConstraints="NO" id="q8n-Bv-Qhg" userLabel="Profile Image View">
                                 <rect key="frame" x="250" y="55" width="194" height="196"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="196" id="Dh2-S6-XlZ"/>
@@ -557,7 +557,7 @@
                         <outlet property="friendsImageView" destination="0JE-cr-viv" id="ZJ0-sL-xs1"/>
                         <outlet property="globallyImageView" destination="JyA-Ie-gcN" id="dXq-SI-x0f"/>
                         <outlet property="lastQuizImageView" destination="mi9-jf-xVH" id="QEf-jI-hVe"/>
-                        <outlet property="profileImage" destination="q8n-Bv-Qhg" id="lrJ-yq-t6a"/>
+                        <outlet property="profileImageView" destination="q8n-Bv-Qhg" id="wBS-gM-TM3"/>
                         <outlet property="usernameLabel" destination="IOK-UE-LPq" id="Wa1-VE-H9c"/>
                     </connections>
                 </viewController>
@@ -592,8 +592,7 @@
                                                 </attributedString>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
-                                                    <action selector="changeUsernameEnd:" destination="vID-YB-ORr" eventType="editingDidEnd" id="6wF-yW-prT"/>
-                                                    <action selector="changeUsernameTextFieldPressed:" destination="vID-YB-ORr" eventType="editingDidBegin" id="hgK-MP-HLu"/>
+                                                    <outlet property="delegate" destination="vID-YB-ORr" id="iFW-kJ-joG"/>
                                                 </connections>
                                             </textField>
                                         </subviews>
