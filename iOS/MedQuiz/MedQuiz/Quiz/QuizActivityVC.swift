@@ -127,13 +127,23 @@ class QuizActivityVC: UIViewController {
     }
     
     @IBAction func tempResetPressed(_ sender: Any) {
-        answerViews.forEach { view in view.resetViews() }
+        answerViews.forEach { view in
+            view.resetViews()
+            view.displayAnswer()
+        }
     }
 }
 
 extension QuizActivityVC:SelectsAnswer {
     func answerSelected(answer: AnswerView) {
-        answer.fadeAnswer()
+        answerViews.forEach { (view) in
+            if(view == answer){
+                // check if it's correct and take appropriate action
+            }
+            else{
+                view.fadeAnswer()
+            }
+        }
     }
 }
 
