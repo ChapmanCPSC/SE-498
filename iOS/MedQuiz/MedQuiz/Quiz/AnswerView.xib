@@ -45,14 +45,14 @@
                     <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vtK-T7-MRf" userLabel="imgWrong">
+                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WrongAnswer.png" translatesAutoresizingMaskIntoConstraints="NO" id="vtK-T7-MRf" userLabel="imgWrong">
                     <rect key="frame" x="487" y="698" width="50" height="50"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="50" id="6lE-SM-Xmp"/>
                         <constraint firstAttribute="height" constant="50" id="nn6-E9-EUT"/>
                     </constraints>
                 </imageView>
-                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IG3-2E-jp6" userLabel="imgCorrect">
+                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RightAnswer.png" translatesAutoresizingMaskIntoConstraints="NO" id="IG3-2E-jp6" userLabel="imgCorrect">
                     <rect key="frame" x="487" y="698" width="50" height="50"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="50" id="Peb-d9-hlk"/>
@@ -88,4 +88,8 @@
             <point key="canvasLocation" x="-498" y="-328.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="RightAnswer.png" width="56" height="56"/>
+        <image name="WrongAnswer.png" width="51" height="50"/>
+    </resources>
 </document>

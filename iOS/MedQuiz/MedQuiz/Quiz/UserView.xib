@@ -42,7 +42,7 @@
                         </label>
                     </subviews>
                 </stackView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OOS-Fw-mlO">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="StudentAvatarPlaceholder.png" translatesAutoresizingMaskIntoConstraints="NO" id="OOS-Fw-mlO">
                     <rect key="frame" x="10" y="94" width="187.5" height="187.5"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="OOS-Fw-mlO" secondAttribute="height" multiplier="1:1" id="ebh-qy-gtW"/>
@@ -60,4 +60,7 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
         </view>
     </objects>
+    <resources>
+        <image name="StudentAvatarPlaceholder.png" width="183" height="183"/>
+    </resources>
 </document>
