@@ -147,7 +147,7 @@ class AnswerView: UIView {
             self.viewFade.alpha = 0.3
          }
     }
-
+    
 }
 
 
