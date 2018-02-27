@@ -39,7 +39,7 @@ class ProfileVC: UIViewController {
         
         friendsImageView.layer.borderColor = UIColor.init(red:1.0, green:1.0, blue:0.0, alpha:1.0).cgColor
         
-        let mask = UIImageView(image: #imageLiteral(resourceName: "gentleman_icon-icons.com_55044.png"))
+        let mask = UIImageView(image: #imageLiteral(resourceName: "StudentAvatarPlaceholder.png"))
         mask.frame = profileImage.bounds
         changeImageView.mask = mask
         changeImageView.transform = CGAffineTransform(scaleX: 1, y: -1)

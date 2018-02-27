@@ -195,7 +195,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bVp-fM-ypV">
                                 <rect key="frame" x="0.0" y="696" width="1024" height="72"/>
                                 <color key="backgroundColor" red="0.090196078431372548" green="0.23529411764705882" blue="0.46274509803921571" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" image="Cancel Copy"/>
+                                <state key="normal" image="Cancel-Icon.png"/>
                                 <connections>
                                     <segue destination="Jvp-t9-Pxf" kind="show" id="loZ-5v-0y0"/>
                                 </connections>
@@ -281,7 +281,7 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Search.png" translatesAutoresizingMaskIntoConstraints="NO" id="AzO-RL-zop">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SearchIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="AzO-RL-zop">
                                         <rect key="frame" x="454" y="130" width="117" height="87"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="87" id="jih-Z2-0Q8"/>
@@ -345,8 +345,9 @@
     </scenes>
     <resources>
         <image name="Cancel Copy" width="56" height="56"/>
+        <image name="Cancel-Icon.png" width="56" height="56"/>
         <image name="Globally Circle" width="588" height="588"/>
-        <image name="Search.png" width="93" height="94"/>
+        <image name="SearchIcon.png" width="93" height="94"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Fqe-Id-AzD"/>
