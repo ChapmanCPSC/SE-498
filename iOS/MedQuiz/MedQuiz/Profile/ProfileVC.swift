@@ -61,5 +61,9 @@ class ProfileVC: UIViewController {
         }
     }
     
+    @IBAction func changeUsernamePressed(_ sender: Any) {
+        let changeUsernameVC = self.storyboard?.instantiateViewController(withIdentifier: "ChangeUsernameVC") as! ChangeUsernameVC
+        self.present(changeUsernameVC, animated: false, completion: nil)
+    }
 }
 
