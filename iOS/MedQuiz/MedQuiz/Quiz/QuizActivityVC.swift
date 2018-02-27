@@ -46,11 +46,11 @@ class QuizActivityVC: UIViewController {
     }*/
     
     @objc func showLabels(){
-        answerViews.forEach { view in view.lab_answerText.isHidden = false }
+        answerViews.forEach { view in view.displayAnswer() }
     }
     
     func hideAnswerLabels(){
-        answerViews.forEach { view in view.lab_answerText.isHidden = true }
+        answerViews.forEach { view in view.resetViews()}
     }
     
     func registerFirebaseListeners(){
