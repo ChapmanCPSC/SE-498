@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:MedQuiz/MedQuiz/Quiz/UserView.swift">
+   </FileRef>
+   <FileRef
       location = "group:MedQuiz/MedQuiz.xcodeproj">
    </FileRef>
 </Workspace>
