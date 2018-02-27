@@ -10,4 +10,8 @@ export const doCreateUser = (id, email) =>
 export const onceGetUsers = () =>
   db.ref('users').once('value');
 
+export function getQuestionReference() {
+    return db.ref('question')
+}
+
 // Other db APIs ...
