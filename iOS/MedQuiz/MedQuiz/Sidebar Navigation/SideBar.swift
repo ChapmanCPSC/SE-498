@@ -20,7 +20,7 @@ class SideBar: UITableViewController {
     let mainCellSelectedBlue = UIColor(red: (45/255.0), green: (113/255.0), blue: (142/255.0), alpha: 1.0)
     let whiteColor = UIColor(red: (255/255.0), green: (255/255.0), blue: (255/255.0), alpha: 1.0)
     
-    var profileImage = UIImage(named: "gentleman_icon-icons.com_55044.png")
+    var profileImage = UIImage(named: "StudentAvatarPlaceholder.png")
     var profileName = "Maddy Transue"
     var profileScore = 4434535
     
