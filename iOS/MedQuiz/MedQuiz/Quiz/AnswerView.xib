@@ -59,7 +59,7 @@
                         <constraint firstAttribute="height" constant="50" id="Qat-fP-ujg"/>
                     </constraints>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="F6f-WT-I8o" userLabel="imgAnswer">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MockAnswerOne.png" translatesAutoresizingMaskIntoConstraints="NO" id="F6f-WT-I8o" userLabel="imgAnswer">
                     <rect key="frame" x="153.5" y="192" width="717" height="384"/>
                 </imageView>
             </subviews>
@@ -89,6 +89,7 @@
         </view>
     </objects>
     <resources>
+        <image name="MockAnswerOne.png" width="415" height="126"/>
         <image name="RightAnswer.png" width="56" height="56"/>
         <image name="WrongAnswer.png" width="51" height="50"/>
     </resources>
