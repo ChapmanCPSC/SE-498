@@ -1,0 +1,6 @@
+# See https://help.github.com/ignore-files/ for more about ignoring files.
+
+# WebStorm Specific
+*.iws
+.idea/**/workspace.xml
+.idea/**/tasks.xml
