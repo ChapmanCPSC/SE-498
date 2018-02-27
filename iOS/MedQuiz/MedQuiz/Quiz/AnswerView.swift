@@ -84,18 +84,29 @@ class AnswerView: UIView {
     
     func resetViews() {
         UIView.animate(withDuration: 0.25) { () -> Void in
-            if (self.answer.hasImage){
+            /*if (self.answer.hasImage){
                 self.hideText()
             }
             else{
                 self.hideImage()
-            }
+            }*/
+            self.hideImage()
+            self.hideText()
             self.hidePoints()
             self.hideWrong()
             self.hideCorrect()
             self.viewFade.alpha = 0
          }
 
+    }
+
+    func displayAnswer(){
+        if(self.answer.hasImage){
+            self.showImage()
+        }
+        else{
+            self.showText()
+        }
     }
     
     func hideImage() {
@@ -106,16 +117,12 @@ class AnswerView: UIView {
         viewMain.layoutIfNeeded()
         con_textImg.constant = -10
 //        lab_answerText.layoutIfNeeded()
-        showText()
     }
     
     func hideText() {
         lab_answerText.isHidden = true
 
         con_textImg.constant = 10
-
-
-        showImage()
     }
     
     private func showImage() {
