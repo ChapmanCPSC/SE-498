@@ -31,9 +31,8 @@ class UserView: UIView {
     
     func addSubviews(){
         addSubview(viewMain)
-        viewMain.addSubview(iv_profile)
-        viewMain.addSubview(lab_position)
-        viewMain.addSubview(lab_username)
+        viewMain.frame = self.bounds
+        viewMain.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }
     
 
