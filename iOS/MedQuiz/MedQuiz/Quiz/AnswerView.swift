@@ -70,10 +70,12 @@ class AnswerView: UIView {
     
     func showCorrect() {
         iv_correct.isHidden = false
+        showPoints(wasCorrect: true)
     }
     
     func showWrong() {
         iv_wrong.isHidden = false
+        showPoints(wasCorrect: false)
     }
 
     func hideCorrect() {
@@ -141,12 +143,18 @@ class AnswerView: UIView {
         lab_answerText.isHidden = false
     }
     
-    func showPoints() {
-        
+    func showPoints(wasCorrect:Bool) {
+        if(wasCorrect){
+            lab_points.text = "+\(answer.points)"
+        }
+        else{
+            lab_points.text = "-\(answer.points)"
+        }
+        lab_points.isHidden = false
     }
     
     func hidePoints() {
-        
+        lab_points.isHidden = true
     }
 
     func setBackgroundColor(color:String) {
