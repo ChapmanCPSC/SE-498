@@ -42,6 +42,9 @@ class QuizActivityVC: UIViewController {
     
     
     @IBOutlet weak var con_questionContainerHeight: NSLayoutConstraint!
+    
+    @IBOutlet weak var con_questionImageHeight: NSLayoutConstraint!
+    
     var seconds = 5
     var timer = Timer()
     var isTimerRunning = false
@@ -57,6 +60,9 @@ class QuizActivityVC: UIViewController {
         setUserColors()
         hideSidebar()
         Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(showLabels), userInfo: nil, repeats: false)
+
+
+        print("Multiplier of image is: \(con_questionImageHeight.multiplier)")
 
         tempSetupQuiz() // TODO Remove this after finishing testing
        // runTimer()
@@ -115,26 +121,40 @@ class QuizActivityVC: UIViewController {
     }
 
     func displayImageQuestion(){
+        // resize container
         let newConstraint = con_questionContainerHeight.constraintWithMultipler(0.5)
         viewMain.removeConstraint(con_questionContainerHeight)
         con_questionContainerHeight = newConstraint
         viewMain.addConstraint(con_questionContainerHeight)
         viewMain.layoutIfNeeded()
 
-        lab_questionText.isHidden = true
+        // resize image
+        let newImageConstraint = con_questionImageHeight.constraintWithMultipler(0.5)
+        viewQuestionContainer.removeConstraint(con_questionImageHeight)
+        con_questionImageHeight = newImageConstraint
+        viewQuestionContainer.addConstraint(con_questionImageHeight)
+        viewQuestionContainer.layoutIfNeeded()
+
         iv_questionImage.isHidden = false
     }
 
     func displayTextQuestion(){
+        // resize container
         let newConstraint = con_questionContainerHeight.constraintWithMultipler(0.2)
         viewMain.removeConstraint(con_questionContainerHeight)
         con_questionContainerHeight = newConstraint
         viewMain.addConstraint(con_questionContainerHeight)
         viewMain.layoutIfNeeded()
 
-        iv_questionImage.isHidden = true
-        lab_questionText.isHidden = false
+        // resize image
+        let newImageConstraint = con_questionImageHeight.constraintWithMultipler(0.000000001)
+        viewQuestionContainer.removeConstraint(con_questionImageHeight)
+        con_questionImageHeight = newImageConstraint
+        viewQuestionContainer.addConstraint(con_questionImageHeight)
+        viewQuestionContainer.layoutIfNeeded()
 
+
+        iv_questionImage.isHidden = true
     }
     
     func updateQuestionNumber(text:String){
