@@ -515,6 +515,7 @@
                     </view>
                     <connections>
                         <outlet property="changeImageView" destination="ZFP-uI-T27" id="k4c-Lf-Ho7"/>
+                        <outlet property="editUsernameButton" destination="uHD-S2-tJ9" id="Lhe-kS-Fg3"/>
                         <outlet property="friendsImageView" destination="0JE-cr-viv" id="ZJ0-sL-xs1"/>
                         <outlet property="globallyImageView" destination="JyA-Ie-gcN" id="dXq-SI-x0f"/>
                         <outlet property="lastQuizImageView" destination="mi9-jf-xVH" id="QEf-jI-hVe"/>

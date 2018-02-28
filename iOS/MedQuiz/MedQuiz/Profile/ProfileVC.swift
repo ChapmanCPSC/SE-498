@@ -21,6 +21,7 @@ class ProfileVC: UIViewController, ChangeAvatarVCDelegate, ChangeUsernameVCDeleg
     @IBOutlet weak var friendsImageView: UIImageView!
     
     @IBOutlet weak var changeImageView: UIImageView!
+    @IBOutlet weak var editUsernameButton: UIButton!
     
     var username = "Maddy Transue"
     var usernameChanged = false
@@ -56,6 +57,7 @@ class ProfileVC: UIViewController, ChangeAvatarVCDelegate, ChangeUsernameVCDeleg
     func dataChanged(username: String, usernameChanged: Bool) {
         self.username = username
         usernameLabel.text = username
+        editUsernameButton.isHidden = usernameChanged
     }
     
     @IBAction func addFriendsPressed(_ sender: Any) {
