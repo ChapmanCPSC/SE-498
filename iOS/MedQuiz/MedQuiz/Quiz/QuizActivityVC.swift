@@ -45,9 +45,10 @@ class QuizActivityVC: UIViewController {
     
     @IBOutlet weak var con_questionImageHeight: NSLayoutConstraint!
     
-    var seconds = 5
+    var seconds = 10
     var timer = Timer()
     var isTimerRunning = false
+    @IBOutlet weak var timerLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,18 +60,28 @@ class QuizActivityVC: UIViewController {
         setAnswerColors()
         setUserColors()
         hideSidebar()
+        //Hides answers for 5 sec and then calls showLabels func
         Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(showLabels), userInfo: nil, repeats: false)
-
+        runTimer()
 
         print("Multiplier of image is: \(con_questionImageHeight.multiplier)")
-
+        
         tempSetupQuiz() // TODO Remove this after finishing testing
-       // runTimer()
+       
     }
     
-   /* func runTimer() {
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(QuizActivityVC.updateTimer)), userInfo: nil, repeats: true)
-    }*/
+    func runTimer() {
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(updateTimer)), userInfo: nil, repeats: true)
+    }
+    
+    @objc func updateTimer(){
+        seconds -= 1
+        timerLabel.text = "\(seconds)"
+        if seconds == 0{
+            timer.invalidate()
+            seconds = 10
+        }
+    }
     
     @objc func showLabels(){
         answerViews.forEach { view in view.displayAnswer() }

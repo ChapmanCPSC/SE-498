@@ -89,8 +89,8 @@
                                     </view>
                                 </subviews>
                             </stackView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XpQ-Yg-CIp" userLabel="questionContainer">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="153.5"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XpQ-Yg-CIp" userLabel="questionContainer">
+                                <rect key="frame" x="119" y="-8" width="1024" height="153.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="grM-oM-JIa" userLabel="timer">
                                         <rect key="frame" x="939" y="20" width="75" height="75"/>
@@ -215,6 +215,7 @@
                         <outlet property="iv_questionImage" destination="X16-ah-GQU" id="c1e-ha-jwZ"/>
                         <outlet property="lab_questionNumber" destination="da4-nm-GCK" id="I58-Sq-OBj"/>
                         <outlet property="lab_questionText" destination="ElQ-IF-2fO" id="KeZ-A7-8cY"/>
+                        <outlet property="timerLabel" destination="Cfr-Wo-R2p" id="GQ9-JF-GBU"/>
                         <outlet property="uv_fifth" destination="owc-VG-xVQ" id="ksl-ZP-dzk"/>
                         <outlet property="uv_first" destination="ZXR-uJ-qu7" id="G8K-PT-fxL"/>
                         <outlet property="uv_fourth" destination="AoZ-Ts-Vay" id="sxd-84-whL"/>
