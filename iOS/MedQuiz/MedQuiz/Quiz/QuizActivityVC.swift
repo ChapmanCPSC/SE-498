@@ -12,6 +12,8 @@ import UIKit
 class QuizActivityVC: UIViewController {
     
     var currQuestion:QuestionModel!
+    var currQuiz:QuizModel!
+    var canSelect:Bool = false
     
     @IBOutlet weak var answer1: AnswerView!
     @IBOutlet weak var answer2: AnswerView!
@@ -48,6 +50,8 @@ class QuizActivityVC: UIViewController {
         setUserColors()
         hideSidebar()
         Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(showLabels), userInfo: nil, repeats: false)
+
+        tempSetupQuiz() // TODO Remove this after finishing testing
        // runTimer()
     }
     
@@ -57,6 +61,7 @@ class QuizActivityVC: UIViewController {
     
     @objc func showLabels(){
         answerViews.forEach { view in view.displayAnswer() }
+        canSelect = true
     }
     
     func hideAnswerLabels(){
@@ -140,20 +145,38 @@ class QuizActivityVC: UIViewController {
         answerViews.forEach { view in
             view.resetViews()
             view.displayAnswer()
+            canSelect = true
         }
+    }
+
+    func tempSetupQuiz(){
+        answer1.answer.isAnswer = true
+        answer1.answer.answerText = "This is a correct answer"
     }
 }
 
 extension QuizActivityVC:SelectsAnswer {
     func answerSelected(answer: AnswerView) {
-        answerViews.forEach { (view) in
-            if(view == answer){
-                // check if it's correct and take appropriate action
-            }
-            else{
-                view.fadeAnswer()
+        if(canSelect){
+            canSelect = false
+            answerViews.forEach { (view) in
+                if(view == answer){
+                    // check if it's correct and take appropriate action
+                    let selectedAnswer = view.answer
+                    if(selectedAnswer.isAnswer){
+                        view.showCorrect()
+                    }
+                    else{
+                        view.showWrong()
+                    }
+
+                }
+                else{
+                    view.fadeAnswer()
+                }
             }
         }
+
     }
 }
 

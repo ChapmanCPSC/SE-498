@@ -38,6 +38,8 @@ class AnswerView: UIView {
         Bundle.main.loadNibNamed("AnswerView", owner: self, options: nil)
         addSubviews()
         addListenerToMain()
+        //TODO stop autosetting this after testing
+        answer = AnswerModel(answerText: "This is an example answer", points: 10, isAnswer: false, imageLink: "")
     }
 
     func addSubviews(){
@@ -126,6 +128,7 @@ class AnswerView: UIView {
     }
     
     private func showImage() {
+        // TODO set imageview using data from answerModel
         let newConstraint = con_imgAnswerHeight.constraintWithMultipler(0.5)
         viewMain.removeConstraint(con_imgAnswerHeight)
         con_imgAnswerHeight = newConstraint
@@ -134,6 +137,7 @@ class AnswerView: UIView {
     }
     
     private func showText() {
+        lab_answerText.text = answer.answerText
         lab_answerText.isHidden = false
     }
     
