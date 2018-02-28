@@ -94,7 +94,15 @@ class QuizVC: UIViewController {
             showAlert(title: "Failure", message: "The provided pin does not match a quiz")
         }
     }
-    
+
+    override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name: Notification.Name.UIKeyboardWillHide, object: nil)
+    }
+
+    @objc func keyboardWillDisappear(){
+        hideCloseButton()
+    }
+
     func clearPin(){
         tf_quizPin.text = ""
     }

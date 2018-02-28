@@ -283,7 +283,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZcS-1G-0qW">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="384"/>
                                 <subviews>
-                                    <imageView hidden="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Cancel Copy" translatesAutoresizingMaskIntoConstraints="NO" id="zpx-It-qSt">
+                                    <imageView hidden="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Cancel-Icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="zpx-It-qSt">
                                         <rect key="frame" x="919" y="30" width="75" height="75"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="75" id="00G-Zg-Ak4"/>
@@ -394,7 +394,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Cancel Copy" width="56" height="56"/>
         <image name="Cancel-Icon.png" width="56" height="56"/>
         <image name="MockAnswerTwo.png" width="402" height="211"/>
         <image name="SearchIcon.png" width="93" height="94"/>
