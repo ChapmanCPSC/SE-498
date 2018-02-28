@@ -24,88 +24,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XpQ-Yg-CIp" userLabel="questionContainer">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="153.5"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What is the answer to this label doing here?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ElQ-IF-2fO">
-                                        <rect key="frame" x="128.5" y="66.5" width="768" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oSt-QX-rec">
-                                        <rect key="frame" x="872" y="118.5" width="132" height="30"/>
-                                        <state key="normal" title="Temp invert hidden"/>
-                                        <connections>
-                                            <action selector="tempPressed:" destination="iNk-fp-Fpw" eventType="touchUpInside" id="eVg-bF-wwb"/>
-                                        </connections>
-                                    </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="grM-oM-JIa" userLabel="timer">
-                                        <rect key="frame" x="939" y="39.5" width="75" height="75"/>
-                                        <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hFC-tv-YrJ">
-                                                <rect key="frame" x="2.5" y="2.5" width="70" height="70"/>
-                                                <color key="backgroundColor" red="0.59999999999999998" green="0.83137254900000002" blue="0.81960784310000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="70" id="4bB-cY-J5i"/>
-                                                    <constraint firstAttribute="height" constant="70" id="ixa-fK-HRX"/>
-                                                </constraints>
-                                            </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cfr-Wo-R2p">
-                                                <rect key="frame" x="24" y="23" width="26" height="29"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstItem="Cfr-Wo-R2p" firstAttribute="centerY" secondItem="grM-oM-JIa" secondAttribute="centerY" id="0oQ-ZW-LTe"/>
-                                            <constraint firstAttribute="width" constant="75" id="8HM-sJ-7RV"/>
-                                            <constraint firstItem="hFC-tv-YrJ" firstAttribute="centerY" secondItem="grM-oM-JIa" secondAttribute="centerY" id="D3l-Vs-d2M"/>
-                                            <constraint firstAttribute="height" constant="75" id="cBc-ng-LWd"/>
-                                            <constraint firstItem="Cfr-Wo-R2p" firstAttribute="centerX" secondItem="grM-oM-JIa" secondAttribute="centerX" id="lK8-Gu-lod"/>
-                                            <constraint firstItem="hFC-tv-YrJ" firstAttribute="centerX" secondItem="grM-oM-JIa" secondAttribute="centerX" id="zXb-oF-aKR"/>
-                                        </constraints>
-                                    </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mr4-bb-3wP">
-                                        <rect key="frame" x="471.5" y="118.5" width="81" height="30"/>
-                                        <state key="normal" title="Temp Reset"/>
-                                        <connections>
-                                            <action selector="tempResetPressed:" destination="iNk-fp-Fpw" eventType="touchUpInside" id="71a-x4-u3l"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i3t-AU-flH">
-                                        <rect key="frame" x="20" y="118.5" width="117" height="30"/>
-                                        <state key="normal" title="Temp Leave Quiz"/>
-                                        <connections>
-                                            <segue destination="Jvp-t9-Pxf" kind="show" id="qo8-Ml-WfT"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Q0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="da4-nm-GCK">
-                                        <rect key="frame" x="501" y="36" width="23.5" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="Mr4-bb-3wP" firstAttribute="centerX" secondItem="XpQ-Yg-CIp" secondAttribute="centerX" id="2Oz-LJ-mpp"/>
-                                    <constraint firstAttribute="trailing" secondItem="grM-oM-JIa" secondAttribute="trailing" constant="10" id="3DC-IC-7fv"/>
-                                    <constraint firstAttribute="trailing" secondItem="oSt-QX-rec" secondAttribute="trailing" constant="20" id="5eg-7M-fcu"/>
-                                    <constraint firstAttribute="bottom" secondItem="i3t-AU-flH" secondAttribute="bottom" constant="5" id="CcA-R7-ebM"/>
-                                    <constraint firstAttribute="bottom" secondItem="Mr4-bb-3wP" secondAttribute="bottom" constant="5" id="PdP-gb-Pqb"/>
-                                    <constraint firstItem="ElQ-IF-2fO" firstAttribute="width" secondItem="XpQ-Yg-CIp" secondAttribute="width" multiplier="0.75" id="V55-yT-9LA"/>
-                                    <constraint firstItem="i3t-AU-flH" firstAttribute="leading" secondItem="XpQ-Yg-CIp" secondAttribute="leading" constant="20" id="Vj7-Ie-jsQ"/>
-                                    <constraint firstItem="ElQ-IF-2fO" firstAttribute="centerX" secondItem="XpQ-Yg-CIp" secondAttribute="centerX" id="aS6-Au-xo0"/>
-                                    <constraint firstItem="grM-oM-JIa" firstAttribute="centerY" secondItem="XpQ-Yg-CIp" secondAttribute="centerY" id="as4-lK-mWR"/>
-                                    <constraint firstItem="da4-nm-GCK" firstAttribute="centerX" secondItem="XpQ-Yg-CIp" secondAttribute="centerX" id="iKz-a6-bSV"/>
-                                    <constraint firstItem="ElQ-IF-2fO" firstAttribute="centerY" secondItem="XpQ-Yg-CIp" secondAttribute="centerY" id="lWK-Hv-5sr"/>
-                                    <constraint firstAttribute="bottom" secondItem="oSt-QX-rec" secondAttribute="bottom" constant="5" id="nZU-5J-y7t"/>
-                                    <constraint firstItem="ElQ-IF-2fO" firstAttribute="top" secondItem="da4-nm-GCK" secondAttribute="bottom" constant="10" id="rRs-yd-WPX"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6f5-lQ-KQp" userLabel="answerContainer">
                                 <rect key="frame" x="0.0" y="153.5" width="1024" height="537.5"/>
                                 <subviews>
@@ -171,6 +89,104 @@
                                     </view>
                                 </subviews>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XpQ-Yg-CIp" userLabel="questionContainer">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="153.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What is the answer to this label doing here?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ElQ-IF-2fO">
+                                        <rect key="frame" x="128.5" y="66.5" width="768" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oSt-QX-rec">
+                                        <rect key="frame" x="872" y="118.5" width="132" height="30"/>
+                                        <state key="normal" title="Temp invert hidden"/>
+                                        <connections>
+                                            <action selector="tempPressed:" destination="iNk-fp-Fpw" eventType="touchUpInside" id="eVg-bF-wwb"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="grM-oM-JIa" userLabel="timer">
+                                        <rect key="frame" x="939" y="39.5" width="75" height="75"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hFC-tv-YrJ">
+                                                <rect key="frame" x="2.5" y="2.5" width="70" height="70"/>
+                                                <color key="backgroundColor" red="0.59999999999999998" green="0.83137254900000002" blue="0.81960784310000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="70" id="4bB-cY-J5i"/>
+                                                    <constraint firstAttribute="height" constant="70" id="ixa-fK-HRX"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cfr-Wo-R2p">
+                                                <rect key="frame" x="24" y="23" width="26" height="29"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="Cfr-Wo-R2p" firstAttribute="centerY" secondItem="grM-oM-JIa" secondAttribute="centerY" id="0oQ-ZW-LTe"/>
+                                            <constraint firstAttribute="width" constant="75" id="8HM-sJ-7RV"/>
+                                            <constraint firstItem="hFC-tv-YrJ" firstAttribute="centerY" secondItem="grM-oM-JIa" secondAttribute="centerY" id="D3l-Vs-d2M"/>
+                                            <constraint firstAttribute="height" constant="75" id="cBc-ng-LWd"/>
+                                            <constraint firstItem="Cfr-Wo-R2p" firstAttribute="centerX" secondItem="grM-oM-JIa" secondAttribute="centerX" id="lK8-Gu-lod"/>
+                                            <constraint firstItem="hFC-tv-YrJ" firstAttribute="centerX" secondItem="grM-oM-JIa" secondAttribute="centerX" id="zXb-oF-aKR"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mr4-bb-3wP">
+                                        <rect key="frame" x="471.5" y="118.5" width="81" height="30"/>
+                                        <state key="normal" title="Temp Reset"/>
+                                        <connections>
+                                            <action selector="tempResetPressed:" destination="iNk-fp-Fpw" eventType="touchUpInside" id="71a-x4-u3l"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i3t-AU-flH">
+                                        <rect key="frame" x="20" y="118.5" width="117" height="30"/>
+                                        <state key="normal" title="Temp Leave Quiz"/>
+                                        <connections>
+                                            <segue destination="Jvp-t9-Pxf" kind="show" id="qo8-Ml-WfT"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Q0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="da4-nm-GCK">
+                                        <rect key="frame" x="501" y="20" width="23.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MockAnswerTwo.png" translatesAutoresizingMaskIntoConstraints="NO" id="X16-ah-GQU">
+                                        <rect key="frame" x="205" y="38.5" width="614" height="76.5"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="anT-Bb-MI9">
+                                        <rect key="frame" x="718" y="118" width="144" height="30"/>
+                                        <state key="normal" title="Temp invert question"/>
+                                        <connections>
+                                            <action selector="tempQuestionInvertPressed:" destination="iNk-fp-Fpw" eventType="touchUpInside" id="pXS-kD-2Rj"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="X16-ah-GQU" firstAttribute="height" secondItem="XpQ-Yg-CIp" secondAttribute="height" multiplier="0.5" id="2CY-1v-uwe"/>
+                                    <constraint firstItem="Mr4-bb-3wP" firstAttribute="centerX" secondItem="XpQ-Yg-CIp" secondAttribute="centerX" id="2Oz-LJ-mpp"/>
+                                    <constraint firstAttribute="trailing" secondItem="grM-oM-JIa" secondAttribute="trailing" constant="10" id="3DC-IC-7fv"/>
+                                    <constraint firstItem="da4-nm-GCK" firstAttribute="top" secondItem="XpQ-Yg-CIp" secondAttribute="top" constant="20" id="4IJ-yp-T9I"/>
+                                    <constraint firstAttribute="trailing" secondItem="oSt-QX-rec" secondAttribute="trailing" constant="20" id="5eg-7M-fcu"/>
+                                    <constraint firstAttribute="bottom" secondItem="i3t-AU-flH" secondAttribute="bottom" constant="5" id="CcA-R7-ebM"/>
+                                    <constraint firstAttribute="bottom" secondItem="Mr4-bb-3wP" secondAttribute="bottom" constant="5" id="PdP-gb-Pqb"/>
+                                    <constraint firstItem="X16-ah-GQU" firstAttribute="centerY" secondItem="XpQ-Yg-CIp" secondAttribute="centerY" id="Q69-HO-V1M"/>
+                                    <constraint firstItem="X16-ah-GQU" firstAttribute="centerX" secondItem="XpQ-Yg-CIp" secondAttribute="centerX" id="U7l-BT-Y7K"/>
+                                    <constraint firstItem="ElQ-IF-2fO" firstAttribute="width" secondItem="XpQ-Yg-CIp" secondAttribute="width" multiplier="0.75" id="V55-yT-9LA"/>
+                                    <constraint firstItem="i3t-AU-flH" firstAttribute="leading" secondItem="XpQ-Yg-CIp" secondAttribute="leading" constant="20" id="Vj7-Ie-jsQ"/>
+                                    <constraint firstItem="ElQ-IF-2fO" firstAttribute="centerX" secondItem="XpQ-Yg-CIp" secondAttribute="centerX" id="aS6-Au-xo0"/>
+                                    <constraint firstItem="grM-oM-JIa" firstAttribute="centerY" secondItem="XpQ-Yg-CIp" secondAttribute="centerY" id="as4-lK-mWR"/>
+                                    <constraint firstAttribute="bottom" secondItem="anT-Bb-MI9" secondAttribute="bottom" constant="5" id="dLj-gZ-txA"/>
+                                    <constraint firstItem="da4-nm-GCK" firstAttribute="centerX" secondItem="XpQ-Yg-CIp" secondAttribute="centerX" id="iKz-a6-bSV"/>
+                                    <constraint firstItem="ElQ-IF-2fO" firstAttribute="centerY" secondItem="XpQ-Yg-CIp" secondAttribute="centerY" id="lWK-Hv-5sr"/>
+                                    <constraint firstAttribute="bottom" secondItem="oSt-QX-rec" secondAttribute="bottom" constant="5" id="nZU-5J-y7t"/>
+                                    <constraint firstItem="X16-ah-GQU" firstAttribute="width" secondItem="XpQ-Yg-CIp" secondAttribute="width" multiplier="0.6" id="tmu-R8-R0S"/>
+                                    <constraint firstItem="oSt-QX-rec" firstAttribute="leading" secondItem="anT-Bb-MI9" secondAttribute="trailing" constant="10" id="vET-UJ-KI5"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -194,6 +210,8 @@
                         <outlet property="answer2" destination="Mhy-9W-V5P" id="sav-ab-79V"/>
                         <outlet property="answer3" destination="1HG-EA-B80" id="Ifd-IO-WfP"/>
                         <outlet property="answer4" destination="PDX-BQ-Q9I" id="fZj-Mg-RB9"/>
+                        <outlet property="con_questionContainerHeight" destination="SWh-qa-xtl" id="Rqb-9R-Jdj"/>
+                        <outlet property="iv_questionImage" destination="X16-ah-GQU" id="c1e-ha-jwZ"/>
                         <outlet property="lab_questionNumber" destination="da4-nm-GCK" id="I58-Sq-OBj"/>
                         <outlet property="lab_questionText" destination="ElQ-IF-2fO" id="KeZ-A7-8cY"/>
                         <outlet property="uv_fifth" destination="owc-VG-xVQ" id="ksl-ZP-dzk"/>
@@ -201,6 +219,8 @@
                         <outlet property="uv_fourth" destination="AoZ-Ts-Vay" id="sxd-84-whL"/>
                         <outlet property="uv_second" destination="cQG-Sq-kDs" id="1O2-8b-Zfb"/>
                         <outlet property="uv_third" destination="Wrh-lS-MNK" id="RMO-jw-Uhq"/>
+                        <outlet property="viewMain" destination="RMN-Yu-TAa" id="El1-QM-JCe"/>
+                        <outlet property="viewQuestionContainer" destination="XpQ-Yg-CIp" id="Afh-dR-L8M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2rM-5H-Bd2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -375,6 +395,7 @@
     <resources>
         <image name="Cancel Copy" width="56" height="56"/>
         <image name="Cancel-Icon.png" width="56" height="56"/>
+        <image name="MockAnswerTwo.png" width="402" height="211"/>
         <image name="SearchIcon.png" width="93" height="94"/>
     </resources>
     <inferredMetricsTieBreakers>

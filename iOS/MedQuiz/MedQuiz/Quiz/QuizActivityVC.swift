@@ -32,9 +32,16 @@ class QuizActivityVC: UIViewController {
     
     
     var toggleTemp:Bool = true
+    var toggleTempQuestion:Bool = true
     @IBOutlet weak var lab_questionText: UILabel!
     @IBOutlet weak var lab_questionNumber: UILabel!
+    @IBOutlet weak var iv_questionImage: UIImageView!
+    @IBOutlet weak var viewQuestionContainer: UIView!
     
+    @IBOutlet var viewMain: UIView!
+    
+    
+    @IBOutlet weak var con_questionContainerHeight: NSLayoutConstraint!
     var seconds = 5
     var timer = Timer()
     var isTimerRunning = false
@@ -106,6 +113,29 @@ class QuizActivityVC: UIViewController {
 //         updateAnswerPictures(urls: [String])
         
     }
+
+    func displayImageQuestion(){
+        let newConstraint = con_questionContainerHeight.constraintWithMultipler(0.5)
+        viewMain.removeConstraint(con_questionContainerHeight)
+        con_questionContainerHeight = newConstraint
+        viewMain.addConstraint(con_questionContainerHeight)
+        viewMain.layoutIfNeeded()
+
+        lab_questionText.isHidden = true
+        iv_questionImage.isHidden = false
+    }
+
+    func displayTextQuestion(){
+        let newConstraint = con_questionContainerHeight.constraintWithMultipler(0.2)
+        viewMain.removeConstraint(con_questionContainerHeight)
+        con_questionContainerHeight = newConstraint
+        viewMain.addConstraint(con_questionContainerHeight)
+        viewMain.layoutIfNeeded()
+
+        iv_questionImage.isHidden = true
+        lab_questionText.isHidden = false
+
+    }
     
     func updateQuestionNumber(text:String){
         
@@ -148,6 +178,17 @@ class QuizActivityVC: UIViewController {
             canSelect = true
         }
     }
+
+    @IBAction func tempQuestionInvertPressed(_ sender: Any) {
+        if(toggleTemp){
+            displayImageQuestion()
+        }
+        else{
+            displayTextQuestion()
+        }
+        toggleTemp = !toggleTemp
+    }
+
 
     func tempSetupQuiz(){
         answer1.answer.isAnswer = true
