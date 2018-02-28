@@ -8,23 +8,36 @@
 
 import UIKit
 
+protocol AvatarCollectionViewCellDelegate: class{
+    func cellSelected(selectedImage: UIImage)
+}
+
 class AvatarCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var selectedImageView: UIImageView!
     
-//    override var isSelected: Bool
-//    {
-//        didSet
-//        {
-//            if (self.isSelected)
-//            {
-//                self.transform = CGAffineTransform.init(scaleX: 1.2, y: 1.2)
-//            }
-//            else
-//            {
-//                self.transform = CGAffineTransform.identity
-//            }
-//        }
-//    }
+    weak var delegate: AvatarCollectionViewCellDelegate?
     
+    override var isSelected: Bool
+    {
+        didSet
+        {
+            if (self.isSelected)
+            {
+                selectedImageView.isHidden = false
+                cellSelected(selectedImage: imageView.image!)
+            }
+            else
+            {
+                selectedImageView.isHidden = true
+            }
+        }
+    }
+    
+    func cellSelected(selectedImage: UIImage){
+        if let del = self.delegate{
+            del.cellSelected(selectedImage: selectedImage)
+        }
+    }
 }

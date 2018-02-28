@@ -10,8 +10,8 @@
 import Foundation
 import UIKit
 
-class ProfileVC: UIViewController {
-    
+class ProfileVC: UIViewController, ChangeAvatarVCDelegate, ChangeUsernameVCDelegate {
+
     @IBOutlet weak var profileImageView: UIImageView!
     
     @IBOutlet weak var usernameLabel: UILabel!
@@ -23,13 +23,16 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var changeImageView: UIImageView!
     
     var username = "Maddy Transue"
+    var usernameChanged = false
     var profileImage = #imageLiteral(resourceName: "StudentAvatarPlaceholder.png")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let profileAvatarChange = UITapGestureRecognizer(target: self, action: #selector(ProfileVC.profileAvatarPressed))
         
         profileImageView.addGestureRecognizer(profileAvatarChange)
+        profileImageView.image = profileImage
         
         usernameLabel.text = username
         
@@ -45,14 +48,25 @@ class ProfileVC: UIViewController {
         changeImageView.transform = CGAffineTransform(scaleX: 1, y: -1)
     }
     
+    func dataChanged(profileImage: UIImage) {
+        self.profileImage = profileImage
+        profileImageView.image = profileImage
+    }
+    
+    func dataChanged(username: String, usernameChanged: Bool) {
+        self.username = username
+        usernameLabel.text = username
+    }
+    
     @IBAction func addFriendsPressed(_ sender: Any) {
         let addFriendsVC =  self.storyboard?.instantiateViewController(withIdentifier: "addFriends") as! AddFriendsVC
         self.present(addFriendsVC, animated: false, completion: nil)
     }
     
     @objc func profileAvatarPressed(){
-        print("woo")
         let changeAvatarVC = self.storyboard?.instantiateViewController(withIdentifier: "changeAvatar") as! ChangeAvatarVC
+        changeAvatarVC.profileImage = profileImage
+        changeAvatarVC.delegate = self
         self.present(changeAvatarVC, animated: false, completion: nil)
     }
     @IBAction func logoutPressed(_ sender: Any) {
@@ -63,6 +77,9 @@ class ProfileVC: UIViewController {
     
     @IBAction func changeUsernamePressed(_ sender: Any) {
         let changeUsernameVC = self.storyboard?.instantiateViewController(withIdentifier: "ChangeUsernameVC") as! ChangeUsernameVC
+        changeUsernameVC.delegate = self
+        changeUsernameVC.username = username
+        changeUsernameVC.usernameChanged = usernameChanged
         self.present(changeUsernameVC, animated: false, completion: nil)
     }
 }

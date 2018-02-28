@@ -34,7 +34,7 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoOption" translatesAutoresizingMaskIntoConstraints="NO" id="hNT-H1-WSm" userLabel="Logo">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chapman-univeristy-300x156.png" translatesAutoresizingMaskIntoConstraints="NO" id="hNT-H1-WSm" userLabel="Logo">
                                         <rect key="frame" x="400" y="63" width="300" height="225"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="225" id="Cba-NC-34t"/>
@@ -179,6 +179,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="LogoOption" width="607" height="606"/>
+        <image name="chapman-univeristy-300x156.png" width="300" height="156"/>
     </resources>
 </document>

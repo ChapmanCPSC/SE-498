@@ -34,13 +34,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qLW-uO-B1s">
                                 <rect key="frame" x="0.0" y="0.0" width="694" height="768"/>
                                 <subviews>
-                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gentleman_icon-icons.com_55044.png" translatesAutoresizingMaskIntoConstraints="NO" id="wH1-7e-SzP">
-                                        <rect key="frame" x="284" y="321" width="125" height="125"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="125" id="KHR-Sx-4Gr"/>
-                                            <constraint firstAttribute="width" constant="125" id="qfZ-PG-wLO"/>
-                                        </constraints>
-                                    </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D7Z-zK-9RV">
                                         <rect key="frame" x="234" y="624" width="226" height="48"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -53,33 +46,6 @@
                                             <action selector="doneWithAvatar:" destination="rC1-U6-kdK" eventType="touchUpInside" id="u80-Q3-TPU"/>
                                         </connections>
                                     </button>
-                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gentleman_icon-icons.com_55044.png" translatesAutoresizingMaskIntoConstraints="NO" id="rIv-az-K3d">
-                                        <rect key="frame" x="256" y="285" width="96" height="96"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="96" id="W3q-Q9-StP"/>
-                                            <constraint firstAttribute="width" constant="96" id="q1A-6H-uBU"/>
-                                        </constraints>
-                                    </imageView>
-                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gentleman_icon-icons.com_55044.png" translatesAutoresizingMaskIntoConstraints="NO" id="Q9W-Vi-dZ6">
-                                        <rect key="frame" x="112" y="243" width="78" height="78"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="78" id="Oxz-kW-5iy"/>
-                                            <constraint firstAttribute="height" constant="78" id="koY-BA-wmg"/>
-                                        </constraints>
-                                    </imageView>
-                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gentleman_icon-icons.com_55044.png" translatesAutoresizingMaskIntoConstraints="NO" id="JV0-XR-uLo">
-                                        <rect key="frame" x="337" y="285" width="96" height="96"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="96" id="k8C-0A-bVz"/>
-                                        </constraints>
-                                    </imageView>
-                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gentleman_icon-icons.com_55044.png" translatesAutoresizingMaskIntoConstraints="NO" id="Din-Ei-ZOL">
-                                        <rect key="frame" x="501" y="243" width="78" height="78"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="78" id="Er0-yo-c7h"/>
-                                            <constraint firstAttribute="width" constant="78" id="LRI-jm-lRh"/>
-                                        </constraints>
-                                    </imageView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rhn-rH-nOT">
                                         <rect key="frame" x="7" y="183" width="678" height="400"/>
                                         <color key="backgroundColor" red="0.94901960784313721" green="0.66274509803921566" blue="0.12941176470588234" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -103,16 +69,24 @@
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Exk-PO-OGp">
                                                             <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                                         </imageView>
+                                                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SelectedAvatar.png" translatesAutoresizingMaskIntoConstraints="NO" id="xcP-Wa-cD9" userLabel="Selected Image View">
+                                                            <rect key="frame" x="100" y="100" width="50" height="50"/>
+                                                        </imageView>
                                                     </subviews>
                                                 </view>
                                                 <constraints>
+                                                    <constraint firstItem="xcP-Wa-cD9" firstAttribute="bottom" secondItem="Exk-PO-OGp" secondAttribute="bottom" id="BfT-hT-SKl"/>
                                                     <constraint firstItem="Exk-PO-OGp" firstAttribute="top" secondItem="6VH-mJ-inI" secondAttribute="top" id="QCb-0z-8ZM"/>
+                                                    <constraint firstItem="xcP-Wa-cD9" firstAttribute="top" secondItem="6VH-mJ-inI" secondAttribute="topMargin" constant="92" id="YVa-Yu-R1K"/>
+                                                    <constraint firstItem="xcP-Wa-cD9" firstAttribute="trailing" secondItem="Exk-PO-OGp" secondAttribute="trailing" id="dCL-3L-Dab"/>
                                                     <constraint firstItem="Exk-PO-OGp" firstAttribute="leading" secondItem="6VH-mJ-inI" secondAttribute="leading" id="h8I-ie-t3K"/>
+                                                    <constraint firstItem="xcP-Wa-cD9" firstAttribute="leading" secondItem="6VH-mJ-inI" secondAttribute="leadingMargin" constant="92" id="pC9-m6-sCi"/>
                                                     <constraint firstAttribute="bottom" secondItem="Exk-PO-OGp" secondAttribute="bottom" id="uGe-JK-Gl4"/>
                                                     <constraint firstAttribute="trailing" secondItem="Exk-PO-OGp" secondAttribute="trailing" id="up5-hU-FzZ"/>
                                                 </constraints>
                                                 <connections>
                                                     <outlet property="imageView" destination="Exk-PO-OGp" id="kVL-6H-WLM"/>
+                                                    <outlet property="selectedImageView" destination="xcP-Wa-cD9" id="9aq-wa-lJf"/>
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>
@@ -124,24 +98,11 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.94901960784313721" green="0.66274509803921566" blue="0.12941176470588234" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstItem="Din-Ei-ZOL" firstAttribute="top" secondItem="qLW-uO-B1s" secondAttribute="top" constant="243" id="1LV-FP-SQX"/>
                                     <constraint firstAttribute="bottom" secondItem="D7Z-zK-9RV" secondAttribute="bottom" constant="96" id="6ic-5z-Z5x"/>
-                                    <constraint firstItem="Q9W-Vi-dZ6" firstAttribute="top" secondItem="qLW-uO-B1s" secondAttribute="top" constant="243" id="9XU-dI-b1R"/>
-                                    <constraint firstItem="wH1-7e-SzP" firstAttribute="centerY" secondItem="qLW-uO-B1s" secondAttribute="centerY" id="FOK-JT-R7n"/>
                                     <constraint firstItem="rhn-rH-nOT" firstAttribute="leading" secondItem="qLW-uO-B1s" secondAttribute="leadingMargin" constant="-1" id="Flw-P2-nth"/>
-                                    <constraint firstItem="wH1-7e-SzP" firstAttribute="centerX" secondItem="qLW-uO-B1s" secondAttribute="centerX" id="GLf-yG-qra"/>
-                                    <constraint firstItem="rIv-az-K3d" firstAttribute="top" secondItem="qLW-uO-B1s" secondAttribute="top" constant="285" id="Mfy-y8-tiV"/>
                                     <constraint firstItem="rhn-rH-nOT" firstAttribute="top" secondItem="qLW-uO-B1s" secondAttribute="top" constant="183" id="P6p-ZP-iTF"/>
-                                    <constraint firstItem="rIv-az-K3d" firstAttribute="top" secondItem="JV0-XR-uLo" secondAttribute="top" id="Uod-tr-v7X"/>
-                                    <constraint firstItem="wH1-7e-SzP" firstAttribute="centerY" secondItem="qLW-uO-B1s" secondAttribute="centerY" id="Z7s-eo-VJP"/>
-                                    <constraint firstItem="rhn-rH-nOT" firstAttribute="centerX" secondItem="wH1-7e-SzP" secondAttribute="centerX" id="lU1-pt-Dy9"/>
-                                    <constraint firstItem="rIv-az-K3d" firstAttribute="bottom" secondItem="JV0-XR-uLo" secondAttribute="bottom" id="mgh-ad-85U"/>
-                                    <constraint firstItem="Din-Ei-ZOL" firstAttribute="leading" secondItem="JV0-XR-uLo" secondAttribute="trailing" constant="68" id="pVS-v4-fVf"/>
-                                    <constraint firstItem="wH1-7e-SzP" firstAttribute="centerX" secondItem="qLW-uO-B1s" secondAttribute="centerX" id="q9v-Ax-rTy"/>
-                                    <constraint firstItem="rIv-az-K3d" firstAttribute="leading" secondItem="Q9W-Vi-dZ6" secondAttribute="trailing" constant="66" id="qww-AX-bfK"/>
                                     <constraint firstItem="D7Z-zK-9RV" firstAttribute="centerX" secondItem="qLW-uO-B1s" secondAttribute="centerX" id="tTq-by-8oS"/>
-                                    <constraint firstItem="Q9W-Vi-dZ6" firstAttribute="leading" secondItem="qLW-uO-B1s" secondAttribute="leading" constant="112" id="uAK-rS-YYy"/>
-                                    <constraint firstAttribute="trailing" secondItem="Din-Ei-ZOL" secondAttribute="trailing" constant="115" id="yrB-wh-ptQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="rhn-rH-nOT" secondAttribute="trailing" constant="9" id="wff-Ro-iEo"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -592,6 +553,7 @@
                                                 </attributedString>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
+                                                    <action selector="changeUsernameTextFieldEditingDidBegin:" destination="vID-YB-ORr" eventType="editingDidBegin" id="Der-5p-JnI"/>
                                                     <outlet property="delegate" destination="vID-YB-ORr" id="iFW-kJ-joG"/>
                                                 </connections>
                                             </textField>
@@ -717,7 +679,7 @@
                         <viewLayoutGuide key="safeArea" id="ZBS-xD-8OB"/>
                     </view>
                     <connections>
-                        <outlet property="changeUsernameTextField" destination="hvw-8X-Suc" id="oGn-0Q-Vac"/>
+                        <outlet property="changeUsernameTextField" destination="hvw-8X-Suc" id="rMJ-2B-gUr"/>
                         <outlet property="warningView" destination="o5L-j8-yS0" id="r7B-fY-jrR"/>
                     </connections>
                 </viewController>
@@ -728,7 +690,7 @@
     </scenes>
     <resources>
         <image name="Cancel-Icon.png" width="56" height="56"/>
+        <image name="SelectedAvatar.png" width="56" height="56"/>
         <image name="StudentAvatarPlaceholder.png" width="183" height="183"/>
-        <image name="gentleman_icon-icons.com_55044.png" width="512" height="512"/>
     </resources>
 </document>

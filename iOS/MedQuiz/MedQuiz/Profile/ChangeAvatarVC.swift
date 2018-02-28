@@ -9,13 +9,19 @@
 import Foundation
 import UIKit
 
-class ChangeAvatarVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
-    
+protocol ChangeAvatarVCDelegate: class{
+    func dataChanged(profileImage: UIImage)
+}
+
+class ChangeAvatarVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, AvatarCollectionViewCellDelegate {
+
     @IBOutlet weak var collectionView: UICollectionView!
     
-//    let array:[String] = ["gentleman_icon-icons.com_55044.png", "gentleman_icon-icons.com_55044.png", "gentleman_icon-icons.com_55044.png", "gentleman_icon-icons.com_55044.png", "gentleman_icon-icons.com_55044.png", "gentleman_icon-icons.com_55044.png", "gentleman_icon-icons.com_55044.png", "gentleman_icon-icons.com_55044.png", "gentleman_icon-icons.com_55044.png", "gentleman_icon-icons.com_55044.png", "gentleman_icon-icons.com_55044.png", "gentleman_icon-icons.com_55044.png"]
+    var array:[UIImage] = [#imageLiteral(resourceName: "StudentAvatarPlaceholder.png"), #imageLiteral(resourceName: "MockAnswerTwo.png"), #imageLiteral(resourceName: "MockAnswerOne.png"), #imageLiteral(resourceName: "MockAnswerFour.png"), #imageLiteral(resourceName: "MockAnswerThree.png")]
     
-    let array:[UIImage] = [#imageLiteral(resourceName: "StudentAvatarPlaceholder.png"), #imageLiteral(resourceName: "StudentAvatarPlaceholder.png"), #imageLiteral(resourceName: "StudentAvatarPlaceholder.png"), #imageLiteral(resourceName: "StudentAvatarPlaceholder.png"), #imageLiteral(resourceName: "StudentAvatarPlaceholder.png")]
+    var profileImage: UIImage?
+    
+    weak var delegate: ChangeAvatarVCDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,12 +34,17 @@ class ChangeAvatarVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         collectionView.collectionViewLayout = layout
         
         collectionView.showsHorizontalScrollIndicator = false
+        
+        let selectedImageIndex = array.index(of: profileImage!)
+        array.swapAt(selectedImageIndex!, array.capacity / 2)
     }
     override func viewDidAppear(_ animated: Bool) {
+        collectionView.contentOffset.x = (collectionView.contentSize.width / 2) - (collectionView.bounds.width / 2)
         adjustVisibleCollectionCells()
     }
     
     @IBAction func doneWithAvatar(_ sender: Any) {
+        delegate?.dataChanged(profileImage: profileImage!)
         self.dismiss(animated: false, completion: nil)
     }
     
@@ -44,6 +55,8 @@ class ChangeAvatarVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! AvatarCollectionViewCell
         cell.imageView.image = array[indexPath.row]
+        cell.delegate = self
+        
         return cell
     }
     
@@ -64,7 +77,15 @@ class ChangeAvatarVC: UIViewController, UICollectionViewDelegate, UICollectionVi
             var frame = cell.frame
             frame.origin.y = minHeight + multiplier * (maxHeight - minHeight)
             cell.frame = frame
+            
+            if (cell.imageView.image == profileImage){
+                collectionView.selectItem(at: collectionView.indexPath(for: cell), animated: false, scrollPosition: [])
+            }
         }
+    }
+    
+    func cellSelected(selectedImage: UIImage) {
+        profileImage = selectedImage
     }
 }
 
