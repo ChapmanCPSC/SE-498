@@ -14,6 +14,8 @@ class QuizActivityVC: UIViewController {
     var currQuestion:QuestionModel!
     var currQuiz:QuizModel!
     var canSelect:Bool = false
+    var currPos:Int = 5
+    var currUsername:String = "Paul"
     
     @IBOutlet weak var answer1: AnswerView!
     @IBOutlet weak var answer2: AnswerView!
@@ -33,6 +35,7 @@ class QuizActivityVC: UIViewController {
     
     var toggleTemp:Bool = true
     var toggleTempQuestion:Bool = true
+    
     @IBOutlet weak var lab_questionText: UILabel!
     @IBOutlet weak var lab_questionNumber: UILabel!
     @IBOutlet weak var iv_questionImage: UIImageView!
@@ -220,6 +223,24 @@ class QuizActivityVC: UIViewController {
         toggleTemp = !toggleTemp
     }
 
+    @IBAction func tempUpPosition(_ sender: Any) {
+        if (currPos > 1){
+            currPos -= 1
+            let idx = 2
+            let viewToUpdate:UserView = userViews[idx]
+            viewToUpdate.updateView(username: currUsername, position: currPos)
+        }
+
+    }
+    
+    @IBAction func tempDownPosition(_ sender: Any) {
+        currPos += 1
+        let idx = 2
+
+        let viewToUpdate:UserView = userViews[idx]
+        viewToUpdate.updateView(username: currUsername, position: currPos)
+    }
+    
 
     func tempSetupQuiz(){
         answer1.answer.isAnswer = true
