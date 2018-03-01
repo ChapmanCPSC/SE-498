@@ -15,7 +15,8 @@ class QuizActivityVC: UIViewController {
     var currQuiz:QuizModel!
     var canSelect:Bool = false
     var currPos:Int = 5
-    var currUsername:String = "Paul"
+    var user:StudentModel = StudentModel(userName: "Paul", profilePic: "", friends: [], classes: [:])
+    var allUsers:[StudentModel]! // TODO kinda working off assumption there'll be an array that'll be updated in firebase that we can use
     
     @IBOutlet weak var answer1: AnswerView!
     @IBOutlet weak var answer2: AnswerView!
@@ -35,7 +36,7 @@ class QuizActivityVC: UIViewController {
     
     var toggleTemp:Bool = true
     var toggleTempQuestion:Bool = true
-    
+
     @IBOutlet weak var lab_questionText: UILabel!
     @IBOutlet weak var lab_questionNumber: UILabel!
     @IBOutlet weak var iv_questionImage: UIImageView!
@@ -70,9 +71,9 @@ class QuizActivityVC: UIViewController {
         print("Multiplier of image is: \(con_questionImageHeight.multiplier)")
         
         tempSetupQuiz() // TODO Remove this after finishing testing
-       
+        tempSetupLeaderBoard()
     }
-    
+
     func runTimer() {
         timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(updateTimer)), userInfo: nil, repeats: true)
     }
@@ -186,7 +187,51 @@ class QuizActivityVC: UIViewController {
     func updateAnswerPictures(urls:[String]){
         
     }
-    
+
+    func updateLeaderboard(){
+        var userSubset:[StudentModel]
+        var startingPosition:Int
+        // user is in first or second
+        if(currPos == 1 || currPos == 2){
+            startingPosition = 1
+            userSubset = Array(allUsers[0...4])
+        }
+        // user is in second to last or last
+        else if(currPos == allUsers.count-1 || currPos == allUsers.count){
+            startingPosition = allUsers.count - 5
+            userSubset = Array(allUsers[allUsers.count-5...allUsers.count-1])
+        }
+        // user is somewhere in between
+        else{
+            startingPosition = currPos-2
+            userSubset = Array(allUsers[currPos-3...currPos+1])
+        }
+        var count = 0
+
+        userViews.forEach { view in
+            view.updateView(student: userSubset[count], position: startingPosition + count)
+            count += 1
+         }
+    }
+
+    func moveUpPosition(){
+        if (currPos > 1){
+            let appUser = allUsers.remove(at: currPos-1)
+            currPos -= 1
+            allUsers.insert(appUser, at: currPos-1)
+            updateLeaderboard()
+        }
+    }
+
+    func moveDownPosition(){
+        if(currPos < allUsers.count){
+            let appUser = allUsers.remove(at: currPos-1)
+            currPos += 1
+            allUsers.insert(appUser, at: currPos-1)
+            updateLeaderboard()
+        }
+    }
+
     @IBAction func tempPressed(_ sender: Any) {
         if(toggleTemp){
             answerViews.forEach { view in
@@ -224,27 +269,27 @@ class QuizActivityVC: UIViewController {
     }
 
     @IBAction func tempUpPosition(_ sender: Any) {
-        if (currPos > 1){
-            currPos -= 1
-            let idx = 2
-            let viewToUpdate:UserView = userViews[idx]
-            viewToUpdate.updateView(username: currUsername, position: currPos)
-        }
-
+        moveUpPosition()
     }
     
     @IBAction func tempDownPosition(_ sender: Any) {
-        currPos += 1
-        let idx = 2
-
-        let viewToUpdate:UserView = userViews[idx]
-        viewToUpdate.updateView(username: currUsername, position: currPos)
+        moveDownPosition()
     }
     
 
     func tempSetupQuiz(){
         answer1.answer.isAnswer = true
         answer1.answer.answerText = "This is a correct answer"
+    }
+
+    func tempSetupLeaderBoard(){
+        allUsers = []
+        for i in 1...30 {
+            allUsers.append(StudentModel(userName: "User \(i)", profilePic: "", friends: [], classes: [:]))
+        }
+
+        allUsers.insert(user, at: currPos-1)
+        updateLeaderboard()
     }
 }
 

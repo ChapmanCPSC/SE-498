@@ -14,6 +14,8 @@ class UserView: UIView {
     @IBOutlet weak var lab_username: UILabel!
     @IBOutlet weak var iv_profile: UIImageView!
 
+    var currStudent:StudentModel!
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -43,8 +45,9 @@ class UserView: UIView {
         viewMain.backgroundColor = color
     }
 
-    func updateView(username:String, position:Int){
-        displayUsername(username: username)
+    func updateView(student:StudentModel, position:Int){
+        self.currStudent = student
+        displayUsername(username: student.userName)
         displayPosition(position: position)
     }
 
