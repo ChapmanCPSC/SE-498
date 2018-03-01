@@ -42,6 +42,19 @@ class UserView: UIView {
     func setBackgroundColor(color:UIColor){
         viewMain.backgroundColor = color
     }
+
+    func updateView(username:String, position:Int){
+        displayUsername(username: username)
+        displayPosition(position: position)
+    }
+
+    func displayUsername(username:String){
+        lab_username.text = username
+    }
+
+    func displayPosition(position:Int){
+        lab_position.text = String.ordinalNumberFormat(number: position)
+    }
     
 
 }
