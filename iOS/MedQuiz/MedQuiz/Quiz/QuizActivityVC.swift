@@ -229,6 +229,8 @@ class QuizActivityVC: UIViewController {
 
 extension QuizActivityVC:SelectsAnswer {
     func answerSelected(answer: AnswerView) {
+        timer.invalidate()
+        seconds = 10
         if(canSelect){
             canSelect = false
             answerViews.forEach { (view) in
