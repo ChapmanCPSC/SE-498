@@ -1,6 +1,10 @@
 version: 2
 jobs:
-	steps:
-		- checkout
-		- run: npm install
-		- run: npm test
+	build:
+		working_directory: ~/
+		docker:
+			- image: circle/node:7
+		steps:
+			- checkout
+			- run: npm install
+			- run: npm test
