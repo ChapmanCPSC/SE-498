@@ -79,7 +79,7 @@ class QuizActivityVC: UIViewController {
     }
     
     @objc func updateTimer(){
-        seconds -= 2 
+        seconds -= 1
         timerLabel.text = "\(seconds)"
         if seconds == 0{
             timer.invalidate()
