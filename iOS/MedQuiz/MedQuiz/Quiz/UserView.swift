@@ -14,6 +14,8 @@ class UserView: UIView {
     @IBOutlet weak var lab_username: UILabel!
     @IBOutlet weak var iv_profile: UIImageView!
 
+    var currStudent:StudentModel!
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -41,6 +43,20 @@ class UserView: UIView {
     
     func setBackgroundColor(color:UIColor){
         viewMain.backgroundColor = color
+    }
+
+    func updateView(student:StudentModel, position:Int){
+        self.currStudent = student
+        displayUsername(username: student.userName)
+        displayPosition(position: position)
+    }
+
+    func displayUsername(username:String){
+        lab_username.text = username
+    }
+
+    func displayPosition(position:Int){
+        lab_position.text = String.ordinalNumberFormat(number: position)
     }
     
 

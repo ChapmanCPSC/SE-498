@@ -1,6 +1,6 @@
 version: 2
 jobs:
-	build:
+	test:
 		working_directory: ~/
 		docker:
 			- image: circle/node:7
