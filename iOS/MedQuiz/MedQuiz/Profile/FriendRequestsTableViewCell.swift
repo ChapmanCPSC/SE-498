@@ -12,6 +12,7 @@ class FriendRequestsTableViewCell: UITableViewCell {
 
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var borderImageView: UIImageView!
     
     var avatarImage: UIImage?
     var username: String?
@@ -19,7 +20,8 @@ class FriendRequestsTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-
+        
+        borderImageView.layer.borderColor = UIColor.init(red:0.5, green:0.5, blue:0.5, alpha:0.3).cgColor
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

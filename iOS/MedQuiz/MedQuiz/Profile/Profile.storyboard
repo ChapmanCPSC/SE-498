@@ -142,57 +142,21 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hjM-ce-fLC">
                                                 <rect key="frame" x="8" y="8" width="389" height="73"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iCa-PW-A6g">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iCa-PW-A6g" userLabel="Friend Username Text Field">
                                                         <rect key="frame" x="28" y="18" width="332" height="37"/>
                                                         <attributedString key="attributedText">
                                                             <fragment content="Enter friend’s username">
                                                                 <attributes>
                                                                     <color key="NSColor" red="1" green="0.55293999999999999" blue="0.51765000000000005" alpha="0.45850999999999997" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <font key="NSFont" size="36" name="HelveticaNeue"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
-                                                                        <tabStops>
-                                                                            <textTab alignment="left" location="28">
-                                                                                <options/>
-                                                                            </textTab>
-                                                                            <textTab alignment="left" location="56">
-                                                                                <options/>
-                                                                            </textTab>
-                                                                            <textTab alignment="left" location="84">
-                                                                                <options/>
-                                                                            </textTab>
-                                                                            <textTab alignment="left" location="112">
-                                                                                <options/>
-                                                                            </textTab>
-                                                                            <textTab alignment="left" location="140">
-                                                                                <options/>
-                                                                            </textTab>
-                                                                            <textTab alignment="left" location="168">
-                                                                                <options/>
-                                                                            </textTab>
-                                                                            <textTab alignment="left" location="196">
-                                                                                <options/>
-                                                                            </textTab>
-                                                                            <textTab alignment="left" location="224">
-                                                                                <options/>
-                                                                            </textTab>
-                                                                            <textTab alignment="left" location="252">
-                                                                                <options/>
-                                                                            </textTab>
-                                                                            <textTab alignment="left" location="280">
-                                                                                <options/>
-                                                                            </textTab>
-                                                                            <textTab alignment="left" location="308">
-                                                                                <options/>
-                                                                            </textTab>
-                                                                            <textTab alignment="left" location="336">
-                                                                                <options/>
-                                                                            </textTab>
-                                                                        </tabStops>
-                                                                    </paragraphStyle>
+                                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                                                 </attributes>
                                                             </fragment>
                                                         </attributedString>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <action selector="friendUsernameTextFieldEditingDidBegin:" destination="sKt-xQ-lOJ" eventType="editingDidEnd" id="Xnn-vL-4iZ"/>
+                                                        </connections>
                                                     </textField>
                                                 </subviews>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -204,10 +168,11 @@
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.2627450980392157" green="0.61960784313725492" blue="0.76862745098039209" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="hjM-ce-fLC" firstAttribute="trailing" secondItem="F4q-9Q-dxN" secondAttribute="trailingMargin" id="MXW-sd-PbT"/>
                                             <constraint firstItem="hjM-ce-fLC" firstAttribute="leading" secondItem="F4q-9Q-dxN" secondAttribute="leadingMargin" id="UhE-WC-Kqx"/>
+                                            <constraint firstAttribute="width" constant="405" id="Us9-4G-wHS"/>
                                             <constraint firstItem="hjM-ce-fLC" firstAttribute="bottom" secondItem="F4q-9Q-dxN" secondAttribute="bottomMargin" id="gYP-jJ-mfX"/>
                                             <constraint firstItem="hjM-ce-fLC" firstAttribute="top" secondItem="F4q-9Q-dxN" secondAttribute="topMargin" id="gqZ-ZT-XaO"/>
                                         </constraints>
@@ -224,7 +189,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="0.4273165605" blue="0.4183403906" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" red="1" green="0.55294117647058827" blue="0.51764705882352935" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="gcd-su-th0" secondAttribute="trailing" constant="58" id="0wH-mb-Nn8"/>
                                     <constraint firstItem="F4q-9Q-dxN" firstAttribute="leading" secondItem="D3l-gE-7jX" secondAttribute="leading" constant="145" id="AZt-F2-zQh"/>
@@ -250,49 +215,10 @@
                                 <rect key="frame" x="63" y="503" width="564" height="338"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="HDm-H4-iKH" customClass="FriendRequestsTableViewCell" customModule="MedQuiz" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="564" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HDm-H4-iKH" id="LSR-iw-gok">
-                                            <rect key="frame" x="0.0" y="0.0" width="564" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nw4-tV-lj7" userLabel="Border Image View">
-                                                    <rect key="frame" x="89" y="0.0" width="475" height="44"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="borderImageView" destination="nw4-tV-lj7" id="xx3-O8-tAj"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Osz-aE-bb3">
-                                        <rect key="frame" x="0.0" y="72" width="564" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Osz-aE-bb3" id="Z19-Ag-gct">
-                                            <rect key="frame" x="0.0" y="0.0" width="564" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="45J-mV-jAW">
-                                        <rect key="frame" x="0.0" y="116" width="564" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="45J-mV-jAW" id="kO6-K7-27I">
-                                            <rect key="frame" x="0.0" y="0.0" width="564" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="aua-qZ-cDU">
-                                        <rect key="frame" x="0.0" y="160" width="564" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aua-qZ-cDU" id="udA-F3-gsc">
-                                            <rect key="frame" x="0.0" y="0.0" width="564" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="sKt-xQ-lOJ" id="mct-pm-MfD"/>
+                                    <outlet property="delegate" destination="sKt-xQ-lOJ" id="9RA-kR-G44"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -312,6 +238,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wua-tg-lph"/>
                     </view>
+                    <connections>
+                        <outlet property="friendRequestsTableView" destination="IZ9-us-Pic" id="y7u-ad-MZ6"/>
+                        <outlet property="friendUsernameTextField" destination="iCa-PW-A6g" id="DDt-7Y-6Ud"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cq8-hR-VGp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
