@@ -10,7 +10,7 @@ The iOS Medical Quiz App
 * When running tests make sure your .travis.yml file is in the right location.
 * Refer to this link regarding the structure of the .travis.yml file. https://docs.travis-ci.com/user/getting-started#To-get-started-with-Travis-CI
 
-#TravisCI (Continous Intergration) Testing
+# TravisCI (Continous Intergration) Testing
 > For this project we are using Travis CI. Which is a tool that directly interfaces with a github repo for fast and easy testing that can be automated. 
 * Travis CI will send you an email notification if your build/commit passed or fail.
 * Every time a team member makes a commit to the repo. Travis CI will automatically conduct the automated testing on the files being commited.
