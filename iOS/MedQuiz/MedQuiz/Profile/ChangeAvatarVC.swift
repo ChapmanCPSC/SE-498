@@ -17,11 +17,13 @@ class ChangeAvatarVC: UIViewController, UICollectionViewDelegate, UICollectionVi
 
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var array:[UIImage] = [#imageLiteral(resourceName: "StudentAvatarPlaceholder.png"), #imageLiteral(resourceName: "MockAnswerTwo.png"), #imageLiteral(resourceName: "MockAnswerOne.png"), #imageLiteral(resourceName: "MockAnswerFour.png"), #imageLiteral(resourceName: "MockAnswerThree.png")]
+    var array:[UIImage] = [#imageLiteral(resourceName: "StudentAvatarPlaceholder.png"), #imageLiteral(resourceName: "MockAnswerTwo.png"), #imageLiteral(resourceName: "MockAnswerOne.png"), #imageLiteral(resourceName: "RightAnswer.png"), #imageLiteral(resourceName: "MockAnswerThree.png")]
     
     var profileImage: UIImage?
     
     weak var delegate: ChangeAvatarVCDelegate?
+    
+    var selectedImageIndexPath: IndexPath!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,14 +35,15 @@ class ChangeAvatarVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         layout.itemSize = CGSize(width: 150, height: 150)
         collectionView.collectionViewLayout = layout
         
-        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = true
         
         let selectedImageIndex = array.index(of: profileImage!)
         array.swapAt(selectedImageIndex!, array.capacity / 2)
+        selectedImageIndexPath = IndexPath(row: array.capacity / 2, section: 0)
     }
     override func viewDidAppear(_ animated: Bool) {
+        //collectionView.scrollToItem(at: selectedImageIndexPath, at: [], animated: false)
         collectionView.contentOffset.x = (collectionView.contentSize.width / 2) - (collectionView.bounds.width / 2)
-        adjustVisibleCollectionCells()
     }
     
     @IBAction func doneWithAvatar(_ sender: Any) {
@@ -56,6 +59,8 @@ class ChangeAvatarVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! AvatarCollectionViewCell
         cell.imageView.image = array[indexPath.row]
         cell.delegate = self
+        
+        adjustVisibleCollectionCells()
         
         return cell
     }
