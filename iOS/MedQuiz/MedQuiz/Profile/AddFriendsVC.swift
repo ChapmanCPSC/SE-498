@@ -19,6 +19,9 @@ class AddFriendsVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, 
     
     var friendUsername: String?
     
+    var cellUsernames:[String] = ["Kyle102", "Jeniffer308", "Mark075", "Layla690"]
+    var cellImages:[UIImage] = [#imageLiteral(resourceName: "StudentAvatarPlaceholder.png"), #imageLiteral(resourceName: "StudentAvatarPlaceholder.png"), #imageLiteral(resourceName: "StudentAvatarPlaceholder.png"), #imageLiteral(resourceName: "StudentAvatarPlaceholder.png")]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,7 +33,8 @@ class AddFriendsVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, 
         friendRequestsTableView.contentInset = UIEdgeInsetsMake(0, 0, 120, 0)
     }
     
-    @IBAction func friendUsernameTextFieldEditingDidBegin(_ sender: Any) {
+    @IBAction func friendUsernameTextFieldTouchDown(_ sender: Any) {
+        friendUsernameTextField.text = ""
         friendUsernameTextField.textColor = activeTextColor
     }
     
@@ -38,9 +42,14 @@ class AddFriendsVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, 
         dismiss(animated: false, completion: nil)
     }
     
+    @IBAction func friendUsernameTextFieldEditingDidEnd(_ sender: Any) {
+        friendUsernameTextField.textColor = placeholderTextColor
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         friendUsername = friendUsernameTextField.text
-        
+        friendUsernameTextField.textColor = placeholderTextColor
+        friendUsernameTextField.endEditing(true)
         return true
     }
     
@@ -50,7 +59,7 @@ class AddFriendsVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : FriendRequestsTableViewCell = friendRequestsTableView.dequeueReusableCell(withIdentifier: "friendRequests_cell") as! FriendRequestsTableViewCell
-        
+        cell.setViews(username: cellUsernames[indexPath.row], avatarImage: cellImages[indexPath.row])
         return cell
     }
     

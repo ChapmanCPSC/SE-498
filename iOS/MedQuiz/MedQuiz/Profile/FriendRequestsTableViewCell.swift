@@ -20,7 +20,8 @@ class FriendRequestsTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
+        usernameLabel.text = username
+        avatarImageView.image = avatarImage
         borderImageView.layer.borderColor = UIColor.init(red:0.5, green:0.5, blue:0.5, alpha:0.3).cgColor
     }
 
@@ -28,6 +29,13 @@ class FriendRequestsTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func setViews(username:String, avatarImage:UIImage){
+        self.username = username
+        self.usernameLabel.text = username
+        self.avatarImage = avatarImage
+        self.avatarImageView.image = avatarImage
     }
 
 }

@@ -155,7 +155,9 @@
                                                         </attributedString>
                                                         <textInputTraits key="textInputTraits"/>
                                                         <connections>
-                                                            <action selector="friendUsernameTextFieldEditingDidBegin:" destination="sKt-xQ-lOJ" eventType="editingDidEnd" id="Xnn-vL-4iZ"/>
+                                                            <action selector="friendUsernameTextFieldEditingDidEnd:" destination="sKt-xQ-lOJ" eventType="editingDidEnd" id="D7b-jl-EdJ"/>
+                                                            <action selector="friendUsernameTextFieldTouchDown:" destination="sKt-xQ-lOJ" eventType="touchDown" id="mie-5U-IGT"/>
+                                                            <outlet property="delegate" destination="sKt-xQ-lOJ" id="lZt-yu-dqH"/>
                                                         </connections>
                                                     </textField>
                                                 </subviews>
@@ -533,6 +535,7 @@
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
                                                     <action selector="changeUsernameTextFieldEditingDidBegin:" destination="vID-YB-ORr" eventType="editingDidBegin" id="Der-5p-JnI"/>
+                                                    <action selector="changeUsernameTextFieldEditingDidEnd:" destination="vID-YB-ORr" eventType="editingDidEnd" id="saa-x6-iIi"/>
                                                     <outlet property="delegate" destination="vID-YB-ORr" id="iFW-kJ-joG"/>
                                                 </connections>
                                             </textField>

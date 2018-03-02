@@ -14,6 +14,9 @@ protocol ChangeUsernameVCDelegate: class{
 
 class ChangeUsernameVC: UIViewController, UITextFieldDelegate {
 
+    let placeholderTextColor = UIColor.hexStringToUIColor(hex: "FF8D84")
+    let activeTextColor = UIColor.hexStringToUIColor(hex: "439EC4")
+    
     @IBOutlet weak var warningView: UIView!
     
     @IBOutlet weak var changeUsernameTextField: UITextField!
@@ -52,18 +55,20 @@ class ChangeUsernameVC: UIViewController, UITextFieldDelegate {
         changeUsernameTextField.endEditing(true)
     }
     
-    
     @IBAction func yesPressed(_ sender: Any) {
         warningView.isHidden = true
         delegate?.dataChanged(username: changeUsernameTextField.text!, usernameChanged: true)
         dismiss(animated: false, completion: nil)
     }
     
-    
     @IBAction func changeUsernameTextFieldEditingDidBegin(_ sender: Any) {
+        changeUsernameTextField.textColor = activeTextColor
         changeUsernameTextField.selectedTextRange = changeUsernameTextField.textRange(from: changeUsernameTextField.beginningOfDocument, to: changeUsernameTextField.endOfDocument)
     }
     
+    @IBAction func changeUsernameTextFieldEditingDidEnd(_ sender: Any) {
+        changeUsernameTextField.textColor = placeholderTextColor
+    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         if (changeUsernameTextField.text == username){
@@ -72,6 +77,7 @@ class ChangeUsernameVC: UIViewController, UITextFieldDelegate {
         }
         else{
             warningView.isHidden = false
+            changeUsernameTextField.textColor = placeholderTextColor
             changeUsernameTextField.endEditing(true)
         }
 
