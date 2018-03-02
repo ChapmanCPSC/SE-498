@@ -12,12 +12,11 @@ import UIKit
 class AddFriendsVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var friendUsernameTextField: UITextField!
+    @IBOutlet weak var searchResultLabel: UILabel!
     @IBOutlet weak var friendRequestsTableView: UITableView!
     
     let placeholderTextColor = UIColor.hexStringToUIColor(hex: "FF8D84")
     let activeTextColor = UIColor.hexStringToUIColor(hex: "439EC4")
-    
-    var friendUsername: String?
     
     var cellUsernames:[String] = ["Kyle102", "Jeniffer308", "Mark075", "Layla690"]
     var cellImages:[UIImage] = [#imageLiteral(resourceName: "StudentAvatarPlaceholder.png"), #imageLiteral(resourceName: "StudentAvatarPlaceholder.png"), #imageLiteral(resourceName: "StudentAvatarPlaceholder.png"), #imageLiteral(resourceName: "StudentAvatarPlaceholder.png")]
@@ -47,9 +46,9 @@ class AddFriendsVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, 
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        friendUsername = friendUsernameTextField.text
         friendUsernameTextField.textColor = placeholderTextColor
         friendUsernameTextField.endEditing(true)
+        friendSearch(friendUsername: friendUsernameTextField.text!)
         return true
     }
     
@@ -63,5 +62,21 @@ class AddFriendsVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, 
         return cell
     }
     
+    //Temporary conditionals used, will be replaced when connections to database established
+    func friendSearch(friendUsername:String){
+        if (true){
+            searchResultLabel.text = "Search successful"
+        }
+        else{
+            if (true){
+                searchResultLabel.text = "Search failed: Unable to connect to server"
+            }
+            else{
+                searchResultLabel.text = "Search failed: No matches found"
+            }
+        }
+        
+        searchResultLabel.isHidden = false
+    }
 }
 

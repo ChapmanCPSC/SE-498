@@ -190,15 +190,25 @@
                                             <action selector="backToFriends:" destination="sKt-xQ-lOJ" eventType="touchUpInside" id="JTn-yt-yMg"/>
                                         </connections>
                                     </button>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O5m-n9-VYa" userLabel="Search Result Label">
+                                        <rect key="frame" x="97" y="260" width="500" height="100"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.55294117647058827" blue="0.51764705882352935" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="gcd-su-th0" secondAttribute="trailing" constant="58" id="0wH-mb-Nn8"/>
                                     <constraint firstItem="F4q-9Q-dxN" firstAttribute="leading" secondItem="D3l-gE-7jX" secondAttribute="leading" constant="145" id="AZt-F2-zQh"/>
                                     <constraint firstItem="F4q-9Q-dxN" firstAttribute="centerX" secondItem="D3l-gE-7jX" secondAttribute="centerX" id="EK9-9A-VaP"/>
+                                    <constraint firstItem="O5m-n9-VYa" firstAttribute="leading" secondItem="D3l-gE-7jX" secondAttribute="leading" constant="97" id="RFN-0l-Sg2"/>
                                     <constraint firstItem="F4q-9Q-dxN" firstAttribute="top" secondItem="D3l-gE-7jX" secondAttribute="top" constant="148" id="Tl5-Wf-OV5"/>
                                     <constraint firstItem="F4q-9Q-dxN" firstAttribute="centerY" secondItem="D3l-gE-7jX" secondAttribute="centerY" id="cmX-IA-UnJ"/>
                                     <constraint firstItem="gcd-su-th0" firstAttribute="top" secondItem="D3l-gE-7jX" secondAttribute="topMargin" constant="20" id="lUs-9J-n4Z"/>
+                                    <constraint firstAttribute="bottom" secondItem="O5m-n9-VYa" secondAttribute="bottom" constant="24" id="luC-aL-9h9"/>
+                                    <constraint firstItem="O5m-n9-VYa" firstAttribute="top" secondItem="F4q-9Q-dxN" secondAttribute="bottom" constant="23" id="o53-BA-f3m"/>
+                                    <constraint firstItem="O5m-n9-VYa" firstAttribute="centerX" secondItem="F4q-9Q-dxN" secondAttribute="centerX" id="phx-f8-Tdk"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mv2-YU-tho">
@@ -243,6 +253,7 @@
                     <connections>
                         <outlet property="friendRequestsTableView" destination="IZ9-us-Pic" id="y7u-ad-MZ6"/>
                         <outlet property="friendUsernameTextField" destination="iCa-PW-A6g" id="DDt-7Y-6Ud"/>
+                        <outlet property="searchResultLabel" destination="O5m-n9-VYa" id="pTK-bc-c1z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cq8-hR-VGp" userLabel="First Responder" sceneMemberID="firstResponder"/>
