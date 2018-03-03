@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,54 +19,17 @@
                 <rect key="frame" x="0.0" y="0.0" width="900" height="99.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bui-f4-Oym" userLabel="Border Image View">
-                        <rect key="frame" x="120" y="11" width="660" height="80"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6aB-tZ-Eym">
+                        <rect key="frame" x="120" y="11" width="660" height="78"/>
+                        <color key="backgroundColor" red="0.55719763040000003" green="0.90587151050000003" blue="0.62353932860000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                 <integer key="value" value="40"/>
                             </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                <integer key="value" value="1"/>
-                            </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
-                    </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="apT-ZK-1MJ" userLabel="Add Button">
-                        <rect key="frame" x="654" y="24" width="90" height="55"/>
-                        <color key="backgroundColor" red="0.89803921568627454" green="0.52941176470588236" blue="0.52941176470588236" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="90" id="Nt9-KM-z7o"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                        <state key="normal" title="Add">
-                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </state>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                <integer key="value" value="28"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
-                    </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DG1-G5-OOU" userLabel="Hide Button">
-                        <rect key="frame" x="525" y="24" width="90" height="55"/>
-                        <color key="backgroundColor" red="0.54509803921568623" green="0.63529411764705879" blue="0.6705882352941176" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="90" id="MOH-Zs-HtG"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                        <state key="normal" title="Hide">
-                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </state>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                <integer key="value" value="28"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
-                    </button>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3xc-8w-vc8" userLabel="Username label">
-                        <rect key="frame" x="231" y="36" width="228" height="29"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="228" id="71H-R2-hmM"/>
-                        </constraints>
+                        <rect key="frame" x="231" y="36" width="50.5" height="29"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -75,32 +37,64 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="StudentAvatarPlaceholder.png" translatesAutoresizingMaskIntoConstraints="NO" id="eIx-ke-Gdf" userLabel="Avatar Image View">
                         <rect key="frame" x="120" y="8" width="84" height="84"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="84" id="HVR-LY-yZh"/>
+                            <constraint firstAttribute="width" constant="84" id="Tie-S0-7iG"/>
                         </constraints>
                     </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="apT-ZK-1MJ" userLabel="Add Button">
+                        <rect key="frame" x="627" y="29" width="105" height="42"/>
+                        <color key="backgroundColor" red="0.89803921568627454" green="0.52941176470588236" blue="0.52941176470588236" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="42" id="WfJ-ke-LNu"/>
+                            <constraint firstAttribute="width" constant="105" id="Zxh-Kv-P3O"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                        <state key="normal" title="Add">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="20"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DG1-G5-OOU" userLabel="Hide Button">
+                        <rect key="frame" x="484" y="29" width="105" height="42"/>
+                        <color key="backgroundColor" red="0.54509803921568623" green="0.63529411764705879" blue="0.6705882352941176" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="42" id="qxU-cb-gq1"/>
+                            <constraint firstAttribute="width" constant="105" id="rc3-N0-Ccd"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                        <state key="normal" title="Hide">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="20"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="bui-f4-Oym" firstAttribute="top" secondItem="aMk-jh-gPg" secondAttribute="topMargin" id="4zS-ax-Kfg"/>
-                    <constraint firstItem="bui-f4-Oym" firstAttribute="centerY" secondItem="3xc-8w-vc8" secondAttribute="centerY" id="5vd-3M-QVk"/>
-                    <constraint firstItem="bui-f4-Oym" firstAttribute="centerY" secondItem="apT-ZK-1MJ" secondAttribute="centerY" id="7xb-gX-yJZ"/>
-                    <constraint firstItem="DG1-G5-OOU" firstAttribute="top" secondItem="aMk-jh-gPg" secondAttribute="topMargin" constant="13" id="Bce-Tg-ivH"/>
-                    <constraint firstItem="eIx-ke-Gdf" firstAttribute="top" secondItem="aMk-jh-gPg" secondAttribute="topMargin" constant="-3" id="Gt3-Ww-9RM"/>
-                    <constraint firstItem="apT-ZK-1MJ" firstAttribute="baseline" secondItem="DG1-G5-OOU" secondAttribute="firstBaseline" id="KSz-W8-2ad"/>
-                    <constraint firstItem="3xc-8w-vc8" firstAttribute="top" secondItem="aMk-jh-gPg" secondAttribute="topMargin" constant="25" id="L1p-6u-6nM"/>
-                    <constraint firstItem="eIx-ke-Gdf" firstAttribute="leading" secondItem="aMk-jh-gPg" secondAttribute="leadingMargin" constant="6" id="M0h-6d-Rk3"/>
-                    <constraint firstItem="3xc-8w-vc8" firstAttribute="leading" secondItem="eIx-ke-Gdf" secondAttribute="trailing" constant="27" id="OSL-Nu-Ibb"/>
-                    <constraint firstItem="apT-ZK-1MJ" firstAttribute="leading" secondItem="DG1-G5-OOU" secondAttribute="trailing" constant="39" id="PB9-pj-7fR"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="apT-ZK-1MJ" secondAttribute="trailing" constant="42" id="XQL-UA-TNR"/>
-                    <constraint firstItem="eIx-ke-Gdf" firstAttribute="centerY" secondItem="3xc-8w-vc8" secondAttribute="centerY" id="gGj-a3-dkA"/>
-                    <constraint firstItem="DG1-G5-OOU" firstAttribute="top" secondItem="apT-ZK-1MJ" secondAttribute="top" id="ndh-0E-biB"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="bui-f4-Oym" secondAttribute="trailing" constant="6" id="uQC-AV-9Wq"/>
-                    <constraint firstItem="eIx-ke-Gdf" firstAttribute="centerY" secondItem="aMk-jh-gPg" secondAttribute="centerY" id="yy5-w4-GE1"/>
-                    <constraint firstItem="eIx-ke-Gdf" firstAttribute="leading" secondItem="bui-f4-Oym" secondAttribute="leading" id="zJq-8H-6i0"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="6aB-tZ-Eym" secondAttribute="trailing" constant="6" id="2Xs-nh-ZWK"/>
+                    <constraint firstItem="eIx-ke-Gdf" firstAttribute="centerY" secondItem="3xc-8w-vc8" secondAttribute="centerY" id="2y0-BX-2g2"/>
+                    <constraint firstItem="6aB-tZ-Eym" firstAttribute="top" secondItem="aMk-jh-gPg" secondAttribute="topMargin" id="FXD-Zk-phE"/>
+                    <constraint firstItem="6aB-tZ-Eym" firstAttribute="leading" secondItem="aMk-jh-gPg" secondAttribute="leadingMargin" constant="6" id="Jm7-XL-4HQ"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="apT-ZK-1MJ" secondAttribute="trailing" constant="54" id="Jt2-xu-bwu"/>
+                    <constraint firstItem="apT-ZK-1MJ" firstAttribute="leading" secondItem="DG1-G5-OOU" secondAttribute="trailing" constant="38" id="KtL-5e-TKj"/>
+                    <constraint firstItem="6aB-tZ-Eym" firstAttribute="bottom" secondItem="aMk-jh-gPg" secondAttribute="bottomMargin" id="N5u-fZ-hMG"/>
+                    <constraint firstItem="DG1-G5-OOU" firstAttribute="top" secondItem="aMk-jh-gPg" secondAttribute="topMargin" constant="18" id="Vvs-5x-74n"/>
+                    <constraint firstItem="eIx-ke-Gdf" firstAttribute="leading" secondItem="6aB-tZ-Eym" secondAttribute="leading" id="bKO-7z-0Gk"/>
+                    <constraint firstItem="3xc-8w-vc8" firstAttribute="top" secondItem="aMk-jh-gPg" secondAttribute="topMargin" constant="25" id="dFc-1X-JbQ"/>
+                    <constraint firstItem="eIx-ke-Gdf" firstAttribute="top" secondItem="aMk-jh-gPg" secondAttribute="topMargin" constant="-3" id="k2l-fL-xRM"/>
+                    <constraint firstItem="DG1-G5-OOU" firstAttribute="baseline" secondItem="apT-ZK-1MJ" secondAttribute="baseline" id="xzf-HN-rwe"/>
+                    <constraint firstItem="eIx-ke-Gdf" firstAttribute="centerY" secondItem="6aB-tZ-Eym" secondAttribute="centerY" id="yjd-Qp-UgE"/>
+                    <constraint firstItem="3xc-8w-vc8" firstAttribute="leading" secondItem="eIx-ke-Gdf" secondAttribute="trailing" constant="27" id="zyo-S5-7nX"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="avatarImageView" destination="eIx-ke-Gdf" id="RX4-O6-YQG"/>
-                <outlet property="borderImageView" destination="bui-f4-Oym" id="tHE-py-v5F"/>
+                <outlet property="borderView" destination="6aB-tZ-Eym" id="gIF-Dt-aNa"/>
                 <outlet property="usernameLabel" destination="3xc-8w-vc8" id="TIM-pO-cg6"/>
             </connections>
             <point key="canvasLocation" x="43" y="-140"/>

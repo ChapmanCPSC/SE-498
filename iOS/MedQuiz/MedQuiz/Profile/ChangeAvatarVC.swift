@@ -35,7 +35,7 @@ class ChangeAvatarVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         layout.itemSize = CGSize(width: 150, height: 150)
         collectionView.collectionViewLayout = layout
         
-        collectionView.showsHorizontalScrollIndicator = true
+        collectionView.showsHorizontalScrollIndicator = false
         
         let selectedImageIndex = array.index(of: profileImage!)
         array.swapAt(selectedImageIndex!, array.capacity / 2)

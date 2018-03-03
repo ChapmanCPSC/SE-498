@@ -17,7 +17,6 @@
 		3D77A1401FB50968009178A1 /* AboutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D77A13F1FB50968009178A1 /* AboutVC.swift */; };
 		3D77A1421FB50987009178A1 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D77A1411FB50987009178A1 /* ProfileVC.swift */; };
 		3D77A1441FB509A7009178A1 /* ChangeAvatarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D77A1431FB509A7009178A1 /* ChangeAvatarVC.swift */; };
-		3D77A1461FB50A59009178A1 /* AddFriendsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D77A1451FB50A59009178A1 /* AddFriendsVC.swift */; };
 		3D77A1481FB50AA1009178A1 /* QuizVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D77A1471FB50AA1009178A1 /* QuizVC.swift */; };
 		3D77A14A1FB50AB0009178A1 /* QuizActivityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D77A1491FB50AB0009178A1 /* QuizActivityVC.swift */; };
 		3D77A14C1FB50AC0009178A1 /* QuizSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D77A14B1FB50AC0009178A1 /* QuizSearchVC.swift */; };
@@ -62,6 +61,7 @@
 		3DD07C8F20450B5D00FADCD9 /* chapman-univeristy-300x156.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DD07C8C20450B5B00FADCD9 /* chapman-univeristy-300x156.png */; };
 		3DD07C9020450B5D00FADCD9 /* off-canvas-header-default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DD07C8D20450B5C00FADCD9 /* off-canvas-header-default.png */; };
 		3DD07C9120450B5D00FADCD9 /* Chapman-Univ_cropped_1486751083_300X300_c_c_0_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DD07C8E20450B5C00FADCD9 /* Chapman-Univ_cropped_1486751083_300X300_c_c_0_0.png */; };
+		3DD07C93204B5EEF00FADCD9 /* FriendsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD07C92204B5EEF00FADCD9 /* FriendsVC.swift */; };
 		3DE027592034DDE000ECAE7B /* ColorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE027582034DDE000ECAE7B /* ColorHelper.swift */; };
 		3DE0275C2034E1B100ECAE7B /* LeaderboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE0275A2034E1B100ECAE7B /* LeaderboardCell.swift */; };
 		3DE0275D2034E1B100ECAE7B /* LeaderboardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DE0275B2034E1B100ECAE7B /* LeaderboardCell.xib */; };
@@ -137,7 +137,6 @@
 		3D77A13F1FB50968009178A1 /* AboutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutVC.swift; sourceTree = "<group>"; };
 		3D77A1411FB50987009178A1 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		3D77A1431FB509A7009178A1 /* ChangeAvatarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAvatarVC.swift; sourceTree = "<group>"; };
-		3D77A1451FB50A59009178A1 /* AddFriendsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendsVC.swift; sourceTree = "<group>"; };
 		3D77A1471FB50AA1009178A1 /* QuizVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizVC.swift; sourceTree = "<group>"; };
 		3D77A1491FB50AB0009178A1 /* QuizActivityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizActivityVC.swift; sourceTree = "<group>"; };
 		3D77A14B1FB50AC0009178A1 /* QuizSearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSearchVC.swift; sourceTree = "<group>"; };
@@ -182,6 +181,7 @@
 		3DD07C8C20450B5B00FADCD9 /* chapman-univeristy-300x156.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chapman-univeristy-300x156.png"; sourceTree = "<group>"; };
 		3DD07C8D20450B5C00FADCD9 /* off-canvas-header-default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "off-canvas-header-default.png"; sourceTree = "<group>"; };
 		3DD07C8E20450B5C00FADCD9 /* Chapman-Univ_cropped_1486751083_300X300_c_c_0_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Chapman-Univ_cropped_1486751083_300X300_c_c_0_0.png"; sourceTree = "<group>"; };
+		3DD07C92204B5EEF00FADCD9 /* FriendsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsVC.swift; sourceTree = "<group>"; };
 		3DE027582034DDE000ECAE7B /* ColorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHelper.swift; sourceTree = "<group>"; };
 		3DE0275A2034E1B100ECAE7B /* LeaderboardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardCell.swift; sourceTree = "<group>"; };
 		3DE0275B2034E1B100ECAE7B /* LeaderboardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaderboardCell.xib; sourceTree = "<group>"; };
@@ -394,8 +394,8 @@
 				A114D7922043EBD2007336BB /* AvatarCollectionViewCell.swift */,
 				3D77A1411FB50987009178A1 /* ProfileVC.swift */,
 				3D77A1431FB509A7009178A1 /* ChangeAvatarVC.swift */,
-				3D77A1451FB50A59009178A1 /* AddFriendsVC.swift */,
 				A149D7DA2044B4C400AD3B1A /* ChangeUsernameVC.swift */,
+				3DD07C92204B5EEF00FADCD9 /* FriendsVC.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -665,7 +665,6 @@
 				3D77A1421FB50987009178A1 /* ProfileVC.swift in Sources */,
 				A53E754E2037FC3E0081B1AD /* PerformsSegueDelegator.swift in Sources */,
 				A53E75522043AA300081B1AD /* AnswerView.swift in Sources */,
-				3D77A1461FB50A59009178A1 /* AddFriendsVC.swift in Sources */,
 				3D77A1401FB50968009178A1 /* AboutVC.swift in Sources */,
 				3D77A1481FB50AA1009178A1 /* QuizVC.swift in Sources */,
 				DAB359371FBACA3600D5A959 /* QuestionModel.swift in Sources */,
@@ -685,6 +684,7 @@
 				77A147E18BBD74BD32CD4CFE /* QuizTableViewCell.swift in Sources */,
 				77A142FE34E4EF8ADA82939C /* CellDataNode.swift in Sources */,
 				A5BBD79120450F3C00A4D4D3 /* UserView.swift in Sources */,
+				3DD07C93204B5EEF00FADCD9 /* FriendsVC.swift in Sources */,
 				A53E75562043C5AE0081B1AD /* Ext_Constraint.swift in Sources */,
 				77A1404BBAD84427D45C7E6D /* SubjectDataNode.swift in Sources */,
 				77A14C52970D8B49A9E19116 /* CategoryDataNode.swift in Sources */,
@@ -862,12 +862,15 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WK89PN64FL;
 				INFOPLIST_FILE = MedQuiz/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.frontback.MedQuiz;
+				PRODUCT_BUNDLE_IDENTIFIER = com.frontback.PharmApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -878,12 +881,15 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WK89PN64FL;
 				INFOPLIST_FILE = MedQuiz/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.frontback.MedQuiz;
+				PRODUCT_BUNDLE_IDENTIFIER = com.frontback.PharmApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 2;
 			};

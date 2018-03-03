@@ -61,8 +61,12 @@ class ProfileVC: UIViewController, ChangeAvatarVCDelegate, ChangeUsernameVCDeleg
     }
     
     @IBAction func addFriendsPressed(_ sender: Any) {
-        let addFriendsVC =  self.storyboard?.instantiateViewController(withIdentifier: "addFriends") as! AddFriendsVC
-        self.present(addFriendsVC, animated: false, completion: nil)
+//        let addFriendsVC =  self.storyboard?.instantiateViewController(withIdentifier: "addFriends") as! AddFriendsVC
+        let altAddFriendsVC =  self.storyboard?.instantiateViewController(withIdentifier: "altFriendRequest") as! FriendsVC
+
+        self.present(altAddFriendsVC, animated: false, completion: nil)
+        
+        
     }
     
     @objc func profileAvatarPressed(){
