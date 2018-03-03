@@ -256,6 +256,9 @@ class QuizActivityVC: UIViewController {
             view.displayAnswer()
             canSelect = true
         }
+        seconds = 11
+        updateTimer()
+        runTimer()
     }
 
     @IBAction func tempQuestionInvertPressed(_ sender: Any) {
