@@ -9,6 +9,7 @@
 import UIKit
 
 class LeaderboardCell: UITableViewCell {
+    var points:Int = 0
     
     @IBOutlet weak var rankLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
@@ -24,8 +25,9 @@ class LeaderboardCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
+        scoreLabel.text = "\(points)"
     }
     
 }
