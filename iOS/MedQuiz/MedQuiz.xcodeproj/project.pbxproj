@@ -252,12 +252,9 @@
 			isa = PBXGroup;
 			children = (
 				3D2495A61F7E2EDD0058D85B /* MedQuiz */,
-				3D3166AA1FBB050F000D910F /* ImagesAndIcons */,
-				3D3166A91FBB04D7000D910F /* Fonts */,
 				3D2495BB1F7E2EDD0058D85B /* MedQuizTests */,
 				3D2495C61F7E2EDD0058D85B /* MedQuizUITests */,
 				3D2495A51F7E2EDD0058D85B /* Products */,
-				77A142075FF6BE2CFA285D58 /* Ext_String.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -274,23 +271,26 @@
 		3D2495A61F7E2EDD0058D85B /* MedQuiz */ = {
 			isa = PBXGroup;
 			children = (
+				3D3166AA1FBB050F000D910F /* ImagesAndIcons */,
+				3D3166A91FBB04D7000D910F /* Fonts */,
 				A53E754C2037D8090081B1AD /* CustomCells */,
 				A53E754B2037D8000081B1AD /* CustomCellNodes */,
-				3D2495B01F7E2EDD0058D85B /* LaunchScreen.storyboard */,
-				3D2495AB1F7E2EDD0058D85B /* Main.storyboard */,
+				3DD07C94204B665F00FADCD9 /* CustomClasses */,
 				3D8C842F1FBA896300FA2AD0 /* Login */,
 				3D77A1381FB505F2009178A1 /* Quiz */,
 				3D77A13B1FB5061B009178A1 /* Leaderboard */,
 				3D77A1391FB50601009178A1 /* Profile */,
 				3D77A13A1FB50612009178A1 /* About */,
 				3D77A13C1FB50783009178A1 /* Sidebar Navigation */,
+				3D2495AB1F7E2EDD0058D85B /* Main.storyboard */,
+				3D2495B01F7E2EDD0058D85B /* LaunchScreen.storyboard */,
 				3DE027582034DDE000ECAE7B /* ColorHelper.swift */,
 				3D2495AE1F7E2EDD0058D85B /* Assets.xcassets */,
 				3D2495A71F7E2EDD0058D85B /* AppDelegate.swift */,
 				3D2495B31F7E2EDD0058D85B /* Info.plist */,
 				A5618C7D2034EAB2001AC764 /* Ext_UIColor.swift */,
 				A53E75552043C5AE0081B1AD /* Ext_Constraint.swift */,
-				77A14D144D6891AEA3B19E5F /* StudentModel.swift */,
+				77A142075FF6BE2CFA285D58 /* Ext_String.swift */,
 			);
 			path = MedQuiz;
 			sourceTree = "<group>";
@@ -367,20 +367,17 @@
 		3D77A1381FB505F2009178A1 /* Quiz */ = {
 			isa = PBXGroup;
 			children = (
-				A5BBD79020450F3C00A4D4D3 /* UserView.swift */,
-				A5BBD78C20449D3E00A4D4D3 /* SelectsAnswerDelegator.swift */,
 				DAED09801FB4F67D003575B0 /* Quiz.storyboard */,
 				3D77A1471FB50AA1009178A1 /* QuizVC.swift */,
 				3D77A14B1FB50AC0009178A1 /* QuizSearchVC.swift */,
 				3D77A1491FB50AB0009178A1 /* QuizActivityVC.swift */,
-				DAB359341FBACA2100D5A959 /* QuizModel.swift */,
-				DAB359361FBACA3600D5A959 /* QuestionModel.swift */,
-				A53E754D2037FC3E0081B1AD /* PerformsSegueDelegator.swift */,
-				77A14D69142779011ED840FD /* ExpandableTableViewController.swift */,
 				A53E754F2043A8980081B1AD /* AnswerView.xib */,
 				A53E75512043AA300081B1AD /* AnswerView.swift */,
-				A53E75532043B9CF0081B1AD /* AnswerModel.swift */,
 				A5BBD78E20450D4700A4D4D3 /* UserView.xib */,
+				A5BBD79020450F3C00A4D4D3 /* UserView.swift */,
+				A5BBD78C20449D3E00A4D4D3 /* SelectsAnswerDelegator.swift */,
+				A53E754D2037FC3E0081B1AD /* PerformsSegueDelegator.swift */,
+				77A14D69142779011ED840FD /* ExpandableTableViewController.swift */,
 			);
 			path = Quiz;
 			sourceTree = "<group>";
@@ -439,6 +436,17 @@
 				3D8C84321FBA8A2D00FA2AD0 /* LoginVC.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		3DD07C94204B665F00FADCD9 /* CustomClasses */ = {
+			isa = PBXGroup;
+			children = (
+				DAB359341FBACA2100D5A959 /* QuizModel.swift */,
+				DAB359361FBACA3600D5A959 /* QuestionModel.swift */,
+				A53E75532043B9CF0081B1AD /* AnswerModel.swift */,
+				77A14D144D6891AEA3B19E5F /* StudentModel.swift */,
+			);
+			path = CustomClasses;
 			sourceTree = "<group>";
 		};
 		A53E754B2037D8000081B1AD /* CustomCellNodes */ = {
