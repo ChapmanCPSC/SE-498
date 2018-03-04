@@ -52,7 +52,6 @@ class ChangeUsernameVC: UIViewController, UITextFieldDelegate {
     
     @IBAction func noPressed(_ sender: Any) {
         warningView.isHidden = true
-        changeUsernameTextField.text = username
         changeUsernameTextField.endEditing(true)
     }
     
@@ -74,8 +73,7 @@ class ChangeUsernameVC: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         
         if (changeUsernameTextField.text == username){
-            //How is data changing here?
-            delegate?.dataChanged(username: changeUsernameTextField.text!, usernameChanged: true)
+            delegate?.dataChanged(username: changeUsernameTextField.text!, usernameChanged: false)
             dismiss(animated: false, completion: nil)
         }
         else{
