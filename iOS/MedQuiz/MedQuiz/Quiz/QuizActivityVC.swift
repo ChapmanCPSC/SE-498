@@ -52,6 +52,7 @@ class QuizActivityVC: UIViewController {
     var seconds = 10
     var timer = Timer()
     var isTimerRunning = false
+    var pointsEarned: Int = 0
     
     @IBOutlet weak var questionsTimer: SRCountdownTimer!
     
@@ -222,7 +223,7 @@ class QuizActivityVC: UIViewController {
         var count = 0
 
         userViews.forEach { view in
-            view.updateView(student: userSubset[count], position: startingPosition + count)
+            view.updateView(student: userSubset[count], position: startingPosition + count, score: pointsEarned)
             count += 1
          }
     }
@@ -317,7 +318,7 @@ extension QuizActivityVC:SelectsAnswer {
         questionsTimer.pause()
 //        answer1.answer.points
         answer1.answer.points = questionsTimer.returnCurrentTime()
-
+        pointsEarned += answer1.answer.points
       
         if(canSelect){
             canSelect = false
@@ -327,6 +328,7 @@ extension QuizActivityVC:SelectsAnswer {
                     let selectedAnswer = view.answer
                     if(selectedAnswer.isAnswer){
                         view.showCorrect()
+                        updateLeaderboard()
                     }
                     else{
                         view.fadeAnswer()

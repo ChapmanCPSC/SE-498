@@ -15,6 +15,7 @@ class UserView: UIView {
     @IBOutlet weak var iv_profile: UIImageView!
     @IBOutlet weak var scoreLabel: UILabel!
     
+    var overallScore: Int = 0
     var currStudent:StudentModel!
 
     override init(frame: CGRect) {
@@ -68,6 +69,7 @@ class UserView: UIView {
     }
     
     func updateScore(score: Int){
+        overallScore += score
         scoreLabel.text = String(score)
     }
     
