@@ -52,7 +52,8 @@ class ChangeUsernameVC: UIViewController, UITextFieldDelegate {
     
     @IBAction func noPressed(_ sender: Any) {
         warningView.isHidden = true
-        changeUsernameTextField.endEditing(true)
+        changeUsernameTextField.becomeFirstResponder()
+//        changeUsernameTextField.endEditing(true)
     }
     
     @IBAction func yesPressed(_ sender: Any) {
