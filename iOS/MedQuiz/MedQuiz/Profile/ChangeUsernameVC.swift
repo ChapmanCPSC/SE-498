@@ -32,6 +32,7 @@ class ChangeUsernameVC: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        changeUsernameTextField.becomeFirstResponder()
         // Do any additional setup after loading the view.
         
         changeUsernameTextField.text = username
@@ -44,7 +45,7 @@ class ChangeUsernameVC: UIViewController, UITextFieldDelegate {
     
 
     @IBAction func backToProfile(_ sender: Any) {
-        delegate?.dataChanged(username: username!, usernameChanged: usernameChanged)
+//        delegate?.dataChanged(username: username!, usernameChanged: usernameChanged)
         dismiss(animated: false, completion: nil)
     }
     
@@ -71,7 +72,9 @@ class ChangeUsernameVC: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
+        
         if (changeUsernameTextField.text == username){
+            //How is data changing here?
             delegate?.dataChanged(username: changeUsernameTextField.text!, usernameChanged: true)
             dismiss(animated: false, completion: nil)
         }
