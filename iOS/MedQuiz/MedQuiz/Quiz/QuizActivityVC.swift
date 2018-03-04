@@ -311,11 +311,12 @@ extension QuizActivityVC:SelectsAnswer {
                         view.showCorrect()
                     }
                     else{
+                        view.fadeAnswer()
                         view.showWrong()
                     }
 
                 }
-                else{
+                else if(!view.answer.isAnswer){
                     view.fadeAnswer()
                 }
             }
