@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2EABCBC0770126F4ED8DA83C /* Pods_MedQuizUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED9BDFAEF47CF181DB0A7C39 /* Pods_MedQuizUITests.framework */; };
+		3D227FC9204BAC8C001EB946 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D227FC7204BAC8C001EB946 /* Info.plist */; };
+		3D227FCA204BAC8C001EB946 /* SRCountdownTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D227FC8204BAC8C001EB946 /* SRCountdownTimer.swift */; };
 		3D2495A81F7E2EDD0058D85B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2495A71F7E2EDD0058D85B /* AppDelegate.swift */; };
 		3D2495AD1F7E2EDD0058D85B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D2495AB1F7E2EDD0058D85B /* Main.storyboard */; };
 		3D2495AF1F7E2EDD0058D85B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D2495AE1F7E2EDD0058D85B /* Assets.xcassets */; };
@@ -95,12 +98,14 @@
 		A5BBD78D20449D3E00A4D4D3 /* SelectsAnswerDelegator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BBD78C20449D3E00A4D4D3 /* SelectsAnswerDelegator.swift */; };
 		A5BBD78F20450D4700A4D4D3 /* UserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5BBD78E20450D4700A4D4D3 /* UserView.xib */; };
 		A5BBD79120450F3C00A4D4D3 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BBD79020450F3C00A4D4D3 /* UserView.swift */; };
+		BDAF4E6F8E2913E44D54E890 /* Pods_MedQuizTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49372C758685A3A2EA2D8401 /* Pods_MedQuizTests.framework */; };
 		DAB359351FBACA2100D5A959 /* QuizModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB359341FBACA2100D5A959 /* QuizModel.swift */; };
 		DAB359371FBACA3600D5A959 /* QuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB359361FBACA3600D5A959 /* QuestionModel.swift */; };
 		DAED09811FB4F67D003575B0 /* Quiz.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAED09801FB4F67D003575B0 /* Quiz.storyboard */; };
 		DAED09831FB4F68D003575B0 /* Leaderboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAED09821FB4F68D003575B0 /* Leaderboard.storyboard */; };
 		DAED09851FB4F699003575B0 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAED09841FB4F699003575B0 /* Profile.storyboard */; };
 		DAED09871FB4F6B1003575B0 /* About.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAED09861FB4F6B1003575B0 /* About.storyboard */; };
+		FF8E13D9EBD2C09813F04E94 /* Pods_MedQuiz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CD08EA1353237A0EDE70460 /* Pods_MedQuiz.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +126,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0147C45F53D3EDF08DE8AE93 /* Pods-MedQuiz.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MedQuiz.release.xcconfig"; path = "Pods/Target Support Files/Pods-MedQuiz/Pods-MedQuiz.release.xcconfig"; sourceTree = "<group>"; };
+		0D9455252247112B356DC318 /* Pods-MedQuizTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MedQuizTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MedQuizTests/Pods-MedQuizTests.debug.xcconfig"; sourceTree = "<group>"; };
+		11D867444029BC708F18B456 /* Pods-MedQuizTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MedQuizTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MedQuizTests/Pods-MedQuizTests.release.xcconfig"; sourceTree = "<group>"; };
+		3D227FC7204BAC8C001EB946 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3D227FC8204BAC8C001EB946 /* SRCountdownTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRCountdownTimer.swift; sourceTree = "<group>"; };
 		3D2495A41F7E2EDD0058D85B /* MedQuiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MedQuiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D2495A71F7E2EDD0058D85B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3D2495AC1F7E2EDD0058D85B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -185,6 +195,8 @@
 		3DE027582034DDE000ECAE7B /* ColorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHelper.swift; sourceTree = "<group>"; };
 		3DE0275A2034E1B100ECAE7B /* LeaderboardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardCell.swift; sourceTree = "<group>"; };
 		3DE0275B2034E1B100ECAE7B /* LeaderboardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaderboardCell.xib; sourceTree = "<group>"; };
+		49372C758685A3A2EA2D8401 /* Pods_MedQuizTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MedQuizTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5CD08EA1353237A0EDE70460 /* Pods_MedQuiz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MedQuiz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		77A14120B4932DD782340C85 /* QuizTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuizTableViewCell.xib; sourceTree = "<group>"; };
 		77A142075FF6BE2CFA285D58 /* Ext_String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ext_String.swift; sourceTree = "<group>"; };
 		77A1420EF541FC59FA2D76A7 /* CategoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryTableViewCell.xib; sourceTree = "<group>"; };
@@ -202,6 +214,7 @@
 		7FB8F6B51FB25BDF005C2426 /* SideBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBar.swift; sourceTree = "<group>"; };
 		7FFDBB611FBD39D90001E1FC /* ProfileSideBarCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSideBarCell.swift; sourceTree = "<group>"; };
 		7FFDBB621FBD39DA0001E1FC /* ProfileSideBarCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileSideBarCell.xib; sourceTree = "<group>"; };
+		818675E47B91A8A60EB99D8A /* Pods-MedQuizUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MedQuizUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MedQuizUITests/Pods-MedQuizUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A114D7922043EBD2007336BB /* AvatarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCollectionViewCell.swift; sourceTree = "<group>"; };
 		A12154B720478E9E00E9E939 /* FriendRequestsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestsTableViewCell.swift; sourceTree = "<group>"; };
 		A12154B92047924E00E9E939 /* FriendRequestsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendRequestsTableViewCell.xib; sourceTree = "<group>"; };
@@ -215,12 +228,15 @@
 		A5BBD78C20449D3E00A4D4D3 /* SelectsAnswerDelegator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectsAnswerDelegator.swift; sourceTree = "<group>"; };
 		A5BBD78E20450D4700A4D4D3 /* UserView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserView.xib; sourceTree = "<group>"; };
 		A5BBD79020450F3C00A4D4D3 /* UserView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
+		BA565EF854E1AA0B6EE35D01 /* Pods-MedQuiz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MedQuiz.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MedQuiz/Pods-MedQuiz.debug.xcconfig"; sourceTree = "<group>"; };
+		BBDF75B2D8FC94A485865928 /* Pods-MedQuizUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MedQuizUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MedQuizUITests/Pods-MedQuizUITests.release.xcconfig"; sourceTree = "<group>"; };
 		DAB359341FBACA2100D5A959 /* QuizModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizModel.swift; sourceTree = "<group>"; };
 		DAB359361FBACA3600D5A959 /* QuestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionModel.swift; sourceTree = "<group>"; };
 		DAED09801FB4F67D003575B0 /* Quiz.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Quiz.storyboard; sourceTree = "<group>"; };
 		DAED09821FB4F68D003575B0 /* Leaderboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Leaderboard.storyboard; sourceTree = "<group>"; };
 		DAED09841FB4F699003575B0 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		DAED09861FB4F6B1003575B0 /* About.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = About.storyboard; sourceTree = "<group>"; };
+		ED9BDFAEF47CF181DB0A7C39 /* Pods_MedQuizUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MedQuizUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,6 +244,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF8E13D9EBD2C09813F04E94 /* Pods_MedQuiz.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,6 +252,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDAF4E6F8E2913E44D54E890 /* Pods_MedQuizTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,19 +260,42 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2EABCBC0770126F4ED8DA83C /* Pods_MedQuizUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0FC845CC14DC39024FDA305D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5CD08EA1353237A0EDE70460 /* Pods_MedQuiz.framework */,
+				49372C758685A3A2EA2D8401 /* Pods_MedQuizTests.framework */,
+				ED9BDFAEF47CF181DB0A7C39 /* Pods_MedQuizUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3D227FC6204BAC8C001EB946 /* SRCountdownTimer */ = {
+			isa = PBXGroup;
+			children = (
+				3D227FC7204BAC8C001EB946 /* Info.plist */,
+				3D227FC8204BAC8C001EB946 /* SRCountdownTimer.swift */,
+			);
+			path = SRCountdownTimer;
+			sourceTree = "<group>";
+		};
 		3D24959B1F7E2EDC0058D85B = {
 			isa = PBXGroup;
 			children = (
+				3D227FC6204BAC8C001EB946 /* SRCountdownTimer */,
 				3D2495A61F7E2EDD0058D85B /* MedQuiz */,
 				3D2495BB1F7E2EDD0058D85B /* MedQuizTests */,
 				3D2495C61F7E2EDD0058D85B /* MedQuizUITests */,
 				3D2495A51F7E2EDD0058D85B /* Products */,
+				B0598F1716E7ACB95BAE7158 /* Pods */,
+				0FC845CC14DC39024FDA305D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -474,6 +515,19 @@
 			path = CustomCells;
 			sourceTree = "<group>";
 		};
+		B0598F1716E7ACB95BAE7158 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BA565EF854E1AA0B6EE35D01 /* Pods-MedQuiz.debug.xcconfig */,
+				0147C45F53D3EDF08DE8AE93 /* Pods-MedQuiz.release.xcconfig */,
+				0D9455252247112B356DC318 /* Pods-MedQuizTests.debug.xcconfig */,
+				11D867444029BC708F18B456 /* Pods-MedQuizTests.release.xcconfig */,
+				818675E47B91A8A60EB99D8A /* Pods-MedQuizUITests.debug.xcconfig */,
+				BBDF75B2D8FC94A485865928 /* Pods-MedQuizUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -481,9 +535,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3D2495CC1F7E2EDD0058D85B /* Build configuration list for PBXNativeTarget "MedQuiz" */;
 			buildPhases = (
+				049FD79A844A45AAD76FFC27 /* [CP] Check Pods Manifest.lock */,
 				3D2495A01F7E2EDD0058D85B /* Sources */,
 				3D2495A11F7E2EDD0058D85B /* Frameworks */,
 				3D2495A21F7E2EDD0058D85B /* Resources */,
+				22A8944D04D02C244B72C867 /* [CP] Embed Pods Frameworks */,
+				779F7C9571A8624A5FEDBA3B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -498,9 +555,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3D2495CF1F7E2EDD0058D85B /* Build configuration list for PBXNativeTarget "MedQuizTests" */;
 			buildPhases = (
+				66726DBAA3D64715498C338B /* [CP] Check Pods Manifest.lock */,
 				3D2495B41F7E2EDD0058D85B /* Sources */,
 				3D2495B51F7E2EDD0058D85B /* Frameworks */,
 				3D2495B61F7E2EDD0058D85B /* Resources */,
+				14EEE01E22A0815D92412F9F /* [CP] Embed Pods Frameworks */,
+				36AF1E954AE38D84388D0B65 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -516,9 +576,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3D2495D21F7E2EDD0058D85B /* Build configuration list for PBXNativeTarget "MedQuizUITests" */;
 			buildPhases = (
+				6BE43A3EB7CA8345C08078A4 /* [CP] Check Pods Manifest.lock */,
 				3D2495BF1F7E2EDD0058D85B /* Sources */,
 				3D2495C01F7E2EDD0058D85B /* Frameworks */,
 				3D2495C11F7E2EDD0058D85B /* Resources */,
+				9570A268EC2C5FB26BDBFEB9 /* [CP] Embed Pods Frameworks */,
+				75AF36409941FDF46134CC5B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -594,6 +657,7 @@
 				3DD07C7E204509E700FADCD9 /* WrongAnswer@3x.png in Resources */,
 				DAED09831FB4F68D003575B0 /* Leaderboard.storyboard in Resources */,
 				3DD07C75204509E700FADCD9 /* SelectedAvatar@3x.png in Resources */,
+				3D227FC9204BAC8C001EB946 /* Info.plist in Resources */,
 				3DD07C82204509E700FADCD9 /* StudentAvatarPlaceholder.png in Resources */,
 				3DD07C85204509E700FADCD9 /* SearchIcon@2x.png in Resources */,
 				3DD07C88204509E700FADCD9 /* SearchIcon.png in Resources */,
@@ -659,6 +723,156 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		049FD79A844A45AAD76FFC27 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MedQuiz-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		14EEE01E22A0815D92412F9F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MedQuizTests/Pods-MedQuizTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		22A8944D04D02C244B72C867 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MedQuiz/Pods-MedQuiz-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SRCountdownTimer/SRCountdownTimer.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SRCountdownTimer.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MedQuiz/Pods-MedQuiz-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		36AF1E954AE38D84388D0B65 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MedQuizTests/Pods-MedQuizTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		66726DBAA3D64715498C338B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MedQuizTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6BE43A3EB7CA8345C08078A4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MedQuizUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		75AF36409941FDF46134CC5B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MedQuizUITests/Pods-MedQuizUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		779F7C9571A8624A5FEDBA3B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MedQuiz/Pods-MedQuiz-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9570A268EC2C5FB26BDBFEB9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MedQuizUITests/Pods-MedQuizUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3D2495A01F7E2EDD0058D85B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -683,6 +897,7 @@
 				A53E75542043B9CF0081B1AD /* AnswerModel.swift in Sources */,
 				3D77A1441FB509A7009178A1 /* ChangeAvatarVC.swift in Sources */,
 				7FB8F6B61FB25BDF005C2426 /* SideBar.swift in Sources */,
+				3D227FCA204BAC8C001EB946 /* SRCountdownTimer.swift in Sources */,
 				3DE0275C2034E1B100ECAE7B /* LeaderboardCell.swift in Sources */,
 				3D77A14A1FB50AB0009178A1 /* QuizActivityVC.swift in Sources */,
 				3D77A15D1FB57FF1009178A1 /* SideBarCell.swift in Sources */,
@@ -867,6 +1082,7 @@
 		};
 		3D2495CD1F7E2EDD0058D85B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BA565EF854E1AA0B6EE35D01 /* Pods-MedQuiz.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -886,6 +1102,7 @@
 		};
 		3D2495CE1F7E2EDD0058D85B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0147C45F53D3EDF08DE8AE93 /* Pods-MedQuiz.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -905,6 +1122,7 @@
 		};
 		3D2495D01F7E2EDD0058D85B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0D9455252247112B356DC318 /* Pods-MedQuizTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -920,6 +1138,7 @@
 		};
 		3D2495D11F7E2EDD0058D85B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 11D867444029BC708F18B456 /* Pods-MedQuizTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -935,6 +1154,7 @@
 		};
 		3D2495D31F7E2EDD0058D85B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 818675E47B91A8A60EB99D8A /* Pods-MedQuizUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = MedQuizUITests/Info.plist;
@@ -949,6 +1169,7 @@
 		};
 		3D2495D41F7E2EDD0058D85B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BBDF75B2D8FC94A485865928 /* Pods-MedQuizUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = MedQuizUITests/Info.plist;

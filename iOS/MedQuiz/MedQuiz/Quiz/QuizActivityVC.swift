@@ -52,11 +52,22 @@ class QuizActivityVC: UIViewController {
     var seconds = 10
     var timer = Timer()
     var isTimerRunning = false
+    
+    @IBOutlet weak var questionsTimer: SRCountdownTimer!
+    
+    
     @IBOutlet weak var timerLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        questionsTimer.backgroundColor = UIColor.clear
+        questionsTimer.labelTextColor = UIColor.black
+        questionsTimer.lineColor = UIColor.yellow
+        questionsTimer.trailLineColor = UIColor.white
+        questionsTimer.lineWidth = 5.0
+        questionsTimer.isHidden = true
+        
         answerViews = [answer1, answer2, answer3, answer4]
         userViews = [uv_first, uv_second, uv_third, uv_fourth, uv_fifth]
         answerViews.forEach { view in view.parent = self }
@@ -66,7 +77,6 @@ class QuizActivityVC: UIViewController {
         hideSidebar()
         //Hides answers for 5 sec and then calls showLabels func
         Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(showLabels), userInfo: nil, repeats: false)
-        runTimer()
 
         print("Multiplier of image is: \(con_questionImageHeight.multiplier)")
         
@@ -90,6 +100,9 @@ class QuizActivityVC: UIViewController {
     @objc func showLabels(){
         answerViews.forEach { view in view.displayAnswer() }
         canSelect = true
+        questionsTimer.isHidden = false
+        questionsTimer.start(beginingValue: 10, interval: 1)
+//        runTimer()
     }
     
     func hideAnswerLabels(){
@@ -257,8 +270,9 @@ class QuizActivityVC: UIViewController {
             canSelect = true
         }
         seconds = 11
-        updateTimer()
-        runTimer()
+        questionsTimer.start(beginingValue: 10, interval: 1)
+//        updateTimer()
+//        runTimer()
     }
 
     @IBAction func tempQuestionInvertPressed(_ sender: Any) {
@@ -298,8 +312,12 @@ class QuizActivityVC: UIViewController {
 
 extension QuizActivityVC:SelectsAnswer {
     func answerSelected(answer: AnswerView) {
-        timer.invalidate()
-        answer1.answer.points = seconds
+//        timer.invalidate()
+//        answer1.answer.points = seconds
+        questionsTimer.pause()
+//        answer1.answer.points
+        answer1.answer.points = questionsTimer.returnCurrentTime()
+
       
         if(canSelect){
             canSelect = false
