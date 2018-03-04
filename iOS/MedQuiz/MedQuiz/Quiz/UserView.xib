@@ -17,6 +17,7 @@
                 <outlet property="iv_profile" destination="OOS-Fw-mlO" id="jn0-Cy-erh"/>
                 <outlet property="lab_position" destination="bW9-9M-DZI" id="cfY-Qf-BCn"/>
                 <outlet property="lab_username" destination="Wk2-Xj-5n2" id="g4Q-TM-Aal"/>
+                <outlet property="scoreLabel" destination="BSw-sL-HoP" id="Cnb-a7-i5U"/>
                 <outlet property="viewMain" destination="iN0-l3-epB" id="vT3-b9-twx"/>
             </connections>
         </placeholder>
@@ -25,39 +26,51 @@
             <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="StudentAvatarPlaceholder.png" translatesAutoresizingMaskIntoConstraints="NO" id="OOS-Fw-mlO">
+                    <rect key="frame" x="10" y="94" width="188" height="188"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="OOS-Fw-mlO" secondAttribute="height" multiplier="1:1" id="ebh-qy-gtW"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="434" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BSw-sL-HoP">
+                    <rect key="frame" x="298" y="176.5" width="35" height="23"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="OZ6-Oq-ahi">
-                    <rect key="frame" x="207.5" y="167" width="76" height="41"/>
+                    <rect key="frame" x="224" y="167.5" width="76" height="40.5"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2nd" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bW9-9M-DZI">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wk2-Xj-5n2">
                             <rect key="frame" x="0.0" y="0.0" width="76" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wk2-Xj-5n2">
-                            <rect key="frame" x="0.0" y="20.5" width="76" height="20.5"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2nd" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bW9-9M-DZI">
+                            <rect key="frame" x="0.0" y="20.5" width="76" height="20"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                </stackView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="StudentAvatarPlaceholder.png" translatesAutoresizingMaskIntoConstraints="NO" id="OOS-Fw-mlO">
-                    <rect key="frame" x="10" y="94" width="187.5" height="187.5"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="OOS-Fw-mlO" secondAttribute="height" multiplier="1:1" id="ebh-qy-gtW"/>
+                        <constraint firstAttribute="bottom" secondItem="Wk2-Xj-5n2" secondAttribute="bottom" constant="20" symbolic="YES" id="Y28-LD-te3"/>
                     </constraints>
-                </imageView>
+                </stackView>
             </subviews>
             <color key="backgroundColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="OOS-Fw-mlO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="Boq-Qp-FuW"/>
                 <constraint firstItem="OOS-Fw-mlO" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.5" id="McN-09-mgX"/>
-                <constraint firstItem="OZ6-Oq-ahi" firstAttribute="leading" secondItem="OOS-Fw-mlO" secondAttribute="trailing" constant="10" id="Sqz-A6-Cio"/>
+                <constraint firstItem="OZ6-Oq-ahi" firstAttribute="leading" secondItem="OOS-Fw-mlO" secondAttribute="trailing" constant="26" id="Sqz-A6-Cio"/>
                 <constraint firstItem="OZ6-Oq-ahi" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="bSH-Pd-ZJ9"/>
+                <constraint firstItem="BSw-sL-HoP" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="dHN-4d-tZj"/>
+                <constraint firstItem="BSw-sL-HoP" firstAttribute="leading" secondItem="OOS-Fw-mlO" secondAttribute="trailing" constant="100" id="hMs-8J-ZP5"/>
                 <constraint firstItem="OOS-Fw-mlO" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="s07-zX-vWW"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="57.5" y="47.5"/>
         </view>
     </objects>
     <resources>

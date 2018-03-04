@@ -13,7 +13,8 @@ class UserView: UIView {
     @IBOutlet weak var lab_position: UILabel!
     @IBOutlet weak var lab_username: UILabel!
     @IBOutlet weak var iv_profile: UIImageView!
-
+    @IBOutlet weak var scoreLabel: UILabel!
+    
     var currStudent:StudentModel!
 
     override init(frame: CGRect) {
@@ -50,6 +51,13 @@ class UserView: UIView {
         displayUsername(username: student.userName)
         displayPosition(position: position)
     }
+    func updateView(student:StudentModel, position:Int, score:Int){
+        self.currStudent = student
+        displayUsername(username: student.userName)
+        displayPosition(position: position)
+        updateScore(score: score)
+    }
+
 
     func displayUsername(username:String){
         lab_username.text = username
@@ -57,6 +65,10 @@ class UserView: UIView {
 
     func displayPosition(position:Int){
         lab_position.text = String.ordinalNumberFormat(number: position)
+    }
+    
+    func updateScore(score: Int){
+        scoreLabel.text = String(score)
     }
     
 
