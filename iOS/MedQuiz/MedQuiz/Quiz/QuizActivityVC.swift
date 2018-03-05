@@ -223,13 +223,6 @@ class QuizActivityVC: UIViewController {
         var count = 0
         
         userViews.forEach { view in
-            /*if (user.userName == "Paul"){
-                view.updateView(student: userSubset[count], position: startingPosition + count, score: pointsEarned)
-            }
-            else{
-                view.updateView(student: userSubset[count], position: startingPosition + count, score: 0)
-            }*/
-            
             view.updateView(student: userSubset[count], position: startingPosition + count, score: pointsEarned)
             count += 1
          }
@@ -237,13 +230,7 @@ class QuizActivityVC: UIViewController {
     }
     
     func updateUserInLeaderboard(){
-        /*userViews.forEach{view in
-            if(user.userName == "Paul"){
-                view.updateView(student: user, position: Int, score: <#T##Int#>)
-            }
-        }*/
-//        UserView.updateView(student: user, position: startingPosition + count, score: pointsEarned)
-        
+        userViews[2].updateView(student: user, position: 2, score: pointsEarned)
     }
 
     func moveUpPosition(){
@@ -348,7 +335,8 @@ extension QuizActivityVC:SelectsAnswer {
                         pointsEarned += time
                         //moveUpPosition()
                         //moveDownPosition()
-                        updateLeaderboard()
+                        //updateLeaderboard()
+                        updateUserInLeaderboard()
                     }
                     else{
                         view.fadeAnswer()
@@ -359,7 +347,8 @@ extension QuizActivityVC:SelectsAnswer {
                         else{
                             pointsEarned -= time
                         }
-                        updateLeaderboard()
+                        //updateLeaderboard()
+                        updateUserInLeaderboard()
                     }
 
                 }
