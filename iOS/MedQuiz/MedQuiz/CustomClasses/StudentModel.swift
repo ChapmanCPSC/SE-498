@@ -11,11 +11,13 @@ class StudentModel {
     var profilePic:String
     var friends:[StudentModel]
     var classes:[String:Bool]
+    var totalPoints:Int
 
-    init(userName:String, profilePic:String, friends:[StudentModel], classes:[String:Bool]){
+    init(userName:String, profilePic:String, friends:[StudentModel], classes:[String:Bool], totalPoints:Int){
         self.userName = userName
         self.profilePic = profilePic
         self.friends = friends
         self.classes = classes
+        self.totalPoints = totalPoints
     }
 }

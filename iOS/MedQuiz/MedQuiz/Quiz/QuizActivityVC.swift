@@ -15,7 +15,7 @@ class QuizActivityVC: UIViewController {
     var currQuiz:QuizModel!
     var canSelect:Bool = false
     var currPos:Int = 5
-    var user:StudentModel = StudentModel(userName: "Paul", profilePic: "", friends: [], classes: [:])
+    var user:StudentModel = StudentModel(userName: "Paul", profilePic: "", friends: [], classes: [:], totalPoints: 0)
     var allUsers:[StudentModel]! // TODO kinda working off assumption there'll be an array that'll be updated in firebase that we can use
     
     @IBOutlet weak var answer1: AnswerView!
@@ -221,11 +221,29 @@ class QuizActivityVC: UIViewController {
             userSubset = Array(allUsers[currPos-3...currPos+1])
         }
         var count = 0
-
+        
         userViews.forEach { view in
+            /*if (user.userName == "Paul"){
+                view.updateView(student: userSubset[count], position: startingPosition + count, score: pointsEarned)
+            }
+            else{
+                view.updateView(student: userSubset[count], position: startingPosition + count, score: 0)
+            }*/
+            
             view.updateView(student: userSubset[count], position: startingPosition + count, score: pointsEarned)
             count += 1
          }
+        
+    }
+    
+    func updateUserInLeaderboard(){
+        /*userViews.forEach{view in
+            if(user.userName == "Paul"){
+                view.updateView(student: user, position: Int, score: <#T##Int#>)
+            }
+        }*/
+//        UserView.updateView(student: user, position: startingPosition + count, score: pointsEarned)
+        
     }
 
     func moveUpPosition(){
@@ -303,9 +321,8 @@ class QuizActivityVC: UIViewController {
     func tempSetupLeaderBoard(){
         allUsers = []
         for i in 1...30 {
-            allUsers.append(StudentModel(userName: "User \(i)", profilePic: "", friends: [], classes: [:]))
+            allUsers.append(StudentModel(userName: "User \(i)", profilePic: "", friends: [], classes: [:], totalPoints: 0))
         }
-
         allUsers.insert(user, at: currPos-1)
         updateLeaderboard()
     }
@@ -313,12 +330,12 @@ class QuizActivityVC: UIViewController {
 
 extension QuizActivityVC:SelectsAnswer {
     func answerSelected(answer: AnswerView) {
+        var time:Int = 0
 //        timer.invalidate()
 //        answer1.answer.points = seconds
         questionsTimer.pause()
-//        answer1.answer.points
         answer1.answer.points = questionsTimer.returnCurrentTime()
-        pointsEarned += answer1.answer.points
+        time = questionsTimer.returnCurrentTime()
       
         if(canSelect){
             canSelect = false
@@ -328,11 +345,21 @@ extension QuizActivityVC:SelectsAnswer {
                     let selectedAnswer = view.answer
                     if(selectedAnswer.isAnswer){
                         view.showCorrect()
+                        pointsEarned += time
+                        //moveUpPosition()
+                        //moveDownPosition()
                         updateLeaderboard()
                     }
                     else{
                         view.fadeAnswer()
                         view.showWrong()
+                        if(pointsEarned - time < 0){
+                            pointsEarned = 0
+                        }
+                        else{
+                            pointsEarned -= time
+                        }
+                        updateLeaderboard()
                     }
 
                 }
