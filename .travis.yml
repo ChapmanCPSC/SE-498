@@ -1,3 +1,6 @@
+osx_image: xcode9.2
+language: objective-c
+os: osx
 
 xcode_project: MedQuiz.xcodeproj
 
