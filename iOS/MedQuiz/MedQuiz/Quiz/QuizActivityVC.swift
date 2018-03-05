@@ -53,6 +53,7 @@ class QuizActivityVC: UIViewController {
     var timer = Timer()
     var isTimerRunning = false
     var pointsEarned: Int = 0
+    var firstLoad: Bool = true
     
     @IBOutlet weak var questionsTimer: SRCountdownTimer!
     
@@ -222,11 +223,19 @@ class QuizActivityVC: UIViewController {
         }
         var count = 0
         
-        userViews.forEach { view in
-            view.updateView(student: userSubset[count], position: startingPosition + count, score: pointsEarned)
-            count += 1
-         }
-        
+        if(firstLoad){
+            userViews.forEach { view in
+                view.updateView(student: userSubset[count], position: startingPosition + count, score: 0)
+                count += 1
+                }
+            firstLoad = false
+        }
+        else{
+            userViews.forEach { view in
+                view.updateView(student: userSubset[count], position: startingPosition + count)
+                count += 1
+            }
+        }
     }
     
     func updateUserInLeaderboard(){
