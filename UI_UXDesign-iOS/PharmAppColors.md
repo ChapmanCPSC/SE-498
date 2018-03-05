@@ -16,6 +16,8 @@
 1.  Quiz pin text color when active - 8884FF
 1.  Quiz search background - 9AD5D2
 
+## Quiz Lobby
+1.  Loading yellow FFDF00
 
 ## Quiz Search Page
 1.  Main category - 439EC4
@@ -23,10 +25,30 @@
 1.  Start quiz button color - A0E2DB
 1.  Exit quiz search page background color -173C76
 
+## Practice Mode Page
+1.  Head to Head - DA7E7E
+1.  Solo - 7EDAB0
+
+## Head-Head (Choose Friends)
+1.  *Colors same as Add Friends Page*
+
+## Head-Head (Loading Page)
+1. Loading yellow FFDF00
+
+## Head-Head (Invitation popup)
+1. Loading yellow FFDF00
+1. Quiz Name text color 521975
+1. Hide Button BC6F62
+1. Accept Button 62A9BC
+
 ## Quiz Activity Page
 1.  Answers - BB7AE1 , DCA480, DA7E7E, 88D3E5
 1.  Answers not selected - Just lower the saturation on the colors above
 1.  Quiz timer dial - EDE500
+
+## Quiz Done Stats
+1.  Right Card DA7E7E
+1.  Done Button 7ECFDA
 
 ## Leaderboard Page
 1.  Username selected - FFE483
