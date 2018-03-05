@@ -24,3 +24,4 @@ pod install
 * The config.yml was made and exists on the ChapmanCPSC/SE-498 repo.
 * When running tests make sure your .travis.yml file is in the right location.
 * Refer to this link regarding the structure of the .travis.yml file. https://docs.travis-ci.com/user/getting-started#To-get-started-with-Travis-CI
+* You could refer to this link to see the latest builds of our project from Travis CI. https://travis-ci.org/ChapmanCPSC/SE-498/builds
