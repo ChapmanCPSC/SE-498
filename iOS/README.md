@@ -1,4 +1,4 @@
-https://travis-ci.org/ChapmanCPSC/SE-498.svg?branch=master
+[![Build Status](https://travis-ci.org/ChapmanCPSC/SE-498.svg?branch=master)](https://travis-ci.org/ChapmanCPSC/SE-498)
 
 # iOS-MedQuiz
 The iOS Medical Quiz App
