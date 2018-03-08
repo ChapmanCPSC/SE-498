@@ -8,6 +8,8 @@ target 'MedQuiz' do
   # Pods for MedQuiz
   # https://github.com/rsrbk/SRCountdownTimer
   
+  pod 'Firebase/Core'
+  
   target 'MedQuizTests' do
     inherit! :search_paths
     # Pods for testing

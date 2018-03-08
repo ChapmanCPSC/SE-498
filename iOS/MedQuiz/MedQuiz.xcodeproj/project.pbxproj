@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2EABCBC0770126F4ED8DA83C /* Pods_MedQuizUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED9BDFAEF47CF181DB0A7C39 /* Pods_MedQuizUITests.framework */; };
+		3D14AEC62050E98B009E2B71 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D14AEC52050E98B009E2B71 /* GoogleService-Info.plist */; };
 		3D227FC9204BAC8C001EB946 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D227FC7204BAC8C001EB946 /* Info.plist */; };
 		3D227FCA204BAC8C001EB946 /* SRCountdownTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D227FC8204BAC8C001EB946 /* SRCountdownTimer.swift */; };
 		3D2495A81F7E2EDD0058D85B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2495A71F7E2EDD0058D85B /* AppDelegate.swift */; };
@@ -129,6 +130,7 @@
 		0147C45F53D3EDF08DE8AE93 /* Pods-MedQuiz.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MedQuiz.release.xcconfig"; path = "Pods/Target Support Files/Pods-MedQuiz/Pods-MedQuiz.release.xcconfig"; sourceTree = "<group>"; };
 		0D9455252247112B356DC318 /* Pods-MedQuizTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MedQuizTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MedQuizTests/Pods-MedQuizTests.debug.xcconfig"; sourceTree = "<group>"; };
 		11D867444029BC708F18B456 /* Pods-MedQuizTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MedQuizTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MedQuizTests/Pods-MedQuizTests.release.xcconfig"; sourceTree = "<group>"; };
+		3D14AEC52050E98B009E2B71 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3D227FC7204BAC8C001EB946 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3D227FC8204BAC8C001EB946 /* SRCountdownTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRCountdownTimer.swift; sourceTree = "<group>"; };
 		3D2495A41F7E2EDD0058D85B /* MedQuiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MedQuiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -325,8 +327,9 @@
 				3D77A13C1FB50783009178A1 /* Sidebar Navigation */,
 				3D2495AB1F7E2EDD0058D85B /* Main.storyboard */,
 				3D2495B01F7E2EDD0058D85B /* LaunchScreen.storyboard */,
-				3DE027582034DDE000ECAE7B /* ColorHelper.swift */,
 				3D2495AE1F7E2EDD0058D85B /* Assets.xcassets */,
+				3D14AEC52050E98B009E2B71 /* GoogleService-Info.plist */,
+				3DE027582034DDE000ECAE7B /* ColorHelper.swift */,
 				3D2495A71F7E2EDD0058D85B /* AppDelegate.swift */,
 				3D2495B31F7E2EDD0058D85B /* Info.plist */,
 				A5618C7D2034EAB2001AC764 /* Ext_UIColor.swift */,
@@ -689,6 +692,7 @@
 				3DD07C6C204509E700FADCD9 /* RightAnswer.png in Resources */,
 				3DD07C6F204509E700FADCD9 /* MockAnswerFour@2x.png in Resources */,
 				3DD07C89204509E700FADCD9 /* MockAnswerTwo@3x.png in Resources */,
+				3D14AEC62050E98B009E2B71 /* GoogleService-Info.plist in Resources */,
 				3DD07C7D204509E700FADCD9 /* SelectedAvatar@2x.png in Resources */,
 				3DD07C84204509E700FADCD9 /* Cancel-Icon@2x.png in Resources */,
 				3DD07C6D204509E700FADCD9 /* MockAnswerTwo.png in Resources */,
@@ -764,11 +768,13 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MedQuiz/Pods-MedQuiz-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/SRCountdownTimer/SRCountdownTimer.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SRCountdownTimer.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
