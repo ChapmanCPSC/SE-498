@@ -1,3 +1,5 @@
+https://travis-ci.org/ChapmanCPSC/SE-498.svg?branch=master
+
 # iOS-MedQuiz
 The iOS Medical Quiz App
 
