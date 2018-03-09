@@ -36,6 +36,7 @@ class QuizActivityVC: UIViewController {
     
     var toggleTemp:Bool = true
     var toggleTempQuestion:Bool = true
+    var isCurrUser:Bool = false
 
     @IBOutlet weak var lab_questionText: UILabel!
     @IBOutlet weak var lab_questionNumber: UILabel!
@@ -309,7 +310,14 @@ class QuizActivityVC: UIViewController {
     }
     
     @IBAction func tempSwitchCurrUser(_ sender: Any) {
-        uv_third.convertToCurrUser()
+        if(isCurrUser){
+            uv_third.convertToOtherUser()
+        }
+        else{
+            uv_third.convertToCurrUser()
+        }
+        isCurrUser = !isCurrUser
+        
     }
     
     func tempSetupQuiz(){

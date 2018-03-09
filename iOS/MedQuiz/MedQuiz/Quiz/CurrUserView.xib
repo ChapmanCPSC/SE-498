@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,50 +26,45 @@
             <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="Z1y-8S-0bX">
-                    <rect key="frame" x="286.5" y="0.0" width="94" height="375"/>
-                    <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="StudentAvatarPlaceholder.png" translatesAutoresizingMaskIntoConstraints="NO" id="NKH-jX-Z0a">
-                            <rect key="frame" x="0.0" y="0.0" width="94" height="94"/>
-                            <constraints>
-                                <constraint firstAttribute="width" secondItem="NKH-jX-Z0a" secondAttribute="height" multiplier="1:1" id="4kP-9u-dEx"/>
-                            </constraints>
-                        </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25th" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PfR-3z-ntq">
-                            <rect key="frame" x="0.0" y="94" width="94" height="93.5"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CurrUsername" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5KL-CG-iyH">
-                            <rect key="frame" x="0.0" y="187.5" width="94" height="94"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="432" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="epC-6g-2Rl">
-                            <rect key="frame" x="0.0" y="281.5" width="94" height="93.5"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25th" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PfR-3z-ntq">
+                    <rect key="frame" x="315" y="177.5" width="35.5" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CurrUsername" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5KL-CG-iyH">
+                    <rect key="frame" x="277" y="203" width="113" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="432" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="epC-6g-2Rl">
+                    <rect key="frame" x="318" y="228.5" width="31" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="StudentAvatarPlaceholder.png" translatesAutoresizingMaskIntoConstraints="NO" id="NKH-jX-Z0a">
+                    <rect key="frame" x="286" y="78.5" width="94" height="94"/>
                     <constraints>
-                        <constraint firstItem="5KL-CG-iyH" firstAttribute="centerX" secondItem="Z1y-8S-0bX" secondAttribute="centerX" id="7AJ-cA-TQm"/>
-                        <constraint firstItem="NKH-jX-Z0a" firstAttribute="centerX" secondItem="Z1y-8S-0bX" secondAttribute="centerX" id="D4k-or-cv1"/>
-                        <constraint firstItem="PfR-3z-ntq" firstAttribute="centerX" secondItem="Z1y-8S-0bX" secondAttribute="centerX" id="oon-7G-G52"/>
-                        <constraint firstItem="epC-6g-2Rl" firstAttribute="centerX" secondItem="Z1y-8S-0bX" secondAttribute="centerX" id="t9N-RX-FL0"/>
+                        <constraint firstAttribute="width" secondItem="NKH-jX-Z0a" secondAttribute="height" multiplier="1:1" id="4kP-9u-dEx"/>
                     </constraints>
-                </stackView>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="Z1y-8S-0bX" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="9Wa-eg-dbs"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Z1y-8S-0bX" secondAttribute="bottom" id="Ack-hi-fLz"/>
-                <constraint firstItem="Z1y-8S-0bX" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="K1I-lX-UA3"/>
-                <constraint firstItem="Z1y-8S-0bX" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="NnH-rb-29G"/>
+                <constraint firstItem="NKH-jX-Z0a" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.25" id="45t-M1-Ceg"/>
+                <constraint firstItem="5KL-CG-iyH" firstAttribute="top" secondItem="PfR-3z-ntq" secondAttribute="bottom" constant="5" id="7on-4t-U2L"/>
+                <constraint firstItem="PfR-3z-ntq" firstAttribute="top" secondItem="NKH-jX-Z0a" secondAttribute="bottom" constant="5" id="FeL-aG-Sj6"/>
+                <constraint firstItem="PfR-3z-ntq" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Kpj-1u-Lrb"/>
+                <constraint firstItem="5KL-CG-iyH" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="j7B-Zh-Va2"/>
+                <constraint firstItem="epC-6g-2Rl" firstAttribute="top" secondItem="5KL-CG-iyH" secondAttribute="bottom" constant="5" id="jeN-Gk-2Zx"/>
+                <constraint firstItem="NKH-jX-Z0a" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="oBh-fs-oTj"/>
+                <constraint firstItem="epC-6g-2Rl" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="pHz-yS-osL"/>
+                <constraint firstItem="PfR-3z-ntq" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="qjN-Sl-2FX"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="34.5" y="53.5"/>
         </view>
     </objects>
     <resources>
