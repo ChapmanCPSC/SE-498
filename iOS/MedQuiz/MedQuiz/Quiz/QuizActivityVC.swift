@@ -308,7 +308,10 @@ class QuizActivityVC: UIViewController {
         moveDownPosition()
     }
     
-
+    @IBAction func tempSwitchCurrUser(_ sender: Any) {
+        uv_third.convertToCurrUser()
+    }
+    
     func tempSetupQuiz(){
         answer1.answer.isAnswer = true
         answer1.answer.answerText = "This is a correct answer"

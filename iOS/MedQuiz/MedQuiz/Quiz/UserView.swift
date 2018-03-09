@@ -73,5 +73,13 @@ class UserView: UIView {
         scoreLabel.text = String(score)
     }
     
+    func convertToCurrUser(){
+        Bundle.main.loadNibNamed("CurrUserView", owner: self, options: nil)
+        addSubviews()
+    }
+    func convertToOtherUser(){
+        Bundle.main.loadNibNamed("UserView", owner: self, options: nil)
+        addSubviews()
+    }
 
 }

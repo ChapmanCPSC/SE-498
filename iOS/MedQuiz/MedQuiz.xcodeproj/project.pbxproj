@@ -99,6 +99,7 @@
 		A5BBD78D20449D3E00A4D4D3 /* SelectsAnswerDelegator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BBD78C20449D3E00A4D4D3 /* SelectsAnswerDelegator.swift */; };
 		A5BBD78F20450D4700A4D4D3 /* UserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5BBD78E20450D4700A4D4D3 /* UserView.xib */; };
 		A5BBD79120450F3C00A4D4D3 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BBD79020450F3C00A4D4D3 /* UserView.swift */; };
+		A5F87904205240B0004BA78D /* CurrUserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5F87903205240B0004BA78D /* CurrUserView.xib */; };
 		BDAF4E6F8E2913E44D54E890 /* Pods_MedQuizTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49372C758685A3A2EA2D8401 /* Pods_MedQuizTests.framework */; };
 		DAB359351FBACA2100D5A959 /* QuizModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB359341FBACA2100D5A959 /* QuizModel.swift */; };
 		DAB359371FBACA3600D5A959 /* QuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB359361FBACA3600D5A959 /* QuestionModel.swift */; };
@@ -230,6 +231,7 @@
 		A5BBD78C20449D3E00A4D4D3 /* SelectsAnswerDelegator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectsAnswerDelegator.swift; sourceTree = "<group>"; };
 		A5BBD78E20450D4700A4D4D3 /* UserView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserView.xib; sourceTree = "<group>"; };
 		A5BBD79020450F3C00A4D4D3 /* UserView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
+		A5F87903205240B0004BA78D /* CurrUserView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CurrUserView.xib; sourceTree = "<group>"; };
 		BA565EF854E1AA0B6EE35D01 /* Pods-MedQuiz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MedQuiz.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MedQuiz/Pods-MedQuiz.debug.xcconfig"; sourceTree = "<group>"; };
 		BBDF75B2D8FC94A485865928 /* Pods-MedQuizUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MedQuizUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MedQuizUITests/Pods-MedQuizUITests.release.xcconfig"; sourceTree = "<group>"; };
 		DAB359341FBACA2100D5A959 /* QuizModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizModel.swift; sourceTree = "<group>"; };
@@ -411,6 +413,7 @@
 		3D77A1381FB505F2009178A1 /* Quiz */ = {
 			isa = PBXGroup;
 			children = (
+				A5F87903205240B0004BA78D /* CurrUserView.xib */,
 				DAED09801FB4F67D003575B0 /* Quiz.storyboard */,
 				3D77A1471FB50AA1009178A1 /* QuizVC.swift */,
 				3D77A14B1FB50AC0009178A1 /* QuizSearchVC.swift */,
@@ -688,6 +691,7 @@
 				3DD07C74204509E700FADCD9 /* RightAnswer@3x.png in Resources */,
 				3DD07C8F20450B5D00FADCD9 /* chapman-univeristy-300x156.png in Resources */,
 				3DD07C87204509E700FADCD9 /* WrongAnswer.png in Resources */,
+				A5F87904205240B0004BA78D /* CurrUserView.xib in Resources */,
 				3DD07C78204509E700FADCD9 /* WrongAnswer@2x.png in Resources */,
 				3DD07C6C204509E700FADCD9 /* RightAnswer.png in Resources */,
 				3DD07C6F204509E700FADCD9 /* MockAnswerFour@2x.png in Resources */,
