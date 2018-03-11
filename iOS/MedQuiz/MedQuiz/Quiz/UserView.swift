@@ -17,6 +17,8 @@ class UserView: UIView {
     
     var overallScore: Int = 0
     var currStudent:StudentModel!
+    var position:Int = 0
+    var nonUserBg:String = "FFFFFF"
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -40,6 +42,7 @@ class UserView: UIView {
     }
     
     func setBackgroundColor(color:String){
+        self.nonUserBg = color
         viewMain.backgroundColor = UIColor.hexStringToUIColor(hex: color)
     }
     
@@ -65,6 +68,7 @@ class UserView: UIView {
     }
 
     func displayPosition(position:Int){
+        self.position = position
         lab_position.text = String.ordinalNumberFormat(number: position)
     }
     
@@ -72,14 +76,20 @@ class UserView: UIView {
         overallScore += score
         scoreLabel.text = String(score)
     }
-    
+    func reupdate(){
+        updateView(student: self.currStudent, position: self.position, score: self.overallScore)
+    }
     func convertToCurrUser(){
         Bundle.main.loadNibNamed("CurrUserView", owner: self, options: nil)
         addSubviews()
+        viewMain.backgroundColor = UIColor.hexStringToUIColor(hex: "FFE483")
+        reupdate()
     }
     func convertToOtherUser(){
         Bundle.main.loadNibNamed("UserView", owner: self, options: nil)
         addSubviews()
+        self.setBackgroundColor(color: self.nonUserBg)
+        reupdate()
     }
 
 }
