@@ -86,6 +86,9 @@ class QuizActivityVC: UIViewController {
         
         tempSetupQuiz() // TODO Remove this after finishing testing
         tempSetupLeaderBoard()
+
+
+        updateUserInLeaderboard() // TODO maybe remove this?
     }
 
     func runTimer() {
@@ -241,7 +244,14 @@ class QuizActivityVC: UIViewController {
     }
     
     func updateUserInLeaderboard(){
-        userViews[2].updateView(student: user, position: 2, score: pointsEarned)
+        userViews.forEach { view in
+            if(view.currStudent.userName == user.userName){
+                view.convertToCurrUser()
+            }
+            else{
+                view.convertToOtherUser()
+            }
+         }
     }
 
     func moveUpPosition(){
@@ -250,6 +260,7 @@ class QuizActivityVC: UIViewController {
             currPos -= 1
             allUsers.insert(appUser, at: currPos-1)
             updateLeaderboard()
+            updateUserInLeaderboard()
         }
     }
 
@@ -259,6 +270,7 @@ class QuizActivityVC: UIViewController {
             currPos += 1
             allUsers.insert(appUser, at: currPos-1)
             updateLeaderboard()
+            updateUserInLeaderboard()
         }
     }
 
