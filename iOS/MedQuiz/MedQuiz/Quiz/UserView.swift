@@ -14,9 +14,12 @@ class UserView: UIView {
     @IBOutlet weak var lab_username: UILabel!
     @IBOutlet weak var iv_profile: UIImageView!
     @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var viewBG: UIView!
     
     var overallScore: Int = 0
     var currStudent:StudentModel!
+    var position:Int = 0
+    var nonUserBg:String = "FFFFFF"
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -40,7 +43,8 @@ class UserView: UIView {
     }
     
     func setBackgroundColor(color:String){
-        viewMain.backgroundColor = UIColor.hexStringToUIColor(hex: color)
+        self.nonUserBg = color
+        viewBG.backgroundColor = UIColor.hexStringToUIColor(hex: color)
     }
     
     func setBackgroundColor(color:UIColor){
@@ -65,6 +69,7 @@ class UserView: UIView {
     }
 
     func displayPosition(position:Int){
+        self.position = position
         lab_position.text = String.ordinalNumberFormat(number: position)
     }
     
@@ -72,14 +77,32 @@ class UserView: UIView {
         overallScore += score
         scoreLabel.text = String(score)
     }
+    func reupdate(){
+        updateView(student: self.currStudent, position: self.position, score: self.overallScore)
+    }
+    
+    func removeViews(){
+        viewMain.removeFromSuperview()
+        lab_position.removeFromSuperview()
+        lab_username.removeFromSuperview()
+        iv_profile.removeFromSuperview()
+        scoreLabel.removeFromSuperview()
+        viewBG.removeFromSuperview()
+    }
     
     func convertToCurrUser(){
+        removeViews()
         Bundle.main.loadNibNamed("CurrUserView", owner: self, options: nil)
         addSubviews()
+        viewBG.backgroundColor = UIColor.hexStringToUIColor(hex: "FFE483")
+        reupdate()
     }
     func convertToOtherUser(){
+        removeViews()
         Bundle.main.loadNibNamed("UserView", owner: self, options: nil)
         addSubviews()
+        self.setBackgroundColor(color: self.nonUserBg)
+        reupdate()
     }
 
 }
