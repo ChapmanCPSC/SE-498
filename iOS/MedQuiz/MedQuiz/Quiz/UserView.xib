@@ -18,6 +18,7 @@
                 <outlet property="lab_position" destination="bW9-9M-DZI" id="cfY-Qf-BCn"/>
                 <outlet property="lab_username" destination="Wk2-Xj-5n2" id="g4Q-TM-Aal"/>
                 <outlet property="scoreLabel" destination="BSw-sL-HoP" id="Cnb-a7-i5U"/>
+                <outlet property="viewBG" destination="0aX-M0-agx" id="a5n-dw-GK4"/>
                 <outlet property="viewMain" destination="iN0-l3-epB" id="vT3-b9-twx"/>
             </connections>
         </placeholder>
@@ -26,6 +27,10 @@
             <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0aX-M0-agx">
+                    <rect key="frame" x="-0.5" y="-0.5" width="667" height="375"/>
+                    <color key="backgroundColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="StudentAvatarPlaceholder.png" translatesAutoresizingMaskIntoConstraints="NO" id="OOS-Fw-mlO">
                     <rect key="frame" x="10" y="94" width="188" height="188"/>
                     <constraints>
@@ -62,11 +67,15 @@
             <color key="backgroundColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="OOS-Fw-mlO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="Boq-Qp-FuW"/>
+                <constraint firstItem="0aX-M0-agx" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="C4S-Yc-fpu"/>
+                <constraint firstItem="0aX-M0-agx" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="Fuj-jb-juO"/>
                 <constraint firstItem="OOS-Fw-mlO" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.5" id="McN-09-mgX"/>
+                <constraint firstItem="0aX-M0-agx" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="RGc-1t-OY3"/>
                 <constraint firstItem="OZ6-Oq-ahi" firstAttribute="leading" secondItem="OOS-Fw-mlO" secondAttribute="trailing" constant="26" id="Sqz-A6-Cio"/>
                 <constraint firstItem="OZ6-Oq-ahi" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="bSH-Pd-ZJ9"/>
                 <constraint firstItem="BSw-sL-HoP" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="dHN-4d-tZj"/>
                 <constraint firstItem="BSw-sL-HoP" firstAttribute="leading" secondItem="OOS-Fw-mlO" secondAttribute="trailing" constant="100" id="hMs-8J-ZP5"/>
+                <constraint firstItem="0aX-M0-agx" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="mYe-dE-RqJ"/>
                 <constraint firstItem="OOS-Fw-mlO" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="s07-zX-vWW"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

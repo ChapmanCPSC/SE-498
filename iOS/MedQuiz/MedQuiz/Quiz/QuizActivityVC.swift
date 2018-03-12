@@ -32,7 +32,7 @@ class QuizActivityVC: UIViewController {
     @IBOutlet weak var uv_fourth: UserView!
     @IBOutlet weak var uv_fifth: UserView!
     var userViews:[UserView]!
-    
+
     
     var toggleTemp:Bool = true
     var toggleTempQuestion:Bool = true
@@ -63,6 +63,7 @@ class QuizActivityVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
         questionsTimer.backgroundColor = UIColor.clear
         questionsTimer.labelTextColor = UIColor.black

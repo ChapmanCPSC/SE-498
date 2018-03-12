@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="landscape">
+    <device id="retina4_0" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -14,38 +14,43 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserView" customModule="MedQuiz" customModuleProvider="target">
             <connections>
-                <outlet property="iv_profile" destination="NKH-jX-Z0a" id="wly-TO-I0B"/>
-                <outlet property="lab_position" destination="PfR-3z-ntq" id="dCl-1g-KtE"/>
-                <outlet property="lab_username" destination="5KL-CG-iyH" id="SKr-B8-ua5"/>
-                <outlet property="scoreLabel" destination="epC-6g-2Rl" id="oiw-4K-ZEt"/>
+                <outlet property="iv_profile" destination="NKH-jX-Z0a" id="DEL-kT-E5r"/>
+                <outlet property="lab_position" destination="PfR-3z-ntq" id="yLJ-hu-uAc"/>
+                <outlet property="lab_username" destination="5KL-CG-iyH" id="492-FE-oQH"/>
+                <outlet property="scoreLabel" destination="epC-6g-2Rl" id="fIb-wf-FP1"/>
+                <outlet property="viewBG" destination="Bzb-F4-acN" id="vqV-5M-ZJA"/>
                 <outlet property="viewMain" destination="iN0-l3-epB" id="chP-uI-rSW"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+            <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bzb-F4-acN">
+                    <rect key="frame" x="0.0" y="-320" width="568" height="640"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25th" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PfR-3z-ntq">
-                    <rect key="frame" x="315" y="177.5" width="35.5" height="20.5"/>
+                    <rect key="frame" x="266.5" y="-94" width="35.5" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CurrUsername" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5KL-CG-iyH">
-                    <rect key="frame" x="277" y="203" width="113" height="20.5"/>
+                    <rect key="frame" x="227.5" y="-68.5" width="113" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="432" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="epC-6g-2Rl">
-                    <rect key="frame" x="318" y="228.5" width="31" height="20.5"/>
+                    <rect key="frame" x="268.5" y="-43" width="31" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="StudentAvatarPlaceholder.png" translatesAutoresizingMaskIntoConstraints="NO" id="NKH-jX-Z0a">
-                    <rect key="frame" x="286" y="78.5" width="94" height="94"/>
+                    <rect key="frame" x="178.5" y="-310" width="211" height="211"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="NKH-jX-Z0a" secondAttribute="height" multiplier="1:1" id="4kP-9u-dEx"/>
                     </constraints>
@@ -53,18 +58,22 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="NKH-jX-Z0a" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.25" id="45t-M1-Ceg"/>
-                <constraint firstItem="5KL-CG-iyH" firstAttribute="top" secondItem="PfR-3z-ntq" secondAttribute="bottom" constant="5" id="7on-4t-U2L"/>
-                <constraint firstItem="PfR-3z-ntq" firstAttribute="top" secondItem="NKH-jX-Z0a" secondAttribute="bottom" constant="5" id="FeL-aG-Sj6"/>
-                <constraint firstItem="PfR-3z-ntq" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Kpj-1u-Lrb"/>
-                <constraint firstItem="5KL-CG-iyH" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="j7B-Zh-Va2"/>
-                <constraint firstItem="epC-6g-2Rl" firstAttribute="top" secondItem="5KL-CG-iyH" secondAttribute="bottom" constant="5" id="jeN-Gk-2Zx"/>
-                <constraint firstItem="NKH-jX-Z0a" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="oBh-fs-oTj"/>
-                <constraint firstItem="epC-6g-2Rl" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="pHz-yS-osL"/>
-                <constraint firstItem="PfR-3z-ntq" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="qjN-Sl-2FX"/>
+                <constraint firstItem="NKH-jX-Z0a" firstAttribute="height" secondItem="Bzb-F4-acN" secondAttribute="height" multiplier="0.33" id="45t-M1-Ceg"/>
+                <constraint firstItem="5KL-CG-iyH" firstAttribute="top" secondItem="PfR-3z-ntq" secondAttribute="bottom" constant="5" id="BmO-ZM-kCe"/>
+                <constraint firstItem="NKH-jX-Z0a" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="CCl-Qi-bU4"/>
+                <constraint firstItem="epC-6g-2Rl" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Doj-w9-pPR"/>
+                <constraint firstItem="Bzb-F4-acN" firstAttribute="top" secondItem="NKH-jX-Z0a" secondAttribute="top" constant="-10" id="KVP-8S-y3J"/>
+                <constraint firstItem="Bzb-F4-acN" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="Ol2-lh-2br"/>
+                <constraint firstItem="PfR-3z-ntq" firstAttribute="top" secondItem="NKH-jX-Z0a" secondAttribute="bottom" constant="5" id="S2N-Om-ana"/>
+                <constraint firstItem="epC-6g-2Rl" firstAttribute="top" secondItem="5KL-CG-iyH" secondAttribute="bottom" constant="5" id="Ua9-fy-RSo"/>
+                <constraint firstItem="Bzb-F4-acN" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="YcQ-i1-4Hk"/>
+                <constraint firstItem="PfR-3z-ntq" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="eIf-RN-1Ax"/>
+                <constraint firstAttribute="bottom" secondItem="Bzb-F4-acN" secondAttribute="bottom" id="eLc-Yh-6bi"/>
+                <constraint firstItem="5KL-CG-iyH" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="lHx-qS-fgv"/>
+                <constraint firstItem="Bzb-F4-acN" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="2" id="p9K-hd-mBt"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="34.5" y="53.5"/>
+            <point key="canvasLocation" x="-61" y="-94"/>
         </view>
     </objects>
     <resources>
