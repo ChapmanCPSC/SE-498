@@ -90,6 +90,8 @@
 		A12154B820478E9E00E9E939 /* FriendRequestsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12154B720478E9E00E9E939 /* FriendRequestsTableViewCell.swift */; };
 		A12154BA2047924E00E9E939 /* FriendRequestsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A12154B92047924E00E9E939 /* FriendRequestsTableViewCell.xib */; };
 		A149D7DB2044B4C400AD3B1A /* ChangeUsernameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A149D7DA2044B4C400AD3B1A /* ChangeUsernameVC.swift */; };
+		A184C8D12055FDBA004AC690 /* QuizLobbyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A184C8D02055FDBA004AC690 /* QuizLobbyVC.swift */; };
+		A184C8D3205602CB004AC690 /* LobbyPlayersCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A184C8D2205602CB004AC690 /* LobbyPlayersCollectionViewCell.swift */; };
 		A53E754E2037FC3E0081B1AD /* PerformsSegueDelegator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E754D2037FC3E0081B1AD /* PerformsSegueDelegator.swift */; };
 		A53E75502043A8980081B1AD /* AnswerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A53E754F2043A8980081B1AD /* AnswerView.xib */; };
 		A53E75522043AA300081B1AD /* AnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E75512043AA300081B1AD /* AnswerView.swift */; };
@@ -222,6 +224,8 @@
 		A12154B720478E9E00E9E939 /* FriendRequestsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestsTableViewCell.swift; sourceTree = "<group>"; };
 		A12154B92047924E00E9E939 /* FriendRequestsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendRequestsTableViewCell.xib; sourceTree = "<group>"; };
 		A149D7DA2044B4C400AD3B1A /* ChangeUsernameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeUsernameVC.swift; sourceTree = "<group>"; };
+		A184C8D02055FDBA004AC690 /* QuizLobbyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizLobbyVC.swift; sourceTree = "<group>"; };
+		A184C8D2205602CB004AC690 /* LobbyPlayersCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyPlayersCollectionViewCell.swift; sourceTree = "<group>"; };
 		A53E754D2037FC3E0081B1AD /* PerformsSegueDelegator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformsSegueDelegator.swift; sourceTree = "<group>"; };
 		A53E754F2043A8980081B1AD /* AnswerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnswerView.xib; sourceTree = "<group>"; };
 		A53E75512043AA300081B1AD /* AnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerView.swift; sourceTree = "<group>"; };
@@ -415,6 +419,8 @@
 			children = (
 				A5F87903205240B0004BA78D /* CurrUserView.xib */,
 				DAED09801FB4F67D003575B0 /* Quiz.storyboard */,
+				A184C8D2205602CB004AC690 /* LobbyPlayersCollectionViewCell.swift */,
+				A184C8D02055FDBA004AC690 /* QuizLobbyVC.swift */,
 				3D77A1471FB50AA1009178A1 /* QuizVC.swift */,
 				3D77A14B1FB50AC0009178A1 /* QuizSearchVC.swift */,
 				3D77A1491FB50AB0009178A1 /* QuizActivityVC.swift */,
@@ -888,6 +894,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A184C8D3205602CB004AC690 /* LobbyPlayersCollectionViewCell.swift in Sources */,
 				A12154B820478E9E00E9E939 /* FriendRequestsTableViewCell.swift in Sources */,
 				3D77A14E1FB50ADC009178A1 /* LeaderboardVC.swift in Sources */,
 				7FFDBB631FBD39DA0001E1FC /* ProfileSideBarCell.swift in Sources */,
@@ -910,6 +917,7 @@
 				3D227FCA204BAC8C001EB946 /* SRCountdownTimer.swift in Sources */,
 				3DE0275C2034E1B100ECAE7B /* LeaderboardCell.swift in Sources */,
 				3D77A14A1FB50AB0009178A1 /* QuizActivityVC.swift in Sources */,
+				A184C8D12055FDBA004AC690 /* QuizLobbyVC.swift in Sources */,
 				3D77A15D1FB57FF1009178A1 /* SideBarCell.swift in Sources */,
 				77A14AE1CE66390C8FD49F32 /* CategoryTableViewCell.swift in Sources */,
 				77A1423CAFAD4B9F73BB4C3E /* SubjectTableViewCell.swift in Sources */,
