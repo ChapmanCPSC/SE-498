@@ -9,6 +9,9 @@ target 'MedQuiz' do
   # https://github.com/rsrbk/SRCountdownTimer
   
   pod 'Firebase/Core'
+  pod 'Firebase/Storage'
+  pod 'FirebaseUI/Storage'
+  pod 'Firebase/Database'
   
   target 'MedQuizTests' do
     inherit! :search_paths
