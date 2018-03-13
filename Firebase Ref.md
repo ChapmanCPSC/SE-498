@@ -1,5 +1,5 @@
 ## Question
->Description: This is a collection of essential question information
+>Description: This is a collection of essential question information<
   *name: a string value which is the name of the question
   **This must be duplicated in the question-name object**
 >To duplicate, make sure the Unique ID of this question is inserted into the question-name object, then add a key called name with the same name listed here attached as a value
