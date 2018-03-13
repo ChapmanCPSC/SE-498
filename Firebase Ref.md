@@ -13,10 +13,10 @@ points: a numerical values which states the number of points received per questi
 * datecreated: the date the question was created and inserted into the DB
 * timecreated: the time the question was created and inserted into the DB
 * lastused
- * class : the ID of the course this question was last used in
- **Need to switch this to be the last game**
- * Date: the time which the question was last used
- * Time: the date which the question was last used
+  * class : the ID of the course this question was last used in
+  **Need to switch this to be the last game**
+  * Date: the time which the question was last used
+  * Time: the date which the question was last used
 ## question-name
 Description: The name of the question tied to the ID
 name: a string value which is the name of the question
