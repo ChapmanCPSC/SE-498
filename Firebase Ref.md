@@ -57,15 +57,16 @@ For iOS display
 * Username : A string value with the username for the student
 ## game
 >Description : A collection of in-class games, in which students compete against each other in order to achieve the highest score
-Tdb
+* TBD
 ## Score
 >Description: A collection of scores 
 ## ingame-student-questions
 >Description: A collection of choices made by a student within an in-class game
 ## tag
-Description: A collection of meta-tags which can be used to filter and group either questions or quizzes
+>Description: A collection of meta-tags which can be used to filter and group either questions or quizzes
 * Name : A string value containing the name of the tag
 * Color : A color which can be used to better
 * Questions : a collection of question IDs, with a boolean value stating whether or not this question is associated with this tag or not
 * Quizzes : a collection of quiz IDs, with a boolean value stating whether or not this quiz is associated with this tag or not
 ## users
+* TBD
