@@ -1,8 +1,8 @@
 ## Question
 Description: This is a collection of essential question information
 name: a string value which is the name of the question
-** This must be duplicated in the question-name object
-To duplicate, make sure the Unique ID of this question is inserted into the question-name object, then add a key called name with the same name listed here attached as a value
+  ** This must be duplicated in the question-name object
+    ** To duplicate, make sure the Unique ID of this question is inserted into the question-name object, then add a key called name with the same name listed here attached as a value
 points: a numerical values which states the number of points received per question
 * tags: Collection of the tags which this question has
 This references ID’s in the tags object. 
