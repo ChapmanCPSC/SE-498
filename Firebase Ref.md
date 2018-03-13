@@ -5,18 +5,18 @@
 >To duplicate, make sure the Unique ID of this question is inserted into the question-name object, then add a key called name with the same name listed here attached as a value
 points: a numerical values which states the number of points received per question
 * tags: Collection of the tags which this question has
-This references ID’s in the tags object. 
+**This references ID’s in the tags object.**
 * imageforanswers : a boolean value which states whether or not this question has an image attached to each of the answer choices
-May be moved into choices 
+**May be moved into choices**
 * imageforquestion : a boolean value which states whether or not this question has an image attached to the question itself
-I.e., a question may display one mage, which the use must use in order to discern the correct answer
+**I.e., a question may display one mage, which the use must use in order to discern the correct answer**
 * datecreated: the date the question was created and inserted into the DB
 * timecreated: the time the question was created and inserted into the DB
 * lastused
-* class : the ID of the course this question was last used in
-Need to switch this to be the last game
-* Date: the time which the question was last used
-* Time: the date which the question was last used
+ * class : the ID of the course this question was last used in
+ **Need to switch this to be the last game**
+ * Date: the time which the question was last used
+ * Time: the date which the question was last used
 ## question-name
 Description: The name of the question tied to the ID
 name: a string value which is the name of the question
