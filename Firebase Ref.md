@@ -56,7 +56,7 @@ For iOS display
 * Profilepic: A string value which references the firebase storage URL path where the student’s photo profile pic is located
 * Username : A string value with the username for the student
 ## game
-Description : A collection of in-class games, in which students compete against each other in order to achieve the highest score
+>Description : A collection of in-class games, in which students compete against each other in order to achieve the highest score
 Tdb
 ## Score
 >Description: A collection of scores 
