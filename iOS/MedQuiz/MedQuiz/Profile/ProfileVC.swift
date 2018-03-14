@@ -25,7 +25,7 @@ class ProfileVC: UIViewController, ChangeAvatarVCDelegate, ChangeUsernameVCDeleg
     
     var username = "Maddy Transue"
     var usernameChanged = false
-    var profileImage = #imageLiteral(resourceName: "StudentAvatarPlaceholder.png")
+    var profileImage = UIImage(named: "AtomBlack.png")
     
     override func viewDidLoad() {
         super.viewDidLoad()

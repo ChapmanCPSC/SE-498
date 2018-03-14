@@ -75,6 +75,26 @@
 		3DD07C9020450B5D00FADCD9 /* off-canvas-header-default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DD07C8D20450B5C00FADCD9 /* off-canvas-header-default.png */; };
 		3DD07C9120450B5D00FADCD9 /* Chapman-Univ_cropped_1486751083_300X300_c_c_0_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DD07C8E20450B5C00FADCD9 /* Chapman-Univ_cropped_1486751083_300X300_c_c_0_0.png */; };
 		3DD07C93204B5EEF00FADCD9 /* FriendsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD07C92204B5EEF00FADCD9 /* FriendsVC.swift */; };
+		3DD94C2C2059E91F00C22CEF /* PillPink.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DD94C182059E91D00C22CEF /* PillPink.png */; };
+		3DD94C2D2059E91F00C22CEF /* EyeBlack.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DD94C192059E91D00C22CEF /* EyeBlack.png */; };
+		3DD94C2E2059E91F00C22CEF /* HeartDarkBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DD94C1A2059E91D00C22CEF /* HeartDarkBlue.png */; };
+		3DD94C2F2059E91F00C22CEF /* BeatGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DD94C1B2059E91D00C22CEF /* BeatGreen.png */; };
+		3DD94C302059E91F00C22CEF /* EyeBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DD94C1C2059E91D00C22CEF /* EyeBlue.png */; };
+		3DD94C312059E91F00C22CEF /* BeatBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DD94C1D2059E91D00C22CEF /* BeatBlue.png */; };
+		3DD94C322059E91F00C22CEF /* MedicGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DD94C1E2059E91E00C22CEF /* MedicGreen.png */; };
+		3DD94C332059E91F00C22CEF /* HeartPink.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DD94C1F2059E91E00C22CEF /* HeartPink.png */; };
+		3DD94C342059E91F00C22CEF /* MedicYellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DD94C202059E91E00C22CEF /* MedicYellow.png */; };
+		3DD94C352059E91F00C22CEF /* AtomPink.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DD94C212059E91E00C22CEF /* AtomPink.png */; };
+		3DD94C362059E91F00C22CEF /* BeatJustGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DD94C222059E91E00C22CEF /* BeatJustGreen.png */; };
+		3DD94C372059E91F00C22CEF /* MedicPink.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DD94C232059E91E00C22CEF /* MedicPink.png */; };
+		3DD94C382059E91F00C22CEF /* LungPurple.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DD94C242059E91E00C22CEF /* LungPurple.png */; };
+		3DD94C392059E91F00C22CEF /* EyeBlackGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DD94C252059E91E00C22CEF /* EyeBlackGreen.png */; };
+		3DD94C3A2059E91F00C22CEF /* LongPillYellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DD94C262059E91E00C22CEF /* LongPillYellow.png */; };
+		3DD94C3B2059E91F00C22CEF /* PillRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DD94C272059E91E00C22CEF /* PillRed.png */; };
+		3DD94C3C2059E91F00C22CEF /* HeartBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DD94C282059E91E00C22CEF /* HeartBlue.png */; };
+		3DD94C3D2059E91F00C22CEF /* MedicBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DD94C292059E91E00C22CEF /* MedicBlue.png */; };
+		3DD94C3E2059E91F00C22CEF /* AtomBlack.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DD94C2A2059E91E00C22CEF /* AtomBlack.png */; };
+		3DD94C3F2059E91F00C22CEF /* LongPillBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DD94C2B2059E91F00C22CEF /* LongPillBlue.png */; };
 		3DE027592034DDE000ECAE7B /* ColorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE027582034DDE000ECAE7B /* ColorHelper.swift */; };
 		3DE0275C2034E1B100ECAE7B /* LeaderboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE0275A2034E1B100ECAE7B /* LeaderboardCell.swift */; };
 		3DE0275D2034E1B100ECAE7B /* LeaderboardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DE0275B2034E1B100ECAE7B /* LeaderboardCell.xib */; };
@@ -217,6 +237,26 @@
 		3DD07C8D20450B5C00FADCD9 /* off-canvas-header-default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "off-canvas-header-default.png"; sourceTree = "<group>"; };
 		3DD07C8E20450B5C00FADCD9 /* Chapman-Univ_cropped_1486751083_300X300_c_c_0_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Chapman-Univ_cropped_1486751083_300X300_c_c_0_0.png"; sourceTree = "<group>"; };
 		3DD07C92204B5EEF00FADCD9 /* FriendsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsVC.swift; sourceTree = "<group>"; };
+		3DD94C182059E91D00C22CEF /* PillPink.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PillPink.png; sourceTree = "<group>"; };
+		3DD94C192059E91D00C22CEF /* EyeBlack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EyeBlack.png; sourceTree = "<group>"; };
+		3DD94C1A2059E91D00C22CEF /* HeartDarkBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HeartDarkBlue.png; sourceTree = "<group>"; };
+		3DD94C1B2059E91D00C22CEF /* BeatGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BeatGreen.png; sourceTree = "<group>"; };
+		3DD94C1C2059E91D00C22CEF /* EyeBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EyeBlue.png; sourceTree = "<group>"; };
+		3DD94C1D2059E91D00C22CEF /* BeatBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BeatBlue.png; sourceTree = "<group>"; };
+		3DD94C1E2059E91E00C22CEF /* MedicGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MedicGreen.png; sourceTree = "<group>"; };
+		3DD94C1F2059E91E00C22CEF /* HeartPink.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HeartPink.png; sourceTree = "<group>"; };
+		3DD94C202059E91E00C22CEF /* MedicYellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MedicYellow.png; sourceTree = "<group>"; };
+		3DD94C212059E91E00C22CEF /* AtomPink.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AtomPink.png; sourceTree = "<group>"; };
+		3DD94C222059E91E00C22CEF /* BeatJustGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BeatJustGreen.png; sourceTree = "<group>"; };
+		3DD94C232059E91E00C22CEF /* MedicPink.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MedicPink.png; sourceTree = "<group>"; };
+		3DD94C242059E91E00C22CEF /* LungPurple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LungPurple.png; sourceTree = "<group>"; };
+		3DD94C252059E91E00C22CEF /* EyeBlackGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EyeBlackGreen.png; sourceTree = "<group>"; };
+		3DD94C262059E91E00C22CEF /* LongPillYellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LongPillYellow.png; sourceTree = "<group>"; };
+		3DD94C272059E91E00C22CEF /* PillRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PillRed.png; sourceTree = "<group>"; };
+		3DD94C282059E91E00C22CEF /* HeartBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HeartBlue.png; sourceTree = "<group>"; };
+		3DD94C292059E91E00C22CEF /* MedicBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MedicBlue.png; sourceTree = "<group>"; };
+		3DD94C2A2059E91E00C22CEF /* AtomBlack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AtomBlack.png; sourceTree = "<group>"; };
+		3DD94C2B2059E91F00C22CEF /* LongPillBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LongPillBlue.png; sourceTree = "<group>"; };
 		3DE027582034DDE000ECAE7B /* ColorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHelper.swift; sourceTree = "<group>"; };
 		3DE0275A2034E1B100ECAE7B /* LeaderboardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardCell.swift; sourceTree = "<group>"; };
 		3DE0275B2034E1B100ECAE7B /* LeaderboardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaderboardCell.xib; sourceTree = "<group>"; };
@@ -398,6 +438,7 @@
 		3D3166AA1FBB050F000D910F /* ImagesAndIcons */ = {
 			isa = PBXGroup;
 			children = (
+				3DD94C172059E90E00C22CEF /* Avatars */,
 				3DD07C8E20450B5C00FADCD9 /* Chapman-Univ_cropped_1486751083_300X300_c_c_0_0.png */,
 				3DD07C8C20450B5B00FADCD9 /* chapman-univeristy-300x156.png */,
 				3DD07C8D20450B5C00FADCD9 /* off-canvas-header-default.png */,
@@ -549,6 +590,33 @@
 				77A14D144D6891AEA3B19E5F /* Student.swift */,
 			);
 			path = CustomClasses;
+			sourceTree = "<group>";
+		};
+		3DD94C172059E90E00C22CEF /* Avatars */ = {
+			isa = PBXGroup;
+			children = (
+				3DD94C2A2059E91E00C22CEF /* AtomBlack.png */,
+				3DD94C212059E91E00C22CEF /* AtomPink.png */,
+				3DD94C1D2059E91D00C22CEF /* BeatBlue.png */,
+				3DD94C1B2059E91D00C22CEF /* BeatGreen.png */,
+				3DD94C222059E91E00C22CEF /* BeatJustGreen.png */,
+				3DD94C192059E91D00C22CEF /* EyeBlack.png */,
+				3DD94C252059E91E00C22CEF /* EyeBlackGreen.png */,
+				3DD94C1C2059E91D00C22CEF /* EyeBlue.png */,
+				3DD94C282059E91E00C22CEF /* HeartBlue.png */,
+				3DD94C1A2059E91D00C22CEF /* HeartDarkBlue.png */,
+				3DD94C1F2059E91E00C22CEF /* HeartPink.png */,
+				3DD94C2B2059E91F00C22CEF /* LongPillBlue.png */,
+				3DD94C262059E91E00C22CEF /* LongPillYellow.png */,
+				3DD94C242059E91E00C22CEF /* LungPurple.png */,
+				3DD94C292059E91E00C22CEF /* MedicBlue.png */,
+				3DD94C1E2059E91E00C22CEF /* MedicGreen.png */,
+				3DD94C232059E91E00C22CEF /* MedicPink.png */,
+				3DD94C202059E91E00C22CEF /* MedicYellow.png */,
+				3DD94C182059E91D00C22CEF /* PillPink.png */,
+				3DD94C272059E91E00C22CEF /* PillRed.png */,
+			);
+			path = Avatars;
 			sourceTree = "<group>";
 		};
 		A53E754B2037D8000081B1AD /* CustomCellNodes */ = {
@@ -710,55 +778,75 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DD94C342059E91F00C22CEF /* MedicYellow.png in Resources */,
 				3D3166BF1FBB0588000D910F /* ClearSans-Medium.ttf in Resources */,
 				3DD07C7B204509E700FADCD9 /* Cancel-Icon.png in Resources */,
 				3D8C84311FBA898200FA2AD0 /* Login.storyboard in Resources */,
 				3DE0275D2034E1B100ECAE7B /* LeaderboardCell.xib in Resources */,
 				3DD07C70204509E700FADCD9 /* RightAnswer@2x.png in Resources */,
+				3DD94C3C2059E91F00C22CEF /* HeartBlue.png in Resources */,
 				3DD07C7E204509E700FADCD9 /* WrongAnswer@3x.png in Resources */,
 				DAED09831FB4F68D003575B0 /* Leaderboard.storyboard in Resources */,
 				3DD07C75204509E700FADCD9 /* SelectedAvatar@3x.png in Resources */,
 				3D227FC9204BAC8C001EB946 /* Info.plist in Resources */,
 				3DD07C82204509E700FADCD9 /* StudentAvatarPlaceholder.png in Resources */,
 				3DD07C85204509E700FADCD9 /* SearchIcon@2x.png in Resources */,
+				3DD94C302059E91F00C22CEF /* EyeBlue.png in Resources */,
 				3DD07C88204509E700FADCD9 /* SearchIcon.png in Resources */,
+				3DD94C2C2059E91F00C22CEF /* PillPink.png in Resources */,
 				3D2495B21F7E2EDD0058D85B /* LaunchScreen.storyboard in Resources */,
 				3D77A15E1FB57FF1009178A1 /* SideBarCell.xib in Resources */,
 				3D2495AF1F7E2EDD0058D85B /* Assets.xcassets in Resources */,
 				3DD07C76204509E700FADCD9 /* MockAnswerFour@3x.png in Resources */,
 				DAED09871FB4F6B1003575B0 /* About.storyboard in Resources */,
 				DAED09851FB4F699003575B0 /* Profile.storyboard in Resources */,
+				3DD94C322059E91F00C22CEF /* MedicGreen.png in Resources */,
 				7FFDBB641FBD39DA0001E1FC /* ProfileSideBarCell.xib in Resources */,
 				DAED09811FB4F67D003575B0 /* Quiz.storyboard in Resources */,
 				3DD07C7A204509E700FADCD9 /* MockAnswerOne@3x.png in Resources */,
+				3DD94C2F2059E91F00C22CEF /* BeatGreen.png in Resources */,
+				3DD94C3A2059E91F00C22CEF /* LongPillYellow.png in Resources */,
 				3DD07C79204509E700FADCD9 /* CategoryDropDownArrow.png in Resources */,
 				3DD07C71204509E700FADCD9 /* Cancel-Icon@3x.png in Resources */,
 				3DD07C77204509E700FADCD9 /* StudentAvatarPlaceholder@3x.png in Resources */,
+				3DD94C3B2059E91F00C22CEF /* PillRed.png in Resources */,
+				3DD94C312059E91F00C22CEF /* BeatBlue.png in Resources */,
 				3DD07C8B204509E700FADCD9 /* SearchIcon@3x.png in Resources */,
 				3D2495AD1F7E2EDD0058D85B /* Main.storyboard in Resources */,
 				3DD07C9020450B5D00FADCD9 /* off-canvas-header-default.png in Resources */,
+				3DD94C352059E91F00C22CEF /* AtomPink.png in Resources */,
 				77A14E95C97D195826B64BA1 /* CategoryTableViewCell.xib in Resources */,
 				3DD07C73204509E700FADCD9 /* MockAnswerThree@2x.png in Resources */,
 				3DD07C7F204509E700FADCD9 /* MockAnswerThree@3x.png in Resources */,
 				3DD07C7C204509E700FADCD9 /* MockAnswerOne.png in Resources */,
+				3DD94C3F2059E91F00C22CEF /* LongPillBlue.png in Resources */,
 				77A14587485D480A2422FB89 /* QuizTableViewCell.xib in Resources */,
 				3DD07C72204509E700FADCD9 /* CategoryDropDownArrow@3x.png in Resources */,
 				3DD07C74204509E700FADCD9 /* RightAnswer@3x.png in Resources */,
 				3DD07C8F20450B5D00FADCD9 /* chapman-univeristy-300x156.png in Resources */,
+				3DD94C372059E91F00C22CEF /* MedicPink.png in Resources */,
 				3DD07C87204509E700FADCD9 /* WrongAnswer.png in Resources */,
+				3DD94C362059E91F00C22CEF /* BeatJustGreen.png in Resources */,
 				A5F87904205240B0004BA78D /* CurrUserView.xib in Resources */,
+				3DD94C2D2059E91F00C22CEF /* EyeBlack.png in Resources */,
 				3DD07C78204509E700FADCD9 /* WrongAnswer@2x.png in Resources */,
 				3DD07C6C204509E700FADCD9 /* RightAnswer.png in Resources */,
+				3DD94C332059E91F00C22CEF /* HeartPink.png in Resources */,
 				3DD07C6F204509E700FADCD9 /* MockAnswerFour@2x.png in Resources */,
+				3DD94C2E2059E91F00C22CEF /* HeartDarkBlue.png in Resources */,
 				3DD07C89204509E700FADCD9 /* MockAnswerTwo@3x.png in Resources */,
 				3D14AEC62050E98B009E2B71 /* GoogleService-Info.plist in Resources */,
 				3DD07C7D204509E700FADCD9 /* SelectedAvatar@2x.png in Resources */,
+				3DD94C3E2059E91F00C22CEF /* AtomBlack.png in Resources */,
 				3DD07C84204509E700FADCD9 /* Cancel-Icon@2x.png in Resources */,
+				3DD94C3D2059E91F00C22CEF /* MedicBlue.png in Resources */,
 				3DD07C6D204509E700FADCD9 /* MockAnswerTwo.png in Resources */,
 				3DD07C9120450B5D00FADCD9 /* Chapman-Univ_cropped_1486751083_300X300_c_c_0_0.png in Resources */,
+				3DD94C392059E91F00C22CEF /* EyeBlackGreen.png in Resources */,
 				3DD07C6E204509E700FADCD9 /* MockAnswerThree.png in Resources */,
 				3DD07C83204509E700FADCD9 /* StudentAvatarPlaceholder@2x.png in Resources */,
 				A53E75502043A8980081B1AD /* AnswerView.xib in Resources */,
+				3DD94C382059E91F00C22CEF /* LungPurple.png in Resources */,
 				3DD07C81204509E700FADCD9 /* SelectedAvatar.png in Resources */,
 				3DD07C6B204509E700FADCD9 /* CategoryDropDownArrow@2x.png in Resources */,
 				3DD07C86204509E700FADCD9 /* MockAnswerTwo@2x.png in Resources */,

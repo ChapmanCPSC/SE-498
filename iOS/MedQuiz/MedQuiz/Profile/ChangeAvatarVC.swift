@@ -17,7 +17,7 @@ class ChangeAvatarVC: UIViewController, UICollectionViewDelegate, UICollectionVi
 
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var array:[UIImage] = [#imageLiteral(resourceName: "StudentAvatarPlaceholder.png"), #imageLiteral(resourceName: "MockAnswerTwo.png"), #imageLiteral(resourceName: "MockAnswerOne.png"), #imageLiteral(resourceName: "RightAnswer.png"), #imageLiteral(resourceName: "MockAnswerThree.png")]
+    var avatarsArray:[UIImage] = [UIImage(named:"AtomBlack.png")!, UIImage(named:"AtomPink.png")!, UIImage(named:"BeatBlue.png")!, UIImage(named:"BeatGreen.png")!, UIImage(named:"BeatJustGreen.png")!, UIImage(named:"EyeBlack.png")!, UIImage(named:"EyeBlackGreen.png")!, UIImage(named:"EyeBlue.png")!, UIImage(named:"HeartBlue.png")!, UIImage(named:"HeartDarkBlue.png")!, UIImage(named:"HeartPink.png")!, UIImage(named:"LongPillBlue.png")!, UIImage(named:"LongPillYellow.png")!, UIImage(named:"LungPurple.png")!, UIImage(named:"MedicBlue.png")!,UIImage(named:"MedicBlue.png")!, UIImage(named:"MedicGreen.png")!, UIImage(named:"MedicPink.png")!, UIImage(named:"MedicYellow.png")!, UIImage(named:"PillPink.png")!, UIImage(named:"PillRed.png")!]
     
     var profileImage: UIImage?
     
@@ -37,9 +37,9 @@ class ChangeAvatarVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         collectionView.showsHorizontalScrollIndicator = false
         
-        let selectedImageIndex = array.index(of: profileImage!)
-        array.swapAt(selectedImageIndex!, array.capacity / 2)
-        selectedImageIndexPath = IndexPath(row: array.capacity / 2, section: 0)
+        let selectedImageIndex = avatarsArray.index(of: profileImage!)
+        avatarsArray.swapAt(selectedImageIndex!, avatarsArray.capacity / 2)
+        selectedImageIndexPath = IndexPath(row: avatarsArray.capacity / 2, section: 0)
     }
     override func viewDidAppear(_ animated: Bool) {
         //collectionView.scrollToItem(at: selectedImageIndexPath, at: [], animated: false)
@@ -52,12 +52,12 @@ class ChangeAvatarVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return array.count
+        return avatarsArray.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! AvatarCollectionViewCell
-        cell.imageView.image = array[indexPath.row]
+        cell.imageView.image = avatarsArray[indexPath.row]
         cell.delegate = self
         
         adjustVisibleCollectionCells()
