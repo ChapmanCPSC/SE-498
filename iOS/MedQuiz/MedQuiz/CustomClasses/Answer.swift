@@ -8,7 +8,7 @@
 
 import Foundation
 
-class AnswerModel {
+class Answer {
     var answerText:String
     var points:Int
     var isAnswer:Bool

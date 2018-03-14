@@ -19,6 +19,9 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var loginErrorLabel: UILabel!
     
+    
+//    var tags : TagModel?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,6 +29,20 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         //Reference to the Quiz's storyboard
         MainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
         // Do any additional setup after loading the view.
+        
+        
+        //Testing user login
+        //Here I created a variable testUserLoginInput, assume
+        // this would be used for example on successful login/authentication
+        // from Firebase. We have the input from the usernameTextField
+        // and we can use that on login to get the username and profile pic etc.
+        let testUserLoginInput = "lylenator2000"
+        //I query a student by the key and I print the student's username on success
+        StudentModel.From(key: testUserLoginInput) { (aStudent) in
+            print(aStudent.studentUsername!)
+        }
+        
+        
     }
 
     override func didReceiveMemoryWarning() {

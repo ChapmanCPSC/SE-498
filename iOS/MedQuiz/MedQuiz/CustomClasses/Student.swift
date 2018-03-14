@@ -6,14 +6,14 @@
 import Foundation
 
 
-class StudentModel {
+class Student {
     var userName:String
     var profilePic:String
-    var friends:[StudentModel]
+    var friends:[Student]
     var classes:[String:Bool]
     var totalPoints:Int
 
-    init(userName:String, profilePic:String, friends:[StudentModel], classes:[String:Bool], totalPoints:Int){
+    init(userName:String, profilePic:String, friends:[Student], classes:[String:Bool], totalPoints:Int){
         self.userName = userName
         self.profilePic = profilePic
         self.friends = friends

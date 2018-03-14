@@ -17,7 +17,7 @@ class UserView: UIView {
     @IBOutlet weak var viewBG: UIView!
     
     var overallScore: Int = 0
-    var currStudent:StudentModel!
+    var currStudent:Student!
     var position:Int = 0
     var nonUserBg:String = "FFFFFF"
 
@@ -51,12 +51,12 @@ class UserView: UIView {
         viewMain.backgroundColor = color
     }
 
-    func updateView(student:StudentModel, position:Int){
+    func updateView(student:Student, position:Int){
         self.currStudent = student
         displayUsername(username: student.userName)
         displayPosition(position: position)
     }
-    func updateView(student:StudentModel, position:Int, score:Int){
+    func updateView(student:Student, position:Int, score:Int){
         self.currStudent = student
         displayUsername(username: student.userName)
         displayPosition(position: position)
