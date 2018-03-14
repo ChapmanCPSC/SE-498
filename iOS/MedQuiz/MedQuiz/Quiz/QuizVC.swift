@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Firebase
 
 class QuizVC: UIViewController {
     @IBOutlet weak var tf_quizPin: UITextField!
@@ -97,24 +98,38 @@ class QuizVC: UIViewController {
         })
     }
     
+    //Scheduling used to make pin check wait fot Firebase query to finish, not sure if optimal
     func checkForPin(){
-        let currentPins = [1234,5678,8901]
-        guard let inputPin = Int(tf_quizPin.text!) else {
-            print("Quiz pin was not a number")
-            showAlert(title: "Failure", message: "The provided pin was not a number")
-            clearPin()
-            return
-        }
+        var currentPins = [String]()
         
-        if(currentPins.contains(inputPin)){
-            // TODO get info from backend and segue to the quiz
-            print("Pin does exist")
-            showAlert(title: "Success", message: "The provided pin matches a quiz")
-            self.performSegue(withIdentifier: "QuizPinSegue", sender: nil)
-        }
-        else{
-            print("Pin does not exist")
-            showAlert(title: "Failure", message: "The provided pin does not match a quiz")
+        let group = DispatchGroup()
+        
+        group.enter()
+        
+        gameRef.queryOrderedByKey().observe(.value, with:{ (snapshot: DataSnapshot) in
+            for snap in snapshot.children {
+                currentPins.append(((snap as! DataSnapshot).value as! [String:AnyObject])["gamepin"] as! String)
+            }
+            group.leave()
+        })
+        
+        group.notify(queue: .main){
+            guard let inputPin = Int(self.tf_quizPin.text!) else {
+                print("Quiz pin was not a number")
+                self.showAlert(title: "Failure", message: "The provided pin was not a number")
+                self.clearPin()
+                return
+            }
+            
+            if(currentPins.contains(String(inputPin))){
+                print("Pin does exist")
+                self.showAlert(title: "Success", message: "The provided pin matches a quiz")
+                self.performSegue(withIdentifier: "QuizPinSegue", sender: nil)
+            }
+            else{
+                print("Pin does not exist")
+                self.showAlert(title: "Failure", message: "The provided pin does not match a quiz")
+            }
         }
     }
 

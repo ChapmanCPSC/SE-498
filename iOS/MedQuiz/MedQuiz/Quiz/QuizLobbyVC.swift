@@ -8,9 +8,14 @@
 
 import Foundation
 import UIKit
+import Firebase
 
 class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
+    let gameRef = Database.database().reference(withPath: "game")
+
+    var gameID:String!
+    
     @IBOutlet weak var lobbyPlayersCollectionView: UICollectionView!
     
     struct LobbyPlayer{
@@ -42,6 +47,15 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         loadingIndicatorView.color = loadingIndicatorViewColor
         
         statusLabel.text = loadingString
+//        gameRef.child(gameID).child("students").queryOrderedByKey().observe(.value, with: { (snapshot:
+//            DataSnapshot) in
+//            self.lobbyPlayers.removeAll()
+//            for snap in snapshot.children {
+//                let lobbyPlayer = LobbyPlayer(
+//
+//            }
+//        })
+        
     }
 
     override func didReceiveMemoryWarning() {
