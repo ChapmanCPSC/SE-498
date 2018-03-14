@@ -31,6 +31,14 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         // Do any additional setup after loading the view.
         
         
+        
+        
+        
+        
+        
+        
+        
+        
         //Testing user login
         //Here I created a variable testUserLoginInput, assume
         // this would be used for example on successful login/authentication
@@ -39,8 +47,17 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         let testUserLoginInput = "lylenator2000"
         //I query a student by the key and I print the student's username on success
         StudentModel.From(key: testUserLoginInput) { (aStudent) in
+            print("Testing user login")
             print(aStudent.studentUsername!)
         }
+        
+        
+        
+        
+        
+        
+        
+        
         
         
     }

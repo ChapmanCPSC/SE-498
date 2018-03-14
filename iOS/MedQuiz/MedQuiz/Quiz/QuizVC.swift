@@ -14,7 +14,8 @@ class QuizVC: UIViewController {
     @IBOutlet weak var tf_quizPin: UITextField!
     @IBOutlet weak var iv_closeButton: UIImageView!
     @IBOutlet weak var sv_search: UIView!
-
+    
+    let gameRef = Database.database().reference(withPath: "game")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,12 +33,13 @@ class QuizVC: UIViewController {
             // i can just assume the game is the first one in the array "gamesFound"
             // returned.
             let theGame = gamesFound[0]
-            //since theGame is of type GameModel I can use it's variable quizKey and
+            //since theGame is of type GameModel I can use its variable quizKey and
             // and then get access to that quiz using the quiz key
             let quizKeyForGame = theGame.quizKey!
             QuizModel.From(key: quizKeyForGame, completion: { (aQuiz) in
                 //This query returns an a quiz model by some key I provided "quizKeyForGame". I called the quiz model "aQuiz"
                 //Just to test we return the quiz title
+                print("Testing quiz pin retrieval")
                 print(aQuiz.title!)
             })
         }

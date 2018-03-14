@@ -30,6 +30,33 @@ class ProfileVC: UIViewController, ChangeAvatarVCDelegate, ChangeUsernameVCDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
+        
+        
+        
+        
+        //Testing profile info population
+        //Here I created a variable testUserLoginInput, assume
+        // this would be used for example on successful login/authentication
+        // from Firebase. We have the input from the usernameTextField
+        // and we can use that on login to get the username and profile pic etc.
+        let testUser = "lylenator2000"
+        //I query a student by the key and I print the student's username on success
+        StudentModel.From(key: testUser) { (aStudent) in
+            print("Testing profile info population")
+            print(aStudent.studentUsername!)
+        }
+        
+        
+        
+    
+        
+        
+        
+        
+        
+        
         let profileAvatarChange = UITapGestureRecognizer(target: self, action: #selector(ProfileVC.profileAvatarPressed))
         
         profileImageView.addGestureRecognizer(profileAvatarChange)

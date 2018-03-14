@@ -56,6 +56,47 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
 //            }
 //        })
         
+        
+        
+        
+        
+        
+        
+        //Testing quiz students retrieval in lobby
+        // in this case we assume a student entered a pin: 8419
+        let testPin = "8419"
+        print("Testing quiz students retrieval in lobby")
+        GameModel.Where(child: GameModel.GAME_PIN, equals: testPin) { (gamesFound) in
+            //this query returns an array of games, I called it "gamesFound"
+            // since there can only be one game with that game pin
+            // i can just assume the game is the first one in the array "gamesFound"
+            // returned.
+            let theGame = gamesFound[0]
+            //I then traverse through the students snapshot for that game and
+            // traverse through the keys in that snapshot
+            let theGameStudentsSnapshot = theGame.gameStudents
+            for studentSnapshot in theGameStudentsSnapshot{
+                //Querying for the students in the game and querying
+                // and printing their name.
+                //You can see how this can be used to populate an
+                // array of students joining the game
+                StudentModel.From(key: studentSnapshot.key, completion: { (aStudent) in
+                    print(aStudent.studentUsername!)
+                })
+            }
+
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
 
     override func didReceiveMemoryWarning() {

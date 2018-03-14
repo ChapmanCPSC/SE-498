@@ -18,6 +18,6 @@ class GameModel: FIRModel, FIRQueryable
     
     var gamePin: String? { return self.get(GameModel.GAME_PIN) }
     var quizKey: String? { return self.get(GameModel.QUIZ) }
-    var gameStudents: [StudentModel] { return self.get(GameModel.STUDENTS) }
+    var gameStudents: [StudentModel] { return self.get(GameModel.STUDENTS)}
     
 }
