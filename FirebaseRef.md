@@ -31,6 +31,7 @@
 >Description: The available answers for a specific question
 **This object also utilizes the specific ID of a question.**
 * answers : Collection of IDs for each answer, with a string value with the answer name
+ * It is also possible for the answer values here to be Firebase Storage URLs, if you are displaying images rather than answers in text
 * correctanswers: Same collection of IDs as above, but with a boolean flag value stating whether or not the specific question would be considered to be a correct or incorrect answer
 ## Course
 >Description: The course for which a set of student’s might be enrolled in. Stores information regarding specific quizzes that are used in the course
@@ -54,12 +55,17 @@ For iOS display
 >Description : A collection of students, who are enrolled in specific courses
 * courses : A collection of course IDs for which this student is associated, with a boolean flag stating whether or not this course is attached or not
 * Profilepic: A string value which references the firebase storage URL path where the student’s photo profile pic is located
+* Scores : A collection of scores which the student has accumulated for each live game
 * Username : A string value with the username for the student
+* Password : A string value with the password for the student
 ## game
 >Description : A collection of in-class games, in which students compete against each other in order to achieve the highest score
 * TBD
-## Score
+## score
 >Description: A collection of scores 
+## leaderboard
+>Description : A collection of student IDs which can be "queried" for scores
+* THIS IS SUBJECT TO CHANGE!!!
 ## ingame-student-questions
 >Description: A collection of choices made by a student within an in-class game
 ## tag
