@@ -12,23 +12,21 @@ import Firebase
 
 class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
-    let gameRef = Database.database().reference(withPath: "game")
-
-    var gameID:String!
+    var gamePin:String?
     
     @IBOutlet weak var lobbyPlayersCollectionView: UICollectionView!
     
-    struct LobbyPlayer{
-        var avatar: UIImage!
-        var username: String!
-        var score: String!
-    }
+//    struct LobbyPlayer{
+//        var avatar: UIImage!
+//        var username: String!
+//        var score: String!
+//    }
     
     @IBOutlet weak var loadingIndicatorView: UIActivityIndicatorView!
     let loadingIndicatorViewScale:CGFloat = 2.0
     let loadingIndicatorViewColor = UIColor.hexStringToUIColor(hex: "439EC4")
     
-    var lobbyPlayers = [LobbyPlayer]()
+    var lobbyPlayers = [Student]()
     
     @IBOutlet weak var statusLabel: UILabel!
     var loadingString:String = "Loading Quiz"
@@ -47,26 +45,12 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         loadingIndicatorView.color = loadingIndicatorViewColor
         
         statusLabel.text = loadingString
-//        gameRef.child(gameID).child("students").queryOrderedByKey().observe(.value, with: { (snapshot:
-//            DataSnapshot) in
-//            self.lobbyPlayers.removeAll()
-//            for snap in snapshot.children {
-//                let lobbyPlayer = LobbyPlayer(
-//
-//            }
-//        })
-        
-        
-        
-        
-        
-        
-        
+
         //Testing quiz students retrieval in lobby
         // in this case we assume a student entered a pin: 8419
-        let testPin = "8419"
+        //let testPin = "8419"
         print("Testing quiz students retrieval in lobby")
-        GameModel.Where(child: GameModel.GAME_PIN, equals: testPin) { (gamesFound) in
+        GameModel.Where(child: GameModel.GAME_PIN, equals: gamePin) { (gamesFound) in
             //this query returns an array of games, I called it "gamesFound"
             // since there can only be one game with that game pin
             // i can just assume the game is the first one in the array "gamesFound"
@@ -81,22 +65,12 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 //You can see how this can be used to populate an
                 // array of students joining the game
                 StudentModel.From(key: studentSnapshot.key, completion: { (aStudent) in
+                    //print((aStudent.snapshot.value as! [String:AnyObject])["username"] as! String)
                     print(aStudent.studentUsername!)
                 })
             }
 
         }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -116,16 +90,15 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = lobbyPlayersCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! LobbyPlayersCollectionViewCell
-        cell.avatarImageView.image = lobbyPlayers[indexPath.row].avatar
-        cell.usernameLabel.text = lobbyPlayers[indexPath.row].username
-        cell.scoreLabel.text = lobbyPlayers[indexPath.row].score
+        cell.avatarImageView.image = UIImage(named: lobbyPlayers[indexPath.row].profilePic)
+        cell.usernameLabel.text = lobbyPlayers[indexPath.row].userName
+        cell.scoreLabel.text = String(lobbyPlayers[indexPath.row].totalPoints)
         
         return cell
     }
     
-    func addLobbyPlayer(avatar:UIImage, username:String, score:Int){
-        let newLobbyPlayer = LobbyPlayer(avatar: avatar, username: username, score: String(score))
-        lobbyPlayers.append(newLobbyPlayer)
+    func addLobbyPlayer(lobbyPlayer:Student){
+        lobbyPlayers.append(lobbyPlayer)
         lobbyPlayersCollectionView.reloadData()
     }
     

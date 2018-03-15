@@ -15,6 +15,8 @@ class QuizVC: UIViewController {
     @IBOutlet weak var iv_closeButton: UIImageView!
     @IBOutlet weak var sv_search: UIView!
     
+    var gamePin:String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -72,6 +74,13 @@ class QuizVC: UIViewController {
         sv_search.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(QuizVC.sv_searchPressed)))
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "QuizPinSegue"){
+            let destinationVC = segue.destination as! QuizLobbyVC
+            destinationVC.gamePin = gamePin
+        }
+    }
+    
     @objc func sv_searchPressed(){
         self.performSegue(withIdentifier: "QuizSearchSegue", sender: nil)
     }
@@ -103,6 +112,7 @@ class QuizVC: UIViewController {
             if(!gamesFound.isEmpty){
                 QuizModel.From(key: gamesFound[0].key, completion: { (quiz) in
                     print("Pin does exist")
+                    self.gamePin = String(inputPin)
                     self.showAlert(title: "Success", message: "The provided pin matches a quiz")
                     self.performSegue(withIdentifier: "QuizPinSegue", sender: nil)
                 })
