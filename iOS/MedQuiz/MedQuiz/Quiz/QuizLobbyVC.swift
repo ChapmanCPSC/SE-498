@@ -24,7 +24,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     @IBOutlet weak var loadingIndicatorView: UIActivityIndicatorView!
     let loadingIndicatorViewScale:CGFloat = 2.0
-    let loadingIndicatorViewColor = UIColor.hexStringToUIColor(hex: "439EC4")
+    let loadingIndicatorViewColor = UIColor.hexStringToUIColor(hex: "FFDF00")
     
     var lobbyPlayers = [Student]()
     

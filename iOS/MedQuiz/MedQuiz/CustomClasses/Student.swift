@@ -20,4 +20,8 @@ class Student {
         self.classes = classes
         self.totalPoints = totalPoints
     }
+    
+//    init(studentModel:StudentModel){
+//        
+//    }
 }
