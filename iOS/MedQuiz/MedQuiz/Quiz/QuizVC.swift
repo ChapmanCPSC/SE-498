@@ -15,38 +15,29 @@ class QuizVC: UIViewController {
     @IBOutlet weak var iv_closeButton: UIImageView!
     @IBOutlet weak var sv_search: UIView!
     
-    let gameRef = Database.database().reference(withPath: "game")
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         
-        
-        
-        
-        //Testing quiz pin retrieval
-        // in this case we assume a student entered a pin: 8419
-        let testPin = "8419"
-        GameModel.Where(child: GameModel.GAME_PIN, equals: testPin) { (gamesFound) in
-            //this query returns an array of games, I called it "gamesFound"
-            // since there can only be one game with that game pin
-            // i can just assume the game is the first one in the array "gamesFound"
-            // returned.
-            let theGame = gamesFound[0]
-            //since theGame is of type GameModel I can use its variable quizKey and
-            // and then get access to that quiz using the quiz key
-            let quizKeyForGame = theGame.quizKey!
-            QuizModel.From(key: quizKeyForGame, completion: { (aQuiz) in
-                //This query returns an a quiz model by some key I provided "quizKeyForGame". I called the quiz model "aQuiz"
-                //Just to test we return the quiz title
-                print("Testing quiz pin retrieval")
-                print(aQuiz.title!)
-            })
-        }
-        
-        
-        
-        
+//        //Testing quiz pin retrieval
+//        // in this case we assume a student entered a pin: 8419
+//        let testPin = "8419"
+//        GameModel.Where(child: GameModel.GAME_PIN, equals: testPin) { (gamesFound) in
+//            //this query returns an array of games, I called it "gamesFound"
+//            // since there can only be one game with that game pin
+//            // i can just assume the game is the first one in the array "gamesFound"
+//            // returned.
+//            let theGame = gamesFound[0]
+//            //since theGame is of type GameModel I can use its variable quizKey and
+//            // and then get access to that quiz using the quiz key
+//            let quizKeyForGame = theGame.quizKey!
+//            QuizModel.From(key: quizKeyForGame, completion: { (aQuiz) in
+//                //This query returns an a quiz model by some key I provided "quizKeyForGame". I called the quiz model "aQuiz"
+//                //Just to test we return the quiz title
+//                print("Testing quiz pin retrieval")
+//                print(aQuiz.title!)
+//            })
+//        }
     }
     
     func setupViews(){
@@ -100,33 +91,21 @@ class QuizVC: UIViewController {
         })
     }
     
-    //Scheduling used to make pin check wait fot Firebase query to finish, not sure if optimal
     func checkForPin(){
-        var currentPins = [String]()
+        guard let inputPin = Int(self.tf_quizPin.text!) else {
+            print("Quiz pin was not a number")
+            self.showAlert(title: "Failure", message: "The provided pin was not a number")
+            self.clearPin()
+            return
+        }
         
-        let group = DispatchGroup()
-        
-        group.enter()
-        
-        gameRef.queryOrderedByKey().observe(.value, with:{ (snapshot: DataSnapshot) in
-            for snap in snapshot.children {
-                currentPins.append(((snap as! DataSnapshot).value as! [String:AnyObject])["gamepin"] as! String)
-            }
-            group.leave()
-        })
-        
-        group.notify(queue: .main){
-            guard let inputPin = Int(self.tf_quizPin.text!) else {
-                print("Quiz pin was not a number")
-                self.showAlert(title: "Failure", message: "The provided pin was not a number")
-                self.clearPin()
-                return
-            }
-            
-            if(currentPins.contains(String(inputPin))){
-                print("Pin does exist")
-                self.showAlert(title: "Success", message: "The provided pin matches a quiz")
-                self.performSegue(withIdentifier: "QuizPinSegue", sender: nil)
+        GameModel.Where(child: GameModel.GAME_PIN, equals: String(inputPin)) { (gamesFound) in
+            if(!gamesFound.isEmpty){
+                QuizModel.From(key: gamesFound[0].key, completion: { (quiz) in
+                    print("Pin does exist")
+                    self.showAlert(title: "Success", message: "The provided pin matches a quiz")
+                    self.performSegue(withIdentifier: "QuizPinSegue", sender: nil)
+                })
             }
             else{
                 print("Pin does not exist")
