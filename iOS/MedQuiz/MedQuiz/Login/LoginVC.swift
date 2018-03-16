@@ -45,8 +45,13 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         // from Firebase. We have the input from the usernameTextField
         // and we can use that on login to get the username and profile pic etc.
         let testUserLoginInput = "lylenator2000"
-        //I query a student by the key and I print the student's username on success
-        StudentModel.From(key: testUserLoginInput) { (aStudent) in
+//        //I query a student by the key and I print the student's username on success
+//        StudentModel.From(key: testUserLoginInput) { (aStudent) in
+//            print("Testing user login")
+//            print(aStudent.studentUsername!)
+//        }
+        
+        StudentModel.FromAndKeepObserving(key: testUserLoginInput) { (aStudent) in
             print("Testing user login")
             print(aStudent.studentUsername!)
         }

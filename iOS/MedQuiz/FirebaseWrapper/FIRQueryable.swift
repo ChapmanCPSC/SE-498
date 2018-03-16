@@ -11,7 +11,6 @@ extension FIRQueryable where Self: FIRModel
     func getExternal(completion: @escaping () -> Void)
     {
         Self.GetCollectionRef().child(self.key).observeSingleEvent(of: .value) { (snapshot: DataSnapshot) in
-            
             self.snapshot = snapshot
             completion()
         }
@@ -33,6 +32,13 @@ extension FIRQueryable where Self: FIRModel
         }
     }
     
+    static func FromAndKeepObserving(key: String, completion: @escaping (Self) -> Void)
+    {
+            self.GetCollectionRef().child(key).observe(.value, with: { (snapshot) in
+                completion(Self(snapshot: snapshot))
+            })
+    }
+    
 	static func Top(_ limit: UInt, completion: @escaping ([Self]) -> Void)
 	{
         self.GetCollectionRef().queryLimited(toFirst: limit).observeSingleEvent(of: .value) { (snapshot: DataSnapshot) in
@@ -49,6 +55,17 @@ extension FIRQueryable where Self: FIRModel
             .queryLimited(toFirst: limit)
             .observeSingleEvent(of: .value) { (snapshot: DataSnapshot) in
                 
+                completion(self.GetModels(fromContainerSnapshot: snapshot))
+        }
+    }
+    
+    static func WhereAndKeepObserving(child path: String, equals value: Any?, limit: UInt = 1000, completion: @escaping ([Self]) -> Void)
+    {
+        self.GetCollectionRef()
+            .queryOrdered(byChild: path)
+            .queryEqual(toValue: value)
+            .queryLimited(toFirst: limit)
+            .observe(.value) { (snapshot) in
                 completion(self.GetModels(fromContainerSnapshot: snapshot))
         }
     }
