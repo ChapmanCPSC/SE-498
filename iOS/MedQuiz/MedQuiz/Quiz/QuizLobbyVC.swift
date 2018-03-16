@@ -114,6 +114,10 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         self.performSegue(withIdentifier: "LobbyErrorSegue", sender: nil)
     }
 
+    @IBAction func tempBckPressed(_ sender: Any) {
+        self.dismiss(animated: false) {
+        }
+    }
     /*
     // MARK: - Navigation
 

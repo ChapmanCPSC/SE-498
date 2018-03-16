@@ -346,6 +346,10 @@ class QuizActivityVC: UIViewController {
         allUsers.insert(user, at: currPos-1)
         updateLeaderboard()
     }
+    @IBAction func tempBackPressed(_ sender: Any) {
+        self.dismiss(animated: false) {
+        }
+    }
 }
 
 extension QuizActivityVC:SelectsAnswer {
