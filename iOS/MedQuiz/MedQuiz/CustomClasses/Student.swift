@@ -21,7 +21,11 @@ class Student {
         self.totalPoints = totalPoints
     }
     
-//    init(studentModel:StudentModel){
-//        
-//    }
+    init(studentModel:StudentModel){
+        self.userName = (studentModel.snapshot.value as! [String:AnyObject])["username"] as! String
+        self.profilePic = (studentModel.snapshot.value as! [String:AnyObject])["profilePic"] as! String
+        self.friends = (studentModel.snapshot.value as! [String:AnyObject])["friends"] as! [Student]
+        self.classes = (studentModel.snapshot.value as! [String:AnyObject])["classes"] as! [String:Bool]
+        self.totalPoints = Int((studentModel.snapshot.value as! [String:AnyObject])["totalPoints"] as! String)!
+    }
 }
