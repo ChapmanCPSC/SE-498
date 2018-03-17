@@ -62,12 +62,12 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             let theGame = gamesFound[0]
             
             QuizModel.From(key: theGame.quizKey!, completion: { (aQuiz) in
-                //gameQuiz = Quiz(aQuiz)
+                //self.gameQuiz = Quiz(aQuiz)
             })
             
             for studentModel:StudentModel in theGame.gameStudents{
                 StudentModel.FromAndKeepObserving(key: studentModel.key, completion: { (aStudent) in
-                    //lobbyPlayers.append(Student(aStudent))
+                    //self.lobbyPlayers.append(Student(studentModel: aStudent))
                 })
                 self.lobbyPlayersCollectionView.reloadData()
             }
