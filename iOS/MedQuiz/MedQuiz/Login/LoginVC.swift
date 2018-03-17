@@ -44,18 +44,42 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         // this would be used for example on successful login/authentication
         // from Firebase. We have the input from the usernameTextField
         // and we can use that on login to get the username and profile pic etc.
-        let testUserLoginInput = "lylenator2000"
+        let testUserLoginInput = "b29fks9mf9gh37fhh1h9814"
 //        //I query a student by the key and I print the student's username on success
-//        StudentModel.From(key: testUserLoginInput) { (aStudent) in
-//            print("Testing user login")
-//            print(aStudent.studentUsername!)
-//        }
+        StudentModel.From(key: testUserLoginInput) { (aStudent) in
+            print("Testing user login")
+            print(aStudent.studentUsername!)
+        }
         
+        //Example of a query that will keep observing for any changes/additions/deletions
+        // at a specific key path
         StudentModel.FromAndKeepObserving(key: testUserLoginInput) { (aStudent) in
             print("Testing user login")
             print(aStudent.studentUsername!)
         }
         
+        
+        //Example of getting all the profile pictures for all students
+        // (not sure this is usefull but just an example of use)
+        StudentModel.All { (students) in
+            for student in students{
+                print(student.studentUsername!)
+                student.getProfilePic(completion: { (anImage) in
+                    print(anImage!.description)
+                })
+            }
+        }
+        
+        //Example of getting specific profile picture for one student
+        // (not sure this is usefull but just an example of use)
+        let testUserLoginInput2 = "lylenator2000"
+        StudentModel.Where(child: "username", equals: testUserLoginInput2) { (studentModelsReturned) in
+            let theStudent = studentModelsReturned[0]
+            print(theStudent.studentUsername!)
+            theStudent.getProfilePic(completion: { (theProfilePic) in
+                 print(theProfilePic!.description)
+            })
+        }
         
         
         
