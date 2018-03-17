@@ -7,7 +7,7 @@ protocol FIRStorageDownloadable
 
 extension FIRStorageDownloadable where Self: FIRModel
 {
-    var location: String? { return self.get("location") }
+    var location: String? { return self.get("profilepic") }
     
     func getDownloadURL(completion: @escaping (URL?, Error?) -> Void)
     {
