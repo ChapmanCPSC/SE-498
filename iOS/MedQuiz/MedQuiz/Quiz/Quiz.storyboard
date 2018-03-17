@@ -352,7 +352,7 @@
                                 <rect key="frame" x="666" y="81" width="113" height="30"/>
                                 <state key="normal" title="TempQuizSegue"/>
                                 <connections>
-                                    <segue destination="iNk-fp-Fpw" kind="show" id="ClV-2G-UHD"/>
+                                    <segue destination="iNk-fp-Fpw" kind="show" identifier="QuizActivitySegue" id="ClV-2G-UHD"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4vw-YE-efo">
@@ -567,7 +567,7 @@
         <image name="SearchIcon.png" width="93" height="94"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="qo8-Ml-WfT"/>
+        <segue reference="otz-VS-muV"/>
         <segue reference="ClV-2G-UHD"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -12,6 +12,7 @@ import Firebase
 
 class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
+    var gameQuiz:Quiz?
     var gamePin:String?
     
     @IBOutlet weak var lobbyPlayersCollectionView: UICollectionView!
@@ -46,31 +47,27 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         
         statusLabel.text = loadingString
 
-        //Testing quiz students retrieval in lobby
-        // in this case we assume a student entered a pin: 8419
-        //let testPin = "8419"
-        print("Testing quiz students retrieval in lobby")
-        GameModel.Where(child: GameModel.GAME_PIN, equals: gamePin) { (gamesFound) in
-            //this query returns an array of games, I called it "gamesFound"
-            // since there can only be one game with that game pin
-            // i can just assume the game is the first one in the array "gamesFound"
-            // returned.
-            let theGame = gamesFound[0]
-            //I then traverse through the students snapshot for that game and
-            // traverse through the keys in that snapshot
-            let theGameStudentsSnapshot = theGame.gameStudents
-            for studentSnapshot in theGameStudentsSnapshot{
-                //Querying for the students in the game and querying
-                // and printing their name.
-                //You can see how this can be used to populate an
-                // array of students joining the game
-                StudentModel.From(key: studentSnapshot.key, completion: { (aStudent) in
-                    //print((aStudent.snapshot.value as! [String:AnyObject])["username"] as! String)
-                    print(aStudent.studentUsername!)
-                })
+        let connectedRef = Database.database().reference(withPath: ".info/connected")
+        connectedRef.observe(.value, with: { snapshot in
+            if let connected = snapshot.value as? Bool, !connected {
+                self.errorOccured(title: "Connection Error", message: "Connection to database lost.")
             }
-
+        })
+        
+        GameModel.WhereAndKeepObserving(child: GameModel.GAME_PIN, equals: gamePin) { (gamesFound) in
+            let theGame = gamesFound[0]
+            QuizModel.From(key: theGame.quizKey!, completion: { (aQuiz) in
+                //gameQuiz = Quiz(aQuiz)
+            })
+            
+            for studentModel:StudentModel in theGame.gameStudents{
+                StudentModel.FromAndKeepObserving(key: studentModel.key, completion: { (aStudent) in
+                    //lobbyPlayers.append(Student(aStudent))
+                })
+                self.lobbyPlayersCollectionView.reloadData()
+            }
         }
+        self.loadingQuizComplete()
     }
 
     override func didReceiveMemoryWarning() {
@@ -103,8 +100,20 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     func loadingQuizComplete(){
+        print("Loading Quiz complete")
         statusLabel.text = waitingString
         loadingIndicatorView.stopAnimating()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "QuizActivitySegue"){
+            let destinationVC = segue.destination as! QuizActivityVC
+            destinationVC.currQuiz = gameQuiz
+        }
+    }
+    
+    func quizStarted(){
+        performSegue(withIdentifier: "QuizActivitySegue", sender: nil)
     }
     
     func errorOccured(title:String, message:String){
