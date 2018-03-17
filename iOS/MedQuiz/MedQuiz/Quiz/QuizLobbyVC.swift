@@ -55,7 +55,12 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         })
         
         GameModel.WhereAndKeepObserving(child: GameModel.GAME_PIN, equals: gamePin) { (gamesFound) in
+            if(gamesFound.isEmpty){
+                self.errorOccured(title: "Quiz Not Found", message: "Quiz for supplied pin not found through query.")
+            }
+            
             let theGame = gamesFound[0]
+            
             QuizModel.From(key: theGame.quizKey!, completion: { (aQuiz) in
                 //gameQuiz = Quiz(aQuiz)
             })
