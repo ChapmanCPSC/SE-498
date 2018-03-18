@@ -8,23 +8,36 @@
 
 import Foundation
 class Quiz {
-    var dateCreated:Date
+    var dateCreated:String
     var available:Bool
     var visible:Bool
-    var classBelongsTo:String
-    var points: Bool
     var title:String
     var questions:[Question]
-    var tags:[String] // TODO create a TagModel
+    var tags:[Tag]
 
-    init(dateCreated:Date, available:Bool, visible:Bool, classBelongsTo:String, points: Bool, title:String, questions:[Question], tags:[String]){
+    init(dateCreated:String, available:Bool, visible:Bool, title:String, questions:[Question], tags:[Tag]){
         self.dateCreated = dateCreated
         self.available = available
         self.visible = visible
-        self.classBelongsTo = classBelongsTo
-        self.points = points
         self.title = title
         self.questions = questions
         self.tags = tags
+    }
+
+    init(quizModel:QuizModel){
+        self.title = quizModel.title!
+        self.available = quizModel.available!
+        self.visible = quizModel.visiblity!
+        var questionsToSet:[Question] = []
+        quizModel.quizQuestions.forEach { model in
+            questionsToSet.append(Question(questionModel: model))
+         }
+        self.questions = questionsToSet
+        var tagsToSet:[Tag] = []
+        quizModel.tags.forEach { model in
+            tagsToSet.append(Tag(tagModel: model))
+        }
+        self.tags = tagsToSet
+        self.dateCreated = quizModel.dateCreated!
     }
 }
