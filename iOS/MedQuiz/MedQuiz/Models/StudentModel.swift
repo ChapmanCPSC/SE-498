@@ -16,14 +16,17 @@ class StudentModel: FIRModel, FIRQueryable,FIRStorageDownloadable
     static var COLLECTION_NAME: String = "student"
     
     static var USERNAME = "username"
-    static var PROFILEPIC = "profilepic"
-    
-    
-    
+    static var PROFILE_PIC = "profilepic"
+    static var TOTAL_POINTS = "totalpoints"
+    static var HAS_CHANGED_USERNAME = "haschangedusername"
+    static var FRIENDS = "friends"
+
     var studentUsername: String? { return self.get(StudentModel.USERNAME) }
-    
-    var profilePic: String? { return self.get(StudentModel.PROFILEPIC) }
-    
+    var profilePic: String? {return self.get(StudentModel.PROFILE_PIC)}
+    var totalPoints: Int? {return self.get(StudentModel.TOTAL_POINTS)}
+    var hasChangedUsername:Bool? {return self.get(StudentModel.HAS_CHANGED_USERNAME)}
+    var friends:[StudentModel]? {return self.get(StudentModel.FRIENDS)}
+
     func getProfilePic(completion: @escaping (UIImage?) -> Void){
         var theProfileImageToReturn = UIImage()
         guard self.profilePic != nil else
@@ -31,9 +34,9 @@ class StudentModel: FIRModel, FIRQueryable,FIRStorageDownloadable
             completion(nil)
             return
         }
-        
+
             self.getData(withMaxSize: 1 * 1024 * 1024, completion: { (d: Foundation.Data?, e: Error?) in
-                
+
                 if let error = e
                 {
                     print("Woops: \(error)")
@@ -45,5 +48,5 @@ class StudentModel: FIRModel, FIRQueryable,FIRStorageDownloadable
             })
             completion(theProfileImageToReturn)
         }
-    
+
 }

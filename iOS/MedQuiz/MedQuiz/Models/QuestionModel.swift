@@ -14,12 +14,13 @@ class QuestionModel: FIRModel
     static var POINTS = "points"
     static var IMAGE_FOR_ANSWERS = "imageforanswers"
     static var IMAGE_FOR_QUESTIONS = "imageforquestion"
+    static var TAGS = "tags"
    
     
     
     var questionTitle: String? { return self.get(QuestionModel.NAME) }
-    var questionPoints: String? { return self.get(QuestionModel.POINTS) }
+    var questionPoints: Int? { return self.get(QuestionModel.POINTS) }
     var imagesForAnswer: Bool? { return self.get(QuestionModel.IMAGE_FOR_ANSWERS) }
     var imageForQuestion: Bool? { return self.get(QuestionModel.IMAGE_FOR_QUESTIONS) }
-    
+    var tags: [TagModel]? {return self.get(QuestionModel.TAGS)}
 }
