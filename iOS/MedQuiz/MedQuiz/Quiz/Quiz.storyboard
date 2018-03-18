@@ -425,11 +425,12 @@
                         <outlet property="lab_score" destination="sw7-b4-vmX" id="E3d-Og-5FW"/>
                         <outlet property="lab_scoreDiff" destination="ZFv-sT-4gD" id="VJm-XG-Gr8"/>
                         <outlet property="lab_username" destination="eRp-NO-BW3" id="dg6-ba-N9x"/>
+                        <segue destination="Jvp-t9-Pxf" kind="show" identifier="summaryToHome" id="9Xx-YP-L55"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xjb-xo-CYn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="869.53125" y="105.46875"/>
+            <point key="canvasLocation" x="79" y="-672"/>
         </scene>
         <!--Quiz LobbyVC-->
         <scene sceneID="21z-ab-oMu">
@@ -729,7 +730,7 @@
         <image name="StudentAvatarPlaceholder.png" width="183" height="183"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="qo8-Ml-WfT"/>
+        <segue reference="9Xx-YP-L55"/>
         <segue reference="KMK-MK-Hl3"/>
     </inferredMetricsTieBreakers>
 </document>

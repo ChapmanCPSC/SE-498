@@ -34,7 +34,9 @@ class QuizSummaryViewController: UIViewController {
     }
     
     @IBAction func btn_donePressed(_ sender: Any) {
-
+        self.splitViewController?.preferredDisplayMode = .automatic
+        self.splitViewController?.presentsWithGesture = true
+        performSegue(withIdentifier: "summaryToHome", sender: nil)
     }
     
     func setRankLabel(position:Int){
