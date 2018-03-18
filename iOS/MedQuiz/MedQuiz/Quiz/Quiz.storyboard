@@ -280,10 +280,10 @@
             </objects>
             <point key="canvasLocation" x="78.515625" y="106.25"/>
         </scene>
-        <!--View Controller-->
+        <!--Quiz Summary View Controller-->
         <scene sceneID="mHd-hL-zQ4">
             <objects>
-                <viewController id="IbL-uk-R8z" sceneMemberID="viewController">
+                <viewController id="IbL-uk-R8z" customClass="QuizSummaryViewController" customModule="MedQuiz" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KAm-tt-lYM">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -393,6 +393,9 @@
                                         <integer key="value" value="25"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="btn_donePressed:" destination="IbL-uk-R8z" eventType="touchUpInside" id="jRk-X7-5C0"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -413,6 +416,16 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bSR-yB-M2L"/>
                     </view>
+                    <connections>
+                        <outlet property="iv_profilePic" destination="nfU-kL-yup" id="O8d-K2-Q2n"/>
+                        <outlet property="lab_earnedPoints" destination="8Gl-Ap-lc7" id="NcW-79-GfA"/>
+                        <outlet property="lab_questionsRight" destination="xr7-P6-hd9" id="0YI-V9-ojE"/>
+                        <outlet property="lab_questionsWrong" destination="ayi-OR-Zkm" id="TJX-Yx-41u"/>
+                        <outlet property="lab_rank" destination="bcO-TH-Ad9" id="AYO-Of-e1n"/>
+                        <outlet property="lab_score" destination="sw7-b4-vmX" id="E3d-Og-5FW"/>
+                        <outlet property="lab_scoreDiff" destination="ZFv-sT-4gD" id="VJm-XG-Gr8"/>
+                        <outlet property="lab_username" destination="eRp-NO-BW3" id="dg6-ba-N9x"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xjb-xo-CYn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
