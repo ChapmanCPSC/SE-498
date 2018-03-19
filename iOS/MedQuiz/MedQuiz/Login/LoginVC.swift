@@ -30,15 +30,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         MainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
         // Do any additional setup after loading the view.
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
         //Testing user login
         //Here I created a variable testUserLoginInput, assume
         // this would be used for example on successful login/authentication
@@ -80,15 +71,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                  print(theProfilePic!.description)
             })
         }
-        
-        
-        
-        
-        
-        
-        
-        
-        
     }
 
     override func didReceiveMemoryWarning() {

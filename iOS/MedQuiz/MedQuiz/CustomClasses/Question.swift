@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 class Question {
     var points:Int
     var imageForQuestion:Bool
@@ -28,24 +29,57 @@ class Question {
         self.title = title
     }
 
-    init(questionModel:QuestionModel){
-        self.points = questionModel.questionPoints!
-        self.imageForQuestion = questionModel.imageForQuestion!
-        self.imageForAnswers = questionModel.imagesForAnswer!
-        if(questionModel.imageForQuestion!){
+    init(questionDict:[String:AnyObject]){
+//        self.points = questionModel.questionPoints!
+        self.points = Int(questionDict["points"] as! String)!
+//        self.imageForQuestion = questionModel.imageForQuestion!
+        self.imageForQuestion = questionDict["imageforquestion"] as! Bool
+//        self.imageForAnswers = questionModel.imagesForAnswer!
+        self.imageForAnswers = questionDict["imageforanswers"] as! Bool
+        if(self.imageForQuestion){
             self.title = ""
         }
         else{
-            self.title = questionModel.questionTitle!
+            //self.title = questionModel.questionTitle!
+            self.title = questionDict["name"] as! String
         }
-        var toSet:[Tag] = []
-        questionModel.tags!.forEach({ model in
-            toSet.append(Tag(tagModel: model))
-        })
-        self.tags = toSet
+//        var toSet:[Tag] = []
+//        questionModel.tags.forEach { model in
+//            model.getData(withMaxSize: 1 * 1024 * 1024, completion: { (d: Foundation.Data?, e: Error?) in
+//                if let error = e
+//                {
+//                    print("Question Tag Whoops: \(error)")
+//                }
+//                else
+//                {
+//                    toSet.append((Tag(tagModel: model)))
+//                }
+//            })
+//        }
+//        self.tags = toSet
+        self.tags = []
+
         self.images = []
         self.answers = []
         self.correctAnswer = ""
+    }
+    
+    func setTags(questionDict:[String:AnyObject]){
+        var questionTagKeys:[String] = []
+        for questionTag in questionDict["tags"] as! [String:AnyObject]{
+            questionTagKeys.append(questionTag.key)
+        }
+        
+        let tagRef = Database.database().reference(withPath: "tag")
+        tagRef.observeSingleEvent(of: .value, with: { snapshot in
+            if let children = snapshot.children.allObjects as? [DataSnapshot] {
+                for child in children {
+                    if questionTagKeys.contains(child.key) {
+                        self.tags.append(Tag(tagDict: child.value as! [String:AnyObject]))
+                    }
+                }
+            }
+        })
     }
 
 }

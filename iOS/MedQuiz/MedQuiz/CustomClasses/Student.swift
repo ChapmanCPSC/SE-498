@@ -22,31 +22,36 @@ class Student {
         self.hasChangedUsername = hasChangedUsername
     }
 
-    init(studentModel:StudentModel, addFriends:Bool=true){
+    init(studentDict:[String:AnyObject], addFriends:Bool=true){
         /*self.userName = (studentModel.snapshot.value as! [String:AnyObject])["username"] as! String
         self.profilePic = (studentModel.snapshot.value as! [String:AnyObject])["profilePic"] as! String
         self.friends = (studentModel.snapshot.value as! [String:AnyObject])["friends"] as! [Student]
         self.classes = (studentModel.snapshot.value as! [String:AnyObject])["classes"] as! [String:Bool]
         self.totalPoints = Int((studentModel.snapshot.value as! [String:AnyObject])["totalPoints"] as! String)!*/
-        self.userName = studentModel.studentUsername!
-        self.totalPoints = studentModel.totalPoints!
-        self.profilePic = studentModel.profilePic!
-        self.hasChangedUsername = studentModel.hasChangedUsername!
+        self.userName = studentDict["username"] as! String
+        //self.userName = "Lylenator2000"
+        //self.totalPoints = studentModel.totalPoints!
+        self.totalPoints = 10000
+        //self.profilePic = studentModel.profilePic!
+        self.profilePic = "/images/studentprofilepictures/CatStudentImage.jpg"
+        //self.hasChangedUsername = studentModel.hasChangedUsername!
+        self.hasChangedUsername = true
         if(addFriends){
-            self.friends = Student.convertFriends(students: studentModel.friends!)
+            //self.friends = Student.convertFriends(students: studentModel.friends!)
+            self.friends = []
         }
         else{
             self.friends = []
         }
     }
 
-    static func convertFriends(students:[StudentModel]) -> [Student] {
-        var toReturn:[Student] = []
-        students.forEach { studentModel in
-            toReturn.append(Student(studentModel: studentModel, addFriends: false))
-         }
-
-
-        return toReturn
-    }
+//    static func convertFriends(students:[StudentModel]) -> [Student] {
+//        var toReturn:[Student] = []
+//        students.forEach { studentModel in
+//            toReturn.append(Student(studentModel: studentModel, addFriends: false))
+//         }
+//
+//
+//        return toReturn
+//    }
 }

@@ -22,5 +22,5 @@ class QuestionModel: FIRModel
     var questionPoints: Int? { return self.get(QuestionModel.POINTS) }
     var imagesForAnswer: Bool? { return self.get(QuestionModel.IMAGE_FOR_ANSWERS) }
     var imageForQuestion: Bool? { return self.get(QuestionModel.IMAGE_FOR_QUESTIONS) }
-    var tags: [TagModel]? {return self.get(QuestionModel.TAGS)}
+    var tags: [TagModel] {return self.get(QuestionModel.TAGS)}
 }

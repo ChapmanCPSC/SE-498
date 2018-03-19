@@ -15,6 +15,8 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     var gameQuiz:Quiz?
     var gamePin:String?
     
+    var userStudentKey:String = "b29fks9mf9gh37fhh1h9814"
+    
     @IBOutlet weak var lobbyPlayersCollectionView: UICollectionView!
     
 //    struct LobbyPlayer{
@@ -47,32 +49,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         
         statusLabel.text = loadingString
 
-        let connectedRef = Database.database().reference(withPath: ".info/connected")
-        connectedRef.observe(.value, with: { snapshot in
-            if let connected = snapshot.value as? Bool, !connected {
-                self.errorOccured(title: "Connection Error", message: "Connection to database lost.")
-            }
-        })
-        
-        GameModel.WhereAndKeepObserving(child: GameModel.GAME_PIN, equals: gamePin) { (gamesFound) in
-            if(gamesFound.isEmpty){
-                self.errorOccured(title: "Quiz Not Found", message: "Quiz for supplied pin not found through query.")
-            }
-            
-            let theGame = gamesFound[0]
-            
-            QuizModel.From(key: theGame.quizKey!, completion: { (aQuiz) in
-                //self.gameQuiz = Quiz(aQuiz)
-            })
-            
-            for studentModel:StudentModel in theGame.gameStudents{
-                StudentModel.FromAndKeepObserving(key: studentModel.key, completion: { (aStudent) in
-                    //self.lobbyPlayers.append(Student(studentModel: aStudent))
-                })
-                self.lobbyPlayersCollectionView.reloadData()
-            }
-        }
-        self.loadingQuizComplete()
+        downloadGame()
     }
 
     override func didReceiveMemoryWarning() {
@@ -102,6 +79,92 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     func addLobbyPlayer(lobbyPlayer:Student){
         lobbyPlayers.append(lobbyPlayer)
         lobbyPlayersCollectionView.reloadData()
+    }
+    
+    func downloadGame(){
+        checkConnection {
+            GameModel.Where(child: GameModel.GAME_PIN, equals: self.gamePin) { (gamesFound) in
+                if(gamesFound.isEmpty){
+                    self.errorOccured(title: "Quiz Not Found", message: "Quiz for supplied pin not found through query.")
+                }
+                
+                let theGame = gamesFound[0]
+                
+                self.downloadQuiz(gameModel: theGame){
+                    self.downloadStudents(gameModel: theGame){
+                        self.loadingQuizComplete()
+                    }
+                }
+            }
+        }
+    }
+    
+    func checkConnection(completion: @escaping () -> Void){
+        let connectedRef = Database.database().reference(withPath: ".info/connected")
+        connectedRef.observe(.value, with: { snapshot in
+            if let connected = snapshot.value as? Bool, !connected {
+                self.errorOccured(title: "Connection Error", message: "Connection to database lost.")
+            }
+            completion()
+        })
+    }
+    
+//    func checkGameStart(gameModel:GameModel, completion: @escaping () -> Void){
+//
+//    }
+    
+    func downloadQuiz(gameModel:GameModel, completion: @escaping () -> Void){
+        let quizKey:String = gameModel.quizKey!
+        let quizRef = Database.database().reference(withPath: "quiz")
+        quizRef.observeSingleEvent(of: .value) { snapshot in
+            if let children = snapshot.children.allObjects as? [DataSnapshot] {
+                for child in children {
+                    if quizKey == child.key {
+                        self.gameQuiz = self.createFullQuiz(quizDict: child.value as! [String:AnyObject])
+                    }
+                }
+            }
+            else{
+                self.errorOccured(title: "Download Error", message: "Error occured while downloading student information.")
+            }
+            completion()
+        }
+    }
+    
+    func createFullQuiz(quizDict:[String:AnyObject]) -> Quiz{
+        let quiz:Quiz = Quiz(quizDict:quizDict)
+        quiz.setQuestions(quizDict: quizDict)
+        quiz.setTags(quizDict: quizDict)
+        return quiz
+    }
+    
+    func downloadStudents(gameModel:GameModel, completion: @escaping () -> Void){
+        self.lobbyPlayers.removeAll()
+
+        var gameStudentKeys:[String] = []
+        for studentModel:StudentModel in gameModel.gameStudents{
+            gameStudentKeys.append(studentModel.key)
+        }
+        
+        let studentRef = Database.database().reference(withPath: "student")
+        studentRef.observe(.value, with: { snapshot in
+            if let children = snapshot.children.allObjects as? [DataSnapshot] {
+                for child in children {
+                    if gameStudentKeys.contains(child.key) {
+                        self.lobbyPlayers.append(Student(studentDict: child.value as! [String:AnyObject]))
+                    }
+                }
+                self.lobbyPlayersCollectionView.reloadData()
+            }
+            else{
+                self.errorOccured(title: "Download Error", message: "Error occured while downloading student information.")
+            }
+            
+            let userStudentRef = Database.database().reference(withPath: "game/\(gameModel.key)").child(self.userStudentKey)
+            userStudentRef.setValue(true)
+            
+            completion()
+        })
     }
     
     func loadingQuizComplete(){

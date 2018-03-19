@@ -14,8 +14,10 @@ class Tag {
         self.name = name
     }
 
-    init(tagModel:TagModel){
-        self.color = "blue"
-        self.name = tagModel.tagName!
+    init(tagDict:[String:AnyObject]){
+        //self.color = "blue"
+        self.color = tagDict["color"] as! String
+        //self.name = tagModel.tagName!
+        self.name = tagDict["name"] as! String
     }
 }
