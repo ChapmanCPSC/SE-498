@@ -4,17 +4,18 @@
 //
 
 import Foundation
-
+import UIKit
+import Firebase
 
 class Student {
     var userName:String
-    var profilePic:String
+    var profilePic:UIImage
     var friends:[Student]
 //    var classes:[String:Bool]
     var totalPoints:Int
     var hasChangedUsername:Bool
 
-    init(userName:String, profilePic:String, friends:[Student], totalPoints:Int, hasChangedUsername:Bool){
+    init(userName:String, profilePic:UIImage, friends:[Student], totalPoints:Int, hasChangedUsername:Bool){
         self.userName = userName
         self.profilePic = profilePic
         self.friends = friends
@@ -33,7 +34,7 @@ class Student {
         //self.totalPoints = studentModel.totalPoints!
         self.totalPoints = 10000
         //self.profilePic = studentModel.profilePic!
-        self.profilePic = "/images/studentprofilepictures/CatStudentImage.jpg"
+        self.profilePic = UIImage()
         //self.hasChangedUsername = studentModel.hasChangedUsername!
         self.hasChangedUsername = true
         if(addFriends){
@@ -54,4 +55,18 @@ class Student {
 //
 //        return toReturn
 //    }
+    
+    func getProfilePicImage(profilePicRef: String, completion: @escaping () -> Void) {
+        let imageRef = Storage.storage().reference(withPath: profilePicRef)
+        imageRef.getData(maxSize: 1 * 1024 * 1024, completion: { (d: Foundation.Data?, e: Error?) in
+            if let error = e
+            {
+                print("Whoops: \(error)")
+            }
+            else if let data = d
+            {
+                self.profilePic = UIImage(data: data)!
+            }
+        })
+    }
 }

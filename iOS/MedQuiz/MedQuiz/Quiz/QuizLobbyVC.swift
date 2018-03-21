@@ -12,18 +12,16 @@ import Firebase
 
 class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
+    @IBOutlet weak var testImageView: UIImageView!
+    
     var gameQuiz:Quiz?
     var gamePin:String?
+    
+    var quizDownloaded:Bool = false
     
     var userStudentKey:String = "b29fks9mf9gh37fhh1h9814"
     
     @IBOutlet weak var lobbyPlayersCollectionView: UICollectionView!
-    
-//    struct LobbyPlayer{
-//        var avatar: UIImage!
-//        var username: String!
-//        var score: String!
-//    }
     
     @IBOutlet weak var loadingIndicatorView: UIActivityIndicatorView!
     let loadingIndicatorViewScale:CGFloat = 2.0
@@ -69,7 +67,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = lobbyPlayersCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! LobbyPlayersCollectionViewCell
-        cell.avatarImageView.image = UIImage(named: lobbyPlayers[indexPath.row].profilePic)
+        cell.avatarImageView.image = lobbyPlayers[indexPath.row].profilePic
         cell.usernameLabel.text = lobbyPlayers[indexPath.row].userName
         cell.scoreLabel.text = String(lobbyPlayers[indexPath.row].totalPoints)
         
@@ -91,8 +89,10 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 let theGame = gamesFound[0]
                 
                 self.downloadQuiz(gameModel: theGame){
-                    self.downloadStudents(gameModel: theGame){
-                        self.loadingQuizComplete()
+                    self.downloadStudents(gameModel: theGame) { imageRefs in
+                        self.downloadStudentProfilePics(imageRefs: imageRefs) {
+                            self.loadingQuizComplete()
+                        }
                     }
                 }
             }
@@ -109,9 +109,20 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         })
     }
     
-//    func checkGameStart(gameModel:GameModel, completion: @escaping () -> Void){
-//
-//    }
+    func checkGameStart(gameModel:GameModel, completion: @escaping () -> Void){
+        let gameStartedRef = Database.database().reference(withPath: "game/\(gameModel.key)/hasstarted")
+        gameStartedRef.observe(.value, with: { snapshot in
+            if let hasStarted = snapshot.value as? Bool, hasStarted {
+                if self.quizDownloaded{
+                    self.quizStarted()
+                }
+                else{
+                    self.errorOccured(title: "Download Not Finished", message: "Quiz started before download could be finished.")
+                }
+            }
+            completion()
+        })
+    }
     
     func downloadQuiz(gameModel:GameModel, completion: @escaping () -> Void){
         let quizKey:String = gameModel.quizKey!
@@ -138,10 +149,11 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         return quiz
     }
     
-    func downloadStudents(gameModel:GameModel, completion: @escaping () -> Void){
+    func downloadStudents(gameModel:GameModel, completion: @escaping ([String]) -> Void){
         self.lobbyPlayers.removeAll()
 
         var gameStudentKeys:[String] = []
+        var studentImagesRefs:[String] = []
         for studentModel:StudentModel in gameModel.gameStudents{
             gameStudentKeys.append(studentModel.key)
         }
@@ -150,8 +162,10 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         studentRef.observe(.value, with: { snapshot in
             if let children = snapshot.children.allObjects as? [DataSnapshot] {
                 for child in children {
-                    if gameStudentKeys.contains(child.key) {
-                        self.lobbyPlayers.append(Student(studentDict: child.value as! [String:AnyObject]))
+                    if gameStudentKeys.contains(child.key) && child.key != self.userStudentKey {
+                        let studentDict = child.value as! [String:AnyObject]
+                        self.lobbyPlayers.append(Student(studentDict:studentDict))
+                        studentImagesRefs.append(studentDict["profilepic"] as! String)
                     }
                 }
                 self.lobbyPlayersCollectionView.reloadData()
@@ -160,17 +174,27 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 self.errorOccured(title: "Download Error", message: "Error occured while downloading student information.")
             }
             
-            let userStudentRef = Database.database().reference(withPath: "game/\(gameModel.key)").child(self.userStudentKey)
+            let userStudentRef = Database.database().reference(withPath: "game/\(gameModel.key)/students").child(self.userStudentKey)
             userStudentRef.setValue(true)
             
-            completion()
+            completion(studentImagesRefs)
         })
+    }
+    
+    func downloadStudentProfilePics(imageRefs: [String], completion: @escaping() -> Void){
+        for i:Int in 0...lobbyPlayers.count - 1{
+            lobbyPlayers[i].getProfilePicImage(profilePicRef: imageRefs[i]){}
+        }
+        completion()
     }
     
     func loadingQuizComplete(){
         print("Loading Quiz complete")
+        quizDownloaded = true
         statusLabel.text = waitingString
         loadingIndicatorView.stopAnimating()
+        print(lobbyPlayers[0].profilePic.description)
+        testImageView.image = lobbyPlayers[0].profilePic
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

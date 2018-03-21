@@ -15,7 +15,7 @@ class QuizActivityVC: UIViewController {
     var currQuiz:Quiz!
     var canSelect:Bool = false
     var currPos:Int = 5
-    var user:Student = Student(userName: "Paul", profilePic: "", friends: [], totalPoints: 0, hasChangedUsername: false)
+    var user:Student = Student(userName: "Paul", profilePic: UIImage(), friends: [], totalPoints: 0, hasChangedUsername: false)
     var allUsers:[Student]! // TODO kinda working off assumption there'll be an array that'll be updated in firebase that we can use
     
     @IBOutlet weak var answer1: AnswerView!
@@ -341,7 +341,7 @@ class QuizActivityVC: UIViewController {
     func tempSetupLeaderBoard(){
         allUsers = []
         for i in 1...30 {
-            allUsers.append(Student(userName: "User \(i)", profilePic: "", friends: [], totalPoints: 0, hasChangedUsername: false))
+            allUsers.append(Student(userName: "User \(i)", profilePic: UIImage(), friends: [], totalPoints: 0, hasChangedUsername: false))
         }
         allUsers.insert(user, at: currPos-1)
         updateLeaderboard()

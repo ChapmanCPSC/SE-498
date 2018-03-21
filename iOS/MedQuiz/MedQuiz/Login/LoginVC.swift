@@ -52,14 +52,14 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         
         //Example of getting all the profile pictures for all students
         // (not sure this is usefull but just an example of use)
-        StudentModel.All { (students) in
-            for student in students{
-                print(student.studentUsername!)
-                student.getProfilePic(completion: { (anImage) in
-                    print(anImage!.description)
-                })
-            }
-        }
+//        StudentModel.All { (students) in
+//            for student in students{
+//                print(student.studentUsername!)
+//                student.getProfilePic(completion: { (anImage) in
+//                    print(anImage!.description)
+//                })
+//            }
+//        }
         
         //Example of getting specific profile picture for one student
         // (not sure this is usefull but just an example of use)
@@ -68,7 +68,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
             let theStudent = studentModelsReturned[0]
             print(theStudent.studentUsername!)
             theStudent.getProfilePic(completion: { (theProfilePic) in
-                 print(theProfilePic!.description)
+                print(theProfilePic!.description)
             })
         }
     }
