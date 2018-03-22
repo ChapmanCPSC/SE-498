@@ -11,8 +11,6 @@ import UIKit
 import Firebase
 
 class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
-
-    @IBOutlet weak var testImageView: UIImageView!
     
     var gameQuiz:Quiz?
     var gamePin:String?
@@ -84,19 +82,9 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     func downloadGame(){
         checkConnection {
-            GameModel.Where(child: GameModel.GAME_PIN, equals: self.gamePin) { (gamesFound) in
-                if(gamesFound.isEmpty){
-                    self.errorOccured(title: "Quiz Not Found", message: "Quiz for supplied pin not found through query.")
-                }
-                
-                let theGame = gamesFound[0]
-                
-                self.downloadQuiz(gameModel: theGame){
-                    self.downloadStudents(gameModel: theGame) { //imageRefs in
-                        //self.downloadStudentProfilePics(imageRefs: imageRefs) {
-                            self.loadingQuizComplete()
-                        //}
-                    }
+            self.downloadQuiz(){
+                self.downloadStudents(){
+                    self.loadingQuizComplete()
                 }
             }
         }
@@ -127,84 +115,52 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         })
     }
     
-    func downloadQuiz(gameModel:GameModel, completion: @escaping () -> Void){
-        let quizKey:String = gameModel.quizKey!
-        let quizRef = Database.database().reference(withPath: "quiz")
-        quizRef.observeSingleEvent(of: .value) { snapshot in
-            if let children = snapshot.children.allObjects as? [DataSnapshot] {
-                for child in children {
-                    if quizKey == child.key {
-                        self.gameQuiz = self.createFullQuiz(quizDict: child.value as! [String:AnyObject])
-                    }
-                }
+    func downloadQuiz(completion: @escaping () -> Void){
+        GameModel.Where(child: GameModel.GAME_PIN, equals: self.gamePin) { (gamesFound) in
+            if(gamesFound.isEmpty){
+                self.errorOccured(title: "Quiz Not Found", message: "Quiz for supplied pin not found through query.")
+                completion()
             }
             else{
-                self.errorOccured(title: "Download Error", message: "Error occured while downloading student information.")
+                let theGame = gamesFound[0]
+                _ = Quiz(key: theGame.quizKey!) { theQuiz in
+                    self.gameQuiz = theQuiz
+                    completion()
+                }
             }
-            completion()
         }
     }
     
-    func createFullQuiz(quizDict:[String:AnyObject]) -> Quiz{
-        let quiz:Quiz = Quiz(quizDict:quizDict)
-        quiz.setQuestions(quizDict: quizDict)
-        quiz.setTags(quizDict: quizDict)
-        return quiz
-    }
-    
-    func downloadStudents(gameModel:GameModel, completion: @escaping () -> Void){
-        self.lobbyPlayers.removeAll()
-        var gameStudentKeys:[String] = []
-        var studentImagesRefs:[String] = []
-        for studentModel:StudentModel in gameModel.gameStudents{
-            gameStudentKeys.append(studentModel.key)
-        }
-
-        
-        for studentKey in gameStudentKeys{
-            _ = Student(key: studentKey) { (theStudent) in
-                self.lobbyPlayers.append(theStudent)
-                self.lobbyPlayersCollectionView.reloadData()
+    func downloadStudents(completion: @escaping () -> Void){
+        GameModel.WhereAndKeepObserving(child: GameModel.GAME_PIN, equals: self.gamePin) { (gamesFound) in
+            if(gamesFound.isEmpty){
+                self.errorOccured(title: "Quiz Not Found", message: "Quiz for supplied pin not found through query.")
+                completion()
+            }
+            else{
+                let theGame = gamesFound[0]
+                
+                self.lobbyPlayers.removeAll()
+                var gameStudentKeys:[String] = []
+                for studentModel:StudentModel in theGame.gameStudents{
+                    gameStudentKeys.append(studentModel.key)
+                }
+                
+                for studentKey in gameStudentKeys{
+                    _ = Student(key: studentKey) { (theStudent) in
+                        if studentKey != self.userStudentKey{
+                            self.lobbyPlayers.append(theStudent)
+                            self.lobbyPlayersCollectionView.reloadData()
+                        }
+                    }
+                }
+                
+                let userStudentRef = Database.database().reference(withPath: "game/\(theGame.key)/students").child(self.userStudentKey)
+                userStudentRef.setValue(true)
+                
+                completion()
             }
         }
-        
-//                Student(key: studentKey, completion: {
-//                self.lobbyPlayers.append(someStudentToAdd)
-//                self.lobbyPlayersCollectionView.reloadData()
-//            })
-            
-//        }
-        
-//        let studentRef = Database.database().reference(withPath: "student")
-//        studentRef.observe(.value, with: { snapshot in
-//            if let children = snapshot.children.allObjects as? [DataSnapshot] {
-//                for child in children {
-//                    if gameStudentKeys.contains(child.key) && child.key != self.userStudentKey {
-//                        let studentDict = child.value as! [String:AnyObject]
-//                        self.lobbyPlayers.append(Student(studentDict:studentDict))
-//                        studentImagesRefs.append(studentDict["profilepic"] as! String)
-//                    }
-//                }
-//                self.lobbyPlayersCollectionView.reloadData()
-//            }
-//            else{
-//                self.errorOccured(title: "Download Error", message: "Error occured while downloading student information.")
-//            }
-//
-//            let userStudentRef = Database.database().reference(withPath: "game/\(gameModel.key)/students").child(self.userStudentKey)
-//            userStudentRef.setValue(true)
-//
-//            completion(studentImagesRefs)
-//        })
-    }
-    
-    func downloadStudentProfilePics(imageRefs: [String], completion: @escaping() -> Void){
-        for i:Int in 0...lobbyPlayers.count - 1{
-            lobbyPlayers[i].getProfilePicImage(profilePicRef: imageRefs[i]){
-                self.lobbyPlayersCollectionView.reloadData()
-            }
-        }
-        completion()
     }
     
     func loadingQuizComplete(){
@@ -212,8 +168,6 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         quizDownloaded = true
         statusLabel.text = waitingString
         loadingIndicatorView.stopAnimating()
-        print(lobbyPlayers[0].profilePic?.description)
-        testImageView.image = lobbyPlayers[0].profilePic
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -235,8 +189,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
 
     @IBAction func tempBckPressed(_ sender: Any) {
-        self.dismiss(animated: false) {
-        }
+        self.dismiss(animated: false, completion: nil)
     }
     /*
     // MARK: - Navigation

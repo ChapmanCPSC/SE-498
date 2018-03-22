@@ -7,9 +7,11 @@
 //
 
 import Foundation
-class QuestionModel: FIRModel
+class QuestionModel: FIRModel, FIRQueryable
     
 {
+    static var COLLECTION_NAME: String = "question"
+    
     static var NAME = "name"
     static var POINTS = "points"
     static var IMAGE_FOR_ANSWERS = "imageforanswers"
@@ -19,8 +21,8 @@ class QuestionModel: FIRModel
     
     
     var questionTitle: String? { return self.get(QuestionModel.NAME) }
-    var questionPoints: Int? { return self.get(QuestionModel.POINTS) }
-    var imagesForAnswer: Bool? { return self.get(QuestionModel.IMAGE_FOR_ANSWERS) }
+    var questionPoints: String? { return self.get(QuestionModel.POINTS) }
+    var imagesForAnswers: Bool? { return self.get(QuestionModel.IMAGE_FOR_ANSWERS) }
     var imageForQuestion: Bool? { return self.get(QuestionModel.IMAGE_FOR_QUESTIONS) }
     var tags: [TagModel] {return self.get(QuestionModel.TAGS)}
 }

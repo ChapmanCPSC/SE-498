@@ -7,8 +7,6 @@ import Foundation
 import UIKit
 import Firebase
 
-
-
 class Student {
     var userName:String?
     var profilePic:UIImage?
@@ -24,7 +22,7 @@ class Student {
             print(theStudent.studentUsername!)
             
             self.userName = theStudent.studentUsername!
-            self.totalPoints = 10000
+            self.totalPoints = 100
             self.friends = []
             self.hasChangedUsername = false
             

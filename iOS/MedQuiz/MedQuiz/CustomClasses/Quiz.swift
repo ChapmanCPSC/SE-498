@@ -8,13 +8,14 @@
 
 import Foundation
 import Firebase
+
 class Quiz {
-    var dateCreated:String
-    var available:Bool
-    var visible:Bool
-    var title:String
-    var questions:[Question]
-    var tags:[Tag]
+    var dateCreated:String?
+    var available:Bool?
+    var visible:Bool?
+    var title:String?
+    var questions:[Question]?
+    var tags:[Tag]?
 
     init(dateCreated:String, available:Bool, visible:Bool, title:String, questions:[Question], tags:[Tag]){
         self.dateCreated = dateCreated
@@ -25,10 +26,42 @@ class Quiz {
         self.tags = tags
     }
 
+    init(key: String, completion: @escaping (Quiz) -> Void){
+        QuizModel.From(key: key, completion: { (aQuizModel) in
+            self.dateCreated = aQuizModel.dateCreated!
+            self.available = aQuizModel.available!
+            self.visible = aQuizModel.visiblity!
+            self.title = aQuizModel.title!
+            
+            self.questions = []
+            var questionKeys:[String] = []
+            for questionModel in aQuizModel.quizQuestions{
+                questionKeys.append(questionModel.key)
+            }
+            for questionKey in questionKeys{
+                _ = Question(key:questionKey, completion: { question in
+                    self.questions?.append(question)
+                })
+            }
+            
+            self.tags = []
+            var tagKeys:[String] = []
+            for tagModel in aQuizModel.tags{
+                tagKeys.append(tagModel.key)
+            }
+            for tagKey in tagKeys{
+                _ = Tag(key:tagKey, completion: { tag in
+                    self.tags?.append(tag)
+                })
+            }
+            completion(self)
+        })
+    }
+    
     init(quizDict:[String:AnyObject]){
-        self.title = quizDict["title"]! as! String
-        self.available = quizDict["available"] as! Bool
-        self.visible = quizDict["visible"] as! Bool
+        self.title = quizDict["title"] as? String
+        self.available = (quizDict["available"] as? Bool)
+        self.visible = quizDict["visible"] as? Bool
 //        var questionsToSet:[Question] = []
 //        quizModel.quizQuestions.forEach { model in
 //            model.getData(withMaxSize: 1 * 1024 * 1024, completion: { (d: Foundation.Data?, e: Error?) in
@@ -65,7 +98,7 @@ class Quiz {
 
         //self.dateCreated = quizModel.dateCreated!
         
-        self.dateCreated = quizDict["datecreated"] as! String
+        self.dateCreated = quizDict["datecreated"] as? String
     }
     
     func setQuestions(quizDict:[String:AnyObject]){
@@ -79,7 +112,7 @@ class Quiz {
             if let children = snapshot.children.allObjects as? [DataSnapshot] {
                 for child in children {
                     if quizQuestionKeys.contains(child.key) {
-                        self.questions.append(self.createFullQuestion(questionDict: child.value as! [String:AnyObject]))
+                        self.questions?.append(self.createFullQuestion(questionDict: child.value as! [String:AnyObject]))
                     }
                 }
             }
@@ -97,7 +130,7 @@ class Quiz {
             if let children = snapshot.children.allObjects as? [DataSnapshot] {
                 for child in children {
                     if quizTagKeys.contains(child.key) {
-                        self.tags.append(Tag(tagDict: child.value as! [String:AnyObject]))
+                        self.tags?.append(Tag(tagDict: child.value as! [String:AnyObject]))
                     }
                 }
             }

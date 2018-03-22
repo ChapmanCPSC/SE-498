@@ -169,7 +169,6 @@
                     </view>
                     <connections>
                         <outlet property="loginErrorLabel" destination="6S2-iG-he1" id="zAd-w1-b3a"/>
-                        <outlet property="logoImageview" destination="hNT-H1-WSm" id="jCD-7m-5WN"/>
                         <outlet property="passwordTextField" destination="JDP-T6-gfW" id="8jb-tV-qZK"/>
                         <outlet property="scrollView" destination="IdG-7c-i6N" id="VcK-fx-dy4"/>
                         <outlet property="usernameTextField" destination="VRt-wv-ffS" id="CcO-PJ-AiK"/>

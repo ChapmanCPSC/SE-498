@@ -14,10 +14,12 @@ class TagModel: FIRModel, FIRQueryable
     static var COLLECTION_NAME = "tag"
     
     static var NAME = "name"
-    static var QUIZZES = "Quizzes"
-    
+    static var COLOR = "color"
+    static var QUIZZES = "quizzes"
+    static var QUESTIONS = "questions"
     
     var tagName: String? { return self.get(TagModel.NAME) }
+    var tagColor: String? {return self.get(TagModel.COLOR) }
     var quizzesForTag : [QuizModel] { return self.get(TagModel.QUIZZES) }
-    
+    var questionsForTag: [QuestionModel] {return self.get(TagModel.QUESTIONS) }
 }

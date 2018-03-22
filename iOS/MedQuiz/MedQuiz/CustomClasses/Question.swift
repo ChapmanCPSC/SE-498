@@ -9,39 +9,60 @@
 import Foundation
 import Firebase
 class Question {
-    var points:Int
-    var imageForQuestion:Bool
-    var imageForAnswers:Bool
-    var correctAnswer:String
-    var answers:[Answer]
-    var images:[String]// TODO Figure out what type it actually is
-    var tags:[Tag]// TODO make TagModel (Probably same as the quiz?)
-    var title:String
+    var points:Int?
+    var imageForQuestion:Bool?
+    var imagesForAnswers:Bool?
+    var correctAnswer:String?
+    var answers:[Answer]?
+    var images:[String]?// TODO Figure out what type it actually is
+    var tags:[Tag]?// TODO make TagModel (Probably same as the quiz?)
+    var title:String?
 
-    init(points:Int, imageForQuestion:Bool, imageForAnswers:Bool, correctAnswer:String, answers:[Answer], images:[String], tags:[Tag], title:String){
+    init(points:Int, imageForQuestion:Bool, imagesForAnswers:Bool, correctAnswer:String, answers:[Answer], images:[String], tags:[Tag], title:String){
         self.points = points
         self.imageForQuestion = imageForQuestion
-        self.imageForAnswers = imageForAnswers
+        self.imagesForAnswers = imagesForAnswers
         self.correctAnswer = correctAnswer
         self.answers = answers
         self.images = images
         self.tags = tags
         self.title = title
     }
+    
+    init(key: String, completion: @escaping (Question) -> Void){
+        QuestionModel.From(key: key, completion: { (aQuestionModel) in
+            self.title = aQuestionModel.questionTitle!
+            self.points = Int(aQuestionModel.questionPoints!)
+            self.imagesForAnswers = aQuestionModel.imagesForAnswers!
+            self.imageForQuestion = aQuestionModel.imageForQuestion!
+            
+            self.tags = []
+            var tagKeys:[String] = []
+            for tagModel in aQuestionModel.tags{
+                tagKeys.append(tagModel.key)
+            }
+            for tagKey in tagKeys{
+                _ = Tag(key:tagKey, completion: { tag in
+                    self.tags?.append(tag)
+                })
+            }
+            completion(self)
+        })
+    }
 
     init(questionDict:[String:AnyObject]){
 //        self.points = questionModel.questionPoints!
         self.points = Int(questionDict["points"] as! String)!
 //        self.imageForQuestion = questionModel.imageForQuestion!
-        self.imageForQuestion = questionDict["imageforquestion"] as! Bool
+        self.imageForQuestion = questionDict["imageforquestion"] as? Bool
 //        self.imageForAnswers = questionModel.imagesForAnswer!
-        self.imageForAnswers = questionDict["imageforanswers"] as! Bool
-        if(self.imageForQuestion){
+        self.imagesForAnswers = questionDict["imageforanswers"] as? Bool
+        if(self.imageForQuestion)!{
             self.title = ""
         }
         else{
             //self.title = questionModel.questionTitle!
-            self.title = questionDict["name"] as! String
+            self.title = questionDict["name"] as? String
         }
 //        var toSet:[Tag] = []
 //        questionModel.tags.forEach { model in
@@ -75,7 +96,7 @@ class Question {
             if let children = snapshot.children.allObjects as? [DataSnapshot] {
                 for child in children {
                     if questionTagKeys.contains(child.key) {
-                        self.tags.append(Tag(tagDict: child.value as! [String:AnyObject]))
+                        self.tags?.append(Tag(tagDict: child.value as! [String:AnyObject]))
                     }
                 }
             }
