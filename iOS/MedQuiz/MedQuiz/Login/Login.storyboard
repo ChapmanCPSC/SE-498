@@ -36,6 +36,7 @@
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hNT-H1-WSm" userLabel="Logo">
                                         <rect key="frame" x="400" y="63" width="300" height="225"/>
+                                        <color key="backgroundColor" red="0.431995711" green="0.92950487140000004" blue="0.49065716450000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="225" id="Cba-NC-34t"/>
                                             <constraint firstAttribute="width" constant="300" id="F6U-JT-UAH"/>
@@ -168,6 +169,7 @@
                     </view>
                     <connections>
                         <outlet property="loginErrorLabel" destination="6S2-iG-he1" id="zAd-w1-b3a"/>
+                        <outlet property="logoImageview" destination="hNT-H1-WSm" id="jCD-7m-5WN"/>
                         <outlet property="passwordTextField" destination="JDP-T6-gfW" id="8jb-tV-qZK"/>
                         <outlet property="scrollView" destination="IdG-7c-i6N" id="VcK-fx-dy4"/>
                         <outlet property="usernameTextField" destination="VRt-wv-ffS" id="CcO-PJ-AiK"/>

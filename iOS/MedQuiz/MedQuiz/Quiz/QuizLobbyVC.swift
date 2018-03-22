@@ -37,8 +37,12 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         super.viewDidLoad()
         
         hideSidebar()
-        lobbyPlayersCollectionView.showsVerticalScrollIndicator = false
         
+        lobbyPlayersCollectionView.delegate = self
+        lobbyPlayersCollectionView.dataSource = self
+        
+        
+        lobbyPlayersCollectionView.showsVerticalScrollIndicator = false
         loadingIndicatorView.hidesWhenStopped = true
         loadingIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
         loadingIndicatorView.transform = CGAffineTransform.init(scaleX: loadingIndicatorViewScale, y: loadingIndicatorViewScale)
@@ -69,8 +73,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         let cell = lobbyPlayersCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! LobbyPlayersCollectionViewCell
         cell.avatarImageView.image = lobbyPlayers[indexPath.row].profilePic
         cell.usernameLabel.text = lobbyPlayers[indexPath.row].userName
-        cell.scoreLabel.text = String(lobbyPlayers[indexPath.row].totalPoints)
-        
+        cell.scoreLabel.text = String(describing: lobbyPlayers[indexPath.row].totalPoints)
         return cell
     }
     
@@ -89,10 +92,10 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 let theGame = gamesFound[0]
                 
                 self.downloadQuiz(gameModel: theGame){
-                    self.downloadStudents(gameModel: theGame) { imageRefs in
-                        self.downloadStudentProfilePics(imageRefs: imageRefs) {
+                    self.downloadStudents(gameModel: theGame) { //imageRefs in
+                        //self.downloadStudentProfilePics(imageRefs: imageRefs) {
                             self.loadingQuizComplete()
-                        }
+                        //}
                     }
                 }
             }
@@ -149,41 +152,57 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         return quiz
     }
     
-    func downloadStudents(gameModel:GameModel, completion: @escaping ([String]) -> Void){
+    func downloadStudents(gameModel:GameModel, completion: @escaping () -> Void){
         self.lobbyPlayers.removeAll()
-
         var gameStudentKeys:[String] = []
         var studentImagesRefs:[String] = []
         for studentModel:StudentModel in gameModel.gameStudents{
             gameStudentKeys.append(studentModel.key)
         }
+
         
-        let studentRef = Database.database().reference(withPath: "student")
-        studentRef.observe(.value, with: { snapshot in
-            if let children = snapshot.children.allObjects as? [DataSnapshot] {
-                for child in children {
-                    if gameStudentKeys.contains(child.key) && child.key != self.userStudentKey {
-                        let studentDict = child.value as! [String:AnyObject]
-                        self.lobbyPlayers.append(Student(studentDict:studentDict))
-                        studentImagesRefs.append(studentDict["profilepic"] as! String)
-                    }
-                }
+        for studentKey in gameStudentKeys{
+            _ = Student(key: studentKey) { (theStudent) in
+                self.lobbyPlayers.append(theStudent)
                 self.lobbyPlayersCollectionView.reloadData()
             }
-            else{
-                self.errorOccured(title: "Download Error", message: "Error occured while downloading student information.")
-            }
+        }
+        
+//                Student(key: studentKey, completion: {
+//                self.lobbyPlayers.append(someStudentToAdd)
+//                self.lobbyPlayersCollectionView.reloadData()
+//            })
             
-            let userStudentRef = Database.database().reference(withPath: "game/\(gameModel.key)/students").child(self.userStudentKey)
-            userStudentRef.setValue(true)
-            
-            completion(studentImagesRefs)
-        })
+//        }
+        
+//        let studentRef = Database.database().reference(withPath: "student")
+//        studentRef.observe(.value, with: { snapshot in
+//            if let children = snapshot.children.allObjects as? [DataSnapshot] {
+//                for child in children {
+//                    if gameStudentKeys.contains(child.key) && child.key != self.userStudentKey {
+//                        let studentDict = child.value as! [String:AnyObject]
+//                        self.lobbyPlayers.append(Student(studentDict:studentDict))
+//                        studentImagesRefs.append(studentDict["profilepic"] as! String)
+//                    }
+//                }
+//                self.lobbyPlayersCollectionView.reloadData()
+//            }
+//            else{
+//                self.errorOccured(title: "Download Error", message: "Error occured while downloading student information.")
+//            }
+//
+//            let userStudentRef = Database.database().reference(withPath: "game/\(gameModel.key)/students").child(self.userStudentKey)
+//            userStudentRef.setValue(true)
+//
+//            completion(studentImagesRefs)
+//        })
     }
     
     func downloadStudentProfilePics(imageRefs: [String], completion: @escaping() -> Void){
         for i:Int in 0...lobbyPlayers.count - 1{
-            lobbyPlayers[i].getProfilePicImage(profilePicRef: imageRefs[i]){}
+            lobbyPlayers[i].getProfilePicImage(profilePicRef: imageRefs[i]){
+                self.lobbyPlayersCollectionView.reloadData()
+            }
         }
         completion()
     }
@@ -193,7 +212,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         quizDownloaded = true
         statusLabel.text = waitingString
         loadingIndicatorView.stopAnimating()
-        print(lobbyPlayers[0].profilePic.description)
+        print(lobbyPlayers[0].profilePic?.description)
         testImageView.image = lobbyPlayers[0].profilePic
     }
     

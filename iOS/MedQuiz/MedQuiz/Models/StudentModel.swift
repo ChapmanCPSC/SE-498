@@ -27,26 +27,28 @@ class StudentModel: FIRModel, FIRQueryable,FIRStorageDownloadable
     var hasChangedUsername:Bool? {return self.get(StudentModel.HAS_CHANGED_USERNAME)}
     var friends:[StudentModel]? {return self.get(StudentModel.FRIENDS)}
 
-    func getProfilePic(completion: @escaping (UIImage?) -> Void){
-        var theProfileImageToReturn = UIImage()
-        guard self.profilePic != nil else
-        {
-            completion(nil)
-            return
-        }
-
-            self.getData(withMaxSize: 1 * 1024 * 1024, completion: { (d: Foundation.Data?, e: Error?) in
-
-                if let error = e
-                {
-                    print("Woops: \(error)")
-                }
-                else if let data = d
-                {
-                    theProfileImageToReturn = UIImage(data: data)!
-                }
-            })
-            completion(theProfileImageToReturn)
-        }
-
+    func getProfilePic(completion: @escaping(UIImage?) -> Void)
+    {
+        self.getDownloadURL(completion: { (u: URL?, e: Error?) in
+            
+            guard self.profilePic != nil else
+            {
+                completion(nil)
+                return
+            }
+            
+            if let error = e
+            {
+                print("Woops: \(error)")
+            }
+            else if let url = u
+            {
+                let data = try! Foundation.Data(contentsOf: url)
+                
+                let pic = UIImage(data: data)
+                completion(pic!)
+            }
+        })
+    }
+    
 }

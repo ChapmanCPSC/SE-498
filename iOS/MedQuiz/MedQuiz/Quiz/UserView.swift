@@ -53,12 +53,12 @@ class UserView: UIView {
 
     func updateView(student:Student, position:Int){
         self.currStudent = student
-        displayUsername(username: student.userName)
+        displayUsername(username: student.userName!)
         displayPosition(position: position)
     }
     func updateView(student:Student, position:Int, score:Int){
         self.currStudent = student
-        displayUsername(username: student.userName)
+        displayUsername(username: student.userName!)
         displayPosition(position: position)
         updateScore(score: score)
     }

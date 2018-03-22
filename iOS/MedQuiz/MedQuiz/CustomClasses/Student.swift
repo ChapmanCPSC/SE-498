@@ -7,14 +7,53 @@ import Foundation
 import UIKit
 import Firebase
 
-class Student {
-    var userName:String
-    var profilePic:UIImage
-    var friends:[Student]
-//    var classes:[String:Bool]
-    var totalPoints:Int
-    var hasChangedUsername:Bool
 
+
+class Student {
+    var userName:String?
+    var profilePic:UIImage?
+    var friends:[Student]?
+//    var classes:[String:Bool]
+    var totalPoints:Int?
+    var hasChangedUsername:Bool?
+
+    
+    init(username: String, completion: @escaping (Student) -> Void){
+        StudentModel.Where(child: "username", equals: username) { (studentModelsReturned) in
+            let theStudent = studentModelsReturned[0]
+            print(theStudent.studentUsername!)
+            
+            self.userName = theStudent.studentUsername!
+            self.totalPoints = 10000
+            self.friends = []
+            self.hasChangedUsername = false
+            
+            theStudent.getProfilePic(completion: { (theProfilePic) in
+                self.profilePic = theProfilePic!
+                print(theProfilePic!.description)
+                completion(self)
+            })
+        }
+    }
+        
+    init(key: String, completion: @escaping (Student) -> Void){
+        StudentModel.From(key: key, completion: { (aStudentModel) in
+            self.userName = aStudentModel.studentUsername!
+            print(aStudentModel.studentUsername!)
+            
+            self.totalPoints = 10000
+            self.friends = []
+            self.hasChangedUsername = false
+            
+            print(aStudentModel.studentUsername!)
+            aStudentModel.getProfilePic(completion: { (theProfilePic) in
+                self.profilePic = theProfilePic!
+                print(theProfilePic!.description)
+                completion(self)
+            })
+        })
+    }
+    
     init(userName:String, profilePic:UIImage, friends:[Student], totalPoints:Int, hasChangedUsername:Bool){
         self.userName = userName
         self.profilePic = profilePic
@@ -56,17 +95,44 @@ class Student {
 //        return toReturn
 //    }
     
-    func getProfilePicImage(profilePicRef: String, completion: @escaping () -> Void) {
+//    func getProfilePicImage2(profilePicRef: String, completion: @escaping () -> Void) {
+//        let imageRef = Storage.storage().reference(withPath: profilePicRef)
+//        imageRef.getData(maxSize: 1 * 1024 * 1024, completion: { (d: Foundation.Data?, e: Error?) in
+//            if let error = e
+//            {
+//                print("Whoops: \(error)")
+//            }
+//            else if let data = d
+//            {
+//                self.profilePic = UIImage(data: data)!
+//            }
+//        })
+//    }
+    
+    
+    
+    func getProfilePicImage(profilePicRef: String, completion: @escaping() -> Void)
+    {
         let imageRef = Storage.storage().reference(withPath: profilePicRef)
-        imageRef.getData(maxSize: 1 * 1024 * 1024, completion: { (d: Foundation.Data?, e: Error?) in
+        imageRef.downloadURL { (u:URL?, e : Error?) in
+            guard u! != nil else
+            {
+                completion()
+                return
+            }
+            
             if let error = e
             {
-                print("Whoops: \(error)")
+                print("Woops: \(error)")
             }
-            else if let data = d
+            else if let url = u
             {
+                let data = try! Foundation.Data(contentsOf: url)
+                
                 self.profilePic = UIImage(data: data)!
+                completion()
             }
-        })
+        }
     }
+    
 }

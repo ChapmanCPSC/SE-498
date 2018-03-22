@@ -12,6 +12,8 @@ class LoginVC: UIViewController, UITextFieldDelegate {
 
     var MainStoryBoard:UIStoryboard? = nil
     
+    @IBOutlet weak var logoImageview: UIImageView!
+    
     @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var usernameTextField: UITextField!
@@ -68,6 +70,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
             let theStudent = studentModelsReturned[0]
             print(theStudent.studentUsername!)
             theStudent.getProfilePic(completion: { (theProfilePic) in
+                self.logoImageview.image = theProfilePic!
                 print(theProfilePic!.description)
             })
         }
