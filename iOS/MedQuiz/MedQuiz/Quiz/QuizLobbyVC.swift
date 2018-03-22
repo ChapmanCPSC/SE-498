@@ -82,11 +82,6 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         return cell
     }
     
-    func addLobbyPlayer(lobbyPlayer:Student){
-        lobbyPlayers.append(lobbyPlayer)
-        lobbyPlayersCollectionView.reloadData()
-    }
-    
     func downloadGame(){
         checkConnection {
             self.downloadQuiz(){
@@ -101,72 +96,75 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         let connectedRef = Database.database().reference(withPath: ".info/connected")
         connectedRef.observe(.value, with: { snapshot in
             if let connected = snapshot.value as? Bool, !connected {
-                self.errorOccured(title: "Connection Error", message: "Connection to database lost.")
+                self.errorOccurred(title: "Connection Error", message: "Connection to database lost.")
             }
             completion()
         })
     }
     
-    func checkGameStart(gameModel:GameModel, completion: @escaping () -> Void){
-        let gameStartedRef = Database.database().reference(withPath: "game/\(gameModel.key)/hasstarted")
-        gameStartedRef.observe(.value, with: { snapshot in
-            if let hasStarted = snapshot.value as? Bool, hasStarted {
-                if self.quizDownloaded{
-                    self.quizStarted()
-                }
-                else{
-                    self.errorOccured(title: "Download Not Finished", message: "Quiz started before download could be finished.")
-                }
-            }
-            completion()
-        })
+    func checkGameStart(completion: @escaping () -> Void){
+//        let gameStartedRef = Database.database().reference(withPath: "game/\(gameModel.key)/hasstarted")
+//        gameStartedRef.observe(.value, with: { snapshot in
+//            if let hasStarted = snapshot.value as? Bool, hasStarted {
+//                if self.quizDownloaded{
+//                    self.quizStarted()
+//                }
+//                else{
+//                    self.errorOccurred(title: "Download Not Finished", message: "Quiz started before download could be finished.")
+//                }
+//            }
+//            completion()
+//        })
+        
+//        GameModel.WhereAndKeepObserving(child: GameModel.GAME_PIN, equals: self.gamePin) { (gamesFound) in
+//            let theGame = gamesFound[0]
+//
+//            if let hasStarted = theGame.hasstarted, hasStarted {
+//                if self.quizDownloaded {
+//                    self.quizStarted()
+//                }
+//                else{
+//                    self.errorOccurred(title: "Download Not Finished", message: "Quiz started befire download could be finished.")
+//                }
+//            }
+//            completion()
+//        }
     }
     
     func downloadQuiz(completion: @escaping () -> Void){
         GameModel.Where(child: GameModel.GAME_PIN, equals: self.gamePin) { (gamesFound) in
-            if(gamesFound.isEmpty){
-                self.errorOccured(title: "Quiz Not Found", message: "Quiz for supplied pin not found through query.")
+            let theGame = gamesFound[0]
+
+            _ = Quiz(key: theGame.quizKey!) { theQuiz in
+                self.gameQuiz = theQuiz
                 completion()
-            }
-            else{
-                let theGame = gamesFound[0]
-                _ = Quiz(key: theGame.quizKey!) { theQuiz in
-                    self.gameQuiz = theQuiz
-                    completion()
-                }
             }
         }
     }
     
     func downloadStudents(completion: @escaping () -> Void){
         GameModel.WhereAndKeepObserving(child: GameModel.GAME_PIN, equals: self.gamePin) { (gamesFound) in
-            if(gamesFound.isEmpty){
-                self.errorOccured(title: "Quiz Not Found", message: "Quiz for supplied pin not found through query.")
-                completion()
+            let theGame = gamesFound[0]
+            self.lobbyPlayers.removeAll()
+            var gameStudentKeys:[String] = []
+
+            for studentModel:StudentModel in theGame.gameStudents{
+                gameStudentKeys.append(studentModel.key)
             }
-            else{
-                let theGame = gamesFound[0]
-                
-                self.lobbyPlayers.removeAll()
-                var gameStudentKeys:[String] = []
-                for studentModel:StudentModel in theGame.gameStudents{
-                    gameStudentKeys.append(studentModel.key)
-                }
-                
-                for studentKey in gameStudentKeys{
-                    _ = Student(key: studentKey) { (theStudent) in
-                        if studentKey != self.userStudentKey{
-                            self.lobbyPlayers.append(theStudent)
-                            self.lobbyPlayersCollectionView.reloadData()
-                        }
+            
+            for studentKey in gameStudentKeys{
+                _ = Student(key: studentKey) { (theStudent) in
+                    if studentKey != self.userStudentKey{
+                        self.lobbyPlayers.append(theStudent)
+                        self.lobbyPlayersCollectionView.reloadData()
                     }
                 }
-                
-                let userStudentRef = Database.database().reference(withPath: "game/\(theGame.key)/students").child(self.userStudentKey)
-                userStudentRef.setValue(true)
-                
-                completion()
             }
+
+            let userStudentRef = Database.database().reference(withPath: "game/\(theGame.key)/students").child(self.userStudentKey)
+            userStudentRef.setValue(true)
+            
+            completion()
         }
     }
     
@@ -188,9 +186,11 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         performSegue(withIdentifier: "QuizActivitySegue", sender: nil)
     }
     
-    func errorOccured(title:String, message:String){
+    func errorOccurred(title:String, message:String){
         let alert = UIAlertController(title:title, message:message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default) { UIAlertAction in
+            self.dismiss(animated: false, completion: nil)
+        })
         self.present(alert, animated: true, completion: nil)
         
         //TODO: This will not be enough time to show alert to user
@@ -199,7 +199,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
 
     @IBAction func tempBckPressed(_ sender: Any) {
-        self.dismiss(animated: false, completion: nil)
+        errorOccurred(title: "Error Test", message: "This is what should happen when an error occurs in the Lobby.")
     }
     
     
