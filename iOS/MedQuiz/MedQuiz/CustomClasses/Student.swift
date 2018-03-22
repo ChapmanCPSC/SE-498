@@ -22,7 +22,7 @@ class Student {
             print(theStudent.studentUsername!)
             
             self.userName = theStudent.studentUsername!
-            self.totalPoints = 100
+            self.totalPoints = 10000
             self.friends = []
             self.hasChangedUsername = false
             
@@ -66,7 +66,7 @@ class Student {
         self.friends = (studentModel.snapshot.value as! [String:AnyObject])["friends"] as! [Student]
         self.classes = (studentModel.snapshot.value as! [String:AnyObject])["classes"] as! [String:Bool]
         self.totalPoints = Int((studentModel.snapshot.value as! [String:AnyObject])["totalPoints"] as! String)!*/
-        self.userName = studentDict["username"] as! String
+        self.userName = studentDict["username"] as? String
         //self.userName = "Lylenator2000"
         //self.totalPoints = studentModel.totalPoints!
         self.totalPoints = 10000

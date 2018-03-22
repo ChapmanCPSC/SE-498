@@ -39,7 +39,6 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         lobbyPlayersCollectionView.delegate = self
         lobbyPlayersCollectionView.dataSource = self
         
-        
         lobbyPlayersCollectionView.showsVerticalScrollIndicator = false
         loadingIndicatorView.hidesWhenStopped = true
         loadingIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
@@ -69,9 +68,12 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = lobbyPlayersCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! LobbyPlayersCollectionViewCell
+        let scoreFormatter = NumberFormatter()
+        scoreFormatter.numberStyle = NumberFormatter.Style.decimal
+        
         cell.avatarImageView.image = lobbyPlayers[indexPath.row].profilePic
         cell.usernameLabel.text = lobbyPlayers[indexPath.row].userName
-        cell.scoreLabel.text = String(describing: lobbyPlayers[indexPath.row].totalPoints)
+        cell.scoreLabel.text = scoreFormatter.string(from: lobbyPlayers[indexPath.row].totalPoints! as NSNumber)
         return cell
     }
     
