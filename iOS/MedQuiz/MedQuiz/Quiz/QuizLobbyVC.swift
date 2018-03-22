@@ -34,6 +34,8 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("quiz lobby")
+        
         hideSidebar()
         
         lobbyPlayersCollectionView.delegate = self
@@ -49,6 +51,9 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         statusLabel.text = loadingString
 
         downloadGame()
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        print("quiz lobby appeared")
     }
 
     override func didReceiveMemoryWarning() {
@@ -187,20 +192,15 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         let alert = UIAlertController(title:title, message:message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
-        self.performSegue(withIdentifier: "LobbyErrorSegue", sender: nil)
+        
+        //TODO: This will not be enough time to show alert to user
+        // cause it will immediatly go back
+        //self.performSegue(withIdentifier: "LobbyErrorSegue", sender: nil)
     }
 
     @IBAction func tempBckPressed(_ sender: Any) {
         self.dismiss(animated: false, completion: nil)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
+    
 }

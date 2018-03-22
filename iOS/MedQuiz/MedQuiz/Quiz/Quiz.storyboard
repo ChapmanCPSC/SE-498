@@ -435,7 +435,7 @@
         <!--Quiz LobbyVC-->
         <scene sceneID="21z-ab-oMu">
             <objects>
-                <viewController id="e4C-ZA-AYe" customClass="QuizLobbyVC" customModule="MedQuiz" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="quizLobbyVC" id="e4C-ZA-AYe" customClass="QuizLobbyVC" customModule="MedQuiz" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GaO-Mg-uy6">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -551,12 +551,11 @@
                         <outlet property="loadingIndicatorView" destination="dOY-cz-oeP" id="tfN-GG-H0z"/>
                         <outlet property="lobbyPlayersCollectionView" destination="9rD-8X-JGq" id="7Hn-Nu-qUc"/>
                         <outlet property="statusLabel" destination="9bl-3n-SGg" id="aoW-rO-C8y"/>
-                        <segue destination="Jvp-t9-Pxf" kind="show" identifier="LobbyErrorSegue" id="otz-VS-muV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MAY-Kt-eAY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1279.1015625" y="879.6875"/>
+            <point key="canvasLocation" x="-1325" y="592"/>
         </scene>
         <!--Quiz SearchVC-->
         <scene sceneID="e69-Kq-OHY">
@@ -698,7 +697,6 @@
                         <outlet property="sv_search" destination="92h-CE-1Cs" id="Eat-4r-XCk"/>
                         <outlet property="tf_quizPin" destination="NFR-OY-cOA" id="geb-BJ-K3d"/>
                         <segue destination="kLc-xA-Qfj" kind="show" identifier="QuizSearchSegue" id="ZKg-i8-Rhf"/>
-                        <segue destination="e4C-ZA-AYe" kind="show" identifier="QuizPinSegue" id="vhR-5u-0zv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F9e-l5-fyI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -730,7 +728,7 @@
         <image name="StudentAvatarPlaceholder.png" width="183" height="183"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="otz-VS-muV"/>
+        <segue reference="9Xx-YP-L55"/>
         <segue reference="ClV-2G-UHD"/>
     </inferredMetricsTieBreakers>
 </document>
