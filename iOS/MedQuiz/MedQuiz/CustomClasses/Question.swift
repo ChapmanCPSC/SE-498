@@ -74,7 +74,7 @@ class Question {
                                 }
                             }
                             else{
-                                _ = Answer(answerText: answerTexts[i], points: self.points!, isAnswer: correctAnswers[i], hasImage: true, imagePath: "") { theAnswer in
+                                _ = Answer(answerText: answerTexts[i], points: self.points!, isAnswer: correctAnswers[i], hasImage: false, imagePath: "") { theAnswer in
                                     self.answers?.append(theAnswer)
                                 }
                             }
@@ -85,8 +85,6 @@ class Question {
                     })
                 }
             })
-            print("Something went wrong")
-            completion(self)
         })
     }
 

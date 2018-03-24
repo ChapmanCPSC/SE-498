@@ -35,7 +35,7 @@ class Answer {
             imageRef.downloadURL { (u:URL?, e : Error?) in
                 if let error = e
                 {
-                    print("Woops: \(error)")
+                    print("Whoops: \(error)")
                 }
                 else if let url = u
                 {
