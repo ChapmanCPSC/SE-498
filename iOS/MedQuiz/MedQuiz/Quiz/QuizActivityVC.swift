@@ -155,6 +155,10 @@ class QuizActivityVC: UIViewController {
 
     func nextQuestion(){
         currQuestionIdx += 1
+        if(currQuestionIdx == currQuiz.questions?.count){
+            finishQuiz()
+            return
+        }
         currQuestion = currQuiz.questions![currQuestionIdx]
         hideAnswersForTime()
         reloadView()
@@ -294,6 +298,12 @@ class QuizActivityVC: UIViewController {
             updateLeaderboard()
             updateUserInLeaderboard()
         }
+    }
+
+
+    func finishQuiz(){
+         //segue to quiz summary
+        performSegue(withIdentifier: "quizActToSummary", sender: nil)
     }
 
     @IBAction func tempPressed(_ sender: Any) {
