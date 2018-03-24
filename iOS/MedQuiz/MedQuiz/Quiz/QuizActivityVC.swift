@@ -295,12 +295,14 @@ class QuizActivityVC: UIViewController {
     @IBAction func tempPressed(_ sender: Any) {
         if(toggleTemp){
             answerViews.forEach { view in
-                view.answer.imageLink="dfg"
+                //view.answer.imageLink="dfg"
+                view.answer.hasImage = true
             }
         }
         else{
             answerViews.forEach { view in
-                view.answer.imageLink = ""
+                //view.answer.imageLink = ""
+                view.answer.hasImage = false
             }
         }
         toggleTemp = !toggleTemp
@@ -388,7 +390,7 @@ extension QuizActivityVC:SelectsAnswer {
                 if(view == answer){
                     // check if it's correct and take appropriate action
                     let selectedAnswer = view.answer
-                    if(selectedAnswer.isAnswer){
+                    if(selectedAnswer.isAnswer)!{
                         view.showCorrect()
                         pointsEarned += time
                         //moveUpPosition()
@@ -410,7 +412,7 @@ extension QuizActivityVC:SelectsAnswer {
                     }
 
                 }
-                else if(!view.answer.isAnswer){
+                else if(!view.answer.isAnswer!){
                     view.fadeAnswer()
                 }
             }

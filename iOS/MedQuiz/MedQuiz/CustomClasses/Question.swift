@@ -46,6 +46,46 @@ class Question {
                     self.tags?.append(tag)
                 })
             }
+            
+            self.answers = []
+            
+            var answerTexts:[String] = []
+            var correctAnswers:[Bool] = []
+            
+            let answersRef = Database.database().reference(withPath: "choices/\(aQuestionModel.key)/answers")
+            answersRef.observeSingleEvent(of: .value, with: { snapshot in
+                if let children = snapshot.children.allObjects as? [DataSnapshot] {
+                    for child in children {
+                        answerTexts.append(child.value as! String)
+                    }
+                    
+                    let correctRef = Database.database().reference(withPath: "choices/\(aQuestionModel.key)/correctanswers")
+                    correctRef.observeSingleEvent(of: .value, with: { snapshot in
+                        if let children = snapshot.children.allObjects as? [DataSnapshot] {
+                            for child in children {
+                                correctAnswers.append(child.value as! Bool)
+                            }
+                        }
+                        
+                        for i in 0...answerTexts.count - 1 {
+                            if self.imagesForAnswers!{
+                                _ = Answer(answerText: "", points: self.points!, isAnswer: correctAnswers[i], hasImage: true, imagePath: answerTexts[i]) { theAnswer in
+                                    self.answers?.append(theAnswer)
+                                }
+                            }
+                            else{
+                                _ = Answer(answerText: answerTexts[i], points: self.points!, isAnswer: correctAnswers[i], hasImage: true, imagePath: "") { theAnswer in
+                                    self.answers?.append(theAnswer)
+                                }
+                            }
+                            
+                        }
+                        
+                        completion(self)
+                    })
+                }
+            })
+            print("Something went wrong")
             completion(self)
         })
     }

@@ -46,7 +46,6 @@ class Student {
             print(aStudentModel.studentUsername!)
             aStudentModel.getProfilePic(completion: { (theProfilePic) in
                 self.profilePic = theProfilePic!
-                print(theProfilePic!.description)
                 completion(self)
             })
         })

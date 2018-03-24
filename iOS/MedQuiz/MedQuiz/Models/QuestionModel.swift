@@ -17,7 +17,6 @@ class QuestionModel: FIRModel, FIRQueryable
     static var IMAGE_FOR_ANSWERS = "imageforanswers"
     static var IMAGE_FOR_QUESTIONS = "imageforquestion"
     static var TAGS = "tags"
-   
     
     
     var questionTitle: String? { return self.get(QuestionModel.NAME) }

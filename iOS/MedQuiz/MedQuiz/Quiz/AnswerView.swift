@@ -21,7 +21,7 @@ class AnswerView: UIView {
     @IBOutlet weak var con_imgAnswerHeight: NSLayoutConstraint!
     @IBOutlet weak var con_textImg: NSLayoutConstraint!
     
-    var answer:Answer = Answer(answerText: "Some answer Text", points: 10, isAnswer: false, imageLink: "")
+    var answer:Answer = Answer(answerText: "Some answer Text", points: 10, isAnswer: false)
     var parent:SelectsAnswer!
 
     override init(frame: CGRect) {
@@ -39,7 +39,7 @@ class AnswerView: UIView {
         addSubviews()
         addListenerToMain()
         //TODO stop autosetting this after testing
-        answer = Answer(answerText: "This is an example answer", points: 10, isAnswer: false, imageLink: "")
+        answer = Answer(answerText: "This is an example answer", points: 10, isAnswer: false)
     }
 
     func addSubviews(){
@@ -105,7 +105,7 @@ class AnswerView: UIView {
     }
 
     func displayAnswer(){
-        if(self.answer.hasImage){
+        if(self.answer.hasImage)!{
             self.showImage()
         }
         else{
