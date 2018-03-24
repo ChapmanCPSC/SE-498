@@ -7,25 +7,47 @@
 //
 
 import Foundation
+import UIKit
+import Firebase
 
 class Answer {
-    var answerText:String
-    var points:Int
-    var isAnswer:Bool
-    var imageLink:String
+    var answerText:String?
+    var points:Int?
+    var isAnswer:Bool?
+    var hasImage:Bool?
+    var image:UIImage?
     
-    var hasImage:Bool {
-        get{
-            return imageLink != ""
-        }
-    }
-    
-    init(answerText:String, points:Int, isAnswer:Bool, imageLink:String){
+    init(answerText:String, points:Int, isAnswer:Bool){
         self.answerText = answerText
         self.points = points
         self.isAnswer = isAnswer
-        self.imageLink = imageLink
+        self.hasImage = false
     }
     
-    
+    init(answerText:String, points:Int, isAnswer:Bool, hasImage:Bool, imagePath:String, completion:@escaping (Answer) -> Void){
+        self.answerText = answerText
+        self.points = points
+        self.isAnswer = isAnswer
+        self.hasImage = hasImage
+        
+        if hasImage{
+            let imageRef = Storage.storage().reference(withPath: imagePath)
+            imageRef.downloadURL { (u:URL?, e : Error?) in
+                if let error = e
+                {
+                    print("Whoops: \(error)")
+                }
+                else if let url = u
+                {
+                    let data = try! Foundation.Data(contentsOf: url)
+                    
+                    self.image = UIImage(data: data)!
+                }
+                completion(self)
+            }
+        }
+        else{
+            completion(self)
+        }
+    }
 }

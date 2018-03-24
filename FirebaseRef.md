@@ -18,6 +18,7 @@
   **Need to switch this to be the last game**
   * Date: the time which the question was last used
   * Time: the date which the question was last used
+* quizzes: a list of quiz IDs to which this question is currently a part of. (two-way relationship)
 ## question-name
 >Description: The name of the question tied to the ID
 * name: a string value which is the name of the question

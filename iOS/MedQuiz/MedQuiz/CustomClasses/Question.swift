@@ -14,17 +14,17 @@ class Question {
     var imagesForAnswers:Bool?
     var correctAnswer:String?
     var answers:[Answer]?
-    var images:[String]?// TODO Figure out what type it actually is
-    var tags:[Tag]?// TODO make TagModel (Probably same as the quiz?)
+    var image:UIImage?
+    var tags:[Tag]?
     var title:String?
 
-    init(points:Int, imageForQuestion:Bool, imagesForAnswers:Bool, correctAnswer:String, answers:[Answer], images:[String], tags:[Tag], title:String){
+    init(points:Int, imageForQuestion:Bool, imagesForAnswers:Bool, correctAnswer:String, answers:[Answer], image:UIImage, tags:[Tag], title:String){
         self.points = points
         self.imageForQuestion = imageForQuestion
         self.imagesForAnswers = imagesForAnswers
         self.correctAnswer = correctAnswer
         self.answers = answers
-        self.images = images
+        self.image = image
         self.tags = tags
         self.title = title
     }
@@ -36,6 +36,24 @@ class Question {
             self.imagesForAnswers = aQuestionModel.imagesForAnswers!
             self.imageForQuestion = aQuestionModel.imageForQuestion!
             
+            if self.imageForQuestion!{
+                let imageRef = Storage.storage().reference(withPath: aQuestionModel.questionImagePath!)
+                imageRef.downloadURL { (u:URL?, e : Error?) in
+                    if let error = e
+                    {
+                        print("Whoops: \(error)")
+                    }
+                    else if let url = u
+                    {
+                        let data = try! Foundation.Data(contentsOf: url)
+                        self.image = UIImage(data: data)!
+                    }
+                }
+            }
+            else{
+                self.image = UIImage()
+            }
+            
             self.tags = []
             var tagKeys:[String] = []
             for tagModel in aQuestionModel.tags{
@@ -46,7 +64,45 @@ class Question {
                     self.tags?.append(tag)
                 })
             }
-            completion(self)
+            
+            self.answers = []
+            
+            var answerTexts:[String] = []
+            var correctAnswers:[Bool] = []
+            
+            let answersRef = Database.database().reference(withPath: "choices/\(aQuestionModel.key)/answers")
+            answersRef.observeSingleEvent(of: .value, with: { snapshot in
+                if let children = snapshot.children.allObjects as? [DataSnapshot] {
+                    for child in children {
+                        answerTexts.append(child.value as! String)
+                    }
+                    
+                    let correctRef = Database.database().reference(withPath: "choices/\(aQuestionModel.key)/correctanswers")
+                    correctRef.observeSingleEvent(of: .value, with: { snapshot in
+                        if let children = snapshot.children.allObjects as? [DataSnapshot] {
+                            for child in children {
+                                correctAnswers.append(child.value as! Bool)
+                            }
+                        }
+                        
+                        for i in 0...answerTexts.count - 1 {
+                            if self.imagesForAnswers!{
+                                _ = Answer(answerText: "", points: self.points!, isAnswer: correctAnswers[i], hasImage: true, imagePath: answerTexts[i]) { theAnswer in
+                                    self.answers?.append(theAnswer)
+                                }
+                            }
+                            else{
+                                _ = Answer(answerText: answerTexts[i], points: self.points!, isAnswer: correctAnswers[i], hasImage: false, imagePath: "") { theAnswer in
+                                    self.answers?.append(theAnswer)
+                                }
+                            }
+                            
+                        }
+                        
+                        completion(self)
+                    })
+                }
+            })
         })
     }
 
@@ -80,7 +136,7 @@ class Question {
 //        self.tags = toSet
         self.tags = []
 
-        self.images = []
+        self.image = UIImage()
         self.answers = []
         self.correctAnswer = ""
     }

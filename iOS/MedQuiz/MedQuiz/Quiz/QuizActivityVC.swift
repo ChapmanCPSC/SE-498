@@ -12,6 +12,7 @@ import UIKit
 class QuizActivityVC: UIViewController {
     
     var currQuestion:Question!
+    var currQuestionIdx:Int = -1 // start at -1 so that first call can call nextQuestion
     var currQuiz:Quiz!
     var canSelect:Bool = false
     var currPos:Int = 5
@@ -79,16 +80,22 @@ class QuizActivityVC: UIViewController {
         setAnswerColors()
         setUserColors()
         hideSidebar()
-        //Hides answers for 5 sec and then calls showLabels func
-        Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(showLabels), userInfo: nil, repeats: false)
+
+        hideAnswersForTime()
 
         print("Multiplier of image is: \(con_questionImageHeight.multiplier)")
         
-        tempSetupQuiz() // TODO Remove this after finishing testing
+//        tempSetupQuiz() // TODO Remove this after finishing testing
         tempSetupLeaderBoard()
 
+        nextQuestion()
 
         updateUserInLeaderboard() // TODO maybe remove this?
+    }
+
+    func hideAnswersForTime(){
+        //Hides answers for 5 sec and then calls showLabels func
+        Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(showLabels), userInfo: nil, repeats: false)
     }
 
     func runTimer() {
@@ -146,13 +153,18 @@ class QuizActivityVC: UIViewController {
         }
     }
 
+    func nextQuestion(){
+        currQuestionIdx += 1
+        currQuestion = currQuiz.questions![currQuestionIdx]
+        hideAnswersForTime()
+        reloadView()
+    }
+
     func reloadView(){
         // upon getting a new question update the view
-        updateQuestionNumber(text: "1")
-        updateQuestionText(text: "What is the question from swift")
-        updateAnswerTexts(texts: ["Answer1", "Answer2", "Answer3", "Answer4"])
-//         updateAnswerPictures(urls: [String])
-        
+        updateQuestionNumber()
+        updateQuestionText()
+        updateAnswers()
     }
 
     func displayImageQuestion(){
@@ -191,21 +203,31 @@ class QuizActivityVC: UIViewController {
 
         iv_questionImage.isHidden = true
     }
-    
-    func updateQuestionNumber(text:String){
-        
+
+    func updateQuestionNumber(){
+        lab_questionNumber.text = "Q\(currQuestionIdx+1)"
     }
     
-    func updateQuestionText(text:String){
-        
+    func updateQuestionText(){
+        // has to call displayTextQuestion first so that it hides the image
+        if let _ = currQuestion.title{
+            lab_questionText.text = currQuestion.title
+            displayTextQuestion()
+        }
+
+        if(currQuestion.imageForQuestion!){
+            // TODO set iv_questionImage's image
+            iv_questionImage.image = currQuestion.image
+            displayImageQuestion()
+        }
     }
     
-    func updateAnswerTexts(texts:[String]){
-        
-    }
-    
-    func updateAnswerPictures(urls:[String]){
-        
+    func updateAnswers(){
+        let answers = currQuestion.answers!
+        for idx in 0..<4{
+            let currView = answerViews[idx] as AnswerView
+            currView.setAnswer(answer: answers[idx])
+        }
     }
 
     func updateLeaderboard(){
@@ -277,12 +299,14 @@ class QuizActivityVC: UIViewController {
     @IBAction func tempPressed(_ sender: Any) {
         if(toggleTemp){
             answerViews.forEach { view in
-                view.answer.imageLink="dfg"
+                //view.answer.imageLink="dfg"
+                view.answer.hasImage = true
             }
         }
         else{
             answerViews.forEach { view in
-                view.answer.imageLink = ""
+                //view.answer.imageLink = ""
+                view.answer.hasImage = false
             }
         }
         toggleTemp = !toggleTemp
@@ -350,6 +374,9 @@ class QuizActivityVC: UIViewController {
         self.dismiss(animated: false) {
         }
     }
+    @IBAction func tempNextQPressed(_ sender: Any) {
+        nextQuestion()
+    }
 }
 
 extension QuizActivityVC:SelectsAnswer {
@@ -367,7 +394,7 @@ extension QuizActivityVC:SelectsAnswer {
                 if(view == answer){
                     // check if it's correct and take appropriate action
                     let selectedAnswer = view.answer
-                    if(selectedAnswer.isAnswer){
+                    if(selectedAnswer.isAnswer)!{
                         view.showCorrect()
                         pointsEarned += time
                         //moveUpPosition()
@@ -389,7 +416,7 @@ extension QuizActivityVC:SelectsAnswer {
                     }
 
                 }
-                else if(!view.answer.isAnswer){
+                else if(!view.answer.isAnswer!){
                     view.fadeAnswer()
                 }
             }
