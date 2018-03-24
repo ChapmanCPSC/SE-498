@@ -1,27 +1,27 @@
 
 # Main App Colors
 *Global colors (Also defined in app)*
-1. pharmAppTeal = (hex: "6FE5CB")
-1. pharmAppDarkTeal = (hex: "9AD5D2")
-1. pharmAppBlue = (hex: "439EC4")
-1. pharmAppDarkBlue = (hex: "30718D")
-1. pharmAppYellow = (hex: "FFE483")
-1. pharmAppOrange = (hex: "FFC484")
-1. pharmAppPurple = (hex: "8884FF")
-1. pharmAppRed = (hex: "FF8D84")
-1. pharmAppGrey = (hex: "979797")
+- pharmAppTeal = (hex: "6FE5CB")
+- pharmAppDarkTeal = (hex: "9AD5D2")
+- pharmAppBlue = (hex: "439EC4")
+- pharmAppDarkBlue = (hex: "30718D")
+- pharmAppYellow = (hex: "FFE483")
+- pharmAppOrange = (hex: "FFC484")
+- pharmAppPurple = (hex: "8884FF")
+- pharmAppRed = (hex: "FF8D84")
+- pharmAppGrey = (hex: "979797")
 
-1. pharmAppAnswerOne = (hex: "BB7AE1")
-1. pharmAppAnswerTwo = (hex: "DCA480")
-1. pharmAppAnswerThree = (hex: "DA7E7E")
-1. pharmAppAnswerFour = (hex: "88D3E5")
+- pharmAppAnswerOne = (hex: "BB7AE1")
+- pharmAppAnswerTwo = (hex: "DCA480")
+- pharmAppAnswerThree = (hex: "DA7E7E")
+- pharmAppAnswerFour = (hex: "88D3E5")
 
 
-1. pharmAppGameLeaderboardUserOne = (hex: "98D8C0")
-1. pharmAppGameLeaderboardUserTwo = (hex: "C892D8")
-1. pharmAppGameLeaderboardCurrentUser = (hex: "FDFFA1")
-1. pharmAppGameLeaderboardUserThree = (hex: "A1ABFF")
-1. pharmAppGameLeaderboardUserFour = (hex: "D8939B")
+- pharmAppGameLeaderboardUserOne = (hex: "98D8C0")
+- pharmAppGameLeaderboardUserTwo = (hex: "C892D8")
+- pharmAppGameLeaderboardCurrentUser = (hex: "FDFFA1")
+- pharmAppGameLeaderboardUserThree = (hex: "A1ABFF")
+- pharmAppGameLeaderboardUserFour = (hex: "D8939B")
 
 
 ## Login Page
