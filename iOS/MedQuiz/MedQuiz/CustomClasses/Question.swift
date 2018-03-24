@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+
 class Question {
     var points:Int?
     var imageForQuestion:Bool?

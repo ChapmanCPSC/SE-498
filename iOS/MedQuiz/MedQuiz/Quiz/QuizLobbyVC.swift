@@ -176,6 +176,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //TODO: Delete if not using segues anymore
         if(segue.identifier == "QuizActivitySegue"){
             let destinationVC = segue.destination as! QuizActivityVC
             destinationVC.currQuiz = gameQuiz
@@ -183,6 +184,8 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     func quizStarted(){
+        //TODO: Probably dismiss this current view
+        // and present a new one rather than perform a segue
         performSegue(withIdentifier: "QuizActivitySegue", sender: nil)
     }
     
