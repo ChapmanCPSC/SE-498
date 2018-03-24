@@ -88,6 +88,7 @@ class QuizActivityVC: UIViewController {
         tempSetupQuiz() // TODO Remove this after finishing testing
         tempSetupLeaderBoard()
 
+//        nextQuestion()
 
         updateUserInLeaderboard() // TODO maybe remove this?
     }
@@ -366,6 +367,9 @@ class QuizActivityVC: UIViewController {
     @IBAction func tempBackPressed(_ sender: Any) {
         self.dismiss(animated: false) {
         }
+    }
+    @IBAction func tempNextQPressed(_ sender: Any) {
+//        nextQuestion() // TODO uncomment after answers get saved
     }
 }
 
