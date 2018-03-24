@@ -130,7 +130,7 @@ class AnswerView: UIView {
     }
     
     private func showImage() {
-        // TODO set imageview using data from answerModel
+        iv_answer.image = answer.image
         let newConstraint = con_imgAnswerHeight.constraintWithMultipler(0.5)
         viewMain.removeConstraint(con_imgAnswerHeight)
         con_imgAnswerHeight = newConstraint
@@ -145,10 +145,10 @@ class AnswerView: UIView {
     
     func showPoints(wasCorrect:Bool) {
         if(wasCorrect){
-            lab_points.text = "+\(answer.points)"
+            lab_points.text = "+\(answer.points!)"
         }
         else{
-            lab_points.text = "-\(answer.points)"
+            lab_points.text = "-\(answer.points!)"
         }
         lab_points.isHidden = false
     }

@@ -25,7 +25,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     let loadingIndicatorViewScale:CGFloat = 2.0
     let loadingIndicatorViewColor = UIColor.hexStringToUIColor(hex: "FFDF00")
     
-    var lobbyPlayers = [Student]()
+    var lobbyPlayers = [Student]()  
     
     @IBOutlet weak var statusLabel: UILabel!
     var loadingString:String = "Loading Quiz"
@@ -75,6 +75,10 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         let cell = lobbyPlayersCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! LobbyPlayersCollectionViewCell
         let scoreFormatter = NumberFormatter()
         scoreFormatter.numberStyle = NumberFormatter.Style.decimal
+        
+        //Making the avatarImageView/images of the players rounded like a circle
+        cell.avatarImageView.layer.masksToBounds = true
+        cell.avatarImageView.layer.cornerRadius = cell.avatarImageView.frame.size.width/2
         
         cell.avatarImageView.image = lobbyPlayers[indexPath.row].profilePic
         cell.usernameLabel.text = lobbyPlayers[indexPath.row].userName
