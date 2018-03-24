@@ -85,10 +85,10 @@ class QuizActivityVC: UIViewController {
 
         print("Multiplier of image is: \(con_questionImageHeight.multiplier)")
         
-        tempSetupQuiz() // TODO Remove this after finishing testing
+//        tempSetupQuiz() // TODO Remove this after finishing testing
         tempSetupLeaderBoard()
 
-//        nextQuestion()
+        nextQuestion()
 
         updateUserInLeaderboard() // TODO maybe remove this?
     }
@@ -209,12 +209,16 @@ class QuizActivityVC: UIViewController {
     }
     
     func updateQuestionText(){
+        // has to call displayTextQuestion first so that it hides the image
+        if let _ = currQuestion.title{
+            lab_questionText.text = currQuestion.title
+            displayTextQuestion()
+        }
+
         if(currQuestion.imageForQuestion!){
             // TODO set iv_questionImage's image
-
-        }
-        else{
-            lab_questionText.text = currQuestion.title
+            iv_questionImage.image = currQuestion.image
+            displayImageQuestion()
         }
     }
     
@@ -371,7 +375,7 @@ class QuizActivityVC: UIViewController {
         }
     }
     @IBAction func tempNextQPressed(_ sender: Any) {
-//        nextQuestion() // TODO uncomment after answers get saved
+        nextQuestion()
     }
 }
 
