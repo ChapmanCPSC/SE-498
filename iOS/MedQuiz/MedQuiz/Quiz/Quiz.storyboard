@@ -199,7 +199,7 @@
                                         <rect key="frame" x="779" y="20" width="139" height="30"/>
                                         <state key="normal" title="Temp Quiz Sum Seg"/>
                                         <connections>
-                                            <segue destination="IbL-uk-R8z" kind="show" id="YNc-SK-yTJ"/>
+                                            <segue destination="IbL-uk-R8z" kind="show" identifier="quizActToSummary" id="YNc-SK-yTJ"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O86-sm-n0G">
