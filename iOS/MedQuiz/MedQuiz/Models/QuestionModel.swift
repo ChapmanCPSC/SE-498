@@ -17,11 +17,13 @@ class QuestionModel: FIRModel, FIRQueryable
     static var IMAGE_FOR_ANSWERS = "imageforanswers"
     static var IMAGE_FOR_QUESTIONS = "imageforquestion"
     static var TAGS = "tags"
+    static var QUESTIONIMAGEPATH = "questionimage"
     
     
     var questionTitle: String? { return self.get(QuestionModel.NAME) }
     var questionPoints: String? { return self.get(QuestionModel.POINTS) }
     var imagesForAnswers: Bool? { return self.get(QuestionModel.IMAGE_FOR_ANSWERS) }
     var imageForQuestion: Bool? { return self.get(QuestionModel.IMAGE_FOR_QUESTIONS) }
-    var tags: [TagModel] {return self.get(QuestionModel.TAGS)}
+    var tags: [TagModel] { return self.get(QuestionModel.TAGS) }
+    var questionImagePath: String? { return self.get(QuestionModel.QUESTIONIMAGEPATH) }
 }

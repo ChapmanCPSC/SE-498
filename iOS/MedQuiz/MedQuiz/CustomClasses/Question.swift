@@ -14,17 +14,17 @@ class Question {
     var imagesForAnswers:Bool?
     var correctAnswer:String?
     var answers:[Answer]?
-    var images:[String]?// TODO Figure out what type it actually is
-    var tags:[Tag]?// TODO make TagModel (Probably same as the quiz?)
+    var image:UIImage?
+    var tags:[Tag]?
     var title:String?
 
-    init(points:Int, imageForQuestion:Bool, imagesForAnswers:Bool, correctAnswer:String, answers:[Answer], images:[String], tags:[Tag], title:String){
+    init(points:Int, imageForQuestion:Bool, imagesForAnswers:Bool, correctAnswer:String, answers:[Answer], image:UIImage, tags:[Tag], title:String){
         self.points = points
         self.imageForQuestion = imageForQuestion
         self.imagesForAnswers = imagesForAnswers
         self.correctAnswer = correctAnswer
         self.answers = answers
-        self.images = images
+        self.image = image
         self.tags = tags
         self.title = title
     }
@@ -35,6 +35,24 @@ class Question {
             self.points = Int(aQuestionModel.questionPoints!)
             self.imagesForAnswers = aQuestionModel.imagesForAnswers!
             self.imageForQuestion = aQuestionModel.imageForQuestion!
+            
+            if self.imageForQuestion!{
+                let imageRef = Storage.storage().reference(withPath: aQuestionModel.questionImagePath!)
+                imageRef.downloadURL { (u:URL?, e : Error?) in
+                    if let error = e
+                    {
+                        print("Whoops: \(error)")
+                    }
+                    else if let url = u
+                    {
+                        let data = try! Foundation.Data(contentsOf: url)
+                        self.image = UIImage(data: data)!
+                    }
+                }
+            }
+            else{
+                self.image = UIImage()
+            }
             
             self.tags = []
             var tagKeys:[String] = []
@@ -118,7 +136,7 @@ class Question {
 //        self.tags = toSet
         self.tags = []
 
-        self.images = []
+        self.image = UIImage()
         self.answers = []
         self.correctAnswer = ""
     }
