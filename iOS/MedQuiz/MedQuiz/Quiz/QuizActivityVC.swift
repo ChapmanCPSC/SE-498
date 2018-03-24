@@ -12,6 +12,7 @@ import UIKit
 class QuizActivityVC: UIViewController {
     
     var currQuestion:Question!
+    var currQuestionIdx:Int = -1 // start at -1 so that first call can call nextQuestion
     var currQuiz:Quiz!
     var canSelect:Bool = false
     var currPos:Int = 5
@@ -79,8 +80,8 @@ class QuizActivityVC: UIViewController {
         setAnswerColors()
         setUserColors()
         hideSidebar()
-        //Hides answers for 5 sec and then calls showLabels func
-        Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(showLabels), userInfo: nil, repeats: false)
+
+        hideAnswersForTime()
 
         print("Multiplier of image is: \(con_questionImageHeight.multiplier)")
         
@@ -89,6 +90,11 @@ class QuizActivityVC: UIViewController {
 
 
         updateUserInLeaderboard() // TODO maybe remove this?
+    }
+
+    func hideAnswersForTime(){
+        //Hides answers for 5 sec and then calls showLabels func
+        Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(showLabels), userInfo: nil, repeats: false)
     }
 
     func runTimer() {
@@ -146,13 +152,18 @@ class QuizActivityVC: UIViewController {
         }
     }
 
+    func nextQuestion(){
+        currQuestionIdx += 1
+        currQuestion = currQuiz.questions![currQuestionIdx]
+        hideAnswersForTime()
+        reloadView()
+    }
+
     func reloadView(){
         // upon getting a new question update the view
-        updateQuestionNumber(text: "1")
-        updateQuestionText(text: "What is the question from swift")
-        updateAnswerTexts(texts: ["Answer1", "Answer2", "Answer3", "Answer4"])
-//         updateAnswerPictures(urls: [String])
-        
+        updateQuestionNumber()
+        updateQuestionText()
+        updateAnswers()
     }
 
     func displayImageQuestion(){
@@ -191,21 +202,27 @@ class QuizActivityVC: UIViewController {
 
         iv_questionImage.isHidden = true
     }
-    
-    func updateQuestionNumber(text:String){
-        
+
+    func updateQuestionNumber(){
+        lab_questionNumber.text = "Q\(currQuestionIdx+1)"
     }
     
-    func updateQuestionText(text:String){
-        
+    func updateQuestionText(){
+        if(currQuestion.imageForQuestion!){
+            // TODO set iv_questionImage's image
+
+        }
+        else{
+            lab_questionText.text = currQuestion.title
+        }
     }
     
-    func updateAnswerTexts(texts:[String]){
-        
-    }
-    
-    func updateAnswerPictures(urls:[String]){
-        
+    func updateAnswers(){
+        let answers = currQuestion.answers!
+        for idx in 0..<4{
+            let currView = answerViews[idx] as AnswerView
+            currView.setAnswer(answer: answers[idx])
+        }
     }
 
     func updateLeaderboard(){
