@@ -19,11 +19,29 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var loginErrorLabel: UILabel!
     
+    @IBOutlet weak var loginBackground: UIScrollView!
     
 //    var tags : TagModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Example of using OurColorHelper colors
+        // please follow througout app to make any color
+        // changes or edits very easy and
+        // to keep a sense of unity in the way we assign colors
+        // and refrain from assigning them to some hex value or
+        // UIcolor value or any other value ,unless
+        // needed.
+        // If you set the color of view in the storyboard try to
+        // still assign it programatically like so. I know it's redundant
+        // but if for any reason during future maintenance
+        // they want to change color values they can easily do so through
+        // ColorHelper and it will affect all views/objects.
+        
+        
+        
+        loginBackground.backgroundColor = OurColorHelper.pharmAppDarkBlue
 
         
         //Reference to the Quiz's storyboard

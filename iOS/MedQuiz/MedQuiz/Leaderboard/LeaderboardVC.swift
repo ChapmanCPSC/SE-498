@@ -44,7 +44,8 @@ class LeaderboardVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         leaderboardHeadline.text = "Friends"
         
         switchView.layer.cornerRadius = 30;
-        switchButton.backgroundColor = leaderBoardSwitchFriends
+        switchButton.backgroundColor = OurColorHelper.pharmAppTeal
+
         switchButton.layer.cornerRadius = 25;
     }
 
@@ -59,7 +60,7 @@ class LeaderboardVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         let cell : LeaderboardCell = leaderboardTableview.dequeueReusableCell(withIdentifier: "leaderboard_cell") as! LeaderboardCell
         
         if indexPath.row == 0{
-            cell.backgroundColor = leaderBoardHiglightUser
+            cell.backgroundColor = OurColorHelper.pharmAppYellow
         }
         
         cell.rankLabel.text = String(indexPath.row+1)
@@ -73,7 +74,7 @@ class LeaderboardVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         if(friendsOrGlobal == "friends"){
             UIView.animate(withDuration: 0.5, animations: {
                 self.switchButton.transform = CGAffineTransform(translationX: 200, y: 0)
-                self.switchButton.backgroundColor = leaderBoardSwitchGlobal
+                self.switchButton.backgroundColor = OurColorHelper.pharmAppRed
             }) { (true) in
                 self.leaderboardHeadline.text = "Global"
                 self.friendsOrGlobal = "global"
@@ -82,7 +83,7 @@ class LeaderboardVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         }
         else if(friendsOrGlobal == "global"){
             UIView.animate(withDuration: 0.5, animations: {
-                self.switchButton.backgroundColor = leaderBoardSwitchFriends
+                self.switchButton.backgroundColor = OurColorHelper.pharmAppTeal
                 self.switchButton.transform = CGAffineTransform(translationX: 0, y: 0)
             }) { (true) in
                 self.leaderboardHeadline.text = "Friends"
