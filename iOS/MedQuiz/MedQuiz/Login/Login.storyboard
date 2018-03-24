@@ -168,6 +168,7 @@
                         <viewLayoutGuide key="safeArea" id="Ddn-12-XaU"/>
                     </view>
                     <connections>
+                        <outlet property="loginBackground" destination="IdG-7c-i6N" id="l2K-Dg-ccW"/>
                         <outlet property="loginErrorLabel" destination="6S2-iG-he1" id="zAd-w1-b3a"/>
                         <outlet property="passwordTextField" destination="JDP-T6-gfW" id="8jb-tV-qZK"/>
                         <outlet property="scrollView" destination="IdG-7c-i6N" id="VcK-fx-dy4"/>
