@@ -94,7 +94,6 @@ public class SRCountdownTimer: UIView {
         return Int(counterLabel.text!)!
     }
 
-
     // MARK: Inits
     override public init(frame: CGRect) {
         if frame.width != frame.height {
