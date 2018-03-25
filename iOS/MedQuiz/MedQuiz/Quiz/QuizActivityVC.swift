@@ -52,7 +52,9 @@ class QuizActivityVC: UIViewController {
     @IBOutlet weak var con_questionImageHeight: NSLayoutConstraint!
     
     var seconds = 10
+    var secondsForNextQ = 3
     var timer = Timer()
+    var timerForNextQ = Timer()
     var isTimerRunning = false
     var pointsEarned: Int = 0
     var firstLoad: Bool = true
@@ -87,15 +89,29 @@ class QuizActivityVC: UIViewController {
         
 //        tempSetupQuiz() // TODO Remove this after finishing testing
         tempSetupLeaderBoard()
-
+        
         nextQuestion()
-
+        
         updateUserInLeaderboard() // TODO maybe remove this?
     }
 
     func hideAnswersForTime(){
         //Hides answers for 5 sec and then calls showLabels func
         Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(showLabels), userInfo: nil, repeats: false)
+    }
+    
+    //timer that waits for 3 seconds to pass and then calls the nextQuestion func
+    func runTimerForNextQ(){
+        timerForNextQ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(updateTimerForNextQ)), userInfo: nil, repeats: true)
+    }
+    
+    @objc func updateTimerForNextQ(){
+        secondsForNextQ -= 1
+        if secondsForNextQ == 0 {
+            timerForNextQ.invalidate()
+            secondsForNextQ = 3
+            nextQuestion() //after 3 seconds it calls nextQuestion 
+        }
     }
 
     func runTimer() {
@@ -154,6 +170,7 @@ class QuizActivityVC: UIViewController {
     }
 
     func nextQuestion(){
+        print("Calling nextQuestion")
         currQuestionIdx += 1
         if(currQuestionIdx == currQuiz.questions?.count){
             finishQuiz()
@@ -162,6 +179,7 @@ class QuizActivityVC: UIViewController {
         currQuestion = currQuiz.questions![currQuestionIdx]
         hideAnswersForTime()
         reloadView()
+        //nextQuestion()
     }
 
     func reloadView(){
@@ -169,6 +187,8 @@ class QuizActivityVC: UIViewController {
         updateQuestionNumber()
         updateQuestionText()
         updateAnswers()
+        //updateUserInLeaderboard()
+        //runTimerForNextQ()
     }
 
     func displayImageQuestion(){
@@ -339,6 +359,7 @@ class QuizActivityVC: UIViewController {
     }
 
     @IBAction func tempQuestionInvertPressed(_ sender: Any) {
+        print("tempQuestionInvertPressed")
         if(toggleTemp){
             displayImageQuestion()
         }
@@ -422,7 +443,6 @@ extension QuizActivityVC:SelectsAnswer {
                             pointsEarned -= time
                         }
                         //updateLeaderboard()
-                        updateUserInLeaderboard()
                     }
 
                 }
@@ -431,7 +451,7 @@ extension QuizActivityVC:SelectsAnswer {
                 }
             }
         }
-
+        runTimerForNextQ()//Call this timer, to automatically go to the next question after 3 seconds pass by when the student answers a question
     }
 }
 
