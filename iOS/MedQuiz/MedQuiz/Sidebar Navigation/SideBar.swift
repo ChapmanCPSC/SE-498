@@ -30,6 +30,14 @@ class SideBar: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //TODO: Assuming b29fks9mcf9gh37fhh1h9814 is the key of the
+        // current user, change to whichever user is logged in
+        StudentModel.From(key: "b29fks9mf9gh37fhh1h9814") { (currentStudent) in
+            
+        }
+        
+        
+        
         //Hides top "title" bar
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         

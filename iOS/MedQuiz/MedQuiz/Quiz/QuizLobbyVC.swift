@@ -17,6 +17,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     var quizDownloaded:Bool = false
     
+    //TODO: To be set by logging in and not be static as such
     var userStudentKey:String = "b29fks9mf9gh37fhh1h9814"
     
     @IBOutlet weak var lobbyPlayersCollectionView: UICollectionView!

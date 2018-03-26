@@ -8,8 +8,12 @@
 
 import Foundation
 import UIKit
+import Firebase
 
 class QuizActivityVC: UIViewController {
+    
+    //TODO: Delete this and use a wrapper
+    let dataRef = Database.database().reference()
     
     var currQuestion:Question!
     var currQuestionIdx:Int = -1 // start at -1 so that first call can call nextQuestion
@@ -102,6 +106,7 @@ class QuizActivityVC: UIViewController {
     
     //timer that waits for 3 seconds to pass and then calls the nextQuestion func
     func runTimerForNextQ(){
+        //TODO: Should timer repeat be on true? Or should we just call it everytime the user selects an answer
         timerForNextQ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(updateTimerForNextQ)), userInfo: nil, repeats: true)
     }
     
@@ -115,6 +120,7 @@ class QuizActivityVC: UIViewController {
     }
 
     func runTimer() {
+        //TODO: Should timer repeat be on true?
         timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(updateTimer)), userInfo: nil, repeats: true)
     }
     
@@ -323,7 +329,27 @@ class QuizActivityVC: UIViewController {
 
     func finishQuiz(){
          //segue to quiz summary
-        performSegue(withIdentifier: "quizActToSummary", sender: nil)
+        
+        updatePersonalScore()
+        
+        let quizSummaryVC = self.storyboard?.instantiateViewController(withIdentifier: "quizSummary") as! QuizSummaryViewController
+        self.present(quizSummaryVC, animated: false, completion: {
+        })
+        
+//        performSegue(withIdentifier: "quizActToSummary", sender: nil)
+    }
+    
+    func updatePersonalScore(){
+        
+        //TODO make sure to use key of student currently logged in, for
+        // now just assuming b29fks9mf9gh37fhh1h9814 is logged in from
+        // quiz lobby vc
+        
+        //84y1jn1n12n8n0f80n180289398n1 is the key for that student's
+        // score in the score dataset
+        
+        dataRef.child("score").child("84y1jn1n12n8n0f80n180289398n1").child("points").setValue(pointsEarned)
+        
     }
 
     @IBAction func tempPressed(_ sender: Any) {
@@ -432,6 +458,18 @@ extension QuizActivityVC:SelectsAnswer {
                         //moveDownPosition()
                         //updateLeaderboard()
                         updateUserInLeaderboard()
+                        
+                        //TODO: Temporary way of updating student score in leaderboard on db.
+                        // until db team come up with a solution
+                        // will probably use wrappers
+                        // for now assu,ing current user is b29fks9mf9gh37fhh1h9814
+                        // from quiz lobby, later change to whichever student is currently logged in
+                        
+                        dataRef.child("inGameLeaderboards").child("-L8UmIrtot-ouAefIWuq").child("students").child("-L8Ur3M5CegQC3t4Orkk").child("studentScore").setValue(String(pointsEarned))
+                        
+                        //Also TODO: Make leaderboard update by listening to changes from
+                        // db leaderboard
+                        
                     }
                     else{
                         view.fadeAnswer()
