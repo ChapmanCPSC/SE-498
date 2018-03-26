@@ -19,9 +19,11 @@ class QuizActivityVC: UIViewController {
     var currQuestionIdx:Int = -1 // start at -1 so that first call can call nextQuestion
     var currQuiz:Quiz!
     var gamePin:String!
+    var inGameLeaderboardKey:String!
     var canSelect:Bool = false
     var currPos:Int = 5
     var user:Student = Student(userName: "Paul", profilePic: UIImage(), friends: [], totalPoints: 0, hasChangedUsername: false)
+    var userInGameLeaderboardObjectKey:String!
     var allUsers:[Student]! // TODO kinda working off assumption there'll be an array that'll be updated in firebase that we can use
     
     @IBOutlet weak var answer1: AnswerView!
@@ -99,19 +101,27 @@ class QuizActivityVC: UIViewController {
         
         updateUserInLeaderboard() // TODO maybe remove this?
         
-        
         //#127
         let inGameLeaderboardRef = Database.database().reference(withPath: "inGameLeaderboards")
         inGameLeaderboardRef.observeSingleEvent(of: .value, with: { (snapshot:DataSnapshot) in
             for child in snapshot.children.allObjects as! [DataSnapshot] {
                 if ((child.value as! [String:AnyObject])["game"] as! String) == self.gamePin {
+                    self.inGameLeaderboardKey = child.key
                     let inGameLeaderboardStudentsRef = inGameLeaderboardRef.child(child.key).child("students")
+                    inGameLeaderboardStudentsRef.observeSingleEvent(of: .value, with: { (snapshot:DataSnapshot) in
+                        for child in snapshot.children.allObjects as! [DataSnapshot] {
+                            if ((child.value as! [String:AnyObject])["studentKey"] as! String) == self.user.databaseID {
+                                self.userInGameLeaderboardObjectKey = child.key
+                            }
+                        }
+                    })
+                    
                     inGameLeaderboardStudentsRef.observe(.value, with: { (snapshot:DataSnapshot) in
                         self.allUsers = []
                         var studentKeyScores = [(String, Int)]()
                         for child in snapshot.children.allObjects as! [DataSnapshot] {
                             let key = (child.value as! [String:AnyObject])["studentKey"] as! String
-                            let score = Int((child.value as! [String:AnyObject])["score"] as! String)!
+                            let score = Int((child.value as! [String:AnyObject])["studentScore"] as! String)!
                             studentKeyScores.append((key, score))
                         }
                         
@@ -380,7 +390,8 @@ class QuizActivityVC: UIViewController {
         //84y1jn1n12n8n0f80n180289398n1 is the key for that student's
         // score in the score dataset
         
-        dataRef.child("score").child("84y1jn1n12n8n0f80n180289398n1").child("points").setValue(pointsEarned)
+        //dataRef.child("score").child("84y1jn1n12n8n0f80n180289398n1").child("points").setValue(pointsEarned)
+    dataRef.child("inGameLeaderboards").child(inGameLeaderboardKey).child("students").child(userInGameLeaderboardObjectKey).child("studentScore").setValue(String(pointsEarned))
         
     }
 
