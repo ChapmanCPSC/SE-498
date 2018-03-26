@@ -19,4 +19,9 @@ class SubjectDataNode:CellDataNode{
         
         super.init(children: children, completionEvents: completionEvents)
     }
+    
+    deinit {
+        subjectName = ""
+        print("------->Deallocating SubjectDataNode")
+    }
 }

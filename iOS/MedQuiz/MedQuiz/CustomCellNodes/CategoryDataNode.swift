@@ -20,4 +20,9 @@ class CategoryDataNode:CellDataNode{
 
         super.init(children: children, completionEvents: completionEvents)
     }
+    
+    deinit {
+        categoryName = ""
+        print("------->Deallocating CategoryDataNode")
+    }
 }

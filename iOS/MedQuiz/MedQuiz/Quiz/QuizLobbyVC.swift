@@ -135,6 +135,12 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
 //        }
     }
     
+    deinit {
+        gameQuiz = nil
+        gamePin = nil
+        print("-------->Deallocating quiz data")
+    }
+    
     func downloadQuiz(completion: @escaping () -> Void){
         GameModel.Where(child: GameModel.GAME_PIN, equals: self.gamePin) { (gamesFound) in
             let theGame = gamesFound[0]

@@ -141,6 +141,18 @@ class Question {
         self.correctAnswer = ""
     }
     
+    deinit {
+        points = nil
+        imageForQuestion = nil
+        imagesForAnswers = nil
+        correctAnswer = ""
+        answers = []
+        image = nil
+        tags = []
+        title = ""
+        print("------->deallocating Question")
+    }
+    
     func setTags(questionDict:[String:AnyObject]){
         var questionTagKeys:[String] = []
         for questionTag in questionDict["tags"] as! [String:AnyObject]{

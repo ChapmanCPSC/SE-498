@@ -408,6 +408,12 @@ class QuizActivityVC: UIViewController {
     @IBAction func tempNextQPressed(_ sender: Any) {
         nextQuestion()
     }
+    
+    deinit {
+        answerViews = []
+        print("deallocation quizActivity")
+    }
+    
 }
 
 extension QuizActivityVC:SelectsAnswer {

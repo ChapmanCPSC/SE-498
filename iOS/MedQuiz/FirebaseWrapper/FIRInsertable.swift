@@ -15,4 +15,5 @@ extension FIRInsertable where Self: FIRModel
         
         ref.observe(.value) { (snapshot: DataSnapshot) in completion?(Self.init(snapshot: snapshot)) }
     }
+    
 }

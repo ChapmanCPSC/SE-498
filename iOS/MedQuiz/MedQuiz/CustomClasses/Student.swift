@@ -14,7 +14,6 @@ class Student {
 //    var classes:[String:Bool]
     var totalPoints:Int?
     var hasChangedUsername:Bool?
-
     
     init(username: String, completion: @escaping (Student) -> Void){
         StudentModel.Where(child: "username", equals: username) { (studentModelsReturned) in
@@ -80,6 +79,13 @@ class Student {
         else{
             self.friends = []
         }
+    }
+    
+    deinit {
+        userName = ""
+        profilePic = nil
+        friends = []
+        print("-------->deallocating Student")
     }
 
 //    static func convertFriends(students:[StudentModel]) -> [Student] {

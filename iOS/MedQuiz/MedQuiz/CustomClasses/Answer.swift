@@ -50,4 +50,13 @@ class Answer {
             completion(self)
         }
     }
+    
+    deinit {
+        answerText = ""
+        points = nil
+        isAnswer = nil
+        hasImage = nil
+        image = nil
+        print("-------->deallocating answer")
+    }
 }
