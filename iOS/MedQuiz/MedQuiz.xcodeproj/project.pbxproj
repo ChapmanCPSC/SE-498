@@ -740,7 +740,7 @@
 				TargetAttributes = {
 					3D2495A31F7E2EDD0058D85B = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 5SJXENS48L;
+						DevelopmentTeam = A8E56ATQFS;
 						ProvisioningStyle = Automatic;
 					};
 					3D2495B71F7E2EDD0058D85B = {
@@ -1268,7 +1268,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5SJXENS48L;
+				DEVELOPMENT_TEAM = A8E56ATQFS;
 				INFOPLIST_FILE = MedQuiz/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1288,7 +1288,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5SJXENS48L;
+				DEVELOPMENT_TEAM = A8E56ATQFS;
 				INFOPLIST_FILE = MedQuiz/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
