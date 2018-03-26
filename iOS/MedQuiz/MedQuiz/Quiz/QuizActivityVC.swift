@@ -18,6 +18,7 @@ class QuizActivityVC: UIViewController {
     var currQuestion:Question!
     var currQuestionIdx:Int = -1 // start at -1 so that first call can call nextQuestion
     var currQuiz:Quiz!
+    var gamePin:String!
     var canSelect:Bool = false
     var currPos:Int = 5
     var user:Student = Student(userName: "Paul", profilePic: UIImage(), friends: [], totalPoints: 0, hasChangedUsername: false)
@@ -97,6 +98,37 @@ class QuizActivityVC: UIViewController {
         nextQuestion()
         
         updateUserInLeaderboard() // TODO maybe remove this?
+        
+        
+        //#127
+        let inGameLeaderboardRef = Database.database().reference(withPath: "inGameLeaderboards")
+        inGameLeaderboardRef.observeSingleEvent(of: .value, with: { (snapshot:DataSnapshot) in
+            for child in snapshot.children.allObjects as! [DataSnapshot] {
+                if ((child.value as! [String:AnyObject])["game"] as! String) == self.gamePin {
+                    let inGameLeaderboardStudentsRef = inGameLeaderboardRef.child(child.key).child("students")
+                    inGameLeaderboardStudentsRef.observe(.value, with: { (snapshot:DataSnapshot) in
+                        self.allUsers = []
+                        var studentKeyScores = [(String, Int)]()
+                        for child in snapshot.children.allObjects as! [DataSnapshot] {
+                            let key = (child.value as! [String:AnyObject])["studentKey"] as! String
+                            let score = Int((child.value as! [String:AnyObject])["score"] as! String)!
+                            studentKeyScores.append((key, score))
+                        }
+                        
+                        studentKeyScores.sort(by: { $0.1 > $1.1 })
+                        
+                        for tuple in studentKeyScores {
+                            for student in self.allUsers {
+                                if tuple.0 == student.databaseID {
+                                    self.allUsers.append(student)
+                                }
+                            }
+                        }
+                        self.updateLeaderboard()
+                    })
+                }
+            }
+        })
     }
 
     func hideAnswersForTime(){

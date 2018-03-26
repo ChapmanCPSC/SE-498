@@ -191,6 +191,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         if(segue.identifier == "QuizActivitySegue"){
             let destinationVC = segue.destination as! QuizActivityVC
             destinationVC.currQuiz = gameQuiz
+            destinationVC.gamePin = gamePin
         }
     }
     
