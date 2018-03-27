@@ -154,8 +154,9 @@ class QuizActivityVC: UIViewController {
     }
 
     func nextQuestion(){
+        canSelect = false
         currQuestionIdx += 1
-        if(currQuestionIdx == currQuiz.questions?.count){
+        if(currQuestionIdx >= (currQuiz.questions?.count)!){
             finishQuiz()
             return
         }
