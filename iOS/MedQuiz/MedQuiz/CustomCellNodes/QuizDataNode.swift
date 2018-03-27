@@ -20,4 +20,9 @@ class QuizDataNode:CellDataNode {
 
         super.init(children: children, completionEvents: completionEvents)
     }
+    
+    deinit {
+        quizName = ""
+        print("------->Deallocating QuizDataNode")
+    }
 }

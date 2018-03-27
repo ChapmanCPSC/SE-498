@@ -17,6 +17,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     var quizDownloaded:Bool = false
     
+    //TODO: To be set by logging in and not be static as such
     var userStudentKey:String = "b29fks9mf9gh37fhh1h9814"
     
     @IBOutlet weak var lobbyPlayersCollectionView: UICollectionView!
@@ -135,6 +136,12 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
 //        }
     }
     
+    deinit {
+        gameQuiz = nil
+        gamePin = nil
+        print("-------->Deallocating quiz data")
+    }
+    
     func downloadQuiz(completion: @escaping () -> Void){
         GameModel.Where(child: GameModel.GAME_PIN, equals: self.gamePin) { (gamesFound) in
             let theGame = gamesFound[0]
@@ -180,13 +187,17 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //TODO: Delete if not using segues anymore
         if(segue.identifier == "QuizActivitySegue"){
             let destinationVC = segue.destination as! QuizActivityVC
             destinationVC.currQuiz = gameQuiz
+            destinationVC.gamePin = gamePin
         }
     }
     
     func quizStarted(){
+        //TODO: Probably dismiss this current view
+        // and present a new one rather than perform a segue
         performSegue(withIdentifier: "QuizActivitySegue", sender: nil)
     }
     

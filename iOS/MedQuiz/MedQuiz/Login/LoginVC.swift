@@ -38,9 +38,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         // but if for any reason during future maintenance
         // they want to change color values they can easily do so through
         // ColorHelper and it will affect all views/objects.
-        
-        
-        
         loginBackground.backgroundColor = OurColorHelper.pharmAppDarkBlue
 
         
@@ -107,6 +104,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
 //            loginErrorLabel.text = "Incorrect username/password"
 //            loginErrorLabel.isHidden = false
 //        }
+    
         
         present((MainStoryBoard?.instantiateInitialViewController())!, animated: false, completion: nil)
 
@@ -131,14 +129,5 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

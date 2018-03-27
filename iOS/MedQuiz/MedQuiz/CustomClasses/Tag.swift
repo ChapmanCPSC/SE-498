@@ -29,4 +29,9 @@ class Tag {
         //self.name = tagModel.tagName!
         self.name = tagDict["name"] as? String
     }
+    
+    deinit {
+        color = ""
+        name = ""
+    }
 }

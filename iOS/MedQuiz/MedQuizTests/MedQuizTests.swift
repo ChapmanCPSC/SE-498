@@ -11,7 +11,7 @@ import XCTest
 
 class MedQuizTests: XCTestCase {
     
-    override func setUp() {
+    /*override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
@@ -31,6 +31,16 @@ class MedQuizTests: XCTestCase {
         self.measure {
             // Put the code you want to measure the time of here.
         }
+    }*/
+    
+    func testHelloWorld(){
+        var helloWorld:String?
+        
+        XCTAssertNil(helloWorld)
+        
+        helloWorld = "hello world"
+        XCTAssertEqual(helloWorld, "hello world")
     }
+    
     
 }

@@ -8,15 +8,22 @@
 
 import Foundation
 import UIKit
+import Firebase
 
 class QuizActivityVC: UIViewController {
     
+    //TODO: Delete this and use a wrapper
+    let dataRef = Database.database().reference()
+
     var currQuestion:Question!
     var currQuestionIdx:Int = -1 // start at -1 so that first call can call nextQuestion
     var currQuiz:Quiz!
+    var gamePin:String!
+    var inGameLeaderboardKey:String!
     var canSelect:Bool = false
     var currPos:Int = 5
     var user:Student = Student(userName: "Paul", profilePic: UIImage(), friends: [], totalPoints: 0, hasChangedUsername: false)
+    var userInGameLeaderboardObjectKey:String!
     var allUsers:[Student]! // TODO kinda working off assumption there'll be an array that'll be updated in firebase that we can use
     
     @IBOutlet weak var answer1: AnswerView!
@@ -52,7 +59,9 @@ class QuizActivityVC: UIViewController {
     @IBOutlet weak var con_questionImageHeight: NSLayoutConstraint!
     
     var seconds = 10
+    var secondsForNextQ = 3
     var timer = Timer()
+    var timerForNextQ = Timer()
     var isTimerRunning = false
     var pointsEarned: Int = 0
     var firstLoad: Bool = true
@@ -91,6 +100,45 @@ class QuizActivityVC: UIViewController {
         nextQuestion()
 
         updateUserInLeaderboard() // TODO maybe remove this?
+
+        //#127
+        let inGameLeaderboardRef = Database.database().reference(withPath: "inGameLeaderboards")
+        inGameLeaderboardRef.observeSingleEvent(of: .value, with: { (snapshot:DataSnapshot) in
+            for child in snapshot.children.allObjects as! [DataSnapshot] {
+                if ((child.value as! [String:AnyObject])["game"] as! String) == self.gamePin {
+                    self.inGameLeaderboardKey = child.key
+                    let inGameLeaderboardStudentsRef = inGameLeaderboardRef.child(child.key).child("students")
+                    inGameLeaderboardStudentsRef.observeSingleEvent(of: .value, with: { (snapshot:DataSnapshot) in
+                        for child in snapshot.children.allObjects as! [DataSnapshot] {
+                            if ((child.value as! [String:AnyObject])["studentKey"] as! String) == self.user.databaseID {
+                                self.userInGameLeaderboardObjectKey = child.key
+                            }
+                        }
+                    })
+
+                    inGameLeaderboardStudentsRef.observe(.value, with: { (snapshot:DataSnapshot) in
+                        self.allUsers = []
+                        var studentKeyScores = [(String, Int)]()
+                        for child in snapshot.children.allObjects as! [DataSnapshot] {
+                            let key = (child.value as! [String:AnyObject])["studentKey"] as! String
+                            let score = Int((child.value as! [String:AnyObject])["studentScore"] as! String)!
+                            studentKeyScores.append((key, score))
+                        }
+
+                        studentKeyScores.sort(by: { $0.1 > $1.1 })
+
+                        for tuple in studentKeyScores {
+                            for student in self.allUsers {
+                                if tuple.0 == student.databaseID {
+                                    self.allUsers.append(student)
+                                }
+                            }
+                        }
+                        self.updateLeaderboard()
+                    })
+                }
+            }
+        })
     }
 
     func hideAnswersForTime(){
@@ -98,7 +146,23 @@ class QuizActivityVC: UIViewController {
         Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(showLabels), userInfo: nil, repeats: false)
     }
 
+    //timer that waits for 3 seconds to pass and then calls the nextQuestion func
+    func runTimerForNextQ(){
+        //TODO: Should timer repeat be on true? Or should we just call it everytime the user selects an answer
+        timerForNextQ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(updateTimerForNextQ)), userInfo: nil, repeats: true)
+    }
+
+    @objc func updateTimerForNextQ(){
+        secondsForNextQ -= 1
+        if secondsForNextQ == 0 {
+            timerForNextQ.invalidate()
+            secondsForNextQ = 3
+            nextQuestion() //after 3 seconds it calls nextQuestion
+        }
+    }
+
     func runTimer() {
+        //TODO: Should timer repeat be on true?
         timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(updateTimer)), userInfo: nil, repeats: true)
     }
     
@@ -155,6 +219,7 @@ class QuizActivityVC: UIViewController {
 
     func nextQuestion(){
         canSelect = false
+        print("Calling nextQuestion")
         currQuestionIdx += 1
         if(currQuestionIdx >= (currQuiz.questions?.count)!){
             finishQuiz()
@@ -170,6 +235,8 @@ class QuizActivityVC: UIViewController {
         updateQuestionNumber()
         updateQuestionText()
         updateAnswers()
+        //updateUserInLeaderboard()
+        //runTimerForNextQ()
     }
 
     func displayImageQuestion(){
@@ -304,7 +371,28 @@ class QuizActivityVC: UIViewController {
 
     func finishQuiz(){
          //segue to quiz summary
-        performSegue(withIdentifier: "quizActToSummary", sender: nil)
+
+        updatePersonalScore()
+
+        let quizSummaryVC = self.storyboard?.instantiateViewController(withIdentifier: "quizSummary") as! QuizSummaryViewController
+        self.present(quizSummaryVC, animated: false, completion: {
+        })
+
+//        performSegue(withIdentifier: "quizActToSummary", sender: nil)
+    }
+
+    func updatePersonalScore(){
+
+        //TODO make sure to use key of student currently logged in, for
+        // now just assuming b29fks9mf9gh37fhh1h9814 is logged in from
+        // quiz lobby vc
+
+        //84y1jn1n12n8n0f80n180289398n1 is the key for that student's
+        // score in the score dataset
+
+        //dataRef.child("score").child("84y1jn1n12n8n0f80n180289398n1").child("points").setValue(pointsEarned)
+    dataRef.child("inGameLeaderboards").child(inGameLeaderboardKey).child("students").child(userInGameLeaderboardObjectKey).child("studentScore").setValue(String(pointsEarned))
+
     }
 
     @IBAction func tempPressed(_ sender: Any) {
@@ -340,6 +428,7 @@ class QuizActivityVC: UIViewController {
     }
 
     @IBAction func tempQuestionInvertPressed(_ sender: Any) {
+        print("tempQuestionInvertPressed")
         if(toggleTemp){
             displayImageQuestion()
         }
@@ -388,6 +477,12 @@ class QuizActivityVC: UIViewController {
     @IBAction func tempNextQPressed(_ sender: Any) {
         nextQuestion()
     }
+
+    deinit {
+        answerViews = []
+        print("deallocation quizActivity")
+    }
+
 }
 
 extension QuizActivityVC:SelectsAnswer {
@@ -395,12 +490,15 @@ extension QuizActivityVC:SelectsAnswer {
         var time:Int = 0
 //        timer.invalidate()
 //        answer1.answer.points = seconds
-        questionsTimer.pause()
-        answer1.answer.points = questionsTimer.returnCurrentTime()
-        time = questionsTimer.returnCurrentTime()
+
       
         if(canSelect){
             canSelect = false
+
+            questionsTimer.pause()
+            answer1.answer.points = questionsTimer.returnCurrentTime()
+            time = questionsTimer.returnCurrentTime()
+
             answerViews.forEach { (view) in
                 if(view == answer){
                     // check if it's correct and take appropriate action
@@ -412,6 +510,18 @@ extension QuizActivityVC:SelectsAnswer {
                         //moveDownPosition()
                         //updateLeaderboard()
                         updateUserInLeaderboard()
+
+                        //TODO: Temporary way of updating student score in leaderboard on db.
+                        // until db team come up with a solution
+                        // will probably use wrappers
+                        // for now assu,ing current user is b29fks9mf9gh37fhh1h9814
+                        // from quiz lobby, later change to whichever student is currently logged in
+
+                        dataRef.child("inGameLeaderboards").child("-L8UmIrtot-ouAefIWuq").child("students").child("-L8Ur3M5CegQC3t4Orkk").child("studentScore").setValue(String(pointsEarned))
+
+                        //Also TODO: Make leaderboard update by listening to changes from
+                        // db leaderboard
+
                     }
                     else{
                         view.fadeAnswer()
@@ -423,7 +533,6 @@ extension QuizActivityVC:SelectsAnswer {
                             pointsEarned -= time
                         }
                         //updateLeaderboard()
-                        updateUserInLeaderboard()
                     }
 
                 }
@@ -431,8 +540,8 @@ extension QuizActivityVC:SelectsAnswer {
                     view.fadeAnswer()
                 }
             }
+            runTimerForNextQ()//Call this timer, to automatically go to the next question after 3 seconds pass by when the student answers a question
         }
-
     }
 }
 

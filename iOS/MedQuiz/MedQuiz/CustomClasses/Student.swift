@@ -14,7 +14,7 @@ class Student {
 //    var classes:[String:Bool]
     var totalPoints:Int?
     var hasChangedUsername:Bool?
-
+    var databaseID:String?
     
     init(username: String, completion: @escaping (Student) -> Void){
         StudentModel.Where(child: "username", equals: username) { (studentModelsReturned) in
@@ -25,6 +25,8 @@ class Student {
             self.totalPoints = 10000
             self.friends = []
             self.hasChangedUsername = false
+            
+            self.databaseID = theStudent.key
             
             theStudent.getProfilePic(completion: { (theProfilePic) in
                 self.profilePic = theProfilePic!
@@ -43,6 +45,8 @@ class Student {
             self.friends = []
             self.hasChangedUsername = false
             
+            self.databaseID = key
+            
             print(aStudentModel.studentUsername!)
             aStudentModel.getProfilePic(completion: { (theProfilePic) in
                 self.profilePic = theProfilePic!
@@ -60,18 +64,10 @@ class Student {
     }
 
     init(studentDict:[String:AnyObject], addFriends:Bool=true){
-        /*self.userName = (studentModel.snapshot.value as! [String:AnyObject])["username"] as! String
-        self.profilePic = (studentModel.snapshot.value as! [String:AnyObject])["profilePic"] as! String
-        self.friends = (studentModel.snapshot.value as! [String:AnyObject])["friends"] as! [Student]
-        self.classes = (studentModel.snapshot.value as! [String:AnyObject])["classes"] as! [String:Bool]
-        self.totalPoints = Int((studentModel.snapshot.value as! [String:AnyObject])["totalPoints"] as! String)!*/
         self.userName = studentDict["username"] as? String
-        //self.userName = "Lylenator2000"
         //self.totalPoints = studentModel.totalPoints!
         self.totalPoints = 10000
-        //self.profilePic = studentModel.profilePic!
         self.profilePic = UIImage()
-        //self.hasChangedUsername = studentModel.hasChangedUsername!
         self.hasChangedUsername = true
         if(addFriends){
             //self.friends = Student.convertFriends(students: studentModel.friends!)
@@ -80,6 +76,13 @@ class Student {
         else{
             self.friends = []
         }
+    }
+    
+    deinit {
+        userName = ""
+        profilePic = nil
+        friends = []
+        print("-------->deallocating Student")
     }
 
 //    static func convertFriends(students:[StudentModel]) -> [Student] {

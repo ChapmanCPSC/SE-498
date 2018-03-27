@@ -101,6 +101,16 @@ class Quiz {
         self.dateCreated = quizDict["datecreated"] as? String
     }
     
+    deinit {
+        dateCreated = ""
+        available = nil
+        visible = nil
+        title = ""
+        questions = []
+        tags = []
+        print("------->Deallocating Quiz")
+    }
+    
     func setQuestions(quizDict:[String:AnyObject]){
         var quizQuestionKeys:[String] = []
         for quizQuestion in quizDict["questions"] as! [String:AnyObject]{

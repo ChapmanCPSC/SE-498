@@ -55,8 +55,6 @@ class ProfileVC: UIViewController, ChangeAvatarVCDelegate, ChangeUsernameVCDeleg
         
         
         
-        
-        
         let profileAvatarChange = UITapGestureRecognizer(target: self, action: #selector(ProfileVC.profileAvatarPressed))
         
         profileImageView.addGestureRecognizer(profileAvatarChange)

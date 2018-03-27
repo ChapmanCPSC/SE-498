@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+
 class Question {
     var points:Int?
     var imageForQuestion:Bool?
@@ -139,6 +140,18 @@ class Question {
         self.image = UIImage()
         self.answers = []
         self.correctAnswer = ""
+    }
+    
+    deinit {
+        points = nil
+        imageForQuestion = nil
+        imagesForAnswers = nil
+        correctAnswer = ""
+        answers = []
+        image = nil
+        tags = []
+        title = ""
+        print("------->deallocating Question")
     }
     
     func setTags(questionDict:[String:AnyObject]){

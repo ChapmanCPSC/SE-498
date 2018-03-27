@@ -27,6 +27,12 @@ class CellDataNode {
         self.children = children
         self.completionEvents = completionEvents
     }
+    
+    deinit {
+        children = []
+        completionEvents = []
+        print("----------->Deallocating CellData")
+    }
 
     func getChildCount() -> Int {
         var count = 0
