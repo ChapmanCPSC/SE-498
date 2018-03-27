@@ -7,7 +7,7 @@ import Foundation
 import UIKit
 import Firebase
 
-class Student {
+class Student: Equatable {
     var userName:String?
     var profilePic:UIImage?
     var friends:[Student]?
@@ -132,6 +132,15 @@ class Student {
                 self.profilePic = UIImage(data: data)!
                 completion()
             }
+        }
+    }
+    
+    static func ==(lhs: Student, rhs: Student) -> Bool {
+        if lhs.userName == rhs.userName{
+            return true
+        }
+        else{
+            return false
         }
     }
     

@@ -154,28 +154,32 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     func downloadStudents(completion: @escaping () -> Void){
-        GameModel.WhereAndKeepObserving(child: GameModel.GAME_PIN, equals: self.gamePin) { (gamesFound) in
-            let theGame = gamesFound[0]
-            self.lobbyPlayers.removeAll()
-            var gameStudentKeys:[String] = []
-
-            for studentModel:StudentModel in theGame.gameStudents{
-                gameStudentKeys.append(studentModel.key)
-            }
+        GameModel.Where(child: GameModel.GAME_PIN, equals: self.gamePin) { (gamesFound) in
+            let userStudentRef = Database.database().reference(withPath: "game/\(gamesFound[0].key)/students").child(self.userStudentKey)
+            userStudentRef.setValue(true)
             
-            for studentKey in gameStudentKeys{
-                _ = Student(key: studentKey) { (theStudent) in
-                    if studentKey != self.userStudentKey{
-                        self.lobbyPlayers.append(theStudent)
-                        self.lobbyPlayersCollectionView.reloadData()
+            GameModel.WhereAndKeepObserving(child: GameModel.GAME_PIN, equals: self.gamePin) { (gamesFound) in
+                let theGame = gamesFound[0]
+                var gameStudentKeys:[String] = []
+                
+                for studentModel:StudentModel in theGame.gameStudents{
+                    gameStudentKeys.append(studentModel.key)
+                }
+                
+                var studentCount:Int = 0
+                for studentKey in gameStudentKeys{
+                    _ = Student(key: studentKey) { (theStudent) in
+                        studentCount += 1
+                        if studentKey != self.userStudentKey && !self.lobbyPlayers.contains(theStudent){
+                            self.lobbyPlayers.append(theStudent)
+                            if studentCount == gameStudentKeys.count {
+                                self.lobbyPlayersCollectionView.reloadData()
+                                completion()
+                            }
+                        }
                     }
                 }
             }
-
-            let userStudentRef = Database.database().reference(withPath: "game/\(theGame.key)/students").child(self.userStudentKey)
-            userStudentRef.setValue(true)
-            
-            completion()
         }
     }
     
