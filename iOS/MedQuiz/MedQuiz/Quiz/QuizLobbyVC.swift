@@ -214,7 +214,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     func quizStarted(){
         //TODO: Probably dismiss this current view
         // and present a new one rather than perform a segue
-        performSegue(withIdentifier: "QuizActivitySegue", sender: nil)
+        //performSegue(withIdentifier: "QuizActivitySegue", sender: nil)
     }
     
     func errorOccurred(title:String, message:String){
@@ -224,7 +224,23 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         })
         self.present(alert, animated: true, completion: nil)
     }
-
+    @IBAction func tempQuizActivityPressed(_ sender: Any) {
+        let destinationVC = self.storyboard?.instantiateViewController(withIdentifier: "quiz_act") as! QuizActivityVC
+        destinationVC.currQuiz = gameQuiz
+        destinationVC.gameKey = gameKey
+        destinationVC.user = user
+        lobbyPlayers.append(user)
+        destinationVC.allUsers = lobbyPlayers
+        
+            self.dismiss(animated: false, completion: {
+                mainQuizVC.present(destinationVC, animated: false) {
+                print("hey")
+                    
+                }
+            })
+            
+    }
+    
     @IBAction func tempBckPressed(_ sender: Any) {
         errorOccurred(title: "Error Test", message: "This is what should happen when an error occurs in the Lobby.")
     }
