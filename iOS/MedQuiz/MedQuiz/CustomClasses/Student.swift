@@ -39,15 +39,12 @@ class Student: Equatable {
     init(key: String, completion: @escaping (Student) -> Void){
         StudentModel.From(key: key, completion: { (aStudentModel) in
             self.userName = aStudentModel.studentUsername!
-            print(aStudentModel.studentUsername!)
-            
             self.totalPoints = 10000
             self.friends = []
             self.hasChangedUsername = false
             
             self.databaseID = key
             
-            print(aStudentModel.studentUsername!)
             aStudentModel.getProfilePic(completion: { (theProfilePic) in
                 self.profilePic = theProfilePic!
                 completion(self)
