@@ -23,7 +23,7 @@ class ProfileVC: UIViewController, ChangeAvatarVCDelegate, ChangeUsernameVCDeleg
     @IBOutlet weak var changeImageView: UIImageView!
     @IBOutlet weak var editUsernameButton: UIButton!
     
-    var username = "Maddy Transue"
+    var username = "tacobellfan292"
     var usernameChanged = false
     var profileImage = UIImage(named: "AtomBlack.png")
     

@@ -24,8 +24,10 @@ class QuizSummaryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setTempValues()
+        self.presentingViewController?.dismiss(animated: false, completion: {
+            print("yay")
+        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,11 +36,13 @@ class QuizSummaryViewController: UIViewController {
     }
     
     @IBAction func btn_donePressed(_ sender: Any) {
-        self.splitViewController?.preferredDisplayMode = .automatic
-        self.splitViewController?.presentsWithGesture = true
-        performSegue(withIdentifier: "summaryToHome", sender: nil)
+//        self.splitViewController?.preferredDisplayMode = .automatic
+//        self.splitViewController?.presentsWithGesture = true
+//        performSegue(withIdentifier: "summaryToHome", sender: nil)
+
+        self.dismiss(animated: false) {
+        }
     }
-    
     func setRankLabel(position:Int){
         let rank = String.ordinalNumberFormat(number: position)
         lab_rank.text = "You ranked \(rank)"

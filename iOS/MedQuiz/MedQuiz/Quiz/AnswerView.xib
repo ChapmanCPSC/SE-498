@@ -40,7 +40,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is the text of an answer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WA8-zo-aPf">
-                    <rect key="frame" x="369" y="586" width="286.5" height="29"/>
+                    <rect key="frame" x="369" y="549" width="286.5" height="29"/>
                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                     <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -59,7 +59,7 @@
                         <constraint firstAttribute="height" constant="50" id="Qat-fP-ujg"/>
                     </constraints>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MockAnswerOne.png" translatesAutoresizingMaskIntoConstraints="NO" id="F6f-WT-I8o" userLabel="imgAnswer">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MockAnswerOne.png" translatesAutoresizingMaskIntoConstraints="NO" id="F6f-WT-I8o" userLabel="imgAnswer">
                     <rect key="frame" x="153.5" y="192" width="717" height="384"/>
                 </imageView>
             </subviews>
@@ -81,7 +81,7 @@
                 <constraint firstItem="F6f-WT-I8o" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.7" id="umE-Ny-J2R"/>
                 <constraint firstItem="ji9-Nt-FvV" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="vhe-2W-ywj"/>
                 <constraint firstItem="6lc-CG-QHi" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="x7O-AE-8Vf"/>
-                <constraint firstItem="WA8-zo-aPf" firstAttribute="top" secondItem="F6f-WT-I8o" secondAttribute="bottom" constant="10" id="yN0-Qe-x7g"/>
+                <constraint firstItem="WA8-zo-aPf" firstAttribute="top" secondItem="F6f-WT-I8o" secondAttribute="bottom" constant="-27" id="yN0-Qe-x7g"/>
                 <constraint firstItem="F6f-WT-I8o" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="zkr-CD-J3L"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

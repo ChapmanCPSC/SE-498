@@ -14,11 +14,13 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     var gameQuiz:Quiz?
     var gamePin:String?
+    var gameKey:String?
     
     var quizDownloaded:Bool = false
     
     //TODO: To be set by logging in and not be static as such
     var userStudentKey:String = "b29fks9mf9gh37fhh1h9814"
+    var user:Student!
     
     @IBOutlet weak var lobbyPlayersCollectionView: UICollectionView!
     
@@ -36,6 +38,11 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         super.viewDidLoad()
         
         print("quiz lobby")
+        
+        //Temporary, here just to get Student data for hardcoded user
+        _ = Student(key: userStudentKey) {(theStudent) in
+            self.user = theStudent
+        }
         
         hideSidebar()
         
@@ -139,13 +146,15 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     deinit {
         gameQuiz = nil
         gamePin = nil
+        gameKey = nil
         print("-------->Deallocating quiz data")
     }
     
     func downloadQuiz(completion: @escaping () -> Void){
         GameModel.Where(child: GameModel.GAME_PIN, equals: self.gamePin) { (gamesFound) in
             let theGame = gamesFound[0]
-
+            self.gameKey = theGame.key
+            
             _ = Quiz(key: theGame.quizKey!) { theQuiz in
                 self.gameQuiz = theQuiz
                 completion()
@@ -154,28 +163,32 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     func downloadStudents(completion: @escaping () -> Void){
-        GameModel.WhereAndKeepObserving(child: GameModel.GAME_PIN, equals: self.gamePin) { (gamesFound) in
-            let theGame = gamesFound[0]
-            self.lobbyPlayers.removeAll()
-            var gameStudentKeys:[String] = []
-
-            for studentModel:StudentModel in theGame.gameStudents{
-                gameStudentKeys.append(studentModel.key)
-            }
+        GameModel.Where(child: GameModel.GAME_PIN, equals: self.gamePin) { (gamesFound) in            
+            let userStudentRef = Database.database().reference(withPath: "game/\(gamesFound[0].key)/students").child(self.userStudentKey)
+            userStudentRef.setValue(true)
             
-            for studentKey in gameStudentKeys{
-                _ = Student(key: studentKey) { (theStudent) in
-                    if studentKey != self.userStudentKey{
-                        self.lobbyPlayers.append(theStudent)
-                        self.lobbyPlayersCollectionView.reloadData()
+            GameModel.WhereAndKeepObserving(child: GameModel.GAME_PIN, equals: self.gamePin) { (gamesFound) in
+                let theGame = gamesFound[0]
+                var gameStudentKeys:[String] = []
+                
+                for studentModel:StudentModel in theGame.gameStudents{
+                    gameStudentKeys.append(studentModel.key)
+                }
+                
+                var studentCount:Int = 0
+                for studentKey in gameStudentKeys{
+                    _ = Student(key: studentKey) { (theStudent) in
+                        studentCount += 1
+                        if studentKey != self.userStudentKey && !self.lobbyPlayers.contains(theStudent){
+                            self.lobbyPlayers.append(theStudent)
+                            if studentCount == gameStudentKeys.count {
+                                self.lobbyPlayersCollectionView.reloadData()
+                                completion()
+                            }
+                        }
                     }
                 }
             }
-
-            let userStudentRef = Database.database().reference(withPath: "game/\(theGame.key)/students").child(self.userStudentKey)
-            userStudentRef.setValue(true)
-            
-            completion()
         }
     }
     
@@ -191,13 +204,17 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         if(segue.identifier == "QuizActivitySegue"){
             let destinationVC = segue.destination as! QuizActivityVC
             destinationVC.currQuiz = gameQuiz
+            destinationVC.gameKey = gameKey
+            destinationVC.user = user
+            lobbyPlayers.append(user)
+            destinationVC.allUsers = lobbyPlayers
         }
     }
     
     func quizStarted(){
         //TODO: Probably dismiss this current view
         // and present a new one rather than perform a segue
-        performSegue(withIdentifier: "QuizActivitySegue", sender: nil)
+        //performSegue(withIdentifier: "QuizActivitySegue", sender: nil)
     }
     
     func errorOccurred(title:String, message:String){
@@ -206,12 +223,24 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             self.dismiss(animated: false, completion: nil)
         })
         self.present(alert, animated: true, completion: nil)
-        
-        //TODO: This will not be enough time to show alert to user
-        // cause it will immediatly go back
-        //self.performSegue(withIdentifier: "LobbyErrorSegue", sender: nil)
     }
-
+    @IBAction func tempQuizActivityPressed(_ sender: Any) {
+        let destinationVC = self.storyboard?.instantiateViewController(withIdentifier: "quiz_act") as! QuizActivityVC
+        destinationVC.currQuiz = gameQuiz
+        destinationVC.gameKey = gameKey
+        destinationVC.user = user
+        lobbyPlayers.append(user)
+        destinationVC.allUsers = lobbyPlayers
+        
+            self.dismiss(animated: false, completion: {
+                mainQuizVC.present(destinationVC, animated: false) {
+                print("hey")
+                    
+                }
+            })
+            
+    }
+    
     @IBAction func tempBckPressed(_ sender: Any) {
         errorOccurred(title: "Error Test", message: "This is what should happen when an error occurs in the Lobby.")
     }

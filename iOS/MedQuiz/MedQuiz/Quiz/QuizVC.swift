@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 import Firebase
-
+var mainQuizVC : UIViewController!
 class QuizVC: UIViewController {
     @IBOutlet weak var tf_quizPin: UITextField!
     @IBOutlet weak var iv_closeButton: UIImageView!
@@ -20,6 +20,7 @@ class QuizVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        mainQuizVC = self
     }
     
     func setupViews(){
@@ -103,7 +104,7 @@ class QuizVC: UIViewController {
                     
                     let quizLobbyVC = self.storyboard?.instantiateViewController(withIdentifier: "quizLobbyVC") as! QuizLobbyVC
                     quizLobbyVC.gamePin = self.gamePin
-                    self.present(quizLobbyVC, animated: false, completion: {
+                    mainQuizVC.present(quizLobbyVC, animated: false, completion: {
                     })
                     
                 })

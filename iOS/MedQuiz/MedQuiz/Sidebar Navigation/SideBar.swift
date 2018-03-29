@@ -21,7 +21,7 @@ class SideBar: UITableViewController {
     let whiteColor = UIColor(red: (255/255.0), green: (255/255.0), blue: (255/255.0), alpha: 1.0)
     
     var profileImage = UIImage(named: "StudentAvatarPlaceholder.png")
-    var profileName = "Maddy Transue"
+    var profileName = "tacobellfan292"
     var profileScore = 4434535
     
     override func viewWillAppear(_ animated: Bool) {
