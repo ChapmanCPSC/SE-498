@@ -393,8 +393,11 @@ class QuizActivityVC: UIViewController {
         updatePersonalScore()
 
         let quizSummaryVC = self.storyboard?.instantiateViewController(withIdentifier: "quizSummary") as! QuizSummaryViewController
-        self.present(quizSummaryVC, animated: false, completion: {
-        })
+        self.dismiss(animated: false) {
+            self.present(quizSummaryVC, animated: false, completion: {
+            })
+        }
+        
 
 //        performSegue(withIdentifier: "quizActToSummary", sender: nil)
     }
@@ -498,7 +501,19 @@ class QuizActivityVC: UIViewController {
         answerViews = []
         print("deallocation quizActivity")
     }
-
+    @IBAction func tempQuizSumarryPressed(_ sender: Any) {
+        let quizSummaryVC = self.storyboard?.instantiateViewController(withIdentifier: "quizSummary") as! QuizSummaryViewController
+        
+        self.dismiss(animated: false, completion: {
+            mainQuizVC.present(quizSummaryVC, animated: false) {
+                print("hey")
+                
+            }
+        })
+        
+        
+    }
+    
 }
 
 extension QuizActivityVC:SelectsAnswer {
