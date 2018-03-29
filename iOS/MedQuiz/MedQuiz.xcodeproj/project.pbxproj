@@ -100,6 +100,9 @@
 		3DE0275D2034E1B100ECAE7B /* LeaderboardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DE0275B2034E1B100ECAE7B /* LeaderboardCell.xib */; };
 		3DECA35E2058E2E1001554A8 /* StudentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DECA35D2058E2E1001554A8 /* StudentModel.swift */; };
 		3DECA3602058EC83001554A8 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DECA35F2058EC83001554A8 /* GameModel.swift */; };
+		3FB6F4C62068D116003E502F /* QuizActivityVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB6F4C52068D116003E502F /* QuizActivityVCTests.swift */; };
+		3FB6F4C82068E0CA003E502F /* UserViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB6F4C72068E0CA003E502F /* UserViewTests.swift */; };
+		3FB6F4CA2069D762003E502F /* LoginVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB6F4C92069D762003E502F /* LoginVCTests.swift */; };
 		77A1404BBAD84427D45C7E6D /* SubjectDataNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A14A38B7CC30E0FE5BB816 /* SubjectDataNode.swift */; };
 		77A1423CAFAD4B9F73BB4C3E /* SubjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A14BE572EE55E1323DAB89 /* SubjectTableViewCell.swift */; };
 		77A142FE34E4EF8ADA82939C /* CellDataNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77A143B149D55BB2825512D9 /* CellDataNode.swift */; };
@@ -264,6 +267,16 @@
 		3DE0275B2034E1B100ECAE7B /* LeaderboardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaderboardCell.xib; sourceTree = "<group>"; };
 		3DECA35D2058E2E1001554A8 /* StudentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentModel.swift; sourceTree = "<group>"; };
 		3DECA35F2058EC83001554A8 /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
+		3FB6F4C52068D116003E502F /* QuizActivityVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizActivityVCTests.swift; sourceTree = "<group>"; };
+		3FB6F4C72068E0CA003E502F /* UserViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewTests.swift; sourceTree = "<group>"; };
+		3FB6F4C92069D762003E502F /* LoginVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVCTests.swift; sourceTree = "<group>"; };
+		3FB6F4CB2069D9B9003E502F /* MedQuizTests */ = {isa = PBXFileReference; lastKnownFileType = folder; path = MedQuizTests; sourceTree = "<group>"; };
+		3FB6F4CE2069EB4C003E502F /* FBSnapshotTestCase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBSnapshotTestCase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FB6F4D0206A2FDF003E502F /* FBSnapshotTestCase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBSnapshotTestCase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FB6F4D2206A33A0003E502F /* FBSnapshotTestCase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBSnapshotTestCase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FB6F4D3206A33E8003E502F /* FBSnapshotTestCase */ = {isa = PBXFileReference; lastKnownFileType = folder; name = FBSnapshotTestCase; path = Pods/FBSnapshotTestCase/FBSnapshotTestCase; sourceTree = "<group>"; };
+		3FB6F4D5206A349B003E502F /* MedQuiz.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = MedQuiz.xcodeproj; sourceTree = "<group>"; };
+		3FB6F4DB206A356C003E502F /* FBSnapshotTestCase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBSnapshotTestCase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		77A14120B4932DD782340C85 /* QuizTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuizTableViewCell.xib; sourceTree = "<group>"; };
 		77A142075FF6BE2CFA285D58 /* Ext_String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ext_String.swift; sourceTree = "<group>"; };
 		77A1420EF541FC59FA2D76A7 /* CategoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryTableViewCell.xib; sourceTree = "<group>"; };
@@ -357,6 +370,13 @@
 		28724AF9E1463780668A806F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3FB6F4DB206A356C003E502F /* FBSnapshotTestCase.framework */,
+				3FB6F4D5206A349B003E502F /* MedQuiz.xcodeproj */,
+				3FB6F4D3206A33E8003E502F /* FBSnapshotTestCase */,
+				3FB6F4D2206A33A0003E502F /* FBSnapshotTestCase.framework */,
+				3FB6F4D0206A2FDF003E502F /* FBSnapshotTestCase.framework */,
+				3FB6F4CE2069EB4C003E502F /* FBSnapshotTestCase.framework */,
+				3FB6F4CB2069D9B9003E502F /* MedQuizTests */,
 				09C9BB626A41B2BE340119A3 /* Pods_MedQuiz.framework */,
 				91E1188EAE7E6C6D84ED7124 /* Pods_MedQuizTests.framework */,
 				D07AB7870D6514D768C424C7 /* Pods_MedQuizUITests.framework */,
@@ -431,6 +451,9 @@
 			children = (
 				3D2495BC1F7E2EDD0058D85B /* MedQuizTests.swift */,
 				3D2495BE1F7E2EDD0058D85B /* Info.plist */,
+				3FB6F4C52068D116003E502F /* QuizActivityVCTests.swift */,
+				3FB6F4C72068E0CA003E502F /* UserViewTests.swift */,
+				3FB6F4C92069D762003E502F /* LoginVCTests.swift */,
 			);
 			path = MedQuizTests;
 			sourceTree = "<group>";
@@ -638,6 +661,11 @@
 			path = Avatars;
 			sourceTree = "<group>";
 		};
+		3FB6F4D6206A349B003E502F /* Products */ = {
+			isa = PBXGroup;
+			name = Products;
+			sourceTree = "<group>";
+		};
 		A53E754B2037D8000081B1AD /* CustomCellNodes */ = {
 			isa = PBXGroup;
 			children = (
@@ -740,7 +768,7 @@
 				TargetAttributes = {
 					3D2495A31F7E2EDD0058D85B = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = A8E56ATQFS;
+						DevelopmentTeam = 5SJXENS48L;
 						ProvisioningStyle = Automatic;
 					};
 					3D2495B71F7E2EDD0058D85B = {
@@ -770,6 +798,12 @@
 			mainGroup = 3D24959B1F7E2EDC0058D85B;
 			productRefGroup = 3D2495A51F7E2EDD0058D85B /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 3FB6F4D6206A349B003E502F /* Products */;
+					ProjectRef = 3FB6F4D5206A349B003E502F /* MedQuiz.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				3D2495A31F7E2EDD0058D85B /* MedQuiz */,
@@ -952,13 +986,16 @@
 		};
 		6C1B78109D842EA968D08B37 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MedQuizTests/Pods-MedQuizTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/FBSnapshotTestCase/FBSnapshotTestCase.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSnapshotTestCase.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1105,6 +1142,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D2495BD1F7E2EDD0058D85B /* MedQuizTests.swift in Sources */,
+				3FB6F4C82068E0CA003E502F /* UserViewTests.swift in Sources */,
+				3FB6F4CA2069D762003E502F /* LoginVCTests.swift in Sources */,
+				3FB6F4C62068D116003E502F /* QuizActivityVCTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1268,7 +1308,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = A8E56ATQFS;
+				DEVELOPMENT_TEAM = 5SJXENS48L;
 				INFOPLIST_FILE = MedQuiz/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1288,7 +1328,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = A8E56ATQFS;
+				DEVELOPMENT_TEAM = 5SJXENS48L;
 				INFOPLIST_FILE = MedQuiz/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
