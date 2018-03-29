@@ -15,6 +15,7 @@ target 'MedQuiz' do
   
   target 'MedQuizTests' do
     inherit! :search_paths
+    pod 'FBSnapshotTestCase'
     # Pods for testing
   end
 
