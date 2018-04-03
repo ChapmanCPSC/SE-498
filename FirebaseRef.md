@@ -56,19 +56,16 @@ For iOS display
 >Description : A collection of students, who are enrolled in specific courses
 * courses : A collection of course IDs for which this student is associated, with a boolean flag stating whether or not this course is attached or not
 * Profilepic: A string value which references the firebase storage URL path where the student’s photo profile pic is located
-* Scores : A collection of scores which the student has accumulated for each live game
+* Score : An int value with the grand total score the student has accumulated over all their games
 * Username : A string value with the username for the student
 * Password : A string value with the password for the student
 ## game
 >Description : A collection of in-class games, in which students compete against each other in order to achieve the highest score
 * TBD
-## score
->Description: A collection of scores 
-## leaderboard
->Description : A collection of student IDs which can be "queried" for scores
-* THIS IS SUBJECT TO CHANGE!!!
 ## ingame-student-questions
 >Description: A collection of choices made by a student within an in-class game
+## inGameLeaderboards
+>Description: A collection of scores for each student during a specific game
 ## tag
 >Description: A collection of meta-tags which can be used to filter and group either questions or quizzes
 * Name : A string value containing the name of the tag
