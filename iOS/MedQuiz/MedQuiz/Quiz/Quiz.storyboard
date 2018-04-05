@@ -23,26 +23,26 @@
             <objects>
                 <viewController storyboardIdentifier="quiz_act" useStoryboardIdentifierAsRestorationIdentifier="YES" id="iNk-fp-Fpw" customClass="QuizActivityVC" customModule="MedQuiz" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RMN-Yu-TAa">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="676"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6f5-lQ-KQp" userLabel="answerContainer">
-                                <rect key="frame" x="0.0" y="153.5" width="1024" height="537.5"/>
+                                <rect key="frame" x="0.0" y="135" width="1024" height="473.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RVL-vH-t1X" customClass="AnswerView" customModule="MedQuiz" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="512" height="269.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="512" height="237.5"/>
                                         <color key="backgroundColor" red="0.73333333333333328" green="0.47450980392156861" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mhy-9W-V5P" customClass="AnswerView" customModule="MedQuiz" customModuleProvider="target">
-                                        <rect key="frame" x="512" y="0.0" width="512" height="269.5"/>
+                                        <rect key="frame" x="512" y="0.0" width="512" height="237.5"/>
                                         <color key="backgroundColor" red="0.86274509803921573" green="0.64313725490196072" blue="0.49803921568627452" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1HG-EA-B80" customClass="AnswerView" customModule="MedQuiz" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="268.5" width="512" height="269"/>
+                                        <rect key="frame" x="0.0" y="236.5" width="512" height="237"/>
                                         <color key="backgroundColor" red="0.85490196078431369" green="0.49019607843137253" blue="0.49019607843137253" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PDX-BQ-Q9I" customClass="AnswerView" customModule="MedQuiz" customModuleProvider="target">
-                                        <rect key="frame" x="512" y="268.5" width="512" height="269"/>
+                                        <rect key="frame" x="512" y="236.5" width="512" height="237"/>
                                         <color key="backgroundColor" red="0.53333333333333333" green="0.82745098039215681" blue="0.89411764705882346" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                 </subviews>
@@ -67,32 +67,32 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="O2N-sB-7xn" userLabel="leaderboardContainer">
-                                <rect key="frame" x="0.0" y="691" width="1024" height="77"/>
+                                <rect key="frame" x="0.0" y="608.5" width="1024" height="67.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZXR-uJ-qu7" userLabel="first" customClass="UserView" customModule="MedQuiz" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="205" height="77"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="205" height="67.5"/>
                                         <color key="backgroundColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cQG-Sq-kDs" userLabel="second" customClass="UserView" customModule="MedQuiz" customModuleProvider="target">
-                                        <rect key="frame" x="205" y="0.0" width="204.5" height="77"/>
+                                        <rect key="frame" x="205" y="0.0" width="204.5" height="67.5"/>
                                         <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wrh-lS-MNK" userLabel="third" customClass="UserView" customModule="MedQuiz" customModuleProvider="target">
-                                        <rect key="frame" x="409.5" y="0.0" width="205" height="77"/>
+                                        <rect key="frame" x="409.5" y="0.0" width="205" height="67.5"/>
                                         <color key="backgroundColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AoZ-Ts-Vay" userLabel="fourth" customClass="UserView" customModule="MedQuiz" customModuleProvider="target">
-                                        <rect key="frame" x="614.5" y="0.0" width="204.5" height="77"/>
+                                        <rect key="frame" x="614.5" y="0.0" width="204.5" height="67.5"/>
                                         <color key="backgroundColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="owc-VG-xVQ" userLabel="fifth" customClass="UserView" customModule="MedQuiz" customModuleProvider="target">
-                                        <rect key="frame" x="819" y="0.0" width="205" height="77"/>
+                                        <rect key="frame" x="819" y="0.0" width="205" height="67.5"/>
                                         <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XpQ-Yg-CIp" userLabel="questionContainer">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="153.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="135"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="grM-oM-JIa" userLabel="timer">
                                         <rect key="frame" x="939" y="20" width="75" height="75"/>
@@ -119,44 +119,44 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MockAnswerTwo.png" translatesAutoresizingMaskIntoConstraints="NO" id="X16-ah-GQU">
-                                        <rect key="frame" x="205" y="77" width="614" height="0.0"/>
+                                        <rect key="frame" x="205" y="68" width="614" height="0.0"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mr4-bb-3wP">
-                                        <rect key="frame" x="472" y="118.5" width="81" height="30"/>
+                                        <rect key="frame" x="472" y="100" width="81" height="30"/>
                                         <state key="normal" title="Temp Reset"/>
                                         <connections>
                                             <action selector="tempResetPressed:" destination="iNk-fp-Fpw" eventType="touchUpInside" id="71a-x4-u3l"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i3t-AU-flH">
-                                        <rect key="frame" x="20" y="118.5" width="117" height="30"/>
+                                        <rect key="frame" x="20" y="100" width="117" height="30"/>
                                         <state key="normal" title="Temp Leave Quiz"/>
                                         <connections>
                                             <segue destination="Jvp-t9-Pxf" kind="show" id="qo8-Ml-WfT"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="anT-Bb-MI9">
-                                        <rect key="frame" x="718" y="118.5" width="144" height="30"/>
+                                        <rect key="frame" x="718" y="100" width="144" height="30"/>
                                         <state key="normal" title="Temp invert question"/>
                                         <connections>
                                             <action selector="tempQuestionInvertPressed:" destination="iNk-fp-Fpw" eventType="touchUpInside" id="pXS-kD-2Rj"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oSt-QX-rec">
-                                        <rect key="frame" x="872" y="118.5" width="132" height="30"/>
+                                        <rect key="frame" x="872" y="100" width="132" height="30"/>
                                         <state key="normal" title="Temp invert hidden"/>
                                         <connections>
                                             <action selector="tempPressed:" destination="iNk-fp-Fpw" eventType="touchUpInside" id="eVg-bF-wwb"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What is the answer to this label doing here?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ElQ-IF-2fO">
-                                        <rect key="frame" x="128" y="82" width="768" height="20.5"/>
+                                        <rect key="frame" x="128" y="73" width="768" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="iwX-1h-w9d">
-                                        <rect key="frame" x="10" y="47" width="139" height="59.5"/>
+                                        <rect key="frame" x="10" y="47" width="139" height="41"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l3e-ra-u3g">
                                                 <rect key="frame" x="0.0" y="0.0" width="139" height="30"/>
@@ -169,7 +169,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h2Z-FJ-r6b">
-                                                <rect key="frame" x="0.0" y="30" width="139" height="29.5"/>
+                                                <rect key="frame" x="0.0" y="30" width="139" height="11"/>
                                                 <state key="normal" title="Move Down Position"/>
                                                 <connections>
                                                     <action selector="tempDownPosition:" destination="iNk-fp-Fpw" eventType="touchUpInside" id="uyv-KN-oRx"/>
@@ -178,7 +178,7 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JFy-iv-nRB">
-                                        <rect key="frame" x="731" y="83.5" width="119" height="30"/>
+                                        <rect key="frame" x="731" y="65" width="119" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="119" id="gvO-8O-rDy"/>
                                         </constraints>
@@ -203,7 +203,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O86-sm-n0G">
-                                        <rect key="frame" x="157" y="118" width="89" height="30"/>
+                                        <rect key="frame" x="157" y="99.5" width="89" height="30"/>
                                         <state key="normal" title="Temp Next Q"/>
                                         <connections>
                                             <action selector="tempNextQPressed:" destination="iNk-fp-Fpw" eventType="touchUpInside" id="kow-U1-G4Z"/>
@@ -614,21 +614,21 @@
         <scene sceneID="uWT-8D-ojT">
             <objects>
                 <viewController id="Jvp-t9-Pxf" customClass="QuizVC" customModule="MedQuiz" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Mpd-4F-5DU">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="Mpd-4F-5DU">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="676"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZcS-1G-0qW">
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZcS-1G-0qW">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="384"/>
                                 <subviews>
-                                    <imageView hidden="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Cancel-Icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="zpx-It-qSt">
+                                    <imageView hidden="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="Cancel-Icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="zpx-It-qSt">
                                         <rect key="frame" x="919" y="30" width="75" height="75"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="75" id="00G-Zg-Ak4"/>
                                             <constraint firstAttribute="height" constant="75" id="Uym-n3-6z2"/>
                                         </constraints>
                                     </imageView>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Enter Quiz Pin" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NFR-OY-cOA">
+                                    <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Enter Quiz Pin" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NFR-OY-cOA">
                                         <rect key="frame" x="298" y="137" width="428" height="111"/>
                                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -643,7 +643,7 @@
                                         </connections>
                                     </textField>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5yY-KQ-JQz">
-                                        <rect key="frame" x="903" y="354" width="121" height="30"/>
+                                        <rect key="frame" x="903" y="-30" width="121" height="30"/>
                                         <state key="normal" title="Temp Quiz Segue"/>
                                         <connections>
                                             <segue destination="iNk-fp-Fpw" kind="show" id="KMK-MK-Hl3"/>
@@ -660,11 +660,11 @@
                                     <constraint firstAttribute="trailing" secondItem="5yY-KQ-JQz" secondAttribute="trailing" id="uBa-TD-zSf"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="92h-CE-1Cs">
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="92h-CE-1Cs">
                                 <rect key="frame" x="0.0" y="384" width="1024" height="384"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yD8-nY-hgg">
-                                        <rect key="frame" x="457" y="251" width="111" height="32"/>
+                                        <rect key="frame" x="457" y="251" width="111" height="47.5"/>
                                         <fontDescription key="fontDescription" name="ClearSans-Medium" family="Clear Sans Medium" pointSize="35"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -729,15 +729,108 @@
             </objects>
             <point key="canvasLocation" x="79" y="880"/>
         </scene>
+        <!--Quiz Select Mode-->
+        <scene sceneID="NiF-nZ-KRY">
+            <objects>
+                <viewController storyboardIdentifier="quizMode" id="HJf-UT-Bwk" customClass="QuizSelectMode" customModule="MedQuiz" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZSG-ei-tDT">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="etP-Gq-uwq">
+                                <rect key="frame" x="-21" y="120" width="533" height="674"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Head To Head" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tlG-oY-nJc">
+                                        <rect key="frame" x="104.5" y="291.5" width="303.5" height="65"/>
+                                        <fontDescription key="fontDescription" name="ClearSans-Medium" family="Clear Sans Medium" pointSize="48"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.91371977329999998" green="0.63995903050000003" blue="0.71133505090000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstItem="tlG-oY-nJc" firstAttribute="centerY" secondItem="etP-Gq-uwq" secondAttribute="centerY" constant="-13" id="6cl-pG-VLU"/>
+                                    <constraint firstItem="tlG-oY-nJc" firstAttribute="centerX" secondItem="etP-Gq-uwq" secondAttribute="centerX" constant="-10.25" id="ari-as-q4n"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zgO-3W-Nfx">
+                                <rect key="frame" x="512" y="120" width="540" height="674"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Solo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oyI-0z-l9h">
+                                        <rect key="frame" x="208" y="291.5" width="96.5" height="65"/>
+                                        <fontDescription key="fontDescription" name="ClearSans-Medium" family="Clear Sans Medium" pointSize="48"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.52890099874720875" green="0.91371977329999998" blue="0.36659281895289125" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstItem="oyI-0z-l9h" firstAttribute="centerY" secondItem="zgO-3W-Nfx" secondAttribute="centerY" constant="-13" id="X38-cA-BZO"/>
+                                    <constraint firstItem="oyI-0z-l9h" firstAttribute="centerX" secondItem="zgO-3W-Nfx" secondAttribute="centerX" constant="-13.75" id="ZCg-kk-FW8"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Practice Quiz Mode" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1I-se-90V">
+                                <rect key="frame" x="312" y="30" width="400" height="53"/>
+                                <fontDescription key="fontDescription" name="ClearSans-Medium" family="Clear Sans Medium" pointSize="46"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleAspectFit" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cq6-uk-WmI">
+                                <rect key="frame" x="920" y="35" width="49" height="48"/>
+                                <state key="normal" title="Button" image="Cancel.png"/>
+                                <connections>
+                                    <action selector="exitPracticeModeSelect:" destination="HJf-UT-Bwk" eventType="touchUpInside" id="ank-sy-ngr"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Cq6-uk-WmI" firstAttribute="top" secondItem="STP-Rv-eF2" secondAttribute="top" constant="15" id="0hr-Nh-WiR"/>
+                            <constraint firstItem="etP-Gq-uwq" firstAttribute="top" secondItem="STP-Rv-eF2" secondAttribute="top" constant="100" id="0oZ-LX-5aR"/>
+                            <constraint firstItem="etP-Gq-uwq" firstAttribute="leading" secondItem="STP-Rv-eF2" secondAttribute="leading" constant="-21" id="A8k-ju-mWt"/>
+                            <constraint firstItem="zgO-3W-Nfx" firstAttribute="leading" secondItem="etP-Gq-uwq" secondAttribute="trailing" id="EZ0-Xq-8Fa"/>
+                            <constraint firstItem="m1I-se-90V" firstAttribute="top" secondItem="STP-Rv-eF2" secondAttribute="top" constant="10" id="MMc-v2-6pM"/>
+                            <constraint firstItem="zgO-3W-Nfx" firstAttribute="bottom" secondItem="STP-Rv-eF2" secondAttribute="bottom" constant="26" id="PtP-ig-1sP"/>
+                            <constraint firstItem="STP-Rv-eF2" firstAttribute="trailing" secondItem="zgO-3W-Nfx" secondAttribute="trailing" constant="-28" id="dDg-QV-Bbu"/>
+                            <constraint firstItem="etP-Gq-uwq" firstAttribute="top" secondItem="m1I-se-90V" secondAttribute="bottom" constant="37" id="hLB-0B-tTk"/>
+                            <constraint firstItem="etP-Gq-uwq" firstAttribute="bottom" secondItem="STP-Rv-eF2" secondAttribute="bottom" constant="26" id="jaY-LM-fEt"/>
+                            <constraint firstItem="STP-Rv-eF2" firstAttribute="trailing" secondItem="etP-Gq-uwq" secondAttribute="trailing" multiplier="2" id="kNq-Ga-YYN"/>
+                            <constraint firstItem="Cq6-uk-WmI" firstAttribute="trailing" secondItem="ZSG-ei-tDT" secondAttribute="trailingMargin" constant="-35" id="rdT-4q-JwD"/>
+                            <constraint firstItem="etP-Gq-uwq" firstAttribute="top" secondItem="zgO-3W-Nfx" secondAttribute="top" id="srN-ww-bdh"/>
+                            <constraint firstItem="Cq6-uk-WmI" firstAttribute="leading" secondItem="STP-Rv-eF2" secondAttribute="leading" constant="920" id="v8L-Tf-ERJ"/>
+                            <constraint firstItem="m1I-se-90V" firstAttribute="centerX" secondItem="ZSG-ei-tDT" secondAttribute="centerX" id="wSi-go-dvm"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="STP-Rv-eF2"/>
+                    </view>
+                    <connections>
+                        <outlet property="leftCard" destination="etP-Gq-uwq" id="OE3-nC-155"/>
+                        <outlet property="rightCard" destination="zgO-3W-Nfx" id="t8N-aJ-hOA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3p1-rz-afN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-197.4609375" y="1712.5"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Cancel-Icon.png" width="56" height="56"/>
+        <image name="Cancel.png" width="56" height="56"/>
         <image name="MockAnswerTwo.png" width="402" height="211"/>
         <image name="SearchIcon.png" width="93" height="94"/>
         <image name="StudentAvatarPlaceholder.png" width="183" height="183"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="qo8-Ml-WfT"/>
-        <segue reference="KMK-MK-Hl3"/>
+        <segue reference="rAI-CB-AW1"/>
     </inferredMetricsTieBreakers>
 </document>
