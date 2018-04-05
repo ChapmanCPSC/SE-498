@@ -155,7 +155,7 @@ class ExpandableTableViewController: UITableViewController {
             for i in 0..<cellDataNode.children.count{
                 paths.append(IndexPath(row: row+1+i, section: 0))
             }
-            self.tableView.insertRows(at: paths, with: .bottom)
+            self.tableView.insertRows(at: paths, with: .fade)
 //            self.tableView.reloadData()
             self.tableView.endUpdates()
         }
@@ -174,7 +174,7 @@ class ExpandableTableViewController: UITableViewController {
             for i in 0..<closingChildrenCount{
                 paths.append(IndexPath(row: row+i+1, section: 0))
             }
-            self.tableView.deleteRows(at: paths, with: .top)
+            self.tableView.deleteRows(at: paths, with: .fade)
 //            self.tableView.reloadData()
             self.tableView.endUpdates()
         }
