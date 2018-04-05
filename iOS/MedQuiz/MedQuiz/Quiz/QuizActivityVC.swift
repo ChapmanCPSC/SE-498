@@ -349,7 +349,7 @@ class QuizActivityVC: UIViewController {
             userViews.forEach { view in
                 //TODO: make generic, hardcoded for demo
                 //view.updateView(student: userSubset[count], position: startingPosition + count + 1, score: allScores[startingPosition + count])
-                view.updateView(student: userSubset[count], position: startingPosition + count + 1, score: allScores[count])
+                view.updateView(student: userSubset[count], position: count + 1, score: allScores[count])
                 count += 1
             }
         }
