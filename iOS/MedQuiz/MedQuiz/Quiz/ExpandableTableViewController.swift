@@ -144,10 +144,15 @@ class ExpandableTableViewController: UITableViewController {
         if(cellDataNode.hasChildren && !cellDataNode.isExpanded){
             cellDataNode.isExpanded = true
             // TODO figure out if begin/endUpdates is needed
-//            self.tableView.beginUpdates()
+            self.tableView.beginUpdates()
             currentlyShown.insert(contentsOf: cellDataNode.children, at: row+1)
-            self.tableView.reloadData()
-//            self.tableView.endUpdates()
+            var paths:[IndexPath] = []
+            for i in 0..<cellDataNode.children.count{
+                paths.append(IndexPath(row: row+1+i, section: 0))
+            }
+            self.tableView.insertRows(at: paths, with: .bottom)
+//            self.tableView.reloadData()
+            self.tableView.endUpdates()
         }
         else if(cellDataNode.hasChildren && cellDataNode.isExpanded){
             cellDataNode.isExpanded = false
