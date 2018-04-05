@@ -642,7 +642,7 @@
                                             <action selector="tf_pressed:" destination="Jvp-t9-Pxf" eventType="editingDidBegin" id="g8i-xK-Wm0"/>
                                         </connections>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5yY-KQ-JQz">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5yY-KQ-JQz">
                                         <rect key="frame" x="903" y="354" width="121" height="30"/>
                                         <state key="normal" title="Temp Quiz Segue"/>
                                         <connections>
