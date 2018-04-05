@@ -27,6 +27,10 @@
 		3D500E822058D38C008DB127 /* QuizModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D500E812058D38C008DB127 /* QuizModel.swift */; };
 		3D500E842058D57C008DB127 /* QuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D500E832058D57C008DB127 /* QuestionModel.swift */; };
 		3D500E862058D71D008DB127 /* TagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D500E852058D71D008DB127 /* TagModel.swift */; };
+		3D6E83622075C38F00B5C512 /* Cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D6E835F2075C38E00B5C512 /* Cancel.png */; };
+		3D6E83632075C38F00B5C512 /* Cancel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D6E83602075C38E00B5C512 /* Cancel@2x.png */; };
+		3D6E83642075C38F00B5C512 /* Cancel@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D6E83612075C38E00B5C512 /* Cancel@3x.png */; };
+		3D6E83662075C4C000B5C512 /* QuizSelectMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6E83652075C4C000B5C512 /* QuizSelectMode.swift */; };
 		3D77A1401FB50968009178A1 /* AboutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D77A13F1FB50968009178A1 /* AboutVC.swift */; };
 		3D77A1421FB50987009178A1 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D77A1411FB50987009178A1 /* ProfileVC.swift */; };
 		3D77A1441FB509A7009178A1 /* ChangeAvatarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D77A1431FB509A7009178A1 /* ChangeAvatarVC.swift */; };
@@ -194,6 +198,10 @@
 		3D500E812058D38C008DB127 /* QuizModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizModel.swift; sourceTree = "<group>"; };
 		3D500E832058D57C008DB127 /* QuestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionModel.swift; sourceTree = "<group>"; };
 		3D500E852058D71D008DB127 /* TagModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagModel.swift; sourceTree = "<group>"; };
+		3D6E835F2075C38E00B5C512 /* Cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cancel.png; sourceTree = "<group>"; };
+		3D6E83602075C38E00B5C512 /* Cancel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cancel@2x.png"; sourceTree = "<group>"; };
+		3D6E83612075C38E00B5C512 /* Cancel@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cancel@3x.png"; sourceTree = "<group>"; };
+		3D6E83652075C4C000B5C512 /* QuizSelectMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSelectMode.swift; sourceTree = "<group>"; };
 		3D77A13F1FB50968009178A1 /* AboutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutVC.swift; sourceTree = "<group>"; };
 		3D77A1411FB50987009178A1 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		3D77A1431FB509A7009178A1 /* ChangeAvatarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAvatarVC.swift; sourceTree = "<group>"; };
@@ -498,6 +506,9 @@
 				3DD07C66204509E500FADCD9 /* WrongAnswer.png */,
 				3DD07C57204509E300FADCD9 /* WrongAnswer@2x.png */,
 				3DD07C5D204509E400FADCD9 /* WrongAnswer@3x.png */,
+				3D6E835F2075C38E00B5C512 /* Cancel.png */,
+				3D6E83602075C38E00B5C512 /* Cancel@2x.png */,
+				3D6E83612075C38E00B5C512 /* Cancel@3x.png */,
 			);
 			path = ImagesAndIcons;
 			sourceTree = "<group>";
@@ -815,6 +826,7 @@
 				3DD07C76204509E700FADCD9 /* MockAnswerFour@3x.png in Resources */,
 				DAED09871FB4F6B1003575B0 /* About.storyboard in Resources */,
 				DAED09851FB4F699003575B0 /* Profile.storyboard in Resources */,
+				3D6E83632075C38F00B5C512 /* Cancel@2x.png in Resources */,
 				3DD94C322059E91F00C22CEF /* MedicGreen.png in Resources */,
 				7FFDBB641FBD39DA0001E1FC /* ProfileSideBarCell.xib in Resources */,
 				DAED09811FB4F67D003575B0 /* Quiz.storyboard in Resources */,
@@ -830,6 +842,7 @@
 				3D2495AD1F7E2EDD0058D85B /* Main.storyboard in Resources */,
 				3DD07C9020450B5D00FADCD9 /* off-canvas-header-default.png in Resources */,
 				3DD94C352059E91F00C22CEF /* AtomPink.png in Resources */,
+				3D6E83622075C38F00B5C512 /* Cancel.png in Resources */,
 				77A14E95C97D195826B64BA1 /* CategoryTableViewCell.xib in Resources */,
 				3DD07C73204509E700FADCD9 /* MockAnswerThree@2x.png in Resources */,
 				3DD07C7F204509E700FADCD9 /* MockAnswerThree@3x.png in Resources */,
@@ -840,6 +853,7 @@
 				3DD07C74204509E700FADCD9 /* RightAnswer@3x.png in Resources */,
 				3DD07C8F20450B5D00FADCD9 /* chapman-univeristy-300x156.png in Resources */,
 				3DD94C372059E91F00C22CEF /* MedicPink.png in Resources */,
+				3D6E83642075C38F00B5C512 /* Cancel@3x.png in Resources */,
 				3DD07C87204509E700FADCD9 /* WrongAnswer.png in Resources */,
 				3DD94C362059E91F00C22CEF /* BeatJustGreen.png in Resources */,
 				A5F87904205240B0004BA78D /* CurrUserView.xib in Resources */,
@@ -1097,6 +1111,7 @@
 				A5BBD79120450F3C00A4D4D3 /* UserView.swift in Sources */,
 				3DD07C93204B5EEF00FADCD9 /* FriendsVC.swift in Sources */,
 				A53E75562043C5AE0081B1AD /* Ext_Constraint.swift in Sources */,
+				3D6E83662075C4C000B5C512 /* QuizSelectMode.swift in Sources */,
 				77A1404BBAD84427D45C7E6D /* SubjectDataNode.swift in Sources */,
 				77A14C52970D8B49A9E19116 /* CategoryDataNode.swift in Sources */,
 				A149D7DB2044B4C400AD3B1A /* ChangeUsernameVC.swift in Sources */,

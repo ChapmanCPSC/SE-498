@@ -392,12 +392,20 @@ class QuizActivityVC: UIViewController {
 
         updatePersonalScore()
 
-        let quizSummaryVC = self.storyboard?.instantiateViewController(withIdentifier: "quizSummary") as! QuizSummaryViewController
-        self.dismiss(animated: false) {
-            self.present(quizSummaryVC, animated: false, completion: {
-            })
-        }
+//        let quizSummaryVC = self.storyboard?.instantiateViewController(withIdentifier: "quizSummary") as! QuizSummaryViewController
+//        self.dismiss(animated: false) {
+//            self.present(quizSummaryVC, animated: false, completion: {
+//            })
+//        }
         
+        let quizSummaryVC = self.storyboard?.instantiateViewController(withIdentifier: "quizSummary") as! QuizSummaryViewController
+        
+        self.dismiss(animated: false, completion: {
+            mainQuizVC.present(quizSummaryVC, animated: false) {
+                print("hey")
+                
+            }
+        })
 
 //        performSegue(withIdentifier: "quizActToSummary", sender: nil)
     }

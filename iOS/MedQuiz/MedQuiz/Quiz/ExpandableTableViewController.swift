@@ -12,6 +12,7 @@ class ExpandableTableViewController: UITableViewController {
 
     var cellDataNodes:[CellDataNode]!
     var currentlyShown:[CellDataNode]!
+    var closingChildrenCount = 0
     // TODO figure out a way to make an array of cell types so that user doesn't have to add if statements to cast
     // var cellTypes:[CellType.Type] = [CategoryTableViewCell.self]
 
@@ -21,7 +22,11 @@ class ExpandableTableViewController: UITableViewController {
 
         cellDataNodes.append(
                 CategoryDataNode(categoryName: "Therapeutics", children: [
-                    SubjectDataNode(subjectName: "Cardiology", children: [], completionEvents: []),
+                    SubjectDataNode(subjectName: "Cardiology", children: [
+                        QuizDataNode(quizName: "Quiz 1", children: [], completionEvents: []),
+                        QuizDataNode(quizName: "Quiz 2", children: [], completionEvents: []),
+                        QuizDataNode(quizName: "Quiz 3", children: [], completionEvents: []),
+                    ], completionEvents: []),
                     SubjectDataNode(subjectName: "Endocrinology", children: [], completionEvents: []),
                     SubjectDataNode(subjectName: "Renal", children: [
                         QuizDataNode(quizName: "Quiz 1", children: [], completionEvents: []),
@@ -144,14 +149,20 @@ class ExpandableTableViewController: UITableViewController {
         if(cellDataNode.hasChildren && !cellDataNode.isExpanded){
             cellDataNode.isExpanded = true
             // TODO figure out if begin/endUpdates is needed
-//            self.tableView.beginUpdates()
+            self.tableView.beginUpdates()
             currentlyShown.insert(contentsOf: cellDataNode.children, at: row+1)
-            self.tableView.reloadData()
-//            self.tableView.endUpdates()
+            var paths:[IndexPath] = []
+            for i in 0..<cellDataNode.children.count{
+                paths.append(IndexPath(row: row+1+i, section: 0))
+            }
+            self.tableView.insertRows(at: paths, with: .fade)
+//            self.tableView.reloadData()
+            self.tableView.endUpdates()
         }
         else if(cellDataNode.hasChildren && cellDataNode.isExpanded){
             cellDataNode.isExpanded = false
-//            self.tableView.beginUpdates()
+            closingChildrenCount = 0
+            self.tableView.beginUpdates()
             closeNodes(nodes: cellDataNode.children, startPos: row)
 
             let offset = row
@@ -159,8 +170,13 @@ class ExpandableTableViewController: UITableViewController {
             print("Nonrecursive: \(rangeToRemove)")
             currentlyShown.removeSubrange( rangeToRemove)
 
-            self.tableView.reloadData()
-//            self.tableView.endUpdates()
+            var paths:[IndexPath] = []
+            for i in 0..<closingChildrenCount{
+                paths.append(IndexPath(row: row+i+1, section: 0))
+            }
+            self.tableView.deleteRows(at: paths, with: .fade)
+//            self.tableView.reloadData()
+            self.tableView.endUpdates()
         }
     }
 
@@ -181,6 +197,7 @@ class ExpandableTableViewController: UITableViewController {
     }
 
     func closeNodes(nodes:[CellDataNode], startPos:Int){
+        closingChildrenCount += nodes.count
         var idx = startPos
         for node in nodes {
             idx += 1
@@ -197,7 +214,11 @@ class ExpandableTableViewController: UITableViewController {
 
 extension ExpandableTableViewController:PerformsSegueDelegator {
     func callSegue() {
-        self.performSegue(withIdentifier: "QuizStartSegue", sender: nil)
+        let quizSelectModeVC = self.storyboard?.instantiateViewController(withIdentifier: "quizMode")
+        //TODO: add quiz key to each cell
+        //quizSelectModeVC.quizKey = self.quizKey
+        self.present(quizSelectModeVC!, animated: false, completion: {
+        })
     }
     
     
