@@ -119,6 +119,9 @@
 		7FFDBB631FBD39DA0001E1FC /* ProfileSideBarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FFDBB611FBD39D90001E1FC /* ProfileSideBarCell.swift */; };
 		7FFDBB641FBD39DA0001E1FC /* ProfileSideBarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FFDBB621FBD39DA0001E1FC /* ProfileSideBarCell.xib */; };
 		A114D7932043EBD2007336BB /* AvatarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A114D7922043EBD2007336BB /* AvatarCollectionViewCell.swift */; };
+		A11F2EC1206B6269009BDEC6 /* HeadToHeadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11F2EC0206B6269009BDEC6 /* HeadToHeadVC.swift */; };
+		A11F2EC3206B649B009BDEC6 /* HeadToHeadFriendRequestTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A11F2EC2206B649B009BDEC6 /* HeadToHeadFriendRequestTableViewCell.xib */; };
+		A11F2EC52075A4A8009BDEC6 /* HeadToHeadFriendRequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11F2EC42075A4A8009BDEC6 /* HeadToHeadFriendRequestTableViewCell.swift */; };
 		A12154B820478E9E00E9E939 /* FriendRequestsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12154B720478E9E00E9E939 /* FriendRequestsTableViewCell.swift */; };
 		A12154BA2047924E00E9E939 /* FriendRequestsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A12154B92047924E00E9E939 /* FriendRequestsTableViewCell.xib */; };
 		A149D7DB2044B4C400AD3B1A /* ChangeUsernameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A149D7DA2044B4C400AD3B1A /* ChangeUsernameVC.swift */; };
@@ -284,6 +287,9 @@
 		7FFDBB621FBD39DA0001E1FC /* ProfileSideBarCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileSideBarCell.xib; sourceTree = "<group>"; };
 		91E1188EAE7E6C6D84ED7124 /* Pods_MedQuizTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MedQuizTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A114D7922043EBD2007336BB /* AvatarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCollectionViewCell.swift; sourceTree = "<group>"; };
+		A11F2EC0206B6269009BDEC6 /* HeadToHeadVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadToHeadVC.swift; sourceTree = "<group>"; };
+		A11F2EC2206B649B009BDEC6 /* HeadToHeadFriendRequestTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeadToHeadFriendRequestTableViewCell.xib; sourceTree = "<group>"; };
+		A11F2EC42075A4A8009BDEC6 /* HeadToHeadFriendRequestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadToHeadFriendRequestTableViewCell.swift; sourceTree = "<group>"; };
 		A12154B720478E9E00E9E939 /* FriendRequestsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestsTableViewCell.swift; sourceTree = "<group>"; };
 		A12154B92047924E00E9E939 /* FriendRequestsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendRequestsTableViewCell.xib; sourceTree = "<group>"; };
 		A149D7DA2044B4C400AD3B1A /* ChangeUsernameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeUsernameVC.swift; sourceTree = "<group>"; };
@@ -539,6 +545,9 @@
 				A53E754D2037FC3E0081B1AD /* PerformsSegueDelegator.swift */,
 				77A14D69142779011ED840FD /* ExpandableTableViewController.swift */,
 				A5CA25A3205E3C3700C319BE /* QuizSummaryViewController.swift */,
+				A11F2EC0206B6269009BDEC6 /* HeadToHeadVC.swift */,
+				A11F2EC2206B649B009BDEC6 /* HeadToHeadFriendRequestTableViewCell.xib */,
+				A11F2EC42075A4A8009BDEC6 /* HeadToHeadFriendRequestTableViewCell.swift */,
 			);
 			path = Quiz;
 			sourceTree = "<group>";
@@ -740,7 +749,7 @@
 				TargetAttributes = {
 					3D2495A31F7E2EDD0058D85B = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = A8E56ATQFS;
+						DevelopmentTeam = H3J2JGRV7U;
 						ProvisioningStyle = Automatic;
 					};
 					3D2495B71F7E2EDD0058D85B = {
@@ -836,6 +845,7 @@
 				A5F87904205240B0004BA78D /* CurrUserView.xib in Resources */,
 				3DD94C2D2059E91F00C22CEF /* EyeBlack.png in Resources */,
 				3DD07C78204509E700FADCD9 /* WrongAnswer@2x.png in Resources */,
+				A11F2EC3206B649B009BDEC6 /* HeadToHeadFriendRequestTableViewCell.xib in Resources */,
 				3DD07C6C204509E700FADCD9 /* RightAnswer.png in Resources */,
 				3DD94C332059E91F00C22CEF /* HeartPink.png in Resources */,
 				3DD07C6F204509E700FADCD9 /* MockAnswerFour@2x.png in Resources */,
@@ -1091,10 +1101,12 @@
 				77A14C52970D8B49A9E19116 /* CategoryDataNode.swift in Sources */,
 				A149D7DB2044B4C400AD3B1A /* ChangeUsernameVC.swift in Sources */,
 				77A14A35588FD470B025DE3F /* QuizDataNode.swift in Sources */,
+				A11F2EC52075A4A8009BDEC6 /* HeadToHeadFriendRequestTableViewCell.swift in Sources */,
 				77A146EAF944084A15FB4E4D /* ExpandableTableViewController.swift in Sources */,
 				A114D7932043EBD2007336BB /* AvatarCollectionViewCell.swift in Sources */,
 				77A14CED391D2FBFC726AED1 /* Student.swift in Sources */,
 				77A147D9AB118BDC31609EEC /* Ext_String.swift in Sources */,
+				A11F2EC1206B6269009BDEC6 /* HeadToHeadVC.swift in Sources */,
 				3D500E7C2058D1D4008DB127 /* FIRModel.swift in Sources */,
 				77A1443B573B0B104C3C97BB /* Tag.swift in Sources */,
 			);
@@ -1268,7 +1280,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = A8E56ATQFS;
+				DEVELOPMENT_TEAM = H3J2JGRV7U;
 				INFOPLIST_FILE = MedQuiz/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1288,7 +1300,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = A8E56ATQFS;
+				DEVELOPMENT_TEAM = H3J2JGRV7U;
 				INFOPLIST_FILE = MedQuiz/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

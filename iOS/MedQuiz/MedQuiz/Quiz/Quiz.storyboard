@@ -119,7 +119,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MockAnswerTwo.png" translatesAutoresizingMaskIntoConstraints="NO" id="X16-ah-GQU">
-                                        <rect key="frame" x="205" y="77" width="614" height="0.0"/>
+                                        <rect key="frame" x="205" y="77.5" width="614" height="0.0"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mr4-bb-3wP">
                                         <rect key="frame" x="472" y="118.5" width="81" height="30"/>
@@ -150,7 +150,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What is the answer to this label doing here?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ElQ-IF-2fO">
-                                        <rect key="frame" x="128" y="82" width="768" height="20.5"/>
+                                        <rect key="frame" x="128" y="82.5" width="768" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -455,7 +455,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9rD-8X-JGq" userLabel="Lobby Players Collection View">
+                            <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9rD-8X-JGq" userLabel="Lobby Players Collection View">
                                 <rect key="frame" x="112" y="199" width="800" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="IT2-iH-Idq">
@@ -536,6 +536,42 @@
                                     <action selector="tempBckPressed:" destination="e4C-ZA-AYe" eventType="touchUpInside" id="giN-Rd-WFC"/>
                                 </connections>
                             </button>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mfq-2G-iRC" userLabel="User Avatar Image View">
+                                <rect key="frame" x="200" y="275" width="225" height="225"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iAC-lk-CeG" userLabel="User Username Label">
+                                <rect key="frame" x="200" y="519" width="225" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9sy-j0-ixG" userLabel="User Score Label">
+                                <rect key="frame" x="200" y="544" width="225" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gq1-Jt-NuX" userLabel="Opponent Avatar Image View">
+                                <rect key="frame" x="600" y="275" width="225" height="225"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="88H-xC-hih" userLabel="Opponent Username Label">
+                                <rect key="frame" x="600" y="519" width="225" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bwu-hc-pFQ" userLabel="Opponent Score Label">
+                                <rect key="frame" x="600" y="544" width="225" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -557,6 +593,12 @@
                         <viewLayoutGuide key="safeArea" id="Fwg-5E-tzD"/>
                     </view>
                     <connections>
+                        <outlet property="headToHeadOpponentAvatarImageView" destination="Gq1-Jt-NuX" id="OMf-I9-diA"/>
+                        <outlet property="headToHeadOpponentScoreLabel" destination="bwu-hc-pFQ" id="MJc-8f-7V1"/>
+                        <outlet property="headToHeadOpponentUserNameLabel" destination="88H-xC-hih" id="qOY-K8-uw7"/>
+                        <outlet property="headToHeadUserAvatarImageView" destination="Mfq-2G-iRC" id="vWg-6I-KWI"/>
+                        <outlet property="headToHeadUserScoreLabel" destination="9sy-j0-ixG" id="Q3P-dt-2aH"/>
+                        <outlet property="headToHeadUserUserNameLabel" destination="iAC-lk-CeG" id="Lnm-Kf-upS"/>
                         <outlet property="loadingIndicatorView" destination="dOY-cz-oeP" id="tfN-GG-H0z"/>
                         <outlet property="lobbyPlayersCollectionView" destination="9rD-8X-JGq" id="7Hn-Nu-qUc"/>
                         <outlet property="statusLabel" destination="9bl-3n-SGg" id="aoW-rO-C8y"/>
@@ -728,6 +770,58 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X8I-1F-rbl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="79" y="880"/>
+        </scene>
+        <!--Head To HeadVC-->
+        <scene sceneID="2J2-LO-9Rp">
+            <objects>
+                <viewController id="lVJ-Wf-3bX" customClass="HeadToHeadVC" customModule="MedQuiz" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vyn-uR-Br8">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Head to head" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K6Z-kS-hCy" userLabel="HeadToHead Label">
+                                <rect key="frame" x="289" y="33" width="447" height="115"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose a friend" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ea9-ww-JEk">
+                                <rect key="frame" x="101" y="156" width="242" height="54"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vaj-Em-dxO" userLabel="Friends Table View">
+                                <rect key="frame" x="149" y="209" width="727" height="530"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="530" id="r4b-0a-RVc"/>
+                                </constraints>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="OdM-Ms-NKp" firstAttribute="trailing" secondItem="Ea9-ww-JEk" secondAttribute="trailing" constant="681" id="HTa-D9-n27"/>
+                            <constraint firstItem="Ea9-ww-JEk" firstAttribute="top" secondItem="K6Z-kS-hCy" secondAttribute="bottom" constant="8" symbolic="YES" id="Jmf-fN-4DT"/>
+                            <constraint firstItem="vaj-Em-dxO" firstAttribute="top" secondItem="K6Z-kS-hCy" secondAttribute="bottom" constant="61" id="Tcv-FG-kvi"/>
+                            <constraint firstItem="K6Z-kS-hCy" firstAttribute="leading" secondItem="OdM-Ms-NKp" secondAttribute="leading" constant="289" id="dDr-ca-Rem"/>
+                            <constraint firstItem="vaj-Em-dxO" firstAttribute="centerX" secondItem="K6Z-kS-hCy" secondAttribute="centerX" id="e5N-Ml-CEm"/>
+                            <constraint firstItem="vaj-Em-dxO" firstAttribute="centerX" secondItem="vyn-uR-Br8" secondAttribute="centerX" id="eGI-wX-ynB"/>
+                            <constraint firstItem="OdM-Ms-NKp" firstAttribute="bottom" secondItem="Ea9-ww-JEk" secondAttribute="bottom" constant="558" id="fpN-hc-XEu"/>
+                            <constraint firstItem="vaj-Em-dxO" firstAttribute="leading" secondItem="OdM-Ms-NKp" secondAttribute="leading" constant="149" id="h7q-xX-shr"/>
+                            <constraint firstItem="OdM-Ms-NKp" firstAttribute="bottom" secondItem="vaj-Em-dxO" secondAttribute="bottom" constant="29" id="pbd-XS-6Mh"/>
+                            <constraint firstItem="Ea9-ww-JEk" firstAttribute="leading" secondItem="OdM-Ms-NKp" secondAttribute="leading" constant="101" id="sKj-sn-583"/>
+                            <constraint firstItem="K6Z-kS-hCy" firstAttribute="top" secondItem="OdM-Ms-NKp" secondAttribute="top" constant="13" id="z4a-PU-E1f"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="OdM-Ms-NKp"/>
+                    </view>
+                    <connections>
+                        <outlet property="friendsTableView" destination="vaj-Em-dxO" id="o1X-hs-CPg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dGC-ch-lRd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-611.1328125" y="1708.59375"/>
         </scene>
     </scenes>
     <resources>

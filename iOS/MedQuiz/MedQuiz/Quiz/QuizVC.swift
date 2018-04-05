@@ -104,6 +104,7 @@ class QuizVC: UIViewController {
                     
                     let quizLobbyVC = self.storyboard?.instantiateViewController(withIdentifier: "quizLobbyVC") as! QuizLobbyVC
                     quizLobbyVC.gamePin = self.gamePin
+                    quizLobbyVC.quizMode = QuizLobbyVC.QuizMode.Standard
                     mainQuizVC.present(quizLobbyVC, animated: false, completion: {
                     })
                     

@@ -12,9 +12,11 @@ import Firebase
 
 class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    var gameQuiz:Quiz?
+    var quiz:Quiz?
+    
     var gamePin:String?
     var gameKey:String?
+    var quizKey:String?
     
     var quizDownloaded:Bool = false
     
@@ -24,15 +26,32 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     @IBOutlet weak var lobbyPlayersCollectionView: UICollectionView!
     
+    @IBOutlet weak var headToHeadUserAvatarImageView: UIImageView!
+    @IBOutlet weak var headToHeadUserUserNameLabel: UILabel!
+    @IBOutlet weak var headToHeadUserScoreLabel: UILabel!
+    @IBOutlet weak var headToHeadOpponentAvatarImageView: UIImageView!
+    @IBOutlet weak var headToHeadOpponentUserNameLabel: UILabel!
+    @IBOutlet weak var headToHeadOpponentScoreLabel: UILabel!
+    
     @IBOutlet weak var loadingIndicatorView: UIActivityIndicatorView!
     let loadingIndicatorViewScale:CGFloat = 2.0
     let loadingIndicatorViewColor = UIColor.hexStringToUIColor(hex: "FFDF00")
     
-    var lobbyPlayers = [Student]()  
+    var lobbyPlayers = [Student]()
+    var headToHeadOpponent:Student?
     
     @IBOutlet weak var statusLabel: UILabel!
     var loadingString:String = "Loading Quiz"
-    var waitingString:String = "Waiting for other players..."
+    var waitingString:String!
+    
+    enum QuizMode{
+        case Standard
+        case HeadToHead
+        case Solo
+    }
+    
+    var quizMode:QuizMode!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,19 +65,39 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         
         hideSidebar()
         
-        lobbyPlayersCollectionView.delegate = self
-        lobbyPlayersCollectionView.dataSource = self
-        
-        lobbyPlayersCollectionView.showsVerticalScrollIndicator = false
-        loadingIndicatorView.hidesWhenStopped = true
-        loadingIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
-        loadingIndicatorView.transform = CGAffineTransform.init(scaleX: loadingIndicatorViewScale, y: loadingIndicatorViewScale)
-        loadingIndicatorView.startAnimating()
-        loadingIndicatorView.color = loadingIndicatorViewColor
+
         
         statusLabel.text = loadingString
 
-        downloadGame()
+        if (quizMode == QuizMode.Standard){
+            waitingString = "Waiting for other players..."
+            lobbyPlayersCollectionView.isHidden = false
+            
+            lobbyPlayersCollectionView.delegate = self
+            lobbyPlayersCollectionView.dataSource = self
+            
+            lobbyPlayersCollectionView.showsVerticalScrollIndicator = false
+            loadingIndicatorView.hidesWhenStopped = true
+            loadingIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
+            loadingIndicatorView.transform = CGAffineTransform.init(scaleX: loadingIndicatorViewScale, y: loadingIndicatorViewScale)
+            loadingIndicatorView.startAnimating()
+            loadingIndicatorView.color = loadingIndicatorViewColor
+        }
+        else if (quizMode == QuizMode.HeadToHead){
+            waitingString = "Waiting for " + (headToHeadOpponent?.userName)!
+            
+            headToHeadUserAvatarImageView.isHidden = false
+            headToHeadUserUserNameLabel.isHidden = false
+            headToHeadUserScoreLabel.isHidden = false
+            headToHeadOpponentAvatarImageView.isHidden = false
+            headToHeadOpponentUserNameLabel.isHidden = false
+            headToHeadOpponentScoreLabel.isHidden = false
+        }
+        else if (quizMode == QuizMode.Solo){
+            waitingString = "Ready to start..."
+        }
+        
+        download()
     }
     override func viewDidAppear(_ animated: Bool) {
         print("quiz lobby appeared")
@@ -94,10 +133,17 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         return cell
     }
     
-    func downloadGame(){
+    func download(){
         checkConnection {
-            self.downloadQuiz(){
-                self.downloadStudents(){
+            if (self.quizMode == QuizMode.Standard){
+                self.downloadGameQuiz {
+                    self.downloadStudents {
+                        self.loadingQuizComplete()
+                    }
+                }
+            }
+            else {
+                self.downloadQuiz {
                     self.loadingQuizComplete()
                 }
             }
@@ -144,21 +190,28 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     deinit {
-        gameQuiz = nil
+        quiz = nil
         gamePin = nil
         gameKey = nil
         print("-------->Deallocating quiz data")
     }
     
-    func downloadQuiz(completion: @escaping () -> Void){
+    func downloadGameQuiz(completion: @escaping () -> Void){
         GameModel.Where(child: GameModel.GAME_PIN, equals: self.gamePin) { (gamesFound) in
             let theGame = gamesFound[0]
             self.gameKey = theGame.key
             
             _ = Quiz(key: theGame.quizKey!) { theQuiz in
-                self.gameQuiz = theQuiz
+                self.quiz = theQuiz
                 completion()
             }
+        }
+    }
+    
+    func downloadQuiz(completion:@escaping () -> Void){
+        _ = Quiz(key: quizKey!) { quiz in
+            self.quiz = quiz
+            completion()
         }
     }
     
@@ -203,7 +256,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         //TODO: Delete if not using segues anymore
         if(segue.identifier == "QuizActivitySegue"){
             let destinationVC = segue.destination as! QuizActivityVC
-            destinationVC.currQuiz = gameQuiz
+            destinationVC.currQuiz = quiz
             destinationVC.gameKey = gameKey
             destinationVC.user = user
             lobbyPlayers.append(user)
@@ -226,7 +279,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     @IBAction func tempQuizActivityPressed(_ sender: Any) {
         let destinationVC = self.storyboard?.instantiateViewController(withIdentifier: "quiz_act") as! QuizActivityVC
-        destinationVC.currQuiz = gameQuiz
+        destinationVC.currQuiz = quiz
         destinationVC.gameKey = gameKey
         destinationVC.user = user
         lobbyPlayers.append(user)
