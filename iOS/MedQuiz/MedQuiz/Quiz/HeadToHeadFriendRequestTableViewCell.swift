@@ -14,12 +14,12 @@ protocol HeadToHeadFriendRequestViewCellDelegate: class{
 
 class HeadToHeadFriendRequestTableViewCell: UITableViewCell {
 
-    
-    
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var borderView: UIView!
     
+    var delegate:HeadToHeadFriendRequestViewCellDelegate!
+    var friend:Student!
     var avatarImage: UIImage?
     var username: String?
     
@@ -32,22 +32,20 @@ class HeadToHeadFriendRequestTableViewCell: UITableViewCell {
         borderView.backgroundColor = UIColor.clear
         borderView.layer.borderWidth = 0.5
         borderView.layer.borderColor = UIColor.gray.cgColor
-        
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
-    }
-    
-    func setViews(username:String, avatarImage:UIImage){
+    func setViews(){
         print("done setting view")
-        self.username = username
+        self.username = friend.userName!
         self.usernameLabel.text = username
-        self.avatarImage = avatarImage
+        self.avatarImage = friend.profilePic!
         self.avatarImageView.image = avatarImage
     }
+    
+    @IBAction func playButtonPressed(_ sender: Any) {
+        delegate.requestMade(selectedFriend: friend)
+    }
+    
     
 
     /*

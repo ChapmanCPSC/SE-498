@@ -64,10 +64,12 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         }
         
         hideSidebar()
-        
-
-        
         statusLabel.text = loadingString
+        loadingIndicatorView.hidesWhenStopped = true
+        loadingIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
+        loadingIndicatorView.transform = CGAffineTransform.init(scaleX: loadingIndicatorViewScale, y: loadingIndicatorViewScale)
+        loadingIndicatorView.startAnimating()
+        loadingIndicatorView.color = loadingIndicatorViewColor
 
         if (quizMode == QuizMode.Standard){
             waitingString = "Waiting for other players..."
@@ -75,13 +77,8 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             
             lobbyPlayersCollectionView.delegate = self
             lobbyPlayersCollectionView.dataSource = self
-            
             lobbyPlayersCollectionView.showsVerticalScrollIndicator = false
-            loadingIndicatorView.hidesWhenStopped = true
-            loadingIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
-            loadingIndicatorView.transform = CGAffineTransform.init(scaleX: loadingIndicatorViewScale, y: loadingIndicatorViewScale)
-            loadingIndicatorView.startAnimating()
-            loadingIndicatorView.color = loadingIndicatorViewColor
+
         }
         else if (quizMode == QuizMode.HeadToHead){
             waitingString = "Waiting for " + (headToHeadOpponent?.userName)!
@@ -92,6 +89,13 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             headToHeadOpponentAvatarImageView.isHidden = false
             headToHeadOpponentUserNameLabel.isHidden = false
             headToHeadOpponentScoreLabel.isHidden = false
+            
+            headToHeadUserAvatarImageView.image = user.profilePic!
+            headToHeadUserUserNameLabel.text = user.userName!
+            headToHeadUserScoreLabel.text = String(describing: user.totalPoints!)
+            headToHeadOpponentAvatarImageView.image = headToHeadOpponent?.profilePic!
+            headToHeadOpponentUserNameLabel.text = headToHeadOpponent?.userName!
+            headToHeadOpponentScoreLabel.text = String(describing: headToHeadOpponent?.totalPoints!)
         }
         else if (quizMode == QuizMode.Solo){
             waitingString = "Ready to start..."
@@ -144,7 +148,13 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             }
             else {
                 self.downloadQuiz {
-                    self.loadingQuizComplete()
+                    if (self.quizMode == QuizMode.HeadToHead){
+                        self.loadingQuizComplete()
+                    }
+                    else if (self.quizMode == QuizMode.Solo){
+                        self.quizStarted()
+                    }
+                    
                 }
             }
         }
@@ -187,6 +197,10 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
 //            }
 //            completion()
 //        }
+    }
+    
+    func checkOpponentReady(completion: @escaping () -> Void){
+        //TODO
     }
     
     deinit {
@@ -268,6 +282,19 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         //TODO: Probably dismiss this current view
         // and present a new one rather than perform a segue
         //performSegue(withIdentifier: "QuizActivitySegue", sender: nil)
+        
+        let destinationVC = self.storyboard?.instantiateViewController(withIdentifier: "quiz_act") as! QuizActivityVC
+        destinationVC.currQuiz = quiz
+        
+        if (quizMode == QuizMode.Standard){
+            
+        }
+        else if (quizMode == QuizMode.HeadToHead){
+            
+        }
+        else if (quizMode == QuizMode.Solo){
+            
+        }
     }
     
     func errorOccurred(title:String, message:String){

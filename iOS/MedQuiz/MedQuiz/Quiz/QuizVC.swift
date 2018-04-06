@@ -145,7 +145,6 @@ class QuizVC: UIViewController {
         self.view.endEditing(true)
     }
     
-    
 }
 
 extension QuizVC: UITextFieldDelegate {
@@ -164,7 +163,6 @@ extension QuizVC: UITextFieldDelegate {
         }
         return true
     }
-    
 }
 
 

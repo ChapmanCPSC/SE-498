@@ -11,6 +11,7 @@ import UIKit
 class HeadToHeadVC: UIViewController, UITableViewDelegate, UITableViewDataSource, HeadToHeadFriendRequestViewCellDelegate {
 
     @IBOutlet weak var friendsTableView: UITableView!
+    @IBOutlet weak var backButton: UIButton!
     
     var qiuzKey:String!
     var friends:[Student]!
@@ -49,7 +50,9 @@ class HeadToHeadVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : HeadToHeadFriendRequestTableViewCell = friendsTableView.dequeueReusableCell(withIdentifier: "friendRequest_cell") as! HeadToHeadFriendRequestTableViewCell
-        cell.setViews(username: friends[indexPath.row].userName!, avatarImage: friends[indexPath.row].profilePic!)
+        cell.delegate = self
+        cell.friend = friends[indexPath.row]
+        cell.setViews()
         return cell
     }
     
@@ -59,7 +62,12 @@ class HeadToHeadVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         quizLobbyVC.quizMode = QuizLobbyVC.QuizMode.HeadToHead
         mainQuizVC.present(quizLobbyVC, animated: false, completion: nil)
     }
-
+    
+    
+    @IBAction func backButtonPressed(_ sender: Any) {
+        self.dismiss(animated: false, completion: nil)
+    }
+    
     /*
     // MARK: - Navigation
 
