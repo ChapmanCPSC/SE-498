@@ -165,7 +165,7 @@ class QuizActivityVC: UIViewController {
         }
         
         else if quizMode == QuizLobbyVC.QuizMode.HeadToHead {
-            
+            checkRequestStatus {}
         }
         
         else if quizMode == QuizLobbyVC.QuizMode.Solo {
@@ -389,7 +389,7 @@ class QuizActivityVC: UIViewController {
     
     func updateUserInLeaderboard(){
         userViews.forEach { view in
-            if(view.currStudent.userName == user.userName){
+            if(view.currStudent.userName == user.userName!){
                 view.convertToCurrUser()
             }
             else{
