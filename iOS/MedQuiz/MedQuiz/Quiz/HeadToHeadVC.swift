@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import Firebase
 
 class HeadToHeadVC: UIViewController, UITableViewDelegate, UITableViewDataSource, HeadToHeadFriendRequestViewCellDelegate {
 
     @IBOutlet weak var friendsTableView: UITableView!
     @IBOutlet weak var backButton: UIButton!
     
-    var qiuzKey:String!
+    var quizKey:String!
     var friends:[Student]!
 
     override func viewDidLoad() {
@@ -57,7 +58,19 @@ class HeadToHeadVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     func requestMade(selectedFriend: Student) {
+        let headToHeadGameReference = Database.database().reference().child("head-to-head-game").childByAutoId()
+        headToHeadGameReference.child("quiz").setValue(quizKey)
+        //headToHeadGameReference.child("inviter").setValue(user.key)
+        headToHeadGameReference.child("invitee").setValue(selectedFriend.databaseID)
+        headToHeadGameReference.child("accepted").setValue(false)
+        headToHeadGameReference.child("decided").setValue(false)
+       
+        let friendReference = Database.database().reference().child("student").child(selectedFriend.databaseID!)
+        friendReference.child("headtoheadgamerequests").childByAutoId().setValue(headToHeadGameReference.key)
+        
         let quizLobbyVC = self.storyboard?.instantiateViewController(withIdentifier: "quizLobbyVC") as! QuizLobbyVC
+        quizLobbyVC.quizKey = quizKey
+        quizLobbyVC.headToHeadGameKey = headToHeadGameReference.key
         quizLobbyVC.headToHeadOpponent = selectedFriend
         quizLobbyVC.quizMode = QuizLobbyVC.QuizMode.HeadToHead
         mainQuizVC.present(quizLobbyVC, animated: false, completion: nil)

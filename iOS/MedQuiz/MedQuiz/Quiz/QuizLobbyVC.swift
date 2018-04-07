@@ -16,6 +16,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     var gamePin:String?
     var gameKey:String?
+    var headToHeadGameKey:String?
     var quizKey:String?
     
     var quizDownloaded:Bool = false
@@ -36,6 +37,8 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet weak var loadingIndicatorView: UIActivityIndicatorView!
     let loadingIndicatorViewScale:CGFloat = 2.0
     let loadingIndicatorViewColor = UIColor.hexStringToUIColor(hex: "FFDF00")
+    
+    @IBOutlet weak var backButton: UIButton!
     
     var lobbyPlayers = [Student]()
     var headToHeadOpponent:Student?
@@ -138,23 +141,25 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     func download(){
-        checkConnection {
-            if (self.quizMode == QuizMode.Standard){
-                self.downloadGameQuiz {
-                    self.downloadStudents {
-                        self.loadingQuizComplete()
+        checkRequestStatus {
+            self.checkConnection {
+                if (self.quizMode == QuizMode.Standard){
+                    self.downloadGameQuiz {
+                        self.downloadStudents {
+                            self.loadingQuizComplete()
+                        }
                     }
                 }
-            }
-            else {
-                self.downloadQuiz {
-                    if (self.quizMode == QuizMode.HeadToHead){
-                        self.loadingQuizComplete()
+                else {
+                    self.downloadQuiz {
+                        if (self.quizMode == QuizMode.HeadToHead){
+                            self.loadingQuizComplete()
+                            self.checkOpponentReady()
+                        }
+                        else if (self.quizMode == QuizMode.Solo){
+                            self.quizStarted()
+                        }
                     }
-                    else if (self.quizMode == QuizMode.Solo){
-                        self.quizStarted()
-                    }
-                    
                 }
             }
         }
@@ -167,7 +172,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 self.errorOccurred(title: "Connection Error", message: "Connection to database lost.")
             }
             completion()
-        })
+        })	
     }
     
     func checkGameStart(completion: @escaping () -> Void){
@@ -199,8 +204,29 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
 //        }
     }
     
-    func checkOpponentReady(completion: @escaping () -> Void){
-        //TODO
+    func checkOpponentReady(){
+        HeadToHeadGameModel.FromAndKeepObserving(key: headToHeadGameKey!) { (headToHeadGame) in
+            if headToHeadGame.decided! {
+                if headToHeadGame.accepted! {
+                    self.quizStarted()
+                }
+                else{
+                    self.errorOccurred(title: "Invitation Declined", message: "Your opponent declined your game invitation.")
+                }
+            }
+        }
+    }
+    
+    func checkRequestStatus(completion: @escaping () -> Void){
+        if quizMode == QuizMode.HeadToHead {
+            let userHeadToHeadRequestRef = Database.database().reference().child("student/\(String(describing: user.databaseID))/headtoheadgamerequest")
+            guard userHeadToHeadRequestRef.value(forKey: headToHeadGameKey!) != nil else {
+                errorOccurred(title: "Head to Head Game Cancelled", message: "Head to head game against \(String(describing: headToHeadOpponent?.userName)) cancelled.")
+                completion()
+                return
+            }
+        }
+        completion()
     }
     
     deinit {
@@ -295,6 +321,8 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         else if (quizMode == QuizMode.Solo){
             
         }
+        
+        present(destinationVC, animated: false, completion: nil)
     }
     
     func errorOccurred(title:String, message:String){
@@ -325,5 +353,19 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         errorOccurred(title: "Error Test", message: "This is what should happen when an error occurs in the Lobby.")
     }
     
-    
+    @IBAction func backButtonPressed(_ sender: Any) {
+        if quizMode == QuizMode.Standard {
+            //TODO
+        }
+        else if quizMode == QuizMode.HeadToHead {
+            let userHeadToHeadRequestRef = Database.database().reference().child("student/\(String(describing: user.databaseID))/headtoheadgamerequest/\(String(describing: headToHeadGameKey))")
+            userHeadToHeadRequestRef.removeValue()
+            
+            let opponentHeadToHeadRequestRef = Database.database().reference().child("student/\(String(describing: headToHeadOpponent?.databaseID))/headtoheadgamerequest/\(String(describing: headToHeadGameKey))")
+            opponentHeadToHeadRequestRef.removeValue()
+        }
+        else if quizMode == QuizMode.Solo {
+            //TODO
+        }
+    }
 }

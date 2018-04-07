@@ -10,8 +10,6 @@ import Foundation
 import UIKit
 
 class StudentModel: FIRModel, FIRQueryable,FIRStorageDownloadable
-    
-    
 {
     static var COLLECTION_NAME: String = "student"
     
@@ -20,12 +18,14 @@ class StudentModel: FIRModel, FIRQueryable,FIRStorageDownloadable
     static var TOTAL_POINTS = "totalpoints"
     static var HAS_CHANGED_USERNAME = "haschangedusername"
     static var FRIENDS = "friends"
+    static var HEADTOHEAD_GAME_REQUEST = "headtoheadgamerequest"
 
     var studentUsername: String? { return self.get(StudentModel.USERNAME) }
-    var profilePic: String? {return self.get(StudentModel.PROFILE_PIC)}
-    var totalPoints: Int? {return self.get(StudentModel.TOTAL_POINTS)}
-    var hasChangedUsername:Bool? {return self.get(StudentModel.HAS_CHANGED_USERNAME)}
-    var friends:[StudentModel]? {return self.get(StudentModel.FRIENDS)}
+    var profilePic: String? { return self.get(StudentModel.PROFILE_PIC) }
+    var totalPoints: Int? { return self.get(StudentModel.TOTAL_POINTS) }
+    var hasChangedUsername:Bool? { return self.get(StudentModel.HAS_CHANGED_USERNAME) }
+    var friends:[StudentModel]? { return self.get(StudentModel.FRIENDS) }
+    var headToHeadGameRequest:String? { return self.get(StudentModel.HEADTOHEAD_GAME_REQUEST) }
 
     func getProfilePic(completion: @escaping(UIImage?) -> Void)
     {
