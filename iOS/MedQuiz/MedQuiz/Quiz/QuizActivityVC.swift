@@ -530,11 +530,6 @@ class QuizActivityVC: UIViewController {
         updateLeaderboard()
     }
     
-    @IBAction func tempBackPressed(_ sender: Any) {
-        self.dismiss(animated: false) {
-        }
-    }
-    
     @IBAction func backButtonPressed(_ sender: Any) {
         if quizMode == QuizLobbyVC.QuizMode.Standard {
             self.dismiss(animated: false) {
@@ -550,7 +545,8 @@ class QuizActivityVC: UIViewController {
         }
         
         else if quizMode == QuizLobbyVC.QuizMode.Solo {
-            
+            self.dismiss(animated: false) {
+            }
         }
     }
     
