@@ -574,6 +574,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="and" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1is-3h-qU7" userLabel="And Label">
+                                <rect key="frame" x="465" y="377" width="93" height="54"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="31"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v4J-Yf-WuH" userLabel="Back Button">
                                 <rect key="frame" x="912" y="40" width="73" height="71"/>
                                 <constraints>
@@ -627,6 +634,7 @@
                         <viewLayoutGuide key="safeArea" id="Fwg-5E-tzD"/>
                     </view>
                     <connections>
+                        <outlet property="andLabel" destination="1is-3h-qU7" id="ZhI-lb-63H"/>
                         <outlet property="backButton" destination="v4J-Yf-WuH" id="UEZ-Ty-qHu"/>
                         <outlet property="headToHeadOpponentAvatarImageView" destination="Gq1-Jt-NuX" id="OMf-I9-diA"/>
                         <outlet property="headToHeadOpponentScoreLabel" destination="bwu-hc-pFQ" id="MJc-8f-7V1"/>

@@ -34,6 +34,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet weak var headToHeadOpponentAvatarImageView: UIImageView!
     @IBOutlet weak var headToHeadOpponentUserNameLabel: UILabel!
     @IBOutlet weak var headToHeadOpponentScoreLabel: UILabel!
+    @IBOutlet weak var andLabel: UILabel!
     
     @IBOutlet weak var loadingIndicatorView: UIActivityIndicatorView!
     let loadingIndicatorViewScale:CGFloat = 2.0
@@ -93,6 +94,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             headToHeadOpponentAvatarImageView.isHidden = false
             headToHeadOpponentUserNameLabel.isHidden = false
             headToHeadOpponentScoreLabel.isHidden = false
+            andLabel.isHidden = false
             
 //            headToHeadUserAvatarImageView.image = user.profilePic!
 //            headToHeadUserUserNameLabel.text = user.userName!
@@ -102,7 +104,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             headToHeadUserScoreLabel.text = String(describing: 2500)
             headToHeadOpponentAvatarImageView.image = headToHeadOpponent.profilePic!
             headToHeadOpponentUserNameLabel.text = headToHeadOpponent.userName!
-            headToHeadOpponentScoreLabel.text = String(describing: headToHeadOpponent?.totalPoints!)
+            headToHeadOpponentScoreLabel.text = String(describing: headToHeadOpponent.totalPoints!)
         }
         else if (quizMode == QuizMode.Solo){
             waitingString = "Ready to start..."
