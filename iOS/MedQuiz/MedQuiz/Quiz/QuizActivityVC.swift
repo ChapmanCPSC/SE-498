@@ -285,7 +285,7 @@ class QuizActivityVC: UIViewController {
             finishQuiz()
             return
         }
-//        currQuestion = currQuiz.questions![currQuestionIdx]
+        currQuestion = currQuiz.questions![currQuestionIdx]
         // test with 3 choices
         /*currQuestion = Question(points: 10, imageForQuestion: false, imagesForAnswers: false, correctAnswer: "sdfgsdf", answers: [
             Answer(answerText: "sdfgdf", points: 5, isAnswer: false),
