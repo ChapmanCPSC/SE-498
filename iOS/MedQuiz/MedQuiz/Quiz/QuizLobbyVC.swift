@@ -12,7 +12,7 @@ import Firebase
 
 class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    var quiz:Quiz?
+    var quiz:Quiz!
     
     var gamePin:String?
     var gameKey:String?
@@ -21,6 +21,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     var quizDownloaded:Bool = false
     var quizCancelled:Bool = false
+    var activityStarted:Bool = false
     
     //TODO: To be set by logging in and not be static as such
     var userStudentKey:String = "b29fks9mf9gh37fhh1h9814"
@@ -150,22 +151,10 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         checkRequestStatus {
             self.checkConnection {
                 if (self.quizMode == QuizMode.Standard){
-                    self.downloadGameQuiz {
-                        self.downloadStudents {
-                            self.loadingQuizComplete()
-                        }
-                    }
+                    self.downloadStandardQuiz {}
                 }
                 else {
-                    self.downloadQuiz {
-                        if (self.quizMode == QuizMode.HeadToHead){
-                            self.loadingQuizComplete()
-                            self.checkOpponentReady()
-                        }
-                        else if (self.quizMode == QuizMode.Solo){
-                            self.quizStarted()
-                        }
-                    }
+                    self.downloadQuiz {}
                 }
             }
         }
@@ -212,7 +201,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     func checkOpponentReady(){
         HeadToHeadGameModel.FromAndKeepObserving(key: headToHeadGameKey!) { (headToHeadGame) in
-            if !self.quizCancelled {
+            if !self.quizCancelled && !self.activityStarted {
                 if headToHeadGame.decided! {
                     if headToHeadGame.accepted! {
                         self.quizStarted()
@@ -246,14 +235,17 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         print("-------->Deallocating quiz data")
     }
     
-    func downloadGameQuiz(completion: @escaping () -> Void){
+    func downloadStandardQuiz(completion: @escaping () -> Void){
         GameModel.Where(child: GameModel.GAME_PIN, equals: self.gamePin) { (gamesFound) in
             let theGame = gamesFound[0]
             self.gameKey = theGame.key
             
             _ = Quiz(key: theGame.quizKey!) { theQuiz in
                 self.quiz = theQuiz
-                completion()
+                self.downloadStudents {
+                    self.loadingQuizComplete()
+                    completion()
+                }
             }
         }
     }
@@ -261,7 +253,17 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     func downloadQuiz(completion:@escaping () -> Void){
         _ = Quiz(key: quizKey!) { quiz in
             self.quiz = quiz
-            completion()
+            self.loadingQuizComplete()
+            
+            if self.quizMode == QuizMode.HeadToHead {
+                self.checkRequestStatus {
+                    completion()
+                }
+            }
+            else if self.quizMode == QuizMode.Solo {
+                //TODO
+                completion()
+            }
         }
     }
     
@@ -306,6 +308,8 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         //TODO: Probably dismiss this current view
         // and present a new one rather than perform a segue
         //performSegue(withIdentifier: "QuizActivitySegue", sender: nil)
+        
+        activityStarted = true
         
         let destinationVC = self.storyboard?.instantiateViewController(withIdentifier: "quiz_act") as! QuizActivityVC
         destinationVC.currQuiz = quiz

@@ -18,6 +18,7 @@ class QuizActivityVC: UIViewController {
     var currQuestion:Question!
     var currQuestionIdx:Int = -1 // start at -1 so that first call can call nextQuestion
     var currQuiz:Quiz!
+    var quizCancelled:Bool = false
     
     var canSelect:Bool = false
     var currPos:Int!
@@ -227,14 +228,15 @@ class QuizActivityVC: UIViewController {
     
     func checkRequestStatus(completion: @escaping () -> Void){
         if quizMode == QuizLobbyVC.QuizMode.HeadToHead {
-            StudentModel.FromAndKeepObserving(key: user.databaseID!) {user in
-                guard user.headToHeadGameRequest != nil else {
+            StudentModel.FromAndKeepObserving(key: user.databaseID!) {userStudent in
+                guard userStudent.headToHeadGameRequest != nil else {
+                    self.quizCancelled = true
                     let alert = UIAlertController(title:"Head to Head Game Cancelled", message:"The Head to Head game has been cancelled.", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default) { UIAlertAction in
-                        self.dismiss(animated: false, completion: nil)
+                        self.present(alert, animated: true, completion: nil)
+                        self.performSegue(withIdentifier: "QuizVC", sender: nil)
+                        completion()
                     })
-                    self.present(alert, animated: true, completion: nil)
-                    completion()
                     return
                 }
             }
@@ -535,21 +537,22 @@ class QuizActivityVC: UIViewController {
     
     @IBAction func backButtonPressed(_ sender: Any) {
         if quizMode == QuizLobbyVC.QuizMode.Standard {
-            self.dismiss(animated: false) {
-            }
+            performSegue(withIdentifier: "QuizVC", sender: nil)
         }
         
         else if quizMode == QuizLobbyVC.QuizMode.HeadToHead {
-            let userHeadToHeadRequestRef = Database.database().reference().child("student/\(String(describing: user.databaseID))/headtoheadgamerequest/\(String(describing: headToHeadGameKey))")
+            let opponentHeadToHeadRequestRef = Database.database().reference().child("student/\(String(describing: headToHeadOpponent.databaseID!))/headtoheadgamerequest")
+            opponentHeadToHeadRequestRef.removeValue()
+            
+            let userHeadToHeadRequestRef = Database.database().reference().child("student/\(String(describing: user.databaseID!))/headtoheadgamerequest")
             userHeadToHeadRequestRef.removeValue()
             
-            let opponentHeadToHeadRequestRef = Database.database().reference().child("student/\(String(describing: headToHeadOpponent.databaseID))/headtoheadgamerequest/\(String(describing: headToHeadGameKey))")
-            opponentHeadToHeadRequestRef.removeValue()
+            let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(headToHeadGameKey!)
+            headToHeadGameRef.removeValue()
         }
         
         else if quizMode == QuizLobbyVC.QuizMode.Solo {
-            self.dismiss(animated: false) {
-            }
+            performSegue(withIdentifier: "QuizVC", sender: nil)
         }
     }
     
