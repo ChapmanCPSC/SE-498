@@ -825,7 +825,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="headToHeadButtonPressed:" destination="bDA-6P-XfU" eventType="touchUpInside" id="aQ3-4U-q9f"/>
+                                            <action selector="headToHeadButtonPressed:" destination="HJf-UT-Bwk" eventType="touchUpInside" id="Je0-6d-cVo"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -899,7 +899,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3p1-rz-afN" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="bDA-6P-XfU" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-197.4609375" y="1712.5"/>
         </scene>

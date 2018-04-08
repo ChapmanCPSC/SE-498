@@ -165,11 +165,13 @@ class QuizActivityVC: UIViewController {
         }
         
         else if quizMode == QuizLobbyVC.QuizMode.HeadToHead {
-            checkRequestStatus {}
+            checkRequestStatus {
+                //TODO
+            }
         }
         
         else if quizMode == QuizLobbyVC.QuizMode.Solo {
-            
+            //TODO
         }
     }
 
@@ -225,15 +227,16 @@ class QuizActivityVC: UIViewController {
     
     func checkRequestStatus(completion: @escaping () -> Void){
         if quizMode == QuizLobbyVC.QuizMode.HeadToHead {
-            let userHeadToHeadRequestRef = Database.database().reference().child("student/\(String(describing: user.databaseID))/headtoheadgamerequest")
-            guard userHeadToHeadRequestRef.value(forKey: headToHeadGameKey!) != nil else {
-                let alert = UIAlertController(title:"Head to Head Game Cancelled", message:"The Head to Head game has been cancelled.", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default) { UIAlertAction in
-                    self.dismiss(animated: false, completion: nil)
-                })
-                self.present(alert, animated: true, completion: nil)
-                completion()
-                return
+            StudentModel.FromAndKeepObserving(key: user.databaseID!) {user in
+                guard user.headToHeadGameRequest != nil else {
+                    let alert = UIAlertController(title:"Head to Head Game Cancelled", message:"The Head to Head game has been cancelled.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default) { UIAlertAction in
+                        self.dismiss(animated: false, completion: nil)
+                    })
+                    self.present(alert, animated: true, completion: nil)
+                    completion()
+                    return
+                }
             }
         }
         completion()
