@@ -104,6 +104,7 @@ class QuizVC: UIViewController {
                     
                     let quizLobbyVC = self.storyboard?.instantiateViewController(withIdentifier: "quizLobbyVC") as! QuizLobbyVC
                     quizLobbyVC.gamePin = self.gamePin
+                    quizLobbyVC.quizMode = QuizLobbyVC.QuizMode.Standard
                     mainQuizVC.present(quizLobbyVC, animated: false, completion: {
                     })
                     
@@ -144,7 +145,6 @@ class QuizVC: UIViewController {
         self.view.endEditing(true)
     }
     
-    
 }
 
 extension QuizVC: UITextFieldDelegate {
@@ -163,7 +163,6 @@ extension QuizVC: UITextFieldDelegate {
         }
         return true
     }
-    
 }
 
 

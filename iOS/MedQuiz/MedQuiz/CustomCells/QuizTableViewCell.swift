@@ -45,6 +45,6 @@ class QuizTableViewCell: CellType {
         lab_quizName.text = quizDataNode?.quizName
     }
     @IBAction func bt_startPressed(_ sender: Any) {
-//        self.delegate.callSegue()
+        self.delegate.callSegue()
     }
 }

@@ -18,15 +18,20 @@ class QuizActivityVC: UIViewController {
     var currQuestion:Question!
     var currQuestionIdx:Int = -1 // start at -1 so that first call can call nextQuestion
     var currQuiz:Quiz!
-    var gameKey:String!
-    var inGameLeaderboardKey:String!
+    var quizCancelled:Bool = false
+    
     var canSelect:Bool = false
     var currPos:Int!
-    //var user:Student = Student(userName: "Paul", profilePic: UIImage(), friends: [], totalPoints: 0, hasChangedUsername: false)
     var user:Student!
+    
+    var gameKey:String!
+    var inGameLeaderboardKey:String!
     var userInGameLeaderboardObjectKey:String!
     var allUsers:[Student]! // TODO kinda working off assumption there'll be an array that'll be updated in firebase that we can use
     var allScores:[Int]!
+    
+    var headToHeadGameKey:String!
+    var headToHeadOpponent:Student!
     
     @IBOutlet weak var answer1: AnswerView!
     @IBOutlet weak var answer2: AnswerView!
@@ -74,10 +79,11 @@ class QuizActivityVC: UIViewController {
     
     @IBOutlet weak var timerLabel: UILabel!
     
+    var quizMode:QuizLobbyVC.QuizMode!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
         questionsTimer.backgroundColor = UIColor.clear
         questionsTimer.labelTextColor = UIColor.black
         questionsTimer.lineColor = UIColor.yellow
@@ -102,59 +108,71 @@ class QuizActivityVC: UIViewController {
 
         nextQuestion()
 
-        let inGameLeaderboardRef = Database.database().reference(withPath: "inGameLeaderboards")
-        inGameLeaderboardRef.observeSingleEvent(of: .value, with: { (snapshot:DataSnapshot) in
-            for child in snapshot.children.allObjects as! [DataSnapshot] {
-                if ((child.value as! [String:AnyObject])["game"] as! String) == self.gameKey {
-                    self.inGameLeaderboardKey = child.key
-                    let inGameLeaderboardStudentsRef = inGameLeaderboardRef.child(child.key).child("students")
-                    inGameLeaderboardStudentsRef.observeSingleEvent(of: .value, with: { (snapshot:DataSnapshot) in
-                        for child in snapshot.children.allObjects as! [DataSnapshot] {
-                            if ((child.value as! [String:AnyObject])["studentKey"] as! String) == self.user.databaseID {
-                                self.userInGameLeaderboardObjectKey = child.key
-                                
-                                //Temp set value
-                            self.dataRef.child("inGameLeaderboards").child(self.inGameLeaderboardKey).child("students").child(self.userInGameLeaderboardObjectKey).child("studentScore").setValue(0)
-                                
-                                
-                                inGameLeaderboardStudentsRef.queryOrdered(byChild: "studentScore").observe(.value, with: { (snapshot:DataSnapshot) in
-                                    var leaderboardStudentKeys = [String]()
-                                    self.allScores = []
-                                    for child in snapshot.children.allObjects as! [DataSnapshot] {
-                                        let key = (child.value as! [String:AnyObject])["studentKey"] as! String
-                                        leaderboardStudentKeys.append(key)
-                                        let score = (child.value as! [String:AnyObject])["studentScore"] as! Int
-                                        self.allScores.append(score)
-                                    }
+        if quizMode == QuizLobbyVC.QuizMode.Standard {
+            let inGameLeaderboardRef = Database.database().reference(withPath: "inGameLeaderboards")
+            inGameLeaderboardRef.observeSingleEvent(of: .value, with: { (snapshot:DataSnapshot) in
+                for child in snapshot.children.allObjects as! [DataSnapshot] {
+                    if ((child.value as! [String:AnyObject])["game"] as! String) == self.gameKey {
+                        self.inGameLeaderboardKey = child.key
+                        let inGameLeaderboardStudentsRef = inGameLeaderboardRef.child(child.key).child("students")
+                        inGameLeaderboardStudentsRef.observeSingleEvent(of: .value, with: { (snapshot:DataSnapshot) in
+                            for child in snapshot.children.allObjects as! [DataSnapshot] {
+                                if ((child.value as! [String:AnyObject])["studentKey"] as! String) == self.user.databaseID {
+                                    self.userInGameLeaderboardObjectKey = child.key
                                     
-                                    leaderboardStudentKeys.reverse()
-                                    self.allScores.reverse()
+                                    //Temp set value
+                                    self.dataRef.child("inGameLeaderboards").child(self.inGameLeaderboardKey).child("students").child(self.userInGameLeaderboardObjectKey).child("studentScore").setValue(0)
                                     
-                                    var newAllUsers:[Student] = []
-                                    var leaderboardPosCounter = 0
-                                    for key in leaderboardStudentKeys {
-                                        for student in self.allUsers {
-                                            if key == student.databaseID {
-                                                leaderboardPosCounter += 1
-                                                newAllUsers.append(student)
-                                                if key == self.user.databaseID {
-                                                    self.currPos = leaderboardPosCounter
+                                    
+                                    inGameLeaderboardStudentsRef.queryOrdered(byChild: "studentScore").observe(.value, with: { (snapshot:DataSnapshot) in
+                                        var leaderboardStudentKeys = [String]()
+                                        self.allScores = []
+                                        for child in snapshot.children.allObjects as! [DataSnapshot] {
+                                            let key = (child.value as! [String:AnyObject])["studentKey"] as! String
+                                            leaderboardStudentKeys.append(key)
+                                            let score = (child.value as! [String:AnyObject])["studentScore"] as! Int
+                                            self.allScores.append(score)
+                                        }
+                                        
+                                        leaderboardStudentKeys.reverse()
+                                        self.allScores.reverse()
+                                        
+                                        var newAllUsers:[Student] = []
+                                        var leaderboardPosCounter = 0
+                                        for key in leaderboardStudentKeys {
+                                            for student in self.allUsers {
+                                                if key == student.databaseID {
+                                                    leaderboardPosCounter += 1
+                                                    newAllUsers.append(student)
+                                                    if key == self.user.databaseID {
+                                                        self.currPos = leaderboardPosCounter
+                                                    }
+                                                    break
                                                 }
-                                                break
                                             }
                                         }
-                                    }
-                                    
-                                    self.allUsers = newAllUsers
-                                    self.updateLeaderboard()
-                                    self.updateUserInLeaderboard()
-                                })
+                                        
+                                        self.allUsers = newAllUsers
+                                        self.updateLeaderboard()
+                                        self.updateUserInLeaderboard()
+                                    })
+                                }
                             }
-                        }
-                    })
+                        })
+                    }
                 }
+            })
+        }
+        
+        else if quizMode == QuizLobbyVC.QuizMode.HeadToHead {
+            checkRequestStatus {
+                //TODO
             }
-        })
+        }
+        
+        else if quizMode == QuizLobbyVC.QuizMode.Solo {
+            //TODO
+        }
     }
 
     func hideAnswersForTime(){
@@ -205,6 +223,32 @@ class QuizActivityVC: UIViewController {
     
     func registerFirebaseListeners(){
         // handle setting up firebase stuff
+    }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "activityToMain" {
+//            let destinationVC = segue.destination as! QuizVC
+//            
+//        }
+//    }
+    
+    func checkRequestStatus(completion: @escaping () -> Void){
+        if quizMode == QuizLobbyVC.QuizMode.HeadToHead {
+            StudentModel.FromAndKeepObserving(key: user.databaseID!) {userStudent in
+                guard userStudent.headToHeadGameRequest != nil else {
+                    print("Head to Head quiz cancelled.")
+                    self.quizCancelled = true
+                    let alert = UIAlertController(title:"Head to Head Game Cancelled", message:"The Head to Head game has been cancelled.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default) { UIAlertAction in
+                        self.present((UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController())!, animated: false) {}
+                        completion()
+                    })
+                    self.present(alert, animated: true, completion: nil)
+                    return
+                }
+            }
+        }
+        completion()
     }
     
     func sendIsReady(){
@@ -374,7 +418,7 @@ class QuizActivityVC: UIViewController {
     
     func updateUserInLeaderboard(){
         userViews.forEach { view in
-            if(view.currStudent.userName == user.userName){
+            if(view.currStudent.userName == user.userName!){
                 view.convertToCurrUser()
             }
             else{
@@ -514,10 +558,28 @@ class QuizActivityVC: UIViewController {
         allUsers.insert(user, at: currPos-1)
         updateLeaderboard()
     }
-    @IBAction func tempBackPressed(_ sender: Any) {
-        self.dismiss(animated: false) {
+    
+    @IBAction func backButtonPressed(_ sender: Any) {
+        if quizMode == QuizLobbyVC.QuizMode.Standard {
+            performSegue(withIdentifier: "QuizVC", sender: nil)
+        }
+        
+        else if quizMode == QuizLobbyVC.QuizMode.HeadToHead {
+            let opponentHeadToHeadRequestRef = Database.database().reference().child("student/\(String(describing: headToHeadOpponent.databaseID!))/headtoheadgamerequest")
+            opponentHeadToHeadRequestRef.removeValue()
+            
+            let userHeadToHeadRequestRef = Database.database().reference().child("student/\(String(describing: user.databaseID!))/headtoheadgamerequest")
+            userHeadToHeadRequestRef.removeValue()
+            
+            let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(headToHeadGameKey!)
+            headToHeadGameRef.removeValue()
+        }
+        
+        else if quizMode == QuizLobbyVC.QuizMode.Solo {
+            performSegue(withIdentifier: "QuizVC", sender: nil)
         }
     }
+    
     @IBAction func tempNextQPressed(_ sender: Any) {
         nextQuestion()
     }

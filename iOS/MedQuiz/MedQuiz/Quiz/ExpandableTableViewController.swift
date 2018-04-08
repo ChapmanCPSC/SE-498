@@ -214,7 +214,11 @@ class ExpandableTableViewController: UITableViewController {
 
 extension ExpandableTableViewController:PerformsSegueDelegator {
     func callSegue() {
-        self.performSegue(withIdentifier: "QuizStartSegue", sender: nil)
+        let quizSelectModeVC = self.storyboard?.instantiateViewController(withIdentifier: "quizMode")
+        //TODO: add quiz key to each cell
+        //quizSelectModeVC.quizKey = self.quizKey
+        self.present(quizSelectModeVC!, animated: false, completion: {
+        })
     }
     
     
