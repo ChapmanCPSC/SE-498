@@ -23,6 +23,7 @@ class AnswerView: UIView {
     
     var answer:Answer = Answer(answerText: "Some answer Text", points: 10, isAnswer: false)
     var parent:SelectsAnswer!
+    public private(set) var isBlank:Bool = false
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -60,10 +61,13 @@ class AnswerView: UIView {
     }
 
     @objc func wasTapped(){
-        parent.answerSelected(answer: self)
+        if(!self.isBlank){ // only send wasTapped if it's a valid choice
+            parent.answerSelected(answer: self)
+        }
     }
 
     func setAnswer(answer:Answer) {
+        self.isBlank = false
         self.answer = answer
         resetViews()
     }
@@ -105,6 +109,9 @@ class AnswerView: UIView {
     }
 
     func displayAnswer(){
+        if(self.isBlank){
+            return
+        }
         if(self.answer.hasImage)!{
             self.showImage()
         }
@@ -165,6 +172,15 @@ class AnswerView: UIView {
         UIView.animate(withDuration: 0.25) { () -> Void in
             self.viewFade.alpha = 0.3
          }
+    }
+
+    func setBlank(){
+        self.isBlank = true
+        hideText()
+        hideImage()
+        hideCorrect()
+        hideWrong()
+        hidePoints()
     }
     
 }

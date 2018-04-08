@@ -241,7 +241,18 @@ class QuizActivityVC: UIViewController {
             finishQuiz()
             return
         }
-        currQuestion = currQuiz.questions![currQuestionIdx]
+//        currQuestion = currQuiz.questions![currQuestionIdx]
+        // test with 3 choices
+        /*currQuestion = Question(points: 10, imageForQuestion: false, imagesForAnswers: false, correctAnswer: "sdfgsdf", answers: [
+            Answer(answerText: "sdfgdf", points: 5, isAnswer: false),
+            Answer(answerText: "sdfgdf", points: 5, isAnswer: false),
+            Answer(answerText: "sdfgdf", points: 5, isAnswer: false)
+        ], image: UIImage(), tags: [], title: "dfgsdfg")*/
+        // test with 2 choices
+        /*currQuestion = Question(points: 10, imageForQuestion: false, imagesForAnswers: false, correctAnswer: "sdfgsdf", answers: [
+            Answer(answerText: "sdfgdf", points: 5, isAnswer: false),
+            Answer(answerText: "sdfgdf", points: 5, isAnswer: false)
+        ], image: UIImage(), tags: [], title: "dfgsdfg")*/
         hideAnswersForTime()
         reloadView()
     }
@@ -314,7 +325,13 @@ class QuizActivityVC: UIViewController {
         let answers = currQuestion.answers!
         for idx in 0..<4{
             let currView = answerViews[idx] as AnswerView
-            currView.setAnswer(answer: answers[idx])
+            if(idx >= answers.count){
+                currView.setBlank()
+                currView.fadeAnswer()
+            }
+            else{
+                currView.setAnswer(answer: answers[idx])
+            }
         }
     }
 
