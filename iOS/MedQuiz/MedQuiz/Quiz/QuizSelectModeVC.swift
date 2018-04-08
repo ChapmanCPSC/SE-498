@@ -8,8 +8,10 @@
 
 import UIKit
 
-class QuizSelectMode: UIViewController {
+class QuizSelectModeVC: UIViewController {
 
+    var quizKey:String!
+    
     @IBOutlet weak var leftCard: UIView!
     @IBOutlet weak var rightCard: UIView!
     
@@ -30,6 +32,14 @@ class QuizSelectMode: UIViewController {
         self.dismiss(animated: false) {
         }
     }
+    
+    @IBAction func headToHeadButtonPressed(_ sender: Any) {
+        let destinationVC = self.storyboard?.instantiateViewController(withIdentifier: "headToHead") as! HeadToHeadVC
+        destinationVC.quizKey = quizKey
+        present(destinationVC, animated: false, completion: nil)
+    }
+    
+    
     
     /*
     // MARK: - Navigation

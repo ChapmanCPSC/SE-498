@@ -806,10 +806,10 @@
             </objects>
             <point key="canvasLocation" x="79" y="880"/>
         </scene>
-        <!--Quiz Select Mode-->
+        <!--Quiz Select ModeVC-->
         <scene sceneID="NiF-nZ-KRY">
             <objects>
-                <viewController storyboardIdentifier="quizMode" id="HJf-UT-Bwk" customClass="QuizSelectMode" customModule="MedQuiz" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="quizMode" id="HJf-UT-Bwk" customClass="QuizSelectModeVC" customModule="MedQuiz" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZSG-ei-tDT">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -817,18 +817,19 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="etP-Gq-uwq">
                                 <rect key="frame" x="-21" y="120" width="533" height="726"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Head To Head" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tlG-oY-nJc">
-                                        <rect key="frame" x="105" y="292" width="304" height="65"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wqz-jq-4qi" userLabel="Head to Head Button">
+                                        <rect key="frame" x="21" y="0.0" width="512" height="647"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="ClearSans-Medium" family="Clear Sans Medium" pointSize="48"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                        <state key="normal" title="Head to Head">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="headToHeadButtonPressed:" destination="bDA-6P-XfU" eventType="touchUpInside" id="aQ3-4U-q9f"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.91371977329999998" green="0.63995903050000003" blue="0.71133505090000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <constraints>
-                                    <constraint firstItem="tlG-oY-nJc" firstAttribute="top" secondItem="etP-Gq-uwq" secondAttribute="top" constant="292" id="Dz6-om-aO9"/>
-                                    <constraint firstItem="tlG-oY-nJc" firstAttribute="leading" secondItem="etP-Gq-uwq" secondAttribute="leading" constant="105" id="mE1-1d-OtY"/>
-                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="50"/>
@@ -838,18 +839,16 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zgO-3W-Nfx">
                                 <rect key="frame" x="512" y="120" width="540" height="726"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Solo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oyI-0z-l9h">
-                                        <rect key="frame" x="208" y="292" width="97" height="65"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Ie-BG-rNh" userLabel="Solo Button">
+                                        <rect key="frame" x="0.0" y="0.0" width="512" height="647"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="ClearSans-Medium" family="Clear Sans Medium" pointSize="48"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                        <state key="normal" title="Solo">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.52890099874720875" green="0.91371977329999998" blue="0.36659281895289125" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <constraints>
-                                    <constraint firstItem="oyI-0z-l9h" firstAttribute="leading" secondItem="zgO-3W-Nfx" secondAttribute="leading" constant="208" id="09N-8x-ZBD"/>
-                                    <constraint firstItem="oyI-0z-l9h" firstAttribute="top" secondItem="zgO-3W-Nfx" secondAttribute="top" constant="292" id="9eS-Af-4Cb"/>
-                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="50"/>
@@ -900,13 +899,14 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3p1-rz-afN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="bDA-6P-XfU" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-197.4609375" y="1712.5"/>
         </scene>
         <!--Head To HeadVC-->
         <scene sceneID="2J2-LO-9Rp">
             <objects>
-                <viewController id="lVJ-Wf-3bX" customClass="HeadToHeadVC" customModule="MedQuiz" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="headToHead" id="lVJ-Wf-3bX" customClass="HeadToHeadVC" customModule="MedQuiz" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vyn-uR-Br8">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -30,7 +30,7 @@
 		3D6E83622075C38F00B5C512 /* Cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D6E835F2075C38E00B5C512 /* Cancel.png */; };
 		3D6E83632075C38F00B5C512 /* Cancel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D6E83602075C38E00B5C512 /* Cancel@2x.png */; };
 		3D6E83642075C38F00B5C512 /* Cancel@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D6E83612075C38E00B5C512 /* Cancel@3x.png */; };
-		3D6E83662075C4C000B5C512 /* QuizSelectMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6E83652075C4C000B5C512 /* QuizSelectMode.swift */; };
+		3D6E83662075C4C000B5C512 /* QuizSelectModeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6E83652075C4C000B5C512 /* QuizSelectModeVC.swift */; };
 		3D77A1401FB50968009178A1 /* AboutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D77A13F1FB50968009178A1 /* AboutVC.swift */; };
 		3D77A1421FB50987009178A1 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D77A1411FB50987009178A1 /* ProfileVC.swift */; };
 		3D77A1441FB509A7009178A1 /* ChangeAvatarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D77A1431FB509A7009178A1 /* ChangeAvatarVC.swift */; };
@@ -202,7 +202,7 @@
 		3D6E835F2075C38E00B5C512 /* Cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cancel.png; sourceTree = "<group>"; };
 		3D6E83602075C38E00B5C512 /* Cancel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cancel@2x.png"; sourceTree = "<group>"; };
 		3D6E83612075C38E00B5C512 /* Cancel@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cancel@3x.png"; sourceTree = "<group>"; };
-		3D6E83652075C4C000B5C512 /* QuizSelectMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSelectMode.swift; sourceTree = "<group>"; };
+		3D6E83652075C4C000B5C512 /* QuizSelectModeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSelectModeVC.swift; sourceTree = "<group>"; };
 		3D77A13F1FB50968009178A1 /* AboutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutVC.swift; sourceTree = "<group>"; };
 		3D77A1411FB50987009178A1 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		3D77A1431FB509A7009178A1 /* ChangeAvatarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAvatarVC.swift; sourceTree = "<group>"; };
@@ -559,7 +559,7 @@
 				A53E754D2037FC3E0081B1AD /* PerformsSegueDelegator.swift */,
 				77A14D69142779011ED840FD /* ExpandableTableViewController.swift */,
 				A5CA25A3205E3C3700C319BE /* QuizSummaryViewController.swift */,
-				3D6E83652075C4C000B5C512 /* QuizSelectMode.swift */,
+				3D6E83652075C4C000B5C512 /* QuizSelectModeVC.swift */,
 				A11F2EC0206B6269009BDEC6 /* HeadToHeadVC.swift */,
 				A11F2EC2206B649B009BDEC6 /* HeadToHeadFriendRequestTableViewCell.xib */,
 				A11F2EC42075A4A8009BDEC6 /* HeadToHeadFriendRequestTableViewCell.swift */,
@@ -1116,7 +1116,7 @@
 				A5BBD79120450F3C00A4D4D3 /* UserView.swift in Sources */,
 				3DD07C93204B5EEF00FADCD9 /* FriendsVC.swift in Sources */,
 				A53E75562043C5AE0081B1AD /* Ext_Constraint.swift in Sources */,
-				3D6E83662075C4C000B5C512 /* QuizSelectMode.swift in Sources */,
+				3D6E83662075C4C000B5C512 /* QuizSelectModeVC.swift in Sources */,
 				77A1404BBAD84427D45C7E6D /* SubjectDataNode.swift in Sources */,
 				77A14C52970D8B49A9E19116 /* CategoryDataNode.swift in Sources */,
 				A149D7DB2044B4C400AD3B1A /* ChangeUsernameVC.swift in Sources */,
