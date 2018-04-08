@@ -44,6 +44,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet weak var backButton: UIButton!
     
     var lobbyPlayers = [Student]()
+    var lobbyQueue = [Student]()
     var headToHeadOpponent:Student!
     
     @IBOutlet weak var statusLabel: UILabel!
@@ -57,7 +58,6 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     var quizMode:QuizMode!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,6 +76,8 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         loadingIndicatorView.transform = CGAffineTransform.init(scaleX: loadingIndicatorViewScale, y: loadingIndicatorViewScale)
         loadingIndicatorView.startAnimating()
         loadingIndicatorView.color = loadingIndicatorViewColor
+        
+        self.lobbyPlayersCollectionView.addObserver(self, forKeyPath: "contentSize", options: NSKeyValueObservingOptions.old, context: nil)
 
         if (quizMode == QuizMode.Standard){
             waitingString = "Waiting for other players..."
@@ -116,6 +118,11 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     override func viewDidAppear(_ animated: Bool) {
         print("quiz lobby appeared")
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.lobbyPlayersCollectionView.removeObserver(self, forKeyPath: "contentSize")
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -145,6 +152,13 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         cell.usernameLabel.text = lobbyPlayers[indexPath.row].userName
         cell.scoreLabel.text = scoreFormatter.string(from: lobbyPlayers[indexPath.row].totalPoints! as NSNumber)
         return cell
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if let observedObject = object as? UICollectionView, observedObject == self.lobbyPlayersCollectionView {
+//            addStudentToLobby()
+//            print("collection view reloaded")
+        }
     }
     
     func download(){
@@ -247,7 +261,6 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             _ = Quiz(key: theGame.quizKey!) { theQuiz in
                 self.quiz = theQuiz
                 self.downloadStudents {
-                    self.loadingQuizComplete()
                     completion()
                 }
             }
@@ -288,10 +301,10 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 for studentKey in gameStudentKeys{
                     _ = Student(key: studentKey) { (theStudent) in
                         studentCount += 1
-                        if studentKey != self.userStudentKey && !self.lobbyPlayers.contains(theStudent){
-                            self.lobbyPlayers.append(theStudent)
+                        if studentKey != self.userStudentKey && !self.lobbyPlayers.contains(theStudent) && !self.lobbyQueue.contains(theStudent){
+                            self.lobbyQueue.append(theStudent)
                             if studentCount == gameStudentKeys.count {
-                                self.lobbyPlayersCollectionView.reloadData()
+                                self.addStudentToLobby()
                                 completion()
                             }
                         }
@@ -301,11 +314,27 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         }
     }
     
+    func addStudentToLobby(){
+        if !lobbyQueue.isEmpty{
+            usleep(100000)
+            lobbyPlayers.append(lobbyQueue.popLast()!)
+            lobbyPlayersCollectionView.reloadData()
+            DispatchQueue.main.async(execute: {
+                self.addStudentToLobby()
+            })
+        }
+        else{
+            loadingQuizComplete()
+        }
+    }
+    
     func loadingQuizComplete(){
-        print("Loading Quiz complete")
-        quizDownloaded = true
-        statusLabel.text = waitingString
-        loadingIndicatorView.stopAnimating()
+        if !quizDownloaded {
+            print("Loading Quiz complete")
+            quizDownloaded = true
+            statusLabel.text = waitingString
+            loadingIndicatorView.stopAnimating()
+        }
     }
     
     func quizStarted(){

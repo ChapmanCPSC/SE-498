@@ -38,23 +38,28 @@ class Quiz {
             for questionModel in aQuizModel.quizQuestions{
                 questionKeys.append(questionModel.key)
             }
-            for questionKey in questionKeys{
-                _ = Question(key:questionKey, completion: { question in
-                    self.questions?.append(question)
-                })
-            }
             
-            self.tags = []
-            var tagKeys:[String] = []
-            for tagModel in aQuizModel.tags{
-                tagKeys.append(tagModel.key)
-            }
-            for tagKey in tagKeys{
-                _ = Tag(key:tagKey, completion: { tag in
-                    self.tags?.append(tag)
+            for i in 0...questionKeys.count - 1 {
+                _ = Question(key:questionKeys[i], completion: { question in
+                    self.questions?.append(question)
+                    if i == questionKeys.count - 1 {
+                        self.tags = []
+                        var tagKeys:[String] = []
+                        for tagModel in aQuizModel.tags{
+                            tagKeys.append(tagModel.key)
+                        }
+                        
+                        for j in 0...tagKeys.count - 1 {
+                            _ = Tag(key:tagKeys[j], completion: { tag in
+                                self.tags?.append(tag)
+                                if j == tagKeys.count - 1 {
+                                    completion(self)
+                                }
+                            })
+                        }
+                    }
                 })
             }
-            completion(self)
         })
     }
     
