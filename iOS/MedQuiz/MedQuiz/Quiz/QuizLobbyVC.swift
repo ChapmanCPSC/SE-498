@@ -207,6 +207,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                         self.quizStarted()
                     }
                     else{
+                        print("Head to Head invitation declined in lobby")
                         self.errorOccurred(title: "Invitation Declined", message: "Your opponent declined your game invitation.")
                     }
                 }
@@ -218,9 +219,12 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         if quizMode == QuizMode.HeadToHead {
             StudentModel.FromAndKeepObserving(key: "b29fks9mf9gh37fhh1h9814") {friend in
                 guard friend.headToHeadGameRequest != nil else{
-                    self.quizCancelled = true
-                    self.errorOccurred(title: "Head to Head Game Cancelled", message: "Head to head game against \(String(describing: self.headToHeadOpponent.userName!)) cancelled.")
-                    completion()
+                    if !self.activityStarted {
+                        print("Head to Head game cancelled in lobby")
+                        self.quizCancelled = true
+                        self.errorOccurred(title: "Head to Head Game Cancelled", message: "Head to head game against \(String(describing: self.headToHeadOpponent.userName!)) cancelled.")
+                        completion()
+                    }
                     return
                 }
             }
@@ -311,29 +315,34 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         
         activityStarted = true
         
-        let destinationVC = self.storyboard?.instantiateViewController(withIdentifier: "quiz_act") as! QuizActivityVC
-        destinationVC.currQuiz = quiz
-        destinationVC.user = user
-        
-        if (quizMode == QuizMode.Standard){
-            destinationVC.quizMode = QuizMode.Standard
-            destinationVC.gameKey = gameKey
-            lobbyPlayers.append(user)
-            destinationVC.allUsers = lobbyPlayers
+        performSegue(withIdentifier: "lobbyToActivity", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "lobbyToActivity" {
+            let destinationVC = segue.destination as! QuizActivityVC
+            destinationVC.currQuiz = quiz
+            destinationVC.user = user
+            
+            if (quizMode == QuizMode.Standard){
+                destinationVC.quizMode = QuizMode.Standard
+                destinationVC.gameKey = gameKey
+                lobbyPlayers.append(user)
+                destinationVC.allUsers = lobbyPlayers
+            }
+            else if (quizMode == QuizMode.HeadToHead){
+                destinationVC.quizMode = QuizMode.HeadToHead
+                destinationVC.headToHeadGameKey = headToHeadGameKey
+                destinationVC.headToHeadOpponent = headToHeadOpponent
+            }
+            else if (quizMode == QuizMode.Solo){
+                destinationVC.quizMode = QuizMode.Solo
+            }
         }
-        else if (quizMode == QuizMode.HeadToHead){
-            destinationVC.quizMode = QuizMode.HeadToHead
-            destinationVC.headToHeadGameKey = headToHeadGameKey
-            destinationVC.headToHeadOpponent = headToHeadOpponent
-        }
-        else if (quizMode == QuizMode.Solo){
-            destinationVC.quizMode = QuizMode.Solo
-        }
-        
-        present(destinationVC, animated: false, completion: nil)
     }
     
     func errorOccurred(title:String, message:String){
+        print("Lobby error occurred")
         let alert = UIAlertController(title:title, message:message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default) { UIAlertAction in
             self.dismiss(animated: false, completion: nil)
@@ -342,20 +351,6 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     @IBAction func tempQuizActivityPressed(_ sender: Any) {
         quizStarted()
-        
-//        let destinationVC = self.storyboard?.instantiateViewController(withIdentifier: "quiz_act") as! QuizActivityVC
-//        destinationVC.currQuiz = quiz
-//        destinationVC.gameKey = gameKey
-//        destinationVC.user = user
-//        lobbyPlayers.append(user)
-//        destinationVC.allUsers = lobbyPlayers
-//
-//            self.dismiss(animated: false, completion: {
-//                mainQuizVC.present(destinationVC, animated: false) {
-//                print("hey")
-//
-//                }
-//            })
     }
     
     @IBAction func tempBckPressed(_ sender: Any) {

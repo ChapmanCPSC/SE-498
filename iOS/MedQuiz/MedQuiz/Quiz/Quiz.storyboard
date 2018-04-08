@@ -133,7 +133,7 @@
                                         <rect key="frame" x="20" y="119" width="117" height="30"/>
                                         <state key="normal" title="Temp Leave Quiz"/>
                                         <connections>
-                                            <segue destination="Jvp-t9-Pxf" kind="show" id="qo8-Ml-WfT"/>
+                                            <segue destination="Jvp-t9-Pxf" kind="show" identifier="activityToMain" id="qo8-Ml-WfT"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="anT-Bb-MI9">
@@ -645,11 +645,12 @@
                         <outlet property="loadingIndicatorView" destination="dOY-cz-oeP" id="tfN-GG-H0z"/>
                         <outlet property="lobbyPlayersCollectionView" destination="9rD-8X-JGq" id="7Hn-Nu-qUc"/>
                         <outlet property="statusLabel" destination="9bl-3n-SGg" id="aoW-rO-C8y"/>
+                        <segue destination="iNk-fp-Fpw" kind="show" identifier="lobbyToActivity" id="1vW-2T-cWT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MAY-Kt-eAY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1325.390625" y="591.40625"/>
+            <point key="canvasLocation" x="789" y="106"/>
         </scene>
         <!--Quiz SearchVC-->
         <scene sceneID="e69-Kq-OHY">
@@ -698,7 +699,7 @@
         <!--QuizVC-->
         <scene sceneID="uWT-8D-ojT">
             <objects>
-                <viewController id="Jvp-t9-Pxf" customClass="QuizVC" customModule="MedQuiz" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="main" id="Jvp-t9-Pxf" customClass="QuizVC" customModule="MedQuiz" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Mpd-4F-5DU">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -986,6 +987,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="qo8-Ml-WfT"/>
-        <segue reference="KMK-MK-Hl3"/>
+        <segue reference="1vW-2T-cWT"/>
     </inferredMetricsTieBreakers>
 </document>

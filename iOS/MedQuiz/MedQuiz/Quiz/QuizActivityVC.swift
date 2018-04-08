@@ -84,7 +84,6 @@ class QuizActivityVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
         questionsTimer.backgroundColor = UIColor.clear
         questionsTimer.labelTextColor = UIColor.black
         questionsTimer.lineColor = UIColor.yellow
@@ -226,17 +225,25 @@ class QuizActivityVC: UIViewController {
         // handle setting up firebase stuff
     }
     
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "activityToMain" {
+//            let destinationVC = segue.destination as! QuizVC
+//            
+//        }
+//    }
+    
     func checkRequestStatus(completion: @escaping () -> Void){
         if quizMode == QuizLobbyVC.QuizMode.HeadToHead {
             StudentModel.FromAndKeepObserving(key: user.databaseID!) {userStudent in
                 guard userStudent.headToHeadGameRequest != nil else {
+                    print("Head to Head quiz cancelled.")
                     self.quizCancelled = true
                     let alert = UIAlertController(title:"Head to Head Game Cancelled", message:"The Head to Head game has been cancelled.", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default) { UIAlertAction in
-                        self.present(alert, animated: true, completion: nil)
-                        self.performSegue(withIdentifier: "QuizVC", sender: nil)
+                        self.present((UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController())!, animated: false) {}
                         completion()
                     })
+                    self.present(alert, animated: true, completion: nil)
                     return
                 }
             }
