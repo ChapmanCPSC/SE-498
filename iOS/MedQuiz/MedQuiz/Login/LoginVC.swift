@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class LoginVC: UIViewController, UITextFieldDelegate {
 
@@ -21,6 +22,8 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var loginBackground: UIScrollView!
     
+    
+    var loggedIn = false
 //    var tags : TagModel?
     
     override func viewDidLoad() {
@@ -97,17 +100,27 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         
         //UNCOMMENT LATER - for when we need to check username/password with db
         
-//        if (usernameTextField.text == "username" && passwordTextField.text == "password"){
-//            present((MainStoryBoard?.instantiateInitialViewController())!, animated: false, completion: nil)
-//        }
-//        else{
-//            loginErrorLabel.text = "Incorrect username/password"
-//            loginErrorLabel.isHidden = false
-//        }
-    
-        
-        present((MainStoryBoard?.instantiateInitialViewController())!, animated: false, completion: nil)
-
+        if(!usernameTextField.text!.isEmpty && !passwordTextField.text!.isEmpty){
+            
+            Auth.auth().signIn(withEmail: usernameTextField.text! + "@mail.chapman.edu", password: passwordTextField.text!) { (signedInUser, error) in
+                
+                if(signedInUser != nil){
+                    self.loggedIn = true
+                }
+                
+                //logged in
+                if (self.loggedIn){
+                    self.present((self.MainStoryBoard?.instantiateInitialViewController())!, animated: false, completion: nil)
+                }
+                    
+                //not logged in
+                else{
+                    self.loginErrorLabel.text = "Incorrect username/password"
+                    self.loginErrorLabel.isHidden = false
+                }
+                
+            }
+        }
         
     }
     
