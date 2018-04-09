@@ -856,6 +856,9 @@
                                         <state key="normal" title="Solo">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="soloButtonPressed:" destination="HJf-UT-Bwk" eventType="touchUpInside" id="JHh-as-zio"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.52890099874720875" green="0.91371977329999998" blue="0.36659281895289125" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

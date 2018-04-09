@@ -39,6 +39,13 @@ class QuizSelectModeVC: UIViewController {
         present(destinationVC, animated: false, completion: nil)
     }
     
+    @IBAction func soloButtonPressed(_ sender: Any) {
+        let destinationVC = self.storyboard?.instantiateViewController(withIdentifier: "quizLobbyVC") as! QuizLobbyVC
+        destinationVC.quizKey = quizKey
+        destinationVC.quizMode = QuizLobbyVC.QuizMode.Solo
+        present(destinationVC, animated: false, completion: nil)
+    }
+    
     
     
     /*
