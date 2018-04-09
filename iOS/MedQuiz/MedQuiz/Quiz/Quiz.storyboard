@@ -271,6 +271,7 @@
                         <outlet property="answer2" destination="Mhy-9W-V5P" id="sav-ab-79V"/>
                         <outlet property="answer3" destination="1HG-EA-B80" id="Ifd-IO-WfP"/>
                         <outlet property="answer4" destination="PDX-BQ-Q9I" id="fZj-Mg-RB9"/>
+                        <outlet property="backCancelButton" destination="zKg-ej-ZNf" id="CET-3j-Yct"/>
                         <outlet property="con_questionContainerHeight" destination="SWh-qa-xtl" id="Rqb-9R-Jdj"/>
                         <outlet property="con_questionImageHeight" destination="xUa-Mh-r3e" id="u5h-l1-jio"/>
                         <outlet property="iv_questionImage" destination="X16-ah-GQU" id="c1e-ha-jwZ"/>

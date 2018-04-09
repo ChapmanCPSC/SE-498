@@ -60,6 +60,7 @@ class QuizActivityVC: UIViewController {
     
     @IBOutlet var viewMain: UIView!
     
+    @IBOutlet weak var backCancelButton: UIButton!
     
     @IBOutlet weak var con_questionContainerHeight: NSLayoutConstraint!
     
@@ -101,6 +102,15 @@ class QuizActivityVC: UIViewController {
 
         hideAnswersForTime()
 
+        if(quizMode == QuizLobbyVC.QuizMode.HeadToHead){
+            backCancelButton.isHidden = false
+        }
+        else if(quizMode == QuizLobbyVC.QuizMode.Standard){
+            backCancelButton.isHidden = true
+        }
+        else if(quizMode == QuizLobbyVC.QuizMode.Solo){
+            backCancelButton.isHidden = false
+        }
         print("Multiplier of image is: \(con_questionImageHeight.multiplier)")
         
 //        tempSetupQuiz() // TODO Remove this after finishing testing
@@ -240,7 +250,9 @@ class QuizActivityVC: UIViewController {
                     self.quizCancelled = true
                     let alert = UIAlertController(title:"Head to Head Game Cancelled", message:"The Head to Head game has been cancelled.", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default) { UIAlertAction in
-                        self.present((UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController())!, animated: false) {}
+                        self.dismiss(animated: false, completion: {
+                            
+                        })
                         completion()
                     })
                     self.present(alert, animated: true, completion: nil)
@@ -565,18 +577,47 @@ class QuizActivityVC: UIViewController {
         }
         
         else if quizMode == QuizLobbyVC.QuizMode.HeadToHead {
-            let opponentHeadToHeadRequestRef = Database.database().reference().child("student/\(String(describing: headToHeadOpponent.databaseID!))/headtoheadgamerequest")
-            opponentHeadToHeadRequestRef.removeValue()
             
-            let userHeadToHeadRequestRef = Database.database().reference().child("student/\(String(describing: user.databaseID!))/headtoheadgamerequest")
-            userHeadToHeadRequestRef.removeValue()
+            let alert = UIAlertController(title: "Are you sure you want to exit the quiz?", message: "All your progress will be lost.", preferredStyle: .alert)
             
-            let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(headToHeadGameKey!)
-            headToHeadGameRef.removeValue()
+            alert.addAction(UIAlertAction(title: "Yes", style: .default, handler:{ action in
+                let opponentHeadToHeadRequestRef = Database.database().reference().child("student/\(String(describing: self.headToHeadOpponent.databaseID!))/headtoheadgamerequest")
+                opponentHeadToHeadRequestRef.removeValue()
+                
+                let userHeadToHeadRequestRef = Database.database().reference().child("student/\(String(describing: self.user.databaseID!))/headtoheadgamerequest")
+                userHeadToHeadRequestRef.removeValue()
+                
+                let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(self.headToHeadGameKey!)
+                headToHeadGameRef.removeValue()
+            }))
+            
+            alert.addAction(UIAlertAction(title: "No", style: .cancel, handler:{ action in
+                alert.dismiss(animated: false, completion: {
+                })
+            }))
+            
+            self.present(alert, animated: true)
+            
         }
         
         else if quizMode == QuizLobbyVC.QuizMode.Solo {
-            performSegue(withIdentifier: "QuizVC", sender: nil)
+            
+            let alert = UIAlertController(title: "Are you sure you want to exit the quiz?", message: "All your progress will be lost.", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "Yes", style: .default, handler:{ action in
+                //TODO:Delete data and any realted progress from db
+                self.dismiss(animated: false, completion: {
+                })
+                //performSegue(withIdentifier: "QuizVC", sender: nil)
+            }))
+            
+            alert.addAction(UIAlertAction(title: "No", style: .cancel, handler:{ action in
+                alert.dismiss(animated: false, completion: {
+                })
+            }))
+            
+            self.present(alert, animated: true)
+            
         }
     }
     
