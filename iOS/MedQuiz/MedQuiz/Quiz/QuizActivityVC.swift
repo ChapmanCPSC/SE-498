@@ -383,7 +383,6 @@ class QuizActivityVC: UIViewController {
             let currView = answerViews[idx] as AnswerView
             if(idx >= answers.count){
                 currView.setBlank()
-                currView.fadeAnswer()
             }
             else{
                 currView.setAnswer(answer: answers[idx])

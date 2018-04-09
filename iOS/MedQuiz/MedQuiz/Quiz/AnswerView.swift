@@ -169,9 +169,16 @@ class AnswerView: UIView {
     }
 
     func fadeAnswer(){
+        var decimal:CGFloat
+        if(self.isBlank){
+            decimal = 1
+        }
+        else {
+            decimal = 0.3
+        }
         UIView.animate(withDuration: 0.25) { () -> Void in
-            self.viewFade.alpha = 0.3
-         }
+            self.viewFade.alpha = decimal
+        }
     }
 
     func setBlank(){
@@ -181,6 +188,7 @@ class AnswerView: UIView {
         hideCorrect()
         hideWrong()
         hidePoints()
+        fadeAnswer()
     }
     
 }
