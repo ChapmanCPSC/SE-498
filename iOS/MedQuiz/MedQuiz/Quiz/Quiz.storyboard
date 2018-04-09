@@ -133,7 +133,7 @@
                                         <rect key="frame" x="20" y="119" width="117" height="30"/>
                                         <state key="normal" title="Temp Leave Quiz"/>
                                         <connections>
-                                            <segue destination="Jvp-t9-Pxf" kind="show" id="qo8-Ml-WfT"/>
+                                            <segue destination="Jvp-t9-Pxf" kind="show" identifier="activityToMain" id="qo8-Ml-WfT"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="anT-Bb-MI9">
@@ -271,6 +271,7 @@
                         <outlet property="answer2" destination="Mhy-9W-V5P" id="sav-ab-79V"/>
                         <outlet property="answer3" destination="1HG-EA-B80" id="Ifd-IO-WfP"/>
                         <outlet property="answer4" destination="PDX-BQ-Q9I" id="fZj-Mg-RB9"/>
+                        <outlet property="backCancelButton" destination="zKg-ej-ZNf" id="CET-3j-Yct"/>
                         <outlet property="con_questionContainerHeight" destination="SWh-qa-xtl" id="Rqb-9R-Jdj"/>
                         <outlet property="con_questionImageHeight" destination="xUa-Mh-r3e" id="u5h-l1-jio"/>
                         <outlet property="iv_questionImage" destination="X16-ah-GQU" id="c1e-ha-jwZ"/>
@@ -574,6 +575,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="and" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1is-3h-qU7" userLabel="And Label">
+                                <rect key="frame" x="465" y="377" width="93" height="54"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="31"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v4J-Yf-WuH" userLabel="Back Button">
                                 <rect key="frame" x="912" y="40" width="73" height="71"/>
                                 <constraints>
@@ -627,6 +635,7 @@
                         <viewLayoutGuide key="safeArea" id="Fwg-5E-tzD"/>
                     </view>
                     <connections>
+                        <outlet property="andLabel" destination="1is-3h-qU7" id="ZhI-lb-63H"/>
                         <outlet property="backButton" destination="v4J-Yf-WuH" id="UEZ-Ty-qHu"/>
                         <outlet property="headToHeadOpponentAvatarImageView" destination="Gq1-Jt-NuX" id="OMf-I9-diA"/>
                         <outlet property="headToHeadOpponentScoreLabel" destination="bwu-hc-pFQ" id="MJc-8f-7V1"/>
@@ -637,11 +646,12 @@
                         <outlet property="loadingIndicatorView" destination="dOY-cz-oeP" id="tfN-GG-H0z"/>
                         <outlet property="lobbyPlayersCollectionView" destination="9rD-8X-JGq" id="7Hn-Nu-qUc"/>
                         <outlet property="statusLabel" destination="9bl-3n-SGg" id="aoW-rO-C8y"/>
+                        <segue destination="iNk-fp-Fpw" kind="show" identifier="lobbyToActivity" id="1vW-2T-cWT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MAY-Kt-eAY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1325.390625" y="591.40625"/>
+            <point key="canvasLocation" x="789" y="106"/>
         </scene>
         <!--Quiz SearchVC-->
         <scene sceneID="e69-Kq-OHY">
@@ -690,7 +700,7 @@
         <!--QuizVC-->
         <scene sceneID="uWT-8D-ojT">
             <objects>
-                <viewController id="Jvp-t9-Pxf" customClass="QuizVC" customModule="MedQuiz" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="main" id="Jvp-t9-Pxf" customClass="QuizVC" customModule="MedQuiz" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Mpd-4F-5DU">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -846,6 +856,9 @@
                                         <state key="normal" title="Solo">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="soloButtonPressed:" destination="HJf-UT-Bwk" eventType="touchUpInside" id="JHh-as-zio"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.52890099874720875" green="0.91371977329999998" blue="0.36659281895289125" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -978,6 +991,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="qo8-Ml-WfT"/>
-        <segue reference="KMK-MK-Hl3"/>
+        <segue reference="1vW-2T-cWT"/>
     </inferredMetricsTieBreakers>
 </document>

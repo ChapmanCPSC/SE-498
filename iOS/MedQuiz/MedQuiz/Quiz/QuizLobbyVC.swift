@@ -12,7 +12,7 @@ import Firebase
 
 class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    var quiz:Quiz?
+    var quiz:Quiz!
     
     var gamePin:String?
     var gameKey:String?
@@ -21,6 +21,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     var quizDownloaded:Bool = false
     var quizCancelled:Bool = false
+    var activityStarted:Bool = false
     
     //TODO: To be set by logging in and not be static as such
     var userStudentKey:String = "b29fks9mf9gh37fhh1h9814"
@@ -34,6 +35,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet weak var headToHeadOpponentAvatarImageView: UIImageView!
     @IBOutlet weak var headToHeadOpponentUserNameLabel: UILabel!
     @IBOutlet weak var headToHeadOpponentScoreLabel: UILabel!
+    @IBOutlet weak var andLabel: UILabel!
     
     @IBOutlet weak var loadingIndicatorView: UIActivityIndicatorView!
     let loadingIndicatorViewScale:CGFloat = 2.0
@@ -42,6 +44,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBOutlet weak var backButton: UIButton!
     
     var lobbyPlayers = [Student]()
+    var lobbyQueue = [Student]()
     var headToHeadOpponent:Student!
     
     @IBOutlet weak var statusLabel: UILabel!
@@ -55,7 +58,6 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     var quizMode:QuizMode!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,6 +76,8 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         loadingIndicatorView.transform = CGAffineTransform.init(scaleX: loadingIndicatorViewScale, y: loadingIndicatorViewScale)
         loadingIndicatorView.startAnimating()
         loadingIndicatorView.color = loadingIndicatorViewColor
+        
+        self.lobbyPlayersCollectionView.addObserver(self, forKeyPath: "contentSize", options: NSKeyValueObservingOptions.old, context: nil)
 
         if (quizMode == QuizMode.Standard){
             waitingString = "Waiting for other players..."
@@ -93,6 +97,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             headToHeadOpponentAvatarImageView.isHidden = false
             headToHeadOpponentUserNameLabel.isHidden = false
             headToHeadOpponentScoreLabel.isHidden = false
+            andLabel.isHidden = false
             
 //            headToHeadUserAvatarImageView.image = user.profilePic!
 //            headToHeadUserUserNameLabel.text = user.userName!
@@ -102,7 +107,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             headToHeadUserScoreLabel.text = String(describing: 2500)
             headToHeadOpponentAvatarImageView.image = headToHeadOpponent.profilePic!
             headToHeadOpponentUserNameLabel.text = headToHeadOpponent.userName!
-            headToHeadOpponentScoreLabel.text = String(describing: headToHeadOpponent?.totalPoints!)
+            headToHeadOpponentScoreLabel.text = String(describing: headToHeadOpponent.totalPoints!)
         }
         else if (quizMode == QuizMode.Solo){
             waitingString = "Ready to start..."
@@ -112,6 +117,11 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     override func viewDidAppear(_ animated: Bool) {
         print("quiz lobby appeared")
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.lobbyPlayersCollectionView.removeObserver(self, forKeyPath: "contentSize")
     }
 
     override func didReceiveMemoryWarning() {
@@ -144,26 +154,21 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         return cell
     }
     
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if let observedObject = object as? UICollectionView, observedObject == self.lobbyPlayersCollectionView {
+//            addStudentToLobby()
+//            print("collection view reloaded")
+        }
+    }
+    
     func download(){
         checkRequestStatus {
             self.checkConnection {
                 if (self.quizMode == QuizMode.Standard){
-                    self.downloadGameQuiz {
-                        self.downloadStudents {
-                            self.loadingQuizComplete()
-                        }
-                    }
+                    self.downloadStandardQuiz {}
                 }
                 else {
-                    self.downloadQuiz {
-                        if (self.quizMode == QuizMode.HeadToHead){
-                            self.loadingQuizComplete()
-                            self.checkOpponentReady()
-                        }
-                        else if (self.quizMode == QuizMode.Solo){
-                            self.quizStarted()
-                        }
-                    }
+                    self.downloadQuiz {}
                 }
             }
         }
@@ -210,12 +215,13 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     func checkOpponentReady(){
         HeadToHeadGameModel.FromAndKeepObserving(key: headToHeadGameKey!) { (headToHeadGame) in
-            if !self.quizCancelled {
+            if !self.quizCancelled && !self.activityStarted {
                 if headToHeadGame.decided! {
                     if headToHeadGame.accepted! {
                         self.quizStarted()
                     }
                     else{
+                        print("Head to Head invitation declined in lobby")
                         self.errorOccurred(title: "Invitation Declined", message: "Your opponent declined your game invitation.")
                     }
                 }
@@ -227,9 +233,12 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         if quizMode == QuizMode.HeadToHead {
             StudentModel.FromAndKeepObserving(key: "b29fks9mf9gh37fhh1h9814") {friend in
                 guard friend.headToHeadGameRequest != nil else{
-                    self.quizCancelled = true
-                    self.errorOccurred(title: "Head to Head Game Cancelled", message: "Head to head game against \(String(describing: self.headToHeadOpponent.userName!)) cancelled.")
-                    completion()
+                    if !self.activityStarted {
+                        print("Head to Head game cancelled in lobby")
+                        self.quizCancelled = true
+                        self.errorOccurred(title: "Head to Head Game Cancelled", message: "Head to head game against \(String(describing: self.headToHeadOpponent.userName!)) cancelled.")
+                        completion()
+                    }
                     return
                 }
             }
@@ -244,14 +253,16 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         print("-------->Deallocating quiz data")
     }
     
-    func downloadGameQuiz(completion: @escaping () -> Void){
+    func downloadStandardQuiz(completion: @escaping () -> Void){
         GameModel.Where(child: GameModel.GAME_PIN, equals: self.gamePin) { (gamesFound) in
             let theGame = gamesFound[0]
             self.gameKey = theGame.key
             
             _ = Quiz(key: theGame.quizKey!) { theQuiz in
                 self.quiz = theQuiz
-                completion()
+                self.downloadStudents {
+                    completion()
+                }
             }
         }
     }
@@ -259,7 +270,17 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     func downloadQuiz(completion:@escaping () -> Void){
         _ = Quiz(key: quizKey!) { quiz in
             self.quiz = quiz
-            completion()
+            self.loadingQuizComplete()
+            
+            if self.quizMode == QuizMode.HeadToHead {
+                self.checkRequestStatus {
+                    completion()
+                }
+            }
+            else if self.quizMode == QuizMode.Solo {
+                //TODO
+                completion()
+            }
         }
     }
     
@@ -280,10 +301,10 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 for studentKey in gameStudentKeys{
                     _ = Student(key: studentKey) { (theStudent) in
                         studentCount += 1
-                        if studentKey != self.userStudentKey && !self.lobbyPlayers.contains(theStudent){
-                            self.lobbyPlayers.append(theStudent)
+                        if studentKey != self.userStudentKey && !self.lobbyPlayers.contains(theStudent) && !self.lobbyQueue.contains(theStudent){
+                            self.lobbyQueue.append(theStudent)
                             if studentCount == gameStudentKeys.count {
-                                self.lobbyPlayersCollectionView.reloadData()
+                                self.addStudentToLobby()
                                 completion()
                             }
                         }
@@ -293,11 +314,27 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         }
     }
     
+    func addStudentToLobby(){
+        if !lobbyQueue.isEmpty{
+            usleep(100000)
+            lobbyPlayers.append(lobbyQueue.popLast()!)
+            lobbyPlayersCollectionView.reloadData()
+            DispatchQueue.main.async(execute: {
+                self.addStudentToLobby()
+            })
+        }
+        else{
+            loadingQuizComplete()
+        }
+    }
+    
     func loadingQuizComplete(){
-        print("Loading Quiz complete")
-        quizDownloaded = true
-        statusLabel.text = waitingString
-        loadingIndicatorView.stopAnimating()
+        if !quizDownloaded {
+            print("Loading Quiz complete")
+            quizDownloaded = true
+            statusLabel.text = waitingString
+            loadingIndicatorView.stopAnimating()
+        }
     }
     
     func quizStarted(){
@@ -305,29 +342,36 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         // and present a new one rather than perform a segue
         //performSegue(withIdentifier: "QuizActivitySegue", sender: nil)
         
-        let destinationVC = self.storyboard?.instantiateViewController(withIdentifier: "quiz_act") as! QuizActivityVC
-        destinationVC.currQuiz = quiz
-        destinationVC.user = user
+        activityStarted = true
         
-        if (quizMode == QuizMode.Standard){
-            destinationVC.quizMode = QuizMode.Standard
-            destinationVC.gameKey = gameKey
-            lobbyPlayers.append(user)
-            destinationVC.allUsers = lobbyPlayers
+        performSegue(withIdentifier: "lobbyToActivity", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "lobbyToActivity" {
+            let destinationVC = segue.destination as! QuizActivityVC
+            destinationVC.currQuiz = quiz
+            destinationVC.user = user
+            
+            if (quizMode == QuizMode.Standard){
+                destinationVC.quizMode = QuizMode.Standard
+                destinationVC.gameKey = gameKey
+                lobbyPlayers.append(user)
+                destinationVC.allUsers = lobbyPlayers
+            }
+            else if (quizMode == QuizMode.HeadToHead){
+                destinationVC.quizMode = QuizMode.HeadToHead
+                destinationVC.headToHeadGameKey = headToHeadGameKey
+                destinationVC.headToHeadOpponent = headToHeadOpponent
+            }
+            else if (quizMode == QuizMode.Solo){
+                destinationVC.quizMode = QuizMode.Solo
+            }
         }
-        else if (quizMode == QuizMode.HeadToHead){
-            destinationVC.quizMode = QuizMode.HeadToHead
-            destinationVC.headToHeadGameKey = headToHeadGameKey
-            destinationVC.headToHeadOpponent = headToHeadOpponent
-        }
-        else if (quizMode == QuizMode.Solo){
-            destinationVC.quizMode = QuizMode.Solo
-        }
-        
-        present(destinationVC, animated: false, completion: nil)
     }
     
     func errorOccurred(title:String, message:String){
+        print("Lobby error occurred")
         let alert = UIAlertController(title:title, message:message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default) { UIAlertAction in
             self.dismiss(animated: false, completion: nil)
@@ -336,20 +380,6 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     @IBAction func tempQuizActivityPressed(_ sender: Any) {
         quizStarted()
-        
-//        let destinationVC = self.storyboard?.instantiateViewController(withIdentifier: "quiz_act") as! QuizActivityVC
-//        destinationVC.currQuiz = quiz
-//        destinationVC.gameKey = gameKey
-//        destinationVC.user = user
-//        lobbyPlayers.append(user)
-//        destinationVC.allUsers = lobbyPlayers
-//
-//            self.dismiss(animated: false, completion: {
-//                mainQuizVC.present(destinationVC, animated: false) {
-//                print("hey")
-//
-//                }
-//            })
     }
     
     @IBAction func tempBckPressed(_ sender: Any) {
