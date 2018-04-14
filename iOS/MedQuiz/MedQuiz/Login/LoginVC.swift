@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import Firebase
 
 class LoginVC: UIViewController, UITextFieldDelegate {
 
@@ -22,6 +23,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var loginBackground: UIScrollView!
     
+    var currView:UIViewController!
     
     var loggedIn = false
 //    var tags : TagModel?
@@ -53,19 +55,19 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         // this would be used for example on successful login/authentication
         // from Firebase. We have the input from the usernameTextField
         // and we can use that on login to get the username and profile pic etc.
-        let testUserLoginInput = "b29fks9mf9gh37fhh1h9814"
-//        //I query a student by the key and I print the student's username on success
-        StudentModel.From(key: testUserLoginInput) { (aStudent) in
-            print("Testing user login")
-            print(aStudent.studentUsername!)
-        }
+//        let testUserLoginInput = "b29fks9mf9gh37fhh1h9814"
+        //I query a student by the key and I print the student's username on success
+//        StudentModel.From(key: testUserLoginInput) { (aStudent) in
+//            print("Testing user login")
+//            print(aStudent.studentUsername!)
+//        }
         
         //Example of a query that will keep observing for any changes/additions/deletions
         // at a specific key path
-        StudentModel.FromAndKeepObserving(key: testUserLoginInput) { (aStudent) in
-            print("Testing user login")
-            print(aStudent.studentUsername!)
-        }
+//        StudentModel.FromAndKeepObserving(key: testUserLoginInput) { (aStudent) in
+//            print("Testing user login")
+//            print(aStudent.studentUsername!)
+//        }
         
         
         //Example of getting all the profile pictures for all students
@@ -81,14 +83,14 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         
         //Example of getting specific profile picture for one student
         // (not sure this is usefull but just an example of use)
-        let testUserLoginInput2 = "lylenator2000"
-        StudentModel.Where(child: "username", equals: testUserLoginInput2) { (studentModelsReturned) in
-            let theStudent = studentModelsReturned[0]
-            print(theStudent.studentUsername!)
-            theStudent.getProfilePic(completion: { (theProfilePic) in
-                print(theProfilePic!.description)
-            })
-        }
+//        let testUserLoginInput2 = "lylenator2000"
+//        StudentModel.Where(child: "username", equals: testUserLoginInput2) { (studentModelsReturned) in
+//            let theStudent = studentModelsReturned[0]
+//            print(theStudent.studentUsername!)
+//            theStudent.getProfilePic(completion: { (theProfilePic) in
+//                print(theProfilePic!.description)
+//            })
+//        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -111,6 +113,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                 //logged in
                 if (self.loggedIn){
                     self.present((self.MainStoryBoard?.instantiateInitialViewController())!, animated: false, completion: nil)
+                    self.checkHeadToHeadRequest(userStudentKey: "b29fks9mf9gh37fhh1h9814")
                 }
                     
                 //not logged in
@@ -142,5 +145,41 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         return true
     }
     
-
+    func checkHeadToHeadRequest(userStudentKey:String){
+        StudentModel.FromAndKeepObserving(key: userStudentKey) {user in
+            if user.headToHeadGameRequest != nil {
+                print("Presenting head to head request")
+                let sb:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let headToHeadRequestVC:HeadToHeadRequestVC = sb.instantiateViewController(withIdentifier: "headToHeadRequest") as! HeadToHeadRequestVC
+                headToHeadRequestVC.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+                if var topController = UIApplication.shared.keyWindow?.rootViewController {
+                    while let presentedViewController = topController.presentedViewController {
+                        print(type(of: topController))
+                        topController = presentedViewController
+                    }
+                    
+                    let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(user.headToHeadGameRequest!)
+                    headToHeadGameRef.observeSingleEvent(of: .value, with: {(snapshot) in
+                        //temp user student reference
+                        _ = Student(key: user.key) { userStudent in
+                            _ = Student(key: snapshot.childSnapshot(forPath: "inviter").childSnapshot(forPath: "student").value! as! String) { inviter in
+                                headToHeadRequestVC.user = userStudent
+                                headToHeadRequestVC.opponent = inviter
+                                headToHeadRequestVC.headToHeadGameKey = user.headToHeadGameRequest
+                                let quizKey:String = snapshot.childSnapshot(forPath: "quizkey").value! as! String
+                                QuizModel.From(key: quizKey){ quiz in
+                                    headToHeadRequestVC.headToHeadQuizTitle = quiz.title
+                                    headToHeadRequestVC.headToHeadQuizKey = quizKey
+                                    topController.present(headToHeadRequestVC, animated: true) {
+                                        print("Request presented")
+                                        print(type(of: topController))
+                                    }
+                                }
+                            }
+                        }
+                    })
+                }
+            }
+        }
+    }
 }

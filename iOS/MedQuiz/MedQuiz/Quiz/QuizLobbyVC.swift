@@ -23,8 +23,6 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     var quizCancelled:Bool = false
     var activityStarted:Bool = false
     
-    //TODO: To be set by logging in and not be static as such
-    var userStudentKey:String = "b29fks9mf9gh37fhh1h9814"
     var user:Student!
     
     @IBOutlet weak var lobbyPlayersCollectionView: UICollectionView!
@@ -46,10 +44,12 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     var lobbyPlayers = [Student]()
     var lobbyQueue = [Student]()
     var headToHeadOpponent:Student!
+    var invitee:Bool!
     
     @IBOutlet weak var statusLabel: UILabel!
     var loadingString:String = "Loading Quiz"
     var waitingString:String!
+    var headToHeadAcceptedString:String = "Request accepted. Starting game..."
     
     enum QuizMode{
         case Standard
@@ -64,11 +64,6 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         
         print("quiz lobby")
         
-        //Temporary, here just to get Student data for hardcoded user
-        _ = Student(key: userStudentKey) {(theStudent) in
-            self.user = theStudent
-        }
-        
         hideSidebar()
         statusLabel.text = loadingString
         loadingIndicatorView.hidesWhenStopped = true
@@ -76,8 +71,6 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         loadingIndicatorView.transform = CGAffineTransform.init(scaleX: loadingIndicatorViewScale, y: loadingIndicatorViewScale)
         loadingIndicatorView.startAnimating()
         loadingIndicatorView.color = loadingIndicatorViewColor
-        
-        self.lobbyPlayersCollectionView.addObserver(self, forKeyPath: "contentSize", options: NSKeyValueObservingOptions.old, context: nil)
 
         if (quizMode == QuizMode.Standard){
             waitingString = "Waiting for other players..."
@@ -99,12 +92,9 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             headToHeadOpponentScoreLabel.isHidden = false
             andLabel.isHidden = false
             
-//            headToHeadUserAvatarImageView.image = user.profilePic!
-//            headToHeadUserUserNameLabel.text = user.userName!
-//            headToHeadUserScoreLabel.text = String(describing: user.totalPoints!)
-            headToHeadUserAvatarImageView.image = #imageLiteral(resourceName: "MedicGreen.png");
-            headToHeadUserUserNameLabel.text = "tacobell292"
-            headToHeadUserScoreLabel.text = String(describing: 2500)
+            headToHeadUserAvatarImageView.image = user.profilePic!
+            headToHeadUserUserNameLabel.text = user.userName!
+            headToHeadUserScoreLabel.text = String(describing: user.totalPoints!)
             headToHeadOpponentAvatarImageView.image = headToHeadOpponent.profilePic!
             headToHeadOpponentUserNameLabel.text = headToHeadOpponent.userName!
             headToHeadOpponentScoreLabel.text = String(describing: headToHeadOpponent.totalPoints!)
@@ -117,11 +107,6 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     override func viewDidAppear(_ animated: Bool) {
         print("quiz lobby appeared")
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.lobbyPlayersCollectionView.removeObserver(self, forKeyPath: "contentSize")
     }
 
     override func didReceiveMemoryWarning() {
@@ -152,13 +137,6 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         cell.usernameLabel.text = lobbyPlayers[indexPath.row].userName
         cell.scoreLabel.text = scoreFormatter.string(from: lobbyPlayers[indexPath.row].totalPoints! as NSNumber)
         return cell
-    }
-    
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if let observedObject = object as? UICollectionView, observedObject == self.lobbyPlayersCollectionView {
-//            addStudentToLobby()
-//            print("collection view reloaded")
-        }
     }
     
     func download(){
@@ -213,27 +191,46 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
 //        }
     }
     
-    func checkOpponentReady(){
+    func checkHeadToHeadAcceptance(){
         HeadToHeadGameModel.FromAndKeepObserving(key: headToHeadGameKey!) { (headToHeadGame) in
             if !self.quizCancelled && !self.activityStarted {
                 if headToHeadGame.decided! {
                     if headToHeadGame.accepted! {
-                        self.quizStarted()
+                        self.checkHeadToHeadReady()
+                        print("Head to head game accepted")
+                        self.statusLabel.text = self.headToHeadAcceptedString
                     }
                     else{
+                        self.quizCancelled = true
+                        self.deleteDBHeadToHeadData()
                         print("Head to Head invitation declined in lobby")
-                        self.errorOccurred(title: "Invitation Declined", message: "Your opponent declined your game invitation.")
+                        self.errorOccurred(title: "Invitation Declined", message: "Head to head game has been declined.")
                     }
                 }
             }
         }
     }
     
+    func checkHeadToHeadReady(){
+        HeadToHeadGameModel.FromAndKeepObserving(key: headToHeadGameKey!) { (headToHeadGame) in
+            let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(self.headToHeadGameKey!)
+            headToHeadGameRef.observe(.value, with: {(snapshot) in
+                if !self.activityStarted {
+                    if snapshot.childSnapshot(forPath: "inviter").childSnapshot(forPath: "ready").value! as! Bool {
+                        if snapshot.childSnapshot(forPath: "invitee").childSnapshot(forPath: "ready").value! as! Bool {
+                            self.quizStarted()
+                        }
+                    }
+                }
+            })
+        }
+    }
+    
     func checkRequestStatus(completion: @escaping () -> Void){
         if quizMode == QuizMode.HeadToHead {
-            StudentModel.FromAndKeepObserving(key: "b29fks9mf9gh37fhh1h9814") {friend in
-                guard friend.headToHeadGameRequest != nil else{
-                    if !self.activityStarted {
+            StudentModel.FromAndKeepObserving(key: self.user.databaseID!) {student in
+                guard student.headToHeadGameRequest != nil else{
+                    if !self.activityStarted && !self.quizCancelled{
                         print("Head to Head game cancelled in lobby")
                         self.quizCancelled = true
                         self.errorOccurred(title: "Head to Head Game Cancelled", message: "Head to head game against \(String(describing: self.headToHeadOpponent.userName!)) cancelled.")
@@ -273,7 +270,16 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             self.loadingQuizComplete()
             
             if self.quizMode == QuizMode.HeadToHead {
+                let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(self.headToHeadGameKey!)
                 self.checkRequestStatus {
+                    if self.invitee {
+                        headToHeadGameRef.child("invitee").child("ready").setValue(true)
+                    }
+                    else{
+                        headToHeadGameRef.child("inviter").child("ready").setValue(true)
+                        self.checkHeadToHeadAcceptance()
+                    }
+                    self.checkHeadToHeadReady()
                     completion()
                 }
             }
@@ -286,7 +292,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     func downloadStudents(completion: @escaping () -> Void){
         GameModel.Where(child: GameModel.GAME_PIN, equals: self.gamePin) { (gamesFound) in            
-            let userStudentRef = Database.database().reference(withPath: "game/\(gamesFound[0].key)/students").child(self.userStudentKey)
+            let userStudentRef = Database.database().reference(withPath: "game/\(gamesFound[0].key)/students").child(self.user.databaseID!)
             userStudentRef.setValue(true)
             
             GameModel.WhereAndKeepObserving(child: GameModel.GAME_PIN, equals: self.gamePin) { (gamesFound) in
@@ -301,7 +307,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 for studentKey in gameStudentKeys{
                     _ = Student(key: studentKey) { (theStudent) in
                         studentCount += 1
-                        if studentKey != self.userStudentKey && !self.lobbyPlayers.contains(theStudent) && !self.lobbyQueue.contains(theStudent){
+                        if studentKey != self.user.databaseID! && !self.lobbyPlayers.contains(theStudent) && !self.lobbyQueue.contains(theStudent){
                             self.lobbyQueue.append(theStudent)
                             if studentCount == gameStudentKeys.count {
                                 self.addStudentToLobby()
@@ -393,17 +399,21 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         else if quizMode == QuizMode.HeadToHead {
             quizCancelled = true
             
-            let opponentHeadToHeadRequestRef = Database.database().reference().child("student/\((String(describing: headToHeadOpponent.databaseID!)))/headtoheadgamerequest")
-            opponentHeadToHeadRequestRef.removeValue()
-            
-            let userHeadToHeadRequestRef = Database.database().reference().child("student/\((String(describing: user.databaseID!)))/headtoheadgamerequest")
-            userHeadToHeadRequestRef.removeValue()
-            
-            let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(headToHeadGameKey!)
-            headToHeadGameRef.removeValue()
+            deleteDBHeadToHeadData()
         }
         else if quizMode == QuizMode.Solo {
             //TODO
         }
+    }
+    
+    func deleteDBHeadToHeadData(){
+        let opponentHeadToHeadRequestRef = Database.database().reference().child("student/\((String(describing: headToHeadOpponent.databaseID!)))/headtoheadgamerequest")
+        opponentHeadToHeadRequestRef.removeValue()
+        
+        let userHeadToHeadRequestRef = Database.database().reference().child("student/\((String(describing: user.databaseID!)))/headtoheadgamerequest")
+        userHeadToHeadRequestRef.removeValue()
+        
+        let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(headToHeadGameKey!)
+        headToHeadGameRef.removeValue()
     }
 }

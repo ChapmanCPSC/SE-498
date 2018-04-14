@@ -122,6 +122,7 @@
 		7FFDBB631FBD39DA0001E1FC /* ProfileSideBarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FFDBB611FBD39D90001E1FC /* ProfileSideBarCell.swift */; };
 		7FFDBB641FBD39DA0001E1FC /* ProfileSideBarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FFDBB621FBD39DA0001E1FC /* ProfileSideBarCell.xib */; };
 		A114D7932043EBD2007336BB /* AvatarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A114D7922043EBD2007336BB /* AvatarCollectionViewCell.swift */; };
+		A117C214207F09E000C912A5 /* HeadToHeadRequestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A117C213207F09E000C912A5 /* HeadToHeadRequestVC.swift */; };
 		A11F2EC1206B6269009BDEC6 /* HeadToHeadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11F2EC0206B6269009BDEC6 /* HeadToHeadVC.swift */; };
 		A11F2EC3206B649B009BDEC6 /* HeadToHeadFriendRequestTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A11F2EC2206B649B009BDEC6 /* HeadToHeadFriendRequestTableViewCell.xib */; };
 		A11F2EC52075A4A8009BDEC6 /* HeadToHeadFriendRequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11F2EC42075A4A8009BDEC6 /* HeadToHeadFriendRequestTableViewCell.swift */; };
@@ -295,6 +296,7 @@
 		7FFDBB621FBD39DA0001E1FC /* ProfileSideBarCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileSideBarCell.xib; sourceTree = "<group>"; };
 		81984C27A2293FAC8F404B49 /* Pods-MedQuizTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MedQuizTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MedQuizTests/Pods-MedQuizTests.release.xcconfig"; sourceTree = "<group>"; };
 		A114D7922043EBD2007336BB /* AvatarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCollectionViewCell.swift; sourceTree = "<group>"; };
+		A117C213207F09E000C912A5 /* HeadToHeadRequestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadToHeadRequestVC.swift; sourceTree = "<group>"; };
 		A11F2EC0206B6269009BDEC6 /* HeadToHeadVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadToHeadVC.swift; sourceTree = "<group>"; };
 		A11F2EC2206B649B009BDEC6 /* HeadToHeadFriendRequestTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeadToHeadFriendRequestTableViewCell.xib; sourceTree = "<group>"; };
 		A11F2EC42075A4A8009BDEC6 /* HeadToHeadFriendRequestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadToHeadFriendRequestTableViewCell.swift; sourceTree = "<group>"; };
@@ -415,6 +417,7 @@
 				A5618C7D2034EAB2001AC764 /* Ext_UIColor.swift */,
 				A53E75552043C5AE0081B1AD /* Ext_Constraint.swift */,
 				77A142075FF6BE2CFA285D58 /* Ext_String.swift */,
+				A117C213207F09E000C912A5 /* HeadToHeadRequestVC.swift */,
 			);
 			path = MedQuiz;
 			sourceTree = "<group>";
@@ -1111,6 +1114,7 @@
 				77A147E18BBD74BD32CD4CFE /* QuizTableViewCell.swift in Sources */,
 				3D500E7D2058D1D4008DB127 /* FIRPropertyWritable.swift in Sources */,
 				3DECA3602058EC83001554A8 /* GameModel.swift in Sources */,
+				A117C214207F09E000C912A5 /* HeadToHeadRequestVC.swift in Sources */,
 				3D500E7B2058D1D4008DB127 /* FIRQueryable.swift in Sources */,
 				77A142FE34E4EF8ADA82939C /* CellDataNode.swift in Sources */,
 				A5BBD79120450F3C00A4D4D3 /* UserView.swift in Sources */,
