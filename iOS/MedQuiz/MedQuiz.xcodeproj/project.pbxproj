@@ -16,6 +16,7 @@
 		3D2495B21F7E2EDD0058D85B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D2495B01F7E2EDD0058D85B /* LaunchScreen.storyboard */; };
 		3D2495BD1F7E2EDD0058D85B /* MedQuizTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2495BC1F7E2EDD0058D85B /* MedQuizTests.swift */; };
 		3D2495C81F7E2EDD0058D85B /* MedQuizUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2495C71F7E2EDD0058D85B /* MedQuizUITests.swift */; };
+		3D286B4B2082BDCD004CC8E2 /* ScoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D286B4A2082BDCD004CC8E2 /* ScoreModel.swift */; };
 		3D3166BF1FBB0588000D910F /* ClearSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D3166BE1FBB056E000D910F /* ClearSans-Medium.ttf */; };
 		3D500E7A2058D1D4008DB127 /* FIRInsertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D500E742058D1D4008DB127 /* FIRInsertable.swift */; };
 		3D500E7B2058D1D4008DB127 /* FIRQueryable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D500E752058D1D4008DB127 /* FIRQueryable.swift */; };
@@ -188,6 +189,7 @@
 		3D2495C31F7E2EDD0058D85B /* MedQuizUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MedQuizUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D2495C71F7E2EDD0058D85B /* MedQuizUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedQuizUITests.swift; sourceTree = "<group>"; };
 		3D2495C91F7E2EDD0058D85B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3D286B4A2082BDCD004CC8E2 /* ScoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreModel.swift; sourceTree = "<group>"; };
 		3D3166BE1FBB056E000D910F /* ClearSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ClearSans-Medium.ttf"; sourceTree = "<group>"; };
 		3D500E742058D1D4008DB127 /* FIRInsertable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIRInsertable.swift; sourceTree = "<group>"; };
 		3D500E752058D1D4008DB127 /* FIRQueryable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIRQueryable.swift; sourceTree = "<group>"; };
@@ -512,6 +514,7 @@
 			isa = PBXGroup;
 			children = (
 				3D500E812058D38C008DB127 /* QuizModel.swift */,
+				3D286B4A2082BDCD004CC8E2 /* ScoreModel.swift */,
 				3D500E832058D57C008DB127 /* QuestionModel.swift */,
 				3D500E852058D71D008DB127 /* TagModel.swift */,
 				3DECA35D2058E2E1001554A8 /* StudentModel.swift */,
@@ -767,7 +770,7 @@
 				TargetAttributes = {
 					3D2495A31F7E2EDD0058D85B = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = H3J2JGRV7U;
+						DevelopmentTeam = A8E56ATQFS;
 						ProvisioningStyle = Automatic;
 					};
 					3D2495B71F7E2EDD0058D85B = {
@@ -1074,6 +1077,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D286B4B2082BDCD004CC8E2 /* ScoreModel.swift in Sources */,
 				A184C8D3205602CB004AC690 /* LobbyPlayersCollectionViewCell.swift in Sources */,
 				A12154B820478E9E00E9E939 /* FriendRequestsTableViewCell.swift in Sources */,
 				3D77A14E1FB50ADC009178A1 /* LeaderboardVC.swift in Sources */,
@@ -1304,7 +1308,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = H3J2JGRV7U;
+				DEVELOPMENT_TEAM = A8E56ATQFS;
 				INFOPLIST_FILE = MedQuiz/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1324,7 +1328,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = H3J2JGRV7U;
+				DEVELOPMENT_TEAM = A8E56ATQFS;
 				INFOPLIST_FILE = MedQuiz/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

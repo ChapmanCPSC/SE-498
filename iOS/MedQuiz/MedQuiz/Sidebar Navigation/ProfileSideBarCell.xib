@@ -25,33 +25,34 @@
                 <rect key="frame" x="0.0" y="0.0" width="395" height="129.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sed-7u-I4Y">
-                        <rect key="frame" x="105" y="32" width="57" height="22"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sed-7u-I4Y">
+                        <rect key="frame" x="105" y="32" width="250" height="22"/>
                         <fontDescription key="fontDescription" name="ClearSans-Medium" family="Clear Sans Medium" pointSize="23"/>
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yn1-BK-FH1">
-                        <rect key="frame" x="84" y="62" width="271" height="29"/>
+                        <rect key="frame" x="111" y="62" width="244" height="29"/>
                         <fontDescription key="fontDescription" name="ClearSans-Medium" family="Clear Sans Medium" pointSize="18"/>
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="StudentAvatarPlaceholder.png" translatesAutoresizingMaskIntoConstraints="NO" id="m9c-9x-EPa">
-                        <rect key="frame" x="26" y="22" width="63" height="52"/>
+                        <rect key="frame" x="26" y="22" width="81" height="67"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="63" id="z1b-x0-xIn"/>
+                            <constraint firstAttribute="width" constant="81" id="z1b-x0-xIn"/>
                         </constraints>
                     </imageView>
                 </subviews>
                 <color key="backgroundColor" red="0.28725790161596954" green="0.28725790161596954" blue="0.28725790161596954" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
-                    <constraint firstItem="Sed-7u-I4Y" firstAttribute="leading" secondItem="m9c-9x-EPa" secondAttribute="trailing" constant="16" id="0EK-uy-gAu"/>
+                    <constraint firstItem="Sed-7u-I4Y" firstAttribute="leading" secondItem="m9c-9x-EPa" secondAttribute="trailing" constant="-2" id="0EK-uy-gAu"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Sed-7u-I4Y" secondAttribute="trailing" constant="20" id="0gi-Ov-Anz"/>
                     <constraint firstItem="yn1-BK-FH1" firstAttribute="top" secondItem="Sed-7u-I4Y" secondAttribute="bottom" constant="8" id="I2z-OX-Fxo"/>
-                    <constraint firstItem="m9c-9x-EPa" firstAttribute="centerY" secondItem="Sed-7u-I4Y" secondAttribute="centerY" constant="5" id="UkY-Y5-ZQH"/>
+                    <constraint firstItem="m9c-9x-EPa" firstAttribute="centerY" secondItem="Sed-7u-I4Y" secondAttribute="centerY" constant="12.5" id="UkY-Y5-ZQH"/>
                     <constraint firstItem="m9c-9x-EPa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="6" id="WdL-dk-bRM"/>
-                    <constraint firstItem="yn1-BK-FH1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="64" id="ems-M2-Q8e"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="m9c-9x-EPa" secondAttribute="bottom" constant="45" id="fP8-UY-EXU"/>
+                    <constraint firstItem="yn1-BK-FH1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="91" id="ems-M2-Q8e"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="m9c-9x-EPa" secondAttribute="bottom" constant="30" id="fP8-UY-EXU"/>
                     <constraint firstAttribute="bottomMargin" secondItem="yn1-BK-FH1" secondAttribute="bottom" constant="28" id="iDm-UL-5jd"/>
                     <constraint firstItem="Sed-7u-I4Y" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="21" id="l4p-YY-0QN"/>
                     <constraint firstItem="yn1-BK-FH1" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="-20" id="mo1-gl-oss"/>

@@ -10,6 +10,13 @@ import UIKit
 import FirebaseAuth
 import Firebase
 
+//global variables to use throughout app
+var currentGlobalStudent : Student!
+var currentUserID = ""
+var globalUsername = ""
+var globalHighscore = 0
+var globalProfileImage : UIImage!
+
 class LoginVC: UIViewController, UITextFieldDelegate {
 
     var MainStoryBoard:UIStoryboard? = nil
@@ -30,6 +37,10 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        usernameTextField.text = "darwi103"
+        passwordTextField.text = "123456"
+        
         
         //Example of using OurColorHelper colors
         // please follow througout app to make any color
@@ -106,15 +117,27 @@ class LoginVC: UIViewController, UITextFieldDelegate {
             
             Auth.auth().signIn(withEmail: usernameTextField.text! + "@mail.chapman.edu", password: passwordTextField.text!) { (signedInUser, error) in
                 
+                //logged in
                 if(signedInUser != nil){
                     self.loggedIn = true
+                    currentUserID = (signedInUser?.uid)!
+                    print("signed in and uid = " + currentUserID)
+                    
+                    currentGlobalStudent = Student(key: currentUserID, completion: { (aCurrentStudent) in
+                        
+                        //TODO: SHOW LOADING THING - progress wheel
+                        globalUsername = aCurrentStudent.userName!
+                        globalHighscore = aCurrentStudent.totalPoints!
+                        globalProfileImage = aCurrentStudent.profilePic!
+                        print("done")
+                        self.present((self.MainStoryBoard?.instantiateInitialViewController())!, animated: false, completion: nil)
+//                            self.checkHeadToHeadRequest(userStudentKey: "b29fks9mf9gh37fhh1h9814")
+                        
+                    })
+                    
+                    
                 }
                 
-                //logged in
-                if (self.loggedIn){
-                    self.present((self.MainStoryBoard?.instantiateInitialViewController())!, animated: false, completion: nil)
-                    self.checkHeadToHeadRequest(userStudentKey: "b29fks9mf9gh37fhh1h9814")
-                }
                     
                 //not logged in
                 else{

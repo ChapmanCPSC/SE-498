@@ -23,9 +23,8 @@ class ProfileVC: UIViewController, ChangeAvatarVCDelegate, ChangeUsernameVCDeleg
     @IBOutlet weak var changeImageView: UIImageView!
     @IBOutlet weak var editUsernameButton: UIButton!
     
-    var username = "tacobellfan292"
+    var username = ""
     var usernameChanged = false
-    var profileImage = UIImage(named: "AtomBlack.png")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,12 +40,12 @@ class ProfileVC: UIViewController, ChangeAvatarVCDelegate, ChangeUsernameVCDeleg
         // this would be used for example on successful login/authentication
         // from Firebase. We have the input from the usernameTextField
         // and we can use that on login to get the username and profile pic etc.
-        let testUser = "654426e87a6"
+//        let testUser = "654426e87a6"
         //I query a student by the key and I print the student's username on success
-        StudentModel.From(key: testUser) { (aStudent) in
-            print("Testing profile info population")
-            print(aStudent.studentUsername!)
-        }
+//        StudentModel.From(key: testUser) { (aStudent) in
+//            print("Testing profile info population")
+//            print(aStudent.studentUsername!)
+//        }
         
         
         
@@ -58,9 +57,9 @@ class ProfileVC: UIViewController, ChangeAvatarVCDelegate, ChangeUsernameVCDeleg
         let profileAvatarChange = UITapGestureRecognizer(target: self, action: #selector(ProfileVC.profileAvatarPressed))
         
         profileImageView.addGestureRecognizer(profileAvatarChange)
-        profileImageView.image = profileImage
+        profileImageView.image = globalProfileImage
         
-        usernameLabel.text = username
+        usernameLabel.text = globalUsername
         
         lastQuizImageView.layer.borderColor = UIColor.init(red:0.0, green:0.0, blue:1.0, alpha:1.0).cgColor
         
@@ -75,8 +74,9 @@ class ProfileVC: UIViewController, ChangeAvatarVCDelegate, ChangeUsernameVCDeleg
     }
     
     func dataChanged(profileImage: UIImage) {
-        self.profileImage = profileImage
-        profileImageView.image = profileImage
+        //TODO: MAKE SURE IMAGE IS CHANGED ON DB
+        globalProfileImage = profileImage
+        profileImageView.image = globalProfileImage
     }
     
     func dataChanged(username: String, usernameChanged: Bool) {
@@ -96,7 +96,7 @@ class ProfileVC: UIViewController, ChangeAvatarVCDelegate, ChangeUsernameVCDeleg
     
     @objc func profileAvatarPressed(){
         let changeAvatarVC = self.storyboard?.instantiateViewController(withIdentifier: "changeAvatar") as! ChangeAvatarVC
-        changeAvatarVC.profileImage = profileImage
+        changeAvatarVC.profileImage = globalProfileImage
         changeAvatarVC.delegate = self
         self.present(changeAvatarVC, animated: false, completion: nil)
     }

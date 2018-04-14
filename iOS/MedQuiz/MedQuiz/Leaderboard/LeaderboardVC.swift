@@ -59,8 +59,15 @@ class LeaderboardVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : LeaderboardCell = leaderboardTableview.dequeueReusableCell(withIdentifier: "leaderboard_cell") as! LeaderboardCell
         
+        
         if indexPath.row == 0{
             cell.backgroundColor = OurColorHelper.pharmAppYellow
+            //TODO: just assuming current user is first for now, change later to actual postion
+            cell.usernameLabel.text = globalUsername
+            cell.scoreLabel.text = String(globalHighscore)
+        }
+        else{
+            cell.scoreLabel.text = "0"
         }
         
         cell.rankLabel.text = String(indexPath.row+1)
