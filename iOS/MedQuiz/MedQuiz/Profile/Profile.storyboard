@@ -23,7 +23,7 @@
         <!--Change AvatarVC-->
         <scene sceneID="StH-cO-Qlw">
             <objects>
-                <viewController storyboardIdentifier="changeAvatar" id="rC1-U6-kdK" customClass="ChangeAvatarVC" customModule="MedQuiz" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="changeAvatarVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rC1-U6-kdK" customClass="ChangeAvatarVC" customModule="MedQuiz" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7yY-Fd-xea">
                         <rect key="frame" x="0.0" y="0.0" width="694" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -131,7 +131,7 @@
         <!--FriendsVC-->
         <scene sceneID="5EJ-qV-nAs">
             <objects>
-                <viewController storyboardIdentifier="altFriendRequest" id="urf-Nd-ckp" customClass="FriendsVC" customModule="MedQuiz" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="altFriendRequest" useStoryboardIdentifierAsRestorationIdentifier="YES" id="urf-Nd-ckp" customClass="FriendsVC" customModule="MedQuiz" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YSr-ro-oJ0">
                         <rect key="frame" x="0.0" y="0.0" width="694" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -255,7 +255,7 @@
         <!--ProfileVC-->
         <scene sceneID="eSb-oV-Wnf">
             <objects>
-                <viewController id="7co-Ab-ToO" customClass="ProfileVC" customModule="MedQuiz" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="main" useStoryboardIdentifierAsRestorationIdentifier="YES" id="7co-Ab-ToO" customClass="ProfileVC" customModule="MedQuiz" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RJJ-zM-G1n">
                         <rect key="frame" x="0.0" y="0.0" width="694" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -513,7 +513,7 @@
         <!--ChangeUsernameVC-->
         <scene sceneID="rYs-w9-GHn">
             <objects>
-                <viewController storyboardIdentifier="ChangeUsernameVC" title="ChangeUsernameVC" id="vID-YB-ORr" customClass="ChangeUsernameVC" customModule="MedQuiz" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChangeUsernameVC" title="ChangeUsernameVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vID-YB-ORr" customClass="ChangeUsernameVC" customModule="MedQuiz" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2N6-4M-Oh2">
                         <rect key="frame" x="0.0" y="0.0" width="694" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

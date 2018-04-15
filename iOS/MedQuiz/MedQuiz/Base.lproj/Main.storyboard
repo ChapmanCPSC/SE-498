@@ -76,7 +76,7 @@
         <!--Split View Controller-->
         <scene sceneID="hv8-JH-GmF">
             <objects>
-                <splitViewController id="A56-0l-2ZP" sceneMemberID="viewController">
+                <splitViewController storyboardIdentifier="splitVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="A56-0l-2ZP" sceneMemberID="viewController">
                     <connections>
                         <segue destination="8Of-01-WX3" kind="relationship" relationship="masterViewController" id="9bU-Fb-bRh"/>
                         <segue destination="SCL-be-nYS" kind="relationship" relationship="detailViewController" id="jzf-m3-Cv4"/>
@@ -89,7 +89,7 @@
         <!--Head To Head RequestVC-->
         <scene sceneID="iYk-tr-rwG">
             <objects>
-                <viewController restorationIdentifier="headToHeadRequest" storyboardIdentifier="headToHeadRequest" id="hgJ-ND-mOP" customClass="HeadToHeadRequestVC" customModule="MedQuiz" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="headToHeadRequestVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hgJ-ND-mOP" customClass="HeadToHeadRequestVC" customModule="MedQuiz" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" id="qwQ-Z7-Nhl">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

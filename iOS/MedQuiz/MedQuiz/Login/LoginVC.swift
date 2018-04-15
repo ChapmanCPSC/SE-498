@@ -131,7 +131,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                         globalProfileImage = aCurrentStudent.profilePic!
                         print("done")
                         self.present((self.MainStoryBoard?.instantiateInitialViewController())!, animated: false, completion: nil)
-//                            self.checkHeadToHeadRequest(userStudentKey: "b29fks9mf9gh37fhh1h9814")
+                        self.checkHeadToHeadRequest(userStudentKey: currentUserID)
                         
                     })
                     
@@ -172,24 +172,24 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         StudentModel.FromAndKeepObserving(key: userStudentKey) {user in
             if user.headToHeadGameRequest != nil {
                 print("Presenting head to head request")
-                let sb:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let headToHeadRequestVC:HeadToHeadRequestVC = sb.instantiateViewController(withIdentifier: "headToHeadRequest") as! HeadToHeadRequestVC
-                headToHeadRequestVC.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-                if var topController = UIApplication.shared.keyWindow?.rootViewController {
-                    while let presentedViewController = topController.presentedViewController {
-                        print(type(of: topController))
-                        topController = presentedViewController
-                    }
-                    
-                    let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(user.headToHeadGameRequest!)
-                    headToHeadGameRef.observeSingleEvent(of: .value, with: {(snapshot) in
-                        //temp user student reference
-                        _ = Student(key: user.key) { userStudent in
-                            _ = Student(key: snapshot.childSnapshot(forPath: "inviter").childSnapshot(forPath: "student").value! as! String) { inviter in
-                                headToHeadRequestVC.user = userStudent
+                
+                let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(user.headToHeadGameRequest!)
+                headToHeadGameRef.observeSingleEvent(of: .value, with: {(snapshot) in
+                    let inviterKey = snapshot.childSnapshot(forPath: "inviter").childSnapshot(forPath: "student").value! as! String
+                    if inviterKey != currentUserID{
+                        let sb:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                        let headToHeadRequestVC:HeadToHeadRequestVC = sb.instantiateViewController(withIdentifier: "headToHeadRequestVC") as! HeadToHeadRequestVC
+                        headToHeadRequestVC.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+                        if var topController = UIApplication.shared.keyWindow?.rootViewController {
+                            while let presentedViewController = topController.presentedViewController {
+                                print(type(of: topController))
+                                topController = presentedViewController
+                            }
+                            
+                            _ = Student(key: inviterKey) { inviter in
                                 headToHeadRequestVC.opponent = inviter
                                 headToHeadRequestVC.headToHeadGameKey = user.headToHeadGameRequest
-                                let quizKey:String = snapshot.childSnapshot(forPath: "quizkey").value! as! String
+                                let quizKey:String = snapshot.childSnapshot(forPath: "quiz").value! as! String
                                 QuizModel.From(key: quizKey){ quiz in
                                     headToHeadRequestVC.headToHeadQuizTitle = quiz.title
                                     headToHeadRequestVC.headToHeadQuizKey = quizKey
@@ -200,8 +200,8 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                                 }
                             }
                         }
-                    })
-                }
+                    }
+                })
             }
         }
     }

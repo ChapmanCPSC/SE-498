@@ -92,7 +92,7 @@ class QuizVC: UIViewController {
         
         GameModel.Where(child: GameModel.GAME_PIN, equals: String(inputPin)) { (gamesFound) in
             if(!gamesFound.isEmpty){
-                QuizModel.From(key: gamesFound[0].key, completion: { (quiz) in
+                QuizModel.From(key: gamesFound[0].key, completion: { (quiz) in                    
                     print("Pin does exist")
                     self.gamePin = String(inputPin)
                     

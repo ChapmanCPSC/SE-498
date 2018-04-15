@@ -18,7 +18,7 @@
         <!--LeaderboardVC-->
         <scene sceneID="9Y8-hL-y7F">
             <objects>
-                <viewController id="lyI-wM-2cl" customClass="LeaderboardVC" customModule="MedQuiz" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="main" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lyI-wM-2cl" customClass="LeaderboardVC" customModule="MedQuiz" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Q2n-OR-HN8">
                         <rect key="frame" x="0.0" y="0.0" width="694" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
