@@ -90,8 +90,7 @@ class ProfileVC: UIViewController, ChangeAvatarVCDelegate, ChangeUsernameVCDeleg
         let altAddFriendsVC =  self.storyboard?.instantiateViewController(withIdentifier: "altFriendRequest") as! FriendsVC
 
         self.present(altAddFriendsVC, animated: false, completion: nil)
-        
-        
+
     }
     
     @objc func profileAvatarPressed(){

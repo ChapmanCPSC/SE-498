@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
@@ -20,7 +21,6 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     
     var cellUsernames:[String] = ["Kyle102", "Jeniffer308", "Mark075", "Layla690"]
     var cellImages:[UIImage] = [#imageLiteral(resourceName: "StudentAvatarPlaceholder.png"), #imageLiteral(resourceName: "StudentAvatarPlaceholder.png"), #imageLiteral(resourceName: "StudentAvatarPlaceholder.png"), #imageLiteral(resourceName: "StudentAvatarPlaceholder.png")]
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +49,7 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return self.cellUsernames.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : FriendRequestsTableViewCell = friendRequestsTable.dequeueReusableCell(withIdentifier: "friendRequests_cell") as! FriendRequestsTableViewCell
@@ -75,17 +75,35 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         return true
     }
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        searchResultLabel.isHidden = true
+    }
+    
+    
     //Temporary conditionals used, will be replaced when connections to database established
-    func friendSearch(friendUsername:String){
-        if (true){
-            searchResultLabel.text = "Search successful"
-        }
-        else{
-            if (true){
-                searchResultLabel.text = "Search failed: Unable to connect to server"
-            }
-            else{
-                searchResultLabel.text = "Search failed: No matches found"
+    func friendSearch(friendUsername:String) {
+        
+        StudentModel.Where(child: StudentModel.USERNAME, equals: friendUsername) { (student: [StudentModel]) in
+            
+            if student.count == 0 {
+                
+                self.searchResultLabel.text = "Search failed: No matches found"
+                
+//                if (errorTrue){
+//                    searchResultLabel.text = "Search failed: Unable to connect to server"
+//                }
+//                else{
+//                    searchResultLabel.text = "Search failed: No matches found"
+//                }
+            } else {
+               //add your friend
+                self.searchResultLabel.text = "Search successful"
+//                let stud = student[0]
+//                print(stud)
+//                let image = UIImage() //should be profile pic of stud
+//                let friends : [Student] = [] // should be friends list from stud
+//                var newFriend = Student(userName: stud.studentUsername!, profilePic: image, friends: friends, totalPoints: stud.totalPoints!, hasChangedUsername: stud.hasChangedUsername!)
+//                print(newFriend)
             }
         }
         
