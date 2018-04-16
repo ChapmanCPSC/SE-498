@@ -15,14 +15,14 @@ class StudentModel: FIRModel, FIRQueryable,FIRStorageDownloadable
     
     static var USERNAME = "username"
     static var PROFILE_PIC = "profilepic"
-    static var TOTAL_POINTS = "totalpoints"
+    static var SCORE = "score"
     static var HAS_CHANGED_USERNAME = "haschangedusername"
     static var FRIENDS = "friends"
     static var HEADTOHEAD_GAME_REQUEST = "headtoheadgamerequest"
 
     var studentUsername: String? { return self.get(StudentModel.USERNAME) }
     var profilePic: String? { return self.get(StudentModel.PROFILE_PIC) }
-    var totalPoints: Int? { return self.get(StudentModel.TOTAL_POINTS) }
+    var scoreKey: String? { return self.get(StudentModel.SCORE) }
     var hasChangedUsername:Bool? { return self.get(StudentModel.HAS_CHANGED_USERNAME) }
     var friends:[StudentModel]? { return self.get(StudentModel.FRIENDS) }
     var headToHeadGameRequest:String? { return self.get(StudentModel.HEADTOHEAD_GAME_REQUEST) }

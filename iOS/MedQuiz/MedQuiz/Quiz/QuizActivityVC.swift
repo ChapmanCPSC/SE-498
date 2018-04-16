@@ -14,6 +14,7 @@ class QuizActivityVC: UIViewController {
     
     //TODO: Delete this and use a wrapper
     let dataRef = Database.database().reference()
+    var quizLobbyRef:UIViewController!
 
     var currQuestion:Question!
     var currQuestionIdx:Int = -1 // start at -1 so that first call can call nextQuestion
@@ -22,7 +23,6 @@ class QuizActivityVC: UIViewController {
     
     var canSelect:Bool = false
     var currPos:Int!
-    var user:Student!
     
     var gameKey:String!
     var inGameLeaderboardKey:String!
@@ -48,7 +48,6 @@ class QuizActivityVC: UIViewController {
     @IBOutlet weak var uv_fifth: UserView!
     var userViews:[UserView]!
 
-    
     var toggleTemp:Bool = true
     var toggleTempQuestion:Bool = true
     var isCurrUser:Bool = false
@@ -77,13 +76,14 @@ class QuizActivityVC: UIViewController {
     
     @IBOutlet weak var questionsTimer: SRCountdownTimer!
     
-    
     @IBOutlet weak var timerLabel: UILabel!
     
     var quizMode:QuizLobbyVC.QuizMode!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        quizLobbyRef.dismiss(animated: false, completion: nil)
         
         questionsTimer.backgroundColor = UIColor.clear
         questionsTimer.labelTextColor = UIColor.black
@@ -127,7 +127,7 @@ class QuizActivityVC: UIViewController {
                         let inGameLeaderboardStudentsRef = inGameLeaderboardRef.child(child.key).child("students")
                         inGameLeaderboardStudentsRef.observeSingleEvent(of: .value, with: { (snapshot:DataSnapshot) in
                             for child in snapshot.children.allObjects as! [DataSnapshot] {
-                                if ((child.value as! [String:AnyObject])["studentKey"] as! String) == self.user.databaseID {
+                                if ((child.value as! [String:AnyObject])["studentKey"] as! String) == currentUserID {
                                     self.userInGameLeaderboardObjectKey = child.key
                                     
                                     //Temp set value
@@ -154,7 +154,7 @@ class QuizActivityVC: UIViewController {
                                                 if key == student.databaseID {
                                                     leaderboardPosCounter += 1
                                                     newAllUsers.append(student)
-                                                    if key == self.user.databaseID {
+                                                    if key == currentUserID {
                                                         self.currPos = leaderboardPosCounter
                                                     }
                                                     break
@@ -244,15 +244,13 @@ class QuizActivityVC: UIViewController {
     
     func checkRequestStatus(completion: @escaping () -> Void){
         if quizMode == QuizLobbyVC.QuizMode.HeadToHead {
-            StudentModel.FromAndKeepObserving(key: user.databaseID!) {userStudent in
+            StudentModel.FromAndKeepObserving(key: currentUserID) {userStudent in
                 guard userStudent.headToHeadGameRequest != nil else {
                     print("Head to Head quiz cancelled.")
                     self.quizCancelled = true
                     let alert = UIAlertController(title:"Head to Head Game Cancelled", message:"The Head to Head game has been cancelled.", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default) { UIAlertAction in
-                        self.dismiss(animated: false, completion: {
-                            
-                        })
+                        self.dismiss(animated: false, completion: nil)
                         completion()
                     })
                     self.present(alert, animated: true, completion: nil)
@@ -429,7 +427,7 @@ class QuizActivityVC: UIViewController {
     
     func updateUserInLeaderboard(){
         userViews.forEach { view in
-            if(view.currStudent.userName == user.userName!){
+            if(view.currStudent.userName == globalUsername){
                 view.convertToCurrUser()
             }
             else{
@@ -566,7 +564,7 @@ class QuizActivityVC: UIViewController {
         for i in 1...30 {
             allUsers.append(Student(userName: "User \(i)", profilePic: UIImage(), friends: [], totalPoints: 0, hasChangedUsername: false))
         }
-        allUsers.insert(user, at: currPos-1)
+        allUsers.insert(currentGlobalStudent, at: currPos-1)
         updateLeaderboard()
     }
     
@@ -583,7 +581,7 @@ class QuizActivityVC: UIViewController {
                 let opponentHeadToHeadRequestRef = Database.database().reference().child("student/\(String(describing: self.headToHeadOpponent.databaseID!))/headtoheadgamerequest")
                 opponentHeadToHeadRequestRef.removeValue()
                 
-                let userHeadToHeadRequestRef = Database.database().reference().child("student/\(String(describing: self.user.databaseID!))/headtoheadgamerequest")
+                let userHeadToHeadRequestRef = Database.database().reference().child("student/\(String(describing: currentUserID))/headtoheadgamerequest")
                 userHeadToHeadRequestRef.removeValue()
                 
                 let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(self.headToHeadGameKey!)
@@ -637,10 +635,7 @@ class QuizActivityVC: UIViewController {
                 
             }
         })
-        
-        
     }
-    
 }
 
 extension QuizActivityVC:SelectsAnswer {

@@ -16,6 +16,7 @@
 		3D2495B21F7E2EDD0058D85B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D2495B01F7E2EDD0058D85B /* LaunchScreen.storyboard */; };
 		3D2495BD1F7E2EDD0058D85B /* MedQuizTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2495BC1F7E2EDD0058D85B /* MedQuizTests.swift */; };
 		3D2495C81F7E2EDD0058D85B /* MedQuizUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2495C71F7E2EDD0058D85B /* MedQuizUITests.swift */; };
+		3D286B4B2082BDCD004CC8E2 /* ScoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D286B4A2082BDCD004CC8E2 /* ScoreModel.swift */; };
 		3D3166BF1FBB0588000D910F /* ClearSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3D3166BE1FBB056E000D910F /* ClearSans-Medium.ttf */; };
 		3D500E7A2058D1D4008DB127 /* FIRInsertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D500E742058D1D4008DB127 /* FIRInsertable.swift */; };
 		3D500E7B2058D1D4008DB127 /* FIRQueryable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D500E752058D1D4008DB127 /* FIRQueryable.swift */; };
@@ -125,6 +126,7 @@
 		7FFDBB631FBD39DA0001E1FC /* ProfileSideBarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FFDBB611FBD39D90001E1FC /* ProfileSideBarCell.swift */; };
 		7FFDBB641FBD39DA0001E1FC /* ProfileSideBarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FFDBB621FBD39DA0001E1FC /* ProfileSideBarCell.xib */; };
 		A114D7932043EBD2007336BB /* AvatarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A114D7922043EBD2007336BB /* AvatarCollectionViewCell.swift */; };
+		A117C214207F09E000C912A5 /* HeadToHeadRequestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A117C213207F09E000C912A5 /* HeadToHeadRequestVC.swift */; };
 		A11F2EC1206B6269009BDEC6 /* HeadToHeadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11F2EC0206B6269009BDEC6 /* HeadToHeadVC.swift */; };
 		A11F2EC3206B649B009BDEC6 /* HeadToHeadFriendRequestTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A11F2EC2206B649B009BDEC6 /* HeadToHeadFriendRequestTableViewCell.xib */; };
 		A11F2EC52075A4A8009BDEC6 /* HeadToHeadFriendRequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11F2EC42075A4A8009BDEC6 /* HeadToHeadFriendRequestTableViewCell.swift */; };
@@ -192,6 +194,7 @@
 		3D2495C31F7E2EDD0058D85B /* MedQuizUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MedQuizUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D2495C71F7E2EDD0058D85B /* MedQuizUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedQuizUITests.swift; sourceTree = "<group>"; };
 		3D2495C91F7E2EDD0058D85B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3D286B4A2082BDCD004CC8E2 /* ScoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreModel.swift; sourceTree = "<group>"; };
 		3D3166BE1FBB056E000D910F /* ClearSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ClearSans-Medium.ttf"; sourceTree = "<group>"; };
 		3D500E742058D1D4008DB127 /* FIRInsertable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIRInsertable.swift; sourceTree = "<group>"; };
 		3D500E752058D1D4008DB127 /* FIRQueryable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIRQueryable.swift; sourceTree = "<group>"; };
@@ -305,6 +308,7 @@
 		81984C27A2293FAC8F404B49 /* Pods-MedQuizTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MedQuizTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MedQuizTests/Pods-MedQuizTests.release.xcconfig"; sourceTree = "<group>"; };
 		8C94A14B9C0C3784FE394525 /* Pods-MedQuizUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MedQuizUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MedQuizUITests/Pods-MedQuizUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A114D7922043EBD2007336BB /* AvatarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCollectionViewCell.swift; sourceTree = "<group>"; };
+		A117C213207F09E000C912A5 /* HeadToHeadRequestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadToHeadRequestVC.swift; sourceTree = "<group>"; };
 		A11F2EC0206B6269009BDEC6 /* HeadToHeadVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadToHeadVC.swift; sourceTree = "<group>"; };
 		A11F2EC2206B649B009BDEC6 /* HeadToHeadFriendRequestTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeadToHeadFriendRequestTableViewCell.xib; sourceTree = "<group>"; };
 		A11F2EC42075A4A8009BDEC6 /* HeadToHeadFriendRequestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadToHeadFriendRequestTableViewCell.swift; sourceTree = "<group>"; };
@@ -428,6 +432,7 @@
 				A5618C7D2034EAB2001AC764 /* Ext_UIColor.swift */,
 				A53E75552043C5AE0081B1AD /* Ext_Constraint.swift */,
 				77A142075FF6BE2CFA285D58 /* Ext_String.swift */,
+				A117C213207F09E000C912A5 /* HeadToHeadRequestVC.swift */,
 			);
 			path = MedQuiz;
 			sourceTree = "<group>";
@@ -525,6 +530,7 @@
 			isa = PBXGroup;
 			children = (
 				3D500E812058D38C008DB127 /* QuizModel.swift */,
+				3D286B4A2082BDCD004CC8E2 /* ScoreModel.swift */,
 				3D500E832058D57C008DB127 /* QuestionModel.swift */,
 				3D500E852058D71D008DB127 /* TagModel.swift */,
 				3DECA35D2058E2E1001554A8 /* StudentModel.swift */,
@@ -1118,6 +1124,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D286B4B2082BDCD004CC8E2 /* ScoreModel.swift in Sources */,
 				A184C8D3205602CB004AC690 /* LobbyPlayersCollectionViewCell.swift in Sources */,
 				A12154B820478E9E00E9E939 /* FriendRequestsTableViewCell.swift in Sources */,
 				3D77A14E1FB50ADC009178A1 /* LeaderboardVC.swift in Sources */,
@@ -1158,6 +1165,7 @@
 				77A147E18BBD74BD32CD4CFE /* QuizTableViewCell.swift in Sources */,
 				3D500E7D2058D1D4008DB127 /* FIRPropertyWritable.swift in Sources */,
 				3DECA3602058EC83001554A8 /* GameModel.swift in Sources */,
+				A117C214207F09E000C912A5 /* HeadToHeadRequestVC.swift in Sources */,
 				3D500E7B2058D1D4008DB127 /* FIRQueryable.swift in Sources */,
 				77A142FE34E4EF8ADA82939C /* CellDataNode.swift in Sources */,
 				A5BBD79120450F3C00A4D4D3 /* UserView.swift in Sources */,

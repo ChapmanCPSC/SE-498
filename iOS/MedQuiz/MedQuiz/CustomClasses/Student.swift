@@ -22,7 +22,7 @@ class Student: Equatable {
             print(theStudent.studentUsername!)
             
             self.userName = theStudent.studentUsername!
-            self.totalPoints = 10000
+            
             self.friends = []
             self.hasChangedUsername = false
             
@@ -31,7 +31,10 @@ class Student: Equatable {
             theStudent.getProfilePic(completion: { (theProfilePic) in
                 self.profilePic = theProfilePic!
                 print(theProfilePic!.description)
-                completion(self)
+                ScoreModel.From(key: theStudent.scoreKey!, completion: { (aScoreModel) in
+                    self.totalPoints = aScoreModel.points!
+                    completion(self)
+                })
             })
         }
     }
@@ -39,7 +42,6 @@ class Student: Equatable {
     init(key: String, completion: @escaping (Student) -> Void){
         StudentModel.From(key: key, completion: { (aStudentModel) in
             self.userName = aStudentModel.studentUsername!
-            self.totalPoints = 10000
             self.friends = []
             self.hasChangedUsername = false
             
@@ -47,7 +49,11 @@ class Student: Equatable {
             
             aStudentModel.getProfilePic(completion: { (theProfilePic) in
                 self.profilePic = theProfilePic!
-                completion(self)
+                print(aStudentModel.scoreKey!)
+                ScoreModel.From(key: aStudentModel.scoreKey!, completion: { (aScoreModel) in
+                    self.totalPoints = aScoreModel.points!
+                    completion(self)
+                })
             })
         })
     }

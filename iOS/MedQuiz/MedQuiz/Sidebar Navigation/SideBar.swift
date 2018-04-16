@@ -20,21 +20,13 @@ class SideBar: UITableViewController {
     let mainCellSelectedBlue = UIColor(red: (45/255.0), green: (113/255.0), blue: (142/255.0), alpha: 1.0)
     let whiteColor = UIColor(red: (255/255.0), green: (255/255.0), blue: (255/255.0), alpha: 1.0)
     
-    var profileImage = UIImage(named: "StudentAvatarPlaceholder.png")
-    var profileName = "tacobellfan292"
-    var profileScore = 4434535
+
     
     override func viewWillAppear(_ animated: Bool) {
         self.tableView.reloadData()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //TODO: Assuming b29fks9mcf9gh37fhh1h9814 is the key of the
-        // current user, change to whichever user is logged in
-        StudentModel.From(key: "b29fks9mf9gh37fhh1h9814") { (currentStudent) in
-            
-        }
         
         
         
@@ -104,9 +96,10 @@ class SideBar: UITableViewController {
             
             //aProfBarCell.profileImage.center = aProfBarCell.center
             
-            aProfBarCell.profileImage.image = profileImage
+            aProfBarCell.profileImage.image = globalProfileImage
             
-            aProfBarCell.profileNameLabel.text = profileName
+            aProfBarCell.profileNameLabel.text = globalUsername
+            
             aProfBarCell.profileNameLabel.textColor = whiteColor
             
             /*let currentName = aProfBarCell.profileNameLabel.text
@@ -115,7 +108,7 @@ class SideBar: UITableViewController {
             let scoreFormatter = NumberFormatter()
             scoreFormatter.numberStyle = NumberFormatter.Style.decimal
             
-            aProfBarCell.scoreNumberLabel.text = scoreFormatter.string(from: NSNumber(value: profileScore))
+            aProfBarCell.scoreNumberLabel.text = scoreFormatter.string(from: NSNumber(value: globalHighscore))
             aProfBarCell.scoreNumberLabel.textColor = whiteColor
             aProfBarCell.scoreNumberLabel.sizeToFit()
             
