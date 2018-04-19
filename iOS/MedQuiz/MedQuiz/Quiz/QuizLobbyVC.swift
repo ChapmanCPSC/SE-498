@@ -64,10 +64,6 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         
         print("quiz lobby")
         
-        if invitee{
-            headToHeadRequestRef.dismiss(animated: false, completion: nil)
-        }
-        
         hideSidebar()
         statusLabel.text = loadingString
         loadingIndicatorView.hidesWhenStopped = true
@@ -86,6 +82,10 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
 
         }
         else if (quizMode == QuizMode.HeadToHead){
+            if invitee{
+                headToHeadRequestRef.dismiss(animated: false, completion: nil)
+            }
+            
             waitingString = "Waiting for " + headToHeadOpponent.userName!
             
             headToHeadUserAvatarImageView.isHidden = false
