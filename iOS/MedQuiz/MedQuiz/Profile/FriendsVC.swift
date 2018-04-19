@@ -97,6 +97,7 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
 //                }
             } else {
                //add your friend
+                
                 self.searchResultLabel.text = "Search successful"
 //                let stud = student[0]
 //                print(stud)

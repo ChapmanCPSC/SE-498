@@ -42,7 +42,7 @@ class Student: Equatable {
     init(key: String, completion: @escaping (Student) -> Void){
         StudentModel.From(key: key, completion: { (aStudentModel) in
             self.userName = aStudentModel.studentUsername!
-            self.friends = []
+            self.friends = []//get friends
             self.hasChangedUsername = false
             
             self.databaseID = key
