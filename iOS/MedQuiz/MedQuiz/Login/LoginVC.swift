@@ -16,6 +16,7 @@ var currentUserID = ""
 var globalUsername = ""
 var globalHighscore = 0
 var globalProfileImage : UIImage!
+//make a global list/array
 
 class LoginVC: UIViewController, UITextFieldDelegate {
 
@@ -130,6 +131,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                         globalHighscore = aCurrentStudent.totalPoints!
                         globalProfileImage = aCurrentStudent.profilePic!
                         print("done")
+                        //use wa
                         self.present((self.MainStoryBoard?.instantiateInitialViewController())!, animated: false, completion: nil)
                         self.checkHeadToHeadRequest(userStudentKey: currentUserID)
                         
