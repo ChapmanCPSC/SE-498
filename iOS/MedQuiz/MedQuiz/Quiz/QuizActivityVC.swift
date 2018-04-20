@@ -83,12 +83,14 @@ class QuizActivityVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Checking connection to the database. If internet fails.
         let connectedRef = Database.database().reference(withPath: ".info/connected")
         connectedRef.observe(.value, with: { snapshot in
             if let connected = snapshot.value as? Bool, connected {
                 print("Connected")
             } else {
                 print("Not connected")
+                self.exitQuiz()
             }
         })
         
@@ -575,6 +577,18 @@ class QuizActivityVC: UIViewController {
         }
         allUsers.insert(currentGlobalStudent, at: currPos-1)
         updateLeaderboard()
+    }
+    
+    func exitQuiz(){
+        let alert = UIAlertController(title: "You have lost connection to the database", message: "Check you intenet connection", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler:{ action in
+            //TODO:Delete data and any realted progress from db
+            self.dismiss(animated: false, completion: {
+            })
+            //performSegue(withIdentifier: "QuizVC", sender: nil)
+        }))
+        
+        self.present(alert, animated: true)
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
