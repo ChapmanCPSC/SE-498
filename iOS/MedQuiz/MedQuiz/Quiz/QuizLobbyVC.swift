@@ -364,6 +364,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         })
         self.present(alert, animated: true, completion: nil)
     }
+    
     @IBAction func tempQuizActivityPressed(_ sender: Any) {
         startQuiz()
     }

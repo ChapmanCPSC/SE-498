@@ -185,6 +185,16 @@ class QuizActivityVC: UIViewController {
         }
     }
 
+    func checkConnection(completion: @escaping () -> Void){
+        let connectedRef = Database.database().reference(withPath: ".info/connected")
+        connectedRef.observe(.value, with: { snapshot in
+            if let connected = snapshot.value as? Bool, !connected {
+                self.errorOccurred(title: "Connection Error", message: "Connection to database lost.")
+            }
+            completion()
+        })
+    }
+    
     func hideAnswersForTime(){
         //Hides answers for 5 sec and then calls showLabels func
         Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(showLabels), userInfo: nil, repeats: false)
@@ -578,14 +588,7 @@ class QuizActivityVC: UIViewController {
             let alert = UIAlertController(title: "Are you sure you want to exit the quiz?", message: "All your progress will be lost.", preferredStyle: .alert)
             
             alert.addAction(UIAlertAction(title: "Yes", style: .default, handler:{ action in
-                let opponentHeadToHeadRequestRef = Database.database().reference().child("student/\(String(describing: self.headToHeadOpponent.databaseID!))/headtoheadgamerequest")
-                opponentHeadToHeadRequestRef.removeValue()
-                
-                let userHeadToHeadRequestRef = Database.database().reference().child("student/\(String(describing: currentUserID))/headtoheadgamerequest")
-                userHeadToHeadRequestRef.removeValue()
-                
-                let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(self.headToHeadGameKey!)
-                headToHeadGameRef.removeValue()
+                self.deleteDBHeadToHeadData()
             }))
             
             alert.addAction(UIAlertAction(title: "No", style: .cancel, handler:{ action in
@@ -635,6 +638,25 @@ class QuizActivityVC: UIViewController {
                 
             }
         })
+    }
+    
+    func errorOccurred(title:String, message:String){
+        let alert = UIAlertController(title:title, message:message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default) { UIAlertAction in
+            self.dismiss(animated: false, completion: nil)
+        })
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func deleteDBHeadToHeadData(){
+        let opponentHeadToHeadRequestRef = Database.database().reference().child("student/\(String(describing: self.headToHeadOpponent.databaseID!))/headtoheadgamerequest")
+        opponentHeadToHeadRequestRef.removeValue()
+        
+        let userHeadToHeadRequestRef = Database.database().reference().child("student/\(String(describing: currentUserID))/headtoheadgamerequest")
+        userHeadToHeadRequestRef.removeValue()
+        
+        let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(self.headToHeadGameKey!)
+        headToHeadGameRef.removeValue()
     }
 }
 
