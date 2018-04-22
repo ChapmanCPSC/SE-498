@@ -174,7 +174,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         StudentModel.FromAndKeepObserving(key: userStudentKey) {user in
             if user.headToHeadGameRequest != nil {
                 print("Presenting head to head request")
-                
                 let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(user.headToHeadGameRequest!)
                 headToHeadGameRef.observeSingleEvent(of: .value, with: {(snapshot) in
                     let inviterKey = snapshot.childSnapshot(forPath: "inviter").childSnapshot(forPath: "student").value! as! String

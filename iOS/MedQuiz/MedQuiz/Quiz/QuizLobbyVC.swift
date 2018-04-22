@@ -243,13 +243,16 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     func downloadStandardQuiz(){
+        print("downloading standard quiz")
         GameModel.Where(child: GameModel.GAME_PIN, equals: self.gamePin) { (gamesFound) in
             let theGame = gamesFound[0]
             self.gameKey = theGame.key
             
             _ = Quiz(key: theGame.quizKey!) { theQuiz in
                 self.quiz = theQuiz
+                print("downloading students")
                 self.downloadStudents()
+                print("done downloading students")
             }
         }
     }
@@ -281,6 +284,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     func downloadStudents(){
+        print("downloading students method")
         GameModel.Where(child: GameModel.GAME_PIN, equals: self.gamePin) { (gamesFound) in            
             let userStudentRef = Database.database().reference(withPath: "game/\(gamesFound[0].key)/students").child(currentUserID)
             userStudentRef.setValue(true)
