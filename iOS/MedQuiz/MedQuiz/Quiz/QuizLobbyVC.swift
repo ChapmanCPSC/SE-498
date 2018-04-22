@@ -72,16 +72,17 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         loadingIndicatorView.startAnimating()
         loadingIndicatorView.color = loadingIndicatorViewColor
 
-        if (quizMode == QuizMode.Standard){
+        switch quizMode! {
+            
+        case .Standard:
             waitingString = "Waiting for other players..."
             lobbyPlayersCollectionView.isHidden = false
             
             lobbyPlayersCollectionView.delegate = self
             lobbyPlayersCollectionView.dataSource = self
             lobbyPlayersCollectionView.showsVerticalScrollIndicator = false
-
-        }
-        else if (quizMode == QuizMode.HeadToHead){
+            break
+        case .HeadToHead:
             if invitee{
                 headToHeadRequestRef.dismiss(animated: false, completion: nil)
             }
@@ -102,9 +103,10 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             headToHeadOpponentAvatarImageView.image = headToHeadOpponent.profilePic!
             headToHeadOpponentUserNameLabel.text = headToHeadOpponent.userName!
             headToHeadOpponentScoreLabel.text = String(describing: headToHeadOpponent.totalPoints!)
-        }
-        else if (quizMode == QuizMode.Solo){
+            break
+        case .Solo:
             waitingString = "Ready to start..."
+            break
         }
         
         download()
@@ -158,7 +160,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         let connectedRef = Database.database().reference(withPath: ".info/connected")
         connectedRef.observe(.value, with: { snapshot in
             if let connected = snapshot.value as? Bool, !connected {
-                self.errorOccurred(title: "Connection Error", message: "Connection to database lost.")
+                self.errorOccurred(title: "You have lost connection to the database", message: "Check your internet connection.")
             }
             completion()
         })	
@@ -343,19 +345,21 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         destinationVC.currQuiz = quiz
         destinationVC.quizLobbyRef = self
         
-        if (quizMode == QuizMode.Standard){
+        switch quizMode! {
+        case .Standard:
             destinationVC.quizMode = QuizMode.Standard
             destinationVC.gameKey = gameKey
             lobbyPlayers.append(currentGlobalStudent)
             destinationVC.allUsers = lobbyPlayers
-        }
-        else if (quizMode == QuizMode.HeadToHead){
+            break
+        case .HeadToHead:
             destinationVC.quizMode = QuizMode.HeadToHead
             destinationVC.headToHeadGameKey = headToHeadGameKey
             destinationVC.headToHeadOpponent = headToHeadOpponent
-        }
-        else if (quizMode == QuizMode.Solo){
+            break
+        case .Solo:
             destinationVC.quizMode = QuizMode.Solo
+            break
         }
         
         self.present(destinationVC, animated: false, completion: nil)
@@ -368,6 +372,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         })
         self.present(alert, animated: true, completion: nil)
     }
+    
     @IBAction func tempQuizActivityPressed(_ sender: Any) {
         startQuiz()
     }
@@ -377,14 +382,16 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
-        if quizMode == QuizMode.Standard {
+        switch quizMode! {
+        case .Standard:
             //TODO
-        }
-        else if quizMode == QuizMode.HeadToHead {
+            break
+        case .HeadToHead:
             deleteDBHeadToHeadData()
-        }
-        else if quizMode == QuizMode.Solo {
+            break
+        case .Solo: 
             //TODO
+            break
         }
     }
     

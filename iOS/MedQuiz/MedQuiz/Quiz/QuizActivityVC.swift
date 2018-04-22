@@ -83,17 +83,6 @@ class QuizActivityVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Checking connection to the database. If internet fails.
-        let connectedRef = Database.database().reference(withPath: ".info/connected")
-        connectedRef.observe(.value, with: { snapshot in
-            if let connected = snapshot.value as? Bool, connected {
-                print("Connected")
-            } else {
-                print("Not connected")
-                self.exitQuiz()
-            }
-        })
-        
         quizLobbyRef.dismiss(animated: false, completion: nil)
         
         questionsTimer.backgroundColor = UIColor.clear
@@ -128,74 +117,22 @@ class QuizActivityVC: UIViewController {
         //tempSetupLeaderBoard()
 
         nextQuestion()
+        
+        registerFirebaseListeners()
 
-        if quizMode == QuizLobbyVC.QuizMode.Standard {
-            let inGameLeaderboardRef = Database.database().reference(withPath: "inGameLeaderboards")
-            inGameLeaderboardRef.observeSingleEvent(of: .value, with: { (snapshot:DataSnapshot) in
-                for child in snapshot.children.allObjects as! [DataSnapshot] {
-                    if ((child.value as! [String:AnyObject])["game"] as! String) == self.gameKey {
-                        self.inGameLeaderboardKey = child.key
-                        let inGameLeaderboardStudentsRef = inGameLeaderboardRef.child(child.key).child("students")
-                        inGameLeaderboardStudentsRef.observeSingleEvent(of: .value, with: { (snapshot:DataSnapshot) in
-                            for child in snapshot.children.allObjects as! [DataSnapshot] {
-                                if ((child.value as! [String:AnyObject])["studentKey"] as! String) == currentUserID {
-                                    self.userInGameLeaderboardObjectKey = child.key
-                                    
-                                    //Temp set value
-                                    self.dataRef.child("inGameLeaderboards").child(self.inGameLeaderboardKey).child("students").child(self.userInGameLeaderboardObjectKey).child("studentScore").setValue(0)
-                                    
-                                    
-                                    inGameLeaderboardStudentsRef.queryOrdered(byChild: "studentScore").observe(.value, with: { (snapshot:DataSnapshot) in
-                                        var leaderboardStudentKeys = [String]()
-                                        self.allScores = []
-                                        for child in snapshot.children.allObjects as! [DataSnapshot] {
-                                            let key = (child.value as! [String:AnyObject])["studentKey"] as! String
-                                            leaderboardStudentKeys.append(key)
-                                            let score = (child.value as! [String:AnyObject])["studentScore"] as! Int
-                                            self.allScores.append(score)
-                                        }
-                                        
-                                        leaderboardStudentKeys.reverse()
-                                        self.allScores.reverse()
-                                        
-                                        var newAllUsers:[Student] = []
-                                        var leaderboardPosCounter = 0
-                                        for key in leaderboardStudentKeys {
-                                            for student in self.allUsers {
-                                                if key == student.databaseID {
-                                                    leaderboardPosCounter += 1
-                                                    newAllUsers.append(student)
-                                                    if key == currentUserID {
-                                                        self.currPos = leaderboardPosCounter
-                                                    }
-                                                    break
-                                                }
-                                            }
-                                        }
-                                        
-                                        self.allUsers = newAllUsers
-                                        self.updateLeaderboard()
-                                        self.updateUserInLeaderboard()
-                                    })
-                                }
-                            }
-                        })
-                    }
-                }
-            })
-        }
-        
-        else if quizMode == QuizLobbyVC.QuizMode.HeadToHead {
-            checkRequestStatus {
-                //TODO
-            }
-        }
-        
-        else if quizMode == QuizLobbyVC.QuizMode.Solo {
+        switch quizMode!{
+        case .Standard:
+            getLeaderboardInfo()
+            break
+        case .HeadToHead:
+            getLeaderboardInfo()
+            break
+        case .Solo:
             //TODO
+            break
         }
     }
-
+    
     func hideAnswersForTime(){
         //Hides answers for 5 sec and then calls showLabels func
         Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(showLabels), userInfo: nil, repeats: false)
@@ -243,33 +180,98 @@ class QuizActivityVC: UIViewController {
     }
     
     func registerFirebaseListeners(){
-        // handle setting up firebase stuff
+        switch quizMode! {
+        case .Standard:
+            checkConnection()
+            break
+        case .HeadToHead:
+            checkConnection()
+            checkRequestStatus()
+            break
+        case .Solo:
+            //TODO
+            break
+        }
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "activityToMain" {
-//            let destinationVC = segue.destination as! QuizVC
-//            
-//        }
-//    }
-    
-    func checkRequestStatus(completion: @escaping () -> Void){
-        if quizMode == QuizLobbyVC.QuizMode.HeadToHead {
-            StudentModel.FromAndKeepObserving(key: currentUserID) {userStudent in
-                guard userStudent.headToHeadGameRequest != nil else {
-                    print("Head to Head quiz cancelled.")
-                    self.quizCancelled = true
-                    let alert = UIAlertController(title:"Head to Head Game Cancelled", message:"The Head to Head game has been cancelled.", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default) { UIAlertAction in
-                        self.dismiss(animated: false, completion: nil)
-                        completion()
+    func getLeaderboardInfo(){
+        let inGameLeaderboardRef = Database.database().reference(withPath: "inGameLeaderboards")
+        inGameLeaderboardRef.observeSingleEvent(of: .value, with: { (snapshot:DataSnapshot) in
+            for child in snapshot.children.allObjects as! [DataSnapshot] {
+                if ((child.value as! [String:AnyObject])["game"] as! String) == self.gameKey {
+                    self.inGameLeaderboardKey = child.key
+                    let inGameLeaderboardStudentsRef = inGameLeaderboardRef.child(child.key).child("students")
+                    inGameLeaderboardStudentsRef.observeSingleEvent(of: .value, with: { (snapshot:DataSnapshot) in
+                        for child in snapshot.children.allObjects as! [DataSnapshot] {
+                            if ((child.value as! [String:AnyObject])["studentKey"] as! String) == currentUserID {
+                                self.userInGameLeaderboardObjectKey = child.key
+                                
+                                //Temp set value
+                                self.dataRef.child("inGameLeaderboards").child(self.inGameLeaderboardKey).child("students").child(self.userInGameLeaderboardObjectKey).child("studentScore").setValue(0)
+                                
+                                
+                                inGameLeaderboardStudentsRef.queryOrdered(byChild: "studentScore").observe(.value, with: { (snapshot:DataSnapshot) in
+                                    var leaderboardStudentKeys = [String]()
+                                    self.allScores = []
+                                    for child in snapshot.children.allObjects as! [DataSnapshot] {
+                                        let key = (child.value as! [String:AnyObject])["studentKey"] as! String
+                                        leaderboardStudentKeys.append(key)
+                                        let score = (child.value as! [String:AnyObject])["studentScore"] as! Int
+                                        self.allScores.append(score)
+                                    }
+                                    
+                                    leaderboardStudentKeys.reverse()
+                                    self.allScores.reverse()
+                                    
+                                    var newAllUsers:[Student] = []
+                                    var leaderboardPosCounter = 0
+                                    for key in leaderboardStudentKeys {
+                                        for student in self.allUsers {
+                                            if key == student.databaseID {
+                                                leaderboardPosCounter += 1
+                                                newAllUsers.append(student)
+                                                if key == currentUserID {
+                                                    self.currPos = leaderboardPosCounter
+                                                }
+                                                break
+                                            }
+                                        }
+                                    }
+                                    
+                                    self.allUsers = newAllUsers
+                                    self.updateLeaderboard()
+                                    self.updateUserInLeaderboard()
+                                })
+                            }
+                        }
                     })
-                    self.present(alert, animated: true, completion: nil)
-                    return
                 }
             }
+        })
+    }
+    
+    func checkConnection(){
+        let connectedRef = Database.database().reference(withPath: ".info/connected")
+        connectedRef.observe(.value, with: { snapshot in
+            print("Checking connection...")
+            if let connected = snapshot.value as? Bool, !connected {
+                //self.deleteDBHeadToHeadData()
+                self.errorOccurred(title: "You have lost connection to the database", message: "Check your internet connection.")
+            }
+        })
+    }
+    
+    func checkRequestStatus(){
+        StudentModel.FromAndKeepObserving(key: currentUserID) {userStudent in
+            guard userStudent.headToHeadGameRequest != nil else {
+                if !self.quizCancelled {
+                    self.quizCancelled = true
+                    self.errorOccurred(title: "Head to Head Game Cancelled", message: "The Head to Head game has been cancelled.")
+                    return
+                }
+                return
+            }
         }
-        completion()
     }
     
     func sendIsReady(){
@@ -592,53 +594,30 @@ class QuizActivityVC: UIViewController {
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
-        if quizMode == QuizLobbyVC.QuizMode.Standard {
-            performSegue(withIdentifier: "QuizVC", sender: nil)
-        }
+        let alert = UIAlertController(title: "Are you sure you want to exit the quiz?", message: "All your progress will be lost.", preferredStyle: .alert)
         
-        else if quizMode == QuizLobbyVC.QuizMode.HeadToHead {
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler:{ action in
+            switch self.quizMode! {
+            case .Standard:
+                //TODO
+                break
+            case .HeadToHead:
+                self.deleteDBHeadToHeadData()
+                break
+            case .Solo:
+                //TODO
+                break
+            }
             
-            let alert = UIAlertController(title: "Are you sure you want to exit the quiz?", message: "All your progress will be lost.", preferredStyle: .alert)
-            
-            alert.addAction(UIAlertAction(title: "Yes", style: .default, handler:{ action in
-                let opponentHeadToHeadRequestRef = Database.database().reference().child("student/\(String(describing: self.headToHeadOpponent.databaseID!))/headtoheadgamerequest")
-                opponentHeadToHeadRequestRef.removeValue()
-                
-                let userHeadToHeadRequestRef = Database.database().reference().child("student/\(String(describing: currentUserID))/headtoheadgamerequest")
-                userHeadToHeadRequestRef.removeValue()
-                
-                let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(self.headToHeadGameKey!)
-                headToHeadGameRef.removeValue()
-            }))
-            
-            alert.addAction(UIAlertAction(title: "No", style: .cancel, handler:{ action in
-                alert.dismiss(animated: false, completion: {
-                })
-            }))
-            
-            self.present(alert, animated: true)
-            
-        }
+            self.dismiss(animated: false, completion: nil)
+        }))
         
-        else if quizMode == QuizLobbyVC.QuizMode.Solo {
-            
-            let alert = UIAlertController(title: "Are you sure you want to exit the quiz?", message: "All your progress will be lost.", preferredStyle: .alert)
-            
-            alert.addAction(UIAlertAction(title: "Yes", style: .default, handler:{ action in
-                //TODO:Delete data and any realted progress from db
-                self.dismiss(animated: false, completion: {
-                })
-                //performSegue(withIdentifier: "QuizVC", sender: nil)
-            }))
-            
-            alert.addAction(UIAlertAction(title: "No", style: .cancel, handler:{ action in
-                alert.dismiss(animated: false, completion: {
-                })
-            }))
-            
-            self.present(alert, animated: true)
-            
-        }
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler:{ action in
+            alert.dismiss(animated: false, completion: {
+            })
+        }))
+        
+        self.present(alert, animated: true)
     }
     
     @IBAction func tempNextQPressed(_ sender: Any) {
@@ -658,6 +637,25 @@ class QuizActivityVC: UIViewController {
                 
             }
         })
+    }
+    
+    func errorOccurred(title:String, message:String){
+        let alert = UIAlertController(title:title, message:message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default) { UIAlertAction in
+            self.dismiss(animated: false, completion: nil)
+        })
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func deleteDBHeadToHeadData(){
+        let opponentHeadToHeadRequestRef = Database.database().reference().child("student/\(String(describing: self.headToHeadOpponent.databaseID!))/headtoheadgamerequest")
+        opponentHeadToHeadRequestRef.removeValue()
+        
+        let userHeadToHeadRequestRef = Database.database().reference().child("student/\(String(describing: currentUserID))/headtoheadgamerequest")
+        userHeadToHeadRequestRef.removeValue()
+        
+        let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(self.headToHeadGameKey!)
+        headToHeadGameRef.removeValue()
     }
 }
 

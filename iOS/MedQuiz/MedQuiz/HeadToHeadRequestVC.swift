@@ -71,6 +71,7 @@ class HeadToHeadRequestVC: UIViewController {
         let quizStoryboard = UIStoryboard(name: "Quiz", bundle: nil)
         let quizLobbyVC = quizStoryboard.instantiateViewController(withIdentifier: "quizLobbyVC") as! QuizLobbyVC
         quizLobbyVC.quizKey = headToHeadQuizKey
+        quizLobbyVC.gameKey = headToHeadGameRef.key
         quizLobbyVC.headToHeadGameKey = headToHeadGameKey
         quizLobbyVC.headToHeadOpponent = opponent
         quizLobbyVC.quizMode = QuizLobbyVC.QuizMode.HeadToHead
