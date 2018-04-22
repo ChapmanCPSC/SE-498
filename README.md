@@ -30,4 +30,5 @@
 * ReactJS
 * Swift
 * Firebase
+* react-dropzone - https://react-dropzone.js.org/
 .
