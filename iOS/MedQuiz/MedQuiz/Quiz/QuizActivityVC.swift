@@ -19,7 +19,7 @@ class QuizActivityVC: UIViewController {
     var currQuestion:Question!
     var currQuestionIdx:Int = -1 // start at -1 so that first call can call nextQuestion
     var currQuiz:Quiz!
-    var quizCancelled:Bool = false
+    var quizEnded:Bool = false
     
     var canSelect:Bool = false
     var currPos:Int!
@@ -30,8 +30,8 @@ class QuizActivityVC: UIViewController {
     var allUsers:[Student]! // TODO kinda working off assumption there'll be an array that'll be updated in firebase that we can use
     var allScores:[Int]!
     
-    var headToHeadGameKey:String!
     var headToHeadOpponent:Student!
+    var isInvitee:Bool!
     
     @IBOutlet weak var answer1: AnswerView!
     @IBOutlet weak var answer2: AnswerView!
@@ -80,10 +80,10 @@ class QuizActivityVC: UIViewController {
     
     var quizMode:QuizLobbyVC.QuizMode!
     
+    var onDoneBlock : ((Bool) -> Void)?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        quizLobbyRef.dismiss(animated: false, completion: nil)
         
         questionsTimer.backgroundColor = UIColor.clear
         questionsTimer.labelTextColor = UIColor.black
@@ -125,12 +125,16 @@ class QuizActivityVC: UIViewController {
             getLeaderboardInfo()
             break
         case .HeadToHead:
-            getLeaderboardInfo()
+            //getLeaderboardInfo()
             break
         case .Solo:
             //TODO
             break
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        //quizLobbyRef.dismiss(animated: false, completion: nil)
     }
     
     func hideAnswersForTime(){
@@ -187,6 +191,7 @@ class QuizActivityVC: UIViewController {
         case .HeadToHead:
             checkConnection()
             checkRequestStatus()
+            checkConcession()
             break
         case .Solo:
             //TODO
@@ -264,14 +269,32 @@ class QuizActivityVC: UIViewController {
     func checkRequestStatus(){
         StudentModel.FromAndKeepObserving(key: currentUserID) {userStudent in
             guard userStudent.headToHeadGameRequest != nil else {
-                if !self.quizCancelled {
-                    self.quizCancelled = true
+                if !self.quizEnded {
+                    self.quizEnded = true
                     self.errorOccurred(title: "Head to Head Game Cancelled", message: "The Head to Head game has been cancelled.")
                     return
                 }
                 return
             }
         }
+    }
+    
+    func checkConcession(){
+        var opponentString:String!
+        if isInvitee {
+            opponentString = "inviter"
+        }
+        else{
+            opponentString = "invitee"
+        }
+        let opponentReadyRef = Database.database().reference().child("head-to-head-game/\(self.gameKey)/\(opponentString)/ready")
+        opponentReadyRef.observe(.value, with: { snapshot in
+            guard let ready = snapshot.value as? Bool, ready else {
+                self.quizEnded = true
+                self.winByConcession()
+                return
+            }
+        })
     }
     
     func sendIsReady(){
@@ -469,7 +492,36 @@ class QuizActivityVC: UIViewController {
         }
     }
 
-
+    func headToHeadConcede(){
+        quizEnded = true
+        var userString:String!
+        if isInvitee {
+            userString = "invitee"
+        }
+        else{
+            userString = "inviter"
+        }
+        let userReadyRef = Database.database().reference().child("head-to-head-game/\(self.gameKey)/\(userString)/ready")
+        userReadyRef.setValue(false)
+        errorOccurred(title: "Head To Head Game Conceded", message: "You have conceded the game to your opponent.")
+    }
+    
+    func winByConcession(){
+        quizEnded = true
+        updatePersonalScore()
+        let quizSummaryVC = self.storyboard?.instantiateViewController(withIdentifier: "quizSummary") as! QuizSummaryViewController
+        self.dismiss(animated: false, completion: {
+            mainQuizVC.present(quizSummaryVC, animated: false, completion: {
+                let alert = UIAlertController(title:"Game Conceded", message:"Head to Head game with conceded by your opponent.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default) { UIAlertAction in
+                    quizSummaryVC.dismiss(animated: false, completion: nil)
+                })
+                quizSummaryVC.present(alert, animated: true, completion: nil)
+                self.deleteDBHeadToHeadData()
+            })
+        })
+    }
+    
     func finishQuiz(){
          //segue to quiz summary
 
@@ -602,7 +654,7 @@ class QuizActivityVC: UIViewController {
                 //TODO
                 break
             case .HeadToHead:
-                self.deleteDBHeadToHeadData()
+                self.headToHeadConcede()
                 break
             case .Solo:
                 //TODO
@@ -642,20 +694,24 @@ class QuizActivityVC: UIViewController {
     func errorOccurred(title:String, message:String){
         let alert = UIAlertController(title:title, message:message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default) { UIAlertAction in
+            self.onDoneBlock!(true)
             self.dismiss(animated: false, completion: nil)
         })
         self.present(alert, animated: true, completion: nil)
     }
     
     func deleteDBHeadToHeadData(){
-        let opponentHeadToHeadRequestRef = Database.database().reference().child("student/\(String(describing: self.headToHeadOpponent.databaseID!))/headtoheadgamerequest")
+        let opponentHeadToHeadRequestRef = Database.database().reference().child("student/\(String(describing: headToHeadOpponent.databaseID!))/headtoheadgamerequest")
         opponentHeadToHeadRequestRef.removeValue()
         
         let userHeadToHeadRequestRef = Database.database().reference().child("student/\(String(describing: currentUserID))/headtoheadgamerequest")
         userHeadToHeadRequestRef.removeValue()
         
-        let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(self.headToHeadGameKey!)
+        let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(gameKey!)
         headToHeadGameRef.removeValue()
+        
+        let headToHeadGameLeaderboardRef = Database.database().reference().child("inGameLeaderboards/\(inGameLeaderboardKey)")
+        headToHeadGameLeaderboardRef.removeValue()
     }
 }
 
