@@ -201,6 +201,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     func checkHeadToHeadGameStatus(completion: @escaping () -> Void){
+        print("game key" + gameKey!)
         let headToHeadGameRef = Database.database().reference().child("head-to-head-game/\(gameKey!)")
         headToHeadGameRef.observe(.value, with: { snapshot in
             if !self.quizStarted {

@@ -43,8 +43,11 @@ class HeadToHeadRequestVC: UIViewController {
     }
     
     func checkRequestStatus(){
-        let headToHeadGameRef = Database.database().reference().child("head-to-head-game/\(headToHeadGameKey)")
+        print("request key" + headToHeadGameKey)
+        let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(headToHeadGameKey)
         headToHeadGameRef.observe(.value, with: { snapshot in
+            print("snapshot")
+            print(snapshot.value)
             if snapshot.value is NSNull {
                 print("Head to Head game cancelled in request VC")
                 let alert = UIAlertController(title:"Head to Head Game Cancelled", message:"Head to head game against \(String(describing: self.opponent.userName!)) cancelled.", preferredStyle: .alert)
