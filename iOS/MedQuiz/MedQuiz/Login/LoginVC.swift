@@ -188,7 +188,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                 print("Presenting head to head request")
                 let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(user.headToHeadGameRequest!)
                 headToHeadGameRef.observeSingleEvent(of: .value, with: {(snapshot) in
-                    let inviterKey = snapshot.childSnapshot(forPath: "inviter").childSnapshot(forPath: "student").value! as! String
+                    if let inviterKey = snapshot.childSnapshot(forPath: "inviter").childSnapshot(forPath: "student").value! as? String{
                     if inviterKey != currentUserID{
                         let sb:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                         let headToHeadRequestVC:HeadToHeadRequestVC = sb.instantiateViewController(withIdentifier: "headToHeadRequestVC") as! HeadToHeadRequestVC
@@ -213,6 +213,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                                 }
                             }
                         }
+                    }
                     }
                 })
             }
