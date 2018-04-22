@@ -184,9 +184,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     
     func checkHeadToHeadRequest(userStudentKey:String){
         StudentModel.FromAndKeepObserving(key: userStudentKey) {user in
-            if user.headToHeadGameRequest != nil {
-                print("Presenting head to head request")
-                
+            if user.headToHeadGameRequest != nil {                
                 let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(user.headToHeadGameRequest!)
                 headToHeadGameRef.observeSingleEvent(of: .value, with: {(snapshot) in
                     let inviterKey = snapshot.childSnapshot(forPath: "inviter").childSnapshot(forPath: "student").value! as! String
@@ -202,7 +200,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                             
                             _ = Student(key: inviterKey) { inviter in
                                 headToHeadRequestVC.opponent = inviter
-                                headToHeadRequestVC.headToHeadGameKey = user.headToHeadGameRequest
+                                headToHeadRequestVC.headToHeadGameKey = headToHeadGameRef.key
                                 let quizKey:String = snapshot.childSnapshot(forPath: "quiz").value! as! String
                                 QuizModel.From(key: quizKey){ quiz in
                                     headToHeadRequestVC.headToHeadQuizTitle = quiz.title

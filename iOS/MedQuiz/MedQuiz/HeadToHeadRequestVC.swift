@@ -43,8 +43,9 @@ class HeadToHeadRequestVC: UIViewController {
     }
     
     func checkRequestStatus(){
-        HeadToHeadGameModel.FromAndKeepObserving(key: headToHeadGameKey!) { (headToHeadGame) in
-            if headToHeadGame.snapshot.value is NSNull {
+        let headToHeadGameRef = Database.database().reference().child("head-to-head-game/\(headToHeadGameKey)")
+        headToHeadGameRef.observe(.value, with: { snapshot in
+            if snapshot.value is NSNull {
                 print("Head to Head game cancelled in request VC")
                 let alert = UIAlertController(title:"Head to Head Game Cancelled", message:"Head to head game against \(String(describing: self.opponent.userName!)) cancelled.", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default) { UIAlertAction in
@@ -52,7 +53,7 @@ class HeadToHeadRequestVC: UIViewController {
                 })
                 self.present(alert, animated: true, completion: nil)
             }
-        }
+        })
     }
     
     @IBAction func hideButtonPressed(_ sender: Any) {
@@ -71,11 +72,11 @@ class HeadToHeadRequestVC: UIViewController {
         let quizStoryboard = UIStoryboard(name: "Quiz", bundle: nil)
         let quizLobbyVC = quizStoryboard.instantiateViewController(withIdentifier: "quizLobbyVC") as! QuizLobbyVC
         quizLobbyVC.quizKey = headToHeadQuizKey
-        quizLobbyVC.gameKey = headToHeadGameRef.key
-        quizLobbyVC.headToHeadGameKey = headToHeadGameKey
+        quizLobbyVC.gameKey = headToHeadGameKey
         quizLobbyVC.headToHeadOpponent = opponent
         quizLobbyVC.quizMode = QuizLobbyVC.QuizMode.HeadToHead
-        quizLobbyVC.invitee = true
+        quizLobbyVC.isInvitee = true
+        quizLobbyVC.headToHeadAccepted = true
         quizLobbyVC.headToHeadRequestRef = self
         self.present(quizLobbyVC, animated: false, completion: nil)
     }
