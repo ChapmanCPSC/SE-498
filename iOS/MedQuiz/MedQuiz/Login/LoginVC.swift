@@ -130,6 +130,18 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                         globalUsername = aCurrentStudent.userName!
                         globalHighscore = aCurrentStudent.totalPoints!
                         globalProfileImage = aCurrentStudent.profilePic!
+                        
+                        let connectedRef = Database.database().reference().child(".info/connected")
+                        connectedRef.observe(.value, with: { snapshot in
+                            guard let connected = snapshot.value as? Bool, connected else {
+                                print("disconnected")
+                                return
+                            }
+                            let currUserOnline = Database.database().reference().child("student/\(currentUserID)/online")
+                            currUserOnline.onDisconnectSetValue(false)
+                            currUserOnline.setValue(true)
+                        })
+                        
                         print("done")
                         //use wa
                         self.present((self.MainStoryBoard?.instantiateInitialViewController())!, animated: false, completion: nil)
