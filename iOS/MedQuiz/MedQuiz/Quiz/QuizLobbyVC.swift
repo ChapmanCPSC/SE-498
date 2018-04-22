@@ -385,7 +385,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         case .HeadToHead:
             deleteDBHeadToHeadData()
             break
-        case .Solo: break
+        case .Solo: 
             //TODO
             break
         }

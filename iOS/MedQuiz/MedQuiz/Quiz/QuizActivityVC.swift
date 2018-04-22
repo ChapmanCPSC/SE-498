@@ -83,17 +83,6 @@ class QuizActivityVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Checking connection to the database. If internet fails.
-        let connectedRef = Database.database().reference(withPath: ".info/connected")
-        connectedRef.observe(.value, with: { snapshot in
-            if let connected = snapshot.value as? Bool, connected {
-                print("Connected")
-            } else {
-                print("Not connected")
-                self.exitQuiz()
-            }
-        })
-        
         quizLobbyRef.dismiss(animated: false, completion: nil)
         
         questionsTimer.backgroundColor = UIColor.clear
@@ -264,8 +253,9 @@ class QuizActivityVC: UIViewController {
     func checkConnection(){
         let connectedRef = Database.database().reference(withPath: ".info/connected")
         connectedRef.observe(.value, with: { snapshot in
+            print("Checking connection...")
             if let connected = snapshot.value as? Bool, !connected {
-                self.deleteDBHeadToHeadData()
+                //self.deleteDBHeadToHeadData()
                 self.errorOccurred(title: "You have lost connection to the database", message: "Check your internet connection.")
             }
         })
