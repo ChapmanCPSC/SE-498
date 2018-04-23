@@ -105,7 +105,6 @@
 		3DE0275D2034E1B100ECAE7B /* LeaderboardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DE0275B2034E1B100ECAE7B /* LeaderboardCell.xib */; };
 		3DECA35E2058E2E1001554A8 /* StudentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DECA35D2058E2E1001554A8 /* StudentModel.swift */; };
 		3DECA3602058EC83001554A8 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DECA35F2058EC83001554A8 /* GameModel.swift */; };
-		3F38844B208D5A9D006926B5 /* FriendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F38844A208D5A9D006926B5 /* FriendModel.swift */; };
 		3FB6F4C62068D116003E502F /* QuizActivityVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB6F4C52068D116003E502F /* QuizActivityVCTests.swift */; };
 		3FB6F4C82068E0CA003E502F /* UserViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB6F4C72068E0CA003E502F /* UserViewTests.swift */; };
 		3FB6F4CA2069D762003E502F /* LoginVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB6F4C92069D762003E502F /* LoginVCTests.swift */; };
@@ -136,6 +135,7 @@
 		A12154B820478E9E00E9E939 /* FriendRequestsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12154B720478E9E00E9E939 /* FriendRequestsTableViewCell.swift */; };
 		A12154BA2047924E00E9E939 /* FriendRequestsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A12154B92047924E00E9E939 /* FriendRequestsTableViewCell.xib */; };
 		A149D7DB2044B4C400AD3B1A /* ChangeUsernameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A149D7DA2044B4C400AD3B1A /* ChangeUsernameVC.swift */; };
+		A152CFD1208D86BB007BB08D /* FriendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A152CFD0208D86BB007BB08D /* FriendModel.swift */; };
 		A184C8D12055FDBA004AC690 /* QuizLobbyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A184C8D02055FDBA004AC690 /* QuizLobbyVC.swift */; };
 		A184C8D3205602CB004AC690 /* LobbyPlayersCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A184C8D2205602CB004AC690 /* LobbyPlayersCollectionViewCell.swift */; };
 		A53E754E2037FC3E0081B1AD /* PerformsSegueDelegator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E754D2037FC3E0081B1AD /* PerformsSegueDelegator.swift */; };
@@ -280,7 +280,6 @@
 		3DE0275B2034E1B100ECAE7B /* LeaderboardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaderboardCell.xib; sourceTree = "<group>"; };
 		3DECA35D2058E2E1001554A8 /* StudentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentModel.swift; sourceTree = "<group>"; };
 		3DECA35F2058EC83001554A8 /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
-		3F38844A208D5A9D006926B5 /* FriendModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FriendModel.swift; path = ../Login/FriendModel.swift; sourceTree = "<group>"; };
 		3FB6F4C52068D116003E502F /* QuizActivityVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizActivityVCTests.swift; sourceTree = "<group>"; };
 		3FB6F4C72068E0CA003E502F /* UserViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewTests.swift; sourceTree = "<group>"; };
 		3FB6F4C92069D762003E502F /* LoginVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVCTests.swift; sourceTree = "<group>"; };
@@ -317,6 +316,7 @@
 		A12154B720478E9E00E9E939 /* FriendRequestsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestsTableViewCell.swift; sourceTree = "<group>"; };
 		A12154B92047924E00E9E939 /* FriendRequestsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendRequestsTableViewCell.xib; sourceTree = "<group>"; };
 		A149D7DA2044B4C400AD3B1A /* ChangeUsernameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeUsernameVC.swift; sourceTree = "<group>"; };
+		A152CFD0208D86BB007BB08D /* FriendModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendModel.swift; sourceTree = "<group>"; };
 		A184C8D02055FDBA004AC690 /* QuizLobbyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizLobbyVC.swift; sourceTree = "<group>"; };
 		A184C8D2205602CB004AC690 /* LobbyPlayersCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyPlayersCollectionViewCell.swift; sourceTree = "<group>"; };
 		A53E754D2037FC3E0081B1AD /* PerformsSegueDelegator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformsSegueDelegator.swift; sourceTree = "<group>"; };
@@ -538,7 +538,7 @@
 			children = (
 				3D500E812058D38C008DB127 /* QuizModel.swift */,
 				3D286B4A2082BDCD004CC8E2 /* ScoreModel.swift */,
-				3F38844A208D5A9D006926B5 /* FriendModel.swift */,
+				A152CFD0208D86BB007BB08D /* FriendModel.swift */,
 				3D500E832058D57C008DB127 /* QuestionModel.swift */,
 				3D500E852058D71D008DB127 /* TagModel.swift */,
 				3DECA35D2058E2E1001554A8 /* StudentModel.swift */,
@@ -798,7 +798,7 @@
 				TargetAttributes = {
 					3D2495A31F7E2EDD0058D85B = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = WK89PN64FL;
+						DevelopmentTeam = 9T45DU98XL;
 						ProvisioningStyle = Automatic;
 					};
 					3D2495B71F7E2EDD0058D85B = {
@@ -1169,12 +1169,12 @@
 				A11F2EC52075A4A8009BDEC6 /* HeadToHeadFriendRequestTableViewCell.swift in Sources */,
 				77A146EAF944084A15FB4E4D /* ExpandableTableViewController.swift in Sources */,
 				A114D7932043EBD2007336BB /* AvatarCollectionViewCell.swift in Sources */,
+				A152CFD1208D86BB007BB08D /* FriendModel.swift in Sources */,
 				77A14CED391D2FBFC726AED1 /* Student.swift in Sources */,
 				77A147D9AB118BDC31609EEC /* Ext_String.swift in Sources */,
 				A11F2EC1206B6269009BDEC6 /* HeadToHeadVC.swift in Sources */,
 				3D500E7C2058D1D4008DB127 /* FIRModel.swift in Sources */,
 				77A1443B573B0B104C3C97BB /* Tag.swift in Sources */,
-				3F38844B208D5A9D006926B5 /* FriendModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1349,11 +1349,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WK89PN64FL;
+				DEVELOPMENT_TEAM = 9T45DU98XL;
 				INFOPLIST_FILE = MedQuiz/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.PharmApp2018;
+				PRODUCT_BUNDLE_IDENTIFIER = com.PharmAppChad2018;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
@@ -1369,11 +1369,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WK89PN64FL;
+				DEVELOPMENT_TEAM = 9T45DU98XL;
 				INFOPLIST_FILE = MedQuiz/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.PharmApp2018;
+				PRODUCT_BUNDLE_IDENTIFIER = com.PharmAppChad2018;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
