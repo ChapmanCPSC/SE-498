@@ -268,6 +268,8 @@ class QuizActivityVC: UIViewController {
     
     func checkRequestStatus(){
         StudentModel.FromAndKeepObserving(key: currentUserID) {userStudent in
+            print("game request")
+            print(userStudent.headToHeadGameRequest)
             guard userStudent.headToHeadGameRequest != nil else {
                 if !self.quizEnded {
                     self.quizEnded = true
@@ -280,15 +282,20 @@ class QuizActivityVC: UIViewController {
     }
     
     func checkConcession(){
+        print("checkConcession")
         var opponentString:String!
         if isInvitee {
+            print("inviter")
             opponentString = "inviter"
         }
         else{
+            print("invitee")
             opponentString = "invitee"
         }
-        let opponentReadyRef = Database.database().reference().child("head-to-head-game/\(self.gameKey)/\(opponentString)/ready")
+        let opponentReadyRef = Database.database().reference().child("head-to-head-game").child(self.gameKey).child(opponentString).child("ready")
+        print("oppenentReadySnap")
         opponentReadyRef.observe(.value, with: { snapshot in
+            print(snapshot)
             guard let ready = snapshot.value as? Bool, ready else {
                 self.quizEnded = true
                 self.winByConcession()

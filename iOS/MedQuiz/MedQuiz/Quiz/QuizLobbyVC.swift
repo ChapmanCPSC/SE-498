@@ -202,7 +202,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     func checkHeadToHeadGameStatus(completion: @escaping () -> Void){
         print("game key" + gameKey!)
-        let headToHeadGameRef = Database.database().reference().child("head-to-head-game/\(gameKey!)")
+        let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(gameKey!)
         headToHeadGameRef.observe(.value, with: { snapshot in
             if !self.quizStarted {
                 if snapshot.value! is NSNull {
@@ -236,8 +236,10 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(gameKey!)
         headToHeadGameRef.observe(.value, with: {(snapshot) in
             if !(snapshot.value is NSNull) && !self.quizStarted {
+                print("ready for game")
                 if snapshot.childSnapshot(forPath: "inviter").childSnapshot(forPath: "ready").value! as! Bool {
                     if snapshot.childSnapshot(forPath: "invitee").childSnapshot(forPath: "ready").value! as! Bool {
+                        print("starting game")
                         self.startQuiz()
                     }
                 }
@@ -345,8 +347,10 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         }
     }
     
-    func startQuiz(){        
+    func startQuiz(){
+        print("start quiz method")
         if !quizStarted {
+            print("quiz not started")
             quizStarted = true
             let destinationVC : QuizActivityVC = storyboard?.instantiateViewController(withIdentifier: "quiz_act") as! QuizActivityVC
             destinationVC.currQuiz = quiz
@@ -354,12 +358,14 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             
             switch quizMode! {
             case .Standard:
+                print("standard")
                 destinationVC.quizMode = QuizMode.Standard
                 destinationVC.gameKey = gameKey
                 lobbyPlayers.append(currentGlobalStudent)
                 destinationVC.allUsers = lobbyPlayers
                 break
             case .HeadToHead:
+                print("head to head")
                 destinationVC.quizMode = QuizMode.HeadToHead
                 destinationVC.gameKey = gameKey
                 destinationVC.allUsers = [currentGlobalStudent, headToHeadOpponent]
@@ -367,6 +373,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 destinationVC.isInvitee = isInvitee
                 break
             case .Solo:
+                print("solo")
                 destinationVC.quizMode = QuizMode.Solo
                 break
             }
@@ -374,7 +381,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             destinationVC.onDoneBlock = { result in
                 self.dismiss(animated: false, completion: nil)
             }
-            
+            print("presenting destination")
             self.present(destinationVC, animated: false, completion: nil)
         }
     }
