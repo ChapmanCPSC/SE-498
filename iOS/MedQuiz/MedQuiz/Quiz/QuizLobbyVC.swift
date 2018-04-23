@@ -116,6 +116,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             print("quiz key in lobby not set")
         }
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         print("quiz lobby appeared")
     }

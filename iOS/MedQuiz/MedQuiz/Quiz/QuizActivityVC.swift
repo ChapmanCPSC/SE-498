@@ -117,20 +117,106 @@ class QuizActivityVC: UIViewController {
         //tempSetupLeaderBoard()
 
         nextQuestion()
-        
-        registerFirebaseListeners()
 
-        switch quizMode!{
-        case .Standard:
-            getLeaderboardInfo()
-            break
-        case .HeadToHead:
-            //getLeaderboardInfo()
-            break
-        case .Solo:
-            //TODO
-            break
+        if quizMode == QuizLobbyVC.QuizMode.Standard {
+            
+            obs = inGameLeaderboardRef.observe(.value, with: { (snapshot:DataSnapshot) in
+                for child in snapshot.children.allObjects as! [DataSnapshot] {
+                    if ((child.value as! [String:AnyObject])["game"] as! String) == self.gameKey {
+                        self.inGameLeaderboardKey = child.key
+                        let inGameLeaderboardStudentsRef = self.inGameLeaderboardRef.child(child.key).child("students")
+                        inGameLeaderboardStudentsRef.observeSingleEvent(of: .value, with: { (snapshot:DataSnapshot) in
+                            for child in snapshot.children.allObjects as! [DataSnapshot] {
+                                if ((child.value as! [String:AnyObject])["studentKey"] as! String) == currentUserID {
+                                        self.userInGameLeaderboardObjectKey = child.key
+                                    
+                                    //Temp set value
+                                    self.dataRef.child("inGameLeaderboards").child(self.inGameLeaderboardKey).child("students").child(self.userInGameLeaderboardObjectKey).child("studentScore").setValue(0)
+                                    
+                                    
+                                    inGameLeaderboardStudentsRef.queryOrdered(byChild: "studentScore").observe(.value, with: { (snapshot:DataSnapshot) in
+                                        var leaderboardStudentKeys = [String]()
+                                        self.allScores = []
+                                        for child in snapshot.children.allObjects as! [DataSnapshot] {
+                                            let key = (child.value as! [String:AnyObject])["studentKey"] as! String
+                                            leaderboardStudentKeys.append(key)
+                                            let score = (child.value as! [String:AnyObject])["studentScore"] as! Int
+                                            self.allScores.append(score)
+                                        }
+                                        
+                                        leaderboardStudentKeys.reverse()
+                                        self.allScores.reverse()
+                                        
+                                        var newAllUsers:[Student] = []
+                                        var leaderboardPosCounter = 0
+                                        for key in leaderboardStudentKeys {
+                                            for student in self.allUsers {
+                                                if key == student.databaseID {
+                                                    leaderboardPosCounter += 1
+                                                    newAllUsers.append(student)
+                                                    if key == currentUserID {
+                                                        self.currPos = leaderboardPosCounter
+                                                    }
+                                                    break
+                                                }
+                                            }
+                                        }
+                                        
+                                        self.allUsers = newAllUsers
+                                        self.updateLeaderboard()
+                                        self.updateUserInLeaderboard()
+                                    })
+                                }
+                            }
+                        })
+                    }
+                }
+            })
+            print("-------------------------->StandardMode")
+            let connectedRef = Database.database().reference(withPath: ".info/connected")
+            connectedRef.observe(.value, with: { snapshot in
+                if let connected = snapshot.value as? Bool, connected {
+                    print("---------------------->Connected")
+                } else {
+                    print("---------------------->Not connected")
+                    self.exitQuiz()
+                }
+            })
         }
+        
+        else if quizMode == QuizLobbyVC.QuizMode.HeadToHead {
+            checkRequestStatus {
+                //TODO
+                print("-------------------------->HeadToHeadMode")
+                let connectedRef = Database.database().reference(withPath: ".info/connected")
+                connectedRef.observe(.value, with: { snapshot in
+                    if let connected = snapshot.value as? Bool, connected {
+                        print("---------------------->Connected")
+                    } else {
+                        print("---------------------->Not connected")
+                        self.exitQuiz()
+                    }
+                })
+                let presenceRef = Database.database().reference(withPath: "disconnectmessage");
+                // Write a string when this client loses connection
+                presenceRef.onDisconnectSetValue("I disconnected!")
+            }
+        }
+        
+        else if quizMode == QuizLobbyVC.QuizMode.Solo {
+            //TODO
+            print("-------------------------->HeadToHeadMode")
+            let connectedRef = Database.database().reference(withPath: ".info/connected")
+            connectedRef.observe(.value, with: { snapshot in
+                if let connected = snapshot.value as? Bool, connected {
+                    print("---------------------->Connected")
+                } else {
+                    print("---------------------->Not connected")
+                    self.exitQuiz()
+                }
+            })
+        }
+        //inGameLeaderboardRef.removeObserver(withHandle: obs)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -546,6 +632,8 @@ class QuizActivityVC: UIViewController {
                 
             }
         })
+        print("->>>>>>>>>>>>>>>>>>>>>>>>>>")
+        
 
 //        performSegue(withIdentifier: "quizActToSummary", sender: nil)
     }
