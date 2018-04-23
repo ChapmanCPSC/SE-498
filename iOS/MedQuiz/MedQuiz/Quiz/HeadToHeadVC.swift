@@ -86,13 +86,20 @@ class HeadToHeadVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                 let headToHeadGameReference = Database.database().reference().child("head-to-head-game").childByAutoId()
                 headToHeadGameReference.child("quiz").setValue(self.quizKey)
                 headToHeadGameReference.child("inviter").child("student").setValue(currentUserID)
-                headToHeadGameReference.child("inviter").child("score").setValue(0)
                 headToHeadGameReference.child("inviter").child("ready").setValue(false)
                 headToHeadGameReference.child("invitee").child("student").setValue(selectedFriend.databaseID)
-                headToHeadGameReference.child("invitee").child("score").setValue(0)
                 headToHeadGameReference.child("invitee").child("ready").setValue(false)
                 headToHeadGameReference.child("accepted").setValue(false)
                 headToHeadGameReference.child("decided").setValue(false)
+                
+                let inGameLeaderboardReference = Database.database().reference().child("inGameLeaderboards").childByAutoId()
+                inGameLeaderboardReference.child("game").setValue(headToHeadGameReference.key)
+                let inviterLeaderboardRef = inGameLeaderboardReference.child("students").childByAutoId()
+                inviterLeaderboardRef.child("studentKey").setValue(currentUserID)
+                inviterLeaderboardRef.child("studentScore").setValue(0)
+                let inviteeLeaderboardRef = inGameLeaderboardReference.child("students").childByAutoId()
+                inviteeLeaderboardRef.child("studentKey").setValue(selectedFriend.databaseID)
+                inviteeLeaderboardRef.child("studentScore").setValue(0)
                 
                 let friendReference = Database.database().reference().child("student").child(selectedFriend.databaseID!)
                 friendReference.child("headtoheadgamerequest").setValue(headToHeadGameReference.key)
@@ -102,10 +109,10 @@ class HeadToHeadVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                 
                 let quizLobbyVC = self.storyboard?.instantiateViewController(withIdentifier: "quizLobbyVC") as! QuizLobbyVC
                 quizLobbyVC.quizKey = self.quizKey
-                quizLobbyVC.headToHeadGameKey = headToHeadGameReference.key
+                quizLobbyVC.gameKey = headToHeadGameReference.key
                 quizLobbyVC.headToHeadOpponent = selectedFriend
                 quizLobbyVC.quizMode = QuizLobbyVC.QuizMode.HeadToHead
-                quizLobbyVC.invitee = false
+                quizLobbyVC.isInvitee = false
                 self.present(quizLobbyVC, animated: false, completion: nil)
             }
             else{

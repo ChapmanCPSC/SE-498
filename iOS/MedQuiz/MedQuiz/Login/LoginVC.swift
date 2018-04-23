@@ -130,6 +130,18 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                         globalUsername = aCurrentStudent.userName!
                         globalHighscore = aCurrentStudent.totalPoints!
                         globalProfileImage = aCurrentStudent.profilePic!
+                        
+                        let connectedRef = Database.database().reference().child(".info/connected")
+                        connectedRef.observe(.value, with: { snapshot in
+                            guard let connected = snapshot.value as? Bool, connected else {
+                                print("disconnected")
+                                return
+                            }
+                            let currUserOnline = Database.database().reference().child("student/\(currentUserID)/online")
+                            currUserOnline.onDisconnectSetValue(false)
+                            currUserOnline.setValue(true)
+                        })
+                        
                         print("done")
                         
                     Firebase.Database.database().reference().child("student").child(signedInUser!.uid).child("friends").observeSingleEvent(of: .value, with: { (snap: DataSnapshot) in
@@ -186,10 +198,9 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         StudentModel.FromAndKeepObserving(key: userStudentKey) {user in
             if user.headToHeadGameRequest != nil {
                 print("Presenting head to head request")
-                
                 let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(user.headToHeadGameRequest!)
                 headToHeadGameRef.observeSingleEvent(of: .value, with: {(snapshot) in
-                    let inviterKey = snapshot.childSnapshot(forPath: "inviter").childSnapshot(forPath: "student").value! as! String
+                    if let inviterKey = snapshot.childSnapshot(forPath: "inviter").childSnapshot(forPath: "student").value! as? String{
                     if inviterKey != currentUserID{
                         let sb:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                         let headToHeadRequestVC:HeadToHeadRequestVC = sb.instantiateViewController(withIdentifier: "headToHeadRequestVC") as! HeadToHeadRequestVC
@@ -202,7 +213,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                             
                             _ = Student(key: inviterKey) { inviter in
                                 headToHeadRequestVC.opponent = inviter
-                                headToHeadRequestVC.headToHeadGameKey = user.headToHeadGameRequest
+                                headToHeadRequestVC.headToHeadGameKey = headToHeadGameRef.key
                                 let quizKey:String = snapshot.childSnapshot(forPath: "quiz").value! as! String
                                 QuizModel.From(key: quizKey){ quiz in
                                     headToHeadRequestVC.headToHeadQuizTitle = quiz.title
@@ -214,6 +225,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                                 }
                             }
                         }
+                    }
                     }
                 })
             }

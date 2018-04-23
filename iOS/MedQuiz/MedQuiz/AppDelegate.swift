@@ -32,6 +32,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        
+        let topController = getTopController()
+        switch topController {
+        case is QuizActivityVC:
+            if (topController as! QuizActivityVC).quizMode == QuizLobbyVC.QuizMode.HeadToHead {
+                (topController as! QuizActivityVC).headToHeadConcede()
+            }
+        default:
+            print("App entered background.")
+        }
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -44,8 +54,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        
+        let topController = getTopController()
+        switch topController {
+        case is QuizActivityVC:
+            if (topController as! QuizActivityVC).quizMode == QuizLobbyVC.QuizMode.HeadToHead {
+                (topController as! QuizActivityVC).headToHeadConcede()
+            }
+        default:
+            print("App exited.")
+        }
     }
-
-
+    
+    func getTopController() -> UIViewController{
+        var topController = UIApplication.shared.keyWindow?.rootViewController
+        while let presentedViewController = topController?.presentedViewController {
+            topController = presentedViewController
+        }
+        return topController!
+    }
 }
-
