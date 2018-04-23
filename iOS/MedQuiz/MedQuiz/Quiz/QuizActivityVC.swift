@@ -83,6 +83,7 @@ class QuizActivityVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
 //        quizLobbyRef.dismiss(animated: false, completion: nil)
         
         questionsTimer.backgroundColor = UIColor.clear
@@ -192,6 +193,7 @@ class QuizActivityVC: UIViewController {
             break
         case .Solo:
             //TODO
+            checkConnection()
             break
         }
     }
@@ -257,7 +259,11 @@ class QuizActivityVC: UIViewController {
         connectedRef.observe(.value, with: { snapshot in
             print("Checking connection...")
             if let connected = snapshot.value as? Bool, !connected {
-                self.errorOccurred(title: "You have lost connection to the database", message: "Check your internet connection.")
+                //self.errorOccurred(title: "You have lost connection to the database", message: "Check your internet connection.")
+                self.exitQuiz()
+            }
+            else{
+                print("Connected")
             }
         })
     }
