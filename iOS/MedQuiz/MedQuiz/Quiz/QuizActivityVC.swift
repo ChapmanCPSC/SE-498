@@ -80,10 +80,10 @@ class QuizActivityVC: UIViewController {
     
     var quizMode:QuizLobbyVC.QuizMode!
     
-    var onDoneBlock : ((Bool) -> Void)?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        quizLobbyRef.dismiss(animated: false, completion: nil)
         
         questionsTimer.backgroundColor = UIColor.clear
         questionsTimer.labelTextColor = UIColor.black
@@ -203,7 +203,7 @@ class QuizActivityVC: UIViewController {
         let inGameLeaderboardRef = Database.database().reference(withPath: "inGameLeaderboards")
         inGameLeaderboardRef.observeSingleEvent(of: .value, with: { (snapshot:DataSnapshot) in
             for child in snapshot.children.allObjects as! [DataSnapshot] {
-                if ((child.value as! [String:AnyObject])["game"] as! String) == self.gameKey {
+                if ((child.value as! [String:AnyObject])["game"] as! String) == self.gameKey! {
                     self.inGameLeaderboardKey = child.key
                     let inGameLeaderboardStudentsRef = inGameLeaderboardRef.child(child.key).child("students")
                     inGameLeaderboardStudentsRef.observeSingleEvent(of: .value, with: { (snapshot:DataSnapshot) in
@@ -260,7 +260,6 @@ class QuizActivityVC: UIViewController {
         connectedRef.observe(.value, with: { snapshot in
             print("Checking connection...")
             if let connected = snapshot.value as? Bool, !connected {
-                //self.deleteDBHeadToHeadData()
                 self.errorOccurred(title: "You have lost connection to the database", message: "Check your internet connection.")
             }
         })
@@ -268,8 +267,6 @@ class QuizActivityVC: UIViewController {
     
     func checkRequestStatus(){
         StudentModel.FromAndKeepObserving(key: currentUserID) {userStudent in
-            print("game request")
-            print(userStudent.headToHeadGameRequest)
             guard userStudent.headToHeadGameRequest != nil else {
                 if !self.quizEnded {
                     self.quizEnded = true
@@ -292,13 +289,12 @@ class QuizActivityVC: UIViewController {
             print("invitee")
             opponentString = "invitee"
         }
-        let opponentReadyRef = Database.database().reference().child("head-to-head-game").child(self.gameKey).child(opponentString).child("ready")
-        print("oppenentReadySnap")
+        let opponentReadyRef = Database.database().reference().child("head-to-head-game").child(self.gameKey!).child(opponentString!).child("ready")
         opponentReadyRef.observe(.value, with: { snapshot in
-            print(snapshot)
             guard let ready = snapshot.value as? Bool, ready else {
-                self.quizEnded = true
-                self.winByConcession()
+                if !self.quizEnded {
+                    self.winByConcession()
+                }
                 return
             }
         })
@@ -500,6 +496,7 @@ class QuizActivityVC: UIViewController {
     }
 
     func headToHeadConcede(){
+        print("Game conceded")
         quizEnded = true
         var userString:String!
         if isInvitee {
@@ -508,12 +505,13 @@ class QuizActivityVC: UIViewController {
         else{
             userString = "inviter"
         }
-        let userReadyRef = Database.database().reference().child("head-to-head-game/\(self.gameKey)/\(userString)/ready")
+        let userReadyRef = Database.database().reference().child("head-to-head-game/\(self.gameKey!)/\(userString!)/ready")
         userReadyRef.setValue(false)
         errorOccurred(title: "Head To Head Game Conceded", message: "You have conceded the game to your opponent.")
     }
     
     func winByConcession(){
+        print("Won by concession")
         quizEnded = true
         updatePersonalScore()
         let quizSummaryVC = self.storyboard?.instantiateViewController(withIdentifier: "quizSummary") as! QuizSummaryViewController
@@ -521,7 +519,7 @@ class QuizActivityVC: UIViewController {
             mainQuizVC.present(quizSummaryVC, animated: false, completion: {
                 let alert = UIAlertController(title:"Game Conceded", message:"Head to Head game with conceded by your opponent.", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default) { UIAlertAction in
-                    quizSummaryVC.dismiss(animated: false, completion: nil)
+                    alert.dismiss(animated: false, completion: nil)
                 })
                 quizSummaryVC.present(alert, animated: true, completion: nil)
                 self.deleteDBHeadToHeadData()
@@ -701,8 +699,9 @@ class QuizActivityVC: UIViewController {
     func errorOccurred(title:String, message:String){
         let alert = UIAlertController(title:title, message:message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default) { UIAlertAction in
-            self.onDoneBlock!(true)
-            self.dismiss(animated: false, completion: nil)
+            self.dismiss(animated: false, completion: {
+                print("activity dismissed")
+            })
         })
         self.present(alert, animated: true, completion: nil)
     }

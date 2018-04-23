@@ -377,10 +377,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 destinationVC.quizMode = QuizMode.Solo
                 break
             }
-            
-            destinationVC.onDoneBlock = { result in
-                self.dismiss(animated: false, completion: nil)
-            }
+
             print("presenting destination")
             self.present(destinationVC, animated: false, completion: nil)
         }
