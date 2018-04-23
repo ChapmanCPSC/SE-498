@@ -280,11 +280,13 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(self.gameKey!)
                 self.checkHeadToHeadGameStatus {
                     self.checkHeadToHeadReady {
-                        if self.isInvitee {
-                            headToHeadGameRef.child("invitee").child("ready").setValue(true)
-                        }
-                        else{
-                            headToHeadGameRef.child("inviter").child("ready").setValue(true)
+                        if !self.quizStarted {
+                            if self.isInvitee {
+                                headToHeadGameRef.child("invitee").child("ready").setValue(true)
+                            }
+                            else{
+                                headToHeadGameRef.child("inviter").child("ready").setValue(true)
+                            }
                         }
                     }
                 }

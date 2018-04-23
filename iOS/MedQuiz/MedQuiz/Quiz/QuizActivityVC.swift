@@ -83,7 +83,7 @@ class QuizActivityVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        quizLobbyRef.dismiss(animated: false, completion: nil)
+//        quizLobbyRef.dismiss(animated: false, completion: nil)
         
         questionsTimer.backgroundColor = UIColor.clear
         questionsTimer.labelTextColor = UIColor.black
@@ -104,6 +104,15 @@ class QuizActivityVC: UIViewController {
 
         if(quizMode == QuizLobbyVC.QuizMode.HeadToHead){
             backCancelButton.isHidden = false
+            //TODO: Remove when getLeaderboardInfo is ready for Head to Head
+            let inGameLeaderboardRef = Database.database().reference(withPath: "inGameLeaderboards")
+            inGameLeaderboardRef.observeSingleEvent(of: .value, with: { (snapshot:DataSnapshot) in
+                for child in snapshot.children.allObjects as! [DataSnapshot] {
+                    if ((child.value as! [String:AnyObject])["game"] as! String) == self.gameKey! {
+                        self.inGameLeaderboardKey = child.key
+                    }
+                }
+            })
         }
         else if(quizMode == QuizLobbyVC.QuizMode.Standard){
             backCancelButton.isHidden = true
@@ -115,6 +124,8 @@ class QuizActivityVC: UIViewController {
         
 //        tempSetupQuiz() // TODO Remove this after finishing testing
         //tempSetupLeaderBoard()
+        
+        registerFirebaseListeners()
 
         nextQuestion()
     }
@@ -268,11 +279,9 @@ class QuizActivityVC: UIViewController {
         print("checkConcession")
         var opponentString:String!
         if isInvitee {
-            print("inviter")
             opponentString = "inviter"
         }
         else{
-            print("invitee")
             opponentString = "invitee"
         }
         let opponentReadyRef = Database.database().reference().child("head-to-head-game").child(self.gameKey!).child(opponentString!).child("ready")
@@ -493,7 +502,7 @@ class QuizActivityVC: UIViewController {
         }
         let userReadyRef = Database.database().reference().child("head-to-head-game/\(self.gameKey!)/\(userString!)/ready")
         userReadyRef.setValue(false)
-        errorOccurred(title: "Head To Head Game Conceded", message: "You have conceded the game to your opponent.")
+        self.quizLobbyRef.dismiss(animated: false, completion: nil)
     }
     
     func winByConcession(){
@@ -507,8 +516,10 @@ class QuizActivityVC: UIViewController {
                 alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default) { UIAlertAction in
                     alert.dismiss(animated: false, completion: nil)
                 })
-                quizSummaryVC.present(alert, animated: true, completion: nil)
-                self.deleteDBHeadToHeadData()
+                self.quizLobbyRef.dismiss(animated: false, completion: {
+                    quizSummaryVC.present(alert, animated: true, completion: nil)
+                    self.deleteDBHeadToHeadData()
+                })
             })
         })
     }
@@ -654,7 +665,9 @@ class QuizActivityVC: UIViewController {
                 break
             }
             
-            self.dismiss(animated: false, completion: nil)
+            self.quizLobbyRef.dismiss(animated: false, completion: {
+                self.dismiss(animated: false, completion: nil)
+            })
         }))
         
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler:{ action in
@@ -687,8 +700,10 @@ class QuizActivityVC: UIViewController {
     func errorOccurred(title:String, message:String){
         let alert = UIAlertController(title:title, message:message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default) { UIAlertAction in
-            self.dismiss(animated: false, completion: {
-                print("activity dismissed")
+            alert.dismiss(animated: false, completion: {
+                self.quizLobbyRef.dismiss(animated: false, completion: {
+                    self.dismiss(animated: false, completion: nil)
+                })
             })
         })
         self.present(alert, animated: true, completion: nil)
@@ -704,7 +719,7 @@ class QuizActivityVC: UIViewController {
         let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(gameKey!)
         headToHeadGameRef.removeValue()
         
-        let headToHeadGameLeaderboardRef = Database.database().reference().child("inGameLeaderboards/\(inGameLeaderboardKey)")
+        let headToHeadGameLeaderboardRef = Database.database().reference().child("inGameLeaderboards/\(inGameLeaderboardKey!)")
         headToHeadGameLeaderboardRef.removeValue()
     }
 }

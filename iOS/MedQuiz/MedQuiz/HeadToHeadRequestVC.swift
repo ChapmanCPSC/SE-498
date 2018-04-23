@@ -15,6 +15,8 @@ class HeadToHeadRequestVC: UIViewController {
     var headToHeadQuizKey:String!
     var headToHeadQuizTitle:String!
     
+    var requestFinished:Bool = false
+    
     @IBOutlet weak var quizTitleLabel: UILabel!
     @IBOutlet weak var userAvatarImageView: UIImageView!
     @IBOutlet weak var userUserNameLabel: UILabel!
@@ -43,12 +45,10 @@ class HeadToHeadRequestVC: UIViewController {
     }
     
     func checkRequestStatus(){
-        print("request key" + headToHeadGameKey)
         let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(headToHeadGameKey)
         headToHeadGameRef.observe(.value, with: { snapshot in
-            print("snapshot")
-            print(snapshot.value)
-            if snapshot.value is NSNull {
+            if snapshot.value is NSNull && !self.requestFinished {
+                self.requestFinished = true
                 print("Head to Head game cancelled in request VC")
                 let alert = UIAlertController(title:"Head to Head Game Cancelled", message:"Head to head game against \(String(describing: self.opponent.userName!)) cancelled.", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default) { UIAlertAction in
@@ -60,6 +60,7 @@ class HeadToHeadRequestVC: UIViewController {
     }
     
     @IBAction func hideButtonPressed(_ sender: Any) {
+        self.requestFinished = true
         print("Request hidden")
         let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(self.headToHeadGameKey!)
         headToHeadGameRef.child("decided").setValue(true)
@@ -68,6 +69,7 @@ class HeadToHeadRequestVC: UIViewController {
     }
     
     @IBAction func acceptButtonPressed(_ sender: Any) {
+        self.requestFinished = true
         print("Request accepted")
         let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(self.headToHeadGameKey!)
         headToHeadGameRef.child("accepted").setValue(true)

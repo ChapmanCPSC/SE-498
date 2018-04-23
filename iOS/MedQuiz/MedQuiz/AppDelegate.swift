@@ -37,10 +37,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         switch topController {
         case is QuizActivityVC:
             if (topController as! QuizActivityVC).quizMode == QuizLobbyVC.QuizMode.HeadToHead {
-                (topController as! QuizActivityVC).headToHeadConcede()
+                DispatchQueue.global(qos: .background).async {
+                    (topController as! QuizActivityVC).headToHeadConcede()
+                    print("Game conceded in background")
+                    DispatchQueue.main.async {
+                        (topController as! QuizActivityVC).quizLobbyRef.dismiss(animated: false, completion: {
+                            topController.dismiss(animated: false, completion: nil)
+                        })
+                    }
+                }
+                break
             }
         default:
             print("App entered background.")
+            print(topController)
+            break
         }
     }
 
@@ -59,18 +70,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         switch topController {
         case is QuizActivityVC:
             if (topController as! QuizActivityVC).quizMode == QuizLobbyVC.QuizMode.HeadToHead {
-                (topController as! QuizActivityVC).headToHeadConcede()
+                DispatchQueue.global(qos: .background).async {
+                    (topController as! QuizActivityVC).headToHeadConcede()
+                    print("Game conceded in background")
+                    DispatchQueue.main.async {
+                        (topController as! QuizActivityVC).quizLobbyRef.dismiss(animated: false, completion: {
+                            topController.dismiss(animated: false, completion: nil)
+                        })
+                    }
+                }
+                break
             }
         default:
             print("App exited.")
+            print(topController)
+            break
         }
     }
     
-    func getTopController() -> UIViewController{
-        var topController = UIApplication.shared.keyWindow?.rootViewController
-        while let presentedViewController = topController?.presentedViewController {
-            topController = presentedViewController
+    func getTopController(_ parent:UIViewController? = nil) -> UIViewController {
+        if let vc = parent {
+            if let tab = vc as? UITabBarController, let selected = tab.selectedViewController {
+                return getTopController(selected)
+            } else if let nav = vc as? UINavigationController, let top = nav.topViewController {
+                return getTopController(top)
+            } else if let presented = vc.presentedViewController {
+                return getTopController(presented)
+            } else {
+                return vc
+            }
+        } else {
+            return getTopController(UIApplication.shared.keyWindow!.rootViewController!)
         }
-        return topController!
     }
 }
