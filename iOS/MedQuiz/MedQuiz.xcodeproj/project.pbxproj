@@ -104,6 +104,7 @@
 		3DE0275D2034E1B100ECAE7B /* LeaderboardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DE0275B2034E1B100ECAE7B /* LeaderboardCell.xib */; };
 		3DECA35E2058E2E1001554A8 /* StudentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DECA35D2058E2E1001554A8 /* StudentModel.swift */; };
 		3DECA3602058EC83001554A8 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DECA35F2058EC83001554A8 /* GameModel.swift */; };
+		3F38844B208D5A9D006926B5 /* FriendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F38844A208D5A9D006926B5 /* FriendModel.swift */; };
 		3FB6F4C62068D116003E502F /* QuizActivityVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB6F4C52068D116003E502F /* QuizActivityVCTests.swift */; };
 		3FB6F4C82068E0CA003E502F /* UserViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB6F4C72068E0CA003E502F /* UserViewTests.swift */; };
 		3FB6F4CA2069D762003E502F /* LoginVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB6F4C92069D762003E502F /* LoginVCTests.swift */; };
@@ -282,6 +283,7 @@
 		3DE0275B2034E1B100ECAE7B /* LeaderboardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaderboardCell.xib; sourceTree = "<group>"; };
 		3DECA35D2058E2E1001554A8 /* StudentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentModel.swift; sourceTree = "<group>"; };
 		3DECA35F2058EC83001554A8 /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
+		3F38844A208D5A9D006926B5 /* FriendModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FriendModel.swift; path = ../Login/FriendModel.swift; sourceTree = "<group>"; };
 		3FB6F4C52068D116003E502F /* QuizActivityVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizActivityVCTests.swift; sourceTree = "<group>"; };
 		3FB6F4C72068E0CA003E502F /* UserViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewTests.swift; sourceTree = "<group>"; };
 		3FB6F4C92069D762003E502F /* LoginVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVCTests.swift; sourceTree = "<group>"; };
@@ -531,6 +533,7 @@
 			children = (
 				3D500E812058D38C008DB127 /* QuizModel.swift */,
 				3D286B4A2082BDCD004CC8E2 /* ScoreModel.swift */,
+				3F38844A208D5A9D006926B5 /* FriendModel.swift */,
 				3D500E832058D57C008DB127 /* QuestionModel.swift */,
 				3D500E852058D71D008DB127 /* TagModel.swift */,
 				3DECA35D2058E2E1001554A8 /* StudentModel.swift */,
@@ -1184,6 +1187,7 @@
 				A11F2EC1206B6269009BDEC6 /* HeadToHeadVC.swift in Sources */,
 				3D500E7C2058D1D4008DB127 /* FIRModel.swift in Sources */,
 				77A1443B573B0B104C3C97BB /* Tag.swift in Sources */,
+				3F38844B208D5A9D006926B5 /* FriendModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

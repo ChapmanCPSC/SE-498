@@ -109,6 +109,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         
         download()
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         print("quiz lobby appeared")
     }

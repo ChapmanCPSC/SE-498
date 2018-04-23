@@ -131,10 +131,22 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                         globalHighscore = aCurrentStudent.totalPoints!
                         globalProfileImage = aCurrentStudent.profilePic!
                         print("done")
+                        
+                    Firebase.Database.database().reference().child("student").child(signedInUser!.uid).child("friends").observeSingleEvent(of: .value, with: { (snap: DataSnapshot) in
+                            
+                            for s in snap.children {
+                                let friend = FriendModel(snapshot: s as! DataSnapshot)
+                                Firebase.Database.database().reference().child("student").child(friend.key).observeSingleEvent(of: .value, with: { (friendSnap: DataSnapshot) in
+                                    print(friendSnap)
+                            
+                                })
+                            }
+                        })
+                        
                         //use wa
+                    
                         self.present((self.MainStoryBoard?.instantiateInitialViewController())!, animated: false, completion: nil)
                         self.checkHeadToHeadRequest(userStudentKey: currentUserID)
-                        
                     })
                     
                     

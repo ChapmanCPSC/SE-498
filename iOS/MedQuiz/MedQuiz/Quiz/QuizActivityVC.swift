@@ -80,6 +80,9 @@ class QuizActivityVC: UIViewController {
     
     var quizMode:QuizLobbyVC.QuizMode!
     
+    let inGameLeaderboardRef = Database.database().reference(withPath: "inGameLeaderboards")
+    var obs: DatabaseHandle!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -130,16 +133,16 @@ class QuizActivityVC: UIViewController {
         nextQuestion()
 
         if quizMode == QuizLobbyVC.QuizMode.Standard {
-            let inGameLeaderboardRef = Database.database().reference(withPath: "inGameLeaderboards")
-            inGameLeaderboardRef.observeSingleEvent(of: .value, with: { (snapshot:DataSnapshot) in
+            
+            obs = inGameLeaderboardRef.observe(.value, with: { (snapshot:DataSnapshot) in
                 for child in snapshot.children.allObjects as! [DataSnapshot] {
                     if ((child.value as! [String:AnyObject])["game"] as! String) == self.gameKey {
                         self.inGameLeaderboardKey = child.key
-                        let inGameLeaderboardStudentsRef = inGameLeaderboardRef.child(child.key).child("students")
+                        let inGameLeaderboardStudentsRef = self.inGameLeaderboardRef.child(child.key).child("students")
                         inGameLeaderboardStudentsRef.observeSingleEvent(of: .value, with: { (snapshot:DataSnapshot) in
                             for child in snapshot.children.allObjects as! [DataSnapshot] {
                                 if ((child.value as! [String:AnyObject])["studentKey"] as! String) == currentUserID {
-                                    self.userInGameLeaderboardObjectKey = child.key
+                                        self.userInGameLeaderboardObjectKey = child.key
                                     
                                     //Temp set value
                                     self.dataRef.child("inGameLeaderboards").child(self.inGameLeaderboardKey).child("students").child(self.userInGameLeaderboardObjectKey).child("studentScore").setValue(0)
@@ -183,17 +186,51 @@ class QuizActivityVC: UIViewController {
                     }
                 }
             })
+            print("-------------------------->StandardMode")
+            let connectedRef = Database.database().reference(withPath: ".info/connected")
+            connectedRef.observe(.value, with: { snapshot in
+                if let connected = snapshot.value as? Bool, connected {
+                    print("---------------------->Connected")
+                } else {
+                    print("---------------------->Not connected")
+                    self.exitQuiz()
+                }
+            })
         }
         
         else if quizMode == QuizLobbyVC.QuizMode.HeadToHead {
             checkRequestStatus {
                 //TODO
+                print("-------------------------->HeadToHeadMode")
+                let connectedRef = Database.database().reference(withPath: ".info/connected")
+                connectedRef.observe(.value, with: { snapshot in
+                    if let connected = snapshot.value as? Bool, connected {
+                        print("---------------------->Connected")
+                    } else {
+                        print("---------------------->Not connected")
+                        self.exitQuiz()
+                    }
+                })
+                let presenceRef = Database.database().reference(withPath: "disconnectmessage");
+                // Write a string when this client loses connection
+                presenceRef.onDisconnectSetValue("I disconnected!")
             }
         }
         
         else if quizMode == QuizLobbyVC.QuizMode.Solo {
             //TODO
+            print("-------------------------->HeadToHeadMode")
+            let connectedRef = Database.database().reference(withPath: ".info/connected")
+            connectedRef.observe(.value, with: { snapshot in
+                if let connected = snapshot.value as? Bool, connected {
+                    print("---------------------->Connected")
+                } else {
+                    print("---------------------->Not connected")
+                    self.exitQuiz()
+                }
+            })
         }
+        //inGameLeaderboardRef.removeObserver(withHandle: obs)
     }
 
     func hideAnswersForTime(){
@@ -487,6 +524,8 @@ class QuizActivityVC: UIViewController {
                 
             }
         })
+        print("->>>>>>>>>>>>>>>>>>>>>>>>>>")
+        
 
 //        performSegue(withIdentifier: "quizActToSummary", sender: nil)
     }
