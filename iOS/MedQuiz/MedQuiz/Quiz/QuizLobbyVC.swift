@@ -19,7 +19,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     var gamePin:String?
     var gameKey:String?
     var quizKey:String!
-    var quizStarted:Bool = false
+    var lobbyDone:Bool = false
     
     var quizDownloaded:Bool = false
     
@@ -205,7 +205,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         print("game key" + gameKey!)
         let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(gameKey!)
         headToHeadGameRef.observe(.value, with: { snapshot in
-            if !self.quizStarted {
+            if !self.lobbyDone {
                 if snapshot.value! is NSNull {
                     //cancelled
                     print("Head to Head game cancelled in lobby")
@@ -236,7 +236,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     func checkHeadToHeadReady(completion: @escaping () -> Void){
         let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(gameKey!)
         headToHeadGameRef.observe(.value, with: {(snapshot) in
-            if !(snapshot.value is NSNull) && !self.quizStarted {
+            if !(snapshot.value is NSNull) && !self.lobbyDone {
                 print("ready for game")
                 if snapshot.childSnapshot(forPath: "inviter").childSnapshot(forPath: "ready").value! as! Bool {
                     if snapshot.childSnapshot(forPath: "invitee").childSnapshot(forPath: "ready").value! as! Bool {
@@ -280,7 +280,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(self.gameKey!)
                 self.checkHeadToHeadGameStatus {
                     self.checkHeadToHeadReady {
-                        if !self.quizStarted {
+                        if !self.lobbyDone {
                             if self.isInvitee {
                                 headToHeadGameRef.child("invitee").child("ready").setValue(true)
                             }
@@ -352,9 +352,9 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     func startQuiz(){
         print("start quiz method")
-        if !quizStarted {
+        if !lobbyDone {
             print("quiz not started")
-            quizStarted = true
+            lobbyDone = true
             let destinationVC : QuizActivityVC = storyboard?.instantiateViewController(withIdentifier: "quiz_act") as! QuizActivityVC
             destinationVC.currQuiz = quiz
             destinationVC.quizLobbyRef = self
@@ -408,12 +408,14 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             //TODO
             break
         case .HeadToHead:
+            lobbyDone = true
             deleteDBHeadToHeadData()
             break
         case .Solo: 
             //TODO
             break
         }
+        self.dismiss(animated: false, completion: nil)
     }
     
     func deleteDBHeadToHeadData(){
