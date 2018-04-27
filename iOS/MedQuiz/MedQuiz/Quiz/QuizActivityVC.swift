@@ -80,17 +80,15 @@ class QuizActivityVC: UIViewController {
     
     var quizMode:QuizLobbyVC.QuizMode!
     
-    var checkConnectionRef:DatabaseReference!
-    var checkConnectionHandle:DatabaseHandle!
     var checkConcessionRef:DatabaseReference!
     var checkConcessionHandle:DatabaseHandle!
-    var inGameLeaderboardStudentsRef:DatabaseReference!
+    var inGameLeaderboardStudentsQuery:DatabaseQuery!
     var inGameLeaderboardStudentsHandle:DatabaseHandle!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        quizLobbyRef.dismiss(animated: false, completion: nil)
+        //quizLobbyRef.dismiss(animated: false, completion: nil)
         
         questionsTimer.backgroundColor = UIColor.clear
         questionsTimer.labelTextColor = UIColor.black
@@ -191,36 +189,35 @@ class QuizActivityVC: UIViewController {
     func registerFirebaseListeners(){
         switch quizMode! {
         case .Standard:
-            checkConnection()
+            //TODO
             break
         case .HeadToHead:
-            checkConnection()
             checkConcession()
             break
         case .Solo:
             //TODO
-            checkConnection()
             break
         }
     }
     
     func getLeaderboardInfo(){
-        let inGameLeaderboardRef = Database.database().reference(withPath: "inGameLeaderboards")
-        inGameLeaderboardRef.observeSingleEvent(of: .value, with: { (snapshot:DataSnapshot) in
+        let inGameLeaderboardsRef = Database.database().reference(withPath: "inGameLeaderboards")
+        inGameLeaderboardsRef.observeSingleEvent(of: .value, with: { (snapshot:DataSnapshot) in
             for child in snapshot.children.allObjects as! [DataSnapshot] {
                 if (child.childSnapshot(forPath: "game").value as! String) == self.gameKey! {
+                    print("leaderboard found")
                     self.inGameLeaderboardKey = child.key
-                    self.inGameLeaderboardStudentsRef = inGameLeaderboardRef.child(child.key).child("students")
-                    self.inGameLeaderboardStudentsRef.observeSingleEvent(of: .value, with: { (snapshot:DataSnapshot) in
+                    inGameLeaderboardsRef.child(child.key).child("students").observeSingleEvent(of: .value, with: { (snapshot:DataSnapshot) in
                         for child in snapshot.children.allObjects as! [DataSnapshot] {
                             if (child.childSnapshot(forPath: "studentKey").value as! String) == currentUserID {
+                                print("user found in leaderboard")
                                 self.userInGameLeaderboardObjectKey = child.key
                                 
                                 //Temp set value
-                                self.dataRef.child("inGameLeaderboards").child(self.inGameLeaderboardKey).child("students").child(self.userInGameLeaderboardObjectKey).child("studentScore").setValue(0)
+                                Database.database().reference().child("inGameLeaderboards").child(self.inGameLeaderboardKey).child("students").child(self.userInGameLeaderboardObjectKey).child("studentScore").setValue(0)
                                 
-                                
-                                self.inGameLeaderboardStudentsHandle = self.inGameLeaderboardStudentsRef.queryOrdered(byChild: "studentScore").observe(.value, with: { (snapshot:DataSnapshot) in
+                                self.inGameLeaderboardStudentsQuery = inGameLeaderboardsRef.child(self.inGameLeaderboardKey).child("students").queryOrdered(byChild: "studentScore")
+                                self.inGameLeaderboardStudentsHandle = self.inGameLeaderboardStudentsQuery.observe(.value, with: { (snapshot:DataSnapshot) in
                                     var leaderboardStudentKeys = [String]()
                                     self.allScores = []
                                     for child in snapshot.children.allObjects as! [DataSnapshot] {
@@ -256,19 +253,6 @@ class QuizActivityVC: UIViewController {
                         }
                     })
                 }
-            }
-        })
-    }
-    
-    func checkConnection(){
-        checkConnectionRef = Database.database().reference(withPath: ".info/connected")
-        checkConnectionHandle = checkConnectionRef.observe(.value, with: { snapshot in
-            print("Checking connection...")
-            if let connected = snapshot.value as? Bool, !connected {
-                self.errorOccurred(title: "You have lost connection to the database", message: "Check your internet connection.")
-            }
-            else{
-                print("Connected")
             }
         })
     }
@@ -616,10 +600,9 @@ class QuizActivityVC: UIViewController {
     }
     
     func removeListeners(){
-        checkConnectionRef.removeObserver(withHandle: checkConnectionHandle)
         switch quizMode! {
         case .Standard:
-            inGameLeaderboardStudentsRef.removeObserver(withHandle: inGameLeaderboardStudentsHandle)
+            inGameLeaderboardStudentsQuery.removeObserver(withHandle: inGameLeaderboardStudentsHandle)
             break
         case .HeadToHead:
             checkConcessionRef.removeObserver(withHandle: checkConcessionHandle)
@@ -630,19 +613,17 @@ class QuizActivityVC: UIViewController {
         }
     }
     
-    func exitQuiz(){
+    func exitQuiz(completion:(() -> Void)?){
         removeListeners()
         if quizMode == QuizLobbyVC.QuizMode.HeadToHead {
             globalHeadToHeadBusy = false
         }
-//        self.quizLobbyRef.dismiss(animated: false, completion: {
-//            self.dismiss(animated: false, completion: nil)
-//        })
         
-        self.dismiss(animated: false, completion: nil)
-        
-//        navigationController?.popViewController(animated: false)
-//        navigationController?.popViewController(animated: false)
+        self.dismiss(animated: false, completion: {
+            self.quizLobbyRef.dismiss(animated: false, completion: {
+                completion!()
+            })
+        })
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
@@ -661,7 +642,7 @@ class QuizActivityVC: UIViewController {
                 break
             }
             
-            self.exitQuiz()
+            self.exitQuiz(completion: nil)
         }))
         
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler:{ action in
@@ -693,11 +674,13 @@ class QuizActivityVC: UIViewController {
         })
     }
     
-    func errorOccurred(title:String, message:String){
+    func errorOccurred(title:String, message:String, completion:(() -> Void)?){
         print("error occurred")
         let alert = UIAlertController(title:title, message:message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default) { UIAlertAction in
-            self.exitQuiz()
+            self.exitQuiz(completion: {
+                completion!()
+            })
         })
         self.present(alert, animated: true, completion: nil)
     }

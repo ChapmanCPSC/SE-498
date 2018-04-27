@@ -132,16 +132,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                         globalHighscore = aCurrentStudent.totalPoints!
                         globalProfileImage = aCurrentStudent.profilePic!
                         
-                        let connectedRef = Database.database().reference().child(".info/connected")
-                        connectedRef.observe(.value, with: { snapshot in
-                            guard let connected = snapshot.value as? Bool, connected else {
-                                print("disconnected")
-                                return
-                            }
-                            let currUserOnline = Database.database().reference().child("student/\(currentUserID)/online")
-                            currUserOnline.onDisconnectSetValue(false)
-                            currUserOnline.setValue(true)
-                        })
+                        self.checkConnection()
                         
                         print("done")
                         
@@ -195,6 +186,53 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    func getTopController(_ parent:UIViewController? = nil) -> UIViewController {
+        if let vc = parent {
+            if let tab = vc as? UITabBarController, let selected = tab.selectedViewController {
+                return getTopController(selected)
+            } else if let nav = vc as? UINavigationController, let top = nav.topViewController {
+                return getTopController(top)
+            } else if let presented = vc.presentedViewController {
+                return getTopController(presented)
+            } else {
+                return vc
+            }
+        } else {
+            return getTopController(UIApplication.shared.keyWindow!.rootViewController!)
+        }
+    }
+    
+    func logout(){
+        print("logged out")
+        //TODO
+    }
+    
+    func checkConnection(){
+        let connectedRef = Database.database().reference().child(".info/connected")
+        connectedRef.observe(.value, with: { snapshot in
+            guard let connected = snapshot.value as? Bool, connected else {
+                let topController = self.getTopController()
+                switch topController {
+                case is QuizActivityVC:
+                    (topController as! QuizActivityVC).errorOccurred(title: "You have lost connection to the database", message: "Check your internet connection.", completion: self.logout)
+                    break
+                case is QuizLobbyVC:
+                    (topController as! QuizLobbyVC).errorOccurred(title: "You have lost connection to the database", message: "Check your internet connection.", completion: self.logout)
+                    break
+                default:
+                    print("disconnected")
+                    break
+                }
+                
+                print(type(of: topController))
+                return
+            }
+            let currUserOnline = Database.database().reference().child("student/\(currentUserID)/online")
+            currUserOnline.onDisconnectSetValue(false)
+            currUserOnline.setValue(true)
+        })
+    }
+    
     func checkHeadToHeadRequest(){
         StudentModel.FromAndKeepObserving(key: currentUserID, completion: { student in
             if student.headToHeadGameRequest != nil && !globalHeadToHeadBusy{
@@ -207,22 +245,15 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                             let sb:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                             let headToHeadRequestVC:HeadToHeadRequestVC = sb.instantiateViewController(withIdentifier: "headToHeadRequestVC") as! HeadToHeadRequestVC
                             headToHeadRequestVC.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-                            if var topController = UIApplication.shared.keyWindow?.rootViewController {
-                                while let presentedViewController = topController.presentedViewController {
-                                    topController = presentedViewController
-                                }
-                                
-                                _ = Student(key: inviterKey) { inviter in
-                                    headToHeadRequestVC.opponent = inviter
-                                    headToHeadRequestVC.headToHeadGameKey = headToHeadGameRef.key
-                                    let quizKey:String = snapshot.childSnapshot(forPath: "quiz").value! as! String
-                                    QuizModel.From(key: quizKey){ quiz in
-                                        headToHeadRequestVC.headToHeadQuizTitle = quiz.title
-                                        headToHeadRequestVC.headToHeadQuizKey = quizKey
-                                        topController.present(headToHeadRequestVC, animated: true) {
-                                            print("Request presented")
-                                            print(type(of: topController))
-                                        }
+                            _ = Student(key: inviterKey) { inviter in
+                                headToHeadRequestVC.opponent = inviter
+                                headToHeadRequestVC.headToHeadGameKey = headToHeadGameRef.key
+                                let quizKey:String = snapshot.childSnapshot(forPath: "quiz").value! as! String
+                                QuizModel.From(key: quizKey){ quiz in
+                                    headToHeadRequestVC.headToHeadQuizTitle = quiz.title
+                                    headToHeadRequestVC.headToHeadQuizKey = quizKey
+                                    self.getTopController().present(headToHeadRequestVC, animated: true) {
+                                        print("Request presented")
                                     }
                                 }
                             }

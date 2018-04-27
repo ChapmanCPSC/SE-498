@@ -58,8 +58,6 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     var quizMode:QuizMode!
     
-    var checkConnectionRef:DatabaseReference!
-    var checkConnectionHandle:DatabaseHandle!
     var checkGameStartRef:DatabaseReference!
     var checkGameStartHandle:DatabaseHandle!
     var checkHeadToHeadGameStatusRef:DatabaseReference!
@@ -157,24 +155,12 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     func download(){
-        self.checkConnection {
-            if (self.quizMode == QuizMode.Standard){
-                self.downloadStandardQuiz()
-            }
-            else {
-                self.downloadQuiz()
-            }
+        if (self.quizMode == QuizMode.Standard){
+            self.downloadStandardQuiz()
         }
-    }
-    
-    func checkConnection(completion: @escaping () -> Void){
-        checkConnectionRef = Database.database().reference(withPath: ".info/connected")
-        checkConnectionHandle = checkConnectionRef.observe(.value, with: { snapshot in
-            if let connected = snapshot.value as? Bool, !connected {
-                self.errorOccurred(title: "You have lost connection to the database", message: "Check your internet connection.")
-            }
-            completion()
-        })	
+        else {
+            self.downloadQuiz()
+        }
     }
     
     func checkStandardGameStart(completion: @escaping () -> Void){
@@ -214,7 +200,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 if snapshot.value! is NSNull {
                     //cancelled
                     print("Head to Head game cancelled in lobby")
-                    self.errorOccurred(title: "Head to Head Game Cancelled", message: "Head to head game against \(String(describing: self.headToHeadOpponent.userName!)) cancelled.")
+                    self.errorOccurred(title: "Head to Head Game Cancelled", message: "Head to head game against \(String(describing: self.headToHeadOpponent.userName!)) cancelled.", completion: nil)
                 }
                     
                 else if ((snapshot.value as! [String:AnyObject])["decided"] as! Bool) {
@@ -229,7 +215,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                     else{
                         self.deleteDBHeadToHeadData()
                         print("Head to Head invitation declined in lobby")
-                        self.errorOccurred(title: "Invitation Declined", message: "Head to head game has been declined.")
+                        self.errorOccurred(title: "Invitation Declined", message: "Head to head game has been declined.", completion: nil)
                     }
                 }
             }
@@ -384,13 +370,14 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         }
     }
     
-    func errorOccurred(title:String, message:String){
+    func errorOccurred(title:String, message:String, completion:(() -> Void)?){
         removeListeners()
         let alert = UIAlertController(title:title, message:message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default) { UIAlertAction in
             if self.quizMode == QuizMode.HeadToHead {
                 globalHeadToHeadBusy = false
             }
+            completion!()
             self.dismiss(animated: false, completion: nil)
         })
         self.present(alert, animated: true, completion: nil)
@@ -401,7 +388,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     @IBAction func tempBckPressed(_ sender: Any) {
-        errorOccurred(title: "Error Test", message: "This is what should happen when an error occurs in the Lobby.")
+        errorOccurred(title: "Error Test", message: "This is what should happen when an error occurs in the Lobby.", completion: nil)
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
@@ -422,10 +409,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     func removeListeners(){
-        checkConnectionRef.removeObserver(withHandle: checkConnectionHandle)
-        
         switch quizMode! {
-            
         case .Standard:
             //checkGameStartRef.removeObserver(withHandle: checkGameStartHandle)
             downloadStudentsRef.removeObserver(withHandle: downloadStudentsHandle)
