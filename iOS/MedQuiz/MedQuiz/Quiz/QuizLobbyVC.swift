@@ -16,7 +16,6 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     var quiz:Quiz!
     
-    var gamePin:String?
     var gameKey:String?
     var quizKey:String!
     var lobbyDone:Bool = false
@@ -59,62 +58,68 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     var quizMode:QuizMode!
     
+    var checkConnectionRef:DatabaseReference!
+    var checkConnectionHandle:DatabaseHandle!
+    var checkGameStartRef:DatabaseReference!
+    var checkGameStartHandle:DatabaseHandle!
+    var checkHeadToHeadGameStatusRef:DatabaseReference!
+    var checkHeadToHeadGameStatusHandle:DatabaseHandle!
+    var checkHeadToHeadReadyRef:DatabaseReference!
+    var checkHeadToHeadReadyHandle:DatabaseHandle!
+    var downloadStudentsRef:DatabaseReference!
+    var downloadStudentsHandle:DatabaseHandle!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if quizKey != nil {
-            print("quiz lobby")
+        print("quiz lobby")
+        
+        hideSidebar()
+        statusLabel.text = loadingString
+        loadingIndicatorView.hidesWhenStopped = true
+        loadingIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
+        loadingIndicatorView.transform = CGAffineTransform.init(scaleX: loadingIndicatorViewScale, y: loadingIndicatorViewScale)
+        loadingIndicatorView.startAnimating()
+        loadingIndicatorView.color = loadingIndicatorViewColor
+        
+        switch quizMode! {
             
-            hideSidebar()
-            statusLabel.text = loadingString
-            loadingIndicatorView.hidesWhenStopped = true
-            loadingIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
-            loadingIndicatorView.transform = CGAffineTransform.init(scaleX: loadingIndicatorViewScale, y: loadingIndicatorViewScale)
-            loadingIndicatorView.startAnimating()
-            loadingIndicatorView.color = loadingIndicatorViewColor
+        case .Standard:
+            waitingString = "Waiting for other players..."
+            lobbyPlayersCollectionView.isHidden = false
             
-            switch quizMode! {
-                
-            case .Standard:
-                waitingString = "Waiting for other players..."
-                lobbyPlayersCollectionView.isHidden = false
-                
-                lobbyPlayersCollectionView.delegate = self
-                lobbyPlayersCollectionView.dataSource = self
-                lobbyPlayersCollectionView.showsVerticalScrollIndicator = false
-                break
-            case .HeadToHead:
-                if isInvitee{
-                    headToHeadRequestRef.dismiss(animated: false, completion: nil)
-                }
-                
-                waitingString = "Waiting for " + headToHeadOpponent.userName!
-                
-                headToHeadUserAvatarImageView.isHidden = false
-                headToHeadUserUserNameLabel.isHidden = false
-                headToHeadUserScoreLabel.isHidden = false
-                headToHeadOpponentAvatarImageView.isHidden = false
-                headToHeadOpponentUserNameLabel.isHidden = false
-                headToHeadOpponentScoreLabel.isHidden = false
-                andLabel.isHidden = false
-                
-                headToHeadUserAvatarImageView.image = globalProfileImage
-                headToHeadUserUserNameLabel.text = globalUsername
-                headToHeadUserScoreLabel.text = String(describing: globalHighscore)
-                headToHeadOpponentAvatarImageView.image = headToHeadOpponent.profilePic!
-                headToHeadOpponentUserNameLabel.text = headToHeadOpponent.userName!
-                headToHeadOpponentScoreLabel.text = String(describing: headToHeadOpponent.totalPoints!)
-                break
-            case .Solo:
-                waitingString = "Ready to start..."
-                break
+            lobbyPlayersCollectionView.delegate = self
+            lobbyPlayersCollectionView.dataSource = self
+            lobbyPlayersCollectionView.showsVerticalScrollIndicator = false
+            break
+        case .HeadToHead:
+            if isInvitee{
+                headToHeadRequestRef.dismiss(animated: false, completion: nil)
             }
             
-            download()
+            waitingString = "Waiting for " + headToHeadOpponent.userName!
+            
+            headToHeadUserAvatarImageView.isHidden = false
+            headToHeadUserUserNameLabel.isHidden = false
+            headToHeadUserScoreLabel.isHidden = false
+            headToHeadOpponentAvatarImageView.isHidden = false
+            headToHeadOpponentUserNameLabel.isHidden = false
+            headToHeadOpponentScoreLabel.isHidden = false
+            andLabel.isHidden = false
+            
+            headToHeadUserAvatarImageView.image = globalProfileImage
+            headToHeadUserUserNameLabel.text = globalUsername
+            headToHeadUserScoreLabel.text = String(describing: globalHighscore)
+            headToHeadOpponentAvatarImageView.image = headToHeadOpponent.profilePic!
+            headToHeadOpponentUserNameLabel.text = headToHeadOpponent.userName!
+            headToHeadOpponentScoreLabel.text = String(describing: headToHeadOpponent.totalPoints!)
+            break
+        case .Solo:
+            waitingString = "Ready to start..."
+            break
         }
-        else{
-            print("quiz key in lobby not set")
-        }
+        
+        download()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -163,8 +168,8 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     func checkConnection(completion: @escaping () -> Void){
-        let connectedRef = Database.database().reference(withPath: ".info/connected")
-        connectedRef.observe(.value, with: { snapshot in
+        checkConnectionRef = Database.database().reference(withPath: ".info/connected")
+        checkConnectionHandle = checkConnectionRef.observe(.value, with: { snapshot in
             if let connected = snapshot.value as? Bool, !connected {
                 self.errorOccurred(title: "You have lost connection to the database", message: "Check your internet connection.")
             }
@@ -203,8 +208,8 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     func checkHeadToHeadGameStatus(completion: @escaping () -> Void){
         print("game key" + gameKey!)
-        let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(gameKey!)
-        headToHeadGameRef.observe(.value, with: { snapshot in
+        checkHeadToHeadGameStatusRef = Database.database().reference().child("head-to-head-game").child(gameKey!)
+        checkHeadToHeadGameStatusHandle = checkHeadToHeadGameStatusRef.observe(.value, with: { snapshot in
             if !self.lobbyDone {
                 if snapshot.value! is NSNull {
                     //cancelled
@@ -234,8 +239,8 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     //readiness
     func checkHeadToHeadReady(completion: @escaping () -> Void){
-        let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(gameKey!)
-        headToHeadGameRef.observe(.value, with: {(snapshot) in
+        checkHeadToHeadReadyRef = Database.database().reference().child("head-to-head-game").child(gameKey!)
+        checkHeadToHeadReadyHandle = checkHeadToHeadReadyRef.observe(.value, with: {(snapshot) in
             if !(snapshot.value is NSNull) && !self.lobbyDone {
                 print("ready for game")
                 if snapshot.childSnapshot(forPath: "inviter").childSnapshot(forPath: "ready").value! as! Bool {
@@ -251,23 +256,17 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     deinit {
         quiz = nil
-        gamePin = nil
         gameKey = nil
         print("-------->Deallocating quiz data")
     }
     
     func downloadStandardQuiz(){
         print("downloading standard quiz")
-        GameModel.Where(child: GameModel.GAME_PIN, equals: self.gamePin) { (gamesFound) in
-            let theGame = gamesFound[0]
-            self.gameKey = theGame.key
-            
-            _ = Quiz(key: theGame.quizKey!) { theQuiz in
-                self.quiz = theQuiz
-                print("downloading students")
-                self.downloadStudents()
-                print("done downloading students")
-            }
+        _ = Quiz(key: quizKey!) { theQuiz in
+            self.quiz = theQuiz
+            print("downloading students")
+            self.downloadStudents()
+            print("done downloading students")
         }
     }
     
@@ -299,32 +298,30 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     
     func downloadStudents(){
         print("downloading students method")
-        GameModel.Where(child: GameModel.GAME_PIN, equals: self.gamePin) { (gamesFound) in            
-            let userStudentRef = Database.database().reference(withPath: "game/\(gamesFound[0].key)/students").child(currentUserID)
+        self.downloadStudentsRef = Database.database().reference(withPath: "game/\(String(describing: self.gameKey!))/students")
+        self.downloadStudentsHandle = self.downloadStudentsRef.observe(.value, with: { snapshot in
+            let userStudentRef = Database.database().reference(withPath: "game/\(String(describing: self.gameKey!))/students/\(currentUserID)")
             userStudentRef.setValue(true)
             
-            GameModel.WhereAndKeepObserving(child: GameModel.GAME_PIN, equals: self.gamePin) { (gamesFound) in
-                let theGame = gamesFound[0]
-                var gameStudentKeys:[String] = []
-                
-                for studentModel:StudentModel in theGame.gameStudents{
-                    gameStudentKeys.append(studentModel.key)
-                }
-                
-                var studentCount:Int = 0
-                for studentKey in gameStudentKeys{
-                    _ = Student(key: studentKey) { (theStudent) in
-                        studentCount += 1
-                        if studentKey != currentUserID && !self.lobbyPlayers.contains(theStudent) && !self.lobbyQueue.contains(theStudent){
-                            self.lobbyQueue.append(theStudent)
-                            if studentCount == gameStudentKeys.count {
-                                self.addStudentToLobby()
-                            }
+            var gameStudentKeys:[String] = []
+            let snapshotChildren = snapshot.children.allObjects as! [DataSnapshot]
+            for child:DataSnapshot in snapshotChildren {
+                gameStudentKeys.append(child.key)
+            }
+            
+            var studentCount:Int = 0
+            for studentKey in gameStudentKeys{
+                _ = Student(key: studentKey) { (theStudent) in
+                    studentCount += 1
+                    if studentKey != currentUserID && !self.lobbyPlayers.contains(theStudent) && !self.lobbyQueue.contains(theStudent){
+                        self.lobbyQueue.append(theStudent)
+                        if studentCount == gameStudentKeys.count {
+                            self.addStudentToLobby()
                         }
                     }
                 }
             }
-        }
+        })
     }
     
     func addStudentToLobby(){
@@ -355,6 +352,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         if !lobbyDone {
             print("quiz not started")
             lobbyDone = true
+            removeListeners()
             let destinationVC : QuizActivityVC = storyboard?.instantiateViewController(withIdentifier: "quiz_act") as! QuizActivityVC
             destinationVC.currQuiz = quiz
             destinationVC.quizLobbyRef = self
@@ -387,8 +385,12 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     func errorOccurred(title:String, message:String){
+        removeListeners()
         let alert = UIAlertController(title:title, message:message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default) { UIAlertAction in
+            if self.quizMode == QuizMode.HeadToHead {
+                globalHeadToHeadBusy = false
+            }
             self.dismiss(animated: false, completion: nil)
         })
         self.present(alert, animated: true, completion: nil)
@@ -409,6 +411,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             break
         case .HeadToHead:
             lobbyDone = true
+            removeListeners()
             deleteDBHeadToHeadData()
             break
         case .Solo: 
@@ -416,6 +419,24 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             break
         }
         self.dismiss(animated: false, completion: nil)
+    }
+    
+    func removeListeners(){
+        checkConnectionRef.removeObserver(withHandle: checkConnectionHandle)
+        
+        switch quizMode! {
+            
+        case .Standard:
+            //checkGameStartRef.removeObserver(withHandle: checkGameStartHandle)
+            downloadStudentsRef.removeObserver(withHandle: downloadStudentsHandle)
+            break
+        case .HeadToHead:
+            checkHeadToHeadGameStatusRef.removeObserver(withHandle: checkHeadToHeadGameStatusHandle)
+            checkHeadToHeadReadyRef.removeObserver(withHandle: checkHeadToHeadReadyHandle)
+            break
+        case .Solo:
+            break
+        }
     }
     
     func deleteDBHeadToHeadData(){

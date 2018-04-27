@@ -16,6 +16,7 @@ var currentUserID = ""
 var globalUsername = ""
 var globalHighscore = 0
 var globalProfileImage : UIImage!
+var globalHeadToHeadBusy = false
 //make a global list/array
 
 class LoginVC: UIViewController, UITextFieldDelegate {
@@ -158,7 +159,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                         //use wa
                     
                         self.present((self.MainStoryBoard?.instantiateInitialViewController())!, animated: false, completion: nil)
-                        self.checkHeadToHeadRequest(userStudentKey: currentUserID)
+                        self.checkHeadToHeadRequest()
                     })
                     
                     
@@ -194,11 +195,12 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    func checkHeadToHeadRequest(userStudentKey:String){
-        StudentModel.FromAndKeepObserving(key: userStudentKey) {user in
-            if user.headToHeadGameRequest != nil {
+    func checkHeadToHeadRequest(){
+        StudentModel.FromAndKeepObserving(key: currentUserID, completion: { student in
+            if student.headToHeadGameRequest != nil && !globalHeadToHeadBusy{
                 print("Presenting head to head request")
-                let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(user.headToHeadGameRequest!)
+                globalHeadToHeadBusy = true
+                let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(student.headToHeadGameRequest!)
                 headToHeadGameRef.observeSingleEvent(of: .value, with: {(snapshot) in
                     if let inviterKey = snapshot.childSnapshot(forPath: "inviter").childSnapshot(forPath: "student").value! as? String {
                         if inviterKey != currentUserID {
@@ -228,6 +230,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                     }
                 })
             }
-        }
+        })
     }
 }

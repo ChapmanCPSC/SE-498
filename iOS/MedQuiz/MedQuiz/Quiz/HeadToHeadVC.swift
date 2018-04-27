@@ -82,7 +82,7 @@ class HeadToHeadVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     func requestMade(selectedFriend: Student) {
         StudentModel.From(key: selectedFriend.databaseID!) {friend in
-            if friend.headToHeadGameRequest == nil{                
+            if friend.headToHeadGameRequest == nil{
                 let headToHeadGameReference = Database.database().reference().child("head-to-head-game").childByAutoId()
                 headToHeadGameReference.child("quiz").setValue(self.quizKey)
                 headToHeadGameReference.child("inviter").child("student").setValue(currentUserID)
@@ -113,6 +113,9 @@ class HeadToHeadVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                 quizLobbyVC.headToHeadOpponent = selectedFriend
                 quizLobbyVC.quizMode = QuizLobbyVC.QuizMode.HeadToHead
                 quizLobbyVC.isInvitee = false
+                
+                globalHeadToHeadBusy = true
+                
                 self.present(quizLobbyVC, animated: false, completion: nil)
             }
             else{

@@ -41,9 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     (topController as! QuizActivityVC).headToHeadConcede()
                     print("Game conceded in background")
                     DispatchQueue.main.async {
-                        (topController as! QuizActivityVC).quizLobbyRef.dismiss(animated: false, completion: {
-                            topController.dismiss(animated: false, completion: nil)
-                        })
+                        (topController as! QuizActivityVC).exitQuiz()
                     }
                 }
                 break
@@ -74,9 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     (topController as! QuizActivityVC).headToHeadConcede()
                     print("Game conceded in background")
                     DispatchQueue.main.async {
-                        (topController as! QuizActivityVC).quizLobbyRef.dismiss(animated: false, completion: {
-                            topController.dismiss(animated: false, completion: nil)
-                        })
+                        (topController as! QuizActivityVC).exitQuiz()
                     }
                 }
                 break

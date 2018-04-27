@@ -27,6 +27,9 @@ class HeadToHeadRequestVC: UIViewController {
     
     var opponent:Student!
     
+    var checkRequestRef:DatabaseReference!
+    var checkRequestHandle:DatabaseHandle!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,10 +48,11 @@ class HeadToHeadRequestVC: UIViewController {
     }
     
     func checkRequestStatus(){
-        let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(headToHeadGameKey)
-        headToHeadGameRef.observe(.value, with: { snapshot in
+        checkRequestRef = Database.database().reference().child("head-to-head-game").child(headToHeadGameKey!)
+        checkRequestHandle = checkRequestRef.observe(.value, with: { snapshot in
             if snapshot.value is NSNull && !self.requestFinished {
                 self.requestFinished = true
+                self.removeListeners()
                 print("Head to Head game cancelled in request VC")
                 let alert = UIAlertController(title:"Head to Head Game Cancelled", message:"Head to head game against \(String(describing: self.opponent.userName!)) cancelled.", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default) { UIAlertAction in
@@ -59,19 +63,25 @@ class HeadToHeadRequestVC: UIViewController {
         })
     }
     
+    func removeListeners(){
+        checkRequestRef.removeObserver(withHandle: checkRequestHandle)
+    }
+    
     @IBAction func hideButtonPressed(_ sender: Any) {
         self.requestFinished = true
         print("Request hidden")
-        let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(self.headToHeadGameKey!)
+        let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(headToHeadGameKey!)
         headToHeadGameRef.child("decided").setValue(true)
         headToHeadGameRef.child("accepted").setValue(false)
+        globalHeadToHeadBusy = false
+        removeListeners()
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func acceptButtonPressed(_ sender: Any) {
         self.requestFinished = true
         print("Request accepted")
-        let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(self.headToHeadGameKey!)
+        let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(headToHeadGameKey!)
         headToHeadGameRef.child("accepted").setValue(true)
         headToHeadGameRef.child("decided").setValue(true)
         let quizStoryboard = UIStoryboard(name: "Quiz", bundle: nil)
@@ -83,6 +93,7 @@ class HeadToHeadRequestVC: UIViewController {
         quizLobbyVC.isInvitee = true
         quizLobbyVC.headToHeadAccepted = true
         quizLobbyVC.headToHeadRequestRef = self
+        removeListeners()
         self.present(quizLobbyVC, animated: false, completion: nil)
     }
     

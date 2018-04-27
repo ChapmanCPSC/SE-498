@@ -80,11 +80,17 @@ class QuizActivityVC: UIViewController {
     
     var quizMode:QuizLobbyVC.QuizMode!
     
+    var checkConnectionRef:DatabaseReference!
+    var checkConnectionHandle:DatabaseHandle!
+    var checkConcessionRef:DatabaseReference!
+    var checkConcessionHandle:DatabaseHandle!
+    var inGameLeaderboardStudentsRef:DatabaseReference!
+    var inGameLeaderboardStudentsHandle:DatabaseHandle!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-//        quizLobbyRef.dismiss(animated: false, completion: nil)
+        quizLobbyRef.dismiss(animated: false, completion: nil)
         
         questionsTimer.backgroundColor = UIColor.clear
         questionsTimer.labelTextColor = UIColor.black
@@ -109,13 +115,14 @@ class QuizActivityVC: UIViewController {
             let inGameLeaderboardRef = Database.database().reference(withPath: "inGameLeaderboards")
             inGameLeaderboardRef.observeSingleEvent(of: .value, with: { (snapshot:DataSnapshot) in
                 for child in snapshot.children.allObjects as! [DataSnapshot] {
-                    if ((child.value as! [String:AnyObject])["game"] as! String) == self.gameKey! {
+                    if (child.childSnapshot(forPath: "game").value as! String) == self.gameKey! {
                         self.inGameLeaderboardKey = child.key
                     }
                 }
             })
         }
         else if(quizMode == QuizLobbyVC.QuizMode.Standard){
+            getLeaderboardInfo()
             backCancelButton.isHidden = true
         }
         else if(quizMode == QuizLobbyVC.QuizMode.Solo){
@@ -188,7 +195,6 @@ class QuizActivityVC: UIViewController {
             break
         case .HeadToHead:
             checkConnection()
-            checkRequestStatus()
             checkConcession()
             break
         case .Solo:
@@ -202,25 +208,25 @@ class QuizActivityVC: UIViewController {
         let inGameLeaderboardRef = Database.database().reference(withPath: "inGameLeaderboards")
         inGameLeaderboardRef.observeSingleEvent(of: .value, with: { (snapshot:DataSnapshot) in
             for child in snapshot.children.allObjects as! [DataSnapshot] {
-                if ((child.value as! [String:AnyObject])["game"] as! String) == self.gameKey! {
+                if (child.childSnapshot(forPath: "game").value as! String) == self.gameKey! {
                     self.inGameLeaderboardKey = child.key
-                    let inGameLeaderboardStudentsRef = inGameLeaderboardRef.child(child.key).child("students")
-                    inGameLeaderboardStudentsRef.observeSingleEvent(of: .value, with: { (snapshot:DataSnapshot) in
+                    self.inGameLeaderboardStudentsRef = inGameLeaderboardRef.child(child.key).child("students")
+                    self.inGameLeaderboardStudentsRef.observeSingleEvent(of: .value, with: { (snapshot:DataSnapshot) in
                         for child in snapshot.children.allObjects as! [DataSnapshot] {
-                            if ((child.value as! [String:AnyObject])["studentKey"] as! String) == currentUserID {
+                            if (child.childSnapshot(forPath: "studentKey").value as! String) == currentUserID {
                                 self.userInGameLeaderboardObjectKey = child.key
                                 
                                 //Temp set value
                                 self.dataRef.child("inGameLeaderboards").child(self.inGameLeaderboardKey).child("students").child(self.userInGameLeaderboardObjectKey).child("studentScore").setValue(0)
                                 
                                 
-                                inGameLeaderboardStudentsRef.queryOrdered(byChild: "studentScore").observe(.value, with: { (snapshot:DataSnapshot) in
+                                self.inGameLeaderboardStudentsHandle = self.inGameLeaderboardStudentsRef.queryOrdered(byChild: "studentScore").observe(.value, with: { (snapshot:DataSnapshot) in
                                     var leaderboardStudentKeys = [String]()
                                     self.allScores = []
                                     for child in snapshot.children.allObjects as! [DataSnapshot] {
-                                        let key = (child.value as! [String:AnyObject])["studentKey"] as! String
+                                        let key = child.childSnapshot(forPath: "studentKey").value as! String
                                         leaderboardStudentKeys.append(key)
-                                        let score = (child.value as! [String:AnyObject])["studentScore"] as! Int
+                                        let score = child.childSnapshot(forPath: "studentScore").value as! Int
                                         self.allScores.append(score)
                                     }
                                     
@@ -255,12 +261,11 @@ class QuizActivityVC: UIViewController {
     }
     
     func checkConnection(){
-        let connectedRef = Database.database().reference(withPath: ".info/connected")
-        connectedRef.observe(.value, with: { snapshot in
+        checkConnectionRef = Database.database().reference(withPath: ".info/connected")
+        checkConnectionHandle = checkConnectionRef.observe(.value, with: { snapshot in
             print("Checking connection...")
             if let connected = snapshot.value as? Bool, !connected {
-                //self.errorOccurred(title: "You have lost connection to the database", message: "Check your internet connection.")
-                self.exitQuiz()
+                self.errorOccurred(title: "You have lost connection to the database", message: "Check your internet connection.")
             }
             else{
                 print("Connected")
@@ -268,35 +273,12 @@ class QuizActivityVC: UIViewController {
         })
     }
     
-    func checkRequestStatus(){
-        StudentModel.FromAndKeepObserving(key: currentUserID) {userStudent in
-            guard userStudent.headToHeadGameRequest != nil else {
-                if !self.quizEnded {
-                    self.quizEnded = true
-                    self.errorOccurred(title: "Head to Head Game Cancelled", message: "The Head to Head game has been cancelled.")
-                    return
-                }
-                return
-            }
-        }
-    }
-    
     func checkConcession(){
         print("checkConcession")
-        var opponentString:String!
-        if isInvitee {
-            opponentString = "inviter"
-        }
-        else{
-            opponentString = "invitee"
-        }
-        let opponentReadyRef = Database.database().reference().child("head-to-head-game").child(self.gameKey!).child(opponentString!).child("ready")
-        opponentReadyRef.observe(.value, with: { snapshot in
-            guard let ready = snapshot.value as? Bool, ready else {
-                if !self.quizEnded {
-                    self.winByConcession()
-                }
-                return
+        checkConcessionRef = Database.database().reference().child("head-to-head-game").child(self.gameKey!)
+        checkConcessionHandle = checkConcessionRef.observe(.value, with: { snapshot in
+            if snapshot.value is NSNull && !self.quizEnded {
+                self.winByConcession()
             }
         })
     }
@@ -499,21 +481,13 @@ class QuizActivityVC: UIViewController {
     func headToHeadConcede(){
         print("Game conceded")
         quizEnded = true
-        var userString:String!
-        if isInvitee {
-            userString = "invitee"
-        }
-        else{
-            userString = "inviter"
-        }
-        let userReadyRef = Database.database().reference().child("head-to-head-game/\(self.gameKey!)/\(userString!)/ready")
-        userReadyRef.setValue(false)
-        self.quizLobbyRef.dismiss(animated: false, completion: nil)
+        deleteDBHeadToHeadData()
     }
     
     func winByConcession(){
         print("Won by concession")
         quizEnded = true
+        removeListeners()
         updatePersonalScore()
         let quizSummaryVC = self.storyboard?.instantiateViewController(withIdentifier: "quizSummary") as! QuizSummaryViewController
         self.dismiss(animated: false, completion: {
@@ -522,10 +496,6 @@ class QuizActivityVC: UIViewController {
                 alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default) { UIAlertAction in
                     alert.dismiss(animated: false, completion: nil)
                 })
-                self.quizLobbyRef.dismiss(animated: false, completion: {
-                    quizSummaryVC.present(alert, animated: true, completion: nil)
-                    self.deleteDBHeadToHeadData()
-                })
             })
         })
     }
@@ -533,6 +503,8 @@ class QuizActivityVC: UIViewController {
     func finishQuiz(){
          //segue to quiz summary
 
+        removeListeners()
+        
         updatePersonalScore()
 
 //        let quizSummaryVC = self.storyboard?.instantiateViewController(withIdentifier: "quizSummary") as! QuizSummaryViewController
@@ -643,16 +615,34 @@ class QuizActivityVC: UIViewController {
         updateLeaderboard()
     }
     
+    func removeListeners(){
+        checkConnectionRef.removeObserver(withHandle: checkConnectionHandle)
+        switch quizMode! {
+        case .Standard:
+            inGameLeaderboardStudentsRef.removeObserver(withHandle: inGameLeaderboardStudentsHandle)
+            break
+        case .HeadToHead:
+            checkConcessionRef.removeObserver(withHandle: checkConcessionHandle)
+            //inGameLeaderboardStudentsRef.removeObserver(withHandle: inGameLeaderboardStudentsHandle)
+            break
+        case .Solo:
+            break
+        }
+    }
+    
     func exitQuiz(){
-        let alert = UIAlertController(title: "You have lost connection to the database", message: "Check you intenet connection", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler:{ action in
-            //TODO:Delete data and any realted progress from db
-            self.dismiss(animated: false, completion: {
-            })
-            //performSegue(withIdentifier: "QuizVC", sender: nil)
-        }))
+        removeListeners()
+        if quizMode == QuizLobbyVC.QuizMode.HeadToHead {
+            globalHeadToHeadBusy = false
+        }
+//        self.quizLobbyRef.dismiss(animated: false, completion: {
+//            self.dismiss(animated: false, completion: nil)
+//        })
         
-        self.present(alert, animated: true)
+        self.dismiss(animated: false, completion: nil)
+        
+//        navigationController?.popViewController(animated: false)
+//        navigationController?.popViewController(animated: false)
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
@@ -671,9 +661,7 @@ class QuizActivityVC: UIViewController {
                 break
             }
             
-            self.quizLobbyRef.dismiss(animated: false, completion: {
-                self.dismiss(animated: false, completion: nil)
-            })
+            self.exitQuiz()
         }))
         
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler:{ action in
@@ -693,6 +681,8 @@ class QuizActivityVC: UIViewController {
         print("deallocation quizActivity")
     }
     @IBAction func tempQuizSumarryPressed(_ sender: Any) {
+        removeListeners()
+        
         let quizSummaryVC = self.storyboard?.instantiateViewController(withIdentifier: "quizSummary") as! QuizSummaryViewController
         
         self.dismiss(animated: false, completion: {
@@ -704,13 +694,10 @@ class QuizActivityVC: UIViewController {
     }
     
     func errorOccurred(title:String, message:String){
+        print("error occurred")
         let alert = UIAlertController(title:title, message:message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default) { UIAlertAction in
-            alert.dismiss(animated: false, completion: {
-                self.quizLobbyRef.dismiss(animated: false, completion: {
-                    self.dismiss(animated: false, completion: nil)
-                })
-            })
+            self.exitQuiz()
         })
         self.present(alert, animated: true, completion: nil)
     }

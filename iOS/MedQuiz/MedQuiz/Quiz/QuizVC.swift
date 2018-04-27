@@ -96,18 +96,11 @@ class QuizVC: UIViewController {
                     print("Pin does exist")
                     self.gamePin = String(inputPin)
                     
-                    //TODO: Delete or keep if necessary. This alert causes the QuizLobbyVC not
-                    // to present, not sure if we need validation and assurance of
-                    // quiz pin correctness more than transitioning to a lobby.
-//                    self.showAlert(title: "Success", message: "The provided pin matches a quiz")
-//                    self.performSegue(withIdentifier: "QuizPinSegue", sender: nil)
-                    
                     let quizLobbyVC = self.storyboard?.instantiateViewController(withIdentifier: "quizLobbyVC") as! QuizLobbyVC
-                    quizLobbyVC.gamePin = self.gamePin
+                    quizLobbyVC.gameKey = gamesFound[0].key
+                    quizLobbyVC.quizKey = gamesFound[0].quizKey
                     quizLobbyVC.quizMode = QuizLobbyVC.QuizMode.Standard
-                    mainQuizVC.present(quizLobbyVC, animated: false, completion: {
-                    })
-                    
+                    mainQuizVC.present(quizLobbyVC, animated: false, completion: nil)
                 })
             }
             else{
