@@ -104,19 +104,17 @@ class QuizActivityVC: UIViewController {
         answerViews.forEach { view in view.parent = self }
         hideAnswerLabels()
         setAnswerColors()
-        setUserColors()
+        //setUserColors()
         hideSidebar()
 
         hideAnswersForTime()
 
         switch quizMode! {
         case .Standard:
-            userViews = [uv_first, uv_second, uv_third, uv_fourth, uv_fifth]
             getLeaderboardInfo()
             backCancelButton.isHidden = true
             break
         case .HeadToHead:
-            userViews = [uv_first, uv_second]
             getLeaderboardInfo()
             backCancelButton.isHidden = false
             break
@@ -218,38 +216,72 @@ class QuizActivityVC: UIViewController {
                                 
                                 self.inGameLeaderboardStudentsQuery = inGameLeaderboardsRef.child(self.inGameLeaderboardKey).child("students").queryOrdered(byChild: "studentScore")
                                 self.inGameLeaderboardStudentsHandle = self.inGameLeaderboardStudentsQuery.observe(.value, with: { (snapshot:DataSnapshot) in
-                                    self.inGameLeaderboardStudentsSet = true
                                     
-                                    var leaderboardStudentKeys = [String]()
-                                    self.allScores = []
-                                    for child in snapshot.children.allObjects as! [DataSnapshot] {
-                                        let key = child.childSnapshot(forPath: "studentKey").value as! String
-                                        leaderboardStudentKeys.append(key)
-                                        let score = child.childSnapshot(forPath: "studentScore").value as! Int
-                                        self.allScores.append(score)
-                                    }
-                                    
-                                    leaderboardStudentKeys.reverse()
-                                    self.allScores.reverse()
-                                    
-                                    var newAllUsers:[Student] = []
-                                    var leaderboardPosCounter = 0
-                                    for key in leaderboardStudentKeys {
-                                        for student in self.allUsers {
-                                            if key == student.databaseID {
-                                                leaderboardPosCounter += 1
-                                                newAllUsers.append(student)
-                                                if key == currentUserID {
-                                                    self.currPos = leaderboardPosCounter
+                                    if !(snapshot.value is NSNull){
+                                        self.inGameLeaderboardStudentsSet = true
+                                        
+                                        var leaderboardStudentKeys = [String]()
+                                        self.allScores = []
+                                        for child in snapshot.children.allObjects as! [DataSnapshot] {
+                                            let key = child.childSnapshot(forPath: "studentKey").value as! String
+                                            leaderboardStudentKeys.append(key)
+                                            let score = child.childSnapshot(forPath: "studentScore").value as! Int
+                                            self.allScores.append(score)
+                                        }
+                                        
+                                        leaderboardStudentKeys.reverse()
+                                        self.allScores.reverse()
+                                        
+                                        var newAllUsers:[Student] = []
+                                        var leaderboardPosCounter = 0
+                                        for key in leaderboardStudentKeys {
+                                            for student in self.allUsers {
+                                                if key == student.databaseID {
+                                                    leaderboardPosCounter += 1
+                                                    newAllUsers.append(student)
+                                                    if key == currentUserID {
+                                                        self.currPos = leaderboardPosCounter
+                                                    }
+                                                    break
                                                 }
-                                                break
                                             }
                                         }
+                                        
+                                        if self.firstLoad {
+                                            // set userViews
+                                            if newAllUsers.count >= 5 {
+                                                self.userViews = [self.uv_first, self.uv_second, self.uv_third, self.uv_fourth, self.uv_fifth]
+                                            }
+                                            else if newAllUsers.count == 4 {
+                                                self.userViews = [self.uv_first, self.uv_second, self.uv_third, self.uv_fourth]
+                                                self.uv_fifth.removeFromSuperview()
+                                            }
+                                            else if newAllUsers.count == 3 {
+                                                self.userViews = [self.uv_first, self.uv_second, self.uv_third]
+                                                self.uv_fifth.removeFromSuperview()
+                                                self.uv_fourth.removeFromSuperview()
+                                            }
+                                            else if newAllUsers.count == 2 {
+                                                self.userViews = [self.uv_first, self.uv_second]
+                                                self.uv_fifth.removeFromSuperview()
+                                                self.uv_fourth.removeFromSuperview()
+                                                self.uv_third.removeFromSuperview()
+                                            }
+                                            else{
+                                                self.userViews = [self.uv_first]
+                                                self.uv_fifth.removeFromSuperview()
+                                                self.uv_fourth.removeFromSuperview()
+                                                self.uv_third.removeFromSuperview()
+                                                self.uv_second.removeFromSuperview()
+                                            }
+                                            
+                                            self.setUserColors()
+                                        }
+                                        
+                                        self.allUsers = newAllUsers
+                                        self.updateLeaderboard()
+                                        self.updateUserInLeaderboard()
                                     }
-                                    
-                                    self.allUsers = newAllUsers
-                                    self.updateLeaderboard()
-                                    self.updateUserInLeaderboard()
                                 })
                             }
                         }
@@ -402,40 +434,20 @@ class QuizActivityVC: UIViewController {
         var userSubset = [Student]()
         var startingPosition = 1
         
-        switch quizMode! {
-            
-        case .Standard:
-            // user is in first or second
-            if(currPos == 1 || currPos == 2){
-                startingPosition = 1
-                userSubset = Array(allUsers[0...4])
-            }
-                // user is in second to last or last
-            else if(currPos == allUsers.count-1 || currPos == allUsers.count){
-                startingPosition = allUsers.count - 5
-                userSubset = Array(allUsers[allUsers.count-5...allUsers.count-1])
-            }
-                // user is somewhere in between
-            else{
-                startingPosition = currPos-2
-                userSubset = Array(allUsers[currPos-3...currPos+1])
-            }
-            break
-        case .HeadToHead:
-            // user is in first place
-            if (currPos == 0){
-                startingPosition = 1
-                
-            }
-            // user is in second place
-            else{
-                startingPosition = 2
-            }
-            userSubset = Array(allUsers[0...1])
-            break
-        case .Solo:
-            //TODO
-            break
+        // user is in first or second
+        if(currPos == 1 || currPos == 2){
+            startingPosition = 0
+            userSubset = Array(allUsers[0...userViews.count - 1])
+        }
+            // user is in second to last or last
+        else if(currPos == allUsers.count-1 || currPos == allUsers.count){
+            startingPosition = allUsers.count - userViews.count
+            userSubset = Array(allUsers[allUsers.count-userViews.count...allUsers.count-1])
+        }
+            // user is somewhere in between
+        else if userViews.count == 5{
+            startingPosition = currPos-2
+            userSubset = Array(allUsers[currPos-3...currPos+1])
         }
         
         var count = 0
@@ -525,13 +537,41 @@ class QuizActivityVC: UIViewController {
 //            })
 //        }
         
+        // delete head to head game data as second person out
+//        if quizMode == .HeadToHead {
+//            if isInvitee {
+//                let headToHeadReadyRef = Database.database().reference(withPath: "head-to-head-game/\(gameKey!)/invitee/ready")
+//                headToHeadReadyRef.setValue(false)
+//
+//                let headToHeadOpponentReadyRef = Database.database().reference(withPath: "head-to-head-game/\(gameKey!)/inviter/ready")
+//                headToHeadOpponentReadyRef.observeSingleEvent(of: .value, with: { snapshot in
+//                    if !(snapshot.value as! Bool){
+//                        self.deleteDBHeadToHeadData()
+//                    }
+//                })
+//            }
+//            else{
+//                let headToHeadReadyRef = Database.database().reference(withPath: "head-to-head-game/\(gameKey!)/inviter/ready")
+//                headToHeadReadyRef.setValue(false)
+//
+//                let headToHeadOpponentReadyRef = Database.database().reference(withPath: "head-to-head-game/\(gameKey!)/invitee/ready")
+//                headToHeadOpponentReadyRef.observeSingleEvent(of: .value, with: { snapshot in
+//                    if !(snapshot.value as! Bool){
+//                        self.deleteDBHeadToHeadData()
+//                    }
+//                })
+//            }
+//        }
+        
         let quizSummaryVC = self.storyboard?.instantiateViewController(withIdentifier: "quizSummary") as! QuizSummaryViewController
         
         self.dismiss(animated: false, completion: {
-            mainQuizVC.present(quizSummaryVC, animated: false) {
-                print("hey")
-                
-            }
+            self.quizLobbyRef.dismiss(animated: false, completion: {
+                mainQuizVC.present(quizSummaryVC, animated: false) {
+                    print("hey")
+                }
+            })
+
         })
         print("->>>>>>>>>>>>>>>>>>>>>>>>>>")
         
@@ -605,13 +645,13 @@ class QuizActivityVC: UIViewController {
     }
     
     @IBAction func tempSwitchCurrUser(_ sender: Any) {
-        if(isCurrUser){
-            uv_third.convertToOtherUser()
-        }
-        else{
-            uv_third.convertToCurrUser()
-        }
-        isCurrUser = !isCurrUser
+//        if(isCurrUser){
+//            uv_third.convertToOtherUser()
+//        }
+//        else{
+//            uv_third.convertToCurrUser()
+//        }
+//        isCurrUser = !isCurrUser
         
     }
     
