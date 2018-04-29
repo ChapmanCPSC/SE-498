@@ -105,6 +105,7 @@
 		3DECA35E2058E2E1001554A8 /* StudentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DECA35D2058E2E1001554A8 /* StudentModel.swift */; };
 		3DECA3602058EC83001554A8 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DECA35F2058EC83001554A8 /* GameModel.swift */; };
 		3DEE15E420955CEC00426269 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3DEE15E320955CEB00426269 /* GoogleService-Info.plist */; };
+		3DEE15E92096845700426269 /* LogoLogin.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DEE15E82096845700426269 /* LogoLogin.png */; };
 		3FB6F4C62068D116003E502F /* QuizActivityVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB6F4C52068D116003E502F /* QuizActivityVCTests.swift */; };
 		3FB6F4C82068E0CA003E502F /* UserViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB6F4C72068E0CA003E502F /* UserViewTests.swift */; };
 		3FB6F4CA2069D762003E502F /* LoginVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB6F4C92069D762003E502F /* LoginVCTests.swift */; };
@@ -280,6 +281,7 @@
 		3DECA35D2058E2E1001554A8 /* StudentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentModel.swift; sourceTree = "<group>"; };
 		3DECA35F2058EC83001554A8 /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 		3DEE15E320955CEB00426269 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3DEE15E82096845700426269 /* LogoLogin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LogoLogin.png; sourceTree = "<group>"; };
 		3FB6F4C52068D116003E502F /* QuizActivityVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizActivityVCTests.swift; sourceTree = "<group>"; };
 		3FB6F4C72068E0CA003E502F /* UserViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewTests.swift; sourceTree = "<group>"; };
 		3FB6F4C92069D762003E502F /* LoginVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVCTests.swift; sourceTree = "<group>"; };
@@ -476,6 +478,7 @@
 		3D3166AA1FBB050F000D910F /* ImagesAndIcons */ = {
 			isa = PBXGroup;
 			children = (
+				3DEE15E72096844100426269 /* Logo */,
 				3DD94C172059E90E00C22CEF /* Avatars */,
 				3DD07C8E20450B5C00FADCD9 /* Chapman-Univ_cropped_1486751083_300X300_c_c_0_0.png */,
 				3DD07C8C20450B5B00FADCD9 /* chapman-univeristy-300x156.png */,
@@ -669,6 +672,14 @@
 			path = Avatars;
 			sourceTree = "<group>";
 		};
+		3DEE15E72096844100426269 /* Logo */ = {
+			isa = PBXGroup;
+			children = (
+				3DEE15E82096845700426269 /* LogoLogin.png */,
+			);
+			path = Logo;
+			sourceTree = "<group>";
+		};
 		3F492D11207B0760007B2006 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -798,7 +809,7 @@
 				TargetAttributes = {
 					3D2495A31F7E2EDD0058D85B = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 9T45DU98XL;
+						DevelopmentTeam = A8E56ATQFS;
 						ProvisioningStyle = Automatic;
 					};
 					3D2495B71F7E2EDD0058D85B = {
@@ -866,6 +877,7 @@
 				3DD94C2C2059E91F00C22CEF /* PillPink.png in Resources */,
 				3D2495B21F7E2EDD0058D85B /* LaunchScreen.storyboard in Resources */,
 				3D77A15E1FB57FF1009178A1 /* SideBarCell.xib in Resources */,
+				3DEE15E92096845700426269 /* LogoLogin.png in Resources */,
 				3D2495AF1F7E2EDD0058D85B /* Assets.xcassets in Resources */,
 				3DD07C76204509E700FADCD9 /* MockAnswerFour@3x.png in Resources */,
 				DAED09871FB4F6B1003575B0 /* About.storyboard in Resources */,
@@ -1349,11 +1361,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9T45DU98XL;
+				DEVELOPMENT_TEAM = A8E56ATQFS;
 				INFOPLIST_FILE = MedQuiz/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.PharmAppChad2018;
+				PRODUCT_BUNDLE_IDENTIFIER = com.PharmApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
@@ -1369,11 +1381,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9T45DU98XL;
+				DEVELOPMENT_TEAM = A8E56ATQFS;
 				INFOPLIST_FILE = MedQuiz/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.PharmAppChad2018;
+				PRODUCT_BUNDLE_IDENTIFIER = com.PharmApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;

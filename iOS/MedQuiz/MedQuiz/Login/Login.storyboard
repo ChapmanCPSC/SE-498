@@ -34,14 +34,6 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hNT-H1-WSm" userLabel="Logo">
-                                        <rect key="frame" x="400" y="63" width="300" height="225"/>
-                                        <color key="backgroundColor" red="0.431995711" green="0.92950487140000004" blue="0.49065716450000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="225" id="Cba-NC-34t"/>
-                                            <constraint firstAttribute="width" constant="300" id="F6U-JT-UAH"/>
-                                        </constraints>
-                                    </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h3d-PB-3DK">
                                         <rect key="frame" x="510" y="589" width="79" height="44"/>
                                         <constraints>
@@ -141,9 +133,16 @@
                                         <color key="textColor" red="1" green="0.040900527908784623" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoLogin.png" translatesAutoresizingMaskIntoConstraints="NO" id="hNT-H1-WSm" userLabel="Logo">
+                                        <rect key="frame" x="298" y="136" width="505" height="149"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="149" id="Cba-NC-34t"/>
+                                            <constraint firstAttribute="width" constant="505" id="F6U-JT-UAH"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="hNT-H1-WSm" firstAttribute="centerX" secondItem="6S2-iG-he1" secondAttribute="centerX" id="77O-Rw-lyW"/>
+                                    <constraint firstItem="hNT-H1-WSm" firstAttribute="centerX" secondItem="6S2-iG-he1" secondAttribute="centerX" constant="1" id="77O-Rw-lyW"/>
                                     <constraint firstAttribute="bottom" secondItem="PL6-kR-PjN" secondAttribute="bottom" constant="92" id="Ah9-KT-x54"/>
                                     <constraint firstItem="t4u-DR-JeD" firstAttribute="centerX" secondItem="h3d-PB-3DK" secondAttribute="centerX" id="Cec-zp-vlH"/>
                                     <constraint firstItem="t4u-DR-JeD" firstAttribute="centerX" secondItem="IdG-7c-i6N" secondAttribute="centerX" id="QXg-DT-mOS"/>
@@ -151,10 +150,10 @@
                                     <constraint firstItem="h3d-PB-3DK" firstAttribute="centerX" secondItem="PL6-kR-PjN" secondAttribute="centerX" id="Yhv-IS-Q3j"/>
                                     <constraint firstItem="t4u-DR-JeD" firstAttribute="top" secondItem="6S2-iG-he1" secondAttribute="bottom" constant="22" id="cxe-YN-Hd6"/>
                                     <constraint firstItem="PL6-kR-PjN" firstAttribute="top" secondItem="h3d-PB-3DK" secondAttribute="bottom" constant="3" id="eZy-Mx-kIb"/>
-                                    <constraint firstItem="6S2-iG-he1" firstAttribute="top" secondItem="hNT-H1-WSm" secondAttribute="bottom" constant="22" id="hv6-TN-ggv"/>
+                                    <constraint firstItem="6S2-iG-he1" firstAttribute="top" secondItem="hNT-H1-WSm" secondAttribute="bottom" constant="25" id="hv6-TN-ggv"/>
                                     <constraint firstAttribute="trailing" secondItem="t4u-DR-JeD" secondAttribute="trailing" constant="354" id="igI-K1-b6i"/>
                                     <constraint firstItem="6S2-iG-he1" firstAttribute="centerX" secondItem="t4u-DR-JeD" secondAttribute="centerX" id="pz4-cr-JRl"/>
-                                    <constraint firstItem="hNT-H1-WSm" firstAttribute="top" secondItem="IdG-7c-i6N" secondAttribute="top" constant="63" id="sTV-3V-62a"/>
+                                    <constraint firstItem="hNT-H1-WSm" firstAttribute="top" secondItem="IdG-7c-i6N" secondAttribute="top" constant="136" id="sTV-3V-62a"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -180,4 +179,7 @@
             <point key="canvasLocation" x="-487.49999999999994" y="-570.3125"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="LogoLogin.png" width="1611" height="411"/>
+    </resources>
 </document>
