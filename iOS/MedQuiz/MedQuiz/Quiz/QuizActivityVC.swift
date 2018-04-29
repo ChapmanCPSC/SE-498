@@ -100,7 +100,7 @@ class QuizActivityVC: UIViewController {
         questionsTimer.isHidden = true
         
         answerViews = [answer1, answer2, answer3, answer4]
-        userViews = [uv_first, uv_second, uv_third, uv_fourth, uv_fifth]
+        userViews = [UserView]()
         answerViews.forEach { view in view.parent = self }
         hideAnswerLabels()
         setAnswerColors()
@@ -109,25 +109,22 @@ class QuizActivityVC: UIViewController {
 
         hideAnswersForTime()
 
-        if(quizMode == QuizLobbyVC.QuizMode.HeadToHead){
-            backCancelButton.isHidden = false
-            //TODO: Remove when getLeaderboardInfo is ready for Head to Head
-            let inGameLeaderboardRef = Database.database().reference(withPath: "inGameLeaderboards")
-            inGameLeaderboardRef.observeSingleEvent(of: .value, with: { (snapshot:DataSnapshot) in
-                for child in snapshot.children.allObjects as! [DataSnapshot] {
-                    if (child.childSnapshot(forPath: "game").value as! String) == self.gameKey! {
-                        self.inGameLeaderboardKey = child.key
-                    }
-                }
-            })
-        }
-        else if(quizMode == QuizLobbyVC.QuizMode.Standard){
+        switch quizMode! {
+        case .Standard:
+            userViews = [uv_first, uv_second, uv_third, uv_fourth, uv_fifth]
             getLeaderboardInfo()
             backCancelButton.isHidden = true
-        }
-        else if(quizMode == QuizLobbyVC.QuizMode.Solo){
+            break
+        case .HeadToHead:
+            userViews = [uv_first, uv_second]
+            getLeaderboardInfo()
             backCancelButton.isHidden = false
+            break
+        case .Solo:
+            backCancelButton.isHidden = false
+            break
         }
+        
         print("Multiplier of image is: \(con_questionImageHeight.multiplier)")
         
 //        tempSetupQuiz() // TODO Remove this after finishing testing
@@ -211,6 +208,7 @@ class QuizActivityVC: UIViewController {
                     self.inGameLeaderboardKey = child.key
                     inGameLeaderboardsRef.child(child.key).child("students").observeSingleEvent(of: .value, with: { (snapshot:DataSnapshot) in
                         for child in snapshot.children.allObjects as! [DataSnapshot] {
+                            print("Leaderboard student key: \(child.childSnapshot(forPath: "studentKey").value as! String)")
                             if (child.childSnapshot(forPath: "studentKey").value as! String) == currentUserID {
                                 print("user found in leaderboard")
                                 self.userInGameLeaderboardObjectKey = child.key
@@ -401,23 +399,45 @@ class QuizActivityVC: UIViewController {
     }
 
     func updateLeaderboard(){
-        var userSubset:[Student]
-        var startingPosition:Int
-        // user is in first or second
-        if(currPos == 1 || currPos == 2){
-            startingPosition = 1
-            userSubset = Array(allUsers[0...4])
+        var userSubset = [Student]()
+        var startingPosition = 1
+        
+        switch quizMode! {
+            
+        case .Standard:
+            // user is in first or second
+            if(currPos == 1 || currPos == 2){
+                startingPosition = 1
+                userSubset = Array(allUsers[0...4])
+            }
+                // user is in second to last or last
+            else if(currPos == allUsers.count-1 || currPos == allUsers.count){
+                startingPosition = allUsers.count - 5
+                userSubset = Array(allUsers[allUsers.count-5...allUsers.count-1])
+            }
+                // user is somewhere in between
+            else{
+                startingPosition = currPos-2
+                userSubset = Array(allUsers[currPos-3...currPos+1])
+            }
+            break
+        case .HeadToHead:
+            // user is in first place
+            if (currPos == 0){
+                startingPosition = 1
+                
+            }
+            // user is in second place
+            else{
+                startingPosition = 2
+            }
+            userSubset = Array(allUsers[0...1])
+            break
+        case .Solo:
+            //TODO
+            break
         }
-        // user is in second to last or last
-        else if(currPos == allUsers.count-1 || currPos == allUsers.count){
-            startingPosition = allUsers.count - 5
-            userSubset = Array(allUsers[allUsers.count-5...allUsers.count-1])
-        }
-        // user is somewhere in between
-        else{
-            startingPosition = currPos-2
-            userSubset = Array(allUsers[currPos-3...currPos+1])
-        }
+        
         var count = 0
         
         if(firstLoad){

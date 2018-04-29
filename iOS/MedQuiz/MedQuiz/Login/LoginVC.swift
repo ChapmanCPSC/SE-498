@@ -302,11 +302,15 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                                 headToHeadRequestVC.headToHeadGameKey = headToHeadGameRef.key
                                 let quizKey:String = snapshot.childSnapshot(forPath: "quiz").value! as! String
                                 QuizModel.From(key: quizKey){ quiz in
-                                    headToHeadRequestVC.headToHeadQuizTitle = quiz.title
-                                    headToHeadRequestVC.headToHeadQuizKey = quizKey
-                                    self.getTopController().present(headToHeadRequestVC, animated: true) {
-                                        print("Request presented")
-                                    }
+                                    let quizNameRef = Database.database().reference(withPath: "quiz-name/\(quizKey)")
+                                    quizNameRef.observeSingleEvent(of: .value, with: { snapshot in
+                                        headToHeadRequestVC.headToHeadQuizTitle = snapshot.childSnapshot(forPath: "name").value as! String
+                                        print(snapshot.childSnapshot(forPath: "name").value as! String)
+                                        headToHeadRequestVC.headToHeadQuizKey = quizKey
+                                        self.getTopController().present(headToHeadRequestVC, animated: true) {
+                                            print("Request presented")
+                                        }
+                                    })
                                 }
                             }
                         }
