@@ -10,10 +10,14 @@ import Foundation
 import UIKit
 
 class AboutVC: UIViewController {
+    @IBOutlet weak var aboutTextView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        self.aboutTextView.setContentOffset(CGPoint.zero, animated: false)
     }
     
 }

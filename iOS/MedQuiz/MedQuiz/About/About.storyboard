@@ -30,53 +30,68 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Chapman-Univ_cropped_1486751083_300X300_c_c_0_0.png" translatesAutoresizingMaskIntoConstraints="NO" id="D2T-ha-cMC">
-                                <rect key="frame" x="134" y="570" width="209" height="209"/>
-                                <color key="backgroundColor" red="0.25098040700000002" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="120" y="555" width="210" height="209"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="209" id="YBM-1O-qqv"/>
-                                </constraints>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chapman-univeristy-300x156.png" translatesAutoresizingMaskIntoConstraints="NO" id="VI3-ug-BQl">
-                                <rect key="frame" x="391" y="615" width="210" height="109"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="109" id="ACp-zF-hBb"/>
+                                    <constraint firstAttribute="height" constant="209" id="78A-j2-K63"/>
                                 </constraints>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="main" editable="NO" textAlignment="justified" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qMK-JC-Sec">
-                                <rect key="frame" x="45" y="189" width="613" height="437"/>
+                                <rect key="frame" x="74" y="171" width="533" height="426"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</string>
-                                <fontDescription key="fontDescription" name="ClearSans-Medium" family="Clear Sans Medium" pointSize="17"/>
+                                <mutableString key="text">Quizedu was the idea of Lawrence “LB” Brown, Pharm.D., Ph.D., Associate Dean of Students at Chapman University School of Pharmacy. The purpose of the app was to make the learning environment more enjoyable by allowing students to compete against each other in a timed quiz that was created by the faculty member teaching the course. The app also allows students to take sample faculty created quizzes off-line, as an additional way to learn and practice course material.
+
+Although the app was created with pharmacy students in mind, it can be used by teachers from Kindergarten students and above due to the ability to create custom questions and to include images in the questions and also to set the time limit for the questions as low or as high as desired.
+
+Thanks goes to Ronald P. Jordan, Dean of the Chapman University School of Pharmacy for his support of this project, to the pharmacy students and faculty who participated in focus groups to help with the development of the app, and to the project team of Chapman Engineering Undergrad Students listed below
+
+iOS Team:
+Omar Sherief
+Chad Johnson
+Paul Harnack
+Edgar Delgado 
+
+Web Team:
+Josh Smith
+Kevin Lin
+Melinda Sherrill
+Shayne Zamora</mutableString>
+                                <fontDescription key="fontDescription" name="ClearSans-Medium" family="Clear Sans Medium" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Sn5-b0-tGN">
-                                <rect key="frame" x="178" y="44" width="338" height="128"/>
-                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoLogin.png" translatesAutoresizingMaskIntoConstraints="NO" id="Sn5-b0-tGN">
+                                <rect key="frame" x="110" y="48" width="453" height="115"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chapman-univeristy-300x156.png" translatesAutoresizingMaskIntoConstraints="NO" id="VI3-ug-BQl">
+                                <rect key="frame" x="407" y="605" width="204" height="106"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="EDB-cP-Sd9"/>
+                                    <constraint firstAttribute="height" constant="106" id="wGG-Ms-26c"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="qMK-JC-Sec" firstAttribute="top" secondItem="Sn5-b0-tGN" secondAttribute="bottom" constant="17" id="AaF-C6-87F"/>
-                            <constraint firstItem="VI3-ug-BQl" firstAttribute="top" secondItem="qMK-JC-Sec" secondAttribute="bottom" constant="-11" id="UV3-XO-xKP"/>
-                            <constraint firstItem="UOs-FB-bF1" firstAttribute="centerY" secondItem="8oR-Jt-FSV" secondAttribute="centerY" id="V06-Wk-RiM"/>
-                            <constraint firstItem="qMK-JC-Sec" firstAttribute="leading" secondItem="dnk-QC-U9C" secondAttribute="leading" constant="45" id="Z0f-gw-7gA"/>
-                            <constraint firstItem="dnk-QC-U9C" firstAttribute="trailing" secondItem="Sn5-b0-tGN" secondAttribute="trailing" constant="178" id="aIH-K5-5Uo"/>
-                            <constraint firstItem="D2T-ha-cMC" firstAttribute="leading" secondItem="dnk-QC-U9C" secondAttribute="leading" constant="134" id="eIV-la-vfO"/>
-                            <constraint firstItem="Sn5-b0-tGN" firstAttribute="top" secondItem="dnk-QC-U9C" secondAttribute="top" constant="24" id="gMj-jk-QKV"/>
-                            <constraint firstItem="dnk-QC-U9C" firstAttribute="bottom" secondItem="VI3-ug-BQl" secondAttribute="bottom" constant="44" id="hcv-Oo-arh"/>
-                            <constraint firstItem="D2T-ha-cMC" firstAttribute="bottom" secondItem="dnk-QC-U9C" secondAttribute="bottom" constant="11" id="jXb-8l-pFz"/>
-                            <constraint firstItem="D2T-ha-cMC" firstAttribute="centerY" secondItem="VI3-ug-BQl" secondAttribute="centerY" constant="5" id="kRn-BM-LVe"/>
-                            <constraint firstItem="UOs-FB-bF1" firstAttribute="leading" secondItem="dnk-QC-U9C" secondAttribute="leading" constant="468" id="ksV-Mc-P3h"/>
-                            <constraint firstItem="dnk-QC-U9C" firstAttribute="trailing" secondItem="VI3-ug-BQl" secondAttribute="trailing" constant="93" id="l33-p4-LrY"/>
-                            <constraint firstItem="qMK-JC-Sec" firstAttribute="centerX" secondItem="8oR-Jt-FSV" secondAttribute="centerX" constant="4.5" id="l9T-Ly-xde"/>
-                            <constraint firstItem="VI3-ug-BQl" firstAttribute="leading" secondItem="D2T-ha-cMC" secondAttribute="trailing" constant="48" id="p0m-2w-NKE"/>
-                            <constraint firstItem="Sn5-b0-tGN" firstAttribute="leading" secondItem="dnk-QC-U9C" secondAttribute="leading" constant="178" id="pU6-Ca-Je5"/>
+                            <constraint firstItem="dnk-QC-U9C" firstAttribute="trailing" secondItem="Sn5-b0-tGN" secondAttribute="trailing" constant="131" id="3SL-vA-RS9"/>
+                            <constraint firstItem="UOs-FB-bF1" firstAttribute="centerY" secondItem="8oR-Jt-FSV" secondAttribute="centerY" id="7zA-39-07b"/>
+                            <constraint firstItem="dnk-QC-U9C" firstAttribute="bottom" secondItem="D2T-ha-cMC" secondAttribute="bottom" constant="4" id="9Ni-VQ-Dwm"/>
+                            <constraint firstItem="Sn5-b0-tGN" firstAttribute="leading" secondItem="dnk-QC-U9C" secondAttribute="leading" constant="110" id="Aly-kd-DDa"/>
+                            <constraint firstItem="VI3-ug-BQl" firstAttribute="top" secondItem="qMK-JC-Sec" secondAttribute="bottom" constant="8" id="CEk-ad-zun"/>
+                            <constraint firstItem="qMK-JC-Sec" firstAttribute="leading" secondItem="dnk-QC-U9C" secondAttribute="leading" constant="74" id="HG2-ee-xTk"/>
+                            <constraint firstItem="qMK-JC-Sec" firstAttribute="top" secondItem="Sn5-b0-tGN" secondAttribute="bottom" constant="8" id="Szf-2D-HJi"/>
+                            <constraint firstItem="UOs-FB-bF1" firstAttribute="centerX" secondItem="VI3-ug-BQl" secondAttribute="centerX" constant="3.5" id="V3T-Bw-XPg"/>
+                            <constraint firstItem="dnk-QC-U9C" firstAttribute="bottom" secondItem="VI3-ug-BQl" secondAttribute="bottom" constant="57" id="ZiB-Nf-f8s"/>
+                            <constraint firstItem="Sn5-b0-tGN" firstAttribute="top" secondItem="dnk-QC-U9C" secondAttribute="top" constant="28" id="e4L-zd-6jE"/>
+                            <constraint firstItem="dnk-QC-U9C" firstAttribute="trailing" secondItem="VI3-ug-BQl" secondAttribute="trailing" constant="83" id="fNe-e8-Q38"/>
+                            <constraint firstItem="D2T-ha-cMC" firstAttribute="leading" secondItem="dnk-QC-U9C" secondAttribute="leading" constant="120" id="gUr-yE-dHv"/>
+                            <constraint firstItem="dnk-QC-U9C" firstAttribute="trailing" secondItem="qMK-JC-Sec" secondAttribute="trailing" constant="87" id="nXp-zy-Kkx"/>
+                            <constraint firstItem="UOs-FB-bF1" firstAttribute="leading" secondItem="dnk-QC-U9C" secondAttribute="leading" constant="468" id="nkd-Dq-KB2"/>
+                            <constraint firstItem="qMK-JC-Sec" firstAttribute="centerY" secondItem="UOs-FB-bF1" secondAttribute="centerY" constant="-0.5" id="pii-DD-KHK"/>
+                            <constraint firstItem="VI3-ug-BQl" firstAttribute="leading" secondItem="D2T-ha-cMC" secondAttribute="trailing" constant="77" id="r53-fx-C1i"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dnk-QC-U9C"/>
                     </view>
+                    <connections>
+                        <outlet property="aboutTextView" destination="qMK-JC-Sec" id="Yg3-UL-tGG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rei-uT-LdD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -85,6 +100,7 @@
     </scenes>
     <resources>
         <image name="Chapman-Univ_cropped_1486751083_300X300_c_c_0_0.png" width="300" height="300"/>
+        <image name="LogoLogin.png" width="1611" height="411"/>
         <image name="chapman-univeristy-300x156.png" width="300" height="156"/>
     </resources>
 </document>
