@@ -68,12 +68,12 @@ class Question {
             
             self.answers = []
             
-            self.getAnswers(quizKey: aQuestionModel.key, completion: {
+            self.getAnswers(questionKey: aQuestionModel.key, completion: {
                 
-                print("please")
-                print(self.answerTexts)
-                self.getCorrectAnswers(quizKey: aQuestionModel.key, completion: {
-                    
+//                print("please")
+//                print(self.answerTexts)
+                self.getCorrectAnswers(questionKey: aQuestionModel.key, completion: {
+                    print("answerTexts length: \(self.answerTexts.count)")
                     for i in 0...self.answerTexts.count - 1 {
                         if self.imagesForAnswers!{
                             _ = Answer(answerText: "", isAnswer: self.correctAnswers[i], hasImage: true, imagePath: self.answerTexts[i]) { theAnswer in
@@ -87,56 +87,52 @@ class Question {
                         }
                         
                     }
-                    
+                    print("Question Done")
                     completion(self)
                 })
             })
         })
     }
 
-    func getAnswers(quizKey:String, completion: @escaping () -> Void){
+    func getAnswers(questionKey:String, completion: @escaping () -> Void){
         
-        print("quizKey")
-        print(quizKey)
+        print("questionKey: \(questionKey)")
         
-        let answersRef = Database.database().reference(withPath: "choices/\(quizKey)/answers")
+        let answersRef = Database.database().reference(withPath: "choices/\(questionKey)/answers")
         
         answersRef.observeSingleEvent(of: .value, with: { snapshot in
             let children = snapshot.children.allObjects as? [DataSnapshot]
             for child in children! {
-                    print("child")
-                    print(child.value as! String)
-                    self.answerTexts.append(child.value as! String)
-                    print("new answer text")
-                    print(self.answerTexts)
+                print("answers child: \(child.value as! String)")
+                self.answerTexts.append(child.value as! String)
+//                print("new answer text")
+//                print(self.answerTexts)
                 }
-                print("half answer text")
-                print(self.answerTexts)
-                completion()
+//            print("half answer text")
+//            print(self.answerTexts)
+            completion()
         })
         
     }
     
     
-    func getCorrectAnswers(quizKey:String, completion: @escaping () -> Void){
+    func getCorrectAnswers(questionKey:String, completion: @escaping () -> Void){
         
-        print("quizKey")
-        print(quizKey)
+        //print("quizKey")
+        //print(quizKey)
         
-        Database.database().reference().child("choices").child(quizKey).child("correctanswers").observeSingleEvent(of: DataEventType.value) { (correctAnswerSnap) in
-            print("CORRECT ANSWER")
-            print(correctAnswerSnap.value!)
-            print("next half answer text")
-            print(self.answerTexts)
-//            for child in correctAnswerSnap.children{
-//                self.correctAnswers.append((child as! DataSnapshot).value! as! Bool)
-//                    print("new correct answer")
-//                    print(self.correctAnswers)
-//                }
+        Database.database().reference().child("choices").child(questionKey).child("correctanswers").observeSingleEvent(of: DataEventType.value) { (correctAnswerSnap) in
+            //print("CORRECT ANSWER")
+            //print(correctAnswerSnap.value!)
+            //print("next half answer text")
+            //print(self.answerTexts)
+            for child in correctAnswerSnap.children{
+                self.correctAnswers.append((child as! DataSnapshot).value! as! Bool)
+                    print("new correct answer")
+                    print(self.correctAnswers)
+                }
                 completion()
         }
-
-        
     }
     
     init(questionDict:[String:AnyObject]){
