@@ -22,7 +22,7 @@ class StudentModel: FIRModel, FIRQueryable,FIRStorageDownloadable
 
     var studentUsername: String? { return self.get(StudentModel.USERNAME) }
     var profilePic: String? { return self.get(StudentModel.PROFILE_PIC) }
-    var scoreKey: String? { return self.get(StudentModel.SCORE) }
+    var score: Int? { return self.get(StudentModel.SCORE) }
     var hasChangedUsername:Bool? { return self.get(StudentModel.HAS_CHANGED_USERNAME) }
     var friends:[StudentModel]? { return self.get(StudentModel.FRIENDS) }
     var headToHeadGameRequest:String? { return self.get(StudentModel.HEADTOHEAD_GAME_REQUEST) }

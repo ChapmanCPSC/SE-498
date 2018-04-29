@@ -16,6 +16,29 @@ class Student: Equatable {
     var hasChangedUsername:Bool?
     var databaseID:String?
     
+    init(key: String, completion: @escaping (Student) -> Void){
+        StudentModel.From(key: key, completion: { (aStudentModel) in
+            self.userName = aStudentModel.studentUsername!
+            print(self.userName!)
+            self.friends = []//get friends from student and also implemement a FriendsModel file
+            print(self.friends!)
+            self.hasChangedUsername = false
+            print(self.hasChangedUsername!)
+            
+            self.databaseID = key
+            print(self.databaseID!)
+            
+            self.totalPoints = aStudentModel.score!
+            print(self.totalPoints!)
+            
+            aStudentModel.getProfilePic(completion: { (theProfilePic) in
+                self.profilePic = theProfilePic!
+                print(self.profilePic!)
+                completion(self)
+            })
+        })
+    }
+    
     init(username: String, completion: @escaping (Student) -> Void){
         StudentModel.Where(child: "username", equals: username) { (studentModelsReturned) in
             let theStudent = studentModelsReturned[0]
@@ -25,37 +48,14 @@ class Student: Equatable {
             
             self.friends = []
             self.hasChangedUsername = false
-            
+            self.totalPoints = theStudent.score!
             self.databaseID = theStudent.key
             
             theStudent.getProfilePic(completion: { (theProfilePic) in
                 self.profilePic = theProfilePic!
                 print(theProfilePic!.description)
-                ScoreModel.From(key: theStudent.scoreKey!, completion: { (aScoreModel) in
-                    self.totalPoints = aScoreModel.points!
-                    completion(self)
-                })
             })
         }
-    }
-        
-    init(key: String, completion: @escaping (Student) -> Void){
-        StudentModel.From(key: key, completion: { (aStudentModel) in
-            self.userName = aStudentModel.studentUsername!
-            self.friends = []//get friends from student and also implemement a FriendsModel file
-            self.hasChangedUsername = false
-            
-            self.databaseID = key
-            
-            aStudentModel.getProfilePic(completion: { (theProfilePic) in
-                self.profilePic = theProfilePic!
-                print(aStudentModel.scoreKey!)
-                ScoreModel.From(key: aStudentModel.scoreKey!, completion: { (aScoreModel) in
-                    self.totalPoints = aScoreModel.points!
-                    completion(self)
-                })
-            })
-        })
     }
     
     init(userName:String, profilePic:UIImage, friends:[Student], totalPoints:Int, hasChangedUsername:Bool){

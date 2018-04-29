@@ -21,7 +21,7 @@ class AnswerView: UIView {
     @IBOutlet weak var con_imgAnswerHeight: NSLayoutConstraint!
     @IBOutlet weak var con_textImg: NSLayoutConstraint!
     
-    var answer:Answer = Answer(answerText: "Some answer Text", points: 10, isAnswer: false)
+    var answer:Answer = Answer(answerText: "Some answer Text", isAnswer: false)
     var parent:SelectsAnswer!
     public private(set) var isBlank:Bool = false
 
@@ -40,7 +40,7 @@ class AnswerView: UIView {
         addSubviews()
         addListenerToMain()
         //TODO stop autosetting this after testing
-        answer = Answer(answerText: "This is an example answer", points: 10, isAnswer: false)
+        answer = Answer(answerText: "This is an example answer", isAnswer: false)
     }
 
     func addSubviews(){
@@ -152,10 +152,10 @@ class AnswerView: UIView {
     
     func showPoints(wasCorrect:Bool) {
         if(wasCorrect){
-            lab_points.text = "+\(answer.points!)"
+            //lab_points.text = "+\(answer.points!)"
         }
         else{
-            lab_points.text = "-\(answer.points!)"
+            //lab_points.text = "-\(answer.points!)"
         }
         lab_points.isHidden = false
     }

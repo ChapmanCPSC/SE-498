@@ -12,21 +12,19 @@ import Firebase
 
 class Answer {
     var answerText:String?
-    var points:Int?
+    var points:Int = 0
     var isAnswer:Bool?
     var hasImage:Bool?
     var image:UIImage?
     
-    init(answerText:String, points:Int, isAnswer:Bool){
+    init(answerText:String, isAnswer:Bool){
         self.answerText = answerText
-        self.points = points
         self.isAnswer = isAnswer
         self.hasImage = false
     }
     
-    init(answerText:String, points:Int, isAnswer:Bool, hasImage:Bool, imagePath:String, completion:@escaping (Answer) -> Void){
+    init(answerText:String, isAnswer:Bool, hasImage:Bool, imagePath:String, completion:@escaping (Answer) -> Void){
         self.answerText = answerText
-        self.points = points
         self.isAnswer = isAnswer
         self.hasImage = hasImage
         
@@ -53,7 +51,6 @@ class Answer {
     
     deinit {
         answerText = ""
-        points = nil
         isAnswer = nil
         hasImage = nil
         image = nil

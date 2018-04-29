@@ -40,7 +40,7 @@ class Quiz {
             }
             
             for i in 0...questionKeys.count - 1 {
-                _ = Question(key:questionKeys[i], completion: { question in
+                let someQuestion = Question(key:questionKeys[i], completion: { question in
                     self.questions?.append(question)
                     if i == questionKeys.count - 1 {
                         self.tags = []

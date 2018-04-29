@@ -61,12 +61,34 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     var loggedIn = false
 //    var tags : TagModel?
     
+    
+    func getCorrectAnswers( completion: @escaping () -> Void){
+        let correctRef = Database.database().reference().child("choices").child("d83j59d642c938g928f8").child("correctanswers")
+        print(correctRef)
+        correctRef.observeSingleEvent(of: .value, with: { (snap: DataSnapshot) in
+            print("correct snapshot")
+            print(snap.value!)
+        
+            for child in snap.children{
+                print("new correct answer")
+                print(child)
+            }
+            completion()
+            
+        })
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         usernameTextField.text = "darwi103"
         passwordTextField.text = "123456"
         
+        getCorrectAnswers {
+            print("done")
+        }
+
         
         //Example of using OurColorHelper colors
         // please follow througout app to make any color
@@ -154,15 +176,16 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                     
                     currentGlobalStudent = Student(key: currentUserID, completion: { (aCurrentStudent) in
                         
-                        //TODO: SHOW LOADING THING - progress wheel
+                        print("done getting student")
                         globalUsername = aCurrentStudent.userName!
+                        print(globalUsername)
                         globalHighscore = aCurrentStudent.totalPoints!
+                        print(globalHighscore)
                         globalProfileImage = aCurrentStudent.profilePic!
-                        
+                        print(globalProfileImage)
                         self.checkConnection()
                         
                         print("done")
-                        
                     Firebase.Database.database().reference().child("student").child(signedInUser!.uid).child("friends").observeSingleEvent(of: .value, with: { (snap: DataSnapshot) in
                             
                             for s in snap.children {

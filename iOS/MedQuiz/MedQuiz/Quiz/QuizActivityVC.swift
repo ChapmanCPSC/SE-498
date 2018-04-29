@@ -519,7 +519,9 @@ class QuizActivityVC: UIViewController {
 
         //84y1jn1n12n8n0f80n180289398n1 is the key for that student's
         // score in the score dataset
-
+        
+        
+        //TODO update current user not some random one
         dataRef.child("score").child("84y1jn1n12n8n0f80n180289398n1").child("points").setValue(pointsEarned)
     }
 

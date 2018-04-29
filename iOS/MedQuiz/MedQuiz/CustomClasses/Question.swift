@@ -10,7 +10,6 @@ import Foundation
 import Firebase
 
 class Question {
-    var points:Int?
     var imageForQuestion:Bool?
     var imagesForAnswers:Bool?
     var correctAnswer:String?
@@ -18,9 +17,11 @@ class Question {
     var image:UIImage?
     var tags:[Tag]?
     var title:String?
+    
+    var answerTexts:[String] = []
+    var correctAnswers:[Bool] = []
 
     init(points:Int, imageForQuestion:Bool, imagesForAnswers:Bool, correctAnswer:String, answers:[Answer], image:UIImage, tags:[Tag], title:String){
-        self.points = points
         self.imageForQuestion = imageForQuestion
         self.imagesForAnswers = imagesForAnswers
         self.correctAnswer = correctAnswer
@@ -33,7 +34,6 @@ class Question {
     init(key: String, completion: @escaping (Question) -> Void){
         QuestionModel.From(key: key, completion: { (aQuestionModel) in
             self.title = aQuestionModel.questionTitle!
-            self.points = Int(aQuestionModel.questionPoints!)
             self.imagesForAnswers = aQuestionModel.imagesForAnswers!
             self.imageForQuestion = aQuestionModel.imageForQuestion!
             
@@ -68,48 +68,79 @@ class Question {
             
             self.answers = []
             
-            var answerTexts:[String] = []
-            var correctAnswers:[Bool] = []
-            
-            let answersRef = Database.database().reference(withPath: "choices/\(aQuestionModel.key)/answers")
-            answersRef.observeSingleEvent(of: .value, with: { snapshot in
-                if let children = snapshot.children.allObjects as? [DataSnapshot] {
-                    for child in children {
-                        answerTexts.append(child.value as! String)
+            self.getAnswers(quizKey: aQuestionModel.key, completion: {
+                
+                print("please")
+                print(self.answerTexts)
+                self.getCorrectAnswers(quizKey: aQuestionModel.key, completion: {
+                    
+                    for i in 0...self.answerTexts.count - 1 {
+                        if self.imagesForAnswers!{
+                            _ = Answer(answerText: "", isAnswer: self.correctAnswers[i], hasImage: true, imagePath: self.answerTexts[i]) { theAnswer in
+                                self.answers?.append(theAnswer)
+                            }
+                        }
+                        else{
+                            _ = Answer(answerText: self.answerTexts[i], isAnswer: self.correctAnswers[i], hasImage: false, imagePath: "") { theAnswer in
+                                self.answers?.append(theAnswer)
+                            }
+                        }
+                        
                     }
                     
-                    let correctRef = Database.database().reference(withPath: "choices/\(aQuestionModel.key)/correctanswers")
-                    correctRef.observeSingleEvent(of: .value, with: { snapshot in
-                        if let children = snapshot.children.allObjects as? [DataSnapshot] {
-                            for child in children {
-                                correctAnswers.append(child.value as! Bool)
-                            }
-                        }
-                        
-                        for i in 0...answerTexts.count - 1 {
-                            if self.imagesForAnswers!{
-                                _ = Answer(answerText: "", points: self.points!, isAnswer: correctAnswers[i], hasImage: true, imagePath: answerTexts[i]) { theAnswer in
-                                    self.answers?.append(theAnswer)
-                                }
-                            }
-                            else{
-                                _ = Answer(answerText: answerTexts[i], points: self.points!, isAnswer: correctAnswers[i], hasImage: false, imagePath: "") { theAnswer in
-                                    self.answers?.append(theAnswer)
-                                }
-                            }
-                            
-                        }
-                        
-                        completion(self)
-                    })
-                }
+                    completion(self)
+                })
             })
         })
     }
 
+    func getAnswers(quizKey:String, completion: @escaping () -> Void){
+        
+        print("quizKey")
+        print(quizKey)
+        
+        let answersRef = Database.database().reference(withPath: "choices/\(quizKey)/answers")
+        
+        answersRef.observeSingleEvent(of: .value, with: { snapshot in
+            let children = snapshot.children.allObjects as? [DataSnapshot]
+            for child in children! {
+                    print("child")
+                    print(child.value as! String)
+                    self.answerTexts.append(child.value as! String)
+                    print("new answer text")
+                    print(self.answerTexts)
+                }
+                print("half answer text")
+                print(self.answerTexts)
+                completion()
+        })
+        
+    }
+    
+    
+    func getCorrectAnswers(quizKey:String, completion: @escaping () -> Void){
+        
+        print("quizKey")
+        print(quizKey)
+        
+        Database.database().reference().child("choices").child(quizKey).child("correctanswers").observeSingleEvent(of: DataEventType.value) { (correctAnswerSnap) in
+            print("CORRECT ANSWER")
+            print(correctAnswerSnap.value!)
+            print("next half answer text")
+            print(self.answerTexts)
+//            for child in correctAnswerSnap.children{
+//                self.correctAnswers.append((child as! DataSnapshot).value! as! Bool)
+//                    print("new correct answer")
+//                    print(self.correctAnswers)
+//                }
+                completion()
+        }
+
+        
+    }
+    
     init(questionDict:[String:AnyObject]){
 //        self.points = questionModel.questionPoints!
-        self.points = Int(questionDict["points"] as! String)!
 //        self.imageForQuestion = questionModel.imageForQuestion!
         self.imageForQuestion = questionDict["imageforquestion"] as? Bool
 //        self.imageForAnswers = questionModel.imagesForAnswer!
@@ -143,14 +174,6 @@ class Question {
     }
     
     deinit {
-        points = nil
-        imageForQuestion = nil
-        imagesForAnswers = nil
-        correctAnswer = ""
-        answers = []
-        image = nil
-        tags = []
-        title = ""
         print("------->deallocating Question")
     }
     

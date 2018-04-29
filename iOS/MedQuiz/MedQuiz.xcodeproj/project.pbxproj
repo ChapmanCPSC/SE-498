@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		34A306936726BA76598B0F48 /* Pods_MedQuiz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFE012DCBE87633D8A88CF8D /* Pods_MedQuiz.framework */; };
-		3D14AEC62050E98B009E2B71 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D14AEC52050E98B009E2B71 /* GoogleService-Info.plist */; };
 		3D227FC9204BAC8C001EB946 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D227FC7204BAC8C001EB946 /* Info.plist */; };
 		3D227FCA204BAC8C001EB946 /* SRCountdownTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D227FC8204BAC8C001EB946 /* SRCountdownTimer.swift */; };
 		3D2495A81F7E2EDD0058D85B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2495A71F7E2EDD0058D85B /* AppDelegate.swift */; };
@@ -105,6 +104,7 @@
 		3DE0275D2034E1B100ECAE7B /* LeaderboardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DE0275B2034E1B100ECAE7B /* LeaderboardCell.xib */; };
 		3DECA35E2058E2E1001554A8 /* StudentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DECA35D2058E2E1001554A8 /* StudentModel.swift */; };
 		3DECA3602058EC83001554A8 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DECA35F2058EC83001554A8 /* GameModel.swift */; };
+		3DEE15E420955CEC00426269 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3DEE15E320955CEB00426269 /* GoogleService-Info.plist */; };
 		3FB6F4C62068D116003E502F /* QuizActivityVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB6F4C52068D116003E502F /* QuizActivityVCTests.swift */; };
 		3FB6F4C82068E0CA003E502F /* UserViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB6F4C72068E0CA003E502F /* UserViewTests.swift */; };
 		3FB6F4CA2069D762003E502F /* LoginVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB6F4C92069D762003E502F /* LoginVCTests.swift */; };
@@ -177,7 +177,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3D14AEC52050E98B009E2B71 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3D227FC7204BAC8C001EB946 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3D227FC8204BAC8C001EB946 /* SRCountdownTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRCountdownTimer.swift; sourceTree = "<group>"; };
 		3D2495A41F7E2EDD0058D85B /* MedQuiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MedQuiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -280,6 +279,7 @@
 		3DE0275B2034E1B100ECAE7B /* LeaderboardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaderboardCell.xib; sourceTree = "<group>"; };
 		3DECA35D2058E2E1001554A8 /* StudentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentModel.swift; sourceTree = "<group>"; };
 		3DECA35F2058EC83001554A8 /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
+		3DEE15E320955CEB00426269 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3FB6F4C52068D116003E502F /* QuizActivityVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizActivityVCTests.swift; sourceTree = "<group>"; };
 		3FB6F4C72068E0CA003E502F /* UserViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewTests.swift; sourceTree = "<group>"; };
 		3FB6F4C92069D762003E502F /* LoginVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVCTests.swift; sourceTree = "<group>"; };
@@ -432,8 +432,8 @@
 				3D2495AB1F7E2EDD0058D85B /* Main.storyboard */,
 				3D2495B01F7E2EDD0058D85B /* LaunchScreen.storyboard */,
 				3D2495AE1F7E2EDD0058D85B /* Assets.xcassets */,
-				3D14AEC52050E98B009E2B71 /* GoogleService-Info.plist */,
 				3D2495A71F7E2EDD0058D85B /* AppDelegate.swift */,
+				3DEE15E320955CEB00426269 /* GoogleService-Info.plist */,
 				3D2495B31F7E2EDD0058D85B /* Info.plist */,
 				3DE027582034DDE000ECAE7B /* ColorHelper.swift */,
 				A5618C7D2034EAB2001AC764 /* Ext_UIColor.swift */,
@@ -882,6 +882,7 @@
 				3DD07C77204509E700FADCD9 /* StudentAvatarPlaceholder@3x.png in Resources */,
 				3DD94C3B2059E91F00C22CEF /* PillRed.png in Resources */,
 				3DD94C312059E91F00C22CEF /* BeatBlue.png in Resources */,
+				3DEE15E420955CEC00426269 /* GoogleService-Info.plist in Resources */,
 				3DD07C8B204509E700FADCD9 /* SearchIcon@3x.png in Resources */,
 				3D2495AD1F7E2EDD0058D85B /* Main.storyboard in Resources */,
 				3DD07C9020450B5D00FADCD9 /* off-canvas-header-default.png in Resources */,
@@ -909,7 +910,6 @@
 				3DD07C6F204509E700FADCD9 /* MockAnswerFour@2x.png in Resources */,
 				3DD94C2E2059E91F00C22CEF /* HeartDarkBlue.png in Resources */,
 				3DD07C89204509E700FADCD9 /* MockAnswerTwo@3x.png in Resources */,
-				3D14AEC62050E98B009E2B71 /* GoogleService-Info.plist in Resources */,
 				3DD07C7D204509E700FADCD9 /* SelectedAvatar@2x.png in Resources */,
 				3DD94C3E2059E91F00C22CEF /* AtomBlack.png in Resources */,
 				3DD07C84204509E700FADCD9 /* Cancel-Icon@2x.png in Resources */,

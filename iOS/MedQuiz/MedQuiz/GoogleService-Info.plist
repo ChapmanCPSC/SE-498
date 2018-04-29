@@ -7,34 +7,34 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>547703528480-f8027u5fqpqc01k0bpi83t43197jcrrh.apps.googleusercontent.com</string>
+	<string>678976715567-06tlmk48p6s55m5mc5d432841ip21jgg.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.547703528480-f8027u5fqpqc01k0bpi83t43197jcrrh</string>
+	<string>com.googleusercontent.apps.678976715567-06tlmk48p6s55m5mc5d432841ip21jgg</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBEvDF38JP8fLOIULsx7xlm2GVYK9GjAWs</string>
+	<string>AIzaSyA_NElSzXHhSQhqVsdODvVZ0HmN6MqNgY4</string>
 	<key>GCM_SENDER_ID</key>
-	<string>547703528480</string>
+	<string>678976715567</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.frontback.PharmApp</string>
+	<string>com.PharmApp2018</string>
 	<key>PROJECT_ID</key>
-	<string>pharmapptests</string>
+	<string>cusp-quiz-app</string>
 	<key>STORAGE_BUCKET</key>
-	<string>pharmapptests.appspot.com</string>
+	<string>cusp-quiz-app.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true></true>
 	<key>IS_ANALYTICS_ENABLED</key>
 	<false></false>
 	<key>IS_APPINVITE_ENABLED</key>
-	<false></false>
+	<true></true>
 	<key>IS_GCM_ENABLED</key>
 	<true></true>
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:547703528480:ios:ea21034c96e23964</string>
+	<string>1:678976715567:ios:09582c23303c285a</string>
 	<key>DATABASE_URL</key>
-	<string>https://pharmapptests.firebaseio.com</string>
+	<string>https://cusp-quiz-app.firebaseio.com</string>
 </dict>
 </plist>
