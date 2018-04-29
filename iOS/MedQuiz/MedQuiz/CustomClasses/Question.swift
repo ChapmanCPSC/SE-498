@@ -74,7 +74,11 @@ class Question {
                 print(self.answerTexts)
                 self.getCorrectAnswers(quizKey: aQuestionModel.key, completion: {
                     
+                    print("count", self.answerTexts.count)
+                    print("correct count", self.correctAnswers.count)
+                    
                     for i in 0...self.answerTexts.count - 1 {
+                        print("index is ", i)
                         if self.imagesForAnswers!{
                             _ = Answer(answerText: "", isAnswer: self.correctAnswers[i], hasImage: true, imagePath: self.answerTexts[i]) { theAnswer in
                                 self.answers?.append(theAnswer)
@@ -128,12 +132,13 @@ class Question {
             print(correctAnswerSnap.value!)
             print("next half answer text")
             print(self.answerTexts)
-//            for child in correctAnswerSnap.children{
-//                self.correctAnswers.append((child as! DataSnapshot).value! as! Bool)
-//                    print("new correct answer")
-//                    print(self.correctAnswers)
-//                }
-                completion()
+            for child in correctAnswerSnap.children{
+                self.correctAnswers.append((child as! DataSnapshot).value! as! Bool)
+                    print("new correct answer")
+                    print(self.correctAnswers)
+            }
+            
+            completion()
         }
 
         
