@@ -82,8 +82,10 @@ class QuizActivityVC: UIViewController {
     
     var checkConcessionRef:DatabaseReference!
     var checkConcessionHandle:DatabaseHandle!
+    var checkConcessionSet = false
     var inGameLeaderboardStudentsQuery:DatabaseQuery!
     var inGameLeaderboardStudentsHandle:DatabaseHandle!
+    var inGameLeaderboardStudentsSet = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -218,6 +220,8 @@ class QuizActivityVC: UIViewController {
                                 
                                 self.inGameLeaderboardStudentsQuery = inGameLeaderboardsRef.child(self.inGameLeaderboardKey).child("students").queryOrdered(byChild: "studentScore")
                                 self.inGameLeaderboardStudentsHandle = self.inGameLeaderboardStudentsQuery.observe(.value, with: { (snapshot:DataSnapshot) in
+                                    self.inGameLeaderboardStudentsSet = true
+                                    
                                     var leaderboardStudentKeys = [String]()
                                     self.allScores = []
                                     for child in snapshot.children.allObjects as! [DataSnapshot] {
@@ -261,6 +265,8 @@ class QuizActivityVC: UIViewController {
         print("checkConcession")
         checkConcessionRef = Database.database().reference().child("head-to-head-game").child(self.gameKey!)
         checkConcessionHandle = checkConcessionRef.observe(.value, with: { snapshot in
+            self.checkConcessionSet = true
+            
             if snapshot.value is NSNull && !self.quizEnded {
                 self.winByConcession()
             }
@@ -602,10 +608,14 @@ class QuizActivityVC: UIViewController {
     func removeListeners(){
         switch quizMode! {
         case .Standard:
-            inGameLeaderboardStudentsQuery.removeObserver(withHandle: inGameLeaderboardStudentsHandle)
+            if inGameLeaderboardStudentsSet {
+                            inGameLeaderboardStudentsQuery.removeObserver(withHandle: inGameLeaderboardStudentsHandle)
+            }
             break
         case .HeadToHead:
-            checkConcessionRef.removeObserver(withHandle: checkConcessionHandle)
+            if checkConcessionSet {
+                checkConcessionRef.removeObserver(withHandle: checkConcessionHandle)
+            }
             //inGameLeaderboardStudentsRef.removeObserver(withHandle: inGameLeaderboardStudentsHandle)
             break
         case .Solo:
@@ -621,7 +631,7 @@ class QuizActivityVC: UIViewController {
         
         self.dismiss(animated: false, completion: {
             self.quizLobbyRef.dismiss(animated: false, completion: {
-                completion!()
+                completion?()
             })
         })
     }
