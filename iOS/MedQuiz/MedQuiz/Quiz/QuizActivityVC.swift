@@ -438,14 +438,16 @@ class QuizActivityVC: UIViewController {
     }
     
     func updateUserInLeaderboard(){
-        userViews.forEach { view in
-            if(view.currStudent.userName == globalUsername){
-                view.convertToCurrUser()
-            }
-            else{
-                view.convertToOtherUser()
-            }
-         }
+        
+        //TODO: Uncomment and see why it causes crash
+//        userViews.forEach { view in
+//            if(view.currStudent.userName == globalUsername){
+//                view.convertToCurrUser()
+//            }
+//            else{
+//                view.convertToOtherUser()
+//            }
+//         }
     }
 
     func moveUpPosition(){

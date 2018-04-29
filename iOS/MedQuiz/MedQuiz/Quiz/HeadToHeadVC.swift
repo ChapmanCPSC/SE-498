@@ -23,7 +23,7 @@ class HeadToHeadVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         // Do any additional setup after loading the view.
         
         //Temp quiz key value
-        quizKey = "96f8f44213334d4eb8ff"
+        quizKey = "-L98Of2v1Q1E6fSFFg6g"
         
         //Temp friends array
         
@@ -37,10 +37,10 @@ class HeadToHeadVC: UIViewController, UITableViewDelegate, UITableViewDataSource
 //        friend4.databaseID = "a7ba9826e87a6"
 //        friends = [friend1, friend2, friend3, friend4]
         
-        _ = Student(key: "uwXz9IMasFdJTkSMhLsbgn8ZGAp1") { student1 in
-            _ = Student(key: "9dzhTYITZVV8lWviwZcza5DY8Bf1") { student2 in
-                _ = Student(key: "6QzEAgIUlmcA6AIAESgoPEeroBJ2") { student3 in
-                    _ = Student(key: "dvWgSxnJTihjE55OyDZ6JeCFJVz1") { student4 in
+        _ = Student(key: "9YbQdHBOnhVPh98aQVqNxmfjr1e2") { student1 in
+            _ = Student(key: "r7pTDKSWu9bshe9Tq6bRGrSFtkD2") { student2 in
+                _ = Student(key: "vRW8OIGVCQdaQ6GyK7gyPx5Rbzs2") { student3 in
+                    _ = Student(key: "ywMeas9KWfaiQXKxhxtMoODivPz2") { student4 in
                         self.friends = [student1, student2, student3, student4]
                         
                         let friendRequestsCellNib = UINib(nibName: "HeadToHeadFriendRequestTableViewCell", bundle: nil)

@@ -75,6 +75,7 @@ class Question {
                 self.getCorrectAnswers(questionKey: aQuestionModel.key, completion: {
                     print("answerTexts length: \(self.answerTexts.count)")
                     for i in 0...self.answerTexts.count - 1 {
+                        print("index is ", i)
                         if self.imagesForAnswers!{
                             _ = Answer(answerText: "", isAnswer: self.correctAnswers[i], hasImage: true, imagePath: self.answerTexts[i]) { theAnswer in
                                 self.answers?.append(theAnswer)
