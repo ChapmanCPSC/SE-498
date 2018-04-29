@@ -23,7 +23,7 @@ class HeadToHeadVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         // Do any additional setup after loading the view.
         
         //Temp quiz key value
-        quizKey = "96f8f44213334d4eb8ff"
+        quizKey = "-L98Of2v1Q1E6fSFFg6g"
         
         //Temp friends array
         
