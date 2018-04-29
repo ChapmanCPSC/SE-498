@@ -6,6 +6,30 @@
 //  Copyright © 2017 Omar Sherief. All rights reserved.
 //
 
+
+extension UIViewController {
+    class func displaySpinner(onView : UIView) -> UIView {
+        let spinnerView = UIView.init(frame: onView.bounds)
+        spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
+        let ai = UIActivityIndicatorView.init(activityIndicatorStyle: .whiteLarge)
+        ai.startAnimating()
+        ai.center = spinnerView.center
+        
+        DispatchQueue.main.async {
+            spinnerView.addSubview(ai)
+            onView.addSubview(spinnerView)
+        }
+        
+        return spinnerView
+    }
+    
+    class func removeSpinner(spinner :UIView) {
+        DispatchQueue.main.async {
+            spinner.removeFromSuperview()
+        }
+    }
+}
+
 import UIKit
 import FirebaseAuth
 import Firebase
@@ -113,6 +137,9 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     
     @IBAction func loginPressed(_ sender: Any) {
         
+        
+        let sv = UIViewController.displaySpinner(onView: self.view)
+        
         //UNCOMMENT LATER - for when we need to check username/password with db
         
         if(!usernameTextField.text!.isEmpty && !passwordTextField.text!.isEmpty){
@@ -147,9 +174,9 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                             }
                         })
                         
-                        //use wa
-                    
+                        
                         self.present((self.MainStoryBoard?.instantiateInitialViewController())!, animated: false, completion: nil)
+                        UIViewController.removeSpinner(spinner: sv)
                         self.checkHeadToHeadRequest()
                     })
                     
@@ -159,6 +186,8 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                     
                 //not logged in
                 else{
+                    
+                    UIViewController.removeSpinner(spinner: sv)
                     self.loginErrorLabel.text = "Incorrect username/password"
                     self.loginErrorLabel.isHidden = false
                 }

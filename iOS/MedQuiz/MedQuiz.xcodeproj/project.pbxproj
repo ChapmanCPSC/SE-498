@@ -798,7 +798,7 @@
 				TargetAttributes = {
 					3D2495A31F7E2EDD0058D85B = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 9T45DU98XL;
+						DevelopmentTeam = WK89PN64FL;
 						ProvisioningStyle = Automatic;
 					};
 					3D2495B71F7E2EDD0058D85B = {
@@ -1349,11 +1349,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9T45DU98XL;
+				DEVELOPMENT_TEAM = WK89PN64FL;
 				INFOPLIST_FILE = MedQuiz/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.PharmAppChad2018;
+				PRODUCT_BUNDLE_IDENTIFIER = com.PharmApp2018;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
@@ -1369,11 +1369,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9T45DU98XL;
+				DEVELOPMENT_TEAM = WK89PN64FL;
 				INFOPLIST_FILE = MedQuiz/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.PharmAppChad2018;
+				PRODUCT_BUNDLE_IDENTIFIER = com.PharmApp2018;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
