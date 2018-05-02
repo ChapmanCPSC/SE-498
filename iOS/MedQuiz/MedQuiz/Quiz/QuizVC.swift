@@ -96,6 +96,9 @@ class QuizVC: UIViewController {
                     print("Pin does exist")
                     self.gamePin = String(inputPin)
                     
+                    let userHeadToHeadRequestReference = Database.database().reference().child("student").child(currentUserID)
+                    userHeadToHeadRequestReference.child("headtoheadgamerequest").setValue("busy")
+                    
                     let quizLobbyVC = self.storyboard?.instantiateViewController(withIdentifier: "quizLobbyVC") as! QuizLobbyVC
                     quizLobbyVC.gameKey = gamesFound[0].key
                     quizLobbyVC.quizKey = gamesFound[0].quizKey

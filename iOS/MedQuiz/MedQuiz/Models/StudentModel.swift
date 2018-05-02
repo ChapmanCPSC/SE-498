@@ -19,6 +19,7 @@ class StudentModel: FIRModel, FIRQueryable,FIRStorageDownloadable
     static var HAS_CHANGED_USERNAME = "haschangedusername"
     static var FRIENDS = "friends"
     static var HEADTOHEAD_GAME_REQUEST = "headtoheadgamerequest"
+    static var ONLINE = "online"
 
     var studentUsername: String? { return self.get(StudentModel.USERNAME) }
     var profilePic: String? { return self.get(StudentModel.PROFILE_PIC) }
@@ -26,6 +27,7 @@ class StudentModel: FIRModel, FIRQueryable,FIRStorageDownloadable
     var hasChangedUsername:Bool? { return self.get(StudentModel.HAS_CHANGED_USERNAME) }
     var friends:[StudentModel]? { return self.get(StudentModel.FRIENDS) }
     var headToHeadGameRequest:String? { return self.get(StudentModel.HEADTOHEAD_GAME_REQUEST) }
+    var online:Bool? { return self.get(StudentModel.ONLINE) }
 
     func getProfilePic(completion: @escaping(UIImage?) -> Void)
     {

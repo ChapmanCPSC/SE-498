@@ -390,9 +390,9 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         removeListeners()
         let alert = UIAlertController(title:title, message:message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default) { UIAlertAction in
-            if self.quizMode == QuizMode.HeadToHead {
-                globalHeadToHeadBusy = false
-            }
+            let userHeadToHeadRequestReference = Database.database().reference().child("student").child(currentUserID)
+            userHeadToHeadRequestReference.child("headtoheadgamerequest").removeValue()
+            
             completion?()
             self.dismiss(animated: false, completion: nil)
         })
@@ -410,6 +410,9 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     @IBAction func backButtonPressed(_ sender: Any) {
         lobbyDone = true
         removeListeners()
+        
+        let userHeadToHeadRequestReference = Database.database().reference().child("student").child(currentUserID)
+        userHeadToHeadRequestReference.child("headtoheadgamerequest").removeValue()
         
         switch quizMode! {
         case .Standard:

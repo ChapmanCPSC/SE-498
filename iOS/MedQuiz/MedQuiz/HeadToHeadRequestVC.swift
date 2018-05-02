@@ -73,7 +73,6 @@ class HeadToHeadRequestVC: UIViewController {
         let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(headToHeadGameKey!)
         headToHeadGameRef.child("decided").setValue(true)
         headToHeadGameRef.child("accepted").setValue(false)
-        globalHeadToHeadBusy = false
         removeListeners()
         self.dismiss(animated: true, completion: nil)
     }

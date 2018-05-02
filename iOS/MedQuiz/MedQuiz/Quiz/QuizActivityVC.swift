@@ -536,6 +536,8 @@ class QuizActivityVC: UIViewController {
     func winByConcession(){
         print("Won by concession")
         quizEnded = true
+        let userHeadToHeadRequestReference = Database.database().reference().child("student").child(currentUserID)
+        userHeadToHeadRequestReference.child("headtoheadgamerequest").removeValue()
         removeListeners()
         updatePersonalScore()
         let quizSummaryVC = self.storyboard?.instantiateViewController(withIdentifier: "quizSummary") as! QuizSummaryViewController
@@ -714,9 +716,9 @@ class QuizActivityVC: UIViewController {
     
     func exitQuiz(completion:(() -> Void)?){
         removeListeners()
-        if quizMode == QuizLobbyVC.QuizMode.HeadToHead {
-            globalHeadToHeadBusy = false
-        }
+
+        let userHeadToHeadRequestReference = Database.database().reference().child("student").child(currentUserID)
+        userHeadToHeadRequestReference.child("headtoheadgamerequest").removeValue()
         
         self.dismiss(animated: false, completion: {
             self.quizLobbyRef.dismiss(animated: false, completion: {

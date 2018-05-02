@@ -40,7 +40,6 @@ var currentUserID = ""
 var globalUsername = ""
 var globalHighscore = 0
 var globalProfileImage : UIImage!
-var globalHeadToHeadBusy = false
 //make a global list/array
 
 class LoginVC: UIViewController, UITextFieldDelegate {
@@ -185,6 +184,9 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                         print(globalProfileImage)
                         self.checkConnection()
                         
+                        let userHeadToHeadRequestReference = Database.database().reference().child("student").child(currentUserID)
+                        userHeadToHeadRequestReference.child("headtoheadgamerequest").removeValue()
+                        
                         print("done")
                     Firebase.Database.database().reference().child("student").child(signedInUser!.uid).child("friends").observeSingleEvent(of: .value, with: { (snap: DataSnapshot) in
                             
@@ -294,9 +296,8 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     
     func checkHeadToHeadRequest(){
         StudentModel.FromAndKeepObserving(key: currentUserID, completion: { student in
-            if student.headToHeadGameRequest != nil && !globalHeadToHeadBusy{
+            if student.headToHeadGameRequest != nil{
                 print("Presenting head to head request")
-                globalHeadToHeadBusy = true
                 let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(student.headToHeadGameRequest!)
                 headToHeadGameRef.observeSingleEvent(of: .value, with: {(snapshot) in
                     if let inviterKey = snapshot.childSnapshot(forPath: "inviter").childSnapshot(forPath: "student").value! as? String {

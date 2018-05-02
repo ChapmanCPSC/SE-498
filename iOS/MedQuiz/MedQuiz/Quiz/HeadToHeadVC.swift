@@ -82,7 +82,12 @@ class HeadToHeadVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     func requestMade(selectedFriend: Student) {
         StudentModel.From(key: selectedFriend.databaseID!) {friend in
-            if friend.headToHeadGameRequest == nil{
+            if !friend.online! {
+                let alert = UIAlertController(title:"Friend Offline", message:"Friend is offline at the moment.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+            else if friend.headToHeadGameRequest == nil{
                 let headToHeadGameReference = Database.database().reference().child("head-to-head-game").childByAutoId()
                 headToHeadGameReference.child("quiz").setValue(self.quizKey)
                 headToHeadGameReference.child("inviter").child("student").setValue(currentUserID)
@@ -114,12 +119,10 @@ class HeadToHeadVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                 quizLobbyVC.quizMode = QuizLobbyVC.QuizMode.HeadToHead
                 quizLobbyVC.isInvitee = false
                 
-                globalHeadToHeadBusy = true
-                
                 self.present(quizLobbyVC, animated: false, completion: nil)
             }
             else{
-                let alert = UIAlertController(title:"Friend Busy", message:"Friend is handling another Head to Head request at the moment.", preferredStyle: .alert)
+                let alert = UIAlertController(title:"Friend Busy", message:"Friend is busy at the moment.", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }
