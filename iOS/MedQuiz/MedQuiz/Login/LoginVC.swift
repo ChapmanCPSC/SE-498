@@ -256,7 +256,13 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     
     func logout(){
         print("logged out")
-        //TODO
+//        var topController = getTopController()
+//        if !(topController is LoginVC) {
+//            while !(topController is LoginVC) {
+//                topController.dismiss(animated: false, completion: nil)
+//                topController = getTopController()
+//            }
+//        }
     }
     
     func checkConnection(){
@@ -273,6 +279,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                     break
                 default:
                     print("disconnected")
+                    self.logout()
                     break
                 }
                 

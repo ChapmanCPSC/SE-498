@@ -51,7 +51,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     var waitingString:String!
     var headToHeadAcceptedString:String = "Request accepted. Starting game..."
     
-    enum QuizMode{
+    enum QuizMode {
         case Standard
         case HeadToHead
         case Solo
@@ -157,7 +157,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     func download(){
-        if (self.quizMode == QuizMode.Standard){
+        if (self.quizMode == .Standard){
             self.downloadStandardQuiz()
         }
         else {
@@ -252,7 +252,6 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             self.quiz = theQuiz
             print("downloading students")
             self.downloadStudents()
-            print("done downloading students")
         }
     }
     
@@ -274,9 +273,6 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                         self.headToHeadReady = true
                     }
                 })
-            }
-            else if self.quizMode == QuizMode.Solo {
-                //TODO
             }
         }
     }
@@ -300,11 +296,23 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             for studentKey in gameStudentKeys{
                 _ = Student(key: studentKey) { (theStudent) in
                     studentCount += 1
+                    
+                    print("Student #\(studentCount)")
+                    
                     if studentKey != currentUserID && !self.lobbyPlayers.contains(theStudent) && !self.lobbyQueue.contains(theStudent){
                         self.lobbyQueue.append(theStudent)
-                        if studentCount == gameStudentKeys.count {
-                            self.addStudentToLobby()
-                        }
+                        print("For loop status: studentCount: \(studentCount), gameStudentKeys.count: \(gameStudentKeys.count)")
+                    }
+                    else{
+                        print("Skipping student")
+                        print("studentKey != currentUserID: \(studentKey != currentUserID)")
+                        print("!self.lobbyPlayers.contains(theStudent): \(!self.lobbyPlayers.contains(theStudent))")
+                        print("!self.lobbyQueue.contains(theStudent): \(!self.lobbyQueue.contains(theStudent))")
+                    }
+                    
+                    if studentCount == gameStudentKeys.count {
+                        print("Ready to start adding queued students to lobby")
+                        self.addStudentToLobby()
                     }
                 }
             }
@@ -312,8 +320,10 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     func addStudentToLobby(){
+        print("Lobby queue empty in addStudentToLobby: \(lobbyQueue.isEmpty)")
         if !lobbyQueue.isEmpty{
             usleep(100000)
+            print("Adding student to lobby")
             lobbyPlayers.append(lobbyQueue.popLast()!)
             lobbyPlayersCollectionView.reloadData()
             DispatchQueue.main.async(execute: {
@@ -321,6 +331,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             })
         }
         else{
+            print("Initial student download complete")
             loadingQuizComplete()
         }
     }
@@ -331,6 +342,9 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             quizDownloaded = true
             statusLabel.text = waitingString
             loadingIndicatorView.stopAnimating()
+            if quizMode == .Solo {
+                startQuiz()
+            }
         }
     }
     

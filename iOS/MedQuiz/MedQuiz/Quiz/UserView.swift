@@ -104,5 +104,4 @@ class UserView: UIView {
         self.setBackgroundColor(color: self.nonUserBg)
         reupdate()
     }
-
 }

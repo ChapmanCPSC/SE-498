@@ -218,7 +218,7 @@ extension ExpandableTableViewController:PerformsSegueDelegator {
         //TODO: add quiz key to each cell
         //quizSelectModeVC.quizKey = self.quizKey
         //Temp for testing purposes
-        quizSelectModeVC.quizKey = "96f8f44213334d4eb8ff"
+        quizSelectModeVC.quizKey = "-L98Of2v1Q1E6fSFFg6g"
         self.present(quizSelectModeVC, animated: false, completion: {
         })
     }

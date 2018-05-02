@@ -23,6 +23,7 @@ class QuizActivityVC: UIViewController {
     
     var canSelect:Bool = false
     var currPos:Int!
+    var prevPos:Int!
     
     var gameKey:String!
     var inGameLeaderboardKey:String!
@@ -104,7 +105,7 @@ class QuizActivityVC: UIViewController {
         answerViews.forEach { view in view.parent = self }
         hideAnswerLabels()
         setAnswerColors()
-        //setUserColors()
+        setUserColors()
         hideSidebar()
 
         hideAnswersForTime()
@@ -119,6 +120,15 @@ class QuizActivityVC: UIViewController {
             backCancelButton.isHidden = false
             break
         case .Solo:
+            allUsers = [currentGlobalStudent]
+            allScores = [0]
+            uv_first.updateView(student: allUsers[0], position: 0, score: allScores[0])
+            uv_first.lab_position.isHidden = true
+            userViews = [uv_first]
+            uv_fifth.removeFromSuperview()
+            uv_fourth.removeFromSuperview()
+            uv_third.removeFromSuperview()
+            uv_second.removeFromSuperview()
             backCancelButton.isHidden = false
             break
         }
@@ -237,11 +247,11 @@ class QuizActivityVC: UIViewController {
                                         for key in leaderboardStudentKeys {
                                             for student in self.allUsers {
                                                 if key == student.databaseID {
-                                                    leaderboardPosCounter += 1
                                                     newAllUsers.append(student)
                                                     if key == currentUserID {
                                                         self.currPos = leaderboardPosCounter
                                                     }
+                                                    leaderboardPosCounter += 1
                                                     break
                                                 }
                                             }
@@ -274,8 +284,6 @@ class QuizActivityVC: UIViewController {
                                                 self.uv_third.removeFromSuperview()
                                                 self.uv_second.removeFromSuperview()
                                             }
-                                            
-                                            self.setUserColors()
                                         }
                                         
                                         self.allUsers = newAllUsers
@@ -322,11 +330,16 @@ class QuizActivityVC: UIViewController {
     }
     
     func setUserColors(){
-        var count = 0
-        userViews.forEach { (view) in
-            view.setBackgroundColor(color: userColors[count])
-            count += 1
-        }
+//        var count = 0
+//        userViews.forEach { (view) in
+//            view.setBackgroundColor(color: userColors[count])
+//            count += 1
+//        }
+        uv_first.setBackgroundColor(color: userColors[0])
+        uv_second.setBackgroundColor(color: userColors[1])
+        uv_third.setBackgroundColor(color: userColors[2])
+        uv_fourth.setBackgroundColor(color: userColors[3])
+        uv_fifth.setBackgroundColor(color: userColors[4])
     }
 
     func nextQuestion(){
@@ -432,10 +445,10 @@ class QuizActivityVC: UIViewController {
 
     func updateLeaderboard(){
         var userSubset = [Student]()
-        var startingPosition = 1
+        var startingPosition = 0
         
         // user is in first or second
-        if(currPos == 1 || currPos == 2){
+        if(currPos == 0 || currPos == 1){
             startingPosition = 0
             userSubset = Array(allUsers[0...userViews.count - 1])
         }
@@ -447,26 +460,38 @@ class QuizActivityVC: UIViewController {
             // user is somewhere in between
         else if userViews.count == 5{
             startingPosition = currPos-2
-            userSubset = Array(allUsers[currPos-3...currPos+1])
+            userSubset = Array(allUsers[currPos-2...currPos+2])
         }
         
         var count = 0
         
+        print("CURR POS \(currPos!)")
+        
         if(firstLoad){
             userViews.forEach { view in
                 view.updateView(student: userSubset[count], position: startingPosition + count + 1, score: 0)
+                if startingPosition + count == currPos {
+                    view.convertToCurrUser()
+                }
+                
                 count += 1
                 }
             firstLoad = false
         }
         else{
             userViews.forEach { view in
-                //TODO: make generic, hardcoded for demo
-                //view.updateView(student: userSubset[count], position: startingPosition + count + 1, score: allScores[startingPosition + count])
                 view.updateView(student: userSubset[count], position: count + 1, score: allScores[count])
+                if startingPosition + count == currPos {
+                    view.convertToCurrUser()
+                }
+                else if startingPosition + count == prevPos {
+                    view.convertToOtherUser()
+                }
+                
                 count += 1
             }
         }
+        prevPos = currPos
     }
     
     func updateUserInLeaderboard(){
@@ -798,21 +823,13 @@ extension QuizActivityVC:SelectsAnswer {
                         //moveUpPosition()
                         //moveDownPosition()
                         //updateLeaderboard()
-                        updateUserInLeaderboard()
-
-                        //TODO: Temporary way of updating student score in leaderboard on db.
-                        // until db team come up with a solution
-                        // will probably use wrappers
-                        // for now assu,ing current user is b29fks9mf9gh37fhh1h9814
-                        // from quiz lobby, later change to whichever student is currently logged in
-
-//                        dataRef.child("inGameLeaderboards").child("-L8UmIrtot-ouAefIWuq").child("students").child("-L8Ur3M5CegQC3t4Orkk").child("studentScore").setValue(String(pointsEarned))
-                        
-                    dataRef.child("inGameLeaderboards").child(inGameLeaderboardKey).child("students").child(userInGameLeaderboardObjectKey).child("studentScore").setValue(pointsEarned)
-
-                        //Also TODO: Make leaderboard update by listening to changes from
-                        // db leaderboard
-
+                        if quizMode != .Solo {
+                            updateUserInLeaderboard()
+                        dataRef.child("inGameLeaderboards").child(inGameLeaderboardKey).child("students").child(userInGameLeaderboardObjectKey).child("studentScore").setValue(pointsEarned)
+                        }
+                        else{
+                            uv_first.updateView(student: allUsers[0], position: 0, score: pointsEarned)
+                        }
                     }
                     else{
                         view.fadeAnswer()
