@@ -143,9 +143,43 @@ extension FriendsVC:RequestAction {
 
     func hideRequestSelected(student:Student){
         print("Hide pressed")
+        removeFromFriendRequests(student: student)
     }
 
     func addFriendSelected(student:Student){
         print("Add pressed")
+        addToFriends(student: student)
+        removeFromFriendRequests(student: student)
     }
+
+
+    func removeFromFriendRequests(student:Student){
+        for idx in 0..<currentGlobalStudent.friendRequests!.count{
+            let friend:Student = currentGlobalStudent.friendRequests![idx]
+            if friend.databaseID! == student.databaseID! {
+                currentGlobalStudent.friendRequests!.remove(at: idx)
+                self.friendRequests = currentGlobalStudent.friendRequests!
+                self.friendRequestsTable.reloadData()
+                break
+            }
+        }
+
+        Firebase.Database.database().reference()
+            .child("student")
+            .child(currentGlobalStudent.databaseID!)
+            .child("friendrequests")
+            .child(student.databaseID!)
+            .removeValue()
+    }
+
+    func addToFriends(student: Student){
+        Firebase.Database.database().reference()
+            .child("student")
+            .child(currentGlobalStudent.databaseID!)
+            .child("friends")
+            .child(student.databaseID!)
+            .setValue(true)
+
+    }
+
 }
