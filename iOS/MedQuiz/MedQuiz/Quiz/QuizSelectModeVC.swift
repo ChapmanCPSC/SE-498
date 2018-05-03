@@ -40,6 +40,9 @@ class QuizSelectModeVC: UIViewController {
     }
     
     @IBAction func soloButtonPressed(_ sender: Any) {
+        let userHeadToHeadRequestReference = Database.database().reference().child("student").child(currentUserID)
+        userHeadToHeadRequestReference.child("headtoheadgamerequest").setValue("busy")
+        
         let destinationVC = self.storyboard?.instantiateViewController(withIdentifier: "quizLobbyVC") as! QuizLobbyVC
         destinationVC.quizKey = quizKey
         destinationVC.quizMode = QuizLobbyVC.QuizMode.Solo
