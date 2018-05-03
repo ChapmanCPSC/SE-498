@@ -27,6 +27,7 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     override func viewDidLoad() {
         super.viewDidLoad()
         getFriendRequests()
+        updateFriendsList()
         
         let friendRequestsCellNib = UINib(nibName: "FriendRequestsTableViewCell", bundle: nil)
         friendRequestsTable.register(friendRequestsCellNib, forCellReuseIdentifier: "friendRequests_cell")
@@ -147,6 +148,16 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
                     return
                 }
 
+                var isSelf = false
+                if student.key == currentGlobalStudent.databaseID! {
+                    isSelf = true
+                }
+
+                if isSelf {
+                    self.searchResultLabel.text = "Search failed: You cannot request yourself"
+                    return
+                }
+
                 self.searchResultLabel.text = "Search successful. Request sent"
 
 
@@ -171,6 +182,24 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     @IBAction func backFromFriends(_ sender: Any) {
         self.dismiss(animated: false) {
         }
+    }
+
+    func updateFriendsList(){
+        Firebase.Database.database().reference()
+            .child("student")
+            .child(currentGlobalStudent.databaseID!)
+            .child("friends")
+            .observeSingleEvent(of: .value, with: { (snap: DataSnapshot) in
+                for s in snap.children {
+                    let friend = FriendModel(snapshot: s as! DataSnapshot)
+                    Firebase.Database.database().reference()
+                            .child("student")
+                            .child(friend.key)
+                            .observeSingleEvent(of: .value, with: { (friendSnap: DataSnapshot) in
+                                currentGlobalStudent.addFriend(student: StudentModel(snapshot: friendSnap))
+                    })
+                }
+        })
     }
     
     
@@ -226,7 +255,7 @@ extension FriendsVC:RequestAction {
                 .child(currentGlobalStudent.databaseID!)
                 .setValue(true)
 
-
+        updateFriendsList()
     }
 
 }
