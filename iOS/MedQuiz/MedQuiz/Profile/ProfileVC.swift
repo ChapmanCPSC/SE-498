@@ -9,6 +9,7 @@
 
 import Foundation
 import UIKit
+import FirebaseAuth
 
 class ProfileVC: UIViewController, ChangeAvatarVCDelegate, ChangeUsernameVCDelegate {
 
@@ -100,9 +101,14 @@ class ProfileVC: UIViewController, ChangeAvatarVCDelegate, ChangeUsernameVCDeleg
         self.present(changeAvatarVC, animated: false, completion: nil)
     }
     @IBAction func logoutPressed(_ sender: Any) {
-        self.dismiss(animated: false) {
-            
+        
+        do {
+            try Auth.auth().signOut()
+            self.dismiss(animated: true, completion: nil)
+        } catch let err {
+            print(err)
         }
+        
     }
     
     @IBAction func changeUsernamePressed(_ sender: Any) {
