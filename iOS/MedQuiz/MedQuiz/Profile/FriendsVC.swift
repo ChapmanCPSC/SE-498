@@ -117,10 +117,38 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
 //                }
             } else {
                //add your friend
-                
+                let student = student[0]
+
+                var alreadyRequested = false
+
+                for requestedStudent in currentGlobalStudent.friendRequests! {
+                    if requestedStudent.databaseID == student.key {
+                        alreadyRequested = true
+                        break
+                    }
+                }
+
+                if alreadyRequested {
+                    self.searchResultLabel.text = "Search failed: User has already requested you, check your requests"
+                    return
+                }
+
+                var alreadyFriend = false
+
+                for friendStudent in currentGlobalStudent.friends! {
+                    if friendStudent.databaseID == student.key {
+                        alreadyFriend = true
+                        break
+                    }
+                }
+
+                if alreadyFriend {
+                    self.searchResultLabel.text = "Search failed: User is already your friend"
+                    return
+                }
+
                 self.searchResultLabel.text = "Search successful. Request sent"
 
-                let student = student[0]
 
                 Firebase.Database.database().reference()
                     .child("student")
@@ -182,12 +210,22 @@ extension FriendsVC:RequestAction {
     }
 
     func addToFriends(student: Student){
+        // add to accepting user's friends list
         Firebase.Database.database().reference()
             .child("student")
             .child(currentGlobalStudent.databaseID!)
             .child("friends")
             .child(student.databaseID!)
             .setValue(true)
+
+        // add to the requesting user's friends list
+        Firebase.Database.database().reference()
+                .child("student")
+                .child(student.databaseID!)
+                .child("friends")
+                .child(currentGlobalStudent.databaseID!)
+                .setValue(true)
+
 
     }
 
