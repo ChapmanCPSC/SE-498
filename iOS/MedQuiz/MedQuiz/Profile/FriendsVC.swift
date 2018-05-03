@@ -118,8 +118,17 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
             } else {
                //add your friend
                 
-                self.searchResultLabel.text = "Search successful"
-//                let stud = student[0]
+                self.searchResultLabel.text = "Search successful. Request sent"
+
+                let student = student[0]
+
+                Firebase.Database.database().reference()
+                    .child("student")
+                    .child(student.key)
+                    .child("friendrequests")
+                    .child(currentGlobalStudent.databaseID!)
+                    .setValue(true)
+
 //                print(stud)
 //                let image = UIImage() //should be profile pic of stud
 //                let friends : [Student] = [] // should be friends list from stud
