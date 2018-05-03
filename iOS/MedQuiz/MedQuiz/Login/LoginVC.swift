@@ -251,7 +251,8 @@ class LoginVC: UIViewController, UITextFieldDelegate {
             } else {
                 return vc
             }
-        } else {
+        }
+        else {
             return getTopController(UIApplication.shared.keyWindow!.rootViewController!)
         }
     }

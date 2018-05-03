@@ -465,8 +465,6 @@ class QuizActivityVC: UIViewController {
         
         var count = 0
         
-        print("CURR POS \(currPos!)")
-        
         if(firstLoad){
             userViews.forEach { view in
                 view.updateView(student: userSubset[count], position: startingPosition + count + 1, score: 0)
@@ -541,69 +539,80 @@ class QuizActivityVC: UIViewController {
         removeListeners()
         updatePersonalScore()
         let quizSummaryVC = self.storyboard?.instantiateViewController(withIdentifier: "quizSummary") as! QuizSummaryViewController
-        self.dismiss(animated: false, completion: {
-            mainQuizVC.present(quizSummaryVC, animated: false, completion: {
-                let alert = UIAlertController(title:"Game Conceded", message:"Head to Head game with conceded by your opponent.", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default) { UIAlertAction in
-                    alert.dismiss(animated: false, completion: nil)
+        let alert = UIAlertController(title:"Game Conceded", message:"Head to Head game with conceded by your opponent.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default) { UIAlertAction in
+
+            self.dismiss(animated: false, completion: {
+                self.quizLobbyRef.dismiss(animated: false, completion: {
+                    self.getTopController().present(quizSummaryVC, animated: false, completion: nil)
                 })
             })
+
         })
+        self.present(alert, animated: true, completion: nil)
     }
     
     func finishQuiz(){
          //segue to quiz summary
+        
+        print("quiz finished")
 
         removeListeners()
         
         updatePersonalScore()
-
-//        let quizSummaryVC = self.storyboard?.instantiateViewController(withIdentifier: "quizSummary") as! QuizSummaryViewController
-//        self.dismiss(animated: false) {
-//            self.present(quizSummaryVC, animated: false, completion: {
-//            })
-//        }
         
-        // delete head to head game data as second person out
-//        if quizMode == .HeadToHead {
-//            if isInvitee {
-//                let headToHeadReadyRef = Database.database().reference(withPath: "head-to-head-game/\(gameKey!)/invitee/ready")
-//                headToHeadReadyRef.setValue(false)
-//
-//                let headToHeadOpponentReadyRef = Database.database().reference(withPath: "head-to-head-game/\(gameKey!)/inviter/ready")
-//                headToHeadOpponentReadyRef.observeSingleEvent(of: .value, with: { snapshot in
-//                    if !(snapshot.value as! Bool){
-//                        self.deleteDBHeadToHeadData()
-//                    }
-//                })
-//            }
-//            else{
-//                let headToHeadReadyRef = Database.database().reference(withPath: "head-to-head-game/\(gameKey!)/inviter/ready")
-//                headToHeadReadyRef.setValue(false)
-//
-//                let headToHeadOpponentReadyRef = Database.database().reference(withPath: "head-to-head-game/\(gameKey!)/invitee/ready")
-//                headToHeadOpponentReadyRef.observeSingleEvent(of: .value, with: { snapshot in
-//                    if !(snapshot.value as! Bool){
-//                        self.deleteDBHeadToHeadData()
-//                    }
-//                })
-//            }
-//        }
+        //delete head to head game data as second person out
+        if quizMode == .HeadToHead {
+            if isInvitee {
+                let headToHeadReadyRef = Database.database().reference(withPath: "head-to-head-game/\(gameKey!)/invitee/ready")
+                headToHeadReadyRef.setValue(false)
+
+                let headToHeadOpponentReadyRef = Database.database().reference(withPath: "head-to-head-game/\(gameKey!)/inviter/ready")
+                headToHeadOpponentReadyRef.observeSingleEvent(of: .value, with: { snapshot in
+                    if !(snapshot.value as! Bool){
+                        self.deleteDBHeadToHeadData()
+                    }
+                })
+            }
+            else{
+                let headToHeadReadyRef = Database.database().reference(withPath: "head-to-head-game/\(gameKey!)/inviter/ready")
+                headToHeadReadyRef.setValue(false)
+
+                let headToHeadOpponentReadyRef = Database.database().reference(withPath: "head-to-head-game/\(gameKey!)/invitee/ready")
+                headToHeadOpponentReadyRef.observeSingleEvent(of: .value, with: { snapshot in
+                    if !(snapshot.value as! Bool){
+                        self.deleteDBHeadToHeadData()
+                    }
+                })
+            }
+        }
         
         let quizSummaryVC = self.storyboard?.instantiateViewController(withIdentifier: "quizSummary") as! QuizSummaryViewController
         
         self.dismiss(animated: false, completion: {
             self.quizLobbyRef.dismiss(animated: false, completion: {
-                mainQuizVC.present(quizSummaryVC, animated: false) {
-                    print("hey")
-                }
+                self.getTopController().present(quizSummaryVC, animated: false, completion: nil)
             })
-
         })
-        print("->>>>>>>>>>>>>>>>>>>>>>>>>>")
-        
 
-//        performSegue(withIdentifier: "quizActToSummary", sender: nil)
+        print("->>>>>>>>>>>>>>>>>>>>>>>>>>")
+    }
+    
+    func getTopController(_ parent:UIViewController? = nil) -> UIViewController {
+        if let vc = parent {
+            if let tab = vc as? UITabBarController, let selected = tab.selectedViewController {
+                return getTopController(selected)
+            } else if let nav = vc as? UINavigationController, let top = nav.topViewController {
+                return getTopController(top)
+            } else if let presented = vc.presentedViewController {
+                return getTopController(presented)
+            } else {
+                return vc
+            }
+        }
+        else {
+            return getTopController(UIApplication.shared.keyWindow!.rootViewController!)
+        }
     }
 
     func updatePersonalScore(){
@@ -615,9 +624,8 @@ class QuizActivityVC: UIViewController {
         //84y1jn1n12n8n0f80n180289398n1 is the key for that student's
         // score in the score dataset
         
-        
-        //TODO update current user not some random one
-        dataRef.child("score").child("84y1jn1n12n8n0f80n180289398n1").child("points").setValue(pointsEarned)
+
+        dataRef.child("score").child(currentUserID).child("points").setValue(pointsEarned)
     }
 
     @IBAction func tempPressed(_ sender: Any) {
