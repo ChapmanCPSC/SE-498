@@ -16,6 +16,9 @@ class FriendRequestsTableViewCell: UITableViewCell {
     
     var avatarImage: UIImage?
     var username: String?
+
+    var student:Student?
+    var parent:RequestAction!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -35,12 +38,29 @@ class FriendRequestsTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setViews(username:String, avatarImage:UIImage){
+    func setViews(username:String?, avatarImage:UIImage?){
         print("done setting view")
-        self.username = username
-        self.usernameLabel.text = username
-        self.avatarImage = avatarImage
-        self.avatarImageView.image = avatarImage
+        if let _ = username{
+            self.username = username
+            self.usernameLabel.text = username
+        }
+        if let _ = avatarImage {
+            self.avatarImage = avatarImage
+            self.avatarImageView.image = avatarImage
+        }
+
     }
 
+    func setStudent(student:Student){
+        self.student = student
+        setViews(username: student.userName, avatarImage: student.profilePic)
+    }
+    
+    @IBAction func addPressed(_ sender: Any) {
+        parent.addFriendSelected(student: self.student!)
+    }
+    
+    @IBAction func hidePressed(_ sender: Any) {
+        parent.hideRequestSelected(student: self.student!)
+    }
 }

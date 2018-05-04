@@ -21,9 +21,13 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     
     var cellUsernames:[String] = ["Kyle102", "Jeniffer308", "Mark075", "Layla690"]
     var cellImages:[UIImage] = [#imageLiteral(resourceName: "StudentAvatarPlaceholder.png"), #imageLiteral(resourceName: "StudentAvatarPlaceholder.png"), #imageLiteral(resourceName: "StudentAvatarPlaceholder.png"), #imageLiteral(resourceName: "StudentAvatarPlaceholder.png")]
-    
+
+    var friendRequests:[Student] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        getFriendRequests()
+        updateFriendsList()
         
         let friendRequestsCellNib = UINib(nibName: "FriendRequestsTableViewCell", bundle: nil)
         friendRequestsTable.register(friendRequestsCellNib, forCellReuseIdentifier: "friendRequests_cell")
@@ -44,16 +48,33 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
+    func getFriendRequests(){
+        Firebase.Database.database().reference()
+                .child("student")
+                .child(currentGlobalStudent.databaseID!)
+                .child("friendrequests")
+                .observeSingleEvent(of: .value, with: {(snap:DataSnapshot) in
+                    for s in snap.children {
+                        let friend = StudentModel(snapshot: s as! DataSnapshot)
+                        currentGlobalStudent.addFriendRequest(studentModel: friend) {
+                            self.friendRequests = currentGlobalStudent.friendRequests!
+                            self.friendRequestsTable.reloadData()
+                        }
+                    }
+                })
+    }
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.cellUsernames.count
+        return self.friendRequests.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : FriendRequestsTableViewCell = friendRequestsTable.dequeueReusableCell(withIdentifier: "friendRequests_cell") as! FriendRequestsTableViewCell
-        cell.setViews(username: cellUsernames[indexPath.row], avatarImage: cellImages[indexPath.row])
+        cell.parent = self
+        cell.setStudent(student: friendRequests[indexPath.row])
         return cell
     }
     
@@ -97,9 +118,56 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
 //                }
             } else {
                //add your friend
-                
-                self.searchResultLabel.text = "Search successful"
-//                let stud = student[0]
+                let student = student[0]
+
+                var alreadyRequested = false
+
+                for requestedStudent in currentGlobalStudent.friendRequests! {
+                    if requestedStudent.databaseID == student.key {
+                        alreadyRequested = true
+                        break
+                    }
+                }
+
+                if alreadyRequested {
+                    self.searchResultLabel.text = "Search failed: User has already requested you, check your requests"
+                    return
+                }
+
+                var alreadyFriend = false
+
+                for friendStudent in currentGlobalStudent.friends! {
+                    if friendStudent.databaseID == student.key {
+                        alreadyFriend = true
+                        break
+                    }
+                }
+
+                if alreadyFriend {
+                    self.searchResultLabel.text = "Search failed: User is already your friend"
+                    return
+                }
+
+                var isSelf = false
+                if student.key == currentGlobalStudent.databaseID! {
+                    isSelf = true
+                }
+
+                if isSelf {
+                    self.searchResultLabel.text = "Search failed: You cannot request yourself"
+                    return
+                }
+
+                self.searchResultLabel.text = "Search successful. Request sent"
+
+
+                Firebase.Database.database().reference()
+                    .child("student")
+                    .child(student.key)
+                    .child("friendrequests")
+                    .child(currentGlobalStudent.databaseID!)
+                    .setValue(true)
+
 //                print(stud)
 //                let image = UIImage() //should be profile pic of stud
 //                let friends : [Student] = [] // should be friends list from stud
@@ -115,6 +183,79 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         self.dismiss(animated: false) {
         }
     }
+
+    func updateFriendsList(){
+        Firebase.Database.database().reference()
+            .child("student")
+            .child(currentGlobalStudent.databaseID!)
+            .child("friends")
+            .observeSingleEvent(of: .value, with: { (snap: DataSnapshot) in
+                for s in snap.children {
+                    let friend = FriendModel(snapshot: s as! DataSnapshot)
+                    Firebase.Database.database().reference()
+                            .child("student")
+                            .child(friend.key)
+                            .observeSingleEvent(of: .value, with: { (friendSnap: DataSnapshot) in
+                                currentGlobalStudent.addFriend(student: StudentModel(snapshot: friendSnap))
+                    })
+                }
+        })
+    }
     
     
+}
+
+extension FriendsVC:RequestAction {
+
+    func hideRequestSelected(student:Student){
+        print("Hide pressed")
+        removeFromFriendRequests(student: student)
+    }
+
+    func addFriendSelected(student:Student){
+        print("Add pressed")
+        addToFriends(student: student)
+        removeFromFriendRequests(student: student)
+    }
+
+
+    func removeFromFriendRequests(student:Student){
+        for idx in 0..<currentGlobalStudent.friendRequests!.count{
+            let friend:Student = currentGlobalStudent.friendRequests![idx]
+            if friend.databaseID! == student.databaseID! {
+                currentGlobalStudent.friendRequests!.remove(at: idx)
+                self.friendRequests = currentGlobalStudent.friendRequests!
+                self.friendRequestsTable.reloadData()
+                break
+            }
+        }
+
+        Firebase.Database.database().reference()
+            .child("student")
+            .child(currentGlobalStudent.databaseID!)
+            .child("friendrequests")
+            .child(student.databaseID!)
+            .removeValue()
+    }
+
+    func addToFriends(student: Student){
+        // add to accepting user's friends list
+        Firebase.Database.database().reference()
+            .child("student")
+            .child(currentGlobalStudent.databaseID!)
+            .child("friends")
+            .child(student.databaseID!)
+            .setValue(true)
+
+        // add to the requesting user's friends list
+        Firebase.Database.database().reference()
+                .child("student")
+                .child(student.databaseID!)
+                .child("friends")
+                .child(currentGlobalStudent.databaseID!)
+                .setValue(true)
+
+        updateFriendsList()
+    }
+
 }
