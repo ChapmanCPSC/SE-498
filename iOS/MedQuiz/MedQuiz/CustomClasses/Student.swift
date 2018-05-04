@@ -15,13 +15,14 @@ class Student: Equatable {
     var totalPoints:Int?
     var hasChangedUsername:Bool?
     var databaseID:String?
+    var friendRequests:[Student]?
     
     init(key: String, completion: @escaping (Student) -> Void){
         StudentModel.From(key: key, completion: { (aStudentModel) in
             self.userName = aStudentModel.studentUsername!
             print(self.userName!)
-            self.friends = []//get friends from student and also implemement a FriendsModel file
-            print(self.friends!)
+            self.friends = Student.convertFriends(students: aStudentModel.friends)//get friends from student and also implemement a FriendsModel file
+            print("Friends\(self.friends!)")
             self.hasChangedUsername = false
             print(self.hasChangedUsername!)
             
@@ -30,7 +31,10 @@ class Student: Equatable {
             
             self.totalPoints = aStudentModel.score!
             print(self.totalPoints!)
-            
+
+            self.friendRequests = Student.convertFriends(students: aStudentModel.friendRequests)
+            print("Requests \(self.friendRequests)")
+
             aStudentModel.getProfilePic(completion: { (theProfilePic) in
                 self.profilePic = theProfilePic!
                 print(self.profilePic!)
@@ -66,6 +70,22 @@ class Student: Equatable {
         self.hasChangedUsername = hasChangedUsername
     }
 
+    func addFriendRequest(studentModel: StudentModel,completion:@escaping () -> Void) {
+        if self.friendRequests == nil {
+            self.friendRequests = []
+        }
+        for friend in self.friendRequests! {
+
+            if friend.databaseID == studentModel.key {
+                completion()
+                return
+            }
+        }
+        self.friendRequests!.append(Student(key: studentModel.key) { student in
+            completion()
+         })
+    }
+
     init(studentDict:[String:AnyObject], addFriends:Bool=true){
         self.userName = studentDict["username"] as? String
         //self.totalPoints = studentModel.totalPoints!
@@ -80,7 +100,25 @@ class Student: Equatable {
             self.friends = []
         }
     }
-    
+
+    init(studentModel:StudentModel, addFriends:Bool){
+        self.userName = studentModel.studentUsername
+        self.friends = []
+        self.totalPoints = studentModel.score
+        self.databaseID = studentModel.key
+        studentModel.getProfilePic { image in 
+            self.profilePic = image
+         }
+
+    }
+
+    func addFriend(student:StudentModel){
+        if self.friends == nil {
+            self.friends = []
+        }
+        self.friends!.append(Student(studentModel: student, addFriends: false))
+    }
+
     deinit {
         userName = ""
         profilePic = nil
@@ -88,15 +126,17 @@ class Student: Equatable {
         print("-------->deallocating Student")
     }
 
-//    static func convertFriends(students:[StudentModel]) -> [Student] {
-//        var toReturn:[Student] = []
-//        students.forEach { studentModel in
-//            toReturn.append(Student(studentModel: studentModel, addFriends: false))
-//         }
-//
-//
-//        return toReturn
-//    }
+    static func convertFriends(students:[StudentModel]?) -> [Student] {
+        var toReturn:[Student] = []
+        if let _ = students{
+            students!.forEach { studentModel in
+                toReturn.append(Student(studentModel: studentModel, addFriends: false))
+            }
+        }
+
+
+        return toReturn
+    }
     
 //    func getProfilePicImage2(profilePicRef: String, completion: @escaping () -> Void) {
 //        let imageRef = Storage.storage().reference(withPath: profilePicRef)
