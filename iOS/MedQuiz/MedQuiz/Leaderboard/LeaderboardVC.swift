@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Firebase
 
 class LeaderboardVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -22,9 +23,28 @@ class LeaderboardVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     @IBOutlet weak var globalSwitchLabel: UILabel!
     @IBOutlet weak var friendSwitchLabel: UILabel!
     
+    var friendsList : [StudentModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+    Firebase.Database.database().reference().child("student").child(currentUserID).child("friends").observeSingleEvent(of: .value, with: { (snap: DataSnapshot) in
+        
+            Firebase.Database.database().reference().child("student").child(currentUserID).observeSingleEvent(of: DataEventType.value, with: { (user) in
+                self.friendsList.append(StudentModel(snapshot: user))
+            })
+        
+            for s in snap.children {
+                let friend = FriendModel(snapshot: s as! DataSnapshot)
+                Firebase.Database.database().reference().child("student").child(friend.key).observeSingleEvent(of: .value, with: { (friendSnap: DataSnapshot) in
+                    
+                    self.friendsList.append(StudentModel(snapshot: friendSnap))
+                    self.leaderboardTableview.reloadData()
+                })
+            }
+        })
+        
+        //TODO: sort the friendList by score
         
         globalSwitchLabel.isUserInteractionEnabled = true
         friendSwitchLabel.isUserInteractionEnabled = true
@@ -39,6 +59,7 @@ class LeaderboardVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         //Registering the leaderboard cell nib to use in tableview
         let leaderboardCellNib = UINib(nibName: "LeaderboardCell", bundle: nil)
         self.leaderboardTableview.register(leaderboardCellNib, forCellReuseIdentifier: "leaderboard_cell")
+       // self.leaderboardTableview.isUserInteractionEnabled = false
         
         
         leaderboardHeadline.text = "Friends"
@@ -53,24 +74,19 @@ class LeaderboardVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return self.friendsList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : LeaderboardCell = leaderboardTableview.dequeueReusableCell(withIdentifier: "leaderboard_cell") as! LeaderboardCell
         
-        
-        if indexPath.row == 0{
-            cell.backgroundColor = OurColorHelper.pharmAppYellow
-            //TODO: just assuming current user is first for now, change later to actual postion
-            cell.usernameLabel.text = globalUsername
-            cell.scoreLabel.text = String(globalHighscore)
-        }
-        else{
-            cell.scoreLabel.text = "0"
-        }
-        
         cell.rankLabel.text = String(indexPath.row+1)
+        cell.scoreLabel.text = String(self.friendsList[indexPath.row].score!)
+        cell.usernameLabel.text = self.friendsList[indexPath.row].studentUsername!
+        
+        if friendsList[indexPath.row].studentUsername == currentGlobalStudent.userName{
+            cell.backgroundColor = OurColorHelper.pharmAppYellow
+        }
         
         return cell
     }
