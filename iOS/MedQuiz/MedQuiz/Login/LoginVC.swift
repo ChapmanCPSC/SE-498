@@ -164,7 +164,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         //UNCOMMENT LATER - for when we need to check username/password with db
         
         if(!usernameTextField.text!.isEmpty && !passwordTextField.text!.isEmpty){
-            
             Auth.auth().signIn(withEmail: usernameTextField.text! + "@mail.chapman.edu", password: passwordTextField.text!) { (signedInUser, error) in
                 
                 //logged in
@@ -258,14 +257,26 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     }
     
     func logout(){
-        print("logged out")
-//        var topController = getTopController()
-//        if !(topController is LoginVC) {
-//            while !(topController is LoginVC) {
-//                topController.dismiss(animated: false, completion: nil)
-//                topController = getTopController()
-//            }
-//        }
+        print("logging out")
+        
+        var topController = self.getTopController()
+        while !(topController is LoginVC) {
+            print("Dismissing \(topController)")
+            topController.dismiss(animated: false, completion: nil)
+            if (topController == self.getTopController()){
+                topController.present(UIStoryboard(name: "Login", bundle: nil).instantiateInitialViewController()!, animated: false, completion: nil)
+                break
+            }
+            else {
+                topController = self.getTopController()
+            }
+        }
+        
+        do {
+            try Auth.auth().signOut()
+        } catch let err {
+            print(err)
+        }
     }
     
     func checkConnection(){
@@ -275,6 +286,9 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                 let topController = self.getTopController()
                 switch topController {
                 case is QuizActivityVC:
+                    if (topController as! QuizActivityVC).quizMode == .HeadToHead {
+                        (topController as! QuizActivityVC).headToHeadConcede()
+                    }
                     (topController as! QuizActivityVC).errorOccurred(title: "You have lost connection to the database", message: "Check your internet connection.", completion: self.logout)
                     break
                 case is QuizLobbyVC:

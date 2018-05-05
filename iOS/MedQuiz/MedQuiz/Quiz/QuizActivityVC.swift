@@ -91,8 +91,6 @@ class QuizActivityVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //quizLobbyRef.dismiss(animated: false, completion: nil)
-        
         questionsTimer.backgroundColor = UIColor.clear
         questionsTimer.labelTextColor = UIColor.black
         questionsTimer.lineColor = UIColor.yellow
