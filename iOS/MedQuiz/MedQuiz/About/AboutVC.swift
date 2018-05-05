@@ -16,11 +16,11 @@ class AboutVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var ref = Database.database().reference() //reference from firebase
+        let ref = Database.database().reference() //reference from firebase
         
         //It displays the about description text from firebase
         ref.child("about-description").observeSingleEvent(of: DataEventType.value) { (snapshot) in
-            self.aboutTextView.text = snapshot.value as! String
+            self.aboutTextView.text = (snapshot.value as! String).replacingOccurrences(of: "\\n", with: "\n")
         }
         
     }
