@@ -41,7 +41,6 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         friendRequestsTable.separatorStyle = .none
         
         searchFriendTextfield.delegate = self
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -100,6 +99,16 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         searchResultLabel.isHidden = true
     }
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        guard let text = textField.text else {
+            return true
+        }
+        
+        let length = text.characters.count + string.characters.count - range.length
+        
+        return length <= 20
+    }
     
     //Temporary conditionals used, will be replaced when connections to database established
     func friendSearch(friendUsername:String) {
