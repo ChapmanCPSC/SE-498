@@ -8,12 +8,21 @@
 
 import Foundation
 import UIKit
+import Firebase
 
 class AboutVC: UIViewController {
     @IBOutlet weak var aboutTextView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var ref = Database.database().reference() //reference from firebase
+        
+        //It displays the about description text from firebase
+        ref.child("about-description").observeSingleEvent(of: DataEventType.value) { (snapshot) in
+            self.aboutTextView.text = snapshot.value as! String
+        }
+        
     }
     
     override func viewDidLayoutSubviews() {
