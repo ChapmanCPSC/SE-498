@@ -38,23 +38,6 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="main" editable="NO" textAlignment="justified" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qMK-JC-Sec">
                                 <rect key="frame" x="74" y="171" width="533" height="426"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">Quizedu was the idea of Lawrence “LB” Brown, Pharm.D., Ph.D., Associate Dean of Students at Chapman University School of Pharmacy. The purpose of the app was to make the learning environment more enjoyable by allowing students to compete against each other in a timed quiz that was created by the faculty member teaching the course. The app also allows students to take sample faculty created quizzes off-line, as an additional way to learn and practice course material.
-
-Although the app was created with pharmacy students in mind, it can be used by teachers from Kindergarten students and above due to the ability to create custom questions and to include images in the questions and also to set the time limit for the questions as low or as high as desired.
-
-Thanks goes to Ronald P. Jordan, Dean of the Chapman University School of Pharmacy for his support of this project, to the pharmacy students and faculty who participated in focus groups to help with the development of the app, and to the project team of Chapman Engineering Undergrad Students listed below
-
-iOS Team:
-Omar Sherief
-Chad Johnson
-Paul Harnack
-Edgar Delgado 
-
-Web Team:
-Josh Smith
-Kevin Lin
-Melinda Sherrill
-Shayne Zamora</mutableString>
                                 <fontDescription key="fontDescription" name="ClearSans-Medium" family="Clear Sans Medium" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
