@@ -25,7 +25,8 @@ class QuizSummaryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setTempValues()
+        //setTempValues()
+        
         self.presentingViewController?.dismiss(animated: false, completion: {
             print("yay")
         })
@@ -44,6 +45,15 @@ class QuizSummaryViewController: UIViewController {
         self.dismiss(animated: false) {
         }
     }
+    
+    func setUsernameLabel(username:String){
+        lab_username.text = username
+    }
+    
+    func setProfileImage(profileImage:UIImage){
+        iv_profilePic.image = profileImage
+    }
+    
     func setRankLabel(position:Int){
         let rank = String.ordinalNumberFormat(number: position)
         lab_rank.text = "You ranked \(rank)"

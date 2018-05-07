@@ -35,7 +35,7 @@ class QuizSearchVC: UIViewController {
             // and just to test we print the quiz title.
             //You can see how we'd use this to populate the tableview of tags and it's quiz contents/cells
             for quiz in theQuizzes{
-                print(quiz.title!)
+                print(quiz.name!)
             }
         }
         

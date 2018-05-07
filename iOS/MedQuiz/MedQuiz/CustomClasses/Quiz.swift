@@ -13,15 +13,15 @@ class Quiz {
     var dateCreated:String?
     var available:Bool?
     var visible:Bool?
-    var title:String?
+    var name:String?
     var questions:[Question]?
     var tags:[Tag]?
 
-    init(dateCreated:String, available:Bool, visible:Bool, title:String, questions:[Question], tags:[Tag]){
+    init(dateCreated:String, available:Bool, visible:Bool, name:String, questions:[Question], tags:[Tag]){
         self.dateCreated = dateCreated
         self.available = available
         self.visible = visible
-        self.title = title
+        self.name = name
         self.questions = questions
         self.tags = tags
     }
@@ -31,7 +31,13 @@ class Quiz {
             self.dateCreated = aQuizModel.dateCreated!
             self.available = aQuizModel.available!
             self.visible = aQuizModel.visiblity!
-            self.title = aQuizModel.title!
+            
+            if let name = aQuizModel.name {
+                self.name = name
+            }
+            else{
+                self.name = (Database.database().reference(withPath: "quiz-name/\(key)").value(forKey: "name") as! String)
+            }
             
             self.questions = []
             var questionKeys:[String] = []
@@ -64,7 +70,7 @@ class Quiz {
     }
     
     init(quizDict:[String:AnyObject]){
-        self.title = quizDict["title"] as? String
+        self.name = quizDict["name"] as? String
         self.available = (quizDict["available"] as? Bool)
         self.visible = quizDict["visible"] as? Bool
 //        var questionsToSet:[Question] = []
@@ -110,7 +116,7 @@ class Quiz {
         dateCreated = ""
         available = nil
         visible = nil
-        title = ""
+        name = ""
         questions = []
         tags = []
         print("------->Deallocating Quiz")

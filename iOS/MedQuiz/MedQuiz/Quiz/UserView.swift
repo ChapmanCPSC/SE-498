@@ -54,11 +54,13 @@ class UserView: UIView {
     func updateView(student:Student, position:Int){
         self.currStudent = student
         displayUsername(username: student.userName!)
+        displayProfileImage(profileImage: student.profilePic!)
         displayPosition(position: position)
     }
     func updateView(student:Student, position:Int, score:Int){
         self.currStudent = student
         displayUsername(username: student.userName!)
+        displayProfileImage(profileImage: student.profilePic!)
         displayPosition(position: position)
         updateScore(score: score)
     }
@@ -67,6 +69,10 @@ class UserView: UIView {
     func displayUsername(username:String){
         lab_username.text = username
     }
+    
+    func displayProfileImage(profileImage:UIImage){
+        iv_profile.image = profileImage
+    }
 
     func displayPosition(position:Int){
         self.position = position
@@ -74,7 +80,7 @@ class UserView: UIView {
     }
     
     func updateScore(score: Int){
-        overallScore += score
+        overallScore = score
         scoreLabel.text = String(score)
     }
     func reupdate(){

@@ -73,6 +73,8 @@ class QuizActivityVC: UIViewController {
     var isTimerRunning = false
     //temp value set to match test db
     var pointsEarned: Int = 0
+    var questionsRight: Int = 0
+    var questionsWrong: Int = 0
     var firstLoad: Bool = true
     
     @IBOutlet weak var questionsTimer: SRCountdownTimer!
@@ -416,8 +418,8 @@ class QuizActivityVC: UIViewController {
     
     func updateQuestionText(){
         // has to call displayTextQuestion first so that it hides the image
-        if let _ = currQuestion.title{
-            lab_questionText.text = currQuestion.title
+        if let _ = currQuestion.name {
+            lab_questionText.text = currQuestion.name
             displayTextQuestion()
         }
 
@@ -557,8 +559,6 @@ class QuizActivityVC: UIViewController {
 
         removeListeners()
         
-        updatePersonalScore()
-        
         //delete head to head game data as second person out
         if quizMode == .HeadToHead {
             if isInvitee {
@@ -590,6 +590,22 @@ class QuizActivityVC: UIViewController {
         self.dismiss(animated: false, completion: {
             self.quizLobbyRef.dismiss(animated: false, completion: {
                 self.getTopController().present(quizSummaryVC, animated: false, completion: nil)
+                if self.quizMode != .Solo {
+                    quizSummaryVC.setRankLabel(position: self.currPos + 1)
+                }
+                else{
+                    quizSummaryVC.setRankLabel(position: 1)
+                }
+                
+                quizSummaryVC.setUsernameLabel(username: currentGlobalStudent.userName!)
+                quizSummaryVC.setProfileImage(profileImage: currentGlobalStudent.profilePic!)
+                quizSummaryVC.setEarnedPointsLabel(points: self.pointsEarned)
+                quizSummaryVC.setScoreDiffLabel(startPoints: currentGlobalStudent.totalPoints!, endPoints: currentGlobalStudent.totalPoints! + self.pointsEarned)
+                quizSummaryVC.setQuestionsRightLabel(questionsRight: self.questionsRight)
+                quizSummaryVC.setQuestionsWrongLabel(questionsWrong: self.questionsWrong)
+                quizSummaryVC.setTotalPointsLabel(totalPoints: currentGlobalStudent.totalPoints! + self.pointsEarned)
+                
+                self.updatePersonalScore()
             })
         })
 
@@ -614,16 +630,9 @@ class QuizActivityVC: UIViewController {
     }
 
     func updatePersonalScore(){
-
-        //TODO make sure to use key of student currently logged in, for
-        // now just assuming b29fks9mf9gh37fhh1h9814 is logged in from
-        // quiz lobby vc
-
-        //84y1jn1n12n8n0f80n180289398n1 is the key for that student's
-        // score in the score dataset
-        
-
-        dataRef.child("score").child(currentUserID).child("points").setValue(pointsEarned)
+        dataRef.child("score").child(currentUserID).child("points").setValue(currentGlobalStudent.totalPoints! + pointsEarned)
+        dataRef.child("student").child(currentUserID).child("score").setValue(currentGlobalStudent.totalPoints! + pointsEarned)
+        currentGlobalStudent.totalPoints! += pointsEarned
     }
 
     @IBAction func tempPressed(_ sender: Any) {
@@ -706,14 +715,16 @@ class QuizActivityVC: UIViewController {
         switch quizMode! {
         case .Standard:
             if inGameLeaderboardStudentsSet {
-                            inGameLeaderboardStudentsQuery.removeObserver(withHandle: inGameLeaderboardStudentsHandle)
+                inGameLeaderboardStudentsQuery.removeObserver(withHandle: inGameLeaderboardStudentsHandle)
             }
             break
         case .HeadToHead:
             if checkConcessionSet {
                 checkConcessionRef.removeObserver(withHandle: checkConcessionHandle)
             }
-            //inGameLeaderboardStudentsRef.removeObserver(withHandle: inGameLeaderboardStudentsHandle)
+            if inGameLeaderboardStudentsSet {
+                inGameLeaderboardStudentsQuery.removeObserver(withHandle: inGameLeaderboardStudentsHandle)
+            }
             break
         case .Solo:
             break
@@ -828,12 +839,12 @@ extension QuizActivityVC:SelectsAnswer {
                     if(selectedAnswer.isAnswer)!{
                         view.showCorrect()
                         pointsEarned += time
-                        //moveUpPosition()
-                        //moveDownPosition()
-                        //updateLeaderboard()
+                        questionsRight += 1
+
                         if quizMode != .Solo {
-                            updateUserInLeaderboard()
-                        dataRef.child("inGameLeaderboards").child(inGameLeaderboardKey).child("students").child(userInGameLeaderboardObjectKey).child("studentScore").setValue(pointsEarned)
+                           
+                            print("Correct! Points Earned: \(pointsEarned)")
+                            dataRef.child("inGameLeaderboards").child(inGameLeaderboardKey).child("students").child(userInGameLeaderboardObjectKey).child("studentScore").setValue(pointsEarned)
                         }
                         else{
                             uv_first.updateView(student: allUsers[0], position: 0, score: pointsEarned)
@@ -842,6 +853,7 @@ extension QuizActivityVC:SelectsAnswer {
                     else{
                         view.fadeAnswer()
                         view.showWrong()
+                        questionsWrong += 1
                         if(pointsEarned - time < 0){
                             pointsEarned = 0
                         }

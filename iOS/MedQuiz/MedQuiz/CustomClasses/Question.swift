@@ -16,24 +16,30 @@ class Question {
     var answers:[Answer]?
     var image:UIImage?
     var tags:[Tag]?
-    var title:String?
+    var name:String?
     
     var answerTexts:[String] = []
     var correctAnswers:[Bool] = []
 
-    init(points:Int, imageForQuestion:Bool, imagesForAnswers:Bool, correctAnswer:String, answers:[Answer], image:UIImage, tags:[Tag], title:String){
+    init(points:Int, imageForQuestion:Bool, imagesForAnswers:Bool, correctAnswer:String, answers:[Answer], image:UIImage, tags:[Tag], name:String){
         self.imageForQuestion = imageForQuestion
         self.imagesForAnswers = imagesForAnswers
         self.correctAnswer = correctAnswer
         self.answers = answers
         self.image = image
         self.tags = tags
-        self.title = title
+        self.name = name
     }
     
     init(key: String, completion: @escaping (Question) -> Void){
         QuestionModel.From(key: key, completion: { (aQuestionModel) in
-            self.title = aQuestionModel.questionTitle!
+            if let name = aQuestionModel.questionName {
+                self.name = name
+            }
+            else{
+                self.name = (Database.database().reference(withPath: "question-name/\(key)").value(forKey: "name") as! String)
+            }
+            
             self.imagesForAnswers = aQuestionModel.imagesForAnswers!
             self.imageForQuestion = aQuestionModel.imageForQuestion!
             
@@ -143,11 +149,11 @@ class Question {
 //        self.imageForAnswers = questionModel.imagesForAnswer!
         self.imagesForAnswers = questionDict["imageforanswers"] as? Bool
         if(self.imageForQuestion)!{
-            self.title = ""
+            self.name = ""
         }
         else{
             //self.title = questionModel.questionTitle!
-            self.title = questionDict["name"] as? String
+            self.name = questionDict["name"] as? String
         }
 //        var toSet:[Tag] = []
 //        questionModel.tags.forEach { model in

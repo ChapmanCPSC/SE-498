@@ -12,14 +12,14 @@ class QuizModel: FIRModel, FIRQueryable
 {
     static var COLLECTION_NAME: String = "quiz"
     
-    static var TITLE = "title"
+    static var NAME = "name"
     static var AVAILABILITY = "available"
     static var DATE_CREATED = "datecreated"
     static var VISIBILITY = "visible"
     static var QUESTIONS = "questions"
     static var TAGS = "tags"
     
-    var title: String? { return self.get(QuizModel.TITLE) }
+    var name: String? { return self.get(QuizModel.NAME) }
     var available: Bool? { return self.get(QuizModel.AVAILABILITY) }
     var dateCreated: String? { return self.get(QuizModel.DATE_CREATED) }
     var visiblity: Bool? { return self.get(QuizModel.VISIBILITY) }

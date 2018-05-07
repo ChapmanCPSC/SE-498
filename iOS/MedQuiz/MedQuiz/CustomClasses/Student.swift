@@ -33,7 +33,7 @@ class Student: Equatable {
             print(self.totalPoints!)
 
             self.friendRequests = Student.convertFriends(students: aStudentModel.friendRequests)
-            print("Requests \(self.friendRequests)")
+            print("Requests \(String(describing: self.friendRequests))")
 
             aStudentModel.getProfilePic(completion: { (theProfilePic) in
                 self.profilePic = theProfilePic!

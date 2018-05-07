@@ -20,7 +20,7 @@ class QuestionModel: FIRModel, FIRQueryable
     static var QUESTIONIMAGEPATH = "imageurl"
     
     
-    var questionTitle: String? { return self.get(QuestionModel.NAME) }
+    var questionName: String? { return self.get(QuestionModel.NAME) }
     var questionPoints: String? { return self.get(QuestionModel.POINTS) }
     var imagesForAnswers: Bool? { return self.get(QuestionModel.IMAGE_FOR_ANSWERS) }
     var imageForQuestion: Bool? { return self.get(QuestionModel.IMAGE_FOR_QUESTIONS) }
