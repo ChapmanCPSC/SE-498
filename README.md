@@ -26,9 +26,8 @@
   * Melinda Sherrill - **Full Stack Developer / Tester**
   
 ## Tools/Frameworks/Languages Used 
-* AngularJS
 * ReactJS
 * Swift
 * Firebase
 * react-dropzone - https://react-dropzone.js.org/
-.
+* Bootstrap
