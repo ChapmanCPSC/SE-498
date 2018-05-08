@@ -24,10 +24,10 @@ Class Student{
 
 Unless you’re comment is referring to one line or so then just use this syntax and don’t leave a line after:
 
-`
+```
 //Global high-score variable is used throughout the app to update the current student’s high-score locally
 var globalHighscore = 0;
-`
+```
 
 
 # Maintenance notes
