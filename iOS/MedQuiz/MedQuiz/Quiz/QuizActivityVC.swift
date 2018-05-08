@@ -108,7 +108,7 @@ class QuizActivityVC: UIViewController {
         setUserColors()
         hideSidebar()
 
-        hideAnswersForTime()
+        //hideAnswersForTime()
 
         switch quizMode! {
         case .Standard:
@@ -144,7 +144,7 @@ class QuizActivityVC: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        //quizLobbyRef.dismiss(animated: false, completion: nil)
+
     }
     
     func hideAnswersForTime(){
@@ -154,7 +154,6 @@ class QuizActivityVC: UIViewController {
 
     //timer that waits for 3 seconds to pass and then calls the nextQuestion func
     func runTimerForNextQ(){
-        //TODO: Should timer repeat be on true? Or should we just call it everytime the user selects an answer
         timerForNextQ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(updateTimerForNextQ)), userInfo: nil, repeats: true)
     }
 
@@ -167,18 +166,12 @@ class QuizActivityVC: UIViewController {
         }
     }
 
-    func runTimer() {
-        //TODO: Should timer repeat be on true?
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(updateTimer)), userInfo: nil, repeats: true)
+    func runQuestionTimer() {
+        Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(endQuestionTimer), userInfo: nil, repeats: false)
     }
     
-    @objc func updateTimer(){
-        seconds -= 1
-        timerLabel.text = "\(seconds)"
-        if seconds == 0{
-            timer.invalidate()
-            seconds = 10
-        }
+    @objc func endQuestionTimer(){
+        nextQuestion()
     }
     
     @objc func showLabels(){
@@ -186,7 +179,7 @@ class QuizActivityVC: UIViewController {
         canSelect = true
         questionsTimer.isHidden = false
         questionsTimer.start(beginingValue: 10, interval: 1)
-//        runTimer()
+        runQuestionTimer()
     }
     
     func hideAnswerLabels(){
@@ -351,17 +344,6 @@ class QuizActivityVC: UIViewController {
             return
         }
         currQuestion = currQuiz.questions![currQuestionIdx]
-        // test with 3 choices
-        /*currQuestion = Question(points: 10, imageForQuestion: false, imagesForAnswers: false, correctAnswer: "sdfgsdf", answers: [
-            Answer(answerText: "sdfgdf", points: 5, isAnswer: false),
-            Answer(answerText: "sdfgdf", points: 5, isAnswer: false),
-            Answer(answerText: "sdfgdf", points: 5, isAnswer: false)
-        ], image: UIImage(), tags: [], title: "dfgsdfg")*/
-        // test with 2 choices
-        /*currQuestion = Question(points: 10, imageForQuestion: false, imagesForAnswers: false, correctAnswer: "sdfgsdf", answers: [
-            Answer(answerText: "sdfgdf", points: 5, isAnswer: false),
-            Answer(answerText: "sdfgdf", points: 5, isAnswer: false)
-        ], image: UIImage(), tags: [], title: "dfgsdfg")*/
         hideAnswersForTime()
         reloadView()
     }
@@ -371,8 +353,6 @@ class QuizActivityVC: UIViewController {
         updateQuestionNumber()
         updateQuestionText()
         updateAnswers()
-        //updateUserInLeaderboard()
-        //runTimerForNextQ()
     }
 
     func displayImageQuestion(){
@@ -589,23 +569,24 @@ class QuizActivityVC: UIViewController {
         
         self.dismiss(animated: false, completion: {
             self.quizLobbyRef.dismiss(animated: false, completion: {
-                self.getTopController().present(quizSummaryVC, animated: false, completion: nil)
-                if self.quizMode != .Solo {
-                    quizSummaryVC.setRankLabel(position: self.currPos + 1)
-                }
-                else{
-                    quizSummaryVC.setRankLabel(position: 1)
-                }
-                
-                quizSummaryVC.setUsernameLabel(username: currentGlobalStudent.userName!)
-                quizSummaryVC.setProfileImage(profileImage: currentGlobalStudent.profilePic!)
-                quizSummaryVC.setEarnedPointsLabel(points: self.pointsEarned)
-                quizSummaryVC.setScoreDiffLabel(startPoints: currentGlobalStudent.totalPoints!, endPoints: currentGlobalStudent.totalPoints! + self.pointsEarned)
-                quizSummaryVC.setQuestionsRightLabel(questionsRight: self.questionsRight)
-                quizSummaryVC.setQuestionsWrongLabel(questionsWrong: self.questionsWrong)
-                quizSummaryVC.setTotalPointsLabel(totalPoints: currentGlobalStudent.totalPoints! + self.pointsEarned)
-                
-                self.updatePersonalScore()
+                self.getTopController().present(quizSummaryVC, animated: false, completion: {
+                    if self.quizMode != .Solo {
+                        quizSummaryVC.setRankLabel(position: self.currPos + 1)
+                    }
+                    else{
+                        quizSummaryVC.setRankLabel(position: 1)
+                    }
+                    
+                    quizSummaryVC.setUsernameLabel(username: currentGlobalStudent.userName!)
+                    quizSummaryVC.setProfileImage(profileImage: currentGlobalStudent.profilePic!)
+                    quizSummaryVC.setEarnedPointsLabel(points: self.pointsEarned)
+                    quizSummaryVC.setScoreDiffLabel(startPoints: currentGlobalStudent.totalPoints!, endPoints: currentGlobalStudent.totalPoints! + self.pointsEarned)
+                    quizSummaryVC.setQuestionsRightLabel(questionsRight: self.questionsRight)
+                    quizSummaryVC.setQuestionsWrongLabel(questionsWrong: self.questionsWrong)
+                    quizSummaryVC.setTotalPointsLabel(totalPoints: currentGlobalStudent.totalPoints! + self.pointsEarned)
+
+                    self.updatePersonalScore()
+                })
             })
         })
 
@@ -821,14 +802,10 @@ class QuizActivityVC: UIViewController {
 extension QuizActivityVC:SelectsAnswer {
     func answerSelected(answer: AnswerView) {
         var time:Int = 0
-//        timer.invalidate()
-//        answer1.answer.points = seconds
-
       
         if(canSelect){
             canSelect = false
 
-            questionsTimer.pause()
             answer1.answer.points = questionsTimer.returnCurrentTime()
             time = questionsTimer.returnCurrentTime()
 
@@ -868,7 +845,6 @@ extension QuizActivityVC:SelectsAnswer {
                     view.fadeAnswer()
                 }
             }
-            runTimerForNextQ()//Call this timer, to automatically go to the next question after 3 seconds pass by when the student answers a question
         }
     }
 }

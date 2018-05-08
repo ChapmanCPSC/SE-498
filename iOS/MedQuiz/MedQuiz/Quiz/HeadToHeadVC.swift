@@ -119,6 +119,7 @@ class HeadToHeadVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                 quizLobbyVC.quizMode = QuizLobbyVC.QuizMode.HeadToHead
                 quizLobbyVC.isInvitee = false
                 
+                globalBusy = true
                 self.present(quizLobbyVC, animated: false, completion: nil)
             }
             else{

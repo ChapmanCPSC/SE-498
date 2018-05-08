@@ -40,6 +40,7 @@ var currentUserID = ""
 var globalUsername = ""
 var globalHighscore = 0
 var globalProfileImage : UIImage!
+var globalBusy : Bool = false
 //make a global list/array
 
 class LoginVC: UIViewController, UITextFieldDelegate {
@@ -311,12 +312,13 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     
     func checkHeadToHeadRequest(){
         StudentModel.FromAndKeepObserving(key: currentUserID, completion: { student in
-            if student.headToHeadGameRequest != nil{
+            if student.headToHeadGameRequest != nil && !globalBusy {
                 print("Presenting head to head request")
                 let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(student.headToHeadGameRequest!)
                 headToHeadGameRef.observeSingleEvent(of: .value, with: {(snapshot) in
                     if let inviterKey = snapshot.childSnapshot(forPath: "inviter").childSnapshot(forPath: "student").value! as? String {
                         if inviterKey != currentUserID {
+                            globalBusy = true
                             let sb:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                             let headToHeadRequestVC:HeadToHeadRequestVC = sb.instantiateViewController(withIdentifier: "headToHeadRequestVC") as! HeadToHeadRequestVC
                             headToHeadRequestVC.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext

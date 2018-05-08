@@ -20,9 +20,6 @@ class QuizSummaryViewController: UIViewController {
     @IBOutlet weak var lab_questionsRight: UILabel!
     @IBOutlet weak var lab_questionsWrong: UILabel!
     
-    
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         //setTempValues()
@@ -42,6 +39,7 @@ class QuizSummaryViewController: UIViewController {
 //        self.splitViewController?.presentsWithGesture = true
 //        performSegue(withIdentifier: "summaryToHome", sender: nil)
 
+        globalBusy = false
         self.dismiss(animated: false) {
         }
     }

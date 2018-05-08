@@ -56,6 +56,7 @@ class HeadToHeadRequestVC: UIViewController {
                 print("Head to Head game cancelled in request VC")
                 let alert = UIAlertController(title:"Head to Head Game Cancelled", message:"Head to head game against \(String(describing: self.opponent.userName!)) cancelled.", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default) { UIAlertAction in
+                    globalBusy = false
                     self.dismiss(animated: false, completion: nil)
                 })
                 self.present(alert, animated: true, completion: nil)
@@ -74,6 +75,7 @@ class HeadToHeadRequestVC: UIViewController {
         headToHeadGameRef.child("decided").setValue(true)
         headToHeadGameRef.child("accepted").setValue(false)
         removeListeners()
+        globalBusy = false
         self.dismiss(animated: true, completion: nil)
     }
     
