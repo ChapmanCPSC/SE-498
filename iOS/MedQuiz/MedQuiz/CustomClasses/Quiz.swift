@@ -28,6 +28,8 @@ class Quiz {
 
     init(key: String, completion: @escaping (Quiz) -> Void){
         QuizModel.From(key: key, completion: { (aQuizModel) in
+            print("key")
+            print(aQuizModel.key)
             self.dateCreated = aQuizModel.dateCreated!
             self.available = aQuizModel.available!
             self.visible = aQuizModel.visiblity!
