@@ -253,7 +253,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     func downloadQuiz(){
         _ = Quiz(key: quizKey!) { quiz in
             self.quiz = quiz
-            if self.quizMode == QuizMode.HeadToHead {
+            if self.quizMode == .HeadToHead {
                 self.checkHeadToHeadGameStatus()
                 let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(self.gameKey!)
                 let inGameLeaderboardsRef = Database.database().reference(withPath: "inGameLeaderboards")
@@ -276,6 +276,9 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                         self.headToHeadReady = true
                     }
                 })
+            }
+            else if self.quizMode == .Solo {
+                self.loadingQuizComplete()
             }
         }
     }

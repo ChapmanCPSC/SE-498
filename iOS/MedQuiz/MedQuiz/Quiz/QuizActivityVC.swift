@@ -251,6 +251,7 @@ class QuizActivityVC: UIViewController {
                         self.uv_third?.removeFromSuperview()
                     }
                     else{
+                        self.uv_first.updateView(student: newAllUsers[0], position: 1, score: self.allScores[0])
                         self.uv_first.convertToOtherUser()
                         self.userViews = [self.uv_first]
                         self.uv_fifth?.removeFromSuperview()
