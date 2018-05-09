@@ -188,106 +188,81 @@ class QuizActivityVC: UIViewController {
     
     func registerFirebaseListeners(){
         switch quizMode! {
-        case .Standard:
-            //TODO
-            break
-        case .HeadToHead:
-            checkConcession()
-            break
-        case .Solo:
-            //TODO
-            break
+            case .Standard:
+                break
+            case .HeadToHead:
+                checkConcession()
+                break
+            case .Solo:
+                break
         }
     }
     
     func getLeaderboardInfo(){
         let inGameLeaderboardsRef = Database.database().reference(withPath: "inGameLeaderboards")
-        inGameLeaderboardsRef.observeSingleEvent(of: .value, with: { (snapshot:DataSnapshot) in
-            for child in snapshot.children.allObjects as! [DataSnapshot] {
-                if (child.childSnapshot(forPath: "game").value as! String) == self.gameKey! {
-                    print("leaderboard found")
-                    self.inGameLeaderboardKey = child.key
-                    inGameLeaderboardsRef.child(child.key).child("students").observeSingleEvent(of: .value, with: { (snapshot:DataSnapshot) in
-                        for child in snapshot.children.allObjects as! [DataSnapshot] {
-                            print("Leaderboard student key: \(child.childSnapshot(forPath: "studentKey").value as! String)")
-                            if (child.childSnapshot(forPath: "studentKey").value as! String) == currentUserID {
-                                print("user found in leaderboard")
-                                self.userInGameLeaderboardObjectKey = child.key
-                                
-                                //Temp set value
-                                Database.database().reference().child("inGameLeaderboards").child(self.inGameLeaderboardKey).child("students").child(self.userInGameLeaderboardObjectKey).child("studentScore").setValue(0)
-                                
-                                self.inGameLeaderboardStudentsQuery = inGameLeaderboardsRef.child(self.inGameLeaderboardKey).child("students").queryOrdered(byChild: "studentScore")
-                                self.inGameLeaderboardStudentsHandle = self.inGameLeaderboardStudentsQuery.observe(.value, with: { (snapshot:DataSnapshot) in
-                                    
-                                    if !(snapshot.value is NSNull){
-                                        self.inGameLeaderboardStudentsSet = true
-                                        
-                                        var leaderboardStudentKeys = [String]()
-                                        self.allScores = []
-                                        for child in snapshot.children.allObjects as! [DataSnapshot] {
-                                            let key = child.childSnapshot(forPath: "studentKey").value as! String
-                                            leaderboardStudentKeys.append(key)
-                                            let score = child.childSnapshot(forPath: "studentScore").value as! Int
-                                            self.allScores.append(score)
-                                        }
-                                        
-                                        leaderboardStudentKeys.reverse()
-                                        self.allScores.reverse()
-                                        
-                                        var newAllUsers:[Student] = []
-                                        var leaderboardPosCounter = 0
-                                        for key in leaderboardStudentKeys {
-                                            for student in self.allUsers {
-                                                if key == student.databaseID {
-                                                    newAllUsers.append(student)
-                                                    if key == currentUserID {
-                                                        self.currPos = leaderboardPosCounter
-                                                    }
-                                                    leaderboardPosCounter += 1
-                                                    break
-                                                }
-                                            }
-                                        }
-                                        
-                                        if self.firstLoad {
-                                            // set userViews
-                                            if newAllUsers.count >= 5 {
-                                                self.userViews = [self.uv_first, self.uv_second, self.uv_third, self.uv_fourth, self.uv_fifth]
-                                            }
-                                            else if newAllUsers.count == 4 {
-                                                self.userViews = [self.uv_first, self.uv_second, self.uv_third, self.uv_fourth]
-                                                self.uv_fifth.removeFromSuperview()
-                                            }
-                                            else if newAllUsers.count == 3 {
-                                                self.userViews = [self.uv_first, self.uv_second, self.uv_third]
-                                                self.uv_fifth.removeFromSuperview()
-                                                self.uv_fourth.removeFromSuperview()
-                                            }
-                                            else if newAllUsers.count == 2 {
-                                                self.userViews = [self.uv_first, self.uv_second]
-                                                self.uv_fifth.removeFromSuperview()
-                                                self.uv_fourth.removeFromSuperview()
-                                                self.uv_third.removeFromSuperview()
-                                            }
-                                            else{
-                                                self.userViews = [self.uv_first]
-                                                self.uv_fifth.removeFromSuperview()
-                                                self.uv_fourth.removeFromSuperview()
-                                                self.uv_third.removeFromSuperview()
-                                                self.uv_second.removeFromSuperview()
-                                            }
-                                        }
-                                        
-                                        self.allUsers = newAllUsers
-                                        self.updateLeaderboard()
-                                        self.updateUserInLeaderboard()
-                                    }
-                                })
-                            }
-                        }
-                    })
+        self.inGameLeaderboardStudentsQuery = inGameLeaderboardsRef.child(self.inGameLeaderboardKey).child("students").queryOrdered(byChild: "studentScore")
+        self.inGameLeaderboardStudentsHandle = self.inGameLeaderboardStudentsQuery.observe(.value, with: { (snapshot:DataSnapshot) in
+            if !(snapshot.value is NSNull){
+                self.inGameLeaderboardStudentsSet = true
+                var leaderboardStudentKeys = [String]()
+                self.allScores = []
+                for child in snapshot.children.allObjects as! [DataSnapshot] {
+                    let key = child.childSnapshot(forPath: "studentKey").value as! String
+                    leaderboardStudentKeys.append(key)
+                    let score = child.childSnapshot(forPath: "studentScore").value as! Int
+                    self.allScores.append(score)
                 }
+                
+                leaderboardStudentKeys.reverse()
+                self.allScores.reverse()
+                var newAllUsers:[Student] = []
+                var leaderboardPosCounter = 0
+                for key in leaderboardStudentKeys {
+                    for student in self.allUsers {
+                        if key == student.databaseID {
+                            newAllUsers.append(student)
+                            if key == currentUserID {
+                                self.currPos = leaderboardPosCounter
+                            }
+                            leaderboardPosCounter += 1
+                            break
+                        }
+                    }
+                }
+                
+                if self.firstLoad || newAllUsers.count < self.allUsers.count {
+                    // set userViews
+                    if newAllUsers.count >= 5 {
+                        self.userViews = [self.uv_first, self.uv_second, self.uv_third, self.uv_fourth, self.uv_fifth]
+                    }
+                    else if newAllUsers.count == 4 {
+                        self.userViews = [self.uv_first, self.uv_second, self.uv_third, self.uv_fourth]
+                        self.uv_fifth?.removeFromSuperview()
+                    }
+                    else if newAllUsers.count == 3 {
+                        self.userViews = [self.uv_first, self.uv_second, self.uv_third]
+                        self.uv_fifth?.removeFromSuperview()
+                        self.uv_fourth?.removeFromSuperview()
+                    }
+                    else if newAllUsers.count == 2 {
+                        self.userViews = [self.uv_first, self.uv_second]
+                        self.uv_fifth?.removeFromSuperview()
+                        self.uv_fourth?.removeFromSuperview()
+                        self.uv_third?.removeFromSuperview()
+                    }
+                    else{
+                        self.uv_first.convertToOtherUser()
+                        self.userViews = [self.uv_first]
+                        self.uv_fifth?.removeFromSuperview()
+                        self.uv_fourth?.removeFromSuperview()
+                        self.uv_third?.removeFromSuperview()
+                        self.uv_second?.removeFromSuperview()
+                    }
+                }
+                
+                self.allUsers = newAllUsers
+                self.updateLeaderboard()
+                self.updateUserInLeaderboard()
             }
         })
     }
@@ -448,7 +423,7 @@ class QuizActivityVC: UIViewController {
         if(firstLoad){
             userViews.forEach { view in
                 view.updateView(student: userSubset[count], position: startingPosition + count + 1, score: 0)
-                if startingPosition + count == currPos {
+                if startingPosition + count == currPos && userViews.count > 1 {
                     view.convertToCurrUser()
                 }
                 
@@ -505,6 +480,12 @@ class QuizActivityVC: UIViewController {
         }
     }
 
+    func standardConcede(){
+        print("Game conceded")
+        quizEnded = true
+        deleteDBStandardData()
+    }
+    
     func headToHeadConcede(){
         print("Game conceded")
         quizEnded = true
@@ -731,13 +712,12 @@ class QuizActivityVC: UIViewController {
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler:{ action in
             switch self.quizMode! {
             case .Standard:
-                //TODO
+                self.standardConcede()
                 break
             case .HeadToHead:
                 self.headToHeadConcede()
                 break
             case .Solo:
-                //TODO
                 break
             }
             
@@ -778,10 +758,15 @@ class QuizActivityVC: UIViewController {
         let alert = UIAlertController(title:title, message:message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default) { UIAlertAction in
             self.exitQuiz(completion: {
-                completion!()
+                completion?()
             })
         })
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func deleteDBStandardData(){
+        dataRef.child("game").child(gameKey!).child("students").child(currentUserID).removeValue()
+        dataRef.child("inGameLeaderboards").child(inGameLeaderboardKey!).child("students").child(userInGameLeaderboardObjectKey!).removeValue()
     }
     
     func deleteDBHeadToHeadData(){

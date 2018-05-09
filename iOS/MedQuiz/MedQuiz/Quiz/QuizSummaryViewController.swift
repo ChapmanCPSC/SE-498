@@ -22,7 +22,6 @@ class QuizSummaryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //setTempValues()
         
         self.presentingViewController?.dismiss(animated: false, completion: {
             print("yay")

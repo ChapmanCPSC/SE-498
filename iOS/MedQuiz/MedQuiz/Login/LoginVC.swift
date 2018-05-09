@@ -287,9 +287,13 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                 let topController = self.getTopController()
                 switch topController {
                 case is QuizActivityVC:
-                    if (topController as! QuizActivityVC).quizMode == .HeadToHead {
+                    if (topController as! QuizActivityVC).quizMode == .Standard {
+                        (topController as! QuizActivityVC).standardConcede()
+                    }
+                    else if (topController as! QuizActivityVC).quizMode == .HeadToHead {
                         (topController as! QuizActivityVC).headToHeadConcede()
                     }
+                    
                     (topController as! QuizActivityVC).errorOccurred(title: "You have lost connection to the database", message: "Check your internet connection.", completion: self.logout)
                     break
                 case is QuizLobbyVC:

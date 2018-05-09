@@ -35,22 +35,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let topController = getTopController()
         switch topController {
-        case is QuizActivityVC:
-            if (topController as! QuizActivityVC).quizMode == QuizLobbyVC.QuizMode.HeadToHead {
+            case is QuizActivityVC:
                 DispatchQueue.global(qos: .background).async {
-                    (topController as! QuizActivityVC).headToHeadConcede()
+                    if (topController as! QuizActivityVC).quizMode == .Standard {
+                        (topController as! QuizActivityVC).standardConcede()
+                    }
+                    else if (topController as! QuizActivityVC).quizMode == .HeadToHead {
+                        (topController as! QuizActivityVC).headToHeadConcede()
+                    }
                     print("Game conceded in background")
                     DispatchQueue.main.async {
-                        (topController as! QuizActivityVC).exitQuiz(completion: nil)
+                        (topController as! QuizActivityVC).errorOccurred(title: "Game Left", message: "You left the app and the quiz.", completion: nil)
                     }
                 }
                 break
-            }
-        default:
-            print("App entered background.")
-            print(type(of: topController))
+            case is QuizLobbyVC:
+                DispatchQueue.global(qos: .background).async {
+                    (topController as! QuizLobbyVC).prepLobbyExit()
+                    print("Game conceded in background")
+                    DispatchQueue.main.async {
+                        (topController as! QuizLobbyVC).errorOccurred(title: "Game Left", message: "You left the app and the quiz.", completion: nil)
+                    }
+                }
             break
-        }
+            default:
+                print("App entered background.")
+                print(type(of: topController))
+                break
+            }
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -66,22 +78,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let topController = getTopController()
         switch topController {
-        case is QuizActivityVC:
-            if (topController as! QuizActivityVC).quizMode == QuizLobbyVC.QuizMode.HeadToHead {
+            case is QuizActivityVC:
                 DispatchQueue.global(qos: .background).async {
-                    (topController as! QuizActivityVC).headToHeadConcede()
+                    if (topController as! QuizActivityVC).quizMode == .Standard {
+                        (topController as! QuizActivityVC).standardConcede()
+                    }
+                    else if (topController as! QuizActivityVC).quizMode == .HeadToHead {
+                        (topController as! QuizActivityVC).headToHeadConcede()
+                    }
                     print("Game conceded in background")
                     DispatchQueue.main.async {
                         (topController as! QuizActivityVC).exitQuiz(completion: nil)
                     }
                 }
                 break
+            case is QuizLobbyVC:
+                DispatchQueue.global(qos: .background).async {
+                    (topController as! QuizLobbyVC).prepLobbyExit()
+                    print("Game conceded in background")
+                    DispatchQueue.main.async {
+                        (topController as! QuizLobbyVC).errorOccurred(title: "Game Left", message: "You left the app and the quiz.", completion: nil)
+                    }
+                }
+                break
+            default:
+                print("App exited.")
+                print(type(of: topController))
+                break
             }
-        default:
-            print("App exited.")
-            print(type(of: topController))
-            break
-        }
     }
     
     func getTopController(_ parent:UIViewController? = nil) -> UIViewController {
