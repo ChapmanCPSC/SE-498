@@ -814,7 +814,7 @@ extension QuizActivityVC:SelectsAnswer {
                             dataRef.child("inGameLeaderboards").child(inGameLeaderboardKey).child("students").child(userInGameLeaderboardObjectKey).child("studentScore").setValue(pointsEarned)
                         }
                         else if quizMode == .HeadToHead {
-                            if invitee {
+                            if isInvitee {
                                 dataRef.child("inGameLeaderboards").child(inGameLeaderboardKey).child("invitee").child("studentScore").setValue(pointsEarned)
                             }
                             else{
