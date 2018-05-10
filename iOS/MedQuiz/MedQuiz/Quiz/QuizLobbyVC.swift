@@ -268,11 +268,10 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                     for child in snapshot.children.allObjects as! [DataSnapshot] {
                         if (child.childSnapshot(forPath: "game").value as! String) == self.gameKey! {
                             self.leaderboardKey = child.key
-                            inGameLeaderboardsRef.child("students").observeSingleEvent(of: .value, with: { snapshot in
+                            inGameLeaderboardsRef.child(child.key).child("students").observeSingleEvent(of: .value, with: { snapshot in
                                 for child in snapshot.children.allObjects as! [DataSnapshot] {
-                                    if (child.value as! String) == self.gameKey! {
+                                    if (child.childSnapshot(forPath: "studentKey").value as! String) == currentUserID {
                                         self.userInLeaderboardKey = child.key
-                                        
                                         self.loadingQuizComplete()
                                         if !self.lobbyDone && !self.headToHeadReady {
                                             if self.isInvitee {
