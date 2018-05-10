@@ -268,19 +268,28 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                     for child in snapshot.children.allObjects as! [DataSnapshot] {
                         if (child.childSnapshot(forPath: "game").value as! String) == self.gameKey! {
                             self.leaderboardKey = child.key
+                            inGameLeaderboardsRef.child("students").observeSingleEvent(of: .value, with: { snapshot in
+                                for child in snapshot.children.allObjects as! [DataSnapshot] {
+                                    if (child.value as! String) == self.gameKey! {
+                                        self.userInLeaderboardKey = child.key
+                                        
+                                        self.loadingQuizComplete()
+                                        if !self.lobbyDone && !self.headToHeadReady {
+                                            if self.isInvitee {
+                                                headToHeadGameRef.child("invitee").child("ready").setValue(true)
+                                            }
+                                            else{
+                                                headToHeadGameRef.child("inviter").child("ready").setValue(true)
+                                            }
+                                            self.headToHeadReady = true
+                                        }
+                                        
+                                        break
+                                    }
+                                }
+                            })
                             break
                         }
-                    }
-                    
-                    self.loadingQuizComplete()
-                    if !self.lobbyDone && !self.headToHeadReady {
-                        if self.isInvitee {
-                            headToHeadGameRef.child("invitee").child("ready").setValue(true)
-                        }
-                        else{
-                            headToHeadGameRef.child("inviter").child("ready").setValue(true)
-                        }
-                        self.headToHeadReady = true
                     }
                 })
             }
@@ -424,6 +433,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                     destinationVC.quizMode = QuizMode.HeadToHead
                     destinationVC.gameKey = gameKey
                     destinationVC.inGameLeaderboardKey = leaderboardKey!
+                    destinationVC.userInGameLeaderboardObjectKey = userInLeaderboardKey!
                     destinationVC.allUsers = [currentGlobalStudent, headToHeadOpponent]
                     destinationVC.headToHeadOpponent = headToHeadOpponent
                     destinationVC.isInvitee = isInvitee

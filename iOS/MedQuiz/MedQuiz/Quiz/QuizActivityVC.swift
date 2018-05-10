@@ -808,19 +808,12 @@ extension QuizActivityVC:SelectsAnswer {
                         pointsEarned += time
                         questionsRight += 1
 
-                        if quizMode == .Standard {
+                        if quizMode != .Solo {
                            
                             print("Correct! Points Earned: \(pointsEarned)")
                             dataRef.child("inGameLeaderboards").child(inGameLeaderboardKey).child("students").child(userInGameLeaderboardObjectKey).child("studentScore").setValue(pointsEarned)
                         }
-                        else if quizMode == .HeadToHead {
-                            if isInvitee {
-                                dataRef.child("inGameLeaderboards").child(inGameLeaderboardKey).child("invitee").child("studentScore").setValue(pointsEarned)
-                            }
-                            else{
-                                dataRef.child("inGameLeaderboards").child(inGameLeaderboardKey).child("inviter").child("studentScore").setValue(pointsEarned)
-                            }
-                        }
+
                         else{
                             uv_first.updateView(student: allUsers[0], position: 0, score: pointsEarned)
                         }
