@@ -568,6 +568,10 @@ class QuizActivityVC: UIViewController {
                     quizSummaryVC.setTotalPointsLabel(totalPoints: currentGlobalStudent.totalPoints! + self.pointsEarned)
 
                     self.updatePersonalScore()
+                    
+                    if self.quizMode == .Standard {
+                        self.deleteDBStandardData()
+                    }
                 })
             })
         })

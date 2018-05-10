@@ -166,16 +166,22 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         }
     }
     
-    func checkStandardGameStart(){
-        let gameStartedRef = Database.database().reference(withPath: "game/\(gameKey!)/started")
-        gameStartedRef.observe(.value, with: { snapshot in
+    func checkStandardGameStart(completion:(() -> Void)?){
+        checkGameStartRef = Database.database().reference(withPath: "game/\(gameKey!)/started")
+        checkGameStartHandle = checkGameStartRef.observe(.value, with: { snapshot in
+            self.checkGameStartSet = true
+            
             if let hasStarted = snapshot.value as? Bool, hasStarted {
                 if self.quizDownloaded {
                     self.startQuiz()
                 }
                 else{
+                    self.removeListeners()
                     self.errorOccurred(title: "Quiz Already Started", message: "The quiz has already started. Download incomplete", completion: nil)
                 }
+            }
+            else{
+                completion?()
             }
         })
     }
@@ -231,23 +237,24 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     func downloadStandardQuiz(){
-        checkStandardGameStart()
-        print("Finding leaderboard")
-        let inGameLeaderboardsRef = Database.database().reference(withPath: "inGameLeaderboards")
-        inGameLeaderboardsRef.observeSingleEvent(of: .value, with: { (snapshot:DataSnapshot) in
-            for child in snapshot.children.allObjects as! [DataSnapshot] {
-                if (child.childSnapshot(forPath: "game").value as! String) == self.gameKey! {
-                    self.leaderboardKey = child.key
-                    break
+        checkStandardGameStart(completion: {
+            print("Finding leaderboard")
+            let inGameLeaderboardsRef = Database.database().reference(withPath: "inGameLeaderboards")
+            inGameLeaderboardsRef.observeSingleEvent(of: .value, with: { (snapshot:DataSnapshot) in
+                for child in snapshot.children.allObjects as! [DataSnapshot] {
+                    if (child.childSnapshot(forPath: "game").value as! String) == self.gameKey! {
+                        self.leaderboardKey = child.key
+                        break
+                    }
                 }
+            })
+            print("downloading standard quiz")
+            _ = Quiz(key: self.quizKey!) { theQuiz in
+                self.quiz = theQuiz
+                print("downloading students")
+                self.downloadStudents()
             }
         })
-        print("downloading standard quiz")
-        _ = Quiz(key: quizKey!) { theQuiz in
-            self.quiz = theQuiz
-            print("downloading students")
-            self.downloadStudents()
-        }
     }
     
     func downloadQuiz(){
