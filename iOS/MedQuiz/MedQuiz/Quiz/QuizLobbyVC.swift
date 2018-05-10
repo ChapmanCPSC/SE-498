@@ -424,7 +424,6 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                     destinationVC.quizMode = QuizMode.HeadToHead
                     destinationVC.gameKey = gameKey
                     destinationVC.inGameLeaderboardKey = leaderboardKey!
-                    destinationVC.userInGameLeaderboardObjectKey = userInLeaderboardKey!
                     destinationVC.allUsers = [currentGlobalStudent, headToHeadOpponent]
                     destinationVC.headToHeadOpponent = headToHeadOpponent
                     destinationVC.isInvitee = isInvitee
