@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class SideBar: UITableViewController {
     
@@ -20,7 +21,9 @@ class SideBar: UITableViewController {
     let mainCellSelectedBlue = UIColor(red: (45/255.0), green: (113/255.0), blue: (142/255.0), alpha: 1.0)
     let whiteColor = UIColor(red: (255/255.0), green: (255/255.0), blue: (255/255.0), alpha: 1.0)
     
-
+    var checkTotalPointsUpdateRef:DatabaseReference!
+    var checkTotalPointsUpdateHandle:DatabaseHandle!
+    var checkTotalPointsUpdateSet = false
     
     override func viewWillAppear(_ animated: Bool) {
         self.tableView.reloadData()
@@ -62,6 +65,10 @@ class SideBar: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        removeListeners()
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -105,10 +112,16 @@ class SideBar: UITableViewController {
             /*let currentName = aProfBarCell.profileNameLabel.text
             aProfBarCell.scoreLabel.text = getScore(name: currentName!)*/
             
-            let scoreFormatter = NumberFormatter()
-            scoreFormatter.numberStyle = NumberFormatter.Style.decimal
+            checkTotalPointsUpdateRef = Database.database().reference(withPath:"student/\(currentUserID)/score")
+            checkTotalPointsUpdateHandle = checkTotalPointsUpdateRef.observe(.value, with: { snapshot in
+                self.checkTotalPointsUpdateSet = true
+                
+                let scoreFormatter = NumberFormatter()
+                scoreFormatter.numberStyle = NumberFormatter.Style.decimal
+                
+                aProfBarCell.scoreNumberLabel.text = scoreFormatter.string(from: NSNumber(value: snapshot.value as! Int))
+            })
             
-            aProfBarCell.scoreNumberLabel.text = scoreFormatter.string(from: NSNumber(value: globalHighscore))
             aProfBarCell.scoreNumberLabel.textColor = whiteColor
             aProfBarCell.scoreNumberLabel.sizeToFit()
             
@@ -183,6 +196,11 @@ class SideBar: UITableViewController {
         return "4,434,534"
     }
 
+    func removeListeners(){
+        if checkTotalPointsUpdateSet {
+            checkTotalPointsUpdateRef.removeObserver(withHandle: checkTotalPointsUpdateHandle)
+        }
+    }
 
     /*
     // Override to support conditional editing of the table view.

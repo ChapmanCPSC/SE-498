@@ -25,10 +25,15 @@ class LeaderboardVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     var friendsList : [StudentModel] = []
     
+    var checkStudentRef:DatabaseReference!
+    var checkStudentHandle:DatabaseHandle!
+    var checkStudentSet = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-    Firebase.Database.database().reference().child("student").child(currentUserID).child("friends").observeSingleEvent(of: .value, with: { (snap: DataSnapshot) in
+        checkStudentRef = Firebase.Database.database().reference().child("student").child(currentUserID).child("friends")
+        checkStudentHandle = checkStudentRef.observe(.value, with: { (snap: DataSnapshot) in
         
             Firebase.Database.database().reference().child("student").child(currentUserID).observeSingleEvent(of: DataEventType.value, with: { (user) in
                 self.friendsList.append(StudentModel(snapshot: user))
