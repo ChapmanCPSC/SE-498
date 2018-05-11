@@ -85,9 +85,9 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         usernameTextField.text = "darwi103"
         passwordTextField.text = "123456"
         
-        getCorrectAnswers {
-            print("done")
-        }
+//        getCorrectAnswers {
+//            print("done")
+//        }
 
         
         //Example of using OurColorHelper colors
@@ -159,13 +159,14 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     
     @IBAction func loginPressed(_ sender: Any) {
         
-        
         let sv = UIViewController.displaySpinner(onView: self.view)
         
         //UNCOMMENT LATER - for when we need to check username/password with db
         
         if(!usernameTextField.text!.isEmpty && !passwordTextField.text!.isEmpty){
             Auth.auth().signIn(withEmail: usernameTextField.text! + "@mail.chapman.edu", password: passwordTextField.text!) { (signedInUser, error) in
+                
+                print("signedInUser: \(String(describing: signedInUser))")
                 
                 //logged in
                 if(signedInUser != nil){
@@ -211,7 +212,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                     
                 //not logged in
                 else{
-                    
+                    print(error!)
                     UIViewController.removeSpinner(spinner: sv)
                     self.loginErrorLabel.text = "Incorrect username/password"
                     self.loginErrorLabel.isHidden = false
