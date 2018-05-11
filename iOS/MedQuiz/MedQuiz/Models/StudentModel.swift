@@ -26,10 +26,10 @@ class StudentModel: FIRModel, FIRQueryable,FIRStorageDownloadable
     var profilePic: String? { return self.get(StudentModel.PROFILE_PIC) }
     var score: Int? { return self.get(StudentModel.SCORE) }
     var hasChangedUsername:Bool? { return self.get(StudentModel.HAS_CHANGED_USERNAME) }
-    var friends:[StudentModel]? { return self.get(StudentModel.FRIENDS) }
+    var friends:[StudentModel] { return self.get(StudentModel.FRIENDS) }
     var headToHeadGameRequest:String? { return self.get(StudentModel.HEADTOHEAD_GAME_REQUEST) }
     var online:Bool? { return self.get(StudentModel.ONLINE) }
-    var friendRequests:[StudentModel]? {return self.get(StudentModel.FRIEND_REQUESTS)}
+    var friendRequests:[StudentModel] {return self.get(StudentModel.FRIEND_REQUESTS)}
 
     func getProfilePic(completion: @escaping(UIImage?) -> Void)
     {

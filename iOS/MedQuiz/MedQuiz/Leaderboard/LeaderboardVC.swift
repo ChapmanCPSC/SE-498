@@ -75,7 +75,10 @@ class LeaderboardVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         switchButton.layer.cornerRadius = 25;
     }
 
-    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(false)
+        removeListeners()
+    }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -118,6 +121,12 @@ class LeaderboardVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
                 self.friendsOrGlobal = "friends"
                 print("done animating")
             }
+        }
+    }
+    
+    func removeListeners(){
+        if checkStudentSet {
+            checkStudentRef.removeObserver(withHandle: checkStudentHandle)
         }
     }
     

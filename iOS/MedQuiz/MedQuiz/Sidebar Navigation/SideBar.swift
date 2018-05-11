@@ -68,6 +68,7 @@ class SideBar: UITableViewController {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(false)
         removeListeners()
     }
 

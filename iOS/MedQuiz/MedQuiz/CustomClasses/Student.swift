@@ -16,28 +16,71 @@ class Student: Equatable {
     var hasChangedUsername:Bool?
     var databaseID:String?
     var friendRequests:[Student]?
+    var complete:Bool!
     
     init(key: String, completion: @escaping (Student) -> Void){
         StudentModel.From(key: key, completion: { (aStudentModel) in
-            self.userName = aStudentModel.studentUsername!
-            print(self.userName!)
-            self.friends = Student.convertFriends(students: aStudentModel.friends)//get friends from student and also implemement a FriendsModel file
+            self.complete = true
+            
+            if let userName = aStudentModel.studentUsername {
+                self.userName = userName
+                print(self.userName!)
+            }
+            else{
+                self.userName = "userName"
+                self.complete = false
+                print("ERROR: Student userName not found.")
+            }
+            
+            //self.friends = Student.convertFriends(students: aStudentModel.friends)//get friends from student and also implemement a FriendsModel file
+            
+            self.friends = []
+            aStudentModel.friends.forEach { studentModel in
+                self.friends!.append(Student(studentModel: studentModel, addFriends: false))
+            }
             print("Friends\(self.friends!)")
-            self.hasChangedUsername = false
-            print(self.hasChangedUsername!)
+
+            
+            if let hasChangedUsername = aStudentModel.hasChangedUsername {
+                self.hasChangedUsername = hasChangedUsername
+                print(self.hasChangedUsername!)
+            }
+            else{
+                self.hasChangedUsername = true
+                self.complete = false
+                print("ERROR: Student hasChangedUsername not found.")
+            }
             
             self.databaseID = key
             print(self.databaseID!)
             
-            self.totalPoints = aStudentModel.score!
-            print(self.totalPoints!)
+            if let totalPoints = aStudentModel.score {
+                self.totalPoints = totalPoints
+                print(self.totalPoints!)
+            }
+            else{
+                self.totalPoints = 0
+                self.complete = false
+                print("ERROR: Student totalPoints not found.")
+            }
+            
+            self.friendRequests = []
+            aStudentModel.friendRequests.forEach { studentModel in
+                self.friendRequests!.append(Student(studentModel: studentModel, addFriends: false))
+            }
+            print("Requests \(self.friendRequests!)")
 
-            self.friendRequests = Student.convertFriends(students: aStudentModel.friendRequests)
-            print("Requests \(String(describing: self.friendRequests))")
 
             aStudentModel.getProfilePic(completion: { (theProfilePic) in
-                self.profilePic = theProfilePic!
-                print(self.profilePic!)
+                if let profilePic = theProfilePic {
+                    self.profilePic = profilePic
+                    print(self.profilePic!)
+                }
+                else{
+                    self.profilePic = nil
+                    self.complete = false
+                    print("ERROR: Student profilePic not found.")
+                }
                 completion(self)
             })
         })
@@ -45,19 +88,70 @@ class Student: Equatable {
     
     init(username: String, completion: @escaping (Student) -> Void){
         StudentModel.Where(child: "username", equals: username) { (studentModelsReturned) in
-            let theStudent = studentModelsReturned[0]
-            print(theStudent.studentUsername!)
+            self.complete = true
             
-            self.userName = theStudent.studentUsername!
+            let aStudentModel = studentModelsReturned[0]
+            
+            if let userName = aStudentModel.studentUsername {
+                self.userName = userName
+                print(self.userName!)
+            }
+            else{
+                self.userName = "userName"
+                self.complete = false
+                print("ERROR: Student userName not found.")
+            }
+            
+            //self.friends = Student.convertFriends(students: aStudentModel.friends)//get friends from student and also implemement a FriendsModel file
             
             self.friends = []
-            self.hasChangedUsername = false
-            self.totalPoints = theStudent.score!
-            self.databaseID = theStudent.key
+            aStudentModel.friends.forEach { studentModel in
+                self.friends!.append(Student(studentModel: studentModel, addFriends: false))
+            }
+            print("Friends\(self.friends!)")
+
             
-            theStudent.getProfilePic(completion: { (theProfilePic) in
-                self.profilePic = theProfilePic!
-                print(theProfilePic!.description)
+            if let hasChangedUsername = aStudentModel.hasChangedUsername {
+                self.hasChangedUsername = hasChangedUsername
+                print(self.hasChangedUsername!)
+            }
+            else{
+                self.hasChangedUsername = true
+                self.complete = false
+                print("ERROR: Student hasChangedUsername not found.")
+            }
+            
+            self.databaseID = aStudentModel.key
+            print(self.databaseID!)
+            
+            if let totalPoints = aStudentModel.score {
+                self.totalPoints = totalPoints
+                print(self.totalPoints!)
+            }
+            else{
+                self.totalPoints = 0
+                self.complete = false
+                print("ERROR: Student totalPoints not found.")
+            }
+            
+            self.friendRequests = []
+            aStudentModel.friendRequests.forEach { studentModel in
+                self.friendRequests!.append(Student(studentModel: studentModel, addFriends: false))
+            }
+            print("Requests \(self.friendRequests!)")
+
+            
+            aStudentModel.getProfilePic(completion: { (theProfilePic) in
+                if let profilePic = theProfilePic {
+                    self.profilePic = profilePic
+                    print(self.profilePic!)
+                }
+                else{
+                    self.profilePic = nil
+                    self.complete = false
+                    print("ERROR: Student profilePic not found.")
+                }
+                completion(self)
             })
         }
     }
@@ -86,30 +180,59 @@ class Student: Equatable {
          })
     }
 
-    init(studentDict:[String:AnyObject], addFriends:Bool=true){
-        self.userName = studentDict["username"] as? String
-        //self.totalPoints = studentModel.totalPoints!
-        self.totalPoints = 10000
-        self.profilePic = UIImage()
-        self.hasChangedUsername = true
-        if(addFriends){
-            //self.friends = Student.convertFriends(students: studentModel.friends!)
-            self.friends = []
-        }
-        else{
-            self.friends = []
-        }
-    }
+//    init(studentDict:[String:AnyObject], addFriends:Bool=true){
+//        self.userName = studentDict["username"] as? String
+//        //self.totalPoints = studentModel.totalPoints!
+//        self.totalPoints = 10000
+//        self.profilePic = UIImage()
+//        self.hasChangedUsername = true
+//        if(addFriends){
+//            //self.friends = Student.convertFriends(students: studentModel.friends!)
+//            self.friends = []
+//        }
+//        else{
+//            self.friends = []
+//        }
+//    }
 
     init(studentModel:StudentModel, addFriends:Bool){
-        self.userName = studentModel.studentUsername
+        self.complete = true
+        
+        if let userName = studentModel.studentUsername {
+            self.userName = userName
+            print(self.userName!)
+        }
+        else{
+            self.userName = "userName"
+            self.complete = false
+            print("ERROR: Student userName not found.")
+        }
+        
         self.friends = []
-        self.totalPoints = studentModel.score
-        self.databaseID = studentModel.key
-        studentModel.getProfilePic { image in 
-            self.profilePic = image
-         }
+        
+        if let totalPoints = studentModel.score {
+            self.totalPoints = totalPoints
+            print(self.totalPoints!)
+        }
+        else{
+            self.totalPoints = 0
+            self.complete = false
+            print("ERROR: Student totalPoints not found.")
+        }
 
+        self.databaseID = studentModel.key
+        
+        studentModel.getProfilePic(completion: { (theProfilePic) in
+            if let profilePic = theProfilePic {
+                self.profilePic = profilePic
+                print(self.profilePic!)
+            }
+            else{
+                self.profilePic = nil
+                self.complete = false
+                print("ERROR: Student profilePic not found.")
+            }
+        })
     }
 
     func addFriend(student:StudentModel){
@@ -158,7 +281,7 @@ class Student: Equatable {
     {
         let imageRef = Storage.storage().reference(withPath: profilePicRef)
         imageRef.downloadURL { (u:URL?, e : Error?) in
-            guard u! != nil else
+            guard u != nil else
             {
                 completion()
                 return
@@ -166,7 +289,7 @@ class Student: Equatable {
             
             if let error = e
             {
-                print("Woops: \(error)")
+                print("Whoops: \(error)")
             }
             else if let url = u
             {

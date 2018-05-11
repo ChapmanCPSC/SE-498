@@ -17,6 +17,7 @@ class Question {
     var image:UIImage?
     var tags:[Tag]?
     var name:String?
+    var complete:Bool!
     
     var answerTexts:[String] = []
     var correctAnswers:[Bool] = []
@@ -29,26 +30,50 @@ class Question {
         self.image = image
         self.tags = tags
         self.name = name
+        self.complete = true
     }
     
     init(key: String, completion: @escaping (Question) -> Void){
         QuestionModel.From(key: key, completion: { (aQuestionModel) in
+            self.complete = false
+            
             if let name = aQuestionModel.questionName {
                 self.name = name
             }
+            else if let name = (Database.database().reference(withPath: "question-name/\(key)").value(forKey: "name") as? String) {
+                self.name = name
+            }
             else{
-                self.name = (Database.database().reference(withPath: "question-name/\(key)").value(forKey: "name") as! String)
+                self.name = "Question"
+                self.complete = false
+                print("ERROR: Question name not found.")
             }
             
-            self.imagesForAnswers = aQuestionModel.imagesForAnswers!
-            self.imageForQuestion = aQuestionModel.imageForQuestion!
+            if let imagesForAnswers = aQuestionModel.imagesForAnswers {
+                self.imagesForAnswers = imagesForAnswers
+            }
+            else{
+                self.imagesForAnswers = false
+                self.complete = false
+                print("Question imagesForAnswers not found.")
+            }
+            
+            if let imageForQuestion = aQuestionModel.imageForQuestion {
+                self.imageForQuestion = imageForQuestion
+            }
+            else{
+                self.imageForQuestion = false
+                self.complete = false
+                print("Question imageForQuestion not found.")
+            }
             
             if self.imageForQuestion!{
                 let imageRef = Storage.storage().reference(withPath: aQuestionModel.questionImagePath!)
                 imageRef.downloadURL { (u:URL?, e : Error?) in
                     if let error = e
                     {
-                        print("Whoops: \(error)")
+                        self.complete = false
+                        print("Quiestion image Whoops: \(error)")
                     }
                     else if let url = u
                     {
@@ -63,21 +88,28 @@ class Question {
             
             self.tags = []
             var tagKeys:[String] = []
-            for tagModel in aQuestionModel.tags{
-                tagKeys.append(tagModel.key)
+            
+            if !aQuestionModel.tags.isEmpty {
+                for tagModel in aQuestionModel.tags {
+                    tagKeys.append(tagModel.key)
+                }
+                for tagKey in tagKeys{
+                    _ = Tag(key:tagKey, completion: { tag in
+                        self.tags?.append(tag)
+                        
+                        if !tag.complete {
+                            self.complete = false
+                        }
+                    })
+                }
             }
-            for tagKey in tagKeys{
-                _ = Tag(key:tagKey, completion: { tag in
-                    self.tags?.append(tag)
-                })
+            else{
+                self.complete = false
+                print("ERROR: Question tags not found.")
             }
             
             self.answers = []
-            
             self.getAnswers(questionKey: aQuestionModel.key, completion: {
-                
-//                print("please")
-//                print(self.answerTexts)
                 self.getCorrectAnswers(questionKey: aQuestionModel.key, completion: {
                     print("answerTexts length: \(self.answerTexts.count)")
                     for i in 0...self.answerTexts.count - 1 {
@@ -110,92 +142,94 @@ class Question {
         answersRef.observeSingleEvent(of: .value, with: { snapshot in
             let children = snapshot.children.allObjects as? [DataSnapshot]
             for child in children! {
-                print("answers child: \(child.value as! String)")
-                self.answerTexts.append(child.value as! String)
-//                print("new answer text")
-//                print(self.answerTexts)
+                if (child.value as? String) != nil {
+                    print("answers child: \(child.value as! String)")
+                    self.answerTexts.append(child.value as! String)
                 }
-//            print("half answer text")
-//            print(self.answerTexts)
+                else{
+                    self.answerTexts.append("Answer Text")
+                    self.complete = false
+                    print("ERROR: Answer text not found.")
+                }
+            }
             completion()
         })
-        
     }
     
     
     func getCorrectAnswers(questionKey:String, completion: @escaping () -> Void){
-        
-        //print("quizKey")
-        //print(quizKey)
-        
         Database.database().reference().child("choices").child(questionKey).child("correctanswers").observeSingleEvent(of: DataEventType.value) { (correctAnswerSnap) in
-            //print("CORRECT ANSWER")
-            //print(correctAnswerSnap.value!)
-            //print("next half answer text")
-            //print(self.answerTexts)
             for child in correctAnswerSnap.children{
-                self.correctAnswers.append((child as! DataSnapshot).value! as! Bool)
+                if (child as! DataSnapshot).value! as? Bool != nil {
+                    self.correctAnswers.append((child as! DataSnapshot).value! as! Bool)
                     print("new correct answer")
                     print(self.correctAnswers)
                 }
-                completion()
+                else{
+                    self.correctAnswers.append(false)
+                    self.complete = false
+                    print("ERROR: Correct answer bool not found.")
+                }
+
+            }
+            completion()
         }
     }
     
-    init(questionDict:[String:AnyObject]){
-//        self.points = questionModel.questionPoints!
-//        self.imageForQuestion = questionModel.imageForQuestion!
-        self.imageForQuestion = questionDict["imageforquestion"] as? Bool
-//        self.imageForAnswers = questionModel.imagesForAnswer!
-        self.imagesForAnswers = questionDict["imageforanswers"] as? Bool
-        if(self.imageForQuestion)!{
-            self.name = ""
-        }
-        else{
-            //self.title = questionModel.questionTitle!
-            self.name = questionDict["name"] as? String
-        }
-//        var toSet:[Tag] = []
-//        questionModel.tags.forEach { model in
-//            model.getData(withMaxSize: 1 * 1024 * 1024, completion: { (d: Foundation.Data?, e: Error?) in
-//                if let error = e
-//                {
-//                    print("Question Tag Whoops: \(error)")
-//                }
-//                else
-//                {
-//                    toSet.append((Tag(tagModel: model)))
-//                }
-//            })
+//    init(questionDict:[String:AnyObject]){
+////        self.points = questionModel.questionPoints!
+////        self.imageForQuestion = questionModel.imageForQuestion!
+//        self.imageForQuestion = questionDict["imageforquestion"] as? Bool
+////        self.imageForAnswers = questionModel.imagesForAnswer!
+//        self.imagesForAnswers = questionDict["imageforanswers"] as? Bool
+//        if(self.imageForQuestion)!{
+//            self.name = ""
 //        }
-//        self.tags = toSet
-        self.tags = []
-
-        self.image = UIImage()
-        self.answers = []
-        self.correctAnswer = ""
-    }
+//        else{
+//            //self.title = questionModel.questionTitle!
+//            self.name = questionDict["name"] as? String
+//        }
+////        var toSet:[Tag] = []
+////        questionModel.tags.forEach { model in
+////            model.getData(withMaxSize: 1 * 1024 * 1024, completion: { (d: Foundation.Data?, e: Error?) in
+////                if let error = e
+////                {
+////                    print("Question Tag Whoops: \(error)")
+////                }
+////                else
+////                {
+////                    toSet.append((Tag(tagModel: model)))
+////                }
+////            })
+////        }
+////        self.tags = toSet
+//        self.tags = []
+//
+//        self.image = UIImage()
+//        self.answers = []
+//        self.correctAnswer = ""
+//    }
     
     deinit {
         print("------->deallocating Question")
     }
     
-    func setTags(questionDict:[String:AnyObject]){
-        var questionTagKeys:[String] = []
-        for questionTag in questionDict["tags"] as! [String:AnyObject]{
-            questionTagKeys.append(questionTag.key)
-        }
-        
-        let tagRef = Database.database().reference(withPath: "tag")
-        tagRef.observeSingleEvent(of: .value, with: { snapshot in
-            if let children = snapshot.children.allObjects as? [DataSnapshot] {
-                for child in children {
-                    if questionTagKeys.contains(child.key) {
-                        self.tags?.append(Tag(tagDict: child.value as! [String:AnyObject]))
-                    }
-                }
-            }
-        })
-    }
+//    func setTags(questionDict:[String:AnyObject]){
+//        var questionTagKeys:[String] = []
+//        for questionTag in questionDict["tags"] as! [String:AnyObject]{
+//            questionTagKeys.append(questionTag.key)
+//        }
+//        
+//        let tagRef = Database.database().reference(withPath: "tag")
+//        tagRef.observeSingleEvent(of: .value, with: { snapshot in
+//            if let children = snapshot.children.allObjects as? [DataSnapshot] {
+//                for child in children {
+//                    if questionTagKeys.contains(child.key) {
+//                        self.tags?.append(Tag(tagDict: child.value as! [String:AnyObject]))
+//                    }
+//                }
+//            }
+//        })
+//    }
 
 }

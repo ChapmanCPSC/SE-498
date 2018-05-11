@@ -19,7 +19,7 @@
         <!--LoginVC-->
         <scene sceneID="NDo-RN-q7A">
             <objects>
-                <viewController id="u5Q-Wh-a1c" customClass="LoginVC" customModule="MedQuiz" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Login Scene" useStoryboardIdentifierAsRestorationIdentifier="YES" id="u5Q-Wh-a1c" customClass="LoginVC" customModule="MedQuiz" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UJt-Nc-vFK">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

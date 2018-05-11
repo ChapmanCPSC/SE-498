@@ -19,7 +19,7 @@
         <!--View Controller-->
         <scene sceneID="UBy-f9-khd">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="SCL-be-nYS" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="View Controller Scene" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="SCL-be-nYS" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iy5-rY-STu"/>
                         <viewControllerLayoutGuide type="bottom" id="38R-A1-LF3"/>
@@ -37,7 +37,7 @@
         <!--Title-->
         <scene sceneID="pOV-Lb-qQc">
             <objects>
-                <tableViewController clearsSelectionOnViewWillAppear="NO" id="ytW-DQ-zAH" customClass="SideBar" customModule="MedQuiz" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Title Scene" useStoryboardIdentifierAsRestorationIdentifier="YES" clearsSelectionOnViewWillAppear="NO" id="ytW-DQ-zAH" customClass="SideBar" customModule="MedQuiz" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="b31-pj-zqm">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -60,7 +60,7 @@
         <!--Navigation Controller-->
         <scene sceneID="CN0-Yq-I41">
             <objects>
-                <navigationController id="8Of-01-WX3" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Navigation Controller Scene" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8Of-01-WX3" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="550-ys-E0d">
                         <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

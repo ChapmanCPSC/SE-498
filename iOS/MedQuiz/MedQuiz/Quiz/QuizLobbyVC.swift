@@ -171,17 +171,22 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         checkGameStartHandle = checkGameStartRef.observe(.value, with: { snapshot in
             self.checkGameStartSet = true
             
-            if let hasStarted = snapshot.value as? Bool, hasStarted {
-                if self.quizDownloaded {
-                    self.startQuiz()
+            if let hasStarted = snapshot.value as? Bool {
+                if hasStarted {
+                    if self.quizDownloaded {
+                        self.startQuiz()
+                    }
+                    else{
+                        self.removeListeners()
+                        self.errorOccurred(title: "Quiz Already Started", message: "The quiz has already started. Download incomplete", completion: nil)
+                    }
                 }
-                else{
-                    self.removeListeners()
-                    self.errorOccurred(title: "Quiz Already Started", message: "The quiz has already started. Download incomplete", completion: nil)
+                else {
+                    completion?()
                 }
             }
             else{
-                completion?()
+                self.errorOccurred(title: "Game Download Error", message: "Game data corrupted.", completion: nil)
             }
         })
     }
@@ -250,50 +255,63 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             })
             print("downloading standard quiz")
             _ = Quiz(key: self.quizKey!) { theQuiz in
-                self.quiz = theQuiz
-                print("downloading students")
-                self.downloadStudents()
+                if theQuiz.complete {
+                    self.quiz = theQuiz
+                    print("downloading students")
+                    self.downloadStudents()
+                }
+                else{
+                    self.errorOccurred(title: "Quiz Download Error", message: "Quiz data corrupted.", completion: nil)
+                }
             }
         })
     }
     
     func downloadQuiz(){
         _ = Quiz(key: quizKey!) { quiz in
-            self.quiz = quiz
-            if self.quizMode == .HeadToHead {
-                self.checkHeadToHeadGameStatus()
-                let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(self.gameKey!)
-                let inGameLeaderboardsRef = Database.database().reference(withPath: "inGameLeaderboards")
-                inGameLeaderboardsRef.observeSingleEvent(of: .value, with: { (snapshot:DataSnapshot) in
-                    for child in snapshot.children.allObjects as! [DataSnapshot] {
-                        if (child.childSnapshot(forPath: "game").value as! String) == self.gameKey! {
-                            self.leaderboardKey = child.key
-                            inGameLeaderboardsRef.child(child.key).child("students").observeSingleEvent(of: .value, with: { snapshot in
-                                for child in snapshot.children.allObjects as! [DataSnapshot] {
-                                    if (child.childSnapshot(forPath: "studentKey").value as! String) == currentUserID {
-                                        self.userInLeaderboardKey = child.key
-                                        self.loadingQuizComplete()
-                                        if !self.lobbyDone && !self.headToHeadReady {
-                                            if self.isInvitee {
-                                                headToHeadGameRef.child("invitee").child("ready").setValue(true)
+            if quiz.complete {
+                self.quiz = quiz
+                if self.quizMode == .HeadToHead {
+                    self.checkHeadToHeadGameStatus()
+                    let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(self.gameKey!)
+                    let inGameLeaderboardsRef = Database.database().reference(withPath: "inGameLeaderboards")
+                    inGameLeaderboardsRef.observeSingleEvent(of: .value, with: { (snapshot:DataSnapshot) in
+                        for child in snapshot.children.allObjects as! [DataSnapshot] {
+                            if (child.childSnapshot(forPath: "game").value as! String) == self.gameKey! {
+                                self.leaderboardKey = child.key
+                                inGameLeaderboardsRef.child(child.key).child("students").observeSingleEvent(of: .value, with: { snapshot in
+                                    for child in snapshot.children.allObjects as! [DataSnapshot] {
+                                        if (child.childSnapshot(forPath: "studentKey").value as! String) == currentUserID {
+                                            self.userInLeaderboardKey = child.key
+                                            self.loadingQuizComplete()
+                                            if !self.lobbyDone && !self.headToHeadReady {
+                                                if self.isInvitee {
+                                                    headToHeadGameRef.child("invitee").child("ready").setValue(true)
+                                                }
+                                                else{
+                                                    headToHeadGameRef.child("inviter").child("ready").setValue(true)
+                                                }
+                                                self.headToHeadReady = true
                                             }
-                                            else{
-                                                headToHeadGameRef.child("inviter").child("ready").setValue(true)
-                                            }
-                                            self.headToHeadReady = true
+                                            break
                                         }
-                                        
-                                        break
                                     }
-                                }
-                            })
-                            break
+                                })
+                                break
+                            }
                         }
+                    })
+                }
+                else if self.quizMode == .Solo {
+                    self.loadingQuizComplete()
+                }
+            }
+            else{
+                self.errorOccurred(title: "Quiz Download Error", message: "Quiz data corrupted.", completion: {
+                    if self.quizMode == .HeadToHead {
+                        self.deleteDBHeadToHeadData()
                     }
                 })
-            }
-            else if self.quizMode == .Solo {
-                self.loadingQuizComplete()
             }
         }
     }

@@ -18,7 +18,7 @@
         <!--AboutVC-->
         <scene sceneID="sLC-6U-8Jb">
             <objects>
-                <viewController id="vVz-Ap-F3n" customClass="AboutVC" customModule="MedQuiz" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="About Scene" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vVz-Ap-F3n" customClass="AboutVC" customModule="MedQuiz" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8oR-Jt-FSV">
                         <rect key="frame" x="0.0" y="0.0" width="694" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -35,7 +35,7 @@
                                     <constraint firstAttribute="height" constant="209" id="78A-j2-K63"/>
                                 </constraints>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="main" editable="NO" textAlignment="justified" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qMK-JC-Sec">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="justified" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qMK-JC-Sec">
                                 <rect key="frame" x="74" y="171" width="533" height="426"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="ClearSans-Medium" family="Clear Sans Medium" pointSize="15"/>
