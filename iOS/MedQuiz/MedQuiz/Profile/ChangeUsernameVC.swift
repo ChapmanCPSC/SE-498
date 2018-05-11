@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 protocol ChangeUsernameVCDelegate: class{
     func dataChanged(username: String, usernameChanged: Bool)
@@ -58,6 +59,9 @@ class ChangeUsernameVC: UIViewController, UITextFieldDelegate {
     
     @IBAction func yesPressed(_ sender: Any) {
         warningView.isHidden = true
+        
+        Database.database().reference().child("student").child(currentGlobalStudent.databaseID!).child("username").setValue(changeUsernameTextField.text!)
+        //currentGlobalStudent.userName = changeUsernameTextField.text!
         delegate?.dataChanged(username: changeUsernameTextField.text!, usernameChanged: true)
         dismiss(animated: false, completion: nil)
     }
