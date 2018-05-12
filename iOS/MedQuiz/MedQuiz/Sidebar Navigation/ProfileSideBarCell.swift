@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ProfileSideBarCell: UITableViewCell {
     @IBOutlet weak var profileImage: UIImageView!
@@ -14,15 +15,35 @@ class ProfileSideBarCell: UITableViewCell {
     
     @IBOutlet weak var scoreNumberLabel: UILabel!
     
+    var checkTotalPointsUpdateRef:DatabaseReference!
+    var checkTotalPointsUpdateHandle:DatabaseHandle!
+    var checkTotalPointsUpdateSet = false
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         contentView.backgroundColor = .clear
+        
+        checkTotalPointsUpdateRef = Database.database().reference(withPath:"student/\(currentUserID)/score")
+        checkTotalPointsUpdateHandle = checkTotalPointsUpdateRef.observe(.value, with: { snapshot in
+            self.checkTotalPointsUpdateSet = true
+
+            let scoreFormatter = NumberFormatter()
+            scoreFormatter.numberStyle = NumberFormatter.Style.decimal
+
+            self.scoreNumberLabel.text = scoreFormatter.string(from: NSNumber(value: snapshot.value as! Int))
+        })
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func removeListeners(){
+        if checkTotalPointsUpdateSet {
+            checkTotalPointsUpdateRef.removeObserver(withHandle: checkTotalPointsUpdateHandle)
+        }
     }
     
 }

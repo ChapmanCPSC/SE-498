@@ -113,15 +113,9 @@ class SideBar: UITableViewController {
             /*let currentName = aProfBarCell.profileNameLabel.text
             aProfBarCell.scoreLabel.text = getScore(name: currentName!)*/
             
-            checkTotalPointsUpdateRef = Database.database().reference(withPath:"student/\(currentUserID)/score")
-            checkTotalPointsUpdateHandle = checkTotalPointsUpdateRef.observe(.value, with: { snapshot in
-                self.checkTotalPointsUpdateSet = true
-                
-                let scoreFormatter = NumberFormatter()
-                scoreFormatter.numberStyle = NumberFormatter.Style.decimal
-                
-                aProfBarCell.scoreNumberLabel.text = scoreFormatter.string(from: NSNumber(value: snapshot.value as! Int))
-            })
+            let scoreFormatter = NumberFormatter()
+            scoreFormatter.numberStyle = NumberFormatter.Style.decimal
+            aProfBarCell.scoreNumberLabel.text = scoreFormatter.string(from: NSNumber(value: currentGlobalStudent.totalPoints!))
             
             aProfBarCell.scoreNumberLabel.textColor = whiteColor
             aProfBarCell.scoreNumberLabel.sizeToFit()
@@ -136,6 +130,7 @@ class SideBar: UITableViewController {
             
             return aProfBarCell
         }
+        
         let aSideBarCell:SideBarCell = tableView.dequeueReusableCell(withIdentifier: "customSideCell", for: indexPath) as! SideBarCell
         aSideBarCell.backgroundColor = mainCellBlue
         
