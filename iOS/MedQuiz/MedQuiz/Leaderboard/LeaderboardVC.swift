@@ -92,7 +92,7 @@ class LeaderboardVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         cell.scoreLabel.text = String(self.friendsList[indexPath.row].score!)
         cell.usernameLabel.text = self.friendsList[indexPath.row].studentUsername!
         
-        if friendsList[indexPath.row].studentUsername == currentGlobalStudent.userName{
+        if friendsList[indexPath.row].studentUsername == globalUsername {
             cell.backgroundColor = OurColorHelper.pharmAppYellow
         }
         
