@@ -22,10 +22,6 @@ class QuizSummaryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.presentingViewController?.dismiss(animated: false, completion: {
-            print("yay")
-        })
     }
 
     override func didReceiveMemoryWarning() {

@@ -109,65 +109,69 @@ class QuizActivityVC: UIViewController {
         hideSidebar()
 
         //hideAnswersForTime()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(false)
         
         if currQuiz == nil || quizMode == nil || quizLobbyRef == nil {
             if quizMode != nil {
                 switch quizMode! {
-                    case .Standard:
-                        standardConcede()
-                        break
-                    case .HeadToHead:
-                        headToHeadConcede()
-                        break
-                    case .Solo:
-                        break
+                case .Standard:
+                    standardConcede()
+                    break
+                case .HeadToHead:
+                    headToHeadConcede()
+                    break
+                case .Solo:
+                    break
                 }
             }
             
             errorOccurred(title: "Game/Quiz Information Missing", message: "Information for the current game/quiz was not properly transfered to the lobby.", completion: nil)
         }
-
+        
         switch quizMode! {
-            case .Standard:
-                if gameKey == nil || inGameLeaderboardKey == nil || userInGameLeaderboardObjectKey == nil || allUsers == nil {
-                    errorOccurred(title: "Game Information Missing", message: "Information for the current game was not properly transfered to the lobby.", completion: {
-                        self.standardConcede()
-                    })
-                }
-                else{
-                    getLeaderboardInfo()
-                    backCancelButton.isHidden = true
-                }
-                break
-            case .HeadToHead:
-                if gameKey == nil || inGameLeaderboardKey == nil || userInGameLeaderboardObjectKey == nil || isInvitee == nil || headToHeadOpponent == nil || allUsers == nil {
-                    errorOccurred(title: "Head to Head Information Missing", message: "Information for the current Head to Head games was not properly transfered to the lobby.", completion: {
-                        self.headToHeadConcede()
-                    })
-                }
-                else{
-                    getLeaderboardInfo()
-                    backCancelButton.isHidden = false
-                }
-                break
-            case .Solo:
-                allUsers = [currentGlobalStudent]
-                allScores = [0]
-                uv_first.updateView(student: allUsers[0], position: 0, score: allScores[0])
-                uv_first.lab_position.isHidden = true
-                userViews = [uv_first]
-                uv_fifth.removeFromSuperview()
-                uv_fourth.removeFromSuperview()
-                uv_third.removeFromSuperview()
-                uv_second.removeFromSuperview()
+        case .Standard:
+            if gameKey == nil || inGameLeaderboardKey == nil || userInGameLeaderboardObjectKey == nil || allUsers == nil {
+                errorOccurred(title: "Game Information Missing", message: "Information for the current game was not properly transfered to the lobby.", completion: {
+                    self.standardConcede()
+                })
+            }
+            else{
+                getLeaderboardInfo()
+                backCancelButton.isHidden = true
+            }
+            break
+        case .HeadToHead:
+            if gameKey == nil || inGameLeaderboardKey == nil || userInGameLeaderboardObjectKey == nil || isInvitee == nil || headToHeadOpponent == nil || allUsers == nil {
+                errorOccurred(title: "Head to Head Information Missing", message: "Information for the current Head to Head games was not properly transfered to the lobby.", completion: {
+                    self.headToHeadConcede()
+                })
+            }
+            else{
+                getLeaderboardInfo()
                 backCancelButton.isHidden = false
-                break
+            }
+            break
+        case .Solo:
+            allUsers = [currentGlobalStudent]
+            allScores = [0]
+            uv_first.updateView(student: allUsers[0], position: 0, score: allScores[0])
+            uv_first.lab_position.isHidden = true
+            userViews = [uv_first]
+            uv_fifth.removeFromSuperview()
+            uv_fourth.removeFromSuperview()
+            uv_third.removeFromSuperview()
+            uv_second.removeFromSuperview()
+            backCancelButton.isHidden = false
+            break
         }
         
         print("Multiplier of image is: \(con_questionImageHeight.multiplier)")
         
         registerFirebaseListeners()
-
+        
         nextQuestion()
     }
     

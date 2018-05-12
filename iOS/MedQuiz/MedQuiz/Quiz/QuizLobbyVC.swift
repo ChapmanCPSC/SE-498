@@ -86,6 +86,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(false)
         print("quiz lobby appeared")
         
         if gameKey == nil || quizKey == nil || quizMode == nil {
