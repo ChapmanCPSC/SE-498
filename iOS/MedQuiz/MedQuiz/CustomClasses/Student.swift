@@ -18,7 +18,7 @@ class Student: Equatable {
     var friendRequests:[Student]?
     var complete:Bool!
     
-    init(key: String, completion: @escaping (Student) -> Void){
+    init(key: String, addFriends: Bool, completion: @escaping (Student) -> Void){
         StudentModel.From(key: key, completion: { (aStudentModel) in
             self.complete = true
             
@@ -35,12 +35,15 @@ class Student: Equatable {
             //self.friends = Student.convertFriends(students: aStudentModel.friends)//get friends from student and also implemement a FriendsModel file
             
             self.friends = []
-            aStudentModel.friends.forEach { studentModel in
-                self.friends!.append(Student(studentModel: studentModel, addFriends: false))
+            if addFriends {
+                aStudentModel.friends.forEach { studentModel in
+                    _ = Student(key: studentModel.key, addFriends: false, completion: { student in
+                        self.friends!.append(student)
+                    })
+                }
             }
-            print("Friends\(self.friends!)")
 
-            
+
             if let hasChangedUsername = aStudentModel.hasChangedUsername {
                 self.hasChangedUsername = hasChangedUsername
                 print(self.hasChangedUsername!)
@@ -175,7 +178,7 @@ class Student: Equatable {
                 return
             }
         }
-        self.friendRequests!.append(Student(key: studentModel.key) { student in
+        self.friendRequests!.append(Student(key: studentModel.key, addFriends: false) { student in
             completion()
          })
     }

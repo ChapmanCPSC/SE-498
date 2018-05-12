@@ -174,21 +174,21 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                     currentUserID = (signedInUser?.uid)!
                     print("signed in and uid = " + currentUserID)
                     
-                    currentGlobalStudent = Student(key: currentUserID, completion: { (aCurrentStudent) in
+                    currentGlobalStudent = Student(key: currentUserID, addFriends: true, completion: { (aCurrentStudent) in
                         
-                        print("done getting student")
-                        globalUsername = aCurrentStudent.userName!
-                        print(globalUsername)
-                        globalHighscore = aCurrentStudent.totalPoints!
-                        print(globalHighscore)
-                        globalProfileImage = aCurrentStudent.profilePic!
-                        print(globalProfileImage)
-                        self.checkConnection()
-                        
-                        let userHeadToHeadRequestReference = Database.database().reference().child("student").child(currentUserID)
-                        userHeadToHeadRequestReference.child("headtoheadgamerequest").removeValue()
-                        
-                        print("done")
+                    print("done getting student")
+                    globalUsername = aCurrentStudent.userName!
+                    print(globalUsername)
+                    globalHighscore = aCurrentStudent.totalPoints!
+                    print(globalHighscore)
+                    globalProfileImage = aCurrentStudent.profilePic!
+                    print(globalProfileImage)
+                    self.checkConnection()
+                    
+                    let userHeadToHeadRequestReference = Database.database().reference().child("student").child(currentUserID)
+                    userHeadToHeadRequestReference.child("headtoheadgamerequest").removeValue()
+                    
+                    print("done")
                     Firebase.Database.database().reference().child("student").child(signedInUser!.uid).child("friends").observeSingleEvent(of: .value, with: { (snap: DataSnapshot) in
                             
                             for s in snap.children {
@@ -327,7 +327,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                             let sb:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                             let headToHeadRequestVC:HeadToHeadRequestVC = sb.instantiateViewController(withIdentifier: "headToHeadRequestVC") as! HeadToHeadRequestVC
                             headToHeadRequestVC.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-                            _ = Student(key: inviterKey) { inviter in
+                            _ = Student(key: inviterKey, addFriends: false) { inviter in
                                 headToHeadRequestVC.opponent = inviter
                                 headToHeadRequestVC.headToHeadGameKey = headToHeadGameRef.key
                                 let quizKey:String = snapshot.childSnapshot(forPath: "quiz").value! as! String

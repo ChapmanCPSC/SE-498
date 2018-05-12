@@ -83,12 +83,16 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         loadingIndicatorView.transform = CGAffineTransform.init(scaleX: loadingIndicatorViewScale, y: loadingIndicatorViewScale)
         loadingIndicatorView.startAnimating()
         loadingIndicatorView.color = loadingIndicatorViewColor
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print("quiz lobby appeared")
         
         if gameKey == nil || quizKey == nil || quizMode == nil {
             errorOccurred(title: "Game/Quiz Info Missing", message: "Information for the current game/quiz was not properly transfered to the lobby.", completion: nil)
         }
-        
-        switch quizMode! {
+        else{
+            switch quizMode! {
             case .Standard:
                 waitingString = "Waiting for other players..."
                 lobbyPlayersCollectionView.isHidden = false
@@ -103,38 +107,38 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                         self.deleteDBHeadToHeadData()
                     })
                 }
-                
-                if isInvitee{
-                    headToHeadRequestRef.dismiss(animated: false, completion: nil)
+                else{
+                    if isInvitee{
+                        headToHeadRequestRef.dismiss(animated: false, completion: nil)
+                    }
+                    
+                    waitingString = "Waiting for " + headToHeadOpponent.userName!
+                    
+                    headToHeadUserAvatarImageView.isHidden = false
+                    headToHeadUserUserNameLabel.isHidden = false
+                    headToHeadUserScoreLabel.isHidden = false
+                    headToHeadOpponentAvatarImageView.isHidden = false
+                    headToHeadOpponentUserNameLabel.isHidden = false
+                    headToHeadOpponentScoreLabel.isHidden = false
+                    andLabel.isHidden = false
+                    
+                    headToHeadUserAvatarImageView.image = globalProfileImage
+                    headToHeadUserUserNameLabel.text = globalUsername
+                    headToHeadUserScoreLabel.text = String(describing: globalHighscore)
+                    headToHeadOpponentAvatarImageView.image = headToHeadOpponent.profilePic!
+                    headToHeadOpponentUserNameLabel.text = headToHeadOpponent.userName!
+                    headToHeadOpponentScoreLabel.text = String(describing: headToHeadOpponent.totalPoints!)
                 }
-                
-                waitingString = "Waiting for " + headToHeadOpponent.userName!
-                
-                headToHeadUserAvatarImageView.isHidden = false
-                headToHeadUserUserNameLabel.isHidden = false
-                headToHeadUserScoreLabel.isHidden = false
-                headToHeadOpponentAvatarImageView.isHidden = false
-                headToHeadOpponentUserNameLabel.isHidden = false
-                headToHeadOpponentScoreLabel.isHidden = false
-                andLabel.isHidden = false
-                
-                headToHeadUserAvatarImageView.image = globalProfileImage
-                headToHeadUserUserNameLabel.text = globalUsername
-                headToHeadUserScoreLabel.text = String(describing: globalHighscore)
-                headToHeadOpponentAvatarImageView.image = headToHeadOpponent.profilePic!
-                headToHeadOpponentUserNameLabel.text = headToHeadOpponent.userName!
-                headToHeadOpponentScoreLabel.text = String(describing: headToHeadOpponent.totalPoints!)
                 break
             case .Solo:
                 waitingString = "Ready to start..."
                 break
+            }
+            
+            if !lobbyDone {
+                download()
+            }
         }
-        
-        download()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        print("quiz lobby appeared")
     }
 
     override func didReceiveMemoryWarning() {
@@ -403,7 +407,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             
             var studentCount:Int = 0
             for studentKey in gameStudentKeys{
-                _ = Student(key: studentKey) { (theStudent) in
+                _ = Student(key: studentKey, addFriends: false) { (theStudent) in
                     studentCount += 1
                     if studentKey != currentUserID {
                         if !self.lobbyPlayers.contains(theStudent) && !self.lobbyQueue.contains(theStudent) {
@@ -493,9 +497,8 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default) { UIAlertAction in
             let userHeadToHeadRequestReference = Database.database().reference().child("student").child(currentUserID)
             userHeadToHeadRequestReference.child("headtoheadgamerequest").removeValue()
-            
-            completion?()
             self.dismiss(animated: false, completion: nil)
+            completion?()
         })
         self.present(alert, animated: true, completion: nil)
     }

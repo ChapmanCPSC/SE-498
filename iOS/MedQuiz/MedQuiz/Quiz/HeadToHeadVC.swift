@@ -25,38 +25,18 @@ class HeadToHeadVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         //Temp quiz key value
         quizKey = "-LBwQ1u57nR5iIhISejf"
         
-        //Temp friends array
+        friends = currentGlobalStudent.friends!
         
-//        let friend1 = Student(userName:"vsvnbdbdfbg", profilePic:#imageLiteral(resourceName: "MedicBlue.png") , friends:[], totalPoints:3000, hasChangedUsername:true)
-//        friend1.databaseID = "654426e87a6"
-//        let friend2 = Student(userName:"sfknshkcbnsf", profilePic:#imageLiteral(resourceName: "MedicPink.png") , friends:[], totalPoints:4000, hasChangedUsername:true)
-//        friend2.databaseID = "8g57654426e87a6"
-//        let friend3 = Student(userName:"fvsnhvkdvbdnj", profilePic:#imageLiteral(resourceName: "MedicGreen.png") , friends:[], totalPoints:5000, hasChangedUsername:true)
-//        friend3.databaseID = "98g57654426e87"
-//        let friend4 = Student(userName:"nkshkskshvbs", profilePic:#imageLiteral(resourceName: "MedicBlue.png") , friends:[], totalPoints:3000, hasChangedUsername:true)
-//        friend4.databaseID = "a7ba9826e87a6"
-//        friends = [friend1, friend2, friend3, friend4]
-        
-        _ = Student(key: "IBIVeB3TEBMiUAUqIkXKIquRatz1") { student1 in
-            _ = Student(key: "r7pTDKSWu9bshe9Tq6bRGrSFtkD2") { student2 in
-                _ = Student(key: "vRW8OIGVCQdaQ6GyK7gyPx5Rbzs2") { student3 in
-                    _ = Student(key: "ywMeas9KWfaiQXKxhxtMoODivPz2") { student4 in
-                        self.friends = [student1, student2, student3, student4]
-                        
-                        let friendRequestsCellNib = UINib(nibName: "HeadToHeadFriendRequestTableViewCell", bundle: nil)
-                        self.friendsTableView.register(friendRequestsCellNib, forCellReuseIdentifier: "friendRequest_cell")
-                        
-                        self.friendsTableView.delegate = self
-                        self.friendsTableView.dataSource = self
-                        
-                        self.friendsTableView.rowHeight = 100.0
-                        self.friendsTableView.allowsSelection = false
-                        self.friendsTableView.contentInset = UIEdgeInsetsMake(0, 0, 120, 0)
-                        self.friendsTableView.separatorStyle = .none
-                    }
-                }
-            }
-        }
+        let friendRequestsCellNib = UINib(nibName: "HeadToHeadFriendRequestTableViewCell", bundle: nil)
+        self.friendsTableView.register(friendRequestsCellNib, forCellReuseIdentifier: "friendRequest_cell")
+
+        self.friendsTableView.delegate = self
+        self.friendsTableView.dataSource = self
+
+        self.friendsTableView.rowHeight = 100.0
+        self.friendsTableView.allowsSelection = false
+        self.friendsTableView.contentInset = UIEdgeInsetsMake(0, 0, 120, 0)
+        self.friendsTableView.separatorStyle = .none
     }
 
     override func didReceiveMemoryWarning() {
