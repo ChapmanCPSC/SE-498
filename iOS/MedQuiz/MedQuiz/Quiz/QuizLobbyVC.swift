@@ -252,6 +252,12 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                         break
                     }
                 }
+                //leaderboard not found
+                if self.leaderboardKey == nil {
+                    let inGameLeaderboardRef = inGameLeaderboardsRef.child(self.gameKey!)
+                    inGameLeaderboardRef.child("game").setValue(self.gameKey!)
+                    self.leaderboardKey = inGameLeaderboardRef.key
+                }
             })
             print("downloading standard quiz")
             _ = Quiz(key: self.quizKey!) { theQuiz in
