@@ -109,42 +109,66 @@ class QuizActivityVC: UIViewController {
         hideSidebar()
 
         //hideAnswersForTime()
+        
+        if currQuiz == nil || quizMode == nil || quizLobbyRef == nil {
+            if quizMode != nil {
+                switch quizMode! {
+                    case .Standard:
+                        standardConcede()
+                        break
+                    case .HeadToHead:
+                        headToHeadConcede()
+                        break
+                    case .Solo:
+                        break
+                }
+            }
+            
+            errorOccurred(title: "Game/Quiz Information Missing", message: "Information for the current game/quiz was not properly transfered to the lobby.", completion: nil)
+        }
 
         switch quizMode! {
-        case .Standard:
-            getLeaderboardInfo()
-            backCancelButton.isHidden = true
-            break
-        case .HeadToHead:
-            getLeaderboardInfo()
-            backCancelButton.isHidden = false
-            break
-        case .Solo:
-            allUsers = [currentGlobalStudent]
-            allScores = [0]
-            uv_first.updateView(student: allUsers[0], position: 0, score: allScores[0])
-            uv_first.lab_position.isHidden = true
-            userViews = [uv_first]
-            uv_fifth.removeFromSuperview()
-            uv_fourth.removeFromSuperview()
-            uv_third.removeFromSuperview()
-            uv_second.removeFromSuperview()
-            backCancelButton.isHidden = false
-            break
+            case .Standard:
+                if gameKey == nil || inGameLeaderboardKey == nil || userInGameLeaderboardObjectKey == nil || allUsers == nil {
+                    errorOccurred(title: "Game Information Missing", message: "Information for the current game was not properly transfered to the lobby.", completion: {
+                        self.standardConcede()
+                    })
+                }
+                else{
+                    getLeaderboardInfo()
+                    backCancelButton.isHidden = true
+                }
+                break
+            case .HeadToHead:
+                if gameKey == nil || inGameLeaderboardKey == nil || userInGameLeaderboardObjectKey == nil || isInvitee == nil || headToHeadOpponent == nil || allUsers == nil {
+                    errorOccurred(title: "Head to Head Information Missing", message: "Information for the current Head to Head games was not properly transfered to the lobby.", completion: {
+                        self.headToHeadConcede()
+                    })
+                }
+                else{
+                    getLeaderboardInfo()
+                    backCancelButton.isHidden = false
+                }
+                break
+            case .Solo:
+                allUsers = [currentGlobalStudent]
+                allScores = [0]
+                uv_first.updateView(student: allUsers[0], position: 0, score: allScores[0])
+                uv_first.lab_position.isHidden = true
+                userViews = [uv_first]
+                uv_fifth.removeFromSuperview()
+                uv_fourth.removeFromSuperview()
+                uv_third.removeFromSuperview()
+                uv_second.removeFromSuperview()
+                backCancelButton.isHidden = false
+                break
         }
         
         print("Multiplier of image is: \(con_questionImageHeight.multiplier)")
         
-//        tempSetupQuiz() // TODO Remove this after finishing testing
-        //tempSetupLeaderBoard()
-        
         registerFirebaseListeners()
 
         nextQuestion()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-
     }
     
     func hideAnswersForTime(){
@@ -770,22 +794,30 @@ class QuizActivityVC: UIViewController {
     }
     
     func deleteDBStandardData(){
-        dataRef.child("game").child(gameKey!).child("students").child(currentUserID).removeValue()
-        dataRef.child("inGameLeaderboards").child(inGameLeaderboardKey!).child("students").child(userInGameLeaderboardObjectKey!).removeValue()
+        if inGameLeaderboardKey != nil && userInGameLeaderboardObjectKey != nil {
+            dataRef.child("game").child(gameKey!).child("students").child(currentUserID).removeValue()
+            dataRef.child("inGameLeaderboards").child(inGameLeaderboardKey!).child("students").child(userInGameLeaderboardObjectKey!).removeValue()
+        }
     }
     
     func deleteDBHeadToHeadData(){
-        let opponentHeadToHeadRequestRef = Database.database().reference().child("student/\(String(describing: headToHeadOpponent.databaseID!))/headtoheadgamerequest")
-        opponentHeadToHeadRequestRef.removeValue()
+        if headToHeadOpponent != nil {
+            let opponentHeadToHeadRequestRef = Database.database().reference().child("student/\(String(describing: headToHeadOpponent.databaseID!))/headtoheadgamerequest")
+            opponentHeadToHeadRequestRef.removeValue()
+        }
         
         let userHeadToHeadRequestRef = Database.database().reference().child("student/\(String(describing: currentUserID))/headtoheadgamerequest")
         userHeadToHeadRequestRef.removeValue()
         
-        let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(gameKey!)
-        headToHeadGameRef.removeValue()
+        if gameKey != nil {
+            let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(gameKey!)
+            headToHeadGameRef.removeValue()
+        }
         
-        let headToHeadGameLeaderboardRef = Database.database().reference().child("inGameLeaderboards/\(inGameLeaderboardKey!)")
-        headToHeadGameLeaderboardRef.removeValue()
+        if inGameLeaderboardKey != nil {
+            let headToHeadGameLeaderboardRef = Database.database().reference().child("inGameLeaderboards/\(inGameLeaderboardKey!)")
+            headToHeadGameLeaderboardRef.removeValue()
+        }
     }
 }
 
@@ -796,7 +828,7 @@ extension QuizActivityVC:SelectsAnswer {
         if(canSelect){
             canSelect = false
 
-            answer1.answer.points = questionsTimer.returnCurrentTime()
+            answer.answer.points = questionsTimer.returnCurrentTime()
             time = questionsTimer.returnCurrentTime()
 
             answerViews.forEach { (view) in
@@ -822,13 +854,6 @@ extension QuizActivityVC:SelectsAnswer {
                         view.fadeAnswer()
                         view.showWrong()
                         questionsWrong += 1
-                        if(pointsEarned - time < 0){
-                            pointsEarned = 0
-                        }
-                        else{
-                            pointsEarned -= time
-                        }
-                        //updateLeaderboard()
                     }
 
                 }

@@ -84,6 +84,10 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         loadingIndicatorView.startAnimating()
         loadingIndicatorView.color = loadingIndicatorViewColor
         
+        if gameKey == nil || quizKey == nil || quizMode == nil {
+            errorOccurred(title: "Game/Quiz Info Missing", message: "Information for the current game/quiz was not properly transfered to the lobby.", completion: nil)
+        }
+        
         switch quizMode! {
             case .Standard:
                 waitingString = "Waiting for other players..."
@@ -94,6 +98,12 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 lobbyPlayersCollectionView.showsVerticalScrollIndicator = false
                 break
             case .HeadToHead:
+                if isInvitee == nil || headToHeadOpponent == nil {
+                    errorOccurred(title: "Head to Head Info Missing", message: "Information for the current Head to Head game was not properly transfered to the lobby.", completion: {
+                        self.deleteDBHeadToHeadData()
+                    })
+                }
+                
                 if isInvitee{
                     headToHeadRequestRef.dismiss(animated: false, completion: nil)
                 }
@@ -325,8 +335,12 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     func downloadStudents(){
         print("downloading students method")
         
+        if leaderboardKey == nil {
+            errorOccurred(title: "Leaderboard Connection Issue", message: "Could not find or connect to game leaderboard.", completion: nil)
+        }
+        
         Database.database().reference(withPath: "game/\(String(describing: self.gameKey!))/students/\(currentUserID)").setValue(true)
-        let userInLeaderboardRef = Database.database().reference().child("inGameLeaderboards").child(leaderboardKey!).child("students").childByAutoId()
+        let userInLeaderboardRef = Database.database().reference().child("inGameLeaderboards").child(leaderboardKey!).child("students").child(currentUserID)
         userInLeaderboardRef.child("studentKey").setValue(currentUserID)
         userInLeaderboardRef.child("studentScore").setValue(0)
         userInLeaderboardKey = userInLeaderboardRef.key
@@ -504,41 +518,44 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         removeListeners()
         
         switch quizMode! {
-        case .Standard:
-            deleteDBStandardData()
-            break
-        case .HeadToHead:
-            deleteDBHeadToHeadData()
-            break
-        case .Solo:
-            //TODO
-            break
+            case .Standard:
+                deleteDBStandardData()
+                break
+            case .HeadToHead:
+                deleteDBHeadToHeadData()
+                break
+            case .Solo:
+                break
         }
     }
     
     func removeListeners(){
-        switch quizMode! {
-        case .Standard:
-            if checkGameStartSet {
-                checkGameStartRef.removeObserver(withHandle: checkGameStartHandle)
+        if quizMode != nil {
+            switch quizMode! {
+                case .Standard:
+                    if checkGameStartSet {
+                        checkGameStartRef.removeObserver(withHandle: checkGameStartHandle)
+                    }
+                    if downloadStudentsSet {
+                        downloadStudentsRef.removeObserver(withHandle: downloadStudentsHandle)
+                    }
+                    break
+                case .HeadToHead:
+                    if checkHeadToHeadGameStatusSet {
+                        checkHeadToHeadGameStatusRef.removeObserver(withHandle: checkHeadToHeadGameStatusHandle)
+                    }
+                    break
+                case .Solo:
+                    break
             }
-            if downloadStudentsSet {
-                downloadStudentsRef.removeObserver(withHandle: downloadStudentsHandle)
-            }
-            break
-        case .HeadToHead:
-            if checkHeadToHeadGameStatusSet {
-                checkHeadToHeadGameStatusRef.removeObserver(withHandle: checkHeadToHeadGameStatusHandle)
-            }
-            break
-        case .Solo:
-            break
         }
     }
     
     func deleteDBStandardData(){
-        Database.database().reference().child("game").child(gameKey!).child("students").child(currentUserID).removeValue()
-        Database.database().reference().child("inGameLeaderboards").child(leaderboardKey!).child("students").child(userInLeaderboardKey!).removeValue()
+        if leaderboardKey != nil && userInLeaderboardKey != nil {
+            Database.database().reference().child("game").child(gameKey!).child("students").child(currentUserID).removeValue()
+            Database.database().reference().child("inGameLeaderboards").child(leaderboardKey!).child("students").child(userInLeaderboardKey!).removeValue()
+        }
     }
     
     func deleteDBHeadToHeadGame(){
@@ -550,8 +567,10 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(gameKey!)
         headToHeadGameRef.removeValue()
         
-        let opponentHeadToHeadRequestRef = Database.database().reference().child("student/\((String(describing: headToHeadOpponent.databaseID!)))/headtoheadgamerequest")
-        opponentHeadToHeadRequestRef.removeValue()
+        if headToHeadOpponent != nil {
+            let opponentHeadToHeadRequestRef = Database.database().reference().child("student/\((String(describing: headToHeadOpponent.databaseID!)))/headtoheadgamerequest")
+            opponentHeadToHeadRequestRef.removeValue()
+        }
         
         let userHeadToHeadRequestRef = Database.database().reference().child("student/\((String(describing: currentUserID)))/headtoheadgamerequest")
         userHeadToHeadRequestRef.removeValue()
