@@ -24,26 +24,26 @@
             <objects>
                 <viewController storyboardIdentifier="quiz_act" useStoryboardIdentifierAsRestorationIdentifier="YES" id="iNk-fp-Fpw" customClass="QuizActivityVC" customModule="MedQuiz" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RMN-Yu-TAa">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="676"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6f5-lQ-KQp" userLabel="answerContainer">
-                                <rect key="frame" x="0.0" y="135" width="1024" height="473.5"/>
+                                <rect key="frame" x="0.0" y="153.5" width="1024" height="537.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RVL-vH-t1X" customClass="AnswerView" customModule="MedQuiz" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="512" height="237"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="512" height="269"/>
                                         <color key="backgroundColor" red="0.73333333333333328" green="0.47450980392156861" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mhy-9W-V5P" customClass="AnswerView" customModule="MedQuiz" customModuleProvider="target">
-                                        <rect key="frame" x="512" y="0.0" width="512" height="237"/>
+                                        <rect key="frame" x="512" y="0.0" width="512" height="269"/>
                                         <color key="backgroundColor" red="0.86274509803921573" green="0.64313725490196072" blue="0.49803921568627452" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1HG-EA-B80" customClass="AnswerView" customModule="MedQuiz" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="237" width="512" height="236.5"/>
+                                        <rect key="frame" x="0.0" y="269" width="512" height="268.5"/>
                                         <color key="backgroundColor" red="0.85490196078431369" green="0.49019607843137253" blue="0.49019607843137253" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PDX-BQ-Q9I" customClass="AnswerView" customModule="MedQuiz" customModuleProvider="target">
-                                        <rect key="frame" x="512" y="237" width="512" height="236.5"/>
+                                        <rect key="frame" x="512" y="269" width="512" height="268.5"/>
                                         <color key="backgroundColor" red="0.53333333333333333" green="0.82745098039215681" blue="0.89411764705882346" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                 </subviews>
@@ -68,32 +68,32 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="O2N-sB-7xn" userLabel="leaderboardContainer">
-                                <rect key="frame" x="0.0" y="608.5" width="1024" height="67.5"/>
+                                <rect key="frame" x="0.0" y="691" width="1024" height="77"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZXR-uJ-qu7" userLabel="first" customClass="UserView" customModule="MedQuiz" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="205" height="67.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="205" height="77"/>
                                         <color key="backgroundColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cQG-Sq-kDs" userLabel="second" customClass="UserView" customModule="MedQuiz" customModuleProvider="target">
-                                        <rect key="frame" x="205" y="0.0" width="204.5" height="67.5"/>
+                                        <rect key="frame" x="205" y="0.0" width="204.5" height="77"/>
                                         <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wrh-lS-MNK" userLabel="third" customClass="UserView" customModule="MedQuiz" customModuleProvider="target">
-                                        <rect key="frame" x="409.5" y="0.0" width="205" height="67.5"/>
+                                        <rect key="frame" x="409.5" y="0.0" width="205" height="77"/>
                                         <color key="backgroundColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AoZ-Ts-Vay" userLabel="fourth" customClass="UserView" customModule="MedQuiz" customModuleProvider="target">
-                                        <rect key="frame" x="614.5" y="0.0" width="204.5" height="67.5"/>
+                                        <rect key="frame" x="614.5" y="0.0" width="204.5" height="77"/>
                                         <color key="backgroundColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="owc-VG-xVQ" userLabel="fifth" customClass="UserView" customModule="MedQuiz" customModuleProvider="target">
-                                        <rect key="frame" x="819" y="0.0" width="205" height="67.5"/>
+                                        <rect key="frame" x="819" y="0.0" width="205" height="77"/>
                                         <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XpQ-Yg-CIp" userLabel="questionContainer">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="135"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="153.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="grM-oM-JIa" userLabel="timer">
                                         <rect key="frame" x="939" y="20" width="75" height="75"/>
@@ -113,81 +113,16 @@
                                             <constraint firstItem="mSU-hz-jd3" firstAttribute="leading" secondItem="grM-oM-JIa" secondAttribute="leading" constant="2" id="jo1-X9-RU7"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Q0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="da4-nm-GCK">
-                                        <rect key="frame" x="500.5" y="20" width="23.5" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MockAnswerTwo.png" translatesAutoresizingMaskIntoConstraints="NO" id="X16-ah-GQU">
-                                        <rect key="frame" x="205" y="68" width="614" height="0.5"/>
+                                        <rect key="frame" x="205" y="76.5" width="614" height="0.5"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mr4-bb-3wP">
-                                        <rect key="frame" x="472" y="100" width="81" height="30"/>
-                                        <state key="normal" title="Temp Reset"/>
-                                        <connections>
-                                            <action selector="tempResetPressed:" destination="iNk-fp-Fpw" eventType="touchUpInside" id="71a-x4-u3l"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i3t-AU-flH">
-                                        <rect key="frame" x="20" y="100" width="117" height="30"/>
-                                        <state key="normal" title="Temp Leave Quiz"/>
-                                        <connections>
-                                            <segue destination="Jvp-t9-Pxf" kind="show" identifier="activityToMain" id="qo8-Ml-WfT"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="anT-Bb-MI9">
-                                        <rect key="frame" x="718" y="100" width="144" height="30"/>
-                                        <state key="normal" title="Temp invert question"/>
-                                        <connections>
-                                            <action selector="tempQuestionInvertPressed:" destination="iNk-fp-Fpw" eventType="touchUpInside" id="pXS-kD-2Rj"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oSt-QX-rec">
-                                        <rect key="frame" x="872" y="100" width="132" height="30"/>
-                                        <state key="normal" title="Temp invert hidden"/>
-                                        <connections>
-                                            <action selector="tempPressed:" destination="iNk-fp-Fpw" eventType="touchUpInside" id="eVg-bF-wwb"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What is the answer to this label doing here?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ElQ-IF-2fO">
-                                        <rect key="frame" x="128" y="73.5" width="768" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ElQ-IF-2fO">
+                                        <rect key="frame" x="128" y="56" width="768" height="85.5"/>
+                                        <string key="text">What is the answer to this label doing here?What is the answer to this label doing here?What is the answer to this label doing here?What is the answer to this label doing here?</string>
+                                        <fontDescription key="fontDescription" name="ClearSans-Medium" family="Clear Sans Medium" pointSize="21"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="iwX-1h-w9d">
-                                        <rect key="frame" x="10" y="37.5" width="139" height="60"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l3e-ra-u3g">
-                                                <rect key="frame" x="0.0" y="0.0" width="139" height="30"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="fjE-hx-847"/>
-                                                </constraints>
-                                                <state key="normal" title="Move Up Position"/>
-                                                <connections>
-                                                    <action selector="tempUpPosition:" destination="iNk-fp-Fpw" eventType="touchUpInside" id="SGA-EV-wj3"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h2Z-FJ-r6b">
-                                                <rect key="frame" x="0.0" y="30" width="139" height="30"/>
-                                                <state key="normal" title="Move Down Position"/>
-                                                <connections>
-                                                    <action selector="tempDownPosition:" destination="iNk-fp-Fpw" eventType="touchUpInside" id="uyv-KN-oRx"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JFy-iv-nRB">
-                                        <rect key="frame" x="731" y="65" width="119" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="119" id="gvO-8O-rDy"/>
-                                        </constraints>
-                                        <state key="normal" title="Switch Curr User"/>
-                                        <connections>
-                                            <action selector="tempSwitchCurrUser:" destination="iNk-fp-Fpw" eventType="touchUpInside" id="47A-FQ-7rK"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gVd-HL-CiE">
                                         <rect key="frame" x="779" y="20" width="139" height="30"/>
                                         <state key="normal" title="Temp Quiz Sum Seg"/>
@@ -195,15 +130,8 @@
                                             <action selector="tempQuizSumarryPressed:" destination="iNk-fp-Fpw" eventType="touchUpInside" id="kaJ-dh-FW1"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O86-sm-n0G">
-                                        <rect key="frame" x="157" y="100" width="89" height="30"/>
-                                        <state key="normal" title="Temp Next Q"/>
-                                        <connections>
-                                            <action selector="tempNextQPressed:" destination="iNk-fp-Fpw" eventType="touchUpInside" id="kow-U1-G4Z"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zKg-ej-ZNf" userLabel="Back Button">
-                                        <rect key="frame" x="148" y="3" width="73" height="61"/>
+                                        <rect key="frame" x="47" y="37" width="73" height="69.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="73" id="AN9-VW-16m"/>
                                         </constraints>
@@ -212,39 +140,32 @@
                                             <action selector="backButtonPressed:" destination="iNk-fp-Fpw" eventType="touchUpInside" id="3Fb-WZ-smC"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Q0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="da4-nm-GCK">
+                                        <rect key="frame" x="497" y="19" width="31" height="32.5"/>
+                                        <fontDescription key="fontDescription" name="ClearSans-Medium" family="Clear Sans Medium" pointSize="24"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="gVd-HL-CiE" firstAttribute="top" secondItem="XpQ-Yg-CIp" secondAttribute="top" constant="20" id="0zo-mM-E2l"/>
-                                    <constraint firstItem="Mr4-bb-3wP" firstAttribute="centerX" secondItem="XpQ-Yg-CIp" secondAttribute="centerX" id="2Oz-LJ-mpp"/>
-                                    <constraint firstItem="O86-sm-n0G" firstAttribute="leading" secondItem="i3t-AU-flH" secondAttribute="trailing" constant="20" id="2bf-Eh-CHC"/>
                                     <constraint firstAttribute="trailing" secondItem="grM-oM-JIa" secondAttribute="trailing" constant="10" id="3DC-IC-7fv"/>
-                                    <constraint firstItem="da4-nm-GCK" firstAttribute="top" secondItem="XpQ-Yg-CIp" secondAttribute="top" constant="20" id="4IJ-yp-T9I"/>
-                                    <constraint firstAttribute="trailing" secondItem="oSt-QX-rec" secondAttribute="trailing" constant="20" id="5eg-7M-fcu"/>
-                                    <constraint firstItem="anT-Bb-MI9" firstAttribute="top" secondItem="JFy-iv-nRB" secondAttribute="bottom" constant="5" id="7au-Pf-Rb8"/>
-                                    <constraint firstItem="ElQ-IF-2fO" firstAttribute="top" secondItem="X16-ah-GQU" secondAttribute="bottom" constant="5" id="CSB-cV-PI9"/>
-                                    <constraint firstAttribute="bottom" secondItem="i3t-AU-flH" secondAttribute="bottom" constant="5" id="CcA-R7-ebM"/>
-                                    <constraint firstAttribute="bottom" secondItem="O86-sm-n0G" secondAttribute="bottom" constant="5" id="DDw-Wm-alJ"/>
-                                    <constraint firstItem="iwX-1h-w9d" firstAttribute="centerY" secondItem="XpQ-Yg-CIp" secondAttribute="centerY" id="K8u-4X-5MK"/>
-                                    <constraint firstItem="grM-oM-JIa" firstAttribute="leading" secondItem="JFy-iv-nRB" secondAttribute="trailing" constant="89" id="Kgd-m7-O8j"/>
+                                    <constraint firstItem="ElQ-IF-2fO" firstAttribute="leading" secondItem="XpQ-Yg-CIp" secondAttribute="leading" constant="128" id="8wP-pO-eLc"/>
                                     <constraint firstItem="grM-oM-JIa" firstAttribute="top" secondItem="XpQ-Yg-CIp" secondAttribute="top" constant="20" id="LVR-TQ-gE8"/>
-                                    <constraint firstItem="zKg-ej-ZNf" firstAttribute="leading" secondItem="XpQ-Yg-CIp" secondAttribute="leading" constant="148" id="ObT-RI-KVS"/>
-                                    <constraint firstAttribute="bottom" secondItem="Mr4-bb-3wP" secondAttribute="bottom" constant="5" id="PdP-gb-Pqb"/>
-                                    <constraint firstItem="JFy-iv-nRB" firstAttribute="leading" secondItem="iwX-1h-w9d" secondAttribute="trailing" constant="582" id="Rlj-66-i7w"/>
-                                    <constraint firstItem="ElQ-IF-2fO" firstAttribute="width" secondItem="XpQ-Yg-CIp" secondAttribute="width" multiplier="0.75" id="V55-yT-9LA"/>
-                                    <constraint firstItem="i3t-AU-flH" firstAttribute="leading" secondItem="XpQ-Yg-CIp" secondAttribute="leading" constant="20" id="Vj7-Ie-jsQ"/>
-                                    <constraint firstItem="iwX-1h-w9d" firstAttribute="leading" secondItem="XpQ-Yg-CIp" secondAttribute="leading" constant="10" id="Vvf-0K-xPS"/>
-                                    <constraint firstItem="X16-ah-GQU" firstAttribute="top" secondItem="zKg-ej-ZNf" secondAttribute="bottom" constant="4" id="XUB-48-Ocj"/>
-                                    <constraint firstItem="ElQ-IF-2fO" firstAttribute="centerX" secondItem="XpQ-Yg-CIp" secondAttribute="centerX" id="aS6-Au-xo0"/>
-                                    <constraint firstItem="zKg-ej-ZNf" firstAttribute="top" secondItem="XpQ-Yg-CIp" secondAttribute="top" constant="3" id="b0c-NH-9JB"/>
-                                    <constraint firstAttribute="bottom" secondItem="anT-Bb-MI9" secondAttribute="bottom" constant="5" id="dLj-gZ-txA"/>
+                                    <constraint firstItem="zKg-ej-ZNf" firstAttribute="leading" secondItem="XpQ-Yg-CIp" secondAttribute="leading" constant="47" id="ObT-RI-KVS"/>
+                                    <constraint firstAttribute="bottom" secondItem="ElQ-IF-2fO" secondAttribute="bottom" constant="12" id="RZG-t8-zRN"/>
+                                    <constraint firstAttribute="trailing" secondItem="ElQ-IF-2fO" secondAttribute="trailing" constant="128" id="T7L-Tq-bqS"/>
+                                    <constraint firstItem="da4-nm-GCK" firstAttribute="leading" secondItem="XpQ-Yg-CIp" secondAttribute="leading" constant="497" id="TRd-zK-Qjl"/>
+                                    <constraint firstItem="X16-ah-GQU" firstAttribute="top" secondItem="zKg-ej-ZNf" secondAttribute="bottom" constant="-30" id="XUB-48-Ocj"/>
+                                    <constraint firstItem="zKg-ej-ZNf" firstAttribute="top" secondItem="XpQ-Yg-CIp" secondAttribute="top" constant="37" id="b0c-NH-9JB"/>
+                                    <constraint firstItem="ElQ-IF-2fO" firstAttribute="top" secondItem="XpQ-Yg-CIp" secondAttribute="top" constant="56" id="cbh-hh-obC"/>
                                     <constraint firstItem="X16-ah-GQU" firstAttribute="centerX" secondItem="XpQ-Yg-CIp" secondAttribute="centerX" id="dQd-OZ-c1F"/>
-                                    <constraint firstItem="da4-nm-GCK" firstAttribute="centerX" secondItem="XpQ-Yg-CIp" secondAttribute="centerX" id="iKz-a6-bSV"/>
+                                    <constraint firstItem="ElQ-IF-2fO" firstAttribute="top" secondItem="da4-nm-GCK" secondAttribute="bottom" constant="4.5" id="gVV-Zw-tfX"/>
+                                    <constraint firstAttribute="trailing" secondItem="da4-nm-GCK" secondAttribute="trailing" constant="496" id="iZC-Wl-cfj"/>
                                     <constraint firstItem="grM-oM-JIa" firstAttribute="leading" secondItem="gVd-HL-CiE" secondAttribute="trailing" constant="21" id="mLT-YB-Pr6"/>
-                                    <constraint firstAttribute="bottom" secondItem="oSt-QX-rec" secondAttribute="bottom" constant="5" id="nZU-5J-y7t"/>
                                     <constraint firstItem="X16-ah-GQU" firstAttribute="width" secondItem="XpQ-Yg-CIp" secondAttribute="width" multiplier="0.6" id="qCU-CC-g0e"/>
                                     <constraint firstItem="X16-ah-GQU" firstAttribute="centerY" secondItem="XpQ-Yg-CIp" secondAttribute="centerY" id="qVf-gt-9VD"/>
-                                    <constraint firstItem="oSt-QX-rec" firstAttribute="leading" secondItem="anT-Bb-MI9" secondAttribute="trailing" constant="10" id="vET-UJ-KI5"/>
                                     <constraint firstItem="X16-ah-GQU" firstAttribute="height" secondItem="XpQ-Yg-CIp" secondAttribute="height" multiplier="0.0001" id="xUa-Mh-r3e"/>
                                 </constraints>
                             </view>
@@ -260,6 +181,7 @@
                             <constraint firstItem="XpQ-Yg-CIp" firstAttribute="height" secondItem="RMN-Yu-TAa" secondAttribute="height" multiplier="0.2" id="SWh-qa-xtl"/>
                             <constraint firstItem="XpQ-Yg-CIp" firstAttribute="top" secondItem="RMN-Yu-TAa" secondAttribute="top" id="VD4-2A-Uf2"/>
                             <constraint firstItem="XpQ-Yg-CIp" firstAttribute="leading" secondItem="RMN-Yu-TAa" secondAttribute="leading" id="daN-xq-tXf"/>
+                            <constraint firstItem="6f5-lQ-KQp" firstAttribute="top" secondItem="XpQ-Yg-CIp" secondAttribute="bottom" id="gmG-YM-dBS"/>
                             <constraint firstItem="O2N-sB-7xn" firstAttribute="leading" secondItem="RMN-Yu-TAa" secondAttribute="leading" id="rPh-BX-zgp"/>
                             <constraint firstAttribute="bottom" secondItem="O2N-sB-7xn" secondAttribute="bottom" id="ynH-8z-Hmv"/>
                             <constraint firstAttribute="trailing" secondItem="6f5-lQ-KQp" secondAttribute="trailing" id="zgZ-A5-wrG"/>
@@ -724,7 +646,7 @@
                                         </constraints>
                                         <color key="textColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="ClearSans-Medium" family="Clear Sans Medium" pointSize="30"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
                                         <connections>
                                             <action selector="tf_pressed:" destination="Jvp-t9-Pxf" eventType="editingDidBegin" id="g8i-xK-Wm0"/>
                                         </connections>
@@ -990,7 +912,7 @@
         <image name="StudentAvatarPlaceholder.png" width="183" height="183"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="loZ-5v-0y0"/>
-        <segue reference="rAI-CB-AW1"/>
+        <segue reference="9Xx-YP-L55"/>
+        <segue reference="KMK-MK-Hl3"/>
     </inferredMetricsTieBreakers>
 </document>

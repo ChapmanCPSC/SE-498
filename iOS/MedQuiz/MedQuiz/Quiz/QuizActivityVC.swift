@@ -94,8 +94,9 @@ class QuizActivityVC: UIViewController {
         super.viewDidLoad()
         
         questionsTimer.backgroundColor = UIColor.clear
+        questionsTimer.labelFont = UIFont(name: "ClearSans-Medium24", size: 24.0)
         questionsTimer.labelTextColor = UIColor.black
-        questionsTimer.lineColor = UIColor.yellow
+        questionsTimer.lineColor = OurColorHelper.pharmAppYellow
         questionsTimer.trailLineColor = UIColor.white
         questionsTimer.lineWidth = 5.0
         questionsTimer.isHidden = true
@@ -107,6 +108,8 @@ class QuizActivityVC: UIViewController {
         setAnswerColors()
         setUserColors()
         hideSidebar()
+        
+        lab_questionText.center = self.view.center
 
         //hideAnswersForTime()
     }
