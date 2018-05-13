@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 
+/*
+ Firebase wrapper for Student. Abstracts the process of accessing attributes of Student objects stored in the database.
+ */
+
 class StudentModel: FIRModel, FIRQueryable,FIRStorageDownloadable
 {
     static var COLLECTION_NAME: String = "student"

@@ -8,6 +8,11 @@
 
 import Foundation
 import Foundation
+
+/*
+ Firebase wrapper for Score. Abstracts the process of accessing attributes of Score objects stored in the database.
+ */
+
 class ScoreModel: FIRModel,FIRQueryable
     
 {

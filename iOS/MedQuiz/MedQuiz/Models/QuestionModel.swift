@@ -7,6 +7,11 @@
 //
 
 import Foundation
+
+/*
+ Firebase wrapper for Question. Abstracts the process of accessing attributes of Question objects stored in the database.
+ */
+
 class QuestionModel: FIRModel, FIRQueryable
     
 {

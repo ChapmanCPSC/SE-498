@@ -8,6 +8,10 @@
 
 import Foundation
 
+/*
+ Firebase wrapper for Friend. Abstracts the process of accessing attributes of Friend objects stored in the database.
+ */
+
 class FriendModel: FIRModel {
     
     static var FIELD_FRIENDID = "friend"

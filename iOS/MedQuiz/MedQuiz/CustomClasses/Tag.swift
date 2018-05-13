@@ -6,17 +6,29 @@
 import Foundation
 import UIKit
 
+/*
+ Tag stores information from Tag objects in database.
+ */
+
 class Tag {
     var color:String?
     var name:String?
     var complete:Bool!
 
+    /*
+     Create Tag from set of attribute values.
+     */
+    
     init(color:String, name:String){
         self.color = color
         self.name = name
         self.complete = true
     }
 
+    /*
+     Create Tag using relevent database key for Tag object.
+     */
+    
     init(key: String, completion: @escaping (Tag) -> Void){
         TagModel.From(key: key, completion: { (aTagModel) in
             self.complete = true
@@ -46,6 +58,10 @@ class Tag {
             completion(self)
         })
     }
+    
+    /*
+     Deinitialize Tag object.
+     */
     
     deinit {
         color = ""

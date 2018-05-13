@@ -9,6 +9,10 @@
 import Foundation
 import Firebase
 
+/*
+ Quiz stores information from Quiz objects in database.
+ */
+
 class Quiz {
     var dateCreated:String?
     var available:Bool?
@@ -18,6 +22,10 @@ class Quiz {
     var tags:[Tag]?
     var complete:Bool!
 
+    /*
+     Create Quiz from set of attribute values.
+     */
+    
     init(dateCreated:String, available:Bool, visible:Bool, name:String, questions:[Question], tags:[Tag]){
         self.dateCreated = dateCreated
         self.available = available
@@ -28,6 +36,10 @@ class Quiz {
         self.complete = true
     }
 
+    /*
+     Create Quiz using relevent database key for Quiz object.
+     */
+    
     init(key: String, completion: @escaping (Quiz) -> Void){
         QuizModel.From(key: key, completion: { (aQuizModel) in
             print("key")
@@ -134,6 +146,10 @@ class Quiz {
             }
         })
     }
+    
+    /*
+     Deinitialize Quiz object.
+     */
     
     deinit {
         dateCreated = ""

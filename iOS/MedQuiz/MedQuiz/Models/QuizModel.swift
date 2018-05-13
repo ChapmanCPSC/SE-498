@@ -7,6 +7,11 @@
 //
 
 import Foundation
+
+/*
+ Firebase wrapper for Quiz. Abstracts the process of accessing attributes of Quiz objects stored in the database.
+ */
+
 class QuizModel: FIRModel, FIRQueryable
     
 {

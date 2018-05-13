@@ -10,6 +10,10 @@ import Foundation
 import UIKit
 import Firebase
 
+/*
+ Answer stores information from Answer objects in database (does not have associated Model).
+ */
+
 class Answer {
     var answerText:String?
     var points:Int = 0
@@ -17,11 +21,19 @@ class Answer {
     var hasImage:Bool?
     var image:UIImage?
     
+    /*
+     Create Answer from minimal set of attribute values.
+     */
+    
     init(answerText:String, isAnswer:Bool){
         self.answerText = answerText
         self.isAnswer = isAnswer
         self.hasImage = false
     }
+    
+    /*
+     Create Answer from maximal set of attribute values.
+     */
     
     init(answerText:String, isAnswer:Bool, hasImage:Bool, imagePath:String, completion:@escaping (Answer) -> Void){
         self.answerText = answerText
@@ -48,6 +60,10 @@ class Answer {
             completion(self)
         }
     }
+    
+    /*
+     Deinitialize Answer object.
+     */
     
     deinit {
         answerText = ""

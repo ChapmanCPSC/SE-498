@@ -9,6 +9,10 @@
 import Foundation
 import Firebase
 
+/*
+ Question stores information from Question objects in database.
+ */
+
 class Question {
     var imageForQuestion:Bool?
     var imagesForAnswers:Bool?
@@ -22,6 +26,10 @@ class Question {
     var answerTexts:[String] = []
     var correctAnswers:[Bool] = []
 
+    /*
+     Create Question from set of attribute values.
+     */
+    
     init(points:Int, imageForQuestion:Bool, imagesForAnswers:Bool, correctAnswer:String, answers:[Answer], image:UIImage, tags:[Tag], name:String){
         self.imageForQuestion = imageForQuestion
         self.imagesForAnswers = imagesForAnswers
@@ -32,6 +40,10 @@ class Question {
         self.name = name
         self.complete = true
     }
+    
+    /*
+     Create Question using relevent database key for Question object.
+     */
     
     init(key: String, completion: @escaping (Question) -> Void){
         QuestionModel.From(key: key, completion: { (aQuestionModel) in
@@ -153,6 +165,10 @@ class Question {
             }
         })
     }
+    
+    /*
+     Retrieve Question answers from database; stored separately from Questions.
+     */
 
     func getAnswers(questionKey:String, completion: @escaping () -> Void){
         
@@ -177,6 +193,9 @@ class Question {
         })
     }
     
+    /*
+     Retrieve Question correct answers from database; stored separately from Questions.
+     */
     
     func getCorrectAnswers(questionKey:String, completion: @escaping () -> Void){
         Database.database().reference().child("choices").child(questionKey).child("correctanswers").observeSingleEvent(of: DataEventType.value) { (correctAnswerSnap) in
@@ -196,6 +215,10 @@ class Question {
             completion()
         }
     }
+    
+    /*
+     Deinitialize Question object.
+     */
     
     deinit {
         print("------->deallocating Question")

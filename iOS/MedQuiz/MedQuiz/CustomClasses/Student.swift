@@ -7,6 +7,10 @@ import Foundation
 import UIKit
 import Firebase
 
+/*
+ Student stores information from Student objects in database.
+ */
+
 class Student: Equatable {
     var userName:String?
     var profilePic:UIImage?
@@ -17,6 +21,10 @@ class Student: Equatable {
     var databaseID:String?
     var friendRequests:[Student]?
     var complete:Bool!
+    
+    /*
+     Create Student using relevant database key for Student object.
+     */
     
     init(key: String, addFriends: Bool, completion: @escaping (Student) -> Void){
         StudentModel.From(key: key, completion: { (aStudentModel) in
@@ -34,7 +42,7 @@ class Student: Equatable {
             
 //            self.userName = aStudentModel.studentUsername
             
-            //self.friends = Student.convertFriends(students: aStudentModel.friends)//get friends from student and also implemement a FriendsModel file
+//            self.friends = Student.convertFriends(students: aStudentModel.friends)//get friends from student and also implemement a FriendsModel file
             
             self.friends = []
             if addFriends {
@@ -95,6 +103,10 @@ class Student: Equatable {
         })
     }
     
+    /*
+     Create Student using Student database object containing the provided username string.
+     */
+    
     init(username: String, completion: @escaping (Student) -> Void){
         StudentModel.Where(child: "username", equals: username) { (studentModelsReturned) in
             self.complete = true
@@ -113,7 +125,7 @@ class Student: Equatable {
             
 //            self.userName = aStudentModel.studentUsername
             
-            //self.friends = Student.convertFriends(students: aStudentModel.friends)//get friends from student and also implemement a FriendsModel file
+//            self.friends = Student.convertFriends(students: aStudentModel.friends)//get friends from student and also implemement a FriendsModel file
             
             self.friends = []
             aStudentModel.friends.forEach { studentModel in
@@ -170,6 +182,10 @@ class Student: Equatable {
         }
     }
     
+    /*
+     Create Student using set of attribute values.
+     */
+    
     init(userName:String, profilePic:UIImage, friends:[Student], totalPoints:Int, hasChangedUsername:Bool){
         self.userName = userName
         self.profilePic = profilePic
@@ -178,6 +194,10 @@ class Student: Equatable {
         self.hasChangedUsername = hasChangedUsername
     }
 
+    /*
+     Add a friend request to user from another Student, represented by a StudentModel.
+     */
+    
     func addFriendRequest(studentModel: StudentModel,completion:@escaping () -> Void) {
         if self.friendRequests == nil {
             self.friendRequests = []
@@ -194,6 +214,10 @@ class Student: Equatable {
          })
     }
 
+    /*
+     Create Student from a StudentModel.
+     */
+    
     init(studentModel:StudentModel, addFriends:Bool){
         self.complete = true
         
@@ -238,6 +262,10 @@ class Student: Equatable {
         })
     }
 
+    /*
+     Add a friend, represented by a StudentModel, to the user.
+     */
+    
     func addFriend(student:StudentModel){
         if self.friends == nil {
             self.friends = []
@@ -245,6 +273,10 @@ class Student: Equatable {
         self.friends!.append(Student(studentModel: student, addFriends: false))
     }
 
+    /*
+     Deinitialize Student object.
+     */
+    
     deinit {
         userName = ""
         profilePic = nil
@@ -252,6 +284,10 @@ class Student: Equatable {
         print("-------->deallocating Student")
     }
 
+    /*
+     Convert collection of StudentModels into a collection of Students. Returns Student collection.
+     */
+    
     static func convertFriends(students:[StudentModel]?) -> [Student] {
         var toReturn:[Student] = []
         if let _ = students{
@@ -259,7 +295,6 @@ class Student: Equatable {
                 toReturn.append(Student(studentModel: studentModel, addFriends: false))
             }
         }
-
 
         return toReturn
     }
@@ -279,6 +314,9 @@ class Student: Equatable {
 //    }
     
     
+    /*
+     Download a Student's profile picture by referencing the database using the profilePicRef.
+     */
     
     func getProfilePicImage(profilePicRef: String, completion: @escaping() -> Void)
     {
@@ -303,6 +341,10 @@ class Student: Equatable {
             }
         }
     }
+    
+    /*
+     Comparision operator.
+     */
     
     static func ==(lhs: Student, rhs: Student) -> Bool {
         if lhs.userName == rhs.userName{

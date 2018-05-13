@@ -8,6 +8,10 @@
 
 import Foundation
 
+/*
+ Firebase wrapper for Tag. Abstracts the process of accessing attributes of Tag objects stored in the database.
+ */
+
 class TagModel: FIRModel, FIRQueryable
 {
     

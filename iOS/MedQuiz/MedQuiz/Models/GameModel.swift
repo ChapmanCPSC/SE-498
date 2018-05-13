@@ -8,6 +8,10 @@
 
 import Foundation
 
+/*
+ Firebase wrapper for Game. Abstracts the process of accessing attributes of Game objects stored in the database.
+ */
+
 class GameModel: FIRModel, FIRQueryable
 {
     static var COLLECTION_NAME: String = "game"

@@ -8,6 +8,10 @@
 
 import Foundation
 
+/*
+ Firebase wrapper for HeadToHeadGame. Abstracts the process of accessing attributes of HeadToHeadGame objects stored in the database.
+ */
+
 class HeadToHeadGameModel: FIRModel, FIRQueryable
 {
     static var COLLECTION_NAME: String = "head-to-head-game"
