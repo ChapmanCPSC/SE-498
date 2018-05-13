@@ -31,25 +31,6 @@ class LeaderboardVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        checkStudentRef = Firebase.Database.database().reference().child("student").child(currentUserID).child("friends")
-        checkStudentHandle = checkStudentRef.observe(.value, with: { (snap: DataSnapshot) in
-        
-            Firebase.Database.database().reference().child("student").child(currentUserID).observeSingleEvent(of: DataEventType.value, with: { (user) in
-                self.friendsList.append(StudentModel(snapshot: user))
-            })
-        
-            for s in snap.children {
-                let friend = FriendModel(snapshot: s as! DataSnapshot)
-                Firebase.Database.database().reference().child("student").child(friend.key).observeSingleEvent(of: .value, with: { (friendSnap: DataSnapshot) in
-                    
-                    self.friendsList.append(StudentModel(snapshot: friendSnap))
-                    self.leaderboardTableview.reloadData()
-                })
-            }
-        })
-        
-        //TODO: sort the friendList by score
         
         globalSwitchLabel.isUserInteractionEnabled = true
         friendSwitchLabel.isUserInteractionEnabled = true
@@ -73,6 +54,30 @@ class LeaderboardVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         switchButton.backgroundColor = OurColorHelper.pharmAppTeal
 
         switchButton.layer.cornerRadius = 25;
+        
+        checkStudentRef = Database.database().reference().child("student")
+        checkStudentHandle = checkStudentRef.observe(.value, with: { studentsSnaphot in
+            
+            self.friendsList.removeAll()
+            
+            let currStudentRef = Firebase.Database.database().reference().child("student").child(currentUserID)
+            currStudentRef.observeSingleEvent(of: DataEventType.value, with: { currStudentSnapshot in
+                self.friendsList.append(StudentModel(snapshot: currStudentSnapshot))
+                
+                let currStudentFriendsRef = currStudentRef.child("friends")
+                currStudentFriendsRef.observeSingleEvent(of: .value, with: { friendsSnapshot in
+                    for s in friendsSnapshot.children {
+                        let friend = FriendModel(snapshot: s as! DataSnapshot)
+                        Firebase.Database.database().reference().child("student").child(friend.key).observeSingleEvent(of: .value, with: { (friendSnap: DataSnapshot) in
+                            
+                            self.friendsList.append(StudentModel(snapshot: friendSnap))
+                            self.friendsList.sort(by: {$0.score! > $1.score!})
+                            self.leaderboardTableview.reloadData()
+                        })
+                    }
+                })
+            })
+        })
     }
 
     override func viewDidDisappear(_ animated: Bool) {
