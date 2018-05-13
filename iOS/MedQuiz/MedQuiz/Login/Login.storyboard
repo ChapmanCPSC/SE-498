@@ -75,7 +75,7 @@
                                                 </constraints>
                                                 <color key="textColor" red="0.98364382982254028" green="0.8611333966255188" blue="0.67568671703338623" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name="ClearSans-Medium" family="Clear Sans Medium" pointSize="27"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
                                                         <color key="value" red="0.98364382982254028" green="0.8611333966255188" blue="0.67568671703338623" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -92,7 +92,7 @@
                                                 </constraints>
                                                 <color key="textColor" red="0.98364382982254028" green="0.8611333966255188" blue="0.67568671703338623" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name="ClearSans-Medium" family="Clear Sans Medium" pointSize="27"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
                                                         <color key="value" red="0.98364382982254028" green="0.8611333966255188" blue="0.67568671703338623" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -124,7 +124,7 @@
                                         </constraints>
                                     </view>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Incorrect username/password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6S2-iG-he1" userLabel="Login Error">
-                                        <rect key="frame" x="357" y="310" width="385" height="43"/>
+                                        <rect key="frame" x="357" y="316" width="385" height="43"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="43" id="NR9-iu-agu"/>
                                             <constraint firstAttribute="width" constant="385" id="oLq-f4-8d2"/>
@@ -140,17 +140,29 @@
                                             <constraint firstAttribute="width" constant="505" id="F6U-JT-UAH"/>
                                         </constraints>
                                     </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="kwizehdoo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YMN-PC-Drv">
+                                        <rect key="frame" x="405" y="293" width="291" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="291" id="DXr-1t-OGN"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="ClearSans-Medium" family="Clear Sans Medium" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="YMN-PC-Drv" firstAttribute="centerX" secondItem="6S2-iG-he1" secondAttribute="centerX" constant="1" id="6tJ-pw-ACT"/>
                                     <constraint firstItem="hNT-H1-WSm" firstAttribute="centerX" secondItem="6S2-iG-he1" secondAttribute="centerX" constant="1" id="77O-Rw-lyW"/>
                                     <constraint firstAttribute="bottom" secondItem="PL6-kR-PjN" secondAttribute="bottom" constant="92" id="Ah9-KT-x54"/>
                                     <constraint firstItem="t4u-DR-JeD" firstAttribute="centerX" secondItem="h3d-PB-3DK" secondAttribute="centerX" id="Cec-zp-vlH"/>
                                     <constraint firstItem="t4u-DR-JeD" firstAttribute="centerX" secondItem="IdG-7c-i6N" secondAttribute="centerX" id="QXg-DT-mOS"/>
                                     <constraint firstItem="h3d-PB-3DK" firstAttribute="top" secondItem="t4u-DR-JeD" secondAttribute="bottom" constant="19" id="QxE-M4-cO7"/>
                                     <constraint firstItem="h3d-PB-3DK" firstAttribute="centerX" secondItem="PL6-kR-PjN" secondAttribute="centerX" id="Yhv-IS-Q3j"/>
-                                    <constraint firstItem="t4u-DR-JeD" firstAttribute="top" secondItem="6S2-iG-he1" secondAttribute="bottom" constant="22" id="cxe-YN-Hd6"/>
+                                    <constraint firstItem="t4u-DR-JeD" firstAttribute="top" secondItem="6S2-iG-he1" secondAttribute="bottom" constant="16" id="cxe-YN-Hd6"/>
+                                    <constraint firstItem="6S2-iG-he1" firstAttribute="top" secondItem="YMN-PC-Drv" secondAttribute="bottom" constant="2" id="eAM-6R-Az3"/>
                                     <constraint firstItem="PL6-kR-PjN" firstAttribute="top" secondItem="h3d-PB-3DK" secondAttribute="bottom" constant="3" id="eZy-Mx-kIb"/>
-                                    <constraint firstItem="6S2-iG-he1" firstAttribute="top" secondItem="hNT-H1-WSm" secondAttribute="bottom" constant="25" id="hv6-TN-ggv"/>
+                                    <constraint firstItem="YMN-PC-Drv" firstAttribute="top" secondItem="hNT-H1-WSm" secondAttribute="bottom" constant="8" id="fIt-St-hQh"/>
+                                    <constraint firstItem="6S2-iG-he1" firstAttribute="top" secondItem="hNT-H1-WSm" secondAttribute="bottom" constant="31" id="hv6-TN-ggv"/>
                                     <constraint firstAttribute="trailing" secondItem="t4u-DR-JeD" secondAttribute="trailing" constant="354" id="igI-K1-b6i"/>
                                     <constraint firstItem="6S2-iG-he1" firstAttribute="centerX" secondItem="t4u-DR-JeD" secondAttribute="centerX" id="pz4-cr-JRl"/>
                                     <constraint firstItem="hNT-H1-WSm" firstAttribute="top" secondItem="IdG-7c-i6N" secondAttribute="top" constant="136" id="sTV-3V-62a"/>
@@ -167,6 +179,8 @@
                         <viewLayoutGuide key="safeArea" id="Ddn-12-XaU"/>
                     </view>
                     <connections>
+                        <outlet property="forgotPasswordButton" destination="PL6-kR-PjN" id="t1F-sd-6yy"/>
+                        <outlet property="kwizLabel" destination="YMN-PC-Drv" id="rci-Ns-ddf"/>
                         <outlet property="loginBackground" destination="IdG-7c-i6N" id="l2K-Dg-ccW"/>
                         <outlet property="loginErrorLabel" destination="6S2-iG-he1" id="zAd-w1-b3a"/>
                         <outlet property="passwordTextField" destination="JDP-T6-gfW" id="8jb-tV-qZK"/>

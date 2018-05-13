@@ -29,6 +29,8 @@ class QuizVC: UIViewController {
         setTFDelegate()
         setIVCloseTapped()
         setSearchTapped()
+        
+        tf_quizPin.textColor = OurColorHelper.pharmAppPurple
     }
     
     func setBorderColor(){

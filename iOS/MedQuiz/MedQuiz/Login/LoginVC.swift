@@ -7,6 +7,13 @@
 //
 
 
+extension UILabel {
+    func kern(kerningValue:CGFloat) {
+        self.attributedText =  NSAttributedString(string: self.text ?? "", attributes: [NSAttributedStringKey.kern:kerningValue, NSAttributedStringKey.font:font, NSAttributedStringKey.foregroundColor:self.textColor])
+    }
+}
+
+
 extension UIViewController {
     class func displaySpinner(onView : UIView) -> UIView {
         let spinnerView = UIView.init(frame: onView.bounds)
@@ -47,6 +54,8 @@ class LoginVC: UIViewController, UITextFieldDelegate {
 
     var MainStoryBoard:UIStoryboard? = nil
     
+    @IBOutlet weak var kwizLabel: UILabel!
+    
     @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var usernameTextField: UITextField!
@@ -55,6 +64,8 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var loginErrorLabel: UILabel!
     
     @IBOutlet weak var loginBackground: UIScrollView!
+    
+    @IBOutlet weak var forgotPasswordButton: UIButton!
     
     var currView:UIViewController!
     
@@ -82,8 +93,20 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        UIFont.familyNames.forEach({ familyName in
+            let fontNames = UIFont.fontNames(forFamilyName: familyName)
+            print(familyName, fontNames)
+        })
+        
         usernameTextField.text = "darwi103"
         passwordTextField.text = "123456"
+        
+        usernameTextField.textColor = OurColorHelper.pharmAppPurple
+        passwordTextField.textColor = OurColorHelper.pharmAppPurple
+        
+    
+        
+        kwizLabel.kern(kerningValue: 21)
         
 //        getCorrectAnswers {
 //            print("done")
