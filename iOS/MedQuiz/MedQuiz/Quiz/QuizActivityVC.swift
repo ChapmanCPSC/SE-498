@@ -10,9 +10,14 @@ import Foundation
 import UIKit
 import Firebase
 
+/*
+ QuizActivityVC conducts quiz taking. Questions and their answers are displayed in time with a 10 second timer. Scores during standard and
+ head to head games are saved to objects in the database. In order to avoid returning to the lobby upon dismissal, a reference to that view is saved and
+ is dismissed when QuizActivityVC is dismissing.
+ */
+
 class QuizActivityVC: UIViewController {
     
-    //TODO: Delete this and use a wrapper
     let dataRef = Database.database().reference()
     var quizLobbyRef:UIViewController!
 
@@ -90,6 +95,10 @@ class QuizActivityVC: UIViewController {
     var inGameLeaderboardStudentsHandle:DatabaseHandle!
     var inGameLeaderboardStudentsSet = false
     
+    /*
+     Set timer, user view, and answer visuals. Perform start.
+     */
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -120,6 +129,10 @@ class QuizActivityVC: UIViewController {
         super.viewDidAppear(false)
         
     }
+    
+    /*
+     Check for missing attribute values. getLeaderboardInfo for standard and head to head games. Start quiz from first question.
+     */
     
     func start(){
         if currQuiz == nil || quizMode == nil || quizLobbyRef == nil {
@@ -217,16 +230,27 @@ class QuizActivityVC: UIViewController {
 //        nextQuestion()
     }
     
+    /*
+     Start 5 second timer that calls ShowLabels when complete
+     */
+    
     func hideAnswersForTime(){
         //Hides answers for 5 sec and then calls showLabels func
         Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(showLabels), userInfo: nil, repeats: false)
     }
 
-    //timer that waits for 3 seconds to pass and then calls the nextQuestion func
+    /*
+     Start timer that calles updateTimerForNextQ every second.
+     */
+    
     func runTimerForNextQ(){
         timerForNextQ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(updateTimerForNextQ)), userInfo: nil, repeats: true)
     }
 
+    /*
+     Perform nextQuestion after 3 seconds.
+     */
+    
     @objc func updateTimerForNextQ(){
         secondsForNextQ -= 1
         if secondsForNextQ == 0 {
@@ -236,13 +260,25 @@ class QuizActivityVC: UIViewController {
         }
     }
 
+    /*
+     Start 10 second timer that calls endQuestionTimer when complete.
+     */
+    
     func runQuestionTimer() {
         Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(endQuestionTimer), userInfo: nil, repeats: false)
     }
     
+    /*
+     Start next question.
+     */
+    
     @objc func endQuestionTimer(){
         nextQuestion()
     }
+    
+    /*
+     Display information in answer views. Start questionsTimer.
+     */
     
     @objc func showLabels(){
         answerViews.forEach { view in view.displayAnswer() }
@@ -252,9 +288,17 @@ class QuizActivityVC: UIViewController {
         runQuestionTimer()
     }
     
+    /*
+     Hide information in answer views.
+     */
+    
     func hideAnswerLabels(){
         answerViews.forEach { view in view.resetViews()}
     }
+    
+    /*
+     Perform functions that set observers for the different quiz modes.
+     */
     
     func registerFirebaseListeners(){
         switch quizMode! {
@@ -267,6 +311,10 @@ class QuizActivityVC: UIViewController {
                 break
         }
     }
+    
+    /*
+     Observe changes in leaderboard object for standard and head to head games. Order retrieved students by score.
+     */
     
     func getLeaderboardInfo(){
         let inGameLeaderboardsRef = Database.database().reference(withPath: "inGameLeaderboards")
@@ -338,6 +386,10 @@ class QuizActivityVC: UIViewController {
         })
     }
     
+    /*
+     Observe changes in head to head game that indicate concession by the opponent.
+     */
+    
     func checkConcession(){
         print("checkConcession")
         checkConcessionRef = Database.database().reference().child("head-to-head-game").child(self.gameKey!)
@@ -350,15 +402,18 @@ class QuizActivityVC: UIViewController {
         })
     }
     
-    func sendIsReady(){
-        // tell firebase that this client is ready for next question
-    }
-
+    /*
+     Hide sidebar from splitViewController.
+     */
     func hideSidebar(){
         self.splitViewController?.preferredDisplayMode = .primaryHidden
         // TODO Should be switched back to true after finishing quiz?
         self.splitViewController?.presentsWithGesture = false
     }
+    
+    /*
+     Set colors of answerViews.
+     */
 
     func setAnswerColors(){
         var count = 0
@@ -368,6 +423,10 @@ class QuizActivityVC: UIViewController {
         }
     }
     
+    /*
+     Set colors of pre-defined user views.
+     */
+    
     func setUserColors(){
         uv_first.setBackgroundColor(color: userColors[0])
         uv_second.setBackgroundColor(color: userColors[1])
@@ -376,6 +435,10 @@ class QuizActivityVC: UIViewController {
         uv_fifth.setBackgroundColor(color: userColors[4])
     }
 
+    /*
+     Start answer hiding period for next question. Finish quiz if no questions remaining.
+     */
+    
     func nextQuestion(){
         if !quizEnded {
             canSelect = false
@@ -390,6 +453,10 @@ class QuizActivityVC: UIViewController {
             reloadView()
         }
     }
+    
+    /*
+     Update view elements for new question and answer data.
+     */
 
     func reloadView(){
         // upon getting a new question update the view
@@ -397,6 +464,10 @@ class QuizActivityVC: UIViewController {
         updateQuestionText()
         updateAnswers()
     }
+    
+    /*
+     Adjust view constraints for question involving an image.
+     */
 
     func displayImageQuestion(){
         // resize container
@@ -416,6 +487,10 @@ class QuizActivityVC: UIViewController {
         iv_questionImage.isHidden = false
     }
 
+    /*
+     Adjust view constraints for question involving just text.
+     */
+    
     func displayTextQuestion(){
         // resize container
         let newConstraint = con_questionContainerHeight.constraintWithMultipler(0.2)
@@ -435,9 +510,17 @@ class QuizActivityVC: UIViewController {
         iv_questionImage.isHidden = true
     }
 
+    /*
+     Update the question number label with the current question.
+     */
+    
     func updateQuestionNumber(){
         lab_questionNumber.text = "Q\(currQuestionIdx+1)"
     }
+    
+    /*
+     Updates question component of based depending on whether question uses an image.
+     */
     
     func updateQuestionText(){
         // has to call displayTextQuestion first so that it hides the image
@@ -453,6 +536,10 @@ class QuizActivityVC: UIViewController {
         }
     }
     
+    /*
+     Update answer views with answer data of new question.
+     */
+    
     func updateAnswers(){
         let answers = currQuestion.answers!
         for idx in 0..<4{
@@ -465,6 +552,11 @@ class QuizActivityVC: UIViewController {
             }
         }
     }
+    
+    /*
+     Update the displayed leaderboard information after an observed changed in the database leaderboard. The user's user view is highlighted within a subset of
+     two to five players. User is not highlighted when there is only one player.
+     */
 
     func updateLeaderboard(){
         var userSubset = [Student]()
@@ -520,6 +612,10 @@ class QuizActivityVC: UIViewController {
         prevPos = currPos
     }
 
+    /*
+     Testing function that moves the user up one rank in the leaderboard.
+     */
+    
     func moveUpPosition(){
         if (currPos > 1){
             let appUser = allUsers.remove(at: currPos-1)
@@ -530,6 +626,10 @@ class QuizActivityVC: UIViewController {
         }
     }
 
+    /*
+     Testing function that moves the user down one rank in the leaderboard.
+     */
+    
     func moveDownPosition(){
         if(currPos < allUsers.count){
             let appUser = allUsers.remove(at: currPos-1)
@@ -539,6 +639,10 @@ class QuizActivityVC: UIViewController {
             //updateUserInLeaderboard()
         }
     }
+    
+    /*
+     Performs operations for removing conceding player from standard game database objects.
+     */
 
     func standardConcede(){
         print("Game conceded")
@@ -546,11 +650,19 @@ class QuizActivityVC: UIViewController {
         deleteDBStandardData()
     }
     
+    /*
+     Performs operations for removing conceding player from head to head game database objects.
+     */
+    
     func headToHeadConcede(){
         print("Game conceded")
         quizEnded = true
         deleteDBHeadToHeadData()
     }
+    
+    /*
+     End head to head game early due to other player conceding.
+     */
     
     func winByConcession(){
         print("Won by concession")
@@ -567,9 +679,11 @@ class QuizActivityVC: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+    /*
+     End quiz operations and transition to summary after final question.
+     */
+    
     func finishQuiz(){
-         //segue to quiz summary
-        
         print("quiz finished")
 
         removeListeners()
@@ -600,11 +714,12 @@ class QuizActivityVC: UIViewController {
             }
         }
         
-        let userHeadToHeadRequestReference = Database.database().reference().child("student").child(currentUserID)
-        userHeadToHeadRequestReference.child("headtoheadgamerequest").removeValue()
-        
         segueToSummary()
     }
+    
+    /*
+     Set attribute values in and transition to QuizSummaryVC.
+     */
     
     func segueToSummary(){
         let quizSummaryVC = self.storyboard?.instantiateViewController(withIdentifier: "quizSummary") as! QuizSummaryViewController
@@ -639,6 +754,10 @@ class QuizActivityVC: UIViewController {
         print("->>>>>>>>>>>>>>>>>>>>>>>>>>")
     }
     
+    /*
+     Return the topmost view in the view stack.
+     */
+    
     func getTopController(_ parent:UIViewController? = nil) -> UIViewController {
         if let vc = parent {
             if let tab = vc as? UITabBarController, let selected = tab.selectedViewController {
@@ -656,6 +775,10 @@ class QuizActivityVC: UIViewController {
         }
     }
 
+    /*
+     Update score values for the user stored in the database and locally.
+     */
+    
     func updatePersonalScore(){
         dataRef.child("score").child(currentUserID).child("points").setValue(currentGlobalStudent.totalPoints! + pointsEarned)
         dataRef.child("student").child(currentUserID).child("score").setValue(currentGlobalStudent.totalPoints! + pointsEarned)
@@ -682,6 +805,10 @@ class QuizActivityVC: UIViewController {
         }
     }
     
+    /*
+     Testing function that reset the current question.
+     */
+    
     @IBAction func tempResetPressed(_ sender: Any) {
         answerViews.forEach { view in
             view.resetViews()
@@ -705,9 +832,17 @@ class QuizActivityVC: UIViewController {
         toggleTemp = !toggleTemp
     }
 
+    /*
+     Testing function that increases user leaderboard position.
+     */
+    
     @IBAction func tempUpPosition(_ sender: Any) {
         moveUpPosition()
     }
+    
+    /*
+     Testing function that increases user leaderboard position.
+     */
     
     @IBAction func tempDownPosition(_ sender: Any) {
         moveDownPosition()
@@ -718,6 +853,10 @@ class QuizActivityVC: UIViewController {
         answer1.answer.answerText = "This is a correct answer"
     }
 
+    /*
+     Testing function that fills the leaderboard with generated players.
+     */
+    
     func tempSetupLeaderBoard(){
         allUsers = []
         for i in 1...30 {
@@ -726,6 +865,10 @@ class QuizActivityVC: UIViewController {
         allUsers.insert(currentGlobalStudent, at: currPos-1)
         updateLeaderboard()
     }
+    
+    /*
+     Remove database observes depending on quizMode.
+     */
     
     func removeListeners(){
         switch quizMode! {
@@ -747,10 +890,15 @@ class QuizActivityVC: UIViewController {
         }
     }
     
+    /*
+     Remove database connection and set busy status to false. Dismiss view.
+     */
+    
     func exitQuiz(completion:(() -> Void)?){
         self.quizEnded = true
         removeListeners()
 
+        globalBusy = false
         let userHeadToHeadRequestReference = Database.database().reference().child("student").child(currentUserID)
         userHeadToHeadRequestReference.child("headtoheadgamerequest").removeValue()
         
@@ -760,6 +908,10 @@ class QuizActivityVC: UIViewController {
             })
         })
     }
+    
+    /*
+     Alert user about exiting quiz. If the user continues, the game is conceded, based on the quizMode, and the quiz is exited.
+     */
     
     @IBAction func backButtonPressed(_ sender: Any) {
         let alert = UIAlertController(title: "Are you sure you want to exit the quiz?", message: "All your progress will be lost.", preferredStyle: .alert)
@@ -800,14 +952,26 @@ class QuizActivityVC: UIViewController {
         self.present(alert, animated: true)
     }
     
+    /*
+     Testing function that moves the quiz to the next question.
+     */
+    
     @IBAction func tempNextQPressed(_ sender: Any) {
         nextQuestion()
     }
 
+    /*
+     Deinitialize QuizLobbyVC.
+     */
+    
     deinit {
         answerViews = []
         print("deallocation quizActivity")
     }
+    /*
+     Testing function that transitions to summary.
+     */
+    
     @IBAction func tempQuizSumarryPressed(_ sender: Any) {
         removeListeners()
         
@@ -821,6 +985,10 @@ class QuizActivityVC: UIViewController {
         })
     }
     
+    /*
+     Display an alert with an error message to the user. Changes busy status to false. Dismiss view.
+     */
+    
     func errorOccurred(title:String, message:String, completion:(() -> Void)?){
         print("error occurred")
         quizEnded = true
@@ -833,6 +1001,10 @@ class QuizActivityVC: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+    /*
+     Remove user data from standard game objects in database.
+     */
+    
     func deleteDBStandardData(){
         if inGameLeaderboardKey != nil && userInGameLeaderboardObjectKey != nil {
             dataRef.child("game").child(gameKey!).child("students").child(currentUserID).removeValue()
@@ -842,6 +1014,10 @@ class QuizActivityVC: UIViewController {
 //        dataRef.child("game").child(gameKey!).child("students").child(currentUserID).removeValue()
 //        dataRef.child("inGameLeaderboards").child(inGameLeaderboardKey!).child("students").child(userInGameLeaderboardObjectKey!).removeValue()
     }
+    
+    /*
+     Remove user data from head to head game objects in database.
+     */
     
     func deleteDBHeadToHeadData(){
         if headToHeadOpponent != nil {
@@ -879,6 +1055,10 @@ class QuizActivityVC: UIViewController {
 //        print("Head to Head leaderboard removed")
     }
 }
+
+/*
+ Extension that handles selection events on answer views. Update user score.
+ */
 
 extension QuizActivityVC:SelectsAnswer {
     func answerSelected(answer: AnswerView) {

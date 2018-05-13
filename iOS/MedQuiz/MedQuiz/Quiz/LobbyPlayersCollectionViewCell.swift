@@ -8,6 +8,10 @@
 
 import UIKit
 
+/*
+ LobbyPlayersCollectionViewCell displays the profile picture, username, and score of non-user player for standard games in the lobby.
+ */
+
 class LobbyPlayersCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var avatarImageView: UIImageView!

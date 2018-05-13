@@ -60,18 +60,35 @@ class LeaderboardVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
             
             let currStudentRef = Firebase.Database.database().reference().child("student").child(currentUserID)
             currStudentRef.observeSingleEvent(of: DataEventType.value, with: { currStudentSnapshot in
-                self.friendsList.append(StudentModel(snapshot: currStudentSnapshot))
+                if currStudentSnapshot.exists(){
+                    self.friendsList.append(StudentModel(snapshot: currStudentSnapshot))
+                }
+                else{
+                    let alert = UIAlertController(title:"User Info Download Error", message:"User data in database not found or corrupted.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default) { UIAlertAction in
+                    })
+                    self.present(alert, animated: true, completion: nil)
+                }
                 
                 let currStudentFriendsRef = currStudentRef.child("friends")
                 currStudentFriendsRef.observeSingleEvent(of: .value, with: { friendsSnapshot in
                     for s in friendsSnapshot.children {
-                        let friend = FriendModel(snapshot: s as! DataSnapshot)
-                        Firebase.Database.database().reference().child("student").child(friend.key).observeSingleEvent(of: .value, with: { (friendSnap: DataSnapshot) in
-                            
-                            self.friendsList.append(StudentModel(snapshot: friendSnap))
-                            self.friendsList.sort(by: {$0.score! > $1.score!})
-                            self.leaderboardTableview.reloadData()
-                        })
+                        if (s as! DataSnapshot).exists() {
+                            let friend = FriendModel(snapshot: s as! DataSnapshot)
+                            Firebase.Database.database().reference().child("student").child(friend.key).observeSingleEvent(of: .value, with: { (friendSnap: DataSnapshot) in
+                                
+                                self.friendsList.append(StudentModel(snapshot: friendSnap))
+                                self.friendsList.sort(by: {$0.score! > $1.score!})
+                                self.leaderboardTableview.reloadData()
+                            })
+                        }
+                        else{
+                            let alert = UIAlertController(title:"Player Info Download Error", message:"Other player data in database not found or corrupted.", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default) { UIAlertAction in
+                            })
+                            self.present(alert, animated: true, completion: nil)
+                            break
+                        }
                     }
                 })
             })

@@ -9,12 +9,21 @@
 import UIKit
 import Firebase
 
+/*
+ QuizSelectModeVC transitions to HeadToHeadVC is head to head game is selected or to QuizLobbyVC if
+ solo game is selected.
+ */
+
 class QuizSelectModeVC: UIViewController {
 
     var quizKey:String!
     
     @IBOutlet weak var leftCard: UIView!
     @IBOutlet weak var rightCard: UIView!
+    
+    /*
+     Set card colors.
+     */
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,16 +38,28 @@ class QuizSelectModeVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    /*
+     Dismiss view.
+     */
+    
     @IBAction func exitPracticeModeSelect(_ sender: Any) {
         self.dismiss(animated: false) {
         }
     }
+    
+    /*
+     Transition to HeadToHeadVC.
+     */
     
     @IBAction func headToHeadButtonPressed(_ sender: Any) {
         let destinationVC = self.storyboard?.instantiateViewController(withIdentifier: "headToHead") as! HeadToHeadVC
         destinationVC.quizKey = quizKey
         present(destinationVC, animated: false, completion: nil)
     }
+    
+    /*
+     Transition to lobby in Solo quizMode.
+     */
     
     @IBAction func soloButtonPressed(_ sender: Any) {
         let userHeadToHeadRequestReference = Database.database().reference().child("student").child(currentUserID)
