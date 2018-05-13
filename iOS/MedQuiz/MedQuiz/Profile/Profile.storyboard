@@ -28,32 +28,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="694" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile Page" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tcf-D1-Cxs">
-                                <rect key="frame" x="301" y="374" width="92" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qLW-uO-B1s">
                                 <rect key="frame" x="0.0" y="0.0" width="694" height="768"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D7Z-zK-9RV">
-                                        <rect key="frame" x="234" y="624" width="226" height="48"/>
+                                        <rect key="frame" x="233" y="645" width="226" height="48"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="4aa-2F-y5Z"/>
                                             <constraint firstAttribute="width" constant="226" id="O0o-bf-lRP"/>
                                         </constraints>
-                                        <state key="normal" title="Done"/>
+                                        <fontDescription key="fontDescription" name="ClearSans-Medium" family="Clear Sans Medium" pointSize="17"/>
+                                        <state key="normal" title="Done">
+                                            <color key="titleColor" red="0.96344971656799316" green="0.24042881457451371" blue="0.16445804207673129" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="25"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="doneWithAvatar:" destination="rC1-U6-kdK" eventType="touchUpInside" id="u80-Q3-TPU"/>
                                         </connections>
                                     </button>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rhn-rH-nOT">
-                                        <rect key="frame" x="7" y="183" width="678" height="400"/>
-                                        <color key="backgroundColor" red="0.94901960784313721" green="0.66274509803921566" blue="0.12941176470588234" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <rect key="frame" x="8" y="112" width="678" height="362"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="400" id="LKj-iI-JoB"/>
+                                            <constraint firstAttribute="height" constant="362" id="LKj-iI-JoB"/>
                                         </constraints>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="rlG-lO-xtY">
                                             <size key="itemSize" width="150" height="150"/>
@@ -101,11 +102,11 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.94901960784313721" green="0.66274509803921566" blue="0.12941176470588234" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="D7Z-zK-9RV" secondAttribute="bottom" constant="96" id="6ic-5z-Z5x"/>
-                                    <constraint firstItem="rhn-rH-nOT" firstAttribute="leading" secondItem="qLW-uO-B1s" secondAttribute="leadingMargin" constant="-1" id="Flw-P2-nth"/>
-                                    <constraint firstItem="rhn-rH-nOT" firstAttribute="top" secondItem="qLW-uO-B1s" secondAttribute="top" constant="183" id="P6p-ZP-iTF"/>
-                                    <constraint firstItem="D7Z-zK-9RV" firstAttribute="centerX" secondItem="qLW-uO-B1s" secondAttribute="centerX" id="tTq-by-8oS"/>
-                                    <constraint firstAttribute="trailing" secondItem="rhn-rH-nOT" secondAttribute="trailing" constant="9" id="wff-Ro-iEo"/>
+                                    <constraint firstAttribute="bottom" secondItem="D7Z-zK-9RV" secondAttribute="bottom" constant="75" id="6ic-5z-Z5x"/>
+                                    <constraint firstItem="rhn-rH-nOT" firstAttribute="leading" secondItem="qLW-uO-B1s" secondAttribute="leadingMargin" id="Flw-P2-nth"/>
+                                    <constraint firstItem="rhn-rH-nOT" firstAttribute="top" secondItem="qLW-uO-B1s" secondAttribute="top" constant="112" id="P6p-ZP-iTF"/>
+                                    <constraint firstItem="D7Z-zK-9RV" firstAttribute="centerX" secondItem="qLW-uO-B1s" secondAttribute="centerX" constant="-1" id="tTq-by-8oS"/>
+                                    <constraint firstAttribute="trailing" secondItem="rhn-rH-nOT" secondAttribute="trailing" constant="8" id="wff-Ro-iEo"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -115,12 +116,11 @@
                             <constraint firstItem="qLW-uO-B1s" firstAttribute="top" secondItem="7yY-Fd-xea" secondAttribute="top" id="clW-wT-lv5"/>
                             <constraint firstItem="qLW-uO-B1s" firstAttribute="bottom" secondItem="Qhx-6x-VUm" secondAttribute="bottom" id="e9d-aw-bJU"/>
                             <constraint firstItem="qLW-uO-B1s" firstAttribute="leading" secondItem="7yY-Fd-xea" secondAttribute="leading" id="kV3-fC-8CS"/>
-                            <constraint firstItem="qLW-uO-B1s" firstAttribute="centerY" secondItem="tcf-D1-Cxs" secondAttribute="centerY" id="quH-kW-g24"/>
-                            <constraint firstItem="qLW-uO-B1s" firstAttribute="centerX" secondItem="tcf-D1-Cxs" secondAttribute="centerX" id="uIW-in-V2V"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Qhx-6x-VUm"/>
                     </view>
                     <connections>
+                        <outlet property="changeAvatarBackground" destination="qLW-uO-B1s" id="jpb-u5-lYK"/>
                         <outlet property="collectionView" destination="rhn-rH-nOT" id="g6T-nB-erC"/>
                     </connections>
                 </viewController>
