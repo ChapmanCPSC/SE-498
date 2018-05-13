@@ -95,7 +95,7 @@ class QuizActivityVC: UIViewController {
         
         questionsTimer.backgroundColor = UIColor.clear
         print("setting font")
-        questionsTimer.labelFont = UIFont(name: "ClearSans-Medium24", size: 24.0)
+        questionsTimer.labelFont = UIFont(name: "ClearSans-Medium", size: 21.0)
         questionsTimer.labelTextColor = UIColor.black
         questionsTimer.lineColor = OurColorHelper.pharmAppYellow
         questionsTimer.trailLineColor = UIColor.white
