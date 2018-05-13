@@ -95,7 +95,7 @@ class ProfileVC: UIViewController, ChangeAvatarVCDelegate, ChangeUsernameVCDeleg
     }
     
     @objc func profileAvatarPressed(){
-        let changeAvatarVC = self.storyboard?.instantiateViewController(withIdentifier: "changeAvatar") as! ChangeAvatarVC
+        let changeAvatarVC = self.storyboard?.instantiateViewController(withIdentifier: "changeAvatarVC") as! ChangeAvatarVC
         changeAvatarVC.profileImage = globalProfileImage
         changeAvatarVC.delegate = self
         self.present(changeAvatarVC, animated: false, completion: nil)
