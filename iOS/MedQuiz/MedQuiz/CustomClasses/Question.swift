@@ -14,6 +14,7 @@ import Firebase
  */
 
 class Question {
+    var points:Int?
     var imageForQuestion:Bool?
     var imagesForAnswers:Bool?
     var correctAnswer:String?
@@ -31,6 +32,7 @@ class Question {
      */
     
     init(points:Int, imageForQuestion:Bool, imagesForAnswers:Bool, correctAnswer:String, answers:[Answer], image:UIImage, tags:[Tag], name:String){
+        self.points = points
         self.imageForQuestion = imageForQuestion
         self.imagesForAnswers = imagesForAnswers
         self.correctAnswer = correctAnswer
@@ -48,7 +50,22 @@ class Question {
     init(key: String, completion: @escaping (Question) -> Void){
         QuestionModel.From(key: key, completion: { (aQuestionModel) in
             self.complete = true
-            
+
+            if let pointsStr = aQuestionModel.questionPoints {
+                if let points:Int = Int(pointsStr) {
+                    self.points = points
+                }
+                else {
+                    self.points = 10
+                    print("Failed to get points")
+                }
+            }
+            else {
+                self.points = 10
+                print("Failed to get points")
+            }
+
+
             if let name = aQuestionModel.questionName {
                 self.name = name
             }

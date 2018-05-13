@@ -220,10 +220,10 @@ class AnswerView: UIView {
     
     func showPoints(wasCorrect:Bool) {
         if(wasCorrect){
-            //lab_points.text = "+\(answer.points!)"
+            lab_points.text = "+\(answer.points)"
         }
         else{
-            //lab_points.text = "-\(answer.points!)"
+            lab_points.text = ""
         }
         lab_points.isHidden = false
     }
