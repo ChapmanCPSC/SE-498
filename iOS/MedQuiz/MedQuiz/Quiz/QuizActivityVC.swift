@@ -1062,14 +1062,26 @@ class QuizActivityVC: UIViewController {
  */
 
 extension QuizActivityVC:SelectsAnswer {
+    func getCurrentPoints(originalPoints:Int?)->Int {
+        print("Original: \(originalPoints)\ttimer:\(questionsTimer.returnCurrentTime())")
+        let startingSeconds = 10
+        if let points = originalPoints {
+            return points - (startingSeconds - questionsTimer.returnCurrentTime())
+        }
+        else{
+            return 10 - (startingSeconds - questionsTimer.returnCurrentTime())
+        }
+
+    }
     func answerSelected(answer: AnswerView) {
-        var time:Int = 0
-      
+
         if(canSelect){
             canSelect = false
 
-            answer.answer.points = questionsTimer.returnCurrentTime()
-            time = questionsTimer.returnCurrentTime()
+
+            let points = getCurrentPoints(originalPoints: currQuestion.points)
+
+            answer.answer.points = points
 
             answerViews.forEach { (view) in
                 if(view == answer){
@@ -1077,7 +1089,7 @@ extension QuizActivityVC:SelectsAnswer {
                     let selectedAnswer = view.answer
                     if(selectedAnswer.isAnswer)!{
                         view.showCorrect()
-                        pointsEarned += time
+                        pointsEarned += points
                         questionsRight += 1
 
                         if quizMode != .Solo {

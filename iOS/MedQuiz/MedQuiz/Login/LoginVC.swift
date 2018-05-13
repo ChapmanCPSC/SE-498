@@ -104,15 +104,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         usernameTextField.textColor = OurColorHelper.pharmAppPurple
         passwordTextField.textColor = OurColorHelper.pharmAppPurple
         
-    
-        
-        kwizLabel.kern(kerningValue: 21)
-        
-//        getCorrectAnswers {
-//            print("done")
-//        }
-
-        
         //Example of using OurColorHelper colors
         // please follow througout app to make any color
         // changes or edits very easy and
@@ -126,11 +117,26 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         // they want to change color values they can easily do so through
         // ColorHelper and it will affect all views/objects.
         loginBackground.backgroundColor = OurColorHelper.pharmAppDarkBlue
-
+        
         
         //Reference to the Quiz's storyboard
         MainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
         // Do any additional setup after loading the view.
+        
+        
+        kwizLabel.kern(kerningValue: 21)
+        
+        let user = Auth.auth().currentUser
+        
+        if user != nil {
+            returningLogin(user:user!)
+        }
+
+        
+
+
+        
+
         
         //Testing user login
         //Here I created a variable testUserLoginInput, assume
@@ -180,6 +186,47 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    func returningLogin(user:User){
+        let sv = UIViewController.displaySpinner(onView: self.view)
+        
+        _ = Student(key: user.uid, addFriends: true, completion: { (aCurrentStudent) in
+            if aCurrentStudent.complete {
+                self.loggedIn = true
+                currentGlobalStudent = aCurrentStudent
+                currentUserID = (user.uid)
+                UserDefaults.standard.set(currentUserID, forKey: "userID")
+                print("signedInUser: \(String(describing: user))")
+                print("signed in and uid = " + currentUserID)
+                
+                print("done getting student")
+                globalUsername = aCurrentStudent.userName!
+                print(globalUsername)
+                globalHighscore = aCurrentStudent.totalPoints!
+                print(globalHighscore)
+                globalProfileImage = aCurrentStudent.profilePic!
+                print(globalProfileImage)
+                self.checkConnection()
+                
+                let userHeadToHeadRequestReference = Database.database().reference().child("student").child(currentUserID)
+                userHeadToHeadRequestReference.child("headtoheadgamerequest").removeValue()
+                
+                print("done")
+                
+                self.present((self.MainStoryBoard?.instantiateInitialViewController())!, animated: false, completion: nil)
+                UIViewController.removeSpinner(spinner: sv)
+                self.checkHeadToHeadRequest()
+            }
+            else{
+                print("ERROR: User data not found/corrupted.")
+                UIViewController.removeSpinner(spinner: sv)
+                let alert = UIAlertController(title:"User Info Download Error", message:"User data in database not found or corrupted.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default) { UIAlertAction in
+                })
+                self.present(alert, animated: true, completion: nil)
+            }
+        })
+    }
+    
     @IBAction func loginPressed(_ sender: Any) {
         
         let sv = UIViewController.displaySpinner(onView: self.view)
@@ -196,6 +243,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                             self.loggedIn = true
                             currentGlobalStudent = aCurrentStudent
                             currentUserID = (signedInUser?.uid)!
+                            UserDefaults.standard.set(currentUserID, forKey: "userID")
                             print("signedInUser: \(String(describing: signedInUser))")
                             print("signed in and uid = " + currentUserID)
                             
