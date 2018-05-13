@@ -62,11 +62,13 @@ class ProfileVC: UIViewController, ChangeAvatarVCDelegate, ChangeUsernameVCDeleg
         
         usernameLabel.text = globalUsername
         
-        lastQuizImageView.layer.borderColor = UIColor.init(red:0.0, green:0.0, blue:1.0, alpha:1.0).cgColor
+        //rgba(67, 158, 196, 1)
+        lastQuizImageView.layer.borderColor = UIColor(red:0.26, green:0.62, blue:0.77, alpha:1.0).cgColor
         
-        globallyImageView.layer.borderColor = UIColor.init(red:1.0, green:0.0, blue:0.0, alpha:1.0).cgColor
-        
-        friendsImageView.layer.borderColor = UIColor.init(red:1.0, green:1.0, blue:0.0, alpha:1.0).cgColor
+        //rgba(255, 141, 132, 1)
+        globallyImageView.layer.borderColor = UIColor(red:1.00, green:0.55, blue:0.52, alpha:1.0).cgColor
+        //rgba(255, 228, 131, 1)
+        friendsImageView.layer.borderColor = UIColor(red:1.00, green:0.89, blue:0.51, alpha:1.0).cgColor
         
         let mask = UIImageView(image: #imageLiteral(resourceName: "StudentAvatarPlaceholder.png"))
         mask.frame = profileImageView.bounds
