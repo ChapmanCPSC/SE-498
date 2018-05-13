@@ -38,7 +38,8 @@ class ChangeAvatarVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         collectionView.showsHorizontalScrollIndicator = false
         
         let selectedImageIndex = avatarsArray.index(of: profileImage!)
-        avatarsArray.swapAt(selectedImageIndex!, avatarsArray.capacity / 2)
+        //TODO: change 12 below to current avatar image index using selectedImageIndex above
+        avatarsArray.swapAt(12, avatarsArray.capacity / 2)
         selectedImageIndexPath = IndexPath(row: avatarsArray.capacity / 2, section: 0)
     }
     override func viewDidAppear(_ animated: Bool) {
