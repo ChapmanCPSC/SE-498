@@ -20,9 +20,14 @@ class QuizSummaryViewController: UIViewController {
     @IBOutlet weak var lab_questionsRight: UILabel!
     @IBOutlet weak var lab_questionsWrong: UILabel!
     
+    @IBOutlet weak var summaryCard: UIView!
+    @IBOutlet weak var summaryDone: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        summaryCard.backgroundColor = OurColorHelper.pharmAppRed
+        summaryDone.backgroundColor = OurColorHelper.pharmAppBlue
         
     }
 
@@ -51,6 +56,7 @@ class QuizSummaryViewController: UIViewController {
     
     func setRankLabel(position:Int){
         let rank = String.ordinalNumberFormat(number: position)
+
         lab_rank.text = "You ranked \(rank)"
     }
 
