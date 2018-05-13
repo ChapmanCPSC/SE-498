@@ -35,7 +35,7 @@ class Question {
     
     init(key: String, completion: @escaping (Question) -> Void){
         QuestionModel.From(key: key, completion: { (aQuestionModel) in
-            self.complete = false
+            self.complete = true
             
             if let name = aQuestionModel.questionName {
                 self.name = name
@@ -49,6 +49,8 @@ class Question {
                 print("ERROR: Question name not found.")
             }
             
+//            self.name = aQuestionModel.questionName
+
             if let imagesForAnswers = aQuestionModel.imagesForAnswers {
                 self.imagesForAnswers = imagesForAnswers
             }
@@ -58,6 +60,8 @@ class Question {
                 print("Question imagesForAnswers not found.")
             }
             
+//            self.imagesForAnswers = aQuestionModel.imagesForAnswers
+            
             if let imageForQuestion = aQuestionModel.imageForQuestion {
                 self.imageForQuestion = imageForQuestion
             }
@@ -66,6 +70,8 @@ class Question {
                 self.complete = false
                 print("Question imageForQuestion not found.")
             }
+            
+//            self.imageForQuestion = aQuestionModel.imageForQuestion
             
             if self.imageForQuestion!{
                 let imageRef = Storage.storage().reference(withPath: aQuestionModel.questionImagePath!)
@@ -86,19 +92,57 @@ class Question {
                 self.image = UIImage()
             }
             
-            self.tags = []
+            var tags:[Tag] = []
             var tagKeys:[String] = []
             
             if !aQuestionModel.tags.isEmpty {
                 for tagModel in aQuestionModel.tags {
                     tagKeys.append(tagModel.key)
                 }
-                for tagKey in tagKeys{
-                    _ = Tag(key:tagKey, completion: { tag in
-                        self.tags?.append(tag)
+                
+                for i:Int in 0...tagKeys.count - 1 {
+                    _ = Tag(key:tagKeys[i], completion: { tag in
+                        tags.append(tag)
                         
                         if !tag.complete {
                             self.complete = false
+                            print("Question: tag not complete.")
+                        }
+                        
+                        if i == tagKeys.count - 1 {
+                            self.tags = tags
+                            
+                            var answers:[Answer] = []
+                            self.getAnswers(questionKey: aQuestionModel.key, completion: {
+                                self.getCorrectAnswers(questionKey: aQuestionModel.key, completion: {
+                                    print("answerTexts length: \(self.answerTexts.count)")
+                                    for i in 0...self.answerTexts.count - 1 {
+                                        print("index is ", i)
+                                        if self.imagesForAnswers!{
+                                            _ = Answer(answerText: "", isAnswer: self.correctAnswers[i], hasImage: true, imagePath: self.answerTexts[i]) { theAnswer in
+                                                answers.append(theAnswer)
+                                                
+                                                if i == self.answerTexts.count - 1 {
+                                                    self.answers = answers
+                                                    print("Question Done")
+                                                    completion(self)
+                                                }
+                                            }
+                                        }
+                                        else{
+                                            _ = Answer(answerText: self.answerTexts[i], isAnswer: self.correctAnswers[i], hasImage: false, imagePath: "") { theAnswer in
+                                                answers.append(theAnswer)
+                                                
+                                                if i == self.answerTexts.count - 1 {
+                                                    self.answers = answers
+                                                    print("Question Done")
+                                                    completion(self)
+                                                }
+                                            }
+                                        }
+                                    }
+                                })
+                            })
                         }
                     })
                 }
@@ -107,29 +151,6 @@ class Question {
                 self.complete = false
                 print("ERROR: Question tags not found.")
             }
-            
-            self.answers = []
-            self.getAnswers(questionKey: aQuestionModel.key, completion: {
-                self.getCorrectAnswers(questionKey: aQuestionModel.key, completion: {
-                    print("answerTexts length: \(self.answerTexts.count)")
-                    for i in 0...self.answerTexts.count - 1 {
-                        print("index is ", i)
-                        if self.imagesForAnswers!{
-                            _ = Answer(answerText: "", isAnswer: self.correctAnswers[i], hasImage: true, imagePath: self.answerTexts[i]) { theAnswer in
-                                self.answers?.append(theAnswer)
-                            }
-                        }
-                        else{
-                            _ = Answer(answerText: self.answerTexts[i], isAnswer: self.correctAnswers[i], hasImage: false, imagePath: "") { theAnswer in
-                                self.answers?.append(theAnswer)
-                            }
-                        }
-                        
-                    }
-                    print("Question Done")
-                    completion(self)
-                })
-            })
         })
     }
 
@@ -176,60 +197,7 @@ class Question {
         }
     }
     
-//    init(questionDict:[String:AnyObject]){
-////        self.points = questionModel.questionPoints!
-////        self.imageForQuestion = questionModel.imageForQuestion!
-//        self.imageForQuestion = questionDict["imageforquestion"] as? Bool
-////        self.imageForAnswers = questionModel.imagesForAnswer!
-//        self.imagesForAnswers = questionDict["imageforanswers"] as? Bool
-//        if(self.imageForQuestion)!{
-//            self.name = ""
-//        }
-//        else{
-//            //self.title = questionModel.questionTitle!
-//            self.name = questionDict["name"] as? String
-//        }
-////        var toSet:[Tag] = []
-////        questionModel.tags.forEach { model in
-////            model.getData(withMaxSize: 1 * 1024 * 1024, completion: { (d: Foundation.Data?, e: Error?) in
-////                if let error = e
-////                {
-////                    print("Question Tag Whoops: \(error)")
-////                }
-////                else
-////                {
-////                    toSet.append((Tag(tagModel: model)))
-////                }
-////            })
-////        }
-////        self.tags = toSet
-//        self.tags = []
-//
-//        self.image = UIImage()
-//        self.answers = []
-//        self.correctAnswer = ""
-//    }
-    
     deinit {
         print("------->deallocating Question")
     }
-    
-//    func setTags(questionDict:[String:AnyObject]){
-//        var questionTagKeys:[String] = []
-//        for questionTag in questionDict["tags"] as! [String:AnyObject]{
-//            questionTagKeys.append(questionTag.key)
-//        }
-//        
-//        let tagRef = Database.database().reference(withPath: "tag")
-//        tagRef.observeSingleEvent(of: .value, with: { snapshot in
-//            if let children = snapshot.children.allObjects as? [DataSnapshot] {
-//                for child in children {
-//                    if questionTagKeys.contains(child.key) {
-//                        self.tags?.append(Tag(tagDict: child.value as! [String:AnyObject]))
-//                    }
-//                }
-//            }
-//        })
-//    }
-
 }

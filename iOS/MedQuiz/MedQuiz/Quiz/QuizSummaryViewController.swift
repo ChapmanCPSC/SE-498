@@ -20,8 +20,10 @@ class QuizSummaryViewController: UIViewController {
     @IBOutlet weak var lab_questionsRight: UILabel!
     @IBOutlet weak var lab_questionsWrong: UILabel!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
 
     override func didReceiveMemoryWarning() {

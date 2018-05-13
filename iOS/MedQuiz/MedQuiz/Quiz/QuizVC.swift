@@ -90,7 +90,7 @@ class QuizVC: UIViewController {
             return
         }
         
-        GameModel.Where(child: GameModel.GAME_PIN, equals: String(inputPin)) { (gamesFound) in
+        GameModel.Where(child: GameModel.GAME_PIN, equals: inputPin) { (gamesFound) in
             if(!gamesFound.isEmpty){
                 QuizModel.From(key: gamesFound[0].key, completion: { (quiz) in                    
                     print("Pin does exist")
@@ -108,8 +108,28 @@ class QuizVC: UIViewController {
                 })
             }
             else{
-                print("Pin does not exist")
-                self.showAlert(title: "Failure", message: "The provided pin does not match a quiz")
+                GameModel.Where(child: GameModel.GAME_PIN, equals: String(inputPin)) { (gamesFound) in
+                    if(!gamesFound.isEmpty){
+                        QuizModel.From(key: gamesFound[0].key, completion: { (quiz) in
+                            print("Pin does exist")
+                            self.gamePin = String(inputPin)
+                            
+                            let userHeadToHeadRequestReference = Database.database().reference().child("student").child(currentUserID)
+                            userHeadToHeadRequestReference.child("headtoheadgamerequest").setValue("busy")
+                            globalBusy = true
+                            
+                            let quizLobbyVC = self.storyboard?.instantiateViewController(withIdentifier: "quizLobbyVC") as! QuizLobbyVC
+                            quizLobbyVC.gameKey = gamesFound[0].key
+                            quizLobbyVC.quizKey = gamesFound[0].quizKey
+                            quizLobbyVC.quizMode = QuizLobbyVC.QuizMode.Standard
+                            mainQuizVC.present(quizLobbyVC, animated: false, completion: nil)
+                        })
+                    }
+                    else{
+                        print("Pin does not exist")
+                        self.showAlert(title: "Failure", message: "The provided pin does not match a quiz")
+                    }
+                }
             }
         }
     }

@@ -44,6 +44,8 @@ class Quiz {
                 print("ERROR: Quiz dateCreated not found.")
             }
             
+//            self.dateCreated = aQuizModel.dateCreated
+            
             if let available = aQuizModel.available {
                 self.available = available
             }
@@ -52,6 +54,8 @@ class Quiz {
                 self.complete = false
                 print("ERROR: Quiz available not found.")
             }
+            
+//            self.available = aQuizModel.available
             
             if let visible = aQuizModel.visiblity {
                 self.visible = visible
@@ -62,6 +66,8 @@ class Quiz {
                 print("ERROR: Quiz visible not found.")
             }
             
+//            self.visible = aQuizModel.visiblity
+            
             if let name = aQuizModel.name {
                 self.name = name
             }
@@ -71,7 +77,9 @@ class Quiz {
                 print("ERROR: Quiz title not found.")
             }
             
-            self.questions = []
+//            self.name = aQuizModel.name
+            
+            var questions:[Question] = []
             var questionKeys:[String] = []
             
             if !aQuizModel.quizQuestions.isEmpty {
@@ -81,39 +89,40 @@ class Quiz {
                 
                 for i in 0...questionKeys.count - 1 {
                     _ = Question(key:questionKeys[i], completion: { question in
-                        self.questions?.append(question)
-                        if question.complete {
-                            if i == questionKeys.count - 1 {
-                                self.tags = []
-                                var tagKeys:[String] = []
-                                
-                                if !aQuizModel.tags.isEmpty {
-                                    for tagModel in aQuizModel.tags{
-                                        tagKeys.append(tagModel.key)
-                                    }
-                                    
-                                    for j in 0...tagKeys.count - 1 {
-                                        _ = Tag(key:tagKeys[j], completion: { tag in
-                                            self.tags?.append(tag)
-                                            if tag.complete {
-                                                if j == tagKeys.count - 1 {
-                                                    completion(self)
-                                                }
-                                            }
-                                            else{
-                                                self.complete = false
-                                            }
-                                        })
-                                    }
+                        questions.append(question)
+                        if !question.complete {
+                            self.complete = false
+                        }
+
+                        if i == questionKeys.count - 1 {
+                            self.questions = questions
+                            
+                            var tags:[Tag] = []
+                            var tagKeys:[String] = []
+                            
+                            if !aQuizModel.tags.isEmpty {
+                                for tagModel in aQuizModel.tags{
+                                    tagKeys.append(tagModel.key)
                                 }
-                                else{
-                                    self.complete = false
-                                    print("ERROR: Quiz tags not found.")
+                                
+                                for j in 0...tagKeys.count - 1 {
+                                    _ = Tag(key:tagKeys[j], completion: { tag in
+                                        tags.append(tag)
+                                        if !tag.complete {
+                                            self.complete = false
+                                        }
+                                        if j == tagKeys.count - 1 {
+                                            self.tags = tags
+                                            completion(self)
+                                        }
+                                    })
                                 }
                             }
-                        }
-                        else{
-                            self.complete = false
+                            else{
+                                self.complete = false
+                                print("ERROR: Quiz tags not found.")
+                                completion(self)
+                            }
                         }
                     })
                 }
@@ -121,52 +130,9 @@ class Quiz {
             else{
                 self.complete = false
                 print("ERROR: Quiz questions not found.")
+                completion(self)
             }
-            completion(self)
         })
-    }
-    
-    init(quizDict:[String:AnyObject]){
-        self.name = quizDict["name"] as? String
-        self.available = (quizDict["available"] as? Bool)
-        self.visible = quizDict["visible"] as? Bool
-//        var questionsToSet:[Question] = []
-//        quizModel.quizQuestions.forEach { model in
-//            model.getData(withMaxSize: 1 * 1024 * 1024, completion: { (d: Foundation.Data?, e: Error?) in
-//                if let error = e
-//                {
-//                    print("Quiz Question Whoops: \(error)")
-//                }
-//                else
-//                {
-//                    questionsToSet.append(Question(questionModel: model))
-//                }
-//            })
-//        }
-//        self.questions = questionsToSet
-        
-        self.questions = []
-        
-//        var tagsToSet:[Tag] = []
-//        quizModel.tags.forEach { model in
-//            model.getData(withMaxSize: 1 * 1024 * 1024, completion: { (d: Foundation.Data?, e: Error?) in
-//                if let error = e
-//                {
-//                    print("Quiz Tag Whoops: \(error)")
-//                }
-//                else
-//                {
-//                    tagsToSet.append((Tag(tagModel: model)))
-//                }
-//            })
-//        }
-//        self.tags = tagsToSet
-        
-        self.tags = []
-
-        //self.dateCreated = quizModel.dateCreated!
-        
-        self.dateCreated = quizDict["datecreated"] as? String
     }
     
     deinit {
@@ -178,47 +144,5 @@ class Quiz {
         tags = []
         print("------->Deallocating Quiz")
     }
-    
-//    func setQuestions(quizDict:[String:AnyObject]){
-//        var quizQuestionKeys:[String] = []
-//        for quizQuestion in quizDict["questions"] as! [String:AnyObject]{
-//            quizQuestionKeys.append(quizQuestion.key)
-//        }
-//
-//        let questionRef = Database.database().reference(withPath: "question")
-//        questionRef.observeSingleEvent(of: .value, with: { snapshot in
-//            if let children = snapshot.children.allObjects as? [DataSnapshot] {
-//                for child in children {
-//                    if quizQuestionKeys.contains(child.key) {
-//                        self.questions?.append(self.createFullQuestion(questionDict: child.value as! [String:AnyObject]))
-//                    }
-//                }
-//            }
-//        })
-//    }
-    
-//    func setTags(quizDict:[String:AnyObject]){
-//        var quizTagKeys:[String] = []
-//        for quizTag in quizDict["tags"] as! [String:AnyObject]{
-//            quizTagKeys.append(quizTag.key)
-//        }
-//        
-//        let tagRef = Database.database().reference(withPath: "tag")
-//        tagRef.observeSingleEvent(of: .value, with: { snapshot in
-//            if let children = snapshot.children.allObjects as? [DataSnapshot] {
-//                for child in children {
-//                    if quizTagKeys.contains(child.key) {
-//                        self.tags?.append(Tag(tagDict: child.value as! [String:AnyObject]))
-//                    }
-//                }
-//            }
-//        })
-//    }
-    
-//    func createFullQuestion(questionDict:[String:AnyObject]) -> Question{
-//        let question = Question(questionDict: questionDict)
-//        question.setTags(questionDict: questionDict)
-//        return question
-//    }
     
 }

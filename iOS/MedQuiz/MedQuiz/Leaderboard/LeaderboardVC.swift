@@ -12,8 +12,6 @@ import Firebase
 
 class LeaderboardVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-
-    
     var friendsOrGlobal = "friends"
     
     @IBOutlet weak var switchButton: UIView!

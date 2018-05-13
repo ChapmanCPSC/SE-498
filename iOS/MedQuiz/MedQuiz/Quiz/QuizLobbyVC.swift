@@ -83,38 +83,46 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         loadingIndicatorView.transform = CGAffineTransform.init(scaleX: loadingIndicatorViewScale, y: loadingIndicatorViewScale)
         loadingIndicatorView.startAnimating()
         loadingIndicatorView.color = loadingIndicatorViewColor
+        
+        start()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(false)
         print("quiz lobby appeared")
-        
-        if gameKey == nil || quizKey == nil || quizMode == nil {
+    }
+
+    func start(){
+        if quizKey == nil || quizMode == nil {
             errorOccurred(title: "Game/Quiz Info Missing", message: "Information for the current game/quiz was not properly transfered to the lobby.", completion: nil)
         }
         else{
             switch quizMode! {
             case .Standard:
-                waitingString = "Waiting for other players..."
-                lobbyPlayersCollectionView.isHidden = false
-                
-                lobbyPlayersCollectionView.delegate = self
-                lobbyPlayersCollectionView.dataSource = self
-                lobbyPlayersCollectionView.showsVerticalScrollIndicator = false
+                if gameKey == nil {
+                    errorOccurred(title: "Game Info Missing", message: "Information for the current  game was not properly transfered to the lobby.", completion: nil)
+                }
+                else{
+                    waitingString = "Waiting for other players..."
+                    lobbyPlayersCollectionView.isHidden = false
+
+                    lobbyPlayersCollectionView.delegate = self
+                    lobbyPlayersCollectionView.dataSource = self
+                    lobbyPlayersCollectionView.showsVerticalScrollIndicator = false
+                }
+
                 break
             case .HeadToHead:
-                if isInvitee == nil || headToHeadOpponent == nil {
-                    errorOccurred(title: "Head to Head Info Missing", message: "Information for the current Head to Head game was not properly transfered to the lobby.", completion: {
-                        self.deleteDBHeadToHeadData()
-                    })
+                if gameKey == nil || isInvitee == nil || headToHeadOpponent == nil {
+                    errorOccurred(title: "Head to Head Info Missing", message: "Information for the current Head to Head game was not properly transfered to the lobby.", completion: nil)
                 }
                 else{
                     if isInvitee{
                         headToHeadRequestRef.dismiss(animated: false, completion: nil)
                     }
-                    
+
                     waitingString = "Waiting for " + headToHeadOpponent.userName!
-                    
+
                     headToHeadUserAvatarImageView.isHidden = false
                     headToHeadUserUserNameLabel.isHidden = false
                     headToHeadUserScoreLabel.isHidden = false
@@ -122,7 +130,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                     headToHeadOpponentUserNameLabel.isHidden = false
                     headToHeadOpponentScoreLabel.isHidden = false
                     andLabel.isHidden = false
-                    
+
                     headToHeadUserAvatarImageView.image = globalProfileImage
                     headToHeadUserUserNameLabel.text = globalUsername
                     headToHeadUserScoreLabel.text = String(describing: globalHighscore)
@@ -135,13 +143,57 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 waitingString = "Ready to start..."
                 break
             }
-            
-            if !lobbyDone {
-                download()
-            }
-        }
-    }
 
+            download()
+
+        }
+        
+        
+        
+        
+//                switch quizMode! {
+//                case .Standard:
+//                    waitingString = "Waiting for other players..."
+//
+//                    lobbyPlayersCollectionView.isHidden = false
+//                    lobbyPlayersCollectionView.delegate = self
+//                    lobbyPlayersCollectionView.dataSource = self
+//                    lobbyPlayersCollectionView.showsVerticalScrollIndicator = false
+//                    break
+//                case .HeadToHead:
+//                    if isInvitee{
+//                        headToHeadRequestRef.dismiss(animated: false, completion: nil)
+//                    }
+//
+//                    waitingString = "Waiting for " + headToHeadOpponent.userName!
+//
+//                    headToHeadUserAvatarImageView.isHidden = false
+//                    headToHeadUserUserNameLabel.isHidden = false
+//                    headToHeadUserScoreLabel.isHidden = false
+//                    headToHeadOpponentAvatarImageView.isHidden = false
+//                    headToHeadOpponentUserNameLabel.isHidden = false
+//                    headToHeadOpponentScoreLabel.isHidden = false
+//                    andLabel.isHidden = false
+//
+//                    headToHeadUserAvatarImageView.image = globalProfileImage
+//                    headToHeadUserUserNameLabel.text = globalUsername
+//                    headToHeadUserScoreLabel.text = String(describing: globalHighscore)
+//                    headToHeadOpponentAvatarImageView.image = headToHeadOpponent.profilePic!
+//                    headToHeadOpponentUserNameLabel.text = headToHeadOpponent.userName!
+//                    headToHeadOpponentScoreLabel.text = String(describing: headToHeadOpponent.totalPoints!)
+//                    break
+//                case .Solo:
+//                    waitingString = "Ready to start..."
+//                    break
+//                }
+//
+//        //        if !lobbyDone {
+//        //            download()
+//        //        }
+//
+//                download()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -203,6 +255,19 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             else{
                 self.errorOccurred(title: "Game Download Error", message: "Game data corrupted.", completion: nil)
             }
+            
+//            if let hasStarted = snapshot.value as? Bool, hasStarted {
+//                if self.quizDownloaded {
+//                    self.startQuiz()
+//                }
+//                else{
+//                    self.removeListeners()
+//                    self.errorOccurred(title: "Quiz Already Started", message: "The quiz has already started. Download incomplete", completion: nil)
+//                }
+//            }
+//            else{
+//                completion?()
+//            }
         })
     }
     
@@ -334,6 +399,44 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                     }
                 })
             }
+
+            
+            
+//            self.quiz = quiz
+//            if self.quizMode == .HeadToHead {
+//                self.checkHeadToHeadGameStatus()
+//                let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(self.gameKey!)
+//                let inGameLeaderboardsRef = Database.database().reference(withPath: "inGameLeaderboards")
+//                inGameLeaderboardsRef.observeSingleEvent(of: .value, with: { (snapshot:DataSnapshot) in
+//                    for child in snapshot.children.allObjects as! [DataSnapshot] {
+//                        if (child.childSnapshot(forPath: "game").value as! String) == self.gameKey! {
+//                            self.leaderboardKey = child.key
+//                            inGameLeaderboardsRef.child(child.key).child("students").observeSingleEvent(of: .value, with: { snapshot in
+//                                for child in snapshot.children.allObjects as! [DataSnapshot] {
+//                                    if (child.childSnapshot(forPath: "studentKey").value as! String) == currentUserID {
+//                                        self.userInLeaderboardKey = child.key
+//                                        self.loadingQuizComplete()
+//                                        if !self.lobbyDone && !self.headToHeadReady {
+//                                            if self.isInvitee {
+//                                                headToHeadGameRef.child("invitee").child("ready").setValue(true)
+//                                            }
+//                                            else{
+//                                                headToHeadGameRef.child("inviter").child("ready").setValue(true)
+//                                            }
+//                                            self.headToHeadReady = true
+//                                        }
+//                                        break
+//                                    }
+//                                }
+//                            })
+//                            break
+//                        }
+//                    }
+//                })
+//            }
+//            else if self.quizMode == .Solo {
+//                self.loadingQuizComplete()
+//            }
         }
     }
     
@@ -492,8 +595,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     }
     
     func errorOccurred(title:String, message:String, completion:(() -> Void)?){
-        lobbyDone = true
-        removeListeners()
+        prepLobbyExit()
         let alert = UIAlertController(title:title, message:message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default) { UIAlertAction in
             let userHeadToHeadRequestReference = Database.database().reference().child("student").child(currentUserID)
@@ -560,6 +662,9 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             Database.database().reference().child("game").child(gameKey!).child("students").child(currentUserID).removeValue()
             Database.database().reference().child("inGameLeaderboards").child(leaderboardKey!).child("students").child(userInLeaderboardKey!).removeValue()
         }
+        
+//        Database.database().reference().child("game").child(gameKey!).child("students").child(currentUserID).removeValue()
+//        Database.database().reference().child("inGameLeaderboards").child(leaderboardKey!).child("students").child(userInLeaderboardKey!).removeValue()
     }
     
     func deleteDBHeadToHeadGame(){
@@ -575,6 +680,9 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             let opponentHeadToHeadRequestRef = Database.database().reference().child("student/\((String(describing: headToHeadOpponent.databaseID!)))/headtoheadgamerequest")
             opponentHeadToHeadRequestRef.removeValue()
         }
+        
+//        let opponentHeadToHeadRequestRef = Database.database().reference().child("student/\((String(describing: headToHeadOpponent.databaseID!)))/headtoheadgamerequest")
+//        opponentHeadToHeadRequestRef.removeValue()
         
         let userHeadToHeadRequestRef = Database.database().reference().child("student/\((String(describing: currentUserID)))/headtoheadgamerequest")
         userHeadToHeadRequestRef.removeValue()

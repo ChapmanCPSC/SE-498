@@ -109,11 +109,16 @@ class QuizActivityVC: UIViewController {
         hideSidebar()
 
         //hideAnswersForTime()
+
+        start()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(false)
         
+    }
+    
+    func start(){
         if currQuiz == nil || quizMode == nil || quizLobbyRef == nil {
             if quizMode != nil {
                 switch quizMode! {
@@ -127,10 +132,10 @@ class QuizActivityVC: UIViewController {
                     break
                 }
             }
-            
+
             errorOccurred(title: "Game/Quiz Information Missing", message: "Information for the current game/quiz was not properly transfered to the lobby.", completion: nil)
         }
-        
+
         switch quizMode! {
         case .Standard:
             if gameKey == nil || inGameLeaderboardKey == nil || userInGameLeaderboardObjectKey == nil || allUsers == nil {
@@ -167,12 +172,46 @@ class QuizActivityVC: UIViewController {
             backCancelButton.isHidden = false
             break
         }
-        
+
         print("Multiplier of image is: \(con_questionImageHeight.multiplier)")
-        
+
         registerFirebaseListeners()
-        
+
         nextQuestion()
+
+        
+        
+        
+//        switch quizMode! {
+//        case .Standard:
+//            getLeaderboardInfo()
+//            backCancelButton.isHidden = true
+//
+//            break
+//        case .HeadToHead:
+//            getLeaderboardInfo()
+//            backCancelButton.isHidden = false
+//
+//            break
+//        case .Solo:
+//            allUsers = [currentGlobalStudent]
+//            allScores = [0]
+//            uv_first.updateView(student: allUsers[0], position: 0, score: allScores[0])
+//            uv_first.lab_position.isHidden = true
+//            userViews = [uv_first]
+//            uv_fifth.removeFromSuperview()
+//            uv_fourth.removeFromSuperview()
+//            uv_third.removeFromSuperview()
+//            uv_second.removeFromSuperview()
+//            backCancelButton.isHidden = false
+//            break
+//        }
+//
+//        print("Multiplier of image is: \(con_questionImageHeight.multiplier)")
+//
+//        registerFirebaseListeners()
+//
+//        nextQuestion()
     }
     
     func hideAnswersForTime(){
@@ -291,7 +330,7 @@ class QuizActivityVC: UIViewController {
                 
                 self.allUsers = newAllUsers
                 self.updateLeaderboard()
-                self.updateUserInLeaderboard()
+                //self.updateUserInLeaderboard()
             }
         })
     }
@@ -327,11 +366,6 @@ class QuizActivityVC: UIViewController {
     }
     
     func setUserColors(){
-//        var count = 0
-//        userViews.forEach { (view) in
-//            view.setBackgroundColor(color: userColors[count])
-//            count += 1
-//        }
         uv_first.setBackgroundColor(color: userColors[0])
         uv_second.setBackgroundColor(color: userColors[1])
         uv_third.setBackgroundColor(color: userColors[2])
@@ -340,16 +374,18 @@ class QuizActivityVC: UIViewController {
     }
 
     func nextQuestion(){
-        canSelect = false
-        print("Calling nextQuestion")
-        currQuestionIdx += 1
-        if(currQuestionIdx >= (currQuiz.questions?.count)!){
-            finishQuiz()
-            return
+        if !quizEnded {
+            canSelect = false
+            print("Calling nextQuestion")
+            currQuestionIdx += 1
+            if(currQuestionIdx >= (currQuiz.questions?.count)!){
+                finishQuiz()
+                return
+            }
+            currQuestion = currQuiz.questions![currQuestionIdx]
+            hideAnswersForTime()
+            reloadView()
         }
-        currQuestion = currQuiz.questions![currQuestionIdx]
-        hideAnswersForTime()
-        reloadView()
     }
 
     func reloadView(){
@@ -464,7 +500,12 @@ class QuizActivityVC: UIViewController {
             userViews.forEach { view in
                 view.updateView(student: userSubset[count], position: count + 1, score: allScores[count])
                 if startingPosition + count == currPos {
-                    view.convertToCurrUser()
+                    if userViews.count > 1 {
+                        view.convertToCurrUser()
+                    }
+                    else{
+                        view.convertToOtherUser()
+                    }
                 }
                 else if startingPosition + count == prevPos {
                     view.convertToOtherUser()
@@ -475,19 +516,6 @@ class QuizActivityVC: UIViewController {
         }
         prevPos = currPos
     }
-    
-    func updateUserInLeaderboard(){
-        
-        //TODO: Uncomment and see why it causes crash
-//        userViews.forEach { view in
-//            if(view.currStudent.userName == globalUsername){
-//                view.convertToCurrUser()
-//            }
-//            else{
-//                view.convertToOtherUser()
-//            }
-//         }
-    }
 
     func moveUpPosition(){
         if (currPos > 1){
@@ -495,7 +523,7 @@ class QuizActivityVC: UIViewController {
             currPos! -= 1
             allUsers.insert(appUser, at: currPos-1)
             updateLeaderboard()
-            updateUserInLeaderboard()
+            //updateUserInLeaderboard()
         }
     }
 
@@ -505,7 +533,7 @@ class QuizActivityVC: UIViewController {
             currPos! += 1
             allUsers.insert(appUser, at: currPos-1)
             updateLeaderboard()
-            updateUserInLeaderboard()
+            //updateUserInLeaderboard()
         }
     }
 
@@ -524,20 +552,14 @@ class QuizActivityVC: UIViewController {
     func winByConcession(){
         print("Won by concession")
         quizEnded = true
+        removeListeners()
+        
         let userHeadToHeadRequestReference = Database.database().reference().child("student").child(currentUserID)
         userHeadToHeadRequestReference.child("headtoheadgamerequest").removeValue()
-        removeListeners()
-        updatePersonalScore()
-        let quizSummaryVC = self.storyboard?.instantiateViewController(withIdentifier: "quizSummary") as! QuizSummaryViewController
+        
         let alert = UIAlertController(title:"Game Conceded", message:"Head to Head game with conceded by your opponent.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default) { UIAlertAction in
-
-            self.dismiss(animated: false, completion: {
-                self.quizLobbyRef.dismiss(animated: false, completion: {
-                    self.getTopController().present(quizSummaryVC, animated: false, completion: nil)
-                })
-            })
-
+            self.segueToSummary()
         })
         self.present(alert, animated: true, completion: nil)
     }
@@ -550,7 +572,7 @@ class QuizActivityVC: UIViewController {
         removeListeners()
         
         //delete head to head game data as second person out
-        if quizMode == .HeadToHead {
+        if quizMode == .HeadToHead && !quizEnded{
             if isInvitee {
                 let headToHeadReadyRef = Database.database().reference(withPath: "head-to-head-game/\(gameKey!)/invitee/ready")
                 headToHeadReadyRef.setValue(false)
@@ -575,6 +597,13 @@ class QuizActivityVC: UIViewController {
             }
         }
         
+        let userHeadToHeadRequestReference = Database.database().reference().child("student").child(currentUserID)
+        userHeadToHeadRequestReference.child("headtoheadgamerequest").removeValue()
+        
+        segueToSummary()
+    }
+    
+    func segueToSummary(){
         let quizSummaryVC = self.storyboard?.instantiateViewController(withIdentifier: "quizSummary") as! QuizSummaryViewController
         
         self.dismiss(animated: false, completion: {
@@ -594,7 +623,7 @@ class QuizActivityVC: UIViewController {
                     quizSummaryVC.setQuestionsRightLabel(questionsRight: self.questionsRight)
                     quizSummaryVC.setQuestionsWrongLabel(questionsWrong: self.questionsWrong)
                     quizSummaryVC.setTotalPointsLabel(totalPoints: currentGlobalStudent.totalPoints! + self.pointsEarned)
-
+                    
                     self.updatePersonalScore()
                     
                     if self.quizMode == .Standard {
@@ -603,7 +632,7 @@ class QuizActivityVC: UIViewController {
                 })
             })
         })
-
+        
         print("->>>>>>>>>>>>>>>>>>>>>>>>>>")
     }
     
@@ -681,17 +710,6 @@ class QuizActivityVC: UIViewController {
         moveDownPosition()
     }
     
-    @IBAction func tempSwitchCurrUser(_ sender: Any) {
-//        if(isCurrUser){
-//            uv_third.convertToOtherUser()
-//        }
-//        else{
-//            uv_third.convertToCurrUser()
-//        }
-//        isCurrUser = !isCurrUser
-        
-    }
-    
     func tempSetupQuiz(){
         answer1.answer.isAnswer = true
         answer1.answer.answerText = "This is a correct answer"
@@ -727,6 +745,7 @@ class QuizActivityVC: UIViewController {
     }
     
     func exitQuiz(completion:(() -> Void)?){
+        self.quizEnded = true
         removeListeners()
 
         let userHeadToHeadRequestReference = Database.database().reference().child("student").child(currentUserID)
@@ -741,20 +760,33 @@ class QuizActivityVC: UIViewController {
     
     @IBAction func backButtonPressed(_ sender: Any) {
         let alert = UIAlertController(title: "Are you sure you want to exit the quiz?", message: "All your progress will be lost.", preferredStyle: .alert)
-        
+
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler:{ action in
-            switch self.quizMode! {
-            case .Standard:
-                self.standardConcede()
-                break
-            case .HeadToHead:
-                self.headToHeadConcede()
-                break
-            case .Solo:
-                break
-            }
+            self.quizEnded = true
             
-            self.exitQuiz(completion: nil)
+//            switch self.quizMode! {
+//                case .Standard:
+//                    self.standardConcede()
+//                    break
+//                case .HeadToHead:
+//                    self.headToHeadConcede()
+//                    break
+//                case .Solo:
+//                    break
+//            }
+            
+            self.exitQuiz(completion: {
+                switch self.quizMode! {
+                    case .Standard:
+                        self.standardConcede()
+                        break
+                    case .HeadToHead:
+                        self.headToHeadConcede()
+                        break
+                    case .Solo:
+                        break
+                }
+            })
         }))
         
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler:{ action in
@@ -788,6 +820,7 @@ class QuizActivityVC: UIViewController {
     
     func errorOccurred(title:String, message:String, completion:(() -> Void)?){
         print("error occurred")
+        quizEnded = true
         let alert = UIAlertController(title:title, message:message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default) { UIAlertAction in
             self.exitQuiz(completion: {
@@ -802,26 +835,45 @@ class QuizActivityVC: UIViewController {
             dataRef.child("game").child(gameKey!).child("students").child(currentUserID).removeValue()
             dataRef.child("inGameLeaderboards").child(inGameLeaderboardKey!).child("students").child(userInGameLeaderboardObjectKey!).removeValue()
         }
+        
+//        dataRef.child("game").child(gameKey!).child("students").child(currentUserID).removeValue()
+//        dataRef.child("inGameLeaderboards").child(inGameLeaderboardKey!).child("students").child(userInGameLeaderboardObjectKey!).removeValue()
     }
     
     func deleteDBHeadToHeadData(){
         if headToHeadOpponent != nil {
             let opponentHeadToHeadRequestRef = Database.database().reference().child("student/\(String(describing: headToHeadOpponent.databaseID!))/headtoheadgamerequest")
             opponentHeadToHeadRequestRef.removeValue()
+            print("Opponent's headtoheadrequest removed")
         }
+        
+//        let opponentHeadToHeadRequestRef = Database.database().reference().child("student/\(String(describing: headToHeadOpponent.databaseID!))/headtoheadgamerequest")
+//        opponentHeadToHeadRequestRef.removeValue()
+//        print("Opponent's headtoheadrequest removed")
         
         let userHeadToHeadRequestRef = Database.database().reference().child("student/\(String(describing: currentUserID))/headtoheadgamerequest")
         userHeadToHeadRequestRef.removeValue()
+        print("User's headtoheadrequest removed")
         
         if gameKey != nil {
             let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(gameKey!)
             headToHeadGameRef.removeValue()
+            print("Head to Head game removed removed")
         }
+        
+//        let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(gameKey!)
+//        headToHeadGameRef.removeValue()
+//        print("Head to Head game removed removed")
         
         if inGameLeaderboardKey != nil {
             let headToHeadGameLeaderboardRef = Database.database().reference().child("inGameLeaderboards/\(inGameLeaderboardKey!)")
             headToHeadGameLeaderboardRef.removeValue()
+            print("Head to Head leaderboard removed")
         }
+        
+//        let headToHeadGameLeaderboardRef = Database.database().reference().child("inGameLeaderboards/\(inGameLeaderboardKey!)")
+//        headToHeadGameLeaderboardRef.removeValue()
+//        print("Head to Head leaderboard removed")
     }
 }
 

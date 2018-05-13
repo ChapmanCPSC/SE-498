@@ -79,10 +79,10 @@ class HeadToHeadVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                 
                 let inGameLeaderboardReference = Database.database().reference().child("inGameLeaderboards").childByAutoId()
                 inGameLeaderboardReference.child("game").setValue(headToHeadGameReference.key)
-                let inviterLeaderboardRef = inGameLeaderboardReference.child("students").childByAutoId()
+                let inviterLeaderboardRef = inGameLeaderboardReference.child("students").child(currentUserID)
                 inviterLeaderboardRef.child("studentKey").setValue(currentUserID)
                 inviterLeaderboardRef.child("studentScore").setValue(0)
-                let inviteeLeaderboardRef = inGameLeaderboardReference.child("students").childByAutoId()
+                let inviteeLeaderboardRef = inGameLeaderboardReference.child("students").child(selectedFriend.databaseID!)
                 inviteeLeaderboardRef.child("studentKey").setValue(selectedFriend.databaseID)
                 inviteeLeaderboardRef.child("studentScore").setValue(0)
                 

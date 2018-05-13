@@ -30,6 +30,8 @@ class Tag {
                 print("ERROR: Tag color not found.")
             }
             
+//            self.color = aTagModel.tagColor
+            
             if let name = aTagModel.tagName {
                 self.name = name
             }
@@ -38,6 +40,8 @@ class Tag {
                 self.complete = false
                 print("ERROR: Tag name not found.")
             }
+            
+//            self.name = aTagModel.tagName
 
             completion(self)
         })

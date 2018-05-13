@@ -32,6 +32,8 @@ class Student: Equatable {
                 print("ERROR: Student userName not found.")
             }
             
+//            self.userName = aStudentModel.studentUsername
+            
             //self.friends = Student.convertFriends(students: aStudentModel.friends)//get friends from student and also implemement a FriendsModel file
             
             self.friends = []
@@ -54,6 +56,8 @@ class Student: Equatable {
                 print("ERROR: Student hasChangedUsername not found.")
             }
             
+//            self.hasChangedUsername = aStudentModel.hasChangedUsername
+            
             self.databaseID = key
             print(self.databaseID!)
             
@@ -67,6 +71,8 @@ class Student: Equatable {
                 print("ERROR: Student totalPoints not found.")
             }
             
+//            self.totalPoints = aStudentModel.score
+            
             self.friendRequests = []
             aStudentModel.friendRequests.forEach { studentModel in
                 self.friendRequests!.append(Student(studentModel: studentModel, addFriends: false))
@@ -76,7 +82,7 @@ class Student: Equatable {
 
             aStudentModel.getProfilePic(completion: { (theProfilePic) in
                 if let profilePic = theProfilePic {
-                    self.profilePic = profilePic
+                    self.profilePic = theProfilePic
                     print(self.profilePic!)
                 }
                 else{
@@ -105,6 +111,8 @@ class Student: Equatable {
                 print("ERROR: Student userName not found.")
             }
             
+//            self.userName = aStudentModel.studentUsername
+            
             //self.friends = Student.convertFriends(students: aStudentModel.friends)//get friends from student and also implemement a FriendsModel file
             
             self.friends = []
@@ -113,7 +121,6 @@ class Student: Equatable {
             }
             print("Friends\(self.friends!)")
 
-            
             if let hasChangedUsername = aStudentModel.hasChangedUsername {
                 self.hasChangedUsername = hasChangedUsername
                 print(self.hasChangedUsername!)
@@ -123,6 +130,8 @@ class Student: Equatable {
                 self.complete = false
                 print("ERROR: Student hasChangedUsername not found.")
             }
+            
+//            self.hasChangedUsername = aStudentModel.hasChangedUsername
             
             self.databaseID = aStudentModel.key
             print(self.databaseID!)
@@ -137,6 +146,8 @@ class Student: Equatable {
                 print("ERROR: Student totalPoints not found.")
             }
             
+//            self.totalPoints = aStudentModel.score
+            
             self.friendRequests = []
             aStudentModel.friendRequests.forEach { studentModel in
                 self.friendRequests!.append(Student(studentModel: studentModel, addFriends: false))
@@ -146,7 +157,7 @@ class Student: Equatable {
             
             aStudentModel.getProfilePic(completion: { (theProfilePic) in
                 if let profilePic = theProfilePic {
-                    self.profilePic = profilePic
+                    self.profilePic = theProfilePic
                     print(self.profilePic!)
                 }
                 else{
@@ -183,21 +194,6 @@ class Student: Equatable {
          })
     }
 
-//    init(studentDict:[String:AnyObject], addFriends:Bool=true){
-//        self.userName = studentDict["username"] as? String
-//        //self.totalPoints = studentModel.totalPoints!
-//        self.totalPoints = 10000
-//        self.profilePic = UIImage()
-//        self.hasChangedUsername = true
-//        if(addFriends){
-//            //self.friends = Student.convertFriends(students: studentModel.friends!)
-//            self.friends = []
-//        }
-//        else{
-//            self.friends = []
-//        }
-//    }
-
     init(studentModel:StudentModel, addFriends:Bool){
         self.complete = true
         
@@ -211,6 +207,8 @@ class Student: Equatable {
             print("ERROR: Student userName not found.")
         }
         
+//        self.userName = studentModel.studentUsername
+        
         self.friends = []
         
         if let totalPoints = studentModel.score {
@@ -222,12 +220,14 @@ class Student: Equatable {
             self.complete = false
             print("ERROR: Student totalPoints not found.")
         }
+        
+//        self.totalPoints = studentModel.score
 
         self.databaseID = studentModel.key
         
         studentModel.getProfilePic(completion: { (theProfilePic) in
             if let profilePic = theProfilePic {
-                self.profilePic = profilePic
+                self.profilePic = theProfilePic
                 print(self.profilePic!)
             }
             else{

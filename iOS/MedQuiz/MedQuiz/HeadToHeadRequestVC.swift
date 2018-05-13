@@ -95,7 +95,10 @@ class HeadToHeadRequestVC: UIViewController {
         quizLobbyVC.headToHeadAccepted = true
         quizLobbyVC.headToHeadRequestRef = self
         removeListeners()
+        globalBusy = true
+        print("Presenting lobby from head to head request.")
         self.present(quizLobbyVC, animated: false, completion: nil)
+        print("Lobby presented from head to head request.")
     }
     
     func setup(){
