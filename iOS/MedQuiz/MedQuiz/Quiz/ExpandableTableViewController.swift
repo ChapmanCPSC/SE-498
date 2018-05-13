@@ -8,6 +8,11 @@
 
 import UIKit
 
+/*
+ExpandableTableViewController displays categories of quizzes that can be played in practice mode. Category nodes contain Subject nodes which contain
+ QuizData nodes.
+ */
+
 class ExpandableTableViewController: UITableViewController {
 
     var cellDataNodes:[CellDataNode]!
@@ -16,6 +21,10 @@ class ExpandableTableViewController: UITableViewController {
     // TODO figure out a way to make an array of cell types so that user doesn't have to add if statements to cast
     // var cellTypes:[CellType.Type] = [CategoryTableViewCell.self]
 
+    /*
+     Get quiz data from database (currently hardcoded examples).
+     */
+    
     func getCellData() {
         cellDataNodes = []
         currentlyShown = []
@@ -54,6 +63,10 @@ class ExpandableTableViewController: UITableViewController {
         currentlyShown.append(contentsOf: cellDataNodes)
     }
 
+    /*
+     Get quiz data and setup table components.
+     */
+    
     override func viewDidLoad() {
         getCellData()
         super.viewDidLoad()
@@ -80,10 +93,18 @@ class ExpandableTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
+    /*
+     Return number of table sections (1).
+     */
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
+    /*
+     Return number of rows in current section.
+     */
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         /*var count = 0
 
@@ -100,6 +121,10 @@ class ExpandableTableViewController: UITableViewController {
         return count
     }
 
+    /*
+     Set and return table view cell at indexPath.
+     */
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
         // TODO figure out how this can be used to dequeue a cell?
@@ -139,6 +164,10 @@ class ExpandableTableViewController: UITableViewController {
 
         assert(false, "Should not reach this point")
     }
+    
+    /*
+     Expand or close selected Category and Subject nodes.
+     */
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
@@ -180,6 +209,10 @@ class ExpandableTableViewController: UITableViewController {
         }
     }
 
+    /*
+     Return height for row for indexPath.
+     */
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 
         var height = CGFloat(0)
@@ -195,6 +228,10 @@ class ExpandableTableViewController: UITableViewController {
         }
         return height
     }
+    
+    /*
+     Close any open Category and Subject nodes.
+     */
 
     func closeNodes(nodes:[CellDataNode], startPos:Int){
         closingChildrenCount += nodes.count
@@ -211,6 +248,10 @@ class ExpandableTableViewController: UITableViewController {
         }
     }
 }
+
+/*
+ Extension for transitioning to QuizSelectModeVC after selecting a QuizData node.
+ */
 
 extension ExpandableTableViewController:PerformsSegueDelegator {
     func callSegue() {

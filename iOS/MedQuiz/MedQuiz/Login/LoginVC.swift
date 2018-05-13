@@ -93,10 +93,10 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        UIFont.familyNames.forEach({ familyName in
-            let fontNames = UIFont.fontNames(forFamilyName: familyName)
-            print(familyName, fontNames)
-        })
+//        UIFont.familyNames.forEach({ familyName in
+//            let fontNames = UIFont.fontNames(forFamilyName: familyName)
+//            print(familyName, fontNames)
+//        })
         
         usernameTextField.text = "darwi103"
         passwordTextField.text = "123456"
@@ -189,50 +189,55 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         if(!usernameTextField.text!.isEmpty && !passwordTextField.text!.isEmpty){
             Auth.auth().signIn(withEmail: usernameTextField.text! + "@mail.chapman.edu", password: passwordTextField.text!) { (signedInUser, error) in
                 
-                print("signedInUser: \(String(describing: signedInUser))")
-                
                 //logged in
                 if(signedInUser != nil){
-                    self.loggedIn = true
-                    currentUserID = (signedInUser?.uid)!
-                    print("signed in and uid = " + currentUserID)
-                    
-                    currentGlobalStudent = Student(key: currentUserID, addFriends: true, completion: { (aCurrentStudent) in
-                        
-                    print("done getting student")
-                    globalUsername = aCurrentStudent.userName!
-                    print(globalUsername)
-                    globalHighscore = aCurrentStudent.totalPoints!
-                    print(globalHighscore)
-                    globalProfileImage = aCurrentStudent.profilePic!
-                    print(globalProfileImage)
-                    self.checkConnection()
-                    
-                    let userHeadToHeadRequestReference = Database.database().reference().child("student").child(currentUserID)
-                    userHeadToHeadRequestReference.child("headtoheadgamerequest").removeValue()
-                    
-                    print("done")
-                    Firebase.Database.database().reference().child("student").child(signedInUser!.uid).child("friends").observeSingleEvent(of: .value, with: { (snap: DataSnapshot) in
+                    _ = Student(key: (signedInUser?.uid)!, addFriends: true, completion: { (aCurrentStudent) in
+                        if aCurrentStudent.complete {
+                            self.loggedIn = true
+                            currentGlobalStudent = aCurrentStudent
+                            currentUserID = (signedInUser?.uid)!
+                            print("signedInUser: \(String(describing: signedInUser))")
+                            print("signed in and uid = " + currentUserID)
                             
-                            for s in snap.children {
-                                let friend = FriendModel(snapshot: s as! DataSnapshot)
-                                Firebase.Database.database().reference().child("student").child(friend.key).observeSingleEvent(of: .value, with: { (friendSnap: DataSnapshot) in
-                                    print(friendSnap)
+                            print("done getting student")
+                            globalUsername = aCurrentStudent.userName!
+                            print(globalUsername)
+                            globalHighscore = aCurrentStudent.totalPoints!
+                            print(globalHighscore)
+                            globalProfileImage = aCurrentStudent.profilePic!
+                            print(globalProfileImage)
+                            self.checkConnection()
                             
-                                })
-                            }
-                        })
-                        
-                        
-                        self.present((self.MainStoryBoard?.instantiateInitialViewController())!, animated: false, completion: nil)
-                        UIViewController.removeSpinner(spinner: sv)
-                        self.checkHeadToHeadRequest()
+                            let userHeadToHeadRequestReference = Database.database().reference().child("student").child(currentUserID)
+                            userHeadToHeadRequestReference.child("headtoheadgamerequest").removeValue()
+                            
+                            print("done")
+                            //                        Firebase.Database.database().reference().child("student").child(signedInUser!.uid).child("friends").observeSingleEvent(of: .value, with: { (snap: DataSnapshot) in
+                            //                            for s in snap.children {
+                            //                                let friend = FriendModel(snapshot: s as! DataSnapshot)
+                            //                                Firebase.Database.database().reference().child("student").child(friend.key).observeSingleEvent(of: .value, with: { (friendSnap: DataSnapshot) in
+                            //                                    print(friendSnap)
+                            //
+                            //                                })
+                            //                            }
+                            //                        })
+                            
+                            
+                            self.present((self.MainStoryBoard?.instantiateInitialViewController())!, animated: false, completion: nil)
+                            UIViewController.removeSpinner(spinner: sv)
+                            self.checkHeadToHeadRequest()
+                        }
+                        else{
+                            print("ERROR: User data not found/corrupted.")
+                            UIViewController.removeSpinner(spinner: sv)
+                            let alert = UIAlertController(title:"User Info Download Error", message:"User data in database not found or corrupted.", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default) { UIAlertAction in
+                            })
+                            self.present(alert, animated: true, completion: nil)
+                        }
                     })
-                    
-                    
                 }
                 
-                    
                 //not logged in
                 else{
                     print(error!)
@@ -240,7 +245,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                     self.loginErrorLabel.text = "Incorrect username/password"
                     self.loginErrorLabel.isHidden = false
                 }
-                
             }
         }
         
@@ -351,19 +355,27 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                             let headToHeadRequestVC:HeadToHeadRequestVC = sb.instantiateViewController(withIdentifier: "headToHeadRequestVC") as! HeadToHeadRequestVC
                             headToHeadRequestVC.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
                             _ = Student(key: inviterKey, addFriends: false) { inviter in
-                                headToHeadRequestVC.opponent = inviter
-                                headToHeadRequestVC.headToHeadGameKey = headToHeadGameRef.key
-                                let quizKey:String = snapshot.childSnapshot(forPath: "quiz").value! as! String
-                                QuizModel.From(key: quizKey){ quiz in
-                                    let quizNameRef = Database.database().reference(withPath: "quiz-name/\(quizKey)")
-                                    quizNameRef.observeSingleEvent(of: .value, with: { snapshot in
-                                        headToHeadRequestVC.headToHeadQuizTitle = snapshot.childSnapshot(forPath: "name").value as! String
-                                        print(snapshot.childSnapshot(forPath: "name").value as! String)
-                                        headToHeadRequestVC.headToHeadQuizKey = quizKey
-                                        self.getTopController().present(headToHeadRequestVC, animated: true) {
-                                            print("Request presented")
-                                        }
+                                if inviter.complete {
+                                    headToHeadRequestVC.opponent = inviter
+                                    headToHeadRequestVC.headToHeadGameKey = headToHeadGameRef.key
+                                    let quizKey:String = snapshot.childSnapshot(forPath: "quiz").value! as! String
+                                    QuizModel.From(key: quizKey){ quiz in
+                                        let quizNameRef = Database.database().reference(withPath: "quiz-name/\(quizKey)")
+                                        quizNameRef.observeSingleEvent(of: .value, with: { snapshot in
+                                            headToHeadRequestVC.headToHeadQuizTitle = snapshot.childSnapshot(forPath: "name").value as! String
+                                            print(snapshot.childSnapshot(forPath: "name").value as! String)
+                                            headToHeadRequestVC.headToHeadQuizKey = quizKey
+                                            self.getTopController().present(headToHeadRequestVC, animated: true) {
+                                                print("Request presented")
+                                            }
+                                        })
+                                    }
+                                }
+                                else{
+                                    let alert = UIAlertController(title:"Head to Head Request Attempted", message:"Inviter data not found or is corrupted.", preferredStyle: .alert)
+                                    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default) { UIAlertAction in
                                     })
+                                    self.getTopController().present(alert, animated: true, completion: nil)
                                 }
                             }
                         }

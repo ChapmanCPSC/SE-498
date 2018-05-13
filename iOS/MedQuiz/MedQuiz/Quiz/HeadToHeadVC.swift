@@ -9,6 +9,10 @@
 import UIKit
 import Firebase
 
+/*
+ HeadToHeadVC allows the user to select a friend for a head to head game invitation.
+ */
+
 class HeadToHeadVC: UIViewController, UITableViewDelegate, UITableViewDataSource, HeadToHeadFriendRequestViewCellDelegate {
 
     @IBOutlet weak var friendsTableView: UITableView!
@@ -17,6 +21,10 @@ class HeadToHeadVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     var quizKey:String!
     var friends:[Student]!
 
+    /*
+     Retrieve user friends and set values for table view.
+     */
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -44,13 +52,25 @@ class HeadToHeadVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         // Dispose of any resources that can be recreated.
     }
     
+    /*
+     Return number of sections in table (1).
+     */
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
+    /*
+     Return number of rows in section of table view.
+     */
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return friends.count
     }
+    
+    /*
+     Set and return table view cell at indexPath.
+     */
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : HeadToHeadFriendRequestTableViewCell = friendsTableView.dequeueReusableCell(withIdentifier: "friendRequest_cell") as! HeadToHeadFriendRequestTableViewCell
@@ -59,6 +79,10 @@ class HeadToHeadVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         cell.setViews()
         return cell
     }
+    
+    /*
+     Check if selected friend if online and not busy. Create database objects for head to head game and transition to lobby.
+     */
     
     func requestMade(selectedFriend: Student) {
         StudentModel.From(key: selectedFriend.databaseID!) {friend in
@@ -110,6 +134,9 @@ class HeadToHeadVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         }
     }
     
+    /*
+     Dismiss view.
+     */
     
     @IBAction func backButtonPressed(_ sender: Any) {
         self.dismiss(animated: false, completion: nil)

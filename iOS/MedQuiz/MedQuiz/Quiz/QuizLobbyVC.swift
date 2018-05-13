@@ -10,6 +10,12 @@ import Foundation
 import UIKit
 import Firebase
 
+/*
+ QuizLobbyVC performs downloads of quiz and student data before transitioning to QuizActivityVC while displaying player information for standard
+ and head to head games. Data errors will prompt an alert and trigger view dismissal. Actions/cancellations made by other players are reflected through
+ changes to the lobbyPlayersCollectionView and alerts.
+ */
+
 class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     var headToHeadRequestRef:UIViewController!
@@ -71,6 +77,10 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
     var downloadStudentsHandle:DatabaseHandle!
     var downloadStudentsSet = false
     
+    /*
+     Setup various visual components, then perform start.
+     */
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -92,6 +102,10 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         print("quiz lobby appeared")
     }
 
+    /*
+     Check for missing attribute values. Adjust UI elements based on quizMode. Perform download.
+     */
+    
     func start(){
         if quizKey == nil || quizMode == nil {
             errorOccurred(title: "Game/Quiz Info Missing", message: "Information for the current game/quiz was not properly transfered to the lobby.", completion: nil)
@@ -199,15 +213,27 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         // Dispose of any resources that can be recreated.
     }
     
+    /*
+     Hide the sidebar from the splitViewController.
+     */
+    
     func hideSidebar(){
         self.splitViewController?.preferredDisplayMode = .primaryHidden
         // TODO Should be switched back to true after finishing quiz?
         self.splitViewController?.presentsWithGesture = false
     }
     
+    /*
+     Return data count for collectionView.
+     */
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return lobbyPlayers.count
     }
+    
+    /*
+     Set and return cell for position at indexPath.
+     */
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = lobbyPlayersCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! LobbyPlayersCollectionViewCell
@@ -224,6 +250,10 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         return cell
     }
     
+    /*
+     Select download function based on quizMode.
+     */
+    
     func download(){
         if (self.quizMode == .Standard){
             self.downloadStandardQuiz()
@@ -232,6 +262,10 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             self.downloadQuiz()
         }
     }
+    
+    /*
+     Observe changes to standard game start condition.
+     */
     
     func checkStandardGameStart(completion:(() -> Void)?){
         checkGameStartRef = Database.database().reference(withPath: "game/\(gameKey!)/started")
@@ -270,6 +304,10 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
 //            }
         })
     }
+    
+    /*
+     Observe changes to indicators for head to head game cancellation, acceptance by invitee, and readiness of opponent.
+     */
     
     func checkHeadToHeadGameStatus(){
         print("game key" + gameKey!)
@@ -315,11 +353,19 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         })
     }
     
+    /*
+     Deinitialize QuizLobbyVC.
+     */
+    
     deinit {
         quiz = nil
         gameKey = nil
         print("-------->Deallocating quiz data")
     }
+    
+    /*
+     Download quiz data for a standard game. Find matching leaderboard object. Perform downloadStudents after quiz download is finished.
+     */
     
     func downloadStandardQuiz(){
         checkStandardGameStart(completion: {
@@ -352,6 +398,11 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             }
         })
     }
+    
+    /*
+     Download quiz data for non-standard game. Find matching leaderboard object for head to head game. Indicate user is ready for head to head to start through
+     head to head game object in database.
+     */
     
     func downloadQuiz(){
         _ = Quiz(key: quizKey!) { quiz in
@@ -440,6 +491,10 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         }
     }
     
+    /*
+     Download student data for standard game. Add user data to game and leaderboard objects in database.
+     */
+    
     func downloadStudents(){
         print("downloading students method")
         
@@ -448,6 +503,7 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         }
         
         Database.database().reference(withPath: "game/\(String(describing: self.gameKey!))/students/\(currentUserID)").setValue(true)
+        
         let userInLeaderboardRef = Database.database().reference().child("inGameLeaderboards").child(leaderboardKey!).child("students").child(currentUserID)
         userInLeaderboardRef.child("studentKey").setValue(currentUserID)
         userInLeaderboardRef.child("studentScore").setValue(0)
@@ -513,6 +569,10 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             for studentKey in gameStudentKeys{
                 _ = Student(key: studentKey, addFriends: false) { (theStudent) in
                     studentCount += 1
+                    if !theStudent.complete {
+                        self.errorOccurred(title: "Player Download Error", message: "Player data corrupted.", completion: nil)
+                    }
+                    
                     if studentKey != currentUserID {
                         if !self.lobbyPlayers.contains(theStudent) && !self.lobbyQueue.contains(theStudent) {
                             self.lobbyQueue.append(theStudent)
@@ -525,6 +585,11 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             }
         })
     }
+    
+    /*
+     Add student in lobbyQueue to lobbyPlayers and reaload lobbyPlayersCollectionView data. The sleep is used to prevent reloadData from being called in rapid succession,
+     which seems to cause lag.
+     */
     
     func addStudentToLobby(){
         if !lobbyQueue.isEmpty{
@@ -541,6 +606,10 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         }
     }
     
+    /*
+     Inform the user that the quiz download, and students download for standard games, is complete. If the quizMode is Solo, the game starts immediately.
+     */
+    
     func loadingQuizComplete(){
         if !quizDownloaded {
             print("Loading Quiz complete")
@@ -552,6 +621,10 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
             }
         }
     }
+    
+    /*
+     Transition from QuizLobbyVC to QuizActivityVC. Set relevent values in QuizActivityVC.
+     */
     
     func startQuiz(){
         print("start quiz method")
@@ -594,10 +667,15 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         }
     }
     
+    /*
+     Display an alert with an error message to the user. Changes busy status to false. Dismiss view.
+     */
+    
     func errorOccurred(title:String, message:String, completion:(() -> Void)?){
         prepLobbyExit()
         let alert = UIAlertController(title:title, message:message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default) { UIAlertAction in
+            globalBusy = false
             let userHeadToHeadRequestReference = Database.database().reference().child("student").child(currentUserID)
             userHeadToHeadRequestReference.child("headtoheadgamerequest").removeValue()
             self.dismiss(animated: false, completion: nil)
@@ -606,18 +684,33 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         self.present(alert, animated: true, completion: nil)
     }
     
+    /*
+     Test function for immediately starting quiz.
+     */
     @IBAction func tempQuizActivityPressed(_ sender: Any) {
         startQuiz()
     }
+    
+    /*
+     Test function for triggering errorOccurred.
+     */
     
     @IBAction func tempBckPressed(_ sender: Any) {
         errorOccurred(title: "Error Test", message: "This is what should happen when an error occurs in the Lobby.", completion: nil)
     }
     
+    /*
+     Prepare to exiting lobby. Dismiss view.
+     */
+    
     @IBAction func backButtonPressed(_ sender: Any) {
         prepLobbyExit()
         self.dismiss(animated: false, completion: nil)
     }
+    
+    /*
+     Remove relevent database connections and values depending on quizMode.
+     */
     
     func prepLobbyExit(){
         lobbyDone = true
@@ -634,6 +727,10 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
                 break
         }
     }
+    
+    /*
+     Remove set database observers.
+     */
     
     func removeListeners(){
         if quizMode != nil {
@@ -657,6 +754,10 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         }
     }
     
+    /*
+     Remove user data from standard game objects in database.
+     */
+    
     func deleteDBStandardData(){
         if leaderboardKey != nil && userInLeaderboardKey != nil {
             Database.database().reference().child("game").child(gameKey!).child("students").child(currentUserID).removeValue()
@@ -667,14 +768,21 @@ class QuizLobbyVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
 //        Database.database().reference().child("inGameLeaderboards").child(leaderboardKey!).child("students").child(userInLeaderboardKey!).removeValue()
     }
     
+    /*
+     Delete game object for head to head game.
+     */
+    
     func deleteDBHeadToHeadGame(){
         let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(gameKey!)
         headToHeadGameRef.removeValue()
     }
     
+    /*
+     Delete all relevent objects for head to head game. 
+     */
+    
     func deleteDBHeadToHeadData(){
-        let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(gameKey!)
-        headToHeadGameRef.removeValue()
+        deleteDBHeadToHeadGame()
         
         if headToHeadOpponent != nil {
             let opponentHeadToHeadRequestRef = Database.database().reference().child("student/\((String(describing: headToHeadOpponent.databaseID!)))/headtoheadgamerequest")

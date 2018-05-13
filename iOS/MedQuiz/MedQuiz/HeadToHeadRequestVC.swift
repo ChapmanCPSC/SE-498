@@ -35,11 +35,17 @@ class HeadToHeadRequestVC: UIViewController {
         
         print("HeadToHeadRequestVC loaded")
         
-        setup()
-        
-        checkRequestStatus()
-    
-        // Do any additional setup after loading the view.
+        if headToHeadGameKey == nil || headToHeadQuizKey == nil || headToHeadQuizTitle == nil || opponent == nil {
+            let alert = UIAlertController(title:"Info Download Error", message:"Head to Head game data in database not found or is corrupted.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default) { UIAlertAction in
+            })
+            self.present(alert, animated: true, completion: nil)
+        }
+        else{
+            setup()
+            
+            checkRequestStatus()
+        }
     }
 
     override func didReceiveMemoryWarning() {

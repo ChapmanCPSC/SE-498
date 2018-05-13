@@ -7,6 +7,10 @@
 
 import UIKit
 
+/*
+ UserView displays player information in the leaderboard.
+ */
+
 class UserView: UIView {
 
     @IBOutlet var viewMain: UIView!
@@ -31,10 +35,18 @@ class UserView: UIView {
         setupView()
     }
     
+    /*
+     Perform initial setup operations.
+     */
+    
     func setupView(){
         Bundle.main.loadNibNamed("UserView", owner: self, options: nil)
         addSubviews()
     }
+    
+    /*
+     Add subviews to viewMain.
+     */
     
     func addSubviews(){
         addSubview(viewMain)
@@ -42,21 +54,38 @@ class UserView: UIView {
         viewMain.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }
     
+    /*
+     Set background color using provided string for hex conversion.
+     */
+    
     func setBackgroundColor(color:String){
         self.nonUserBg = color
         viewBG.backgroundColor = UIColor.hexStringToUIColor(hex: color)
     }
     
+    /*
+     Set background color using provided color..
+     */
+    
     func setBackgroundColor(color:UIColor){
         viewMain.backgroundColor = color
     }
 
+    /*
+     Display non-score info for new student.
+     */
+    
     func updateView(student:Student, position:Int){
         self.currStudent = student
         displayUsername(username: student.userName!)
         displayProfileImage(profileImage: student.profilePic!)
         displayPosition(position: position)
     }
+    
+    /*
+     Display all info for new student.
+     */
+    
     func updateView(student:Student, position:Int, score:Int){
         self.currStudent = student
         displayUsername(username: student.userName!)
@@ -65,27 +94,51 @@ class UserView: UIView {
         updateScore(score: score)
     }
 
-
+    /*
+     Change username label text using provided string.
+     */
+    
     func displayUsername(username:String){
         lab_username.text = username
     }
+    
+    /*
+     Change profile image using provided image.
+     */
     
     func displayProfileImage(profileImage:UIImage){
         iv_profile.image = profileImage
     }
 
+    /*
+     Change position label text using provided position int.
+     */
+    
     func displayPosition(position:Int){
         self.position = position
         lab_position.text = String.ordinalNumberFormat(number: position)
     }
     
+    /*
+     Change score label text using provided score int.
+     */
+    
     func updateScore(score: Int){
         overallScore = score
         scoreLabel.text = String(score)
     }
+    
+    /*
+     Redisplay assigned values for visual components.
+     */
+    
     func reupdate(){
         updateView(student: self.currStudent, position: self.position, score: self.overallScore)
     }
+    
+    /*
+     Remove all components from view.
+     */
     
     func removeViews(){
         viewMain.removeFromSuperview()
@@ -96,6 +149,10 @@ class UserView: UIView {
         viewBG.removeFromSuperview()
     }
     
+    /*
+     Highlight view as belonging to the user.
+     */
+    
     func convertToCurrUser(){
         removeViews()
         Bundle.main.loadNibNamed("CurrUserView", owner: self, options: nil)
@@ -103,6 +160,11 @@ class UserView: UIView {
         viewBG.backgroundColor = UIColor.hexStringToUIColor(hex: "FFE483")
         reupdate()
     }
+    
+    /*
+     Set view as non-user user view.
+     */
+    
     func convertToOtherUser(){
         removeViews()
         Bundle.main.loadNibNamed("UserView", owner: self, options: nil)

@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 
+/*
+ QuizSearchVC searches the database for standard games matching the pin entered by the user.
+ */
+
 class QuizSearchVC: UIViewController {
     
     @IBOutlet weak var bt_closeButton: UIButton!
