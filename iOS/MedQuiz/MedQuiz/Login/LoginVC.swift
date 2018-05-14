@@ -241,6 +241,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                     _ = Student(key: (signedInUser?.uid)!, addFriends: true, completion: { (aCurrentStudent) in
                         if aCurrentStudent.complete {
                             self.loggedIn = true
+                            self.loginErrorLabel.isHidden = true //makes sure that errorLabel isn't displayed
                             currentGlobalStudent = aCurrentStudent
                             currentUserID = (signedInUser?.uid)!
                             UserDefaults.standard.set(currentUserID, forKey: "userID")
