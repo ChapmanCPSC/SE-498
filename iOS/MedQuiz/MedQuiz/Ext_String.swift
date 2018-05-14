@@ -7,6 +7,10 @@ import Foundation
 
 extension String {
 
+    /*
+     Return string with corresponding ordinal ending component for specified int.
+     */
+    
     static func ordinalNumberFormat(number: Int) -> String {
         var ending = "th"
 

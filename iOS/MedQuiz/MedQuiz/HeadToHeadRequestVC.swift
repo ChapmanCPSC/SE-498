@@ -9,6 +9,10 @@
 import UIKit
 import Firebase
 
+/*
+ HeadToHeadRequestVC displays head to head game request information and allows the user to either accept or decline the request.
+ */
+
 class HeadToHeadRequestVC: UIViewController {
 
     var headToHeadGameKey:String!
@@ -29,6 +33,11 @@ class HeadToHeadRequestVC: UIViewController {
     
     var checkRequestRef:DatabaseReference!
     var checkRequestHandle:DatabaseHandle!
+    var checkRequestSet = false
+    
+    /*
+     Check attribute values. Setup components and check request status.
+     */
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,9 +62,14 @@ class HeadToHeadRequestVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    /*
+     Observe chanes in head to head game object in database that indicate game cancellation by inviter.
+     */
+    
     func checkRequestStatus(){
         checkRequestRef = Database.database().reference().child("head-to-head-game").child(headToHeadGameKey!)
         checkRequestHandle = checkRequestRef.observe(.value, with: { snapshot in
+            self.checkRequestSet = true
             if snapshot.value is NSNull && !self.requestFinished {
                 self.requestFinished = true
                 self.removeListeners()
@@ -70,9 +84,19 @@ class HeadToHeadRequestVC: UIViewController {
         })
     }
     
+    /*
+     Remove database connections.
+     */
+    
     func removeListeners(){
-        checkRequestRef.removeObserver(withHandle: checkRequestHandle)
+        if checkRequestSet {
+            checkRequestRef.removeObserver(withHandle: checkRequestHandle)
+        }
     }
+    
+    /*
+     Decline request. Set busy status to false and exit view.
+     */
     
     @IBAction func hideButtonPressed(_ sender: Any) {
         self.requestFinished = true
@@ -84,6 +108,10 @@ class HeadToHeadRequestVC: UIViewController {
         globalBusy = false
         self.dismiss(animated: true, completion: nil)
     }
+    
+    /*
+     Accept request. Transition to QuizLobbyVC.
+     */
     
     @IBAction func acceptButtonPressed(_ sender: Any) {
         self.requestFinished = true
@@ -106,6 +134,10 @@ class HeadToHeadRequestVC: UIViewController {
         self.present(quizLobbyVC, animated: false, completion: nil)
         print("Lobby presented from head to head request.")
     }
+    
+    /*
+     Set values for components.
+     */
     
     func setup(){
         quizTitleLabel.text = headToHeadQuizTitle

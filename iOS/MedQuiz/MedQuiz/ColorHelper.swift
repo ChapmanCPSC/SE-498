@@ -18,7 +18,9 @@ import UIKit
 //use this class helper instance throught app to help with colors
 var OurColorHelper = ColorHelper()
 
-
+/*
+ ColorHelper stores color values used in view controllers.
+ */
 
 //Color helper class
 class ColorHelper{
@@ -53,6 +55,10 @@ class ColorHelper{
 
     lazy var pharmAppAnswerColors = [pharmAppAnswerOne ,pharmAppAnswerTwo, pharmAppAnswerThree, pharmAppAnswerFour]
 
+    /*
+     Return color using hex string.
+     */
+    
     func hexStringToUIColor (hex:String) -> UIColor {
         var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
         
@@ -74,6 +80,10 @@ class ColorHelper{
             alpha: CGFloat(1.0)
         )
     }
+    
+    /*
+     Return color using hex string and specified alpha level.
+     */
     
     func hexStringToUIColorWithAlpha (hex:String, theAlpha: CGFloat) -> UIColor {
         var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
