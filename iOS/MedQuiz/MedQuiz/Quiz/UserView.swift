@@ -68,7 +68,7 @@ class UserView: UIView {
      */
     
     func setBackgroundColor(color:UIColor){
-        viewMain.backgroundColor = color
+        viewBG.backgroundColor = color
     }
 
     /*
