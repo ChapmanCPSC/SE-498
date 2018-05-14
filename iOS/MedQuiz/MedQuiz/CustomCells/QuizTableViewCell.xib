@@ -54,10 +54,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uxm-qW-WlG">
-                        <rect key="frame" x="782" y="14" width="83" height="44"/>
-                        <color key="backgroundColor" red="0.62745098039215685" green="0.88627450980392153" blue="0.85882352941176465" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <rect key="frame" x="745" y="14" width="120" height="44"/>
+                        <color key="backgroundColor" red="0.43737661838531494" green="0.89958870410919189" blue="0.79610145092010498" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="83" id="D5d-gf-XaP"/>
+                            <constraint firstAttribute="width" constant="120" id="D5d-gf-XaP"/>
                             <constraint firstAttribute="height" constant="44" id="IyU-N5-QCj"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="ClearSans-Medium" family="Clear Sans Medium" pointSize="20"/>
@@ -66,7 +66,7 @@
                         </state>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                <integer key="value" value="15"/>
+                                <integer key="value" value="20"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                         <connections>

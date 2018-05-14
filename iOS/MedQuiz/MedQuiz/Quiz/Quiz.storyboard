@@ -164,7 +164,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Q0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="da4-nm-GCK">
-                                        <rect key="frame" x="497" y="19" width="31" height="32.5"/>
+                                        <rect key="frame" x="497" y="23.5" width="31" height="28"/>
                                         <fontDescription key="fontDescription" name="ClearSans-Medium" family="Clear Sans Medium" pointSize="24"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -634,7 +634,7 @@
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bVp-fM-ypV">
                                 <rect key="frame" x="0.0" y="696" width="1024" height="72"/>
-                                <color key="backgroundColor" red="0.090196078431372548" green="0.23529411764705882" blue="0.46274509803921571" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.19119016826152802" green="0.44081434607505798" blue="0.55302095413208008" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" image="Cancel-Icon.png"/>
                                 <connections>
                                     <segue destination="Jvp-t9-Pxf" kind="show" id="loZ-5v-0y0"/>
@@ -716,7 +716,7 @@
                                 <rect key="frame" x="0.0" y="384" width="1024" height="384"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yD8-nY-hgg">
-                                        <rect key="frame" x="457" y="251" width="111" height="32"/>
+                                        <rect key="frame" x="457.5" y="251" width="110" height="32"/>
                                         <fontDescription key="fontDescription" name="ClearSans-Medium" family="Clear Sans Medium" pointSize="35"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -729,7 +729,7 @@
                                         </constraints>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.60392156862745094" green="0.83529411764705885" blue="0.82352941176470584" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.60494482517242432" green="0.83542501926422119" blue="0.82355803251266479" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="yD8-nY-hgg" secondAttribute="bottom" constant="101" id="B5p-6x-Vqh"/>
                                     <constraint firstItem="yD8-nY-hgg" firstAttribute="centerX" secondItem="AzO-RL-zop" secondAttribute="centerX" id="MQR-6R-nKI"/>
