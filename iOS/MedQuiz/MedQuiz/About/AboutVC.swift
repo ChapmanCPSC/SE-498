@@ -10,8 +10,16 @@ import Foundation
 import UIKit
 import Firebase
 
+/*
+ AboutVC presents the About text description from the database.
+ */
+
 class AboutVC: UIViewController {
     @IBOutlet weak var aboutTextView: UITextView!
+    
+    /*
+     Set text component using database text value.
+     */
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +32,10 @@ class AboutVC: UIViewController {
         }
         
     }
+    
+    /*
+     Set scroll position.
+     */
     
     override func viewDidLayoutSubviews() {
         self.aboutTextView.setContentOffset(CGPoint.zero, animated: false)

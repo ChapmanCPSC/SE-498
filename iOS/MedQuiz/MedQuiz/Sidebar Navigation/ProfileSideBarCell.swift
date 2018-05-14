@@ -8,6 +8,10 @@
 import UIKit
 import Firebase
 
+/*
+ ProfileSideBarCell displays basic user profile information in the SideBar.
+ */
+
 class ProfileSideBarCell: UITableViewCell {
     @IBOutlet weak var profileImage: UIImageView!
     
@@ -18,6 +22,10 @@ class ProfileSideBarCell: UITableViewCell {
     var checkTotalPointsUpdateRef:DatabaseReference!
     var checkTotalPointsUpdateHandle:DatabaseHandle!
     var checkTotalPointsUpdateSet = false
+    
+    /*
+     Set background color. Observe changes in user totalPoints.
+     */
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -39,6 +47,10 @@ class ProfileSideBarCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    /*
+     Remove database observers. 
+     */
     
     func removeListeners(){
         if checkTotalPointsUpdateSet {

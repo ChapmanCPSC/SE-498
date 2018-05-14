@@ -8,6 +8,10 @@
 
 import UIKit
 
+/*
+ SideBarCell allows the user to navigate through different views in the splitViewController through the SideBar table view.
+ */
+
 class SideBarCell: UITableViewCell {
 
     @IBOutlet weak var navigateToPage: UILabel!

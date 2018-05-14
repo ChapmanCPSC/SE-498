@@ -9,6 +9,10 @@
 import UIKit
 import Firebase
 
+/*
+ Sidebar controls the sidebar contents including profile card, quiz, leaderboard, profile, and about.
+ */
+
 class SideBar: UITableViewController {
     
     var QuizStoryboard:UIStoryboard? = nil
@@ -25,9 +29,17 @@ class SideBar: UITableViewController {
     var checkTotalPointsUpdateHandle:DatabaseHandle!
     var checkTotalPointsUpdateSet = false
     
+    /*
+     Reload tableView data.
+     */
+    
     override func viewWillAppear(_ animated: Bool) {
         self.tableView.reloadData()
     }
+    
+    /*
+     Setup tableView. Get storyboard references.
+     */
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -67,21 +79,37 @@ class SideBar: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    /*
+     Remove database observers.
+     */
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(false)
         removeListeners()
     }
 
+    /*
+     Return number of sections in tableView.
+     */
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
+    /*
+     Return number of rows in provided tableView section.
+     */
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return 5
     }
 
+    /*
+     Return height of row at tableView indexPath.
+     */
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if(indexPath.section == 0 && indexPath.row == 0){
             return 130
@@ -94,6 +122,10 @@ class SideBar: UITableViewController {
         }
         
     }
+    
+    /*
+     Set and return cell for tabelView at indexPath.
+     */
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         self.tableView.backgroundColor = mainCellBlue
@@ -162,6 +194,10 @@ class SideBar: UITableViewController {
         }
     }
     
+    /*
+     Open view of selected tableView cell indexPath.
+     */
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //self.tableView.deselectRow(at: indexPath, animated: true)
         
@@ -186,12 +222,11 @@ class SideBar: UITableViewController {
             splitViewController?.showDetailViewController(AboutStoryboard!.instantiateInitialViewController()!, sender: Any?.self)
         }
     }
-    
-    func getScore(name: String) -> String{
-        //get score from db
-        return "4,434,534"
-    }
 
+    /*
+     Remove database observers. 
+     */
+    
     func removeListeners(){
         if checkTotalPointsUpdateSet {
             checkTotalPointsUpdateRef.removeObserver(withHandle: checkTotalPointsUpdateHandle)
