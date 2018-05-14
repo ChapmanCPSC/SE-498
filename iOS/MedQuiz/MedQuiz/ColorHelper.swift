@@ -41,14 +41,15 @@ class ColorHelper{
     lazy var pharmAppAnswerFour = hexStringToUIColor(hex: "88D3E5")
     
     
+    lazy var pharmAppGameLeaderboardCurrentUser = hexStringToUIColor(hex: "FDFFA1")
+
     lazy var pharmAppGameLeaderboardUserOne = hexStringToUIColor(hex: "98D8C0")
     lazy var pharmAppGameLeaderboardUserTwo = hexStringToUIColor(hex: "C892D8")
-    lazy var pharmAppGameLeaderboardCurrentUser = hexStringToUIColor(hex: "FDFFA1")
     lazy var pharmAppGameLeaderboardUserThree = hexStringToUIColor(hex: "A1ABFF")
     lazy var pharmAppGameLeaderboardUserFour = hexStringToUIColor(hex: "D8939B")
+    lazy var pharmAppGameLeaderboardUserFive = pharmAppRed
     
-    
-    lazy var pharmAppLeaderboardColors = [pharmAppGameLeaderboardUserOne, pharmAppGameLeaderboardUserTwo, pharmAppGameLeaderboardCurrentUser, pharmAppGameLeaderboardUserThree, pharmAppGameLeaderboardUserFour]
+    lazy var pharmAppLeaderboardColors = [pharmAppGameLeaderboardUserOne, pharmAppGameLeaderboardUserTwo, pharmAppGameLeaderboardUserThree, pharmAppGameLeaderboardUserFour, pharmAppGameLeaderboardUserFive]
 
     lazy var pharmAppAnswerColors = [pharmAppAnswerOne ,pharmAppAnswerTwo, pharmAppAnswerThree, pharmAppAnswerFour]
 
