@@ -159,7 +159,7 @@ class UserView: UIView {
         removeViews()
         Bundle.main.loadNibNamed("CurrUserView", owner: self, options: nil)
         addSubviews()
-        viewBG.backgroundColor = UIColor.hexStringToUIColor(hex: "FFE483")
+        viewBG.backgroundColor = OurColorHelper.pharmAppGameLeaderboardCurrentUser
         reupdate()
     }
     

@@ -433,17 +433,17 @@ class QuizActivityVC: UIViewController {
     func setUserColors(){
         
         
-        uv_first.setBackgroundColor(color: userColors[0])
-        uv_second.setBackgroundColor(color: userColors[1])
-        uv_third.setBackgroundColor(color: userColors[2])
-        uv_fourth.setBackgroundColor(color: userColors[3])
-        uv_fifth.setBackgroundColor(color: userColors[4])
+//        uv_first.setBackgroundColor(color: userColors[0])
+//        uv_second.setBackgroundColor(color: userColors[1])
+//        uv_third.setBackgroundColor(color: userColors[2])
+//        uv_fourth.setBackgroundColor(color: userColors[3])
+//        uv_fifth.setBackgroundColor(color: userColors[4])
         
-//        uv_first.setBackgroundColor(color: OurColorHelper.pharmAppLeaderboardColors[0])
-//        uv_second.setBackgroundColor(color: OurColorHelper.pharmAppLeaderboardColors[1])
-//        uv_third.setBackgroundColor(color: OurColorHelper.pharmAppLeaderboardColors[2])
-//        uv_fourth.setBackgroundColor(color: OurColorHelper.pharmAppLeaderboardColors[3])
-//        uv_fifth.setBackgroundColor(color: OurColorHelper.pharmAppLeaderboardColors[4])
+        uv_first.setBackgroundColor(color: OurColorHelper.pharmAppLeaderboardColors[0])
+        uv_second.setBackgroundColor(color: OurColorHelper.pharmAppLeaderboardColors[1])
+        uv_third.setBackgroundColor(color: OurColorHelper.pharmAppLeaderboardColors[2])
+        uv_fourth.setBackgroundColor(color: OurColorHelper.pharmAppLeaderboardColors[3])
+        uv_fifth.setBackgroundColor(color: OurColorHelper.pharmAppLeaderboardColors[4])
         
     }
 
