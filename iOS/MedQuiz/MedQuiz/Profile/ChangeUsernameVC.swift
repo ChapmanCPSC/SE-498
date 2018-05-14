@@ -47,6 +47,7 @@ class ChangeUsernameVC: UIViewController, UITextFieldDelegate {
         // Do any additional setup after loading the view.
         changeUsernameTextField.delegate = self
         changeUsernameTextField.text = username
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -89,6 +90,9 @@ class ChangeUsernameVC: UIViewController, UITextFieldDelegate {
         globalUsername = changeUsernameTextField.text!
         //Assigns the new username to currentGlobal student 
         currentGlobalStudent.userName = changeUsernameTextField.text!
+        //Could only change username once
+        currentGlobalStudent.hasChangedUsername = true
+        
         delegate?.dataChanged(username: changeUsernameTextField.text!, usernameChanged: true)
         dismiss(animated: false, completion: nil)
     }

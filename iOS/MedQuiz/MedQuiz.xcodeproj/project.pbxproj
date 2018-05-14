@@ -747,7 +747,6 @@
 				3D2495A11F7E2EDD0058D85B /* Frameworks */,
 				3D2495A21F7E2EDD0058D85B /* Resources */,
 				56E3ED6B2FEF02DB6F57BEBA /* [CP] Embed Pods Frameworks */,
-				D1E4A8A21C53FF4A95A25F70 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -767,7 +766,6 @@
 				3D2495B51F7E2EDD0058D85B /* Frameworks */,
 				3D2495B61F7E2EDD0058D85B /* Resources */,
 				722406E2CE8D0677FF0EC57F /* [CP] Embed Pods Frameworks */,
-				3598B81344441AEBEBC0C2F0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -787,8 +785,6 @@
 				3D2495BF1F7E2EDD0058D85B /* Sources */,
 				3D2495C01F7E2EDD0058D85B /* Frameworks */,
 				3D2495C11F7E2EDD0058D85B /* Resources */,
-				6C471F0866666C5597A407EF /* [CP] Embed Pods Frameworks */,
-				5389919EFF7AE0CD4C144AF1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -982,36 +978,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3598B81344441AEBEBC0C2F0 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MedQuizTests/Pods-MedQuizTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5389919EFF7AE0CD4C144AF1 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MedQuizUITests/Pods-MedQuizUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		56E3ED6B2FEF02DB6F57BEBA /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1036,21 +1002,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MedQuiz/Pods-MedQuiz-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6C471F0866666C5597A407EF /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MedQuizUITests/Pods-MedQuizUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		722406E2CE8D0677FF0EC57F /* [CP] Embed Pods Frameworks */ = {
@@ -1105,21 +1056,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D1E4A8A21C53FF4A95A25F70 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MedQuiz/Pods-MedQuiz-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

@@ -49,6 +49,10 @@ class ProfileVC: UIViewController, ChangeAvatarVCDelegate, ChangeUsernameVCDeleg
 //            print("Testing profile info population")
 //            print(aStudent.studentUsername!)
 //        }
+        //Unable to change username more than once 
+        if(currentGlobalStudent.hasChangedUsername)!{
+            editUsernameButton.isHidden = true
+        }
         
         let profileAvatarChange = UITapGestureRecognizer(target: self, action: #selector(ProfileVC.profileAvatarPressed))
         
