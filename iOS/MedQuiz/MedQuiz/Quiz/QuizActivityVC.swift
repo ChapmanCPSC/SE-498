@@ -47,6 +47,8 @@ class QuizActivityVC: UIViewController {
     var colors:[String] = ["#BB7AE1", "#DCA480", "#DA7E7E", "#88D3E5"]
     var userColors:[String] = ["#8884FF", "#9AD5D2", "#BB7AE1", "#F5A623","#8884FF"]
     
+    
+    
     @IBOutlet weak var uv_first: UserView!
     @IBOutlet weak var uv_second: UserView!
     @IBOutlet weak var uv_third: UserView!
@@ -419,7 +421,7 @@ class QuizActivityVC: UIViewController {
     func setAnswerColors(){
         var count = 0
         answerViews.forEach { view in
-            view.setBackgroundColor(color: colors[count])
+            view.setBackgroundColor(color: OurColorHelper.pharmAppAnswerColors[count])
             count += 1
         }
     }
@@ -429,11 +431,20 @@ class QuizActivityVC: UIViewController {
      */
     
     func setUserColors(){
-        uv_first.setBackgroundColor(color: userColors[0])
-        uv_second.setBackgroundColor(color: userColors[1])
-        uv_third.setBackgroundColor(color: userColors[2])
-        uv_fourth.setBackgroundColor(color: userColors[3])
-        uv_fifth.setBackgroundColor(color: userColors[4])
+        
+        
+//        uv_first.setBackgroundColor(color: userColors[0])
+//        uv_second.setBackgroundColor(color: userColors[1])
+//        uv_third.setBackgroundColor(color: userColors[2])
+//        uv_fourth.setBackgroundColor(color: userColors[3])
+//        uv_fifth.setBackgroundColor(color: userColors[4])
+        
+        uv_first.setBackgroundColor(color: OurColorHelper.pharmAppLeaderboardColors[0])
+        uv_second.setBackgroundColor(color: OurColorHelper.pharmAppLeaderboardColors[1])
+        uv_third.setBackgroundColor(color: OurColorHelper.pharmAppLeaderboardColors[2])
+        uv_fourth.setBackgroundColor(color: OurColorHelper.pharmAppLeaderboardColors[3])
+        uv_fifth.setBackgroundColor(color: OurColorHelper.pharmAppLeaderboardColors[4])
+        
     }
 
     /*

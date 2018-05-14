@@ -634,7 +634,7 @@
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bVp-fM-ypV">
                                 <rect key="frame" x="0.0" y="696" width="1024" height="72"/>
-                                <color key="backgroundColor" red="0.090196078431372548" green="0.23529411764705882" blue="0.46274509803921571" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.19119016826152802" green="0.44081434607505798" blue="0.55302095413208008" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" image="Cancel-Icon.png"/>
                                 <connections>
                                     <segue destination="Jvp-t9-Pxf" kind="show" id="loZ-5v-0y0"/>
@@ -702,7 +702,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.53333333333333333" green="0.51764705882352935" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.5360180139541626" green="0.50308322906494141" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="5yY-KQ-JQz" secondAttribute="bottom" id="0KM-FT-2ul"/>
                                     <constraint firstItem="zpx-It-qSt" firstAttribute="top" secondItem="ZcS-1G-0qW" secondAttribute="top" constant="30" id="KZn-XL-QNN"/>
@@ -729,7 +729,7 @@
                                         </constraints>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.60392156862745094" green="0.83529411764705885" blue="0.82352941176470584" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.60494482517242432" green="0.83542501926422119" blue="0.82355803251266479" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="yD8-nY-hgg" secondAttribute="bottom" constant="101" id="B5p-6x-Vqh"/>
                                     <constraint firstItem="yD8-nY-hgg" firstAttribute="centerX" secondItem="AzO-RL-zop" secondAttribute="centerX" id="MQR-6R-nKI"/>

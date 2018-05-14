@@ -20,6 +20,7 @@ protocol ChangeAvatarVCDelegate: class{
 class ChangeAvatarVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, AvatarCollectionViewCellDelegate {
 
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var changeAvatarBackground: UIView!
     
     var avatarsArray:[UIImage] = [UIImage(named:"AtomBlack.png")!, UIImage(named:"AtomPink.png")!, UIImage(named:"BeatBlue.png")!, UIImage(named:"BeatGreen.png")!, UIImage(named:"BeatJustGreen.png")!, UIImage(named:"EyeBlack.png")!, UIImage(named:"EyeBlackGreen.png")!, UIImage(named:"EyeBlue.png")!, UIImage(named:"HeartBlue.png")!, UIImage(named:"HeartDarkBlue.png")!, UIImage(named:"HeartPink.png")!, UIImage(named:"LongPillBlue.png")!, UIImage(named:"LongPillYellow.png")!, UIImage(named:"LungPurple.png")!, UIImage(named:"MedicBlue.png")!,UIImage(named:"MedicBlue.png")!, UIImage(named:"MedicGreen.png")!, UIImage(named:"MedicPink.png")!, UIImage(named:"MedicYellow.png")!, UIImage(named:"PillPink.png")!, UIImage(named:"PillRed.png")!]
     
@@ -37,6 +38,8 @@ class ChangeAvatarVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        changeAvatarBackground.backgroundColor = OurColorHelper.pharmAppOrange
+        collectionView.backgroundColor = OurColorHelper.pharmAppOrange
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = UICollectionViewScrollDirection.horizontal
         layout.minimumInteritemSpacing = 10000.0

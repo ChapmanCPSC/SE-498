@@ -244,6 +244,10 @@ class AnswerView: UIView {
         viewMain.backgroundColor = UIColor.hexStringToUIColor(hex: color)
     }
 
+    func setBackgroundColor(color:UIColor) {
+        viewMain.backgroundColor = color
+    }
+
     /*
      Adjust answer transparency through animation.
      */

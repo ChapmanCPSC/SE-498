@@ -24,6 +24,7 @@ class UserView: UIView {
     var currStudent:Student!
     var position:Int = 0
     var nonUserBg:String = "FFFFFF"
+    var nonUserBgUIColor:UIColor = UIColor.white
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -68,7 +69,8 @@ class UserView: UIView {
      */
     
     func setBackgroundColor(color:UIColor){
-        viewMain.backgroundColor = color
+        nonUserBgUIColor = color
+        viewBG.backgroundColor = color
     }
 
     /*
@@ -157,7 +159,7 @@ class UserView: UIView {
         removeViews()
         Bundle.main.loadNibNamed("CurrUserView", owner: self, options: nil)
         addSubviews()
-        viewBG.backgroundColor = UIColor.hexStringToUIColor(hex: "FFE483")
+        viewBG.backgroundColor = OurColorHelper.pharmAppGameLeaderboardCurrentUser
         reupdate()
     }
     
@@ -169,7 +171,7 @@ class UserView: UIView {
         removeViews()
         Bundle.main.loadNibNamed("UserView", owner: self, options: nil)
         addSubviews()
-        self.setBackgroundColor(color: self.nonUserBg)
+        self.setBackgroundColor(color: self.nonUserBgUIColor)
         reupdate()
     }
 }

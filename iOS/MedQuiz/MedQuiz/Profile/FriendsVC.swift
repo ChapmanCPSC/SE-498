@@ -21,8 +21,12 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     @IBOutlet weak var searchFriendTextfield: UITextField!
     @IBOutlet weak var searchResultLabel: UILabel!
     
+    @IBOutlet weak var searchFriendCard: UIView!
+    
+    @IBOutlet weak var searchFriendBorder: UIView!
+    
     let placeholderTextColor = UIColor.hexStringToUIColor(hex: "FF8D84")
-    let activeTextColor = UIColor.hexStringToUIColor(hex: "439EC4")
+    let activeTextColor = OurColorHelper.pharmAppBlue
     
     var cellUsernames:[String] = ["Kyle102", "Jeniffer308", "Mark075", "Layla690"]
     var cellImages:[UIImage] = [#imageLiteral(resourceName: "StudentAvatarPlaceholder.png"), #imageLiteral(resourceName: "StudentAvatarPlaceholder.png"), #imageLiteral(resourceName: "StudentAvatarPlaceholder.png"), #imageLiteral(resourceName: "StudentAvatarPlaceholder.png")]
@@ -38,6 +42,9 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         super.viewDidLoad()
         getFriendRequests()
         updateFriendsList()
+        
+        searchFriendCard.backgroundColor = OurColorHelper.pharmAppRed
+        searchFriendBorder.backgroundColor = OurColorHelper.pharmAppBlue
         
         let friendRequestsCellNib = UINib(nibName: "FriendRequestsTableViewCell", bundle: nil)
         friendRequestsTable.register(friendRequestsCellNib, forCellReuseIdentifier: "friendRequests_cell")
