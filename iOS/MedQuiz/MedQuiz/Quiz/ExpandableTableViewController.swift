@@ -41,7 +41,7 @@ class ExpandableTableViewController: UITableViewController {
 
                         tagModel.quizzesForTag.forEach { model in
                             Quiz(key: model.key) { quiz in
-                                if(quiz.visible!){
+                                if(quiz.visible! && quiz.complete){
                                     currNode.children.append(QuizDataNode(quiz: quiz, children: [], completionEvents: []))
                                     if(currNode.children.count == 1){// only want to add the category if there's at least one quiz in it
                                         self.cellDataNodes.append(currNode)

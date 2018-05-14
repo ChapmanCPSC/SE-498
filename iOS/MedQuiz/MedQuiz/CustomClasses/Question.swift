@@ -145,30 +145,37 @@ class Question {
                             self.getAnswers(questionKey: aQuestionModel.key, completion: {
                                 self.getCorrectAnswers(questionKey: aQuestionModel.key, completion: {
                                     print("answerTexts length: \(self.answerTexts.count)")
-                                    for i in 0...self.answerTexts.count - 1 {
-                                        print("index is ", i)
-                                        if self.imagesForAnswers!{
-                                            _ = Answer(answerText: "", isAnswer: self.correctAnswers[i], hasImage: true, imagePath: self.answerTexts[i]) { theAnswer in
-                                                answers.append(theAnswer)
-                                                
-                                                if i == self.answerTexts.count - 1 {
-                                                    self.answers = answers
-                                                    print("Question Done")
-                                                    completion(self)
+                                    if self.answerTexts.count >= 2 {
+                                        for i in 0...self.answerTexts.count - 1 {
+                                            print("index is ", i)
+                                            if self.imagesForAnswers!{
+                                                _ = Answer(answerText: "", isAnswer: self.correctAnswers[i], hasImage: true, imagePath: self.answerTexts[i]) { theAnswer in
+                                                    answers.append(theAnswer)
+                                                    
+                                                    if i == self.answerTexts.count - 1 {
+                                                        self.answers = answers
+                                                        print("Question Done")
+                                                        completion(self)
+                                                    }
+                                                }
+                                            }
+                                            else{
+                                                _ = Answer(answerText: self.answerTexts[i], isAnswer: self.correctAnswers[i], hasImage: false, imagePath: "") { theAnswer in
+                                                    answers.append(theAnswer)
+                                                    
+                                                    if i == self.answerTexts.count - 1 {
+                                                        self.answers = answers
+                                                        print("Question Done")
+                                                        completion(self)
+                                                    }
                                                 }
                                             }
                                         }
-                                        else{
-                                            _ = Answer(answerText: self.answerTexts[i], isAnswer: self.correctAnswers[i], hasImage: false, imagePath: "") { theAnswer in
-                                                answers.append(theAnswer)
-                                                
-                                                if i == self.answerTexts.count - 1 {
-                                                    self.answers = answers
-                                                    print("Question Done")
-                                                    completion(self)
-                                                }
-                                            }
-                                        }
+                                    }
+                                    else{
+                                        print("ERROR: Fewer than 2 question answers found.")
+                                        self.complete = false
+                                        self.answers = []
                                     }
                                 })
                             })
