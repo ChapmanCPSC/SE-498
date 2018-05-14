@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="ipad9_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -32,23 +31,8 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Class Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zjl-80-Cbg">
-                        <rect key="frame" x="304" y="21" width="80" height="30"/>
-                        <fontDescription key="fontDescription" name="ClearSans-Medium" family="Clear Sans Medium" pointSize="15"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mm/dd/yyyy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3YN-nU-iKw">
-                        <rect key="frame" x="397" y="21" width="124" height="31"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="124" id="Y4C-Wb-mNG"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" name="ClearSans-Medium" family="Clear Sans Medium" pointSize="15"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Professor Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J4w-ib-wJT">
-                        <rect key="frame" x="160" y="21" width="109" height="30"/>
+                        <rect key="frame" x="640.5" y="25.5" width="89.5" height="20.5"/>
                         <fontDescription key="fontDescription" name="ClearSans-Medium" family="Clear Sans Medium" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -75,24 +59,18 @@
                     </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="J4w-ib-wJT" firstAttribute="leading" secondItem="bbP-j2-22V" secondAttribute="trailing" constant="27" id="4ck-kc-dgZ"/>
-                    <constraint firstItem="bbP-j2-22V" firstAttribute="baseline" secondItem="J4w-ib-wJT" secondAttribute="baseline" id="5G9-9f-MHY"/>
-                    <constraint firstItem="J4w-ib-wJT" firstAttribute="firstBaseline" secondItem="zjl-80-Cbg" secondAttribute="firstBaseline" id="AMJ-UD-BVm"/>
-                    <constraint firstItem="zjl-80-Cbg" firstAttribute="centerY" secondItem="3YN-nU-iKw" secondAttribute="centerY" id="FPj-te-7KA"/>
-                    <constraint firstItem="Uxm-qW-WlG" firstAttribute="centerY" secondItem="zjl-80-Cbg" secondAttribute="centerY" id="Fg5-lg-cis"/>
                     <constraint firstItem="bbP-j2-22V" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Gkz-5m-zxM"/>
                     <constraint firstItem="bbP-j2-22V" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-10" id="Hxx-kO-gKI"/>
-                    <constraint firstItem="bbP-j2-22V" firstAttribute="firstBaseline" secondItem="J4w-ib-wJT" secondAttribute="firstBaseline" id="MOu-ry-UbC"/>
                     <constraint firstItem="bbP-j2-22V" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="60" id="PYZ-k8-ijR"/>
-                    <constraint firstItem="3YN-nU-iKw" firstAttribute="leading" secondItem="zjl-80-Cbg" secondAttribute="trailing" constant="13" id="S0t-8h-Q48"/>
-                    <constraint firstItem="zjl-80-Cbg" firstAttribute="leading" secondItem="J4w-ib-wJT" secondAttribute="trailing" constant="35" id="Ypa-5b-H5S"/>
-                    <constraint firstItem="zjl-80-Cbg" firstAttribute="firstBaseline" secondItem="3YN-nU-iKw" secondAttribute="firstBaseline" id="oLK-Xq-VDb"/>
+                    <constraint firstItem="3YN-nU-iKw" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Pod-lH-UTp"/>
+                    <constraint firstItem="Uxm-qW-WlG" firstAttribute="leading" secondItem="3YN-nU-iKw" secondAttribute="trailing" constant="15" id="gcf-fK-zl9"/>
                     <constraint firstAttribute="trailing" secondItem="Uxm-qW-WlG" secondAttribute="trailing" constant="37" id="sbl-AM-wPb"/>
-                    <constraint firstItem="J4w-ib-wJT" firstAttribute="baseline" secondItem="zjl-80-Cbg" secondAttribute="baseline" id="u6R-WA-ZGm"/>
+                    <constraint firstItem="Uxm-qW-WlG" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="xVG-X1-BtB"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="lab_dateCreated" destination="3YN-nU-iKw" id="cbn-KI-68n"/>
                 <outlet property="lab_quizName" destination="bbP-j2-22V" id="Vaz-Nm-9un"/>
             </connections>
             <point key="canvasLocation" x="458" y="68"/>

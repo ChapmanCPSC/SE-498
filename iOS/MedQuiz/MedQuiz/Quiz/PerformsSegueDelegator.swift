@@ -9,5 +9,5 @@
 import Foundation
 
 protocol PerformsSegueDelegator {
-        func callSegue()
+        func callSegue(quizKey:String)
 }
