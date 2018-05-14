@@ -164,7 +164,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Q0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="da4-nm-GCK">
-                                        <rect key="frame" x="497" y="19" width="31" height="32.5"/>
+                                        <rect key="frame" x="496.5" y="23.5" width="32" height="28"/>
                                         <fontDescription key="fontDescription" name="ClearSans-Medium" family="Clear Sans Medium" pointSize="24"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>

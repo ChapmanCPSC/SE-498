@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		34A306936726BA76598B0F48 /* Pods_MedQuiz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFE012DCBE87633D8A88CF8D /* Pods_MedQuiz.framework */; };
+		3D2256DB20AA22A700455091 /* ConnectionCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2256DA20AA22A700455091 /* ConnectionCheck.swift */; };
 		3D227FC9204BAC8C001EB946 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D227FC7204BAC8C001EB946 /* Info.plist */; };
 		3D227FCA204BAC8C001EB946 /* SRCountdownTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D227FC8204BAC8C001EB946 /* SRCountdownTimer.swift */; };
 		3D2495A81F7E2EDD0058D85B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2495A71F7E2EDD0058D85B /* AppDelegate.swift */; };
@@ -179,6 +180,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3D2256DA20AA22A700455091 /* ConnectionCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionCheck.swift; sourceTree = "<group>"; };
 		3D227FC7204BAC8C001EB946 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3D227FC8204BAC8C001EB946 /* SRCountdownTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRCountdownTimer.swift; sourceTree = "<group>"; };
 		3D2495A41F7E2EDD0058D85B /* MedQuiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MedQuiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -444,6 +446,7 @@
 				A53E75552043C5AE0081B1AD /* Ext_Constraint.swift */,
 				77A142075FF6BE2CFA285D58 /* Ext_String.swift */,
 				A117C213207F09E000C912A5 /* HeadToHeadRequestVC.swift */,
+				3D2256DA20AA22A700455091 /* ConnectionCheck.swift */,
 			);
 			path = MedQuiz;
 			sourceTree = "<group>";
@@ -1080,6 +1083,7 @@
 				A53E75522043AA300081B1AD /* AnswerView.swift in Sources */,
 				3D77A1401FB50968009178A1 /* AboutVC.swift in Sources */,
 				3D77A1481FB50AA1009178A1 /* QuizVC.swift in Sources */,
+				3D2256DB20AA22A700455091 /* ConnectionCheck.swift in Sources */,
 				DAB359371FBACA3600D5A959 /* Question.swift in Sources */,
 				A5618C7E2034EAB2001AC764 /* Ext_UIColor.swift in Sources */,
 				DAB359351FBACA2100D5A959 /* Quiz.swift in Sources */,

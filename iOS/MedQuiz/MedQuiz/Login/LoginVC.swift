@@ -98,6 +98,16 @@ class LoginVC: UIViewController, UITextFieldDelegate {
 //            print(familyName, fontNames)
 //        })
         
+        
+        //Use this for wifi connection checking. Uses ConnectionCheck class
+            if ConnectionCheck.isConnectedToNetwork() {
+                print("Connected")
+            }
+            else{
+                print("disConnected")
+            }
+        
+        
         usernameTextField.text = "darwi103"
         passwordTextField.text = "123456"
         
