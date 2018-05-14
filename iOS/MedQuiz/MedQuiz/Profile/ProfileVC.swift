@@ -10,6 +10,7 @@
 import Foundation
 import UIKit
 import FirebaseAuth
+import Firebase
 
 /*
  ProfileVC displays relevent profile information and navigates to changing username, changing profile picture, and managing friends list.
@@ -126,6 +127,8 @@ class ProfileVC: UIViewController, ChangeAvatarVCDelegate, ChangeUsernameVCDeleg
     @IBAction func logoutPressed(_ sender: Any) {
         
         do {
+            let currUserOnline = Database.database().reference().child("student/\(currentUserID)/online")
+            currUserOnline.setValue(false)
             try Auth.auth().signOut()
             self.dismiss(animated: true, completion: nil)
         } catch let err {
