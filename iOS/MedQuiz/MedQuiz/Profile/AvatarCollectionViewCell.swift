@@ -12,6 +12,10 @@ protocol AvatarCollectionViewCellDelegate: class{
     func cellSelected(selectedImage: UIImage)
 }
 
+/*
+ AvatarCollectionViewCell displays a profile picture in AvatarCollectionView.
+ */
+
 class AvatarCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
@@ -34,6 +38,10 @@ class AvatarCollectionViewCell: UICollectionViewCell {
             }
         }
     }
+    
+    /*
+     Signal delegate to perform selection operations on selected image.
+     */
     
     func cellSelected(selectedImage: UIImage){
         if let del = self.delegate{

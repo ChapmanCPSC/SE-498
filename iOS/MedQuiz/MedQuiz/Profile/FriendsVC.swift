@@ -9,6 +9,11 @@
 import UIKit
 import Firebase
 
+
+/*
+ FriendsVC displays friend information and allows the user to interact with friend requests.
+ */
+
 class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
 
@@ -23,6 +28,11 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     var cellImages:[UIImage] = [#imageLiteral(resourceName: "StudentAvatarPlaceholder.png"), #imageLiteral(resourceName: "StudentAvatarPlaceholder.png"), #imageLiteral(resourceName: "StudentAvatarPlaceholder.png"), #imageLiteral(resourceName: "StudentAvatarPlaceholder.png")]
 
     var friendRequests:[Student] = []
+    
+    
+    /*
+     Retrieve current friends and friend requests. Set component values.
+     */
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +58,11 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         // Dispose of any resources that can be recreated.
     }
 
+    
+    /*
+     Retrieve friend requests from database.
+     */
+    
     func getFriendRequests(){
         Firebase.Database.database().reference()
                 .child("student")
@@ -64,12 +79,28 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
                 })
     }
 
+    
+    /*
+     Return number of sections in tableView.
+     */
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
+    /*
+     Return number of rows in provided tableView section.
+     */
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.friendRequests.count
     }
+    
+    
+    /*
+     Set and return cell at specified tableView indexPath.
+     */
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : FriendRequestsTableViewCell = friendRequestsTable.dequeueReusableCell(withIdentifier: "friendRequests_cell") as! FriendRequestsTableViewCell
         cell.parent = self
@@ -78,15 +109,26 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     }
     
     
+    /*
+     Adjust input field text for editing.
+     */
+    
     @IBAction func friendUsernameTextFieldTouchDown(_ sender: Any) {
         searchFriendTextfield.text = ""
         searchFriendTextfield.textColor = activeTextColor
     }
     
+    /*
+     Adjust input field text for editing end.
+     */
     
     @IBAction func friendUsernameTextFieldEditingDidEnd(_ sender: Any) {
         searchFriendTextfield.textColor = placeholderTextColor
     }
+    
+    /*
+     Search for friend using text field input.
+     */
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         searchFriendTextfield.textColor = placeholderTextColor
@@ -94,6 +136,10 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         friendSearch(friendUsername: searchFriendTextfield.text!)
         return true
     }
+    
+    /*
+     Hide search result label when editing starts.
+     */
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         searchResultLabel.isHidden = true
@@ -109,6 +155,10 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         
         return length <= 20
     }
+    
+    /*
+     Search database for user matching provided username.
+     */
     
     //Temporary conditionals used, will be replaced when connections to database established
     func friendSearch(friendUsername:String) {
@@ -188,11 +238,15 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
         searchResultLabel.isHidden = false
     }
     
+    /*
+     Dismiss view.
+     */
+    
     @IBAction func backFromFriends(_ sender: Any) {
         self.dismiss(animated: false) {
         }
     }
-
+    
     func updateFriendsList(){
         Firebase.Database.database().reference()
             .child("student")
@@ -215,11 +269,19 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
 }
 
 extension FriendsVC:RequestAction {
+    
+    /*
+     Hide request from selected student.
+     */
 
     func hideRequestSelected(student:Student){
         print("Hide pressed")
         removeFromFriendRequests(student: student)
     }
+    
+    /*
+     Add selected friend.
+     */
 
     func addFriendSelected(student:Student){
         print("Add pressed")
@@ -227,7 +289,10 @@ extension FriendsVC:RequestAction {
         removeFromFriendRequests(student: student)
     }
 
-
+    /*
+     Remove hidden friend request from user Student object and database.
+     */
+    
     func removeFromFriendRequests(student:Student){
         for idx in 0..<currentGlobalStudent.friendRequests!.count{
             let friend:Student = currentGlobalStudent.friendRequests![idx]
@@ -246,6 +311,10 @@ extension FriendsVC:RequestAction {
             .child(student.databaseID!)
             .removeValue()
     }
+    
+    /*
+     Make user and selected student friends in database.
+     */
 
     func addToFriends(student: Student){
         // add to accepting user's friends list

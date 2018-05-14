@@ -13,6 +13,10 @@ protocol ChangeAvatarVCDelegate: class{
     func dataChanged(profileImage: UIImage)
 }
 
+/*
+ ChangeAvatarVC allows the user to select their profile picture from a set of images.
+ */
+
 class ChangeAvatarVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, AvatarCollectionViewCellDelegate {
 
     @IBOutlet weak var collectionView: UICollectionView!
@@ -24,6 +28,11 @@ class ChangeAvatarVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     weak var delegate: ChangeAvatarVCDelegate?
     
     var selectedImageIndexPath: IndexPath!
+    
+    
+    /*
+     Set component values.
+     */
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,20 +51,40 @@ class ChangeAvatarVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         avatarsArray.swapAt(12, avatarsArray.capacity / 2)
         selectedImageIndexPath = IndexPath(row: avatarsArray.capacity / 2, section: 0)
     }
+    
+    
+    /*
+     Scroll collectionView to its center.
+     */
     override func viewDidAppear(_ animated: Bool) {
         //collectionView.scrollToItem(at: selectedImageIndexPath, at: [], animated: false)
         collectionView.contentOffset.x = (collectionView.contentSize.width / 2) - (collectionView.bounds.width / 2)
     }
+    
+    
+    /*
+     Signal delegate about profile picture change. Dismiss view.
+     */
     
     @IBAction func doneWithAvatar(_ sender: Any) {
         delegate?.dataChanged(profileImage: profileImage!)
         self.dismiss(animated: false, completion: nil)
     }
     
+    
+    /*
+     Return number of items in specified section of collectionView.
+     */
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return avatarsArray.count
     }
 
+    
+    /*
+     Set and return cell at specified collectionView indexPath.
+     */
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! AvatarCollectionViewCell
         cell.imageView.image = avatarsArray[indexPath.row]
@@ -66,9 +95,19 @@ class ChangeAvatarVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         return cell
     }
     
+    
+    /*
+     Adjust visible cells when user scrolls.
+     */
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         adjustVisibleCollectionCells()
     }
+    
+    
+    /*
+     Change scaling and height of visible cells in collectionView to create circular scrolling effect.
+     */
     
     func adjustVisibleCollectionCells(){
         let maxScale:CGFloat = 1.7
@@ -89,6 +128,11 @@ class ChangeAvatarVC: UIViewController, UICollectionViewDelegate, UICollectionVi
             }
         }
     }
+    
+    
+    /*
+     Save selected image.
+     */
     
     func cellSelected(selectedImage: UIImage) {
         profileImage = selectedImage

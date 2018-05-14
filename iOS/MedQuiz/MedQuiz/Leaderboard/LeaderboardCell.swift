@@ -8,6 +8,10 @@
 
 import UIKit
 
+/*
+ LeaderboardCell displays student information in LeaderboardVC.
+ */
+
 class LeaderboardCell: UITableViewCell {
     
     @IBOutlet weak var rankLabel: UILabel!
@@ -18,6 +22,10 @@ class LeaderboardCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+    /*
+     Set background color when preparing for reuse.
+     */
+    
     override func prepareForReuse() {
         self.backgroundColor = UIColor.clear
     }

@@ -11,6 +11,10 @@ import Foundation
 import UIKit
 import FirebaseAuth
 
+/*
+ ProfileVC displays relevent profile information and navigates to changing username, changing profile picture, and managing friends list.
+ */
+
 class ProfileVC: UIViewController, ChangeAvatarVCDelegate, ChangeUsernameVCDelegate {
 
     @IBOutlet weak var profileImageView: UIImageView!
@@ -27,14 +31,12 @@ class ProfileVC: UIViewController, ChangeAvatarVCDelegate, ChangeUsernameVCDeleg
     var username = ""
     var usernameChanged = false
     
+    /*
+     Set component values. Add gesture recognizer for change profile picture.
+     */
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
-        
-        
-        
         
         //Testing profile info population
         //Here I created a variable testUserLoginInput, assume
@@ -47,13 +49,6 @@ class ProfileVC: UIViewController, ChangeAvatarVCDelegate, ChangeUsernameVCDeleg
 //            print("Testing profile info population")
 //            print(aStudent.studentUsername!)
 //        }
-        
-        
-        
-    
-        
-        
-        
         
         let profileAvatarChange = UITapGestureRecognizer(target: self, action: #selector(ProfileVC.profileAvatarPressed))
         
@@ -74,17 +69,29 @@ class ProfileVC: UIViewController, ChangeAvatarVCDelegate, ChangeUsernameVCDeleg
         changeImageView.transform = CGAffineTransform(scaleX: 1, y: -1)
     }
     
+    /*
+     Set local profile picture data using provided image.
+     */
+    
     func dataChanged(profileImage: UIImage) {
         //TODO: MAKE SURE IMAGE IS CHANGED ON DB
         globalProfileImage = profileImage
         profileImageView.image = globalProfileImage
     }
     
+    /*
+     Set local username data using provided username and usernameChanged values..
+     */
+    
     func dataChanged(username: String, usernameChanged: Bool) {
         self.username = username
         usernameLabel.text = username
         editUsernameButton.isHidden = usernameChanged
     }
+    
+    /*
+     Transition to AddFriendsVC.
+     */
     
     @IBAction func addFriendsPressed(_ sender: Any) {
 //        let addFriendsVC =  self.storyboard?.instantiateViewController(withIdentifier: "addFriends") as! AddFriendsVC
@@ -94,12 +101,22 @@ class ProfileVC: UIViewController, ChangeAvatarVCDelegate, ChangeUsernameVCDeleg
 
     }
     
+    
+    /*
+     Transition to ChangeAvatarVC.
+     */
+    
     @objc func profileAvatarPressed(){
         let changeAvatarVC = self.storyboard?.instantiateViewController(withIdentifier: "changeAvatarVC") as! ChangeAvatarVC
         changeAvatarVC.profileImage = globalProfileImage
         changeAvatarVC.delegate = self
         self.present(changeAvatarVC, animated: false, completion: nil)
     }
+    
+    
+    /*
+     Log out of app. Dismiss to LoginVC.
+     */
     @IBAction func logoutPressed(_ sender: Any) {
         
         do {
@@ -110,6 +127,11 @@ class ProfileVC: UIViewController, ChangeAvatarVCDelegate, ChangeUsernameVCDeleg
         }
         
     }
+    
+    
+    /*
+     Transition to ChangeUsernameVC.
+     */
     
     @IBAction func changeUsernamePressed(_ sender: Any) {
         let changeUsernameVC = self.storyboard?.instantiateViewController(withIdentifier: "ChangeUsernameVC") as! ChangeUsernameVC

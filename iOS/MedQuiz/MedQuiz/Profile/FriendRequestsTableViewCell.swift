@@ -8,6 +8,10 @@
 
 import UIKit
 
+/*
+FriendRequestsTableViewCell displays friend information in FriendRequestsTableView.
+ */
+
 class FriendRequestsTableViewCell: UITableViewCell {
 
     @IBOutlet weak var avatarImageView: UIImageView!
@@ -19,6 +23,10 @@ class FriendRequestsTableViewCell: UITableViewCell {
 
     var student:Student?
     var parent:RequestAction!
+    
+    /*
+     Set component values and borderView color and width.
+     */
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -38,6 +46,10 @@ class FriendRequestsTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    /*
+     Set either username or profile picture related component values using provided username or profile picture.
+     */
+    
     func setViews(username:String?, avatarImage:UIImage?){
         print("done setting view")
         if let _ = username{
@@ -50,15 +62,27 @@ class FriendRequestsTableViewCell: UITableViewCell {
         }
 
     }
+    
+    /*
+     Set component values using provided student.
+     */
 
     func setStudent(student:Student){
         self.student = student
         setViews(username: student.userName, avatarImage: student.profilePic)
     }
     
+    /*
+     Signal delegate to accept selected friend request.
+     */
+    
     @IBAction func addPressed(_ sender: Any) {
         parent.addFriendSelected(student: self.student!)
     }
+    
+    /*
+     Signal delegate to hide selected friend request.
+     */
     
     @IBAction func hidePressed(_ sender: Any) {
         parent.hideRequestSelected(student: self.student!)

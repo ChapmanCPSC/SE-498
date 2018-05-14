@@ -13,6 +13,11 @@ protocol ChangeUsernameVCDelegate: class{
     func dataChanged(username: String, usernameChanged: Bool)
 }
 
+
+/*
+ ChangeUsernameVC allows the user to change their username if they have not already changed it before.
+ */
+
 class ChangeUsernameVC: UIViewController, UITextFieldDelegate {
 
     let placeholderTextColor = UIColor.hexStringToUIColor(hex: "FF8D84")
@@ -30,6 +35,11 @@ class ChangeUsernameVC: UIViewController, UITextFieldDelegate {
     
     weak var delegate: ChangeUsernameVCDelegate?
     
+    
+    /*
+     Setup input text field.
+     */
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -45,11 +55,20 @@ class ChangeUsernameVC: UIViewController, UITextFieldDelegate {
     }
     
 
+    
+    /*
+     Dismiss view.
+     */
+    
     @IBAction func backToProfile(_ sender: Any) {
 //        delegate?.dataChanged(username: username!, usernameChanged: usernameChanged)
         dismiss(animated: false, completion: nil)
     }
     
+    
+    /*
+     Hide warning after user responds to change username warning with no.
+     */
     
     @IBAction func noPressed(_ sender: Any) {
         warningView.isHidden = true
@@ -57,10 +76,15 @@ class ChangeUsernameVC: UIViewController, UITextFieldDelegate {
 //        changeUsernameTextField.endEditing(true)
     }
     
+    
+    /*
+     Set new username and dismiss view after user responds to change username warning with yes.
+     */
+    
     @IBAction func yesPressed(_ sender: Any) {
         warningView.isHidden = true
         //Gets a reference to db and changes the username on the db(firebase) with the text the inputted
-    Database.database().reference().child("student").child(currentGlobalStudent.databaseID!).child("username").setValue(changeUsernameTextField.text!)
+        Database.database().reference().child("student").child(currentGlobalStudent.databaseID!).child("username").setValue(changeUsernameTextField.text!)
         //Assigns the new username to the global username
         globalUsername = changeUsernameTextField.text!
         //Assigns the new username to currentGlobal student 
@@ -69,14 +93,29 @@ class ChangeUsernameVC: UIViewController, UITextFieldDelegate {
         dismiss(animated: false, completion: nil)
     }
     
+    
+    /*
+     Adjust input text field text when user starts editing.
+     */
+    
     @IBAction func changeUsernameTextFieldEditingDidBegin(_ sender: Any) {
         changeUsernameTextField.textColor = activeTextColor
         changeUsernameTextField.selectedTextRange = changeUsernameTextField.textRange(from: changeUsernameTextField.beginningOfDocument, to: changeUsernameTextField.endOfDocument)
     }
     
+    
+    /*
+     Adjust input text field text when user stops editing.
+     */
+    
     @IBAction func changeUsernameTextFieldEditingDidEnd(_ sender: Any) {
         changeUsernameTextField.textColor = placeholderTextColor
     }
+    
+    
+    /*
+     Presents warning if user enters username that is not equal to their current username. Returns true when function content complete.
+     */
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         

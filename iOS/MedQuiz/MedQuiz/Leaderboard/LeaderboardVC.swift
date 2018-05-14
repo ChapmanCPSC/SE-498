@@ -10,6 +10,10 @@ import Foundation
 import UIKit
 import Firebase
 
+/*
+ LeaderboardVC displays totalPoints ranking between the user and friends, and the user and all other students.
+ */
+
 class LeaderboardVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var friendsOrGlobal = "friends"
@@ -26,6 +30,10 @@ class LeaderboardVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     var checkStudentRef:DatabaseReference!
     var checkStudentHandle:DatabaseHandle!
     var checkStudentSet = false
+    
+    /*
+     Setup view components. Observe changes in student scores. Order retrieved students in descending order.
+     */
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,15 +103,26 @@ class LeaderboardVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         })
     }
 
+    /*
+     Remove listeners after disappearing.
+     */
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(false)
         removeListeners()
     }
     
+    /*
+     Return number of rows in specified section.
+     */
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.friendsList.count
     }
+    
+    /*
+     Set and return cell at specified indexPath.
+     */
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : LeaderboardCell = leaderboardTableview.dequeueReusableCell(withIdentifier: "leaderboard_cell") as! LeaderboardCell
@@ -119,6 +138,9 @@ class LeaderboardVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         return cell
     }
     
+    /*
+     Transition lieaderboard between Friends and Global modes.
+     */
     
     @IBAction func switchLeaderboardPressed(_ sender: Any) {
         print("tapped")
@@ -143,6 +165,10 @@ class LeaderboardVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
             }
         }
     }
+    
+    /*
+     Remove all database observers.
+     */
     
     func removeListeners(){
         if checkStudentSet {
