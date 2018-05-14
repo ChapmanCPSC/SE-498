@@ -143,7 +143,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         // this would be used for example on successful login/authentication
         // from Firebase. We have the input from the usernameTextField
         // and we can use that on login to get the username and profile pic etc.
-//        let testUserLoginInput = "b29fks9mf9gh37fhh1h9814"
+//        let testUserLoginInput = "_____________________"
         //I query a student by the key and I print the student's username on success
 //        StudentModel.From(key: testUserLoginInput) { (aStudent) in
 //            print("Testing user login")
@@ -171,7 +171,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         
         //Example of getting specific profile picture for one student
         // (not sure this is usefull but just an example of use)
-//        let testUserLoginInput2 = "lylenator2000"
+//        let testUserLoginInput2 = "_____________"
 //        StudentModel.Where(child: "username", equals: testUserLoginInput2) { (studentModelsReturned) in
 //            let theStudent = studentModelsReturned[0]
 //            print(theStudent.studentUsername!)

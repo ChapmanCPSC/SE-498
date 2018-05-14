@@ -30,9 +30,6 @@ class HeadToHeadVC: UIViewController, UITableViewDelegate, UITableViewDataSource
 
         // Do any additional setup after loading the view.
         
-        //Temp quiz key value
-        quizKey = "-LBwQ1u57nR5iIhISejf"
-        
         friends = currentGlobalStudent.friends!
         
         let friendRequestsCellNib = UINib(nibName: "HeadToHeadFriendRequestTableViewCell", bundle: nil)

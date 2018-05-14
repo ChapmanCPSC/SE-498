@@ -27,9 +27,6 @@ class FriendsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, U
     
     let placeholderTextColor = UIColor.hexStringToUIColor(hex: "FF8D84")
     let activeTextColor = OurColorHelper.pharmAppBlue
-    
-    var cellUsernames:[String] = ["Kyle102", "Jeniffer308", "Mark075", "Layla690"]
-    var cellImages:[UIImage] = [#imageLiteral(resourceName: "StudentAvatarPlaceholder.png"), #imageLiteral(resourceName: "StudentAvatarPlaceholder.png"), #imageLiteral(resourceName: "StudentAvatarPlaceholder.png"), #imageLiteral(resourceName: "StudentAvatarPlaceholder.png")]
 
     var friendRequests:[Student] = []
     
