@@ -47,7 +47,10 @@ class ColorHelper{
     lazy var pharmAppGameLeaderboardUserThree = hexStringToUIColor(hex: "A1ABFF")
     lazy var pharmAppGameLeaderboardUserFour = hexStringToUIColor(hex: "D8939B")
     
+    
+    lazy var pharmAppLeaderboardColors = [pharmAppGameLeaderboardUserOne, pharmAppGameLeaderboardUserTwo, pharmAppGameLeaderboardCurrentUser, pharmAppGameLeaderboardUserThree, pharmAppGameLeaderboardUserFour]
 
+    lazy var pharmAppAnswerColors = [pharmAppAnswerOne ,pharmAppAnswerTwo, pharmAppAnswerThree, pharmAppAnswerFour]
 
     func hexStringToUIColor (hex:String) -> UIColor {
         var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()

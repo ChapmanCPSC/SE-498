@@ -164,7 +164,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Q0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="da4-nm-GCK">
-                                        <rect key="frame" x="497" y="23.5" width="31" height="28"/>
+                                        <rect key="frame" x="497" y="19" width="31" height="32.5"/>
                                         <fontDescription key="fontDescription" name="ClearSans-Medium" family="Clear Sans Medium" pointSize="24"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -716,7 +716,7 @@
                                 <rect key="frame" x="0.0" y="384" width="1024" height="384"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yD8-nY-hgg">
-                                        <rect key="frame" x="457.5" y="251" width="110" height="32"/>
+                                        <rect key="frame" x="457" y="251" width="111" height="32"/>
                                         <fontDescription key="fontDescription" name="ClearSans-Medium" family="Clear Sans Medium" pointSize="35"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
