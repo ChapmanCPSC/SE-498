@@ -192,10 +192,10 @@
                                             <action selector="backFromFriends:" destination="urf-Nd-ckp" eventType="touchUpInside" id="x06-cD-rsj"/>
                                         </connections>
                                     </button>
-                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c13-6o-fyc" userLabel="Search Result Label">
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c13-6o-fyc" userLabel="Search Result Label">
                                         <rect key="frame" x="97" y="260" width="500" height="100"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="ClearSans-Medium" family="Clear Sans Medium" pointSize="26"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -244,6 +244,8 @@
                     </view>
                     <connections>
                         <outlet property="friendRequestsTable" destination="get-WS-fPi" id="Lk0-WI-EpR"/>
+                        <outlet property="searchFriendBorder" destination="O4c-00-JBv" id="qK4-ie-AFE"/>
+                        <outlet property="searchFriendCard" destination="yxL-ZK-xG3" id="RBn-x9-gDF"/>
                         <outlet property="searchFriendTextfield" destination="qud-WJ-a5Y" id="S4X-9o-o19"/>
                         <outlet property="searchResultLabel" destination="c13-6o-fyc" id="Dnk-qH-K3w"/>
                     </connections>
