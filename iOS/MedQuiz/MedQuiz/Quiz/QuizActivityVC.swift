@@ -33,7 +33,7 @@ class QuizActivityVC: UIViewController {
     var gameKey:String!
     var inGameLeaderboardKey:String!
     var userInGameLeaderboardObjectKey:String!
-    var allUsers:[Student]! // TODO kinda working off assumption there'll be an array that'll be updated in firebase that we can use
+    var allUsers:[Student]!
     var allScores:[Int]!
     
     var headToHeadOpponent:Student!
@@ -78,7 +78,6 @@ class QuizActivityVC: UIViewController {
     var timer = Timer()
     var timerForNextQ = Timer()
     var isTimerRunning = false
-    //temp value set to match test db
     var pointsEarned: Int = 0
     var questionsRight: Int = 0
     var questionsWrong: Int = 0

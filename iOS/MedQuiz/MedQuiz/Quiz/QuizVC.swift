@@ -250,24 +250,3 @@ extension QuizVC: UITextFieldDelegate {
     }
 }
 
-
-
-//        //Testing quiz pin retrieval
-//        // in this case we assume a student entered a pin: 8419
-//        let testPin = "8419"
-//        GameModel.Where(child: GameModel.GAME_PIN, equals: testPin) { (gamesFound) in
-//            //this query returns an array of games, I called it "gamesFound"
-//            // since there can only be one game with that game pin
-//            // i can just assume the game is the first one in the array "gamesFound"
-//            // returned.
-//            let theGame = gamesFound[0]
-//            //since theGame is of type GameModel I can use its variable quizKey and
-//            // and then get access to that quiz using the quiz key
-//            let quizKeyForGame = theGame.quizKey!
-//            QuizModel.From(key: quizKeyForGame, completion: { (aQuiz) in
-//                //This query returns an a quiz model by some key I provided "quizKeyForGame". I called the quiz model "aQuiz"
-//                //Just to test we return the quiz title
-//                print("Testing quiz pin retrieval")
-//                print(aQuiz.title!)
-//            })
-//        }

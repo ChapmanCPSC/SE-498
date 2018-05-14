@@ -10,13 +10,21 @@ import Foundation
 
 class QuizDataNode:CellDataNode {
     var quizName:String
+    var quiz:Quiz
 
     override class func reuseIdentifier() -> String {
         return "QuizCell"
     }
 
-    init(quizName:String, children: [CellDataNode], completionEvents: [() -> ()]) {
+    /*init(quizName:String, children: [CellDataNode], completionEvents: [() -> ()]) {
         self.quizName = quizName
+
+        super.init(children: children, completionEvents: completionEvents)
+    }*/
+
+    init(quiz:Quiz, children:[CellDataNode], completionEvents: [() -> ()]) {
+        self.quiz = quiz
+        self.quizName = quiz.name!
 
         super.init(children: children, completionEvents: completionEvents)
     }

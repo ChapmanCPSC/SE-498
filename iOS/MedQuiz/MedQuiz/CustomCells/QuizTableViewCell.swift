@@ -11,7 +11,8 @@ import UIKit
 class QuizTableViewCell: CellType {
 
     @IBOutlet weak var lab_quizName: UILabel!
-
+    @IBOutlet weak var lab_dateCreated: UILabel!
+    
 
     var delegate:PerformsSegueDelegator!
     var quizDataNode:QuizDataNode!
@@ -43,8 +44,9 @@ class QuizTableViewCell: CellType {
 
     override func updateViews() {
         lab_quizName.text = quizDataNode?.quizName
+        lab_dateCreated.text = quizDataNode?.quiz.dateCreated
     }
     @IBAction func bt_startPressed(_ sender: Any) {
-        self.delegate.callSegue()
+        self.delegate.callSegue(quizKey: quizDataNode.quiz.quizKey!)
     }
 }

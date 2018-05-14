@@ -43,7 +43,7 @@ class ProfileVC: UIViewController, ChangeAvatarVCDelegate, ChangeUsernameVCDeleg
         // this would be used for example on successful login/authentication
         // from Firebase. We have the input from the usernameTextField
         // and we can use that on login to get the username and profile pic etc.
-//        let testUser = "654426e87a6"
+//        let testUser = "_________"
         //I query a student by the key and I print the student's username on success
 //        StudentModel.From(key: testUser) { (aStudent) in
 //            print("Testing profile info population")

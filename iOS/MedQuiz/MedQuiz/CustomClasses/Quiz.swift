@@ -21,6 +21,7 @@ class Quiz {
     var questions:[Question]?
     var tags:[Tag]?
     var complete:Bool!
+    var quizKey:String?
 
     /*
      Create Quiz from set of attribute values.
@@ -34,6 +35,7 @@ class Quiz {
         self.questions = questions
         self.tags = tags
         self.complete = true
+        self.quizKey = "undef"
     }
 
     /*
@@ -44,6 +46,7 @@ class Quiz {
         QuizModel.From(key: key, completion: { (aQuizModel) in
             print("key")
             print(aQuizModel.key)
+            self.quizKey = key
             
             self.complete = true
             

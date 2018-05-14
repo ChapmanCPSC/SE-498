@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 /*
 ExpandableTableViewController displays categories of quizzes that can be played in practice mode. Category nodes contain Subject nodes which contain
@@ -29,38 +30,32 @@ class ExpandableTableViewController: UITableViewController {
         cellDataNodes = []
         currentlyShown = []
 
-        cellDataNodes.append(
-                CategoryDataNode(categoryName: "Therapeutics", children: [
-                    SubjectDataNode(subjectName: "Cardiology", children: [
-                        QuizDataNode(quizName: "Quiz 1", children: [], completionEvents: []),
-                        QuizDataNode(quizName: "Quiz 2", children: [], completionEvents: []),
-                        QuizDataNode(quizName: "Quiz 3", children: [], completionEvents: []),
-                    ], completionEvents: []),
-                    SubjectDataNode(subjectName: "Endocrinology", children: [], completionEvents: []),
-                    SubjectDataNode(subjectName: "Renal", children: [
-                        QuizDataNode(quizName: "Quiz 1", children: [], completionEvents: []),
-                        QuizDataNode(quizName: "Quiz 2", children: [], completionEvents: []),
-                        QuizDataNode(quizName: "Quiz 3", children: [], completionEvents: []),
-                        QuizDataNode(quizName: "Quiz 4", children: [], completionEvents: []),
-                        QuizDataNode(quizName: "Quiz 5", children: [], completionEvents: []),
-                        QuizDataNode(quizName: "Quiz 6", children: [], completionEvents: []),
-                        QuizDataNode(quizName: "Quiz 7", children: [], completionEvents: []),
-                        QuizDataNode(quizName: "Quiz 8", children: [], completionEvents: []),
-                        QuizDataNode(quizName: "Quiz 9", children: [], completionEvents: [])
-                    ], completionEvents: [])
-                ], completionEvents: [])
-        )
-        cellDataNodes.append(
-                CategoryDataNode(categoryName: "Basic Science", children: [], completionEvents: [])
-        )
-        cellDataNodes.append(
-                CategoryDataNode(categoryName: "Biology", children: [], completionEvents: [])
-        )
-        cellDataNodes.append(
-                CategoryDataNode(categoryName: "Chemistry", children: [], completionEvents: [])
-        )
+        Firebase.Database.database().reference()
+            .child("tag")
+            .observeSingleEvent(of: .value, with: { (snap:DataSnapshot) in
+                for s in snap.children {
+                    let tagModel = TagModel(snapshot: s as! DataSnapshot)
 
-        currentlyShown.append(contentsOf: cellDataNodes)
+                    Tag(key: tagModel.key) { tag in
+                        let currNode = CategoryDataNode(tag: tag, children: [], completionEvents: [])
+
+                        tagModel.quizzesForTag.forEach { model in
+                            Quiz(key: model.key) { quiz in
+                                if(quiz.visible!){
+                                    currNode.children.append(QuizDataNode(quiz: quiz, children: [], completionEvents: []))
+                                    if(currNode.children.count == 1){// only want to add the category if there's at least one quiz in it
+                                        self.cellDataNodes.append(currNode)
+                                        self.currentlyShown.append(currNode)
+                                    }
+                                    self.tableView.reloadData()
+                                }
+                            }
+                        }
+                    }
+
+                }
+            })
+
     }
 
     /*
@@ -254,12 +249,12 @@ class ExpandableTableViewController: UITableViewController {
  */
 
 extension ExpandableTableViewController:PerformsSegueDelegator {
-    func callSegue() {
+    func callSegue(quizKey:String) {
         let quizSelectModeVC = self.storyboard?.instantiateViewController(withIdentifier: "quizMode") as! QuizSelectModeVC
         //TODO: add quiz key to each cell
         //quizSelectModeVC.quizKey = self.quizKey
         //Temp for testing purposes
-        quizSelectModeVC.quizKey = "-LBwQ1u57nR5iIhISejf"
+        quizSelectModeVC.quizKey = quizKey
         self.present(quizSelectModeVC, animated: false, completion: {
         })
     }
