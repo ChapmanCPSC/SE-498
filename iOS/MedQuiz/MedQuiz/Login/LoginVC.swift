@@ -416,6 +416,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     
     func checkHeadToHeadRequest(){
         StudentModel.FromAndKeepObserving(key: currentUserID, completion: { student in
+            print("BUSY VALUE: \(globalBusy)")
             if student.headToHeadGameRequest != nil && !globalBusy {
                 print("Presenting head to head request")
                 let headToHeadGameRef = Database.database().reference().child("head-to-head-game").child(student.headToHeadGameRequest!)
