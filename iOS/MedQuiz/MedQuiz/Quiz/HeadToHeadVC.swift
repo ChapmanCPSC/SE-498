@@ -88,7 +88,7 @@ class HeadToHeadVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                 alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }
-            else if friend.headToHeadGameRequest == nil, friend.headToHeadGameRequest != "busy" {
+            else if friend.headToHeadGameRequest == nil || friend.headToHeadGameRequest! != "busy" {
                 let headToHeadGameReference = Database.database().reference().child("head-to-head-game").childByAutoId()
                 headToHeadGameReference.child("quiz").setValue(self.quizKey)
                 headToHeadGameReference.child("inviter").child("student").setValue(currentUserID)
